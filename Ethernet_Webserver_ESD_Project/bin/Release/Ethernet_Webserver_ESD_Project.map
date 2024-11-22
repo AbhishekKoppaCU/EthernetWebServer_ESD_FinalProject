@@ -1,0 +1,548 @@
+ASxxxx Linker V03.00/V05.40 + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_BIT_BANK                      
+C:   00000000  l_BSEG                          
+C:   00000000  l_BSEG_BYTES                    
+C:   00000000  l_CABS                          
+C:   00000000  l_GSINIT                        
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_ISEG                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l_XINIT                         
+C:   00000000  l_XISEG                         
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_IABS                          
+C:   00000000  s_ISEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000001  l_OSEG                          
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000006  l_HOME                          
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT2                       
+C:   00000010  s_REG_BANK_2                    
+C:   00000013  s_OSEG                          
+C:   00000014  s_SSEG                          
+C:   00000018  s_BIT_BANK                      
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000022  l_GSINIT3                       
+C:   00000025  l_CONST                         
+C:   0000002A  l_GSINIT4                       
+C:   00000041  l_XSEG                          
+C:   00000080  l_DSEG                          
+C:   000000EC  l_SSEG                          
+ASxxxx Linker V03.00/V05.40 + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000100  l_IRAM                          
+C:   00000100  s_PSEG                          
+C:   00000100  s_XSEG                          
+C:   00000141  s_XISEG                         
+C:   00000C77  l_CSEG                          
+C:   00002000  s_HOME                          
+C:   00002006  s_GSINIT0                       
+C:   00002009  s_GSINIT1                       
+C:   00002009  s_GSINIT2                       
+C:   00002013  s_GSINIT3                       
+C:   00002035  s_GSINIT4                       
+C:   0000205F  s_GSFINAL                       
+C:   0000205F  s_GSINIT                        
+C:   0000205F  s_GSINIT5                       
+C:   00002062  s_CSEG                          
+C:   00002CD9  s_CONST                         
+C:   00002CFE  s_XINIT                         
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _bp
+     00000080  _P0                                Utilities
+     00000080  _P0_0                              Utilities
+     00000081  _P0_1                              Utilities
+     00000081  _SP                                Utilities
+     00000082  _DP0L                              Utilities
+     00000082  _DPL                               Utilities
+     00000082  _P0_2                              Utilities
+     00000083  _DP0H                              Utilities
+     00000083  _DPH                               Utilities
+     00000083  _P0_3                              Utilities
+     00000084  _P0_4                              Utilities
+     00000085  _P0_5                              Utilities
+     00000086  _P0_6                              Utilities
+     00000087  _P0_7                              Utilities
+     00000087  _PCON                              Utilities
+     00000088  _IT0                               Utilities
+     00000088  _TCON                              Utilities
+     00000089  _IE0                               Utilities
+     00000089  _TMOD                              Utilities
+     0000008A  _IT1                               Utilities
+     0000008A  _TL0                               Utilities
+     0000008B  _IE1                               Utilities
+     0000008B  _TL1                               Utilities
+     0000008C  _TH0                               Utilities
+     0000008C  _TR0                               Utilities
+     0000008D  _TF0                               Utilities
+     0000008D  _TH1                               Utilities
+     0000008E  _AUXR                              Utilities
+     0000008E  _TR1                               Utilities
+     0000008F  _CKCON0                            Utilities
+     0000008F  _TF1                               Utilities
+     00000090  _P1                                Utilities
+     00000090  _P1_0                              Utilities
+     00000091  _P1_1                              Utilities
+     00000092  _P1_2                              Utilities
+     00000093  _P1_3                              Utilities
+     00000094  _P1_4                              Utilities
+     00000095  _P1_5                              Utilities
+     00000096  _P1_6                              Utilities
+     00000097  _CKRL                              Utilities
+     00000097  _P1_7                              Utilities
+     00000098  _RI                                Utilities
+     00000098  _SCON                              Utilities
+     00000099  _SBUF                              Utilities
+     00000099  _SBUF0                             Utilities
+     00000099  _TI                                Utilities
+     0000009A  _BRL                               Utilities
+     0000009A  _RB8                               Utilities
+     0000009B  _BDRCON                            Utilities
+ASxxxx Linker V03.00/V05.40 + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000009B  _TB8                               Utilities
+     0000009C  _KBLS                              Utilities
+     0000009C  _REN                               Utilities
+     0000009D  _KBE                               Utilities
+     0000009D  _SM2                               Utilities
+     0000009E  _KBF                               Utilities
+     0000009E  _SM1                               Utilities
+     0000009F  _SM0                               Utilities
+     000000A0  _P2                                Utilities
+     000000A0  _P2_0                              Utilities
+     000000A0  __XPAGE                            
+     000000A1  _P2_1                              Utilities
+     000000A2  _AUXR1                             Utilities
+     000000A2  _P2_2                              Utilities
+     000000A3  _P2_3                              Utilities
+     000000A4  _P2_4                              Utilities
+     000000A5  _P2_5                              Utilities
+     000000A6  _P2_6                              Utilities
+     000000A6  _WDTRST                            Utilities
+     000000A7  _P2_7                              Utilities
+     000000A7  _WDTPRG                            Utilities
+     000000A8  _EX0                               Utilities
+     000000A8  _IE                                Utilities
+     000000A8  _IEN0                              Utilities
+     000000A9  _ET0                               Utilities
+     000000A9  _SADDR                             Utilities
+     000000AA  _EX1                               Utilities
+     000000AB  _ET1                               Utilities
+     000000AC  _ES                                Utilities
+     000000AD  _ET2                               Utilities
+     000000AE  _EC                                Utilities
+     000000AF  _CKCON1                            Utilities
+     000000AF  _EA                                Utilities
+     000000B0  _P3                                Utilities
+     000000B0  _P3_0                              Utilities
+     000000B0  _RXD                               Utilities
+     000000B0  _RXD0                              Utilities
+     000000B1  _IEN1                              Utilities
+     000000B1  _P3_1                              Utilities
+     000000B1  _TXD                               Utilities
+     000000B1  _TXD0                              Utilities
+     000000B2  _INT0                              Utilities
+     000000B2  _IPL1                              Utilities
+     000000B2  _P3_2                              Utilities
+     000000B3  _INT1                              Utilities
+     000000B3  _IPH1                              Utilities
+     000000B3  _P3_3                              Utilities
+     000000B4  _P3_4                              Utilities
+     000000B4  _T0                                Utilities
+     000000B5  _P3_5                              Utilities
+     000000B5  _T1                                Utilities
+ASxxxx Linker V03.00/V05.40 + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000B6  _P3_6                              Utilities
+     000000B6  _WR                                Utilities
+     000000B7  _IPH0                              Utilities
+     000000B7  _P3_7                              Utilities
+     000000B7  _RD                                Utilities
+     000000B8  _IP                                Utilities
+     000000B8  _IPL0                              Utilities
+     000000B8  _PX0                               Utilities
+     000000B8  _PX0L                              Utilities
+     000000B9  _PT0                               Utilities
+     000000B9  _PT0L                              Utilities
+     000000B9  _SADEN                             Utilities
+     000000BA  _PX1                               Utilities
+     000000BA  _PX1L                              Utilities
+     000000BB  _PT1                               Utilities
+     000000BB  _PT1L                              Utilities
+     000000BC  _PS                                Utilities
+     000000BC  _PSL                               Utilities
+     000000BD  _PT2                               Utilities
+     000000BD  _PT2L                              Utilities
+     000000BE  _PPCL                              Utilities
+     000000C0  _P4                                Utilities
+     000000C0  _P4_0                              Utilities
+     000000C1  _P4_1                              Utilities
+     000000C2  _P4_2                              Utilities
+     000000C3  _P4_3                              Utilities
+     000000C3  _SPCON                             Utilities
+     000000C4  _P4_4                              Utilities
+     000000C4  _SPSTA                             Utilities
+     000000C5  _P4_5                              Utilities
+     000000C5  _SPDAT                             Utilities
+     000000C6  _P4_6                              Utilities
+     000000C7  _P4_7                              Utilities
+     000000C8  _CP_RL2                            Utilities
+     000000C8  _T2CON                             Utilities
+     000000C8  _T2CON_0                           Utilities
+     000000C9  _C_T2                              Utilities
+     000000C9  _T2CON_1                           Utilities
+     000000C9  _T2MOD                             Utilities
+     000000CA  _RCAP2L                            Utilities
+     000000CA  _T2CON_2                           Utilities
+     000000CA  _TR2                               Utilities
+     000000CB  _EXEN2                             Utilities
+     000000CB  _RCAP2H                            Utilities
+     000000CB  _T2CON_3                           Utilities
+     000000CC  _T2CON_4                           Utilities
+     000000CC  _TCLK                              Utilities
+     000000CC  _TL2                               Utilities
+     000000CD  _RCLK                              Utilities
+     000000CD  _T2CON_5                           Utilities
+     000000CD  _TH2                               Utilities
+ASxxxx Linker V03.00/V05.40 + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CE  _EXF2                              Utilities
+     000000CE  _T2CON_6                           Utilities
+     000000CF  _T2CON_7                           Utilities
+     000000CF  _TF2                               Utilities
+     000000D0  _P                                 Utilities
+     000000D0  _PSW                               Utilities
+     000000D1  _F1                                Utilities
+     000000D2  _EECON                             Utilities
+     000000D2  _OV                                Utilities
+     000000D3  _RS0                               Utilities
+     000000D4  _RS1                               Utilities
+     000000D5  _F0                                Utilities
+     000000D6  _AC                                Utilities
+     000000D7  _CY                                Utilities
+     000000D8  _CCF0                              Utilities
+     000000D8  _CCON                              Utilities
+     000000D9  _CCF1                              Utilities
+     000000D9  _CMOD                              Utilities
+     000000DA  _CCAPM0                            Utilities
+     000000DA  _CCF2                              Utilities
+     000000DB  _CCAPM1                            Utilities
+     000000DB  _CCF3                              Utilities
+     000000DC  _CCAPM2                            Utilities
+     000000DC  _CCF4                              Utilities
+     000000DD  _CCAPM3                            Utilities
+     000000DE  _CCAPM4                            Utilities
+     000000DE  _CR                                Utilities
+     000000DF  _CF                                Utilities
+     000000E0  _ACC                               Utilities
+     000000E8  _P5                                Utilities
+     000000E8  _P5_0                              Utilities
+     000000E9  _CL                                Utilities
+     000000E9  _P5_1                              Utilities
+     000000EA  _CCAP0L                            Utilities
+     000000EA  _P5_2                              Utilities
+     000000EB  _CCAP1L                            Utilities
+     000000EB  _P5_3                              Utilities
+     000000EC  _CCAP2L                            Utilities
+     000000EC  _P5_4                              Utilities
+     000000ED  _CCAP3L                            Utilities
+     000000ED  _P5_5                              Utilities
+     000000EE  _CCAP4L                            Utilities
+     000000EE  _P5_6                              Utilities
+     000000EF  _P5_7                              Utilities
+     000000F0  _B                                 Utilities
+     000000F0  _BREG_F0                           Utilities
+     000000F1  _BREG_F1                           Utilities
+     000000F2  _BREG_F2                           Utilities
+     000000F3  _BREG_F3                           Utilities
+     000000F4  _BREG_F4                           Utilities
+     000000F5  _BREG_F5                           Utilities
+ASxxxx Linker V03.00/V05.40 + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000F5  _B_5                               _gptrget
+     000000F6  _BREG_F6                           Utilities
+     000000F6  _B_6                               _gptrget
+     000000F7  _BREG_F7                           Utilities
+     000000F7  _B_7                               _gptrget
+     000000F9  _CH                                Utilities
+     000000FA  _CCAP0H                            Utilities
+     000000FB  _CCAP1H                            Utilities
+     000000FC  _CCAP2H                            Utilities
+     000000FD  _CCAP3H                            Utilities
+     000000FE  _CCAP4H                            Utilities
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000080 =         128. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000012  _bp                                _bp
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+OSEG                                00000013    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000014    000000EC =         236. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000014  __start__stack                     main
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000100    00000041 =          65. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   00000108  _vprintf_PARM_2                    vprintf
+D:   0000011D  __print_format_PARM_2              printf_large
+D:   00000120  __print_format_PARM_3              printf_large
+D:   00000123  __print_format_PARM_4              printf_large
+D:   0000013F  __mulint_PARM_2                    _mulint
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00002000    00000006 =           6. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002003  __sdcc_program_startup             main
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             00002006    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002006  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             00002009    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             00002013    00000022 =          34. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002013  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00002035    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002035  __mcs51_genRAMCLEAR                
+C:   0000203B  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             0000205F    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00002062    00000C77 =        3191. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002062  _main                              main
+C:   0000207F  _LED_Fast_Blink                    Operations
+C:   000020AF  _LED_Slow_Blink                    Operations
+C:   000020B0  _LED_On                            Operations
+C:   0000210A  _LED_Off                           Operations
+C:   0000210B  _configure_SPI                     SPI
+C:   00002123  _SPI_send                          SPI
+C:   00002155  _delay_us                          SPI
+C:   00002186  _putchar                           Utilities
+C:   000021A5  _getchar                           Utilities
+C:   000021B3  _putstr                            Utilities
+C:   00002238  _vprintf                           vprintf
+C:   00002277  _printf                            vprintf
+C:   0000237D  __print_format                     printf_large
+C:   00002C81  _strlen                            _strlen
+C:   00002C99  __mulint                           _mulint
+C:   00002CB9  __gptrget                          _gptrget
+C:   00002CD5  ___sdcc_external_startup           _startup
+ASxxxx Linker V03.00/V05.40 + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               00002CD9    00000025 =          37. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00/V05.40 + sdld,  page 21.
+
+Files Linked                              [ module(s) ]
+
+obj\Release\main.rel                      [  ]
+obj\Release\Operations.rel                [  ]
+obj\Release\SPI.rel                       [  ]
+obj\Release\Utilities.rel                 [  ]
+
+
+Libraries Linked                          [ object file ]
+
+C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
+                                          [ crtclear.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
+                                          [ crtxinit.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
+                                          [ crtxclear.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ vprintf.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ printf_large.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
+                                          [ crtpagesfr.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ _strlen.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libint.lib
+                                          [ _mulint.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
+                                          [ crtstart.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ _gptrget.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ _startup.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ _bp.rel ]
+
+ASxxxx Linker V03.00/V05.40 + sdld,  page 22.
+
+User Base Address Definitions
+
+HOME = 0x2000
+XSEG = 0x0100
+PSEG = 0x0100
+ISEG = 0x0000
+BSEG = 0x0000
+
+

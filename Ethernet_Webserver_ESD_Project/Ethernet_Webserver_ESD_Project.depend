@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1732311961 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\main.c
+	"SPI.h"
+	"Operations.h"
+
+1732310356 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\global_header.h
+
+1732304793 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\utilities.c
+	"Utilities.h"
+
+1732311131 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\utilities.h
+	"SPI.h"
+
+1732313519 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\spi.h
+	<mcs51/8051.h>
+	<stdio.h>
+	<stdlib.h>
+	<at89c51ed2.h>
+	<mcs51reg.h>
+	<stdint.h>
+
+1732311093 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\operations.h
+	"SPI.h"
+
+1732311519 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\spi.c
+	"SPI.h"
+
+1732313904 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\operations.c
+	"Operations.h"
+
