@@ -9,7 +9,7 @@
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
                                      11 	.globl _main
-                                     12 	.globl _LED_On
+                                     12 	.globl _ENC_PHY_read
                                      13 	.globl _configure_SPI
                                      14 	.globl _printf
                                      15 	.globl _TF1
@@ -560,20 +560,21 @@
       000013 15 81            [12]  560 	dec	sp
                                     561 ;	main.c:12: configure_SPI();
       000015 12r00r00         [24]  562 	lcall	_configure_SPI
-                                    563 ;	main.c:14: LED_On();
-      000018 12r00r00         [24]  564 	lcall	_LED_On
-                                    565 ;	main.c:15: while(1)
-      00001B                        566 00102$:
-                                    567 ;	main.c:17: }
-      00001B 80 FE            [24]  568 	sjmp	00102$
-                                    569 	.area CSEG    (CODE)
-                                    570 	.area CONST   (CODE)
+                                    563 ;	main.c:17: ENC_PHY_read(0x14);
+      000018 75 82 14         [24]  564 	mov	dpl, #0x14
+      00001B 12r00r00         [24]  565 	lcall	_ENC_PHY_read
+                                    566 ;	main.c:18: while(1)
+      00001E                        567 00102$:
+                                    568 ;	main.c:20: }
+      00001E 80 FE            [24]  569 	sjmp	00102$
+                                    570 	.area CSEG    (CODE)
                                     571 	.area CONST   (CODE)
-      000000                        572 ___str_0:
-      000000 74 65 73 74            573 	.ascii "test"
-      000004 0A                     574 	.db 0x0a
-      000005 0D                     575 	.db 0x0d
-      000006 00                     576 	.db 0x00
-                                    577 	.area CSEG    (CODE)
-                                    578 	.area XINIT   (CODE)
-                                    579 	.area CABS    (ABS,CODE)
+                                    572 	.area CONST   (CODE)
+      000000                        573 ___str_0:
+      000000 74 65 73 74            574 	.ascii "test"
+      000004 0A                     575 	.db 0x0a
+      000005 0D                     576 	.db 0x0d
+      000006 00                     577 	.db 0x00
+                                    578 	.area CSEG    (CODE)
+                                    579 	.area XINIT   (CODE)
+                                    580 	.area CABS    (ABS,CODE)

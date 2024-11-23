@@ -8,6 +8,8 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _test_read_ctrl
+	.globl _SPI_read
 	.globl _printf
 	.globl _TF1
 	.globl _TR1
@@ -220,6 +222,10 @@
 	.globl _T2CON
 	.globl _configure_SPI
 	.globl _SPI_send
+	.globl _poll_MISTAT_BUSY
+	.globl _ENC_PHY_read
+	.globl _SPI_BB_init
+	.globl _SPI_send_BB
 	.globl _delay_us
 ;--------------------------------------------------------
 ; special function registers
@@ -473,9 +479,13 @@ _TF1	=	0x008f
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_SPI_send_data_10000_49:
+_SPI_send_data_10000_54:
 	.ds 1
-_delay_us_us_10000_52:
+_SPI_read_receivedData_10000_58:
+	.ds 1
+_SPI_send_BB_data_10000_69:
+	.ds 1
+_delay_us_us_10000_75:
 	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -549,7 +559,7 @@ _configure_SPI:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'SPI_send'
 ;------------------------------------------------------------
-;data                      Allocated with name '_SPI_send_data_10000_49'
+;data                      Allocated with name '_SPI_send_data_10000_54'
 ;------------------------------------------------------------
 ;	SPI.c:22: void SPI_send(uint8_t data)
 ;	-----------------------------------------
@@ -557,13 +567,13 @@ _configure_SPI:
 ;	-----------------------------------------
 _SPI_send:
 	mov	a,dpl
-	mov	dptr,#_SPI_send_data_10000_49
+	mov	dptr,#_SPI_send_data_10000_54
 	movx	@dptr,a
 ;	SPI.c:25: P1_1 = 0;              // Pull CS (SS) low to activate the DAC
 ;	assignBit
 	clr	_P1_1
 ;	SPI.c:27: SPDAT = data;           // Config + MSB of data
-	mov	dptr,#_SPI_send_data_10000_49
+	mov	dptr,#_SPI_send_data_10000_54
 	movx	a,@dptr
 	mov	r7,a
 	mov	_SPDAT,r7
@@ -585,30 +595,331 @@ _SPI_send:
 00101$:
 	mov	a,_SPSTA
 	jnb	acc.7,00101$
+;	SPI.c:42: delay_us(5);
+	mov	dptr,#0x0005
+	lcall	_delay_us
 ;	SPI.c:44: P1_1 = 1;
 ;	assignBit
 	setb	_P1_1
 ;	SPI.c:45: }
 	ret
 ;------------------------------------------------------------
+;Allocation info for local variables in function 'SPI_read'
+;------------------------------------------------------------
+;receivedData              Allocated with name '_SPI_read_receivedData_10000_58'
+;------------------------------------------------------------
+;	SPI.c:47: uint8_t SPI_read(void)
+;	-----------------------------------------
+;	 function SPI_read
+;	-----------------------------------------
+_SPI_read:
+;	SPI.c:51: P1_1 = 0;              // Pull CS (SS) low to activate the slave device
+;	assignBit
+	clr	_P1_1
+;	SPI.c:53: SPDAT = 0x3F;          // Send a dummy byte to generate clock pulses
+	mov	_SPDAT,#0x3f
+;	SPI.c:54: while (!(SPSTA & 0x80))
+00101$:
+	mov	a,_SPSTA
+	jnb	acc.7,00101$
+;	SPI.c:59: receivedData = SPDAT;  // Read the data received from the slave
+	mov	dptr,#_SPI_read_receivedData_10000_58
+	mov	a,_SPDAT
+	movx	@dptr,a
+;	SPI.c:60: printf("Received data: %x\n\r", receivedData);
+	movx	a,@dptr
+	mov	r7,a
+	mov	r5,a
+	mov	r6,#0x00
+	push	ar7
+	push	ar5
+	push	ar6
+	mov	a,#___str_1
+	push	acc
+	mov	a,#(___str_1 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:62: delay_us(5);           // Small delay to ensure stability
+	mov	dptr,#0x0005
+	lcall	_delay_us
+	pop	ar7
+;	SPI.c:63: P1_1 = 1;              // Pull CS (SS) high to deactivate the slave device
+;	assignBit
+	setb	_P1_1
+;	SPI.c:65: return receivedData;   // Return the received data
+	mov	dpl, r7
+;	SPI.c:66: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'poll_MISTAT_BUSY'
+;------------------------------------------------------------
+;	SPI.c:68: void poll_MISTAT_BUSY(void)
+;	-----------------------------------------
+;	 function poll_MISTAT_BUSY
+;	-----------------------------------------
+_poll_MISTAT_BUSY:
+;	SPI.c:70: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);                 //ECON1
+	mov	dpl, #0x5f
+	lcall	_SPI_send
+;	SPI.c:71: SPI_send(ENC_REGISTER_BANK_3);
+	mov	dpl, #0x03
+	lcall	_SPI_send
+;	SPI.c:72: SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MISTAT);
+	mov	dpl, #0x0a
+	lcall	_SPI_send
+;	SPI.c:73: SPI_read();                                                 //Dummy byte
+	lcall	_SPI_read
+;	SPI.c:74: while((SPI_read() & 0x01) != 0)
+00101$:
+	lcall	_SPI_read
+	mov	a, dpl
+	jnb	acc.0,00104$
+;	SPI.c:76: printf("Busy wait!!");
+	mov	a,#___str_2
+	push	acc
+	mov	a,#(___str_2 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	sjmp	00101$
+00104$:
+;	SPI.c:78: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'test_read_ctrl'
+;------------------------------------------------------------
+;received_byte             Allocated with name '_test_read_ctrl_received_byte_10000_64'
+;------------------------------------------------------------
+;	SPI.c:80: void test_read_ctrl(void)
+;	-----------------------------------------
+;	 function test_read_ctrl
+;	-----------------------------------------
+_test_read_ctrl:
+;	SPI.c:83: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);
+	mov	dpl, #0x5f
+	lcall	_SPI_send
+;	SPI.c:84: SPI_send(ENC_REGISTER_BANK_2);
+	mov	dpl, #0x02
+	lcall	_SPI_send
+;	SPI.c:85: SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_ECON1);
+	mov	dpl, #0x1f
+	lcall	_SPI_send
+;	SPI.c:86: SPI_read();  //Dummy byte
+	lcall	_SPI_read
+;	SPI.c:87: received_byte = SPI_read();
+	lcall	_SPI_read
+	mov	r7, dpl
+;	SPI.c:88: printf("Received test read ctrl word: %x\n\r", received_byte);
+	mov	r6,#0x00
+	push	ar7
+	push	ar6
+	mov	a,#___str_3
+	push	acc
+	mov	a,#(___str_3 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:89: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ENC_PHY_read'
+;------------------------------------------------------------
+;PHY_reg                   Allocated with name '_ENC_PHY_read_PHY_reg_10000_65'
+;received_LSB              Allocated with name '_ENC_PHY_read_received_LSB_10000_66'
+;received_MSB              Allocated with name '_ENC_PHY_read_received_MSB_10000_66'
+;received_word             Allocated with name '_ENC_PHY_read_received_word_10000_66'
+;------------------------------------------------------------
+;	SPI.c:92: uint16_t ENC_PHY_read(uint8_t PHY_reg)
+;	-----------------------------------------
+;	 function ENC_PHY_read
+;	-----------------------------------------
+_ENC_PHY_read:
+;	SPI.c:96: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);                 //ECON1
+	mov	dpl, #0x5f
+	lcall	_SPI_send
+;	SPI.c:97: SPI_send(ENC_REGISTER_BANK_2);
+	mov	dpl, #0x02
+	lcall	_SPI_send
+;	SPI.c:98: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);
+	mov	dpl, #0x54
+	lcall	_SPI_send
+;	SPI.c:99: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
+	mov	dpl, #0x14
+	lcall	_SPI_send
+;	SPI.c:101: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MICMD);
+	mov	dpl, #0x52
+	lcall	_SPI_send
+;	SPI.c:102: SPI_send(SET);
+	mov	dpl, #0x01
+	lcall	_SPI_send
+;	SPI.c:104: poll_MISTAT_BUSY();
+	lcall	_poll_MISTAT_BUSY
+;	SPI.c:106: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MICMD);
+	mov	dpl, #0x52
+	lcall	_SPI_send
+;	SPI.c:107: SPI_send(CLEAR);
+	mov	dpl, #0x00
+	lcall	_SPI_send
+;	SPI.c:109: SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDL);
+	mov	dpl, #0x18
+	lcall	_SPI_send
+;	SPI.c:110: SPI_read();  //Dummy byte
+	lcall	_SPI_read
+;	SPI.c:111: received_LSB = SPI_read();
+	lcall	_SPI_read
+	mov	r7, dpl
+;	SPI.c:113: SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDH);
+	mov	dpl, #0x19
+	push	ar7
+	lcall	_SPI_send
+;	SPI.c:114: SPI_read();  //Dummy byte
+	lcall	_SPI_read
+;	SPI.c:115: received_MSB = SPI_read();
+	lcall	_SPI_read
+	mov	r6, dpl
+	pop	ar7
+;	SPI.c:117: received_word = (received_MSB << 8) | received_LSB;
+	mov	ar5,r6
+	clr	a
+	mov	r6,a
+	mov	r4,a
+	mov	a,r7
+	orl	ar6,a
+	mov	a,r4
+	orl	ar5,a
+;	SPI.c:118: return received_word;
+	mov	dpl, r6
+	mov	dph, r5
+;	SPI.c:120: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'SPI_BB_init'
+;------------------------------------------------------------
+;	SPI.c:122: void SPI_BB_init(void)
+;	-----------------------------------------
+;	 function SPI_BB_init
+;	-----------------------------------------
+_SPI_BB_init:
+;	SPI.c:124: SPCON = 0;
+	mov	_SPCON,#0x00
+;	SPI.c:125: SPI_DATA = 1;
+;	assignBit
+	setb	_P1_7
+;	SPI.c:126: SPI_CLOCK = 0;
+;	assignBit
+	clr	_P1_6
+;	SPI.c:127: SPI_CHIP_SELECT = 1;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:128: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'SPI_send_BB'
+;------------------------------------------------------------
+;data                      Allocated with name '_SPI_send_BB_data_10000_69'
+;i                         Allocated with name '_SPI_send_BB_i_20000_71'
+;------------------------------------------------------------
+;	SPI.c:130: void SPI_send_BB(uint8_t data)
+;	-----------------------------------------
+;	 function SPI_send_BB
+;	-----------------------------------------
+_SPI_send_BB:
+	mov	a,dpl
+	mov	dptr,#_SPI_send_BB_data_10000_69
+	movx	@dptr,a
+;	SPI.c:133: printf("Sending BB data: %x\n\r", data);
+	movx	a,@dptr
+	mov	r7,a
+	mov	r6,#0x00
+	push	ar7
+	push	ar6
+	mov	a,#___str_4
+	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:134: SPI_CHIP_SELECT = 0;
+;	assignBit
+	clr	_P1_1
+;	SPI.c:135: for(int i = 0; i < 8; i++)
+	mov	r7,#0x00
+00106$:
+	cjne	r7,#0x08,00129$
+00129$:
+	jnc	00104$
+;	SPI.c:138: if(data & 0x80)
+	mov	dptr,#_SPI_send_BB_data_10000_69
+	movx	a,@dptr
+	jnb	acc.7,00102$
+;	SPI.c:140: SPI_DATA = 1;
+;	assignBit
+	setb	_P1_7
+	sjmp	00103$
+00102$:
+;	SPI.c:144: SPI_DATA = 0;
+;	assignBit
+	clr	_P1_7
+00103$:
+;	SPI.c:146: SPI_CLOCK = 1;
+;	assignBit
+	setb	_P1_6
+;	SPI.c:148: data = data << 1;
+	mov	dptr,#_SPI_send_BB_data_10000_69
+	movx	a,@dptr
+	add	a,acc
+	movx	@dptr,a
+;	SPI.c:149: SPI_CLOCK = 0;
+;	assignBit
+	clr	_P1_6
+;	SPI.c:150: SPI_DATA = 0;
+;	assignBit
+	clr	_P1_7
+;	SPI.c:135: for(int i = 0; i < 8; i++)
+	inc	r7
+	sjmp	00106$
+00104$:
+;	SPI.c:153: SPI_CHIP_SELECT = 1;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:154: }
+	ret
+;------------------------------------------------------------
 ;Allocation info for local variables in function 'delay_us'
 ;------------------------------------------------------------
-;us                        Allocated with name '_delay_us_us_10000_52'
+;us                        Allocated with name '_delay_us_us_10000_75'
 ;------------------------------------------------------------
-;	SPI.c:47: void delay_us(uint16_t us)
+;	SPI.c:156: void delay_us(uint16_t us)
 ;	-----------------------------------------
 ;	 function delay_us
 ;	-----------------------------------------
 _delay_us:
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_delay_us_us_10000_52
+	mov	dptr,#_delay_us_us_10000_75
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	SPI.c:49: while (us--)
-	mov	dptr,#_delay_us_us_10000_52
+;	SPI.c:158: while (us--)
+	mov	dptr,#_delay_us_us_10000_75
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -621,7 +932,7 @@ _delay_us:
 	cjne	r6,#0xff,00118$
 	dec	r7
 00118$:
-	mov	dptr,#_delay_us_us_10000_52
+	mov	dptr,#_delay_us_us_10000_75
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
@@ -630,19 +941,45 @@ _delay_us:
 	mov	a,r4
 	orl	a,r5
 	jnz	00101$
-	mov	dptr,#_delay_us_us_10000_52
+	mov	dptr,#_delay_us_us_10000_75
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	SPI.c:52: }
+;	SPI.c:161: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)
 ___str_0:
 	.ascii "Sending data: %x"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_1:
+	.ascii "Received data: %x"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_2:
+	.ascii "Busy wait!!"
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_3:
+	.ascii "Received test read ctrl word: %x"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_4:
+	.ascii "Sending BB data: %x"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00

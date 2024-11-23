@@ -9,7 +9,7 @@
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
                                      11 	.globl _main
-                                     12 	.globl _LED_On
+                                     12 	.globl _ENC_PHY_read
                                      13 	.globl _configure_SPI
                                      14 	.globl _printf
                                      15 	.globl _TF1
@@ -548,32 +548,33 @@
                            000001   548 	ar1 = 0x01
                            000000   549 	ar0 = 0x00
                                     550 ;	main.c:11: printf("test\n\r");
-      002062 74 D9            [12]  551 	mov	a,#___str_0
+      002062 74 43            [12]  551 	mov	a,#___str_0
       002064 C0 E0            [24]  552 	push	acc
-      002066 74 2C            [12]  553 	mov	a,#(___str_0 >> 8)
+      002066 74 2E            [12]  553 	mov	a,#(___str_0 >> 8)
       002068 C0 E0            [24]  554 	push	acc
       00206A 74 80            [12]  555 	mov	a,#0x80
       00206C C0 E0            [24]  556 	push	acc
-      00206E 12 22 77         [24]  557 	lcall	_printf
+      00206E 12 23 E1         [24]  557 	lcall	_printf
       002071 15 81            [12]  558 	dec	sp
       002073 15 81            [12]  559 	dec	sp
       002075 15 81            [12]  560 	dec	sp
                                     561 ;	main.c:12: configure_SPI();
-      002077 12 21 0B         [24]  562 	lcall	_configure_SPI
-                                    563 ;	main.c:14: LED_On();
-      00207A 12 20 B0         [24]  564 	lcall	_LED_On
-                                    565 ;	main.c:15: while(1)
-      00207D                        566 00102$:
-                                    567 ;	main.c:17: }
-      00207D 80 FE            [24]  568 	sjmp	00102$
-                                    569 	.area CSEG    (CODE)
-                                    570 	.area CONST   (CODE)
+      002077 12 21 0E         [24]  562 	lcall	_configure_SPI
+                                    563 ;	main.c:17: ENC_PHY_read(0x14);
+      00207A 75 82 14         [24]  564 	mov	dpl, #0x14
+      00207D 12 22 06         [24]  565 	lcall	_ENC_PHY_read
+                                    566 ;	main.c:18: while(1)
+      002080                        567 00102$:
+                                    568 ;	main.c:20: }
+      002080 80 FE            [24]  569 	sjmp	00102$
+                                    570 	.area CSEG    (CODE)
                                     571 	.area CONST   (CODE)
-      002CD9                        572 ___str_0:
-      002CD9 74 65 73 74            573 	.ascii "test"
-      002CDD 0A                     574 	.db 0x0a
-      002CDE 0D                     575 	.db 0x0d
-      002CDF 00                     576 	.db 0x00
-                                    577 	.area CSEG    (CODE)
-                                    578 	.area XINIT   (CODE)
-                                    579 	.area CABS    (ABS,CODE)
+                                    572 	.area CONST   (CODE)
+      002E43                        573 ___str_0:
+      002E43 74 65 73 74            574 	.ascii "test"
+      002E47 0A                     575 	.db 0x0a
+      002E48 0D                     576 	.db 0x0d
+      002E49 00                     577 	.db 0x00
+                                    578 	.area CSEG    (CODE)
+                                    579 	.area XINIT   (CODE)
+                                    580 	.area CABS    (ABS,CODE)

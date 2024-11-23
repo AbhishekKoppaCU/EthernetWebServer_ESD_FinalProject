@@ -11,7 +11,10 @@ void main(void)
     printf("test\n\r");
     configure_SPI();
     //LED_Fast_Blink();
-    LED_On();
+    //SPI_BB_init();
+    //LED_On();
+    //test_read_ctrl();
+    //ENC_PHY_read(0x14);
     while(1)
         ;
 }

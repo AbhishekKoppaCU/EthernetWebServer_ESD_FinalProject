@@ -257,6 +257,7 @@ Symbol Table
     _EA                                                         =  0000AF G
     _EC                                                         =  0000AE G
     _EECON                                                      =  0000D2 G
+    _ENC_PHY_read                                                  ****** GX
     _ES                                                         =  0000AC G
     _ET0                                                        =  0000A9 G
     _ET1                                                        =  0000AB G
@@ -284,7 +285,6 @@ Symbol Table
     _KBE                                                        =  00009D G
     _KBF                                                        =  00009E G
     _KBLS                                                       =  00009C G
-    _LED_On                                                        ****** GX
     _OV                                                         =  0000D2 G
     _P                                                          =  0000D0 G
     _P0                                                         =  000080 G
@@ -667,7 +667,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      3   flags   20
-  17 CSEG                                       size     1D   flags   20
+  17 CSEG                                       size     20   flags   20
   18 CONST                                      size      7   flags   20
   19 XINIT                                      size      0   flags   20
   1A CABS                                       size      0   flags   28

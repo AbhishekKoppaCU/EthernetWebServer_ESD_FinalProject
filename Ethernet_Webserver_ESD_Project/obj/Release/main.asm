@@ -9,7 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
-	.globl _LED_On
+	.globl _ENC_PHY_read
 	.globl _configure_SPI
 	.globl _printf
 	.globl _TF1
@@ -560,11 +560,12 @@ _main:
 	dec	sp
 ;	main.c:12: configure_SPI();
 	lcall	_configure_SPI
-;	main.c:14: LED_On();
-	lcall	_LED_On
-;	main.c:15: while(1)
+;	main.c:17: ENC_PHY_read(0x14);
+	mov	dpl, #0x14
+	lcall	_ENC_PHY_read
+;	main.c:18: while(1)
 00102$:
-;	main.c:17: }
+;	main.c:20: }
 	sjmp	00102$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
