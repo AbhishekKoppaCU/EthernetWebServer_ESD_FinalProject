@@ -9,8 +9,16 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
-	.globl _ENC_PHY_read
+	.globl _get_user_buffer_size
+	.globl _hex_to_int
+	.globl _LED_On
+	.globl _test_read_ctrl
+	.globl _delay_us
+	.globl _SPI_send
 	.globl _configure_SPI
+	.globl _printf_tiny
+	.globl _putchar
+	.globl _getchar
 	.globl _printf
 	.globl _TF1
 	.globl _TR1
@@ -452,6 +460,13 @@ _TF1	=	0x008f
 ;--------------------------------------------------------
 ; overlayable items in internal ram
 ;--------------------------------------------------------
+	.area	OSEG    (OVR,DATA)
+_hex_to_int_sloc0_1_0:
+	.ds 3
+_hex_to_int_sloc1_1_0:
+	.ds 1
+_hex_to_int_sloc2_1_0:
+	.ds 2
 ;--------------------------------------------------------
 ; Stack segment in internal ram
 ;--------------------------------------------------------
@@ -480,6 +495,14 @@ __start__stack:
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
+_hex_to_int_str_10000_58:
+	.ds 3
+_hex_to_int_result_10000_59:
+	.ds 2
+_hex_to_int_ASCII_20000_60:
+	.ds 2
+_get_user_buffer_size_input_10000_65:
+	.ds 10
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -532,13 +555,21 @@ __sdcc_program_startup:
 ;--------------------------------------------------------
 	.area CSEG    (CODE)
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'main'
+;Allocation info for local variables in function 'hex_to_int'
 ;------------------------------------------------------------
-;	main.c:8: void main(void)
+;str                       Allocated with name '_hex_to_int_str_10000_58'
+;i                         Allocated with name '_hex_to_int_i_10000_59'
+;result                    Allocated with name '_hex_to_int_result_10000_59'
+;ASCII                     Allocated with name '_hex_to_int_ASCII_20000_60'
+;sloc0                     Allocated with name '_hex_to_int_sloc0_1_0'
+;sloc1                     Allocated with name '_hex_to_int_sloc1_1_0'
+;sloc2                     Allocated with name '_hex_to_int_sloc2_1_0'
+;------------------------------------------------------------
+;	main.c:8: int hex_to_int(char* str)
 ;	-----------------------------------------
-;	 function main
+;	 function hex_to_int
 ;	-----------------------------------------
-_main:
+_hex_to_int:
 	ar7 = 0x07
 	ar6 = 0x06
 	ar5 = 0x05
@@ -547,7 +578,430 @@ _main:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	main.c:11: printf("test\n\r");
+	mov	r7,b
+	mov	r6,dph
+	mov	a,dpl
+	mov	dptr,#_hex_to_int_str_10000_58
+	movx	@dptr,a
+	mov	a,r6
+	inc	dptr
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	main.c:11: int i = 0, result = 0;
+	mov	dptr,#_hex_to_int_result_10000_59
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+;	main.c:12: while(str[i] != '\0')
+	mov	dptr,#_hex_to_int_str_10000_58
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	ar2,r5
+	mov	ar3,r6
+	mov	ar4,r7
+	mov	_hex_to_int_sloc0_1_0,r5
+	mov	(_hex_to_int_sloc0_1_0 + 1),r6
+	mov	(_hex_to_int_sloc0_1_0 + 2),r7
+	mov	r0,#0x00
+	mov	r1,#0x00
+00112$:
+	push	ar2
+	push	ar3
+	push	ar4
+	mov	a,r0
+	add	a, _hex_to_int_sloc0_1_0
+	mov	r2,a
+	mov	a,r1
+	addc	a, (_hex_to_int_sloc0_1_0 + 1)
+	mov	r3,a
+	mov	r4,(_hex_to_int_sloc0_1_0 + 2)
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	lcall	__gptrget
+	mov	_hex_to_int_sloc1_1_0,a
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	mov	a,_hex_to_int_sloc1_1_0
+	jnz	00166$
+	ljmp	00114$
+00166$:
+;	main.c:14: int ASCII = (int)str[i];
+	push	ar2
+	push	ar3
+	push	ar4
+	mov	_hex_to_int_sloc2_1_0,_hex_to_int_sloc1_1_0
+	mov	(_hex_to_int_sloc2_1_0 + 1),#0x00
+	mov	dptr,#_hex_to_int_ASCII_20000_60
+	mov	a,_hex_to_int_sloc2_1_0
+	movx	@dptr,a
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	inc	dptr
+	movx	@dptr,a
+;	main.c:15: result *= 16;
+	mov	dptr,#_hex_to_int_result_10000_59
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	swap	a
+	anl	a,#0xf0
+	xch	a,r3
+	swap	a
+	xch	a,r3
+	xrl	a,r3
+	xch	a,r3
+	anl	a,#0xf0
+	xch	a,r3
+	xrl	a,r3
+	mov	r4,a
+	mov	dptr,#_hex_to_int_result_10000_59
+	mov	a,r3
+	movx	@dptr,a
+	mov	a,r4
+	inc	dptr
+	movx	@dptr,a
+;	main.c:16: if(ASCII >= '0' && ASCII <= '9')
+	clr	c
+	mov	a,_hex_to_int_sloc2_1_0
+	subb	a,#0x30
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	a,#0x80
+	subb	a,#0x80
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	jc	00109$
+	mov	a,#0x39
+	subb	a,_hex_to_int_sloc2_1_0
+	mov	a,#(0x00 ^ 0x80)
+	mov	b,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	b,#0x80
+	subb	a,b
+	jc	00109$
+;	main.c:18: result += str[i] - 48;
+	push	ar2
+	push	ar3
+	push	ar4
+	mov	a,_hex_to_int_sloc2_1_0
+	add	a,#0xd0
+	mov	_hex_to_int_sloc2_1_0,a
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	addc	a,#0xff
+	mov	(_hex_to_int_sloc2_1_0 + 1),a
+	mov	dptr,#_hex_to_int_result_10000_59
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r4,a
+	mov	dptr,#_hex_to_int_result_10000_59
+	mov	a,_hex_to_int_sloc2_1_0
+	add	a, r2
+	movx	@dptr,a
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	addc	a, r4
+	inc	dptr
+	movx	@dptr,a
+	pop	ar4
+	pop	ar3
+	pop	ar2
+	ljmp	00110$
+00109$:
+;	main.c:20: else if(ASCII >= 'A' && ASCII <= 'F')
+	mov	dptr,#_hex_to_int_ASCII_20000_60
+	movx	a,@dptr
+	mov	_hex_to_int_sloc2_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_hex_to_int_sloc2_1_0 + 1),a
+	clr	c
+	mov	a,_hex_to_int_sloc2_1_0
+	subb	a,#0x41
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	a,#0x80
+	subb	a,#0x80
+	jc	00105$
+	mov	a,#0x46
+	subb	a,_hex_to_int_sloc2_1_0
+	mov	a,#(0x00 ^ 0x80)
+	mov	b,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	b,#0x80
+	subb	a,b
+	jc	00105$
+;	main.c:22: result += str[i] - 55;
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	a,r0
+	add	a, r2
+	mov	r5,a
+	mov	a,r1
+	addc	a, r3
+	mov	r6,a
+	mov	ar7,r4
+	mov	dpl,r5
+	mov	dph,r6
+	mov	b,r7
+	lcall	__gptrget
+	mov	r7,#0x00
+	add	a,#0xc9
+	mov	_hex_to_int_sloc2_1_0,a
+	mov	a,r7
+	addc	a,#0xff
+	mov	(_hex_to_int_sloc2_1_0 + 1),a
+	mov	dptr,#_hex_to_int_result_10000_59
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_hex_to_int_result_10000_59
+	mov	a,_hex_to_int_sloc2_1_0
+	add	a, r6
+	movx	@dptr,a
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	addc	a, r7
+	inc	dptr
+	movx	@dptr,a
+	pop	ar7
+	pop	ar6
+	pop	ar5
+	sjmp	00110$
+00105$:
+;	main.c:24: else if(ASCII >= 'a' && ASCII <= 'f')
+	mov	dptr,#_hex_to_int_ASCII_20000_60
+	movx	a,@dptr
+	mov	_hex_to_int_sloc2_1_0,a
+	inc	dptr
+	movx	a,@dptr
+	mov	(_hex_to_int_sloc2_1_0 + 1),a
+	clr	c
+	mov	a,_hex_to_int_sloc2_1_0
+	subb	a,#0x61
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	a,#0x80
+	subb	a,#0x80
+	jc	00110$
+	mov	a,#0x66
+	subb	a,_hex_to_int_sloc2_1_0
+	mov	a,#(0x00 ^ 0x80)
+	mov	b,(_hex_to_int_sloc2_1_0 + 1)
+	xrl	b,#0x80
+	subb	a,b
+	jc	00110$
+;	main.c:26: result += str[i] - 87;
+	push	ar2
+	push	ar3
+	push	ar4
+	mov	a,r0
+	add	a, r5
+	mov	r2,a
+	mov	a,r1
+	addc	a, r6
+	mov	r3,a
+	mov	ar4,r7
+	mov	dpl,r2
+	mov	dph,r3
+	mov	b,r4
+	lcall	__gptrget
+	mov	r4,#0x00
+	add	a,#0xa9
+	mov	_hex_to_int_sloc2_1_0,a
+	mov	a,r4
+	addc	a,#0xff
+	mov	(_hex_to_int_sloc2_1_0 + 1),a
+	mov	dptr,#_hex_to_int_result_10000_59
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r4,a
+	mov	dptr,#_hex_to_int_result_10000_59
+	mov	a,_hex_to_int_sloc2_1_0
+	add	a, r3
+	movx	@dptr,a
+	mov	a,(_hex_to_int_sloc2_1_0 + 1)
+	addc	a, r4
+	inc	dptr
+	movx	@dptr,a
+;	main.c:30: return result;
+	pop	ar4
+	pop	ar3
+	pop	ar2
+;	main.c:26: result += str[i] - 87;
+00110$:
+;	main.c:28: i++;
+	inc	r0
+	cjne	r0,#0x00,00173$
+	inc	r1
+00173$:
+	ljmp	00112$
+00114$:
+;	main.c:30: return result;
+	mov	dptr,#_hex_to_int_result_10000_59
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+;	main.c:32: }
+	mov	dpl,r6
+	mov	dph,a
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'get_user_buffer_size'
+;------------------------------------------------------------
+;size                      Allocated with name '_get_user_buffer_size_size_10000_65'
+;i                         Allocated with name '_get_user_buffer_size_i_10000_65'
+;output                    Allocated with name '_get_user_buffer_size_output_10000_65'
+;input                     Allocated with name '_get_user_buffer_size_input_10000_65'
+;ch                        Allocated with name '_get_user_buffer_size_ch_10000_65'
+;------------------------------------------------------------
+;	main.c:35: int get_user_buffer_size(void)
+;	-----------------------------------------
+;	 function get_user_buffer_size
+;	-----------------------------------------
+_get_user_buffer_size:
+;	main.c:41: while((ch = getchar()) != '\n' && ch != '\r' && i < sizeof(input) - 1)              //Keep taking the input from the user until user presses enter
+	mov	r6,#0x00
+	mov	r7,#0x00
+00103$:
+	push	ar7
+	push	ar6
+	lcall	_getchar
+	mov	r4, dpl
+	pop	ar6
+	pop	ar7
+	cjne	r4,#0x0a,00133$
+	sjmp	00105$
+00133$:
+	cjne	r4,#0x0d,00134$
+	sjmp	00105$
+00134$:
+	clr	c
+	mov	a,r6
+	subb	a,#0x09
+	mov	a,r7
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00105$
+;	main.c:43: putchar(ch);
+	mov	ar3,r4
+	mov	r5,#0x00
+	mov	dpl, r3
+	mov	dph, r5
+	push	ar7
+	push	ar6
+	push	ar4
+	lcall	_putchar
+	pop	ar4
+	pop	ar6
+	pop	ar7
+;	main.c:44: input[i] = ch;      //Append the input array with the received character
+	mov	a,r6
+	add	a, #_get_user_buffer_size_input_10000_65
+	mov	dpl,a
+	mov	a,r7
+	addc	a, #(_get_user_buffer_size_input_10000_65 >> 8)
+	mov	dph,a
+	mov	a,r4
+	movx	@dptr,a
+;	main.c:45: i++;
+	inc	r6
+	cjne	r6,#0x00,00103$
+	inc	r7
+	sjmp	00103$
+00105$:
+;	main.c:47: input[i] = '\0';
+	mov	a,r6
+	add	a, #_get_user_buffer_size_input_10000_65
+	mov	dpl,a
+	mov	a,r7
+	addc	a, #(_get_user_buffer_size_input_10000_65 >> 8)
+	mov	dph,a
+	clr	a
+	movx	@dptr,a
+;	main.c:48: output = hex_to_int(input); //Convert the char hex data to int
+	mov	dptr,#_get_user_buffer_size_input_10000_65
+	mov	b,a
+	lcall	_hex_to_int
+	mov	r6, dpl
+	mov	r7, dph
+;	main.c:49: printf_tiny("\n\r");
+	push	ar7
+	push	ar6
+	mov	a,#___str_0
+	push	acc
+	mov	a,#(___str_0 >> 8)
+	push	acc
+	lcall	_printf_tiny
+	dec	sp
+	dec	sp
+	pop	ar6
+	pop	ar7
+;	main.c:51: return output;
+	mov	dpl, r6
+	mov	dph, r7
+;	main.c:52: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'main'
+;------------------------------------------------------------
+;c                         Allocated with name '_main_c_20001_70'
+;addr                      Allocated with name '_main_addr_30002_72'
+;------------------------------------------------------------
+;	main.c:54: void main(void)
+;	-----------------------------------------
+;	 function main
+;	-----------------------------------------
+_main:
+;	main.c:57: printf("test\n\r");
+	mov	a,#___str_1
+	push	acc
+	mov	a,#(___str_1 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:58: configure_SPI();
+	lcall	_configure_SPI
+;	main.c:59: while(1)
+00106$:
+;	main.c:61: printf("Choose action: L-->LED ON\n\rR-->Read\n\r");
+	mov	a,#___str_2
+	push	acc
+	mov	a,#(___str_2 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:62: char c = getchar();
+	lcall	_getchar
+	mov	r6, dpl
+;	main.c:63: putchar(c);
+	mov	ar5,r6
+	mov	r7,#0x00
+	mov	dpl, r5
+	mov	dph, r7
+	push	ar6
+	lcall	_putchar
+;	main.c:64: printf("\n\r");
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -558,20 +1012,111 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:12: configure_SPI();
-	lcall	_configure_SPI
-;	main.c:17: ENC_PHY_read(0x14);
-	mov	dpl, #0x14
-	lcall	_ENC_PHY_read
-;	main.c:18: while(1)
-00102$:
-;	main.c:20: }
+	pop	ar6
+;	main.c:65: switch(c)
+	cjne	r6,#0x4c,00137$
+	sjmp	00101$
+00137$:
+	cjne	r6,#0x52,00138$
 	sjmp	00102$
+00138$:
+;	main.c:67: case 'L':
+	cjne	r6,#0x57,00106$
+	sjmp	00103$
+00101$:
+;	main.c:68: LED_On();
+	lcall	_LED_On
+;	main.c:69: break;
+;	main.c:70: case 'R':
+	sjmp	00106$
+00102$:
+;	main.c:71: printf("Enter the Control register address you want to read from\n\r");
+	mov	a,#___str_3
+	push	acc
+	mov	a,#(___str_3 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:72: uint8_t addr = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+;	main.c:73: test_read_ctrl(addr);
+	lcall	_test_read_ctrl
+;	main.c:74: break;
+;	main.c:75: case 'W':
+	sjmp	00106$
+00103$:
+;	main.c:76: printf("Enter the 16 bit data write\n\r");
+	mov	a,#___str_4
+	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:77: P1_1 = 0;
+;	assignBit
+	clr	_P1_1
+;	main.c:78: delay_us(2);
+	mov	dptr,#0x0002
+	lcall	_delay_us
+;	main.c:80: SPI_send(0x5F);
+	mov	dpl, #0x5f
+	lcall	_SPI_send
+;	main.c:81: SPI_send(0x02);
+	mov	dpl, #0x02
+	lcall	_SPI_send
+;	main.c:82: delay_us(2);
+	mov	dptr,#0x0002
+	lcall	_delay_us
+;	main.c:83: P1_1 = 1;
+;	assignBit
+	setb	_P1_1
+;	main.c:85: }
+;	main.c:128: while(1)
+;	main.c:130: }
+	ljmp	00106$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)
 ___str_0:
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_1:
 	.ascii "test"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_2:
+	.ascii "Choose action: L-->LED ON"
+	.db 0x0a
+	.db 0x0d
+	.ascii "R-->Read"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_3:
+	.ascii "Enter the Control register address you want to read from"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_4:
+	.ascii "Enter the 16 bit data write"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00

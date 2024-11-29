@@ -1,12 +1,19 @@
 #include "SPI.h"
-
+#define CS_PIN P1_1
+#define SCK P1_6
+#define MOSI P1_7
+// SPI Bit Masks
+#define SPI_ENABLE      (1 << 6)
+#define SS_DISABLE     (1 << 5)
+#define MASTER_MODE       (1 << 4)
+#define SPIF_BIT 0X80
 
 
 
 
 void configure_SPI(void)
 {
-    CKCON0 |= 0x05;
+    /*CKCON0 |= 0x05;
     SPCON |= 0x10;              //master mode
     P1_1=1;                     //CS disable
     SPCON |= 0x00;          //Fclk/2
@@ -16,16 +23,22 @@ void configure_SPI(void)
     //IEN1 |= 0x04;           //SPI Interrupt enable
     SPCON |= 0x40;          //Enable SPI
     //EA=1;                   //Enable all interrupts
+    */
+    CS_PIN = 1;
+    SPCON = 0x00;
+    SPCON |= SS_DISABLE;
+    SPCON |= MASTER_MODE;
+    SPCON |= SPI_ENABLE;
 }
 
 
 void SPI_send(uint8_t data)
 {
     //uint16_t word = (config << 12) | (data << 4);  // Prepare 16-bit word
-    P1_1 = 0;              // Pull CS (SS) low to activate the DAC
+    //P1_1 = 0;              // Pull CS (SS) low to activate the DAC
 
     SPDAT = data;           // Config + MSB of data
-    printf("Sending data: %x\n\r", data);
+    //printf("Sending data: %x\n\r", data);
     while (!(SPSTA & 0x80))
     {
 
@@ -39,28 +52,29 @@ void SPI_send(uint8_t data)
     }
     //while (!transmit_completed); // Wait for transmission to complete
     */
-    delay_us(5);
+    //delay_us(5);
 
-    P1_1 = 1;
+    //P1_1 = 1;
 }
 
-uint8_t SPI_read(void)
+uint8_t SPI_ctrl_read(uint8_t addr)
 {
     uint8_t receivedData;
 
-    P1_1 = 0;              // Pull CS (SS) low to activate the slave device
+    //P1_1 = 0;              // Pull CS (SS) low to activate the slave device
 
-    SPDAT = 0x3F;          // Send a dummy byte to generate clock pulses
+    SPDAT = addr;          // Send a dummy byte to generate clock pulses
     while (!(SPSTA & 0x80))
     {
         // Wait for transmission (and reception) to complete
     }
 
-    receivedData = SPDAT;  // Read the data received from the slave
-    printf("Received data: %x\n\r", receivedData);
 
-    delay_us(5);           // Small delay to ensure stability
-    P1_1 = 1;              // Pull CS (SS) high to deactivate the slave device
+    receivedData = SPDAT;  // Read the data received from the slave
+    //printf("Received data: %x\n\r", receivedData);
+
+    //delay_us(5);           // Small delay to ensure stability
+    //P1_1 = 1;              // Pull CS (SS) high to deactivate the slave device
 
     return receivedData;   // Return the received data
 }
@@ -69,23 +83,34 @@ void poll_MISTAT_BUSY(void)
 {
     SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);                 //ECON1
     SPI_send(ENC_REGISTER_BANK_3);
-    SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MISTAT);
-    SPI_read();                                                 //Dummy byte
-    while((SPI_read() & 0x01) != 0)
+    //SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MISTAT);
+    SPI_ctrl_read(ENC_MISTAT);                                                 //Dummy byte
+    while((SPI_ctrl_read(ENC_MISTAT) & 0x01) != 0)
     {
         printf("Busy wait!!");
     }
 }
 
-void test_read_ctrl(void)
+void test_read_ctrl(uint8_t address)
 {
-    uint8_t received_byte;
+    /*uint8_t received_byte;
+    P1_1 = 0;
     SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);
     SPI_send(ENC_REGISTER_BANK_2);
-    SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_ECON1);
-    SPI_read();  //Dummy byte
-    received_byte = SPI_read();
-    printf("Received test read ctrl word: %x\n\r", received_byte);
+    P1_1 = 1;
+    delay_us(100);
+    */
+    uint8_t received_byte;
+    P1_1 = 0;
+    delay_us(2);
+    //SPI_send(ENC_READ_CONTROL_REG_OPCODE | 0x08);
+    SPI_ctrl_read(address);  //Dummy byte
+    received_byte = SPI_ctrl_read(address);
+    delay_us(2);
+    P1_1 = 1;
+    delay_us(100);
+    //printf("Received test read ctrl word: %x\n\r", received_byte);
+
 }
 
 
@@ -106,13 +131,13 @@ uint16_t ENC_PHY_read(uint8_t PHY_reg)
     SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MICMD);
     SPI_send(CLEAR);
 
-    SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDL);
-    SPI_read();  //Dummy byte
-    received_LSB = SPI_read();
+    //SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDL);
+    SPI_ctrl_read(ENC_MIRDL);  //Dummy byte
+    received_LSB = SPI_ctrl_read(ENC_MIRDL);
 
-    SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDH);
-    SPI_read();  //Dummy byte
-    received_MSB = SPI_read();
+    //SPI_send(ENC_READ_CONTROL_REG_OPCODE | ENC_MIRDH);
+    received_MSB = SPI_ctrl_read(ENC_MIRDH);  //Dummy byte
+    //received_MSB = SPI_ctrl_read();
 
     received_word = (received_MSB << 8) | received_LSB;
     return received_word;
@@ -159,3 +184,5 @@ void delay_us(uint16_t us)
     {
     }
 }
+
+

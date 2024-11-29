@@ -472,9 +472,9 @@
                                     472 ; uninitialized external ram data
                                     473 ;--------------------------------------------------------
                                     474 	.area XSEG    (XDATA)
-      000000                        475 _putchar_c_10000_55:
+      000000                        475 _putchar_c_10000_57:
       000000                        476 	.ds 2
-      000002                        477 _putstr_s_10000_59:
+      000002                        477 _putstr_s_10000_61:
       000002                        478 	.ds 3
                                     479 ;--------------------------------------------------------
                                     480 ; absolute external ram data
@@ -513,7 +513,7 @@
                                     513 ;------------------------------------------------------------
                                     514 ;Allocation info for local variables in function 'putchar'
                                     515 ;------------------------------------------------------------
-                                    516 ;c                         Allocated with name '_putchar_c_10000_55'
+                                    516 ;c                         Allocated with name '_putchar_c_10000_57'
                                     517 ;------------------------------------------------------------
                                     518 ;	Utilities.c:6: int putchar (int c)
                                     519 ;	-----------------------------------------
@@ -530,7 +530,7 @@
                            000000   530 	ar0 = 0x00
       000000 AF 83            [24]  531 	mov	r7,dph
       000002 E5 82            [12]  532 	mov	a,dpl
-      000004 90r00r00         [24]  533 	mov	dptr,#_putchar_c_10000_55
+      000004 90r00r00         [24]  533 	mov	dptr,#_putchar_c_10000_57
       000007 F0               [24]  534 	movx	@dptr,a
       000008 EF               [12]  535 	mov	a,r7
       000009 A3               [24]  536 	inc	dptr
@@ -539,7 +539,7 @@
       00000B                        539 00101$:
       00000B 30 99 FD         [24]  540 	jnb	_TI,00101$
                                     541 ;	Utilities.c:11: SBUF = c;           // load serial port with transmit value
-      00000E 90r00r00         [24]  542 	mov	dptr,#_putchar_c_10000_55
+      00000E 90r00r00         [24]  542 	mov	dptr,#_putchar_c_10000_57
       000011 E0               [24]  543 	movx	a,@dptr
       000012 FE               [12]  544 	mov	r6,a
       000013 A3               [24]  545 	inc	dptr
@@ -579,8 +579,8 @@
                                     579 ;------------------------------------------------------------
                                     580 ;Allocation info for local variables in function 'putstr'
                                     581 ;------------------------------------------------------------
-                                    582 ;s                         Allocated with name '_putstr_s_10000_59'
-                                    583 ;i                         Allocated with name '_putstr_i_10000_60'
+                                    582 ;s                         Allocated with name '_putstr_s_10000_61'
+                                    583 ;i                         Allocated with name '_putstr_i_10000_62'
                                     584 ;------------------------------------------------------------
                                     585 ;	Utilities.c:27: int putstr (char *s)
                                     586 ;	-----------------------------------------
@@ -590,7 +590,7 @@
       00002D AF F0            [24]  590 	mov	r7,b
       00002F AE 83            [24]  591 	mov	r6,dph
       000031 E5 82            [12]  592 	mov	a,dpl
-      000033 90r00r02         [24]  593 	mov	dptr,#_putstr_s_10000_59
+      000033 90r00r02         [24]  593 	mov	dptr,#_putstr_s_10000_61
       000036 F0               [24]  594 	movx	@dptr,a
       000037 EE               [12]  595 	mov	a,r6
       000038 A3               [24]  596 	inc	dptr
@@ -599,7 +599,7 @@
       00003B A3               [24]  599 	inc	dptr
       00003C F0               [24]  600 	movx	@dptr,a
                                     601 ;	Utilities.c:30: while (*s){            // output characters until NULL found
-      00003D 90r00r02         [24]  602 	mov	dptr,#_putstr_s_10000_59
+      00003D 90r00r02         [24]  602 	mov	dptr,#_putstr_s_10000_61
       000040 E0               [24]  603 	movx	a,@dptr
       000041 FD               [12]  604 	mov	r5,a
       000042 A3               [24]  605 	inc	dptr
@@ -622,7 +622,7 @@
       000059 BD 00 01         [24]  622 	cjne	r5,#0x00,00120$
       00005C 0E               [12]  623 	inc	r6
       00005D                        624 00120$:
-      00005D 90r00r02         [24]  625 	mov	dptr,#_putstr_s_10000_59
+      00005D 90r00r02         [24]  625 	mov	dptr,#_putstr_s_10000_61
       000060 ED               [12]  626 	mov	a,r5
       000061 F0               [24]  627 	movx	@dptr,a
       000062 EE               [12]  628 	mov	a,r6
@@ -652,7 +652,7 @@
       00008B 0C               [12]  652 	inc	r4
       00008C 80 BE            [24]  653 	sjmp	00101$
       00008E                        654 00108$:
-      00008E 90r00r02         [24]  655 	mov	dptr,#_putstr_s_10000_59
+      00008E 90r00r02         [24]  655 	mov	dptr,#_putstr_s_10000_61
       000091 ED               [12]  656 	mov	a,r5
       000092 F0               [24]  657 	movx	@dptr,a
       000093 EE               [12]  658 	mov	a,r6

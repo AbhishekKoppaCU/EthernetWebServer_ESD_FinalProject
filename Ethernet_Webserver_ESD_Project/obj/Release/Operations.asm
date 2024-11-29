@@ -8,7 +8,6 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _delay_us
 	.globl _SPI_send
 	.globl _TF1
 	.globl _TR1
@@ -568,61 +567,65 @@ _LED_Slow_Blink:
 ;	 function LED_On
 ;	-----------------------------------------
 _LED_On:
-;	Operations.c:26: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);     //Write to the ECON1 register
+;	Operations.c:26: P1_1 = 0;
+;	assignBit
+	clr	_P1_1
+;	Operations.c:27: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);     //Write to the ECON1 register
 	mov	dpl, #0x5f
 	lcall	_SPI_send
-;	Operations.c:27: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:28: SPI_send(ENC_REGISTER_BANK_2);                          //Select register bank2
+;	Operations.c:29: SPI_send(ENC_REGISTER_BANK_2);                          //Select register bank2
 	mov	dpl, #0x02
 	lcall	_SPI_send
-;	Operations.c:29: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:31: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);  //Select the MIREGADR register
+;	Operations.c:31: P1_1 = 1;
+;	assignBit
+	setb	_P1_1
+;	Operations.c:34: P1_1 = 0;
+;	assignBit
+	clr	_P1_1
+;	Operations.c:35: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);  //Select the MIREGADR register
 	mov	dpl, #0x54
 	lcall	_SPI_send
-;	Operations.c:32: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:33: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
+;	Operations.c:37: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
 	mov	dpl, #0x14
 	lcall	_SPI_send
-;	Operations.c:34: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:36: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRL);
+;	Operations.c:39: P1_1 = 1;
+;	assignBit
+	setb	_P1_1
+;	Operations.c:43: P1_1 = 0;
+;	assignBit
+	clr	_P1_1
+;	Operations.c:44: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRL);
 	mov	dpl, #0x56
 	lcall	_SPI_send
-;	Operations.c:37: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:38: SPI_send(LED_ON_LSB);
-	mov	dpl, #0x00
+;	Operations.c:46: SPI_send(0xA8);
+	mov	dpl, #0xa8
 	lcall	_SPI_send
-;	Operations.c:39: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:40: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRH);
+;	Operations.c:47: P1_1 = 1;
+;	assignBit
+	setb	_P1_1
+;	Operations.c:51: P1_1 = 0;
+;	assignBit
+	clr	_P1_1
+;	Operations.c:52: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRH);
 	mov	dpl, #0x57
 	lcall	_SPI_send
-;	Operations.c:41: delay_us(10);
-	mov	dptr,#0x000a
-	lcall	_delay_us
-;	Operations.c:42: SPI_send(LED_ON_MSB);
-	mov	dpl, #0x08
-;	Operations.c:44: }
-	ljmp	_SPI_send
+;	Operations.c:54: SPI_send(0x3A);
+	mov	dpl, #0x3a
+	lcall	_SPI_send
+;	Operations.c:55: P1_1 = 1;
+;	assignBit
+	setb	_P1_1
+;	Operations.c:57: }
+	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'LED_Off'
 ;------------------------------------------------------------
-;	Operations.c:46: void LED_Off(void)
+;	Operations.c:59: void LED_Off(void)
 ;	-----------------------------------------
 ;	 function LED_Off
 ;	-----------------------------------------
 _LED_Off:
-;	Operations.c:49: }
+;	Operations.c:62: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

@@ -77,6 +77,8 @@ void SPI_BB_init(void);
 void SPI_receive(void);
 void poll_MISTAT_BUSY(void);
 uint16_t ENC_PHY_read(uint8_t PHY_reg);
+uint8_t SPI_ctrl_read(uint8_t addr);
+void test_read_ctrl(uint8_t address);
 
 
 

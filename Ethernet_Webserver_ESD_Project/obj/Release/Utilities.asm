@@ -472,9 +472,9 @@ _TF1	=	0x008f
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_putchar_c_10000_55:
+_putchar_c_10000_57:
 	.ds 2
-_putstr_s_10000_59:
+_putstr_s_10000_61:
 	.ds 3
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -513,7 +513,7 @@ _putstr_s_10000_59:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'putchar'
 ;------------------------------------------------------------
-;c                         Allocated with name '_putchar_c_10000_55'
+;c                         Allocated with name '_putchar_c_10000_57'
 ;------------------------------------------------------------
 ;	Utilities.c:6: int putchar (int c)
 ;	-----------------------------------------
@@ -530,7 +530,7 @@ _putchar:
 	ar0 = 0x00
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_putchar_c_10000_55
+	mov	dptr,#_putchar_c_10000_57
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
@@ -539,7 +539,7 @@ _putchar:
 00101$:
 	jnb	_TI,00101$
 ;	Utilities.c:11: SBUF = c;           // load serial port with transmit value
-	mov	dptr,#_putchar_c_10000_55
+	mov	dptr,#_putchar_c_10000_57
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -579,8 +579,8 @@ _getchar:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'putstr'
 ;------------------------------------------------------------
-;s                         Allocated with name '_putstr_s_10000_59'
-;i                         Allocated with name '_putstr_i_10000_60'
+;s                         Allocated with name '_putstr_s_10000_61'
+;i                         Allocated with name '_putstr_i_10000_62'
 ;------------------------------------------------------------
 ;	Utilities.c:27: int putstr (char *s)
 ;	-----------------------------------------
@@ -590,7 +590,7 @@ _putstr:
 	mov	r7,b
 	mov	r6,dph
 	mov	a,dpl
-	mov	dptr,#_putstr_s_10000_59
+	mov	dptr,#_putstr_s_10000_61
 	movx	@dptr,a
 	mov	a,r6
 	inc	dptr
@@ -599,7 +599,7 @@ _putstr:
 	inc	dptr
 	movx	@dptr,a
 ;	Utilities.c:30: while (*s){            // output characters until NULL found
-	mov	dptr,#_putstr_s_10000_59
+	mov	dptr,#_putstr_s_10000_61
 	movx	a,@dptr
 	mov	r5,a
 	inc	dptr
@@ -622,7 +622,7 @@ _putstr:
 	cjne	r5,#0x00,00120$
 	inc	r6
 00120$:
-	mov	dptr,#_putstr_s_10000_59
+	mov	dptr,#_putstr_s_10000_61
 	mov	a,r5
 	movx	@dptr,a
 	mov	a,r6
@@ -652,7 +652,7 @@ _putstr:
 	inc	r4
 	sjmp	00101$
 00108$:
-	mov	dptr,#_putstr_s_10000_59
+	mov	dptr,#_putstr_s_10000_61
 	mov	a,r5
 	movx	@dptr,a
 	mov	a,r6
