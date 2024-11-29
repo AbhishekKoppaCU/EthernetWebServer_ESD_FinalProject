@@ -1,0 +1,8 @@
+../Src/spi.c:10:6:IO_Init	8	static
+../Src/spi.c:29:6:CS_Select	8	static
+../Src/spi.c:33:6:CS_Deselect	8	static
+../Src/spi.c:38:6:SPI_Init	8	static
+../Src/spi.c:47:6:SPI_Write	24	static
+../Src/spi.c:107:6:cmd_spi_write	80	dynamic
+../Src/spi.c:172:6:SPI_Read	32	static
+../Src/spi.c:184:6:cmd_spi_read	120	dynamic
