@@ -11,14 +11,20 @@
 
 #include "global.h"
 
+#include "stm32f0xx.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+// GPIO Pin definitions
+#define SPI2_CS_PIN (1U << 12) // GPIO_PIN_12
+#define SPI2_CS_PORT GPIOB
+
 // Function prototypes
-void IO_Init(void);
 void SPI_Init(void);
 void SPI_Write(uint8_t *data, uint16_t size);
-//void SPI_Read(uint8_t *buffer, uint16_t size);
-void CS_Select(void);
-void CS_Deselect(void);
+uint8_t SPI_Read(uint8_t addr);
 void cmd_spi_write(int argc, char *argv[]);
 void cmd_spi_read(int argc, char *argv[]);
-//uint8_t SPI_ReadByte(uint8_t dummy);
 #endif /* SPI_H_ */
+
+

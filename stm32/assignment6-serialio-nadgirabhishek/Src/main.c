@@ -23,7 +23,7 @@ int main(void) {
 	 * Clocks: Processor = 48 Mhz. AHB = 48 MHz. APB = 24 MHz.
 	 *
 	 */
-	init_uled(); //On board LED Initialisation
+	//init_uled(); //On board LED Initialisation
 	uart_init(); //UART 2 Initialisation for Serial COmmunication
 	cbfifo_init(&fiforx); // Initialising RX Buffer
 	cbfifo_init(&fifotx); // Initialising TX buffer
@@ -31,8 +31,11 @@ int main(void) {
 	char *argv[ARGUMENT_BUFFER_SIZE]; // Defining a buffer to store Argument Vectors after tokenization
 	int argc; //TO store Argument COunt
 	printf("\nWelcome to SerialIO!\n");
-	IO_Init();
+	//IO_Init();
 	SPI_Init();
+	printf("SPI2->CR1: 0x%08lX\n", SPI2->CR1);
+	printf("SPI2->CR2: 0x%08lX\n", SPI2->CR2);
+	printf("GPIOB->AFR[1]: 0x%08lX\n", GPIOB->AFR[1]);
 	while (1) {
 		printf("\n$$ ");
 		accumulate_line(inputval, INPUT_BUFFER_SIZE); //Takes character from Serial Terminal

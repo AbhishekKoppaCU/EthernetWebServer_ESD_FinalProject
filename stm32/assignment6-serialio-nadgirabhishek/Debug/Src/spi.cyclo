@@ -1,8 +1,5 @@
-../Src/spi.c:10:6:IO_Init	1
-../Src/spi.c:29:6:CS_Select	1
-../Src/spi.c:33:6:CS_Deselect	1
-../Src/spi.c:38:6:SPI_Init	1
-../Src/spi.c:47:6:SPI_Write	13
+../Src/spi.c:16:6:SPI_Init	1
+../Src/spi.c:36:6:SPI_WriteByte	5
+../Src/spi.c:56:9:SPI_ReadByte	5
+../Src/spi.c:79:6:cmd_spi_read	3
 ../Src/spi.c:107:6:cmd_spi_write	6
-../Src/spi.c:172:6:SPI_Read	4
-../Src/spi.c:184:6:cmd_spi_read	6
