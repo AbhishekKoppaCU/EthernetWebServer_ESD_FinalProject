@@ -27,6 +27,7 @@ void cmd_spi_write(int argc, char *argv[]);
 void cmd_spi_read(int argc, char *argv[]);
 void cmd_control_spi_write(int argc, char *argv[]);
 void cmd_buffer_spi_write(int argc, char *argv[]);
+void cmd_buffer_spi_read(int argc, char *argv[]);
 #endif /* SPI_H_ */
 
 

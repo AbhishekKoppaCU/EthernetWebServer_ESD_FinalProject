@@ -77,7 +77,13 @@ uint8_t SPI_ReadByte(void) {
     return received_data;
 }
 
-
+void cmd_select_reg_bank(uint8_t bank)
+{
+	GPIOB->ODR &= ~SPI2_CS_PIN;
+	SPI_WriteByte(0x5F);
+	SPI_WriteByte(bank);
+	GPIOB->ODR |= SPI2_CS_PIN;
+}
 void cmd_control_spi_write(int argc, char *argv[])
 {
 	if (argc < 3) {
@@ -95,10 +101,7 @@ void cmd_control_spi_write(int argc, char *argv[])
 	char *endptr;
 
 	// Pull CS Low
-	    GPIOB->ODR &= ~SPI2_CS_PIN;
-	    SPI_WriteByte(0x5F);
-	    SPI_WriteByte(reg_bank);
-	    GPIOB->ODR |= SPI2_CS_PIN;
+	cmd_select_reg_bank(reg_bank);
 
 
 
@@ -128,20 +131,101 @@ void cmd_control_spi_write(int argc, char *argv[])
 
 }
 
+void cmd_set_autoinc_spi(void)
+{
+	GPIOB->ODR &= ~SPI2_CS_PIN;
+	SPI_WriteByte(0x5E);			//ECON2
+	SPI_WriteByte(0x80);			//AUTOINC bit set
+	GPIOB->ODR |= SPI2_CS_PIN;
+}
+
+
+uint8_t* cmd_buffer_spi_read(int argc, char *argv[])
+{
+    if (argc < 3) {
+        printf("\nInvalid command: Buffer READ requires number of bytes and start address\n");
+        return NULL; // Return NULL to indicate an error
+    }
+
+    int num_bytes = atoi(argv[1]); // Parse number of bytes
+    if (num_bytes <= 0) {
+        printf("\nInvalid number of bytes: Must be greater than 0\n");
+        return NULL; // Return NULL to indicate an error
+    }
+
+    char *endptr;
+    uint16_t start_address = (uint8_t)strtol(argv[2], &endptr, 16);
+    if (*endptr != '\0') {
+            printf("\nInvalid address: %s\n", argv[1]);
+            return NULL;
+        }
+    if (start_address > 0x1FFF) {
+        printf("\nInvalid Buffer Address: Choose between [0, 0x1FFF]\n");
+        return NULL; // Return NULL to indicate an error
+    }
+
+    uint8_t opcode = 0x20;
+
+    // Dynamically allocate memory for the data buffer
+    uint8_t *data_buffer = (uint8_t *)malloc(num_bytes);
+    if (!data_buffer) {
+        printf("\nMemory allocation failed\n");
+        return NULL; // Return NULL to indicate an error
+    }
+
+    if (num_bytes > 1) {
+        cmd_set_autoinc_spi(); // Enable auto-increment mode
+    }
+
+    // Send the command to the SPI device
+    GPIOB->ODR &= ~SPI2_CS_PIN; // Pull CS Low
+    SPI_WriteByte(start_address + opcode); // Send start address + opcode
+    GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+
+    GPIOB->ODR &= ~SPI2_CS_PIN; // Pull CS Low again
+
+    for (int i = 0; i < num_bytes; i++) {
+        data_buffer[i] = SPI_ReadByte(); // Read and store each byte
+    }
+
+    GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+
+    // Debugging: Print the received data
+    printf("\nSPI Read Completed: Address 0x%02X\n", start_address);
+    for (int i = 0; i < num_bytes; i++) {
+        printf("Data[%d]: 0x%02X\n", i, data_buffer[i]);
+    }
+
+    return data_buffer; // Return the pointer to the data buffer
+}
+
+
+
+
 void cmd_buffer_spi_write(int argc, char *argv[])
 {
 	if (argc < 4) {
-		        printf("\nInvalid command: WRITE requires number of bytes and data\n");
+		printf("\nInvalid Buffer Address: Choose between [0, 0x1FFF]\n");
 		        return;
 		    }
 	int num_bytes = atoi(argv[1]);
-	uint16_t start_address = atoi(argv[2]);
+	if(num_bytes > 1)
+	{
+		cmd_set_autoinc_spi();
+	}
+
+	char *endptr;
+	uint16_t start_address = (uint8_t)strtol(argv[2], &endptr, 16);
+	if (*endptr != '\0') {
+	        printf("\nInvalid address: %s\n", argv[1]);
+	        return;
+	    }
 	if(start_address > 0x1FFF)
 		{
 			printf("\nInvalid Register Bank: Choose between [0, 3]\n");
 		  return;
 		}
-	uint8_t opcode = 0x50;
+	uint8_t opcode = 0x60;
 
 	GPIOB->ODR &= ~SPI2_CS_PIN;
 	SPI_WriteByte(start_address + opcode);
@@ -162,11 +246,6 @@ void cmd_buffer_spi_write(int argc, char *argv[])
 
 	GPIOB->ODR |= SPI2_CS_PIN;
 	printf("\nSPI BUFFER Write Completed: Sent %d bytes starting address %x\n", num_bytes, start_address);
-
-
-
-
-
 
 }
 
