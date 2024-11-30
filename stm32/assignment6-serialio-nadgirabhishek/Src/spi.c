@@ -76,6 +76,101 @@ uint8_t SPI_ReadByte(void) {
 
     return received_data;
 }
+
+
+void cmd_control_spi_write(int argc, char *argv[])
+{
+	if (argc < 3) {
+	        printf("\nInvalid command: WRITE requires number of bytes and data\n");
+	        return;
+	    }
+
+	int reg_bank = atoi(argv[1]);
+	if(reg_bank > 3)
+	{
+		printf("\nInvalid Register Bank: Choose between [0, 3]\n");
+	  return;
+	}
+
+	char *endptr;
+
+	// Pull CS Low
+	    GPIOB->ODR &= ~SPI2_CS_PIN;
+	    SPI_WriteByte(0x5F);
+	    SPI_WriteByte(reg_bank);
+	    GPIOB->ODR |= SPI2_CS_PIN;
+
+
+
+	    GPIOB->ODR &= ~SPI2_CS_PIN;
+
+	    uint8_t addr = (uint8_t)strtol(argv[2], &endptr, 16);
+	    uint8_t opcode = 0x40;
+	    //addr = addr + 0x40;
+	    if (*endptr != '\0') {
+	                printf("\nInvalid data: %s\n", argv[2]);
+	                GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+	                return;
+	            }
+	    SPI_WriteByte(addr + opcode);
+
+	    uint8_t data = (uint8_t)strtol(argv[3], &endptr, 16);
+	    if (*endptr != '\0') {
+	                printf("\nInvalid data: %s\n", argv[3]);
+	                GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+	                return;
+	            }
+	    SPI_WriteByte(data);
+
+	    GPIOB->ODR |= SPI2_CS_PIN;
+
+	    printf("\nSPI Write Completed: Sent %x data to %x address in %dnd register bank\n", data, addr, reg_bank);
+
+}
+
+void cmd_buffer_spi_write(int argc, char *argv[])
+{
+	if (argc < 4) {
+		        printf("\nInvalid command: WRITE requires number of bytes and data\n");
+		        return;
+		    }
+	int num_bytes = atoi(argv[1]);
+	uint16_t start_address = atoi(argv[2]);
+	if(start_address > 0x1FFF)
+		{
+			printf("\nInvalid Register Bank: Choose between [0, 3]\n");
+		  return;
+		}
+	uint8_t opcode = 0x50;
+
+	GPIOB->ODR &= ~SPI2_CS_PIN;
+	SPI_WriteByte(start_address + opcode);
+	GPIOB->ODR |= SPI2_CS_PIN;
+
+	GPIOB->ODR &= ~SPI2_CS_PIN;
+
+	for (int i = 0; i < num_bytes; i++) {
+	        char *endptr;
+	        uint8_t data = (uint8_t)strtol(argv[i + 3], &endptr, 16);
+	        if (*endptr != '\0') {
+	            printf("\nInvalid data: %s\n", argv[i + 2]);
+	            GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+	            return;
+	        }
+	        SPI_WriteByte(data);
+	    }
+
+	GPIOB->ODR |= SPI2_CS_PIN;
+	printf("\nSPI BUFFER Write Completed: Sent %d bytes starting address %x\n", num_bytes, start_address);
+
+
+
+
+
+
+}
+
+
 void cmd_spi_read(int argc, char *argv[]) {
     if (argc < 2) {
         printf("\nInvalid command: READ requires address\n");

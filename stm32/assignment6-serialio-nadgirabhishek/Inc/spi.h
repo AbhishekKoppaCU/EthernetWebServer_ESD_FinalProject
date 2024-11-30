@@ -25,6 +25,8 @@ void SPI_Write(uint8_t *data, uint16_t size);
 uint8_t SPI_Read(uint8_t addr);
 void cmd_spi_write(int argc, char *argv[]);
 void cmd_spi_read(int argc, char *argv[]);
+void cmd_control_spi_write(int argc, char *argv[]);
+void cmd_buffer_spi_write(int argc, char *argv[]);
 #endif /* SPI_H_ */
 
 

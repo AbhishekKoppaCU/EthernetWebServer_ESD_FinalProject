@@ -16,7 +16,7 @@
  *
  */
 const command_table_t commands[] = { { "LED", cmd_led }, { "ECHO", cmd_echo }, {
-		"HEXDUMP", cmd_hexdump }, { "WRITE", cmd_spi_write },{ "READ", cmd_spi_read }};
+		"HEXDUMP", cmd_hexdump }, { "WRITE", cmd_spi_write },{ "READ", cmd_spi_read }, { "WRITECONTROL", cmd_control_spi_write}, {"WRITEBUFFER", cmd_buffer_spi_write}};
 
 const int num_commands = sizeof(commands) / sizeof(command_table_t);
 

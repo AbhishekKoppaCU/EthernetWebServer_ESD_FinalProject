@@ -33,6 +33,10 @@ int main(void) {
 	printf("\nWelcome to SerialIO!\n");
 	//IO_Init();
 	SPI_Init();
+	GPIOA->MODER &= ~(GPIO_MODER_MODER2 | GPIO_MODER_MODER3); // Clear
+	GPIOA->MODER |= (GPIO_MODER_MODER2_1 | GPIO_MODER_MODER3_1); // Set to AF mode
+	GPIOA->AFR[0] |= (1 << GPIO_AFRL_AFSEL2_Pos) | (1 << GPIO_AFRL_AFSEL3_Pos); // AF7
+
 	printf("SPI2->CR1: 0x%08lX\n", SPI2->CR1);
 	printf("SPI2->CR2: 0x%08lX\n", SPI2->CR2);
 	printf("GPIOB->AFR[1]: 0x%08lX\n", GPIOB->AFR[1]);
