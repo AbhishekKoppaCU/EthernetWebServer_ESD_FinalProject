@@ -59,8 +59,8 @@ all: main-build
 main-build: Assignment6_SerialIO_Answer.elf secondary-outputs
 
 # Tool invocations
-Assignment6_SerialIO_Answer.elf Assignment6_SerialIO_Answer.map: $(OBJS) $(USER_OBJS) C:\Users\nadgi\Desktop\New\ folder\ESD\ESD_PROJECT\EthernetWebServer_ESD_FinalProject\stm32\assignment6-serialio-nadgirabhishek\STM32F091RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Assignment6_SerialIO_Answer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\Users\nadgi\Desktop\New folder\ESD\ESD_PROJECT\EthernetWebServer_ESD_FinalProject\stm32\assignment6-serialio-nadgirabhishek\STM32F091RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Assignment6_SerialIO_Answer.map" -Wl,--gc-sections -static -L../Lib -Wl,--whole-archive -lstm_startup -Wl,--no-whole-archive --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Assignment6_SerialIO_Answer.elf Assignment6_SerialIO_Answer.map: $(OBJS) $(USER_OBJS) D:\UniversityofColoradoBoulder\Sem1\ESD\Final\ Project\GitHub\EthernetWebServer_ESD_FinalProject\stm32\assignment6-serialio-nadgirabhishek\STM32F091RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Assignment6_SerialIO_Answer.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"D:\UniversityofColoradoBoulder\Sem1\ESD\Final Project\GitHub\EthernetWebServer_ESD_FinalProject\stm32\assignment6-serialio-nadgirabhishek\STM32F091RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Assignment6_SerialIO_Answer.map" -Wl,--gc-sections -static -L../Lib -Wl,--whole-archive -lstm_startup -Wl,--no-whole-archive --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

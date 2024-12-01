@@ -32,6 +32,8 @@ void SPI_Init(void) {
     GPIOB->ODR &= ~SPI2_SCK_PIN;  // SCK Low (idle)
     GPIOB->ODR &= ~SPI2_MOSI_PIN; // MOSI Low (idle)
 }
+
+
 void SPI_WriteByte(uint8_t data) {
     for (int i = 0; i < 8; i++) {
         // Write the MSB to MOSI
@@ -50,7 +52,10 @@ void SPI_WriteByte(uint8_t data) {
         //DELAY_SHORT();               // Small delay
         for (int i =0; i <16; i++);
     }
+    GPIOB->ODR &= ~SPI2_MOSI_PIN; // MOSI Low (idle)
 }
+
+
 void spi_set_autoinc(void)
 {
 	GPIOB->ODR &= ~SPI2_CS_PIN;
@@ -353,21 +358,6 @@ void cmd_spi_read(int argc, char *argv[]) {
     printf("\nSPI Read Completed: Address 0x%02X, Data 0x%02X\n", addr, data);
 }
 
-
-
-
-
-void cmd_phy_spi_write(int argc, char *argv[])
-{
-	if (argc < 3)
-	{
-	  printf("\nInvalid command: WRITE requires number of bytes and data\n");
-	  return;
-	 }
-
-
-}
-
 uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
 {
 	if(addr > 0x1F)
@@ -389,6 +379,95 @@ uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
 
 	return data;
 }
+
+void busy_wait(void)
+{
+	uint8_t data = mac_spi_read(0x0A, 3);
+	while(data & 0x01);
+}
+
+
+uint16_t phy_spi_read(uint8_t addr)
+{
+	spi_control_write(2, 0x14, addr);
+	spi_control_write(2, 0x12, 1);				//MICMD.MIIRD bit set
+
+	busy_wait();
+
+	spi_control_write(2, 0x12, 0);				//MICMD.MIIRD bit cleared
+
+	uint16_t data_LSB = mac_spi_read(0x18, 2);
+	uint16_t data_MSB = mac_spi_read(0x19, 2);
+
+	uint16_t data = (data_MSB << 8) + data_LSB;
+
+	return data;
+
+}
+
+void cmd_phy_spi_read(int argc, char *argv[])
+{
+	if (argc < 2)
+	{
+		  printf("\nInvalid command: PHY Read requires address\n");
+		  return;
+	}
+
+	char *endptr;
+	uint8_t addr = (uint8_t)strtol(argv[1], &endptr, 16);
+
+  if (*endptr != '\0')
+  {
+		printf("\nInvalid address: %s\n", argv[2]);
+			                //GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+		return;
+	}
+
+  uint16_t data = phy_spi_read(addr);
+  printf("\nSPI PHY Read Completed: Address 0x%02X, Data 0x%04X\n", addr, data);
+
+}
+
+void phy_spi_write(uint8_t addr, uint16_t data)
+{
+	spi_control_write(2,0x14,addr);
+	spi_control_write(2,0x16, (uint8_t)(data&0xFF));
+	spi_control_write(2, 0x17, (uint8_t)((data>>8)&0xFF));
+}
+void cmd_phy_spi_write(int argc, char *argv[])
+{
+	if (argc < 3)
+	{
+	  printf("\nInvalid command: PHY WRITE requires address and data\n");
+	  return;
+	 }
+
+	char *endptr;
+  uint8_t addr = (uint8_t)strtol(argv[1], &endptr, 16);
+
+	if (*endptr != '\0')
+	{
+		printf("\nInvalid address: %s\n", argv[2]);
+		                //GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+		return;
+  }
+
+	uint16_t data= (uint16_t)strtol(argv[2], &endptr, 16);
+	printf("data = %x\n\r", data);
+	if (*endptr != '\0')
+	{
+		 printf("\nInvalid data: %s\n", argv[3]);
+		                //GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+		 return;
+	}
+
+	phy_spi_write(addr, data);
+
+	printf("\nSPI PHY Write Completed: Address 0x%02X, Data 0x%04X\n", addr, data);
+
+}
+
+
 
 uint8_t eth_spi_read(uint8_t addr, uint8_t bank)
 {
@@ -471,5 +550,28 @@ void cmd_mac_spi_read(int argc, char *argv[])
 
 	            // Print the received data
 	    printf("\nSPI MAC Read Completed: Address 0x%02X, Data 0x%02X\n", addr, data);
+}
+
+void enc_reset(void)
+{
+	GPIOB->ODR &= ~SPI2_CS_PIN;
+
+	SPI_WriteByte(0XFF);
+
+	GPIOB->ODR |= SPI2_CS_PIN;
+
+}
+
+void cmd_enc_reset(int argc, char *argv[])
+{
+			if (argc != 1)
+			{
+	        printf("\nInvalid command: Reset \n");
+	        return;
+	    }
+
+		enc_reset();
+			// Print the received data
+	    printf("\n System Reset");
 }
 

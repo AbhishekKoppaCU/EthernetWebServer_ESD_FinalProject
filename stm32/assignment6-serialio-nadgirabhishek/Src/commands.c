@@ -22,7 +22,7 @@ const command_table_t commands[] = { { "LED", cmd_led }, { "ECHO", cmd_echo }, {
 		cmd_spi_read }, { "WRITECONTROL", cmd_control_spi_write }, {
 		"WRITEBUFFER", cmd_buffer_spi_write }, { "READBUFFER",
 		cmd_buffer_spi_read }, { "READMAC", cmd_mac_spi_read }, { "READETH",
-		cmd_eth_spi_read }, { "WRITEPHY", cmd_phy_spi_write } };
+		cmd_eth_spi_read }, { "WRITEPHY", cmd_phy_spi_write }, {"READPHY", cmd_phy_spi_read}, { "RESET", cmd_enc_reset } };
 
 const int num_commands = sizeof(commands) / sizeof(command_table_t);
 
