@@ -28,6 +28,12 @@ void cmd_spi_read(int argc, char *argv[]);
 void cmd_control_spi_write(int argc, char *argv[]);
 void cmd_buffer_spi_write(int argc, char *argv[]);
 void cmd_buffer_spi_read(int argc, char *argv[]);
+void cmd_mac_spi_read(int argc, char *argv[]);
+void cmd_eth_spi_read(int argc, char *argv[]);
+void cmd_phy_spi_write(int argc, char *argv[]);
+uint8_t eth_spi_read(uint8_t addr, uint8_t bank);
+uint8_t mac_spi_read(uint8_t addr, uint8_t bank);
+uint8_t mac_spi_read(uint8_t addr, uint8_t bank);
 #endif /* SPI_H_ */
 
 

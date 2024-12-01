@@ -15,8 +15,14 @@
  * New commands can be added here.
  *
  */
+
+
 const command_table_t commands[] = { { "LED", cmd_led }, { "ECHO", cmd_echo }, {
-		"HEXDUMP", cmd_hexdump }, { "WRITE", cmd_spi_write },{ "READ", cmd_spi_read }, { "WRITECONTROL", cmd_control_spi_write}, {"WRITEBUFFER", cmd_buffer_spi_write}, {"READBUFFER", cmd_buffer_spi_read}};
+		"HEXDUMP", cmd_hexdump }, { "WRITE", cmd_spi_write }, { "READ",
+		cmd_spi_read }, { "WRITECONTROL", cmd_control_spi_write }, {
+		"WRITEBUFFER", cmd_buffer_spi_write }, { "READBUFFER",
+		cmd_buffer_spi_read }, { "READMAC", cmd_mac_spi_read }, { "READETH",
+		cmd_eth_spi_read }, { "WRITEPHY", cmd_phy_spi_write } };
 
 const int num_commands = sizeof(commands) / sizeof(command_table_t);
 
@@ -105,7 +111,7 @@ void cmd_hexdump(int argc, char *argv[]) {
 	}
 
 	char *start_address_str = argv[1];
-	if(strlen(start_address_str) < 1 || strlen(start_address_str) > 8) {
+	if (strlen(start_address_str) < 1 || strlen(start_address_str) > 8) {
 		printf("\nInvalid address\n");
 		return;
 	}
