@@ -11,10 +11,22 @@
 #include "global.h"
 #include "functions.h"
 #include "spi.h"
+#include "Eth.h"
 
 void cmd_led(int argc, char *argv[]);
 void cmd_echo(int argc, char *argv[]);
 void cmd_hexdump(int argc, char *argv[]);
+
+void cmd_spi_write(int argc, char *argv[]);
+void cmd_spi_read(int argc, char *argv[]);
+void cmd_control_spi_write(int argc, char *argv[]);
+void cmd_buffer_spi_write(int argc, char *argv[]);
+void cmd_buffer_spi_read(int argc, char *argv[]);
+void cmd_mac_spi_read(int argc, char *argv[]);
+void cmd_eth_spi_read(int argc, char *argv[]);
+void cmd_phy_spi_write(int argc, char *argv[]);
+void cmd_phy_spi_read(int argc, char *argv[]);
+void cmd_enc_reset(int argc, char *argv[]);
 
 typedef void (*command_handler_t)(int, char *argv[]);
 

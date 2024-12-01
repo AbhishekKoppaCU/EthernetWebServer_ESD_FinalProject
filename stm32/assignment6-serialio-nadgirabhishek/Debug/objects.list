@@ -1,3 +1,4 @@
+"./Inc/Eth.o"
 "./Src/cbfifo.o"
 "./Src/commands.o"
 "./Src/functions.o"

@@ -1,5 +1,0 @@
-../Src/commands.c:38:6:ULED_ON	8	static
-../Src/commands.c:50:6:ULED_OFF	8	static
-../Src/commands.c:63:6:cmd_led	16	static
-../Src/commands.c:88:6:cmd_echo	24	static
-../Src/commands.c:106:6:cmd_hexdump	40	static
