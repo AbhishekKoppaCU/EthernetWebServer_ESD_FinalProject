@@ -218,15 +218,31 @@
 	.globl _RCAP2H
 	.globl _RCAP2L
 	.globl _T2CON
+	.globl _spi_buffer_write_PARM_3
+	.globl _spi_buffer_write_PARM_2
+	.globl _spi_buffer_read_PARM_3
+	.globl _spi_buffer_read_PARM_2
+	.globl _buffer_init_PARM_2
+	.globl _mac_spi_read_PARM_2
+	.globl _phy_spi_write_PARM_2
+	.globl _eth_spi_read_PARM_2
+	.globl _spi_control_write_PARM_3
+	.globl _spi_control_write_PARM_2
+	.globl _SPI_ReadByte
+	.globl _spi_set_autoinc
+	.globl _select_reg_bank
+	.globl _spi_control_write
 	.globl _configure_SPI
 	.globl _SPI_send
-	.globl _SPI_ctrl_read
-	.globl _poll_MISTAT_BUSY
-	.globl _test_read_ctrl
-	.globl _ENC_PHY_read
-	.globl _SPI_BB_init
-	.globl _SPI_send_BB
-	.globl _delay_us
+	.globl _enc_reset
+	.globl _eth_spi_read
+	.globl _phy_spi_write
+	.globl _mac_spi_read
+	.globl _phy_spi_read
+	.globl _busy_wait
+	.globl _buffer_init
+	.globl _spi_buffer_read
+	.globl _spi_buffer_write
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -479,17 +495,53 @@ _TF1	=	0x008f
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_SPI_send_data_10000_56:
+_SPI_ReadByte_received_data_10000_60:
 	.ds 1
-_SPI_ctrl_read_addr_10000_59:
+_select_reg_bank_bank_10000_64:
 	.ds 1
-_SPI_ctrl_read_receivedData_10000_60:
+_spi_control_write_PARM_2:
 	.ds 1
-_test_read_ctrl_address_10000_65:
+_spi_control_write_PARM_3:
 	.ds 1
-_SPI_send_BB_data_10000_71:
+_spi_control_write_reg_bank_10000_66:
 	.ds 1
-_delay_us_us_10000_77:
+_SPI_send_data_10000_70:
+	.ds 1
+_eth_spi_read_PARM_2:
+	.ds 1
+_eth_spi_read_addr_10000_75:
+	.ds 1
+_phy_spi_write_PARM_2:
+	.ds 2
+_phy_spi_write_addr_10000_79:
+	.ds 1
+_mac_spi_read_PARM_2:
+	.ds 1
+_mac_spi_read_addr_10000_81:
+	.ds 1
+_phy_spi_read_addr_10000_85:
+	.ds 1
+_busy_wait_data_10000_89:
+	.ds 1
+_buffer_init_PARM_2:
+	.ds 2
+_buffer_init_start_address_10000_91:
+	.ds 2
+_spi_buffer_read_PARM_2:
+	.ds 2
+_spi_buffer_read_PARM_3:
+	.ds 3
+_spi_buffer_read_num_bytes_10000_95:
+	.ds 2
+_spi_buffer_read_i_20002_102:
+	.ds 2
+_spi_buffer_write_PARM_2:
+	.ds 2
+_spi_buffer_write_PARM_3:
+	.ds 3
+_spi_buffer_write_num_bytes_10000_104:
+	.ds 2
+_spi_buffer_write_i_20002_111:
 	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -526,13 +578,15 @@ _delay_us_us_10000_77:
 ;--------------------------------------------------------
 	.area CSEG    (CODE)
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'configure_SPI'
+;Allocation info for local variables in function 'SPI_ReadByte'
 ;------------------------------------------------------------
-;	SPI.c:14: void configure_SPI(void)
+;received_data             Allocated with name '_SPI_ReadByte_received_data_10000_60'
+;------------------------------------------------------------
+;	SPI.c:4: uint8_t SPI_ReadByte(void)
 ;	-----------------------------------------
-;	 function configure_SPI
+;	 function SPI_ReadByte
 ;	-----------------------------------------
-_configure_SPI:
+_SPI_ReadByte:
 	ar7 = 0x07
 	ar6 = 0x06
 	ar5 = 0x05
@@ -541,95 +595,129 @@ _configure_SPI:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	SPI.c:27: CS_PIN = 1;
-;	assignBit
-	setb	_P1_1
-;	SPI.c:28: SPCON = 0x00;
-	mov	_SPCON,#0x00
-;	SPI.c:29: SPCON |= SS_DISABLE;
-	orl	_SPCON,#0x20
-;	SPI.c:30: SPCON |= MASTER_MODE;
-	orl	_SPCON,#0x10
-;	SPI.c:31: SPCON |= SPI_ENABLE;
-	orl	_SPCON,#0x40
-;	SPI.c:32: }
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'SPI_send'
-;------------------------------------------------------------
-;data                      Allocated with name '_SPI_send_data_10000_56'
-;------------------------------------------------------------
-;	SPI.c:35: void SPI_send(uint8_t data)
-;	-----------------------------------------
-;	 function SPI_send
-;	-----------------------------------------
-_SPI_send:
-	mov	a,dpl
-	mov	dptr,#_SPI_send_data_10000_56
-	movx	@dptr,a
-;	SPI.c:40: SPDAT = data;           // Config + MSB of data
-	movx	a,@dptr
-	mov	_SPDAT,a
-;	SPI.c:42: while (!(SPSTA & 0x80))
+;	SPI.c:9: SPDAT = 0xFF;
+	mov	_SPDAT,#0xff
+;	SPI.c:12: while (!(SPSTA & 0x80)) {
 00101$:
 	mov	a,_SPSTA
 	jnb	acc.7,00101$
-;	SPI.c:58: }
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'SPI_ctrl_read'
-;------------------------------------------------------------
-;addr                      Allocated with name '_SPI_ctrl_read_addr_10000_59'
-;receivedData              Allocated with name '_SPI_ctrl_read_receivedData_10000_60'
-;------------------------------------------------------------
-;	SPI.c:60: uint8_t SPI_ctrl_read(uint8_t addr)
-;	-----------------------------------------
-;	 function SPI_ctrl_read
-;	-----------------------------------------
-_SPI_ctrl_read:
-	mov	a,dpl
-	mov	dptr,#_SPI_ctrl_read_addr_10000_59
-	movx	@dptr,a
-;	SPI.c:66: SPDAT = addr;          // Send a dummy byte to generate clock pulses
-	movx	a,@dptr
-	mov	_SPDAT,a
-;	SPI.c:67: while (!(SPSTA & 0x80))
-00101$:
-	mov	a,_SPSTA
-	jnb	acc.7,00101$
-;	SPI.c:73: receivedData = SPDAT;  // Read the data received from the slave
-	mov	dptr,#_SPI_ctrl_read_receivedData_10000_60
+;	SPI.c:17: received_data = SPDAT;
+	mov	dptr,#_SPI_ReadByte_received_data_10000_60
 	mov	a,_SPDAT
 	movx	@dptr,a
-;	SPI.c:79: return receivedData;   // Return the received data
+;	SPI.c:19: return received_data;
 	movx	a,@dptr
-;	SPI.c:80: }
+;	SPI.c:20: }
 	mov	dpl,a
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'poll_MISTAT_BUSY'
+;Allocation info for local variables in function 'spi_set_autoinc'
 ;------------------------------------------------------------
-;	SPI.c:82: void poll_MISTAT_BUSY(void)
+;	SPI.c:22: void spi_set_autoinc(void)
 ;	-----------------------------------------
-;	 function poll_MISTAT_BUSY
+;	 function spi_set_autoinc
 ;	-----------------------------------------
-_poll_MISTAT_BUSY:
-;	SPI.c:84: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);                 //ECON1
+_spi_set_autoinc:
+;	SPI.c:24: CS_LOW;                          // Pull CS low to select the ENC28J60
+;	assignBit
+	clr	_P1_1
+;	SPI.c:26: SPI_send(0x5E);                  // Write ECON2 register address
+	mov	dpl, #0x5e
+	lcall	_SPI_send
+;	SPI.c:27: SPI_send(0x80);                  // Set the AUTOINC bit
+	mov	dpl, #0x80
+	lcall	_SPI_send
+;	SPI.c:29: CS_HIGH;                         // Pull CS high to deselect the ENC28J60
+;	assignBit
+	setb	_P1_1
+;	SPI.c:30: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'select_reg_bank'
+;------------------------------------------------------------
+;bank                      Allocated with name '_select_reg_bank_bank_10000_64'
+;------------------------------------------------------------
+;	SPI.c:32: void select_reg_bank(uint8_t bank)
+;	-----------------------------------------
+;	 function select_reg_bank
+;	-----------------------------------------
+_select_reg_bank:
+	mov	a,dpl
+	mov	dptr,#_select_reg_bank_bank_10000_64
+	movx	@dptr,a
+;	SPI.c:35: CS_LOW;
+;	assignBit
+	clr	_P1_1
+;	SPI.c:38: SPI_send(0x5F);
 	mov	dpl, #0x5f
 	lcall	_SPI_send
-;	SPI.c:85: SPI_send(ENC_REGISTER_BANK_3);
-	mov	dpl, #0x03
+;	SPI.c:41: SPI_send(bank);
+	mov	dptr,#_select_reg_bank_bank_10000_64
+	movx	a,@dptr
+	mov	dpl,a
 	lcall	_SPI_send
-;	SPI.c:87: SPI_ctrl_read(ENC_MISTAT);                                                 //Dummy byte
-	mov	dpl, #0x0a
-	lcall	_SPI_ctrl_read
-;	SPI.c:88: while((SPI_ctrl_read(ENC_MISTAT) & 0x01) != 0)
-00101$:
-	mov	dpl, #0x0a
-	lcall	_SPI_ctrl_read
-	mov	a, dpl
-	jnb	acc.0,00104$
-;	SPI.c:90: printf("Busy wait!!");
+;	SPI.c:44: CS_HIGH;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:45: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'spi_control_write'
+;------------------------------------------------------------
+;addr                      Allocated with name '_spi_control_write_PARM_2'
+;data                      Allocated with name '_spi_control_write_PARM_3'
+;reg_bank                  Allocated with name '_spi_control_write_reg_bank_10000_66'
+;opcode                    Allocated with name '_spi_control_write_opcode_10000_67'
+;------------------------------------------------------------
+;	SPI.c:46: void spi_control_write(uint8_t reg_bank, uint8_t addr, uint8_t data)
+;	-----------------------------------------
+;	 function spi_control_write
+;	-----------------------------------------
+_spi_control_write:
+	mov	a,dpl
+	mov	dptr,#_spi_control_write_reg_bank_10000_66
+	movx	@dptr,a
+;	SPI.c:49: addr = addr + opcode; // Add the opcode to the address
+	mov	dptr,#_spi_control_write_PARM_2
+	movx	a,@dptr
+	add	a, #0x40
+	movx	@dptr,a
+;	SPI.c:51: select_reg_bank(reg_bank); // Function to select the register bank
+	mov	dptr,#_spi_control_write_reg_bank_10000_66
+	movx	a,@dptr
+	mov	dpl,a
+	lcall	_select_reg_bank
+;	SPI.c:54: CS_LOW;
+;	assignBit
+	clr	_P1_1
+;	SPI.c:57: SPI_send(addr);
+	mov	dptr,#_spi_control_write_PARM_2
+	movx	a,@dptr
+	mov	r7,a
+	mov	dpl,a
+	push	ar7
+	lcall	_SPI_send
+	pop	ar7
+;	SPI.c:60: SPI_send(data);
+	mov	dptr,#_spi_control_write_PARM_3
+	movx	a,@dptr
+	mov	r6,a
+	mov	dpl,a
+	push	ar7
+	push	ar6
+	lcall	_SPI_send
+	pop	ar6
+	pop	ar7
+;	SPI.c:63: CS_HIGH;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:66: printf("Write: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+	mov	r5,#0x00
+	mov	r4,#0x00
+	push	ar6
+	push	ar5
+	push	ar7
+	push	ar4
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -637,161 +725,94 @@ _poll_MISTAT_BUSY:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	sjmp	00101$
-00104$:
-;	SPI.c:92: }
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	SPI.c:67: }
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'test_read_ctrl'
+;Allocation info for local variables in function 'configure_SPI'
 ;------------------------------------------------------------
-;address                   Allocated with name '_test_read_ctrl_address_10000_65'
-;received_byte             Allocated with name '_test_read_ctrl_received_byte_10000_66'
+;	SPI.c:70: void configure_SPI(void)
+;	-----------------------------------------
+;	 function configure_SPI
+;	-----------------------------------------
+_configure_SPI:
+;	SPI.c:72: CS_PIN = 1;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:73: SPCON = 0x00;
+	mov	_SPCON,#0x00
+;	SPI.c:74: SPCON |= SS_DISABLE;
+	orl	_SPCON,#0x20
+;	SPI.c:75: SPCON |= MASTER_MODE;
+	orl	_SPCON,#0x10
+;	SPI.c:76: SPCON |= SPI_ENABLE;
+	orl	_SPCON,#0x40
+;	SPI.c:77: }
+	ret
 ;------------------------------------------------------------
-;	SPI.c:94: void test_read_ctrl(uint8_t address)
+;Allocation info for local variables in function 'SPI_send'
+;------------------------------------------------------------
+;data                      Allocated with name '_SPI_send_data_10000_70'
+;------------------------------------------------------------
+;	SPI.c:80: void SPI_send(uint8_t data)
 ;	-----------------------------------------
-;	 function test_read_ctrl
+;	 function SPI_send
 ;	-----------------------------------------
-_test_read_ctrl:
+_SPI_send:
 	mov	a,dpl
-	mov	dptr,#_test_read_ctrl_address_10000_65
+	mov	dptr,#_SPI_send_data_10000_70
 	movx	@dptr,a
-;	SPI.c:104: P1_1 = 0;
+;	SPI.c:83: SPDAT = data;           // Config + MSB of data
+	movx	a,@dptr
+	mov	_SPDAT,a
+;	SPI.c:85: while (!(SPSTA & 0x80))
+00101$:
+	mov	a,_SPSTA
+	jnb	acc.7,00101$
+;	SPI.c:90: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'enc_reset'
+;------------------------------------------------------------
+;	SPI.c:92: void enc_reset(void)
+;	-----------------------------------------
+;	 function enc_reset
+;	-----------------------------------------
+_enc_reset:
+;	SPI.c:94: CS_LOW;                    // Pull CS low to select the ENC28J60
 ;	assignBit
 	clr	_P1_1
-;	SPI.c:105: delay_us(2);
-	mov	dptr,#0x0002
-	lcall	_delay_us
-;	SPI.c:107: SPI_ctrl_read(address);  //Dummy byte
-	mov	dptr,#_test_read_ctrl_address_10000_65
-	movx	a,@dptr
-	mov	r7,a
-	mov	dpl,a
-	push	ar7
-	lcall	_SPI_ctrl_read
-	pop	ar7
-;	SPI.c:108: received_byte = SPI_ctrl_read(address);
-	mov	dpl, r7
-	lcall	_SPI_ctrl_read
-;	SPI.c:109: delay_us(2);
-	mov	dptr,#0x0002
-	lcall	_delay_us
-;	SPI.c:110: P1_1 = 1;
+;	SPI.c:95: SPI_send(0xFF);            // Send reset command
+	mov	dpl, #0xff
+	lcall	_SPI_send
+;	SPI.c:96: CS_HIGH;                   // Pull CS high to deselect the ENC28J60
 ;	assignBit
 	setb	_P1_1
-;	SPI.c:111: delay_us(100);
-	mov	dptr,#0x0064
-;	SPI.c:114: }
-	ljmp	_delay_us
-;------------------------------------------------------------
-;Allocation info for local variables in function 'ENC_PHY_read'
-;------------------------------------------------------------
-;PHY_reg                   Allocated with name '_ENC_PHY_read_PHY_reg_10000_67'
-;received_LSB              Allocated with name '_ENC_PHY_read_received_LSB_10000_68'
-;received_MSB              Allocated with name '_ENC_PHY_read_received_MSB_10000_68'
-;received_word             Allocated with name '_ENC_PHY_read_received_word_10000_68'
-;------------------------------------------------------------
-;	SPI.c:117: uint16_t ENC_PHY_read(uint8_t PHY_reg)
-;	-----------------------------------------
-;	 function ENC_PHY_read
-;	-----------------------------------------
-_ENC_PHY_read:
-;	SPI.c:121: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);                 //ECON1
-	mov	dpl, #0x5f
-	lcall	_SPI_send
-;	SPI.c:122: SPI_send(ENC_REGISTER_BANK_2);
-	mov	dpl, #0x02
-	lcall	_SPI_send
-;	SPI.c:123: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);
-	mov	dpl, #0x54
-	lcall	_SPI_send
-;	SPI.c:124: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
-	mov	dpl, #0x14
-	lcall	_SPI_send
-;	SPI.c:126: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MICMD);
-	mov	dpl, #0x52
-	lcall	_SPI_send
-;	SPI.c:127: SPI_send(SET);
-	mov	dpl, #0x01
-	lcall	_SPI_send
-;	SPI.c:129: poll_MISTAT_BUSY();
-	lcall	_poll_MISTAT_BUSY
-;	SPI.c:131: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MICMD);
-	mov	dpl, #0x52
-	lcall	_SPI_send
-;	SPI.c:132: SPI_send(CLEAR);
-	mov	dpl, #0x00
-	lcall	_SPI_send
-;	SPI.c:135: SPI_ctrl_read(ENC_MIRDL);  //Dummy byte
-	mov	dpl, #0x18
-	lcall	_SPI_ctrl_read
-;	SPI.c:136: received_LSB = SPI_ctrl_read(ENC_MIRDL);
-	mov	dpl, #0x18
-	lcall	_SPI_ctrl_read
-	mov	r7, dpl
-;	SPI.c:139: received_MSB = SPI_ctrl_read(ENC_MIRDH);  //Dummy byte
-	mov	dpl, #0x19
-	push	ar7
-	lcall	_SPI_ctrl_read
-	mov	r6, dpl
-	pop	ar7
-;	SPI.c:142: received_word = (received_MSB << 8) | received_LSB;
-	mov	ar5,r6
-	clr	a
-	mov	r6,a
-	mov	r4,a
-	mov	a,r7
-	orl	ar6,a
-	mov	a,r4
-	orl	ar5,a
-;	SPI.c:143: return received_word;
-	mov	dpl, r6
-	mov	dph, r5
-;	SPI.c:145: }
+;	SPI.c:97: }
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'SPI_BB_init'
+;Allocation info for local variables in function 'eth_spi_read'
 ;------------------------------------------------------------
-;	SPI.c:147: void SPI_BB_init(void)
-;	-----------------------------------------
-;	 function SPI_BB_init
-;	-----------------------------------------
-_SPI_BB_init:
-;	SPI.c:149: SPCON = 0;
-	mov	_SPCON,#0x00
-;	SPI.c:150: SPI_DATA = 1;
-;	assignBit
-	setb	_P1_7
-;	SPI.c:151: SPI_CLOCK = 0;
-;	assignBit
-	clr	_P1_6
-;	SPI.c:152: SPI_CHIP_SELECT = 1;
-;	assignBit
-	setb	_P1_1
-;	SPI.c:153: }
-	ret
+;bank                      Allocated with name '_eth_spi_read_PARM_2'
+;addr                      Allocated with name '_eth_spi_read_addr_10000_75'
+;data                      Allocated with name '_eth_spi_read_data_10001_78'
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'SPI_send_BB'
-;------------------------------------------------------------
-;data                      Allocated with name '_SPI_send_BB_data_10000_71'
-;i                         Allocated with name '_SPI_send_BB_i_20000_73'
-;------------------------------------------------------------
-;	SPI.c:155: void SPI_send_BB(uint8_t data)
+;	SPI.c:99: uint8_t eth_spi_read(uint8_t addr, uint8_t bank)
 ;	-----------------------------------------
-;	 function SPI_send_BB
+;	 function eth_spi_read
 ;	-----------------------------------------
-_SPI_send_BB:
+_eth_spi_read:
 	mov	a,dpl
-	mov	dptr,#_SPI_send_BB_data_10000_71
+	mov	dptr,#_eth_spi_read_addr_10000_75
 	movx	@dptr,a
-;	SPI.c:158: printf("Sending BB data: %x\n\r", data);
+;	SPI.c:101: if (addr > 0x1F) {
 	movx	a,@dptr
-	mov	r7,a
-	mov	r6,#0x00
-	push	ar7
-	push	ar6
+	mov  r7,a
+	add	a,#0xff - 0x1f
+	jnc	00102$
+;	SPI.c:102: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -799,112 +820,1246 @@ _SPI_send_BB:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-;	SPI.c:159: SPI_CHIP_SELECT = 0;
+	dec	sp
+	dec	sp
+	dec	sp
+;	SPI.c:103: return 0;
+	mov	dpl, #0x00
+	ret
+00102$:
+;	SPI.c:106: select_reg_bank(bank);     // Select the appropriate bank
+	mov	dptr,#_eth_spi_read_PARM_2
+	movx	a,@dptr
+	mov	dpl,a
+	push	ar7
+	lcall	_select_reg_bank
+	pop	ar7
+;	SPI.c:108: CS_LOW;                    // Pull CS low to start communication
 ;	assignBit
 	clr	_P1_1
-;	SPI.c:160: for(int i = 0; i < 8; i++)
-	mov	r7,#0x00
-00106$:
-	cjne	r7,#0x08,00129$
-00129$:
-	jnc	00104$
-;	SPI.c:163: if(data & 0x80)
-	mov	dptr,#_SPI_send_BB_data_10000_71
-	movx	a,@dptr
-	jnb	acc.7,00102$
-;	SPI.c:165: SPI_DATA = 1;
-;	assignBit
-	setb	_P1_7
-	sjmp	00103$
-00102$:
-;	SPI.c:169: SPI_DATA = 0;
-;	assignBit
-	clr	_P1_7
-00103$:
-;	SPI.c:171: SPI_CLOCK = 1;
-;	assignBit
-	setb	_P1_6
-;	SPI.c:173: data = data << 1;
-	mov	dptr,#_SPI_send_BB_data_10000_71
-	movx	a,@dptr
-	add	a,acc
-	movx	@dptr,a
-;	SPI.c:174: SPI_CLOCK = 0;
-;	assignBit
-	clr	_P1_6
-;	SPI.c:175: SPI_DATA = 0;
-;	assignBit
-	clr	_P1_7
-;	SPI.c:160: for(int i = 0; i < 8; i++)
-	inc	r7
-	sjmp	00106$
-00104$:
-;	SPI.c:178: SPI_CHIP_SELECT = 1;
+;	SPI.c:109: SPI_send(addr);            // Send the address
+	mov	dpl, r7
+	push	ar7
+	lcall	_SPI_send
+;	SPI.c:110: uint8_t data = SPI_ReadByte(); // Read the data
+	lcall	_SPI_ReadByte
+	mov	r6, dpl
+	pop	ar7
+;	SPI.c:111: CS_HIGH;                   // Pull CS high to end communication
 ;	assignBit
 	setb	_P1_1
-;	SPI.c:179: }
+;	SPI.c:114: printf("Read: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+	mov	ar4,r6
+	mov	r5,#0x00
+	mov	r3,#0x00
+	push	ar6
+	push	ar4
+	push	ar5
+	push	ar7
+	push	ar3
+	mov	a,#___str_2
+	push	acc
+	mov	a,#(___str_2 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar6
+;	SPI.c:116: return data;
+	mov	dpl, r6
+;	SPI.c:117: }
 	ret
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'delay_us'
+;Allocation info for local variables in function 'phy_spi_write'
 ;------------------------------------------------------------
-;us                        Allocated with name '_delay_us_us_10000_77'
+;data                      Allocated with name '_phy_spi_write_PARM_2'
+;addr                      Allocated with name '_phy_spi_write_addr_10000_79'
 ;------------------------------------------------------------
-;	SPI.c:181: void delay_us(uint16_t us)
+;	SPI.c:119: void phy_spi_write(uint8_t addr, uint16_t data)
 ;	-----------------------------------------
-;	 function delay_us
+;	 function phy_spi_write
 ;	-----------------------------------------
-_delay_us:
+_phy_spi_write:
+	mov	a,dpl
+	mov	dptr,#_phy_spi_write_addr_10000_79
+	movx	@dptr,a
+;	SPI.c:121: spi_control_write(2, 0x14, addr);                      // Write PHY address
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x14
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r7
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	lcall	_spi_control_write
+	pop	ar7
+;	SPI.c:122: spi_control_write(2, 0x16, (uint8_t)(data & 0xFF));    // Write LSB of data
+	mov	dptr,#_phy_spi_write_PARM_2
+	movx	a,@dptr
+	mov	r5,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r6,a
+	mov	ar4,r5
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x16
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r4
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_spi_control_write
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:123: spi_control_write(2, 0x17, (uint8_t)((data >> 8) & 0xFF)); // Write MSB of data
+	mov	ar4,r6
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x17
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r4
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_spi_control_write
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:126: printf("PHY Write: Address 0x%02X, Data 0x%04X\n\r", addr, data);
+	mov	r4,#0x00
+	push	ar5
+	push	ar6
+	push	ar7
+	push	ar4
+	mov	a,#___str_3
+	push	acc
+	mov	a,#(___str_3 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	SPI.c:127: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'mac_spi_read'
+;------------------------------------------------------------
+;bank                      Allocated with name '_mac_spi_read_PARM_2'
+;addr                      Allocated with name '_mac_spi_read_addr_10000_81'
+;data                      Allocated with name '_mac_spi_read_data_10001_84'
+;------------------------------------------------------------
+;	SPI.c:129: uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
+;	-----------------------------------------
+;	 function mac_spi_read
+;	-----------------------------------------
+_mac_spi_read:
+	mov	a,dpl
+	mov	dptr,#_mac_spi_read_addr_10000_81
+	movx	@dptr,a
+;	SPI.c:131: if (addr > 0x1F) {
+	movx	a,@dptr
+	mov  r7,a
+	add	a,#0xff - 0x1f
+	jnc	00102$
+;	SPI.c:132: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
+	mov	a,#___str_1
+	push	acc
+	mov	a,#(___str_1 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	SPI.c:133: return 0; // Return 0 if address is invalid
+	mov	dpl, #0x00
+	ret
+00102$:
+;	SPI.c:136: select_reg_bank(bank); // Select the appropriate register bank
+	mov	dptr,#_mac_spi_read_PARM_2
+	movx	a,@dptr
+	mov	dpl,a
+	push	ar7
+	lcall	_select_reg_bank
+	pop	ar7
+;	SPI.c:139: CS_LOW;
+;	assignBit
+	clr	_P1_1
+;	SPI.c:142: SPI_send(addr);
+	mov	dpl, r7
+	push	ar7
+	lcall	_SPI_send
+;	SPI.c:145: uint8_t data = SPI_ReadByte();
+	lcall	_SPI_ReadByte
+	mov	r6, dpl
+	pop	ar7
+;	SPI.c:148: CS_HIGH;
+;	assignBit
+	setb	_P1_1
+;	SPI.c:151: printf("Read: Address 0x%02X, Data 0x%02X\n", addr, data);
+	mov	ar4,r6
+	mov	r5,#0x00
+	mov	r3,#0x00
+	push	ar6
+	push	ar4
+	push	ar5
+	push	ar7
+	push	ar3
+	mov	a,#___str_4
+	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar6
+;	SPI.c:153: return data;
+	mov	dpl, r6
+;	SPI.c:154: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'phy_spi_read'
+;------------------------------------------------------------
+;addr                      Allocated with name '_phy_spi_read_addr_10000_85'
+;data_LSB                  Allocated with name '_phy_spi_read_data_LSB_10001_87'
+;data_MSB                  Allocated with name '_phy_spi_read_data_MSB_10001_87'
+;data                      Allocated with name '_phy_spi_read_data_10001_87'
+;------------------------------------------------------------
+;	SPI.c:157: uint16_t phy_spi_read(uint8_t addr)
+;	-----------------------------------------
+;	 function phy_spi_read
+;	-----------------------------------------
+_phy_spi_read:
+	mov	a,dpl
+	mov	dptr,#_phy_spi_read_addr_10000_85
+	movx	@dptr,a
+;	SPI.c:159: spi_control_write(2, 0x14, addr);     // Write PHY address
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x14
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r7
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	lcall	_spi_control_write
+	pop	ar7
+;	SPI.c:160: spi_control_write(2, 0x12, 1);        // Set MICMD.MIIRD bit
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x12
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	lcall	_spi_control_write
+;	SPI.c:162: busy_wait();                          // Wait for the read to complete
+	lcall	_busy_wait
+	pop	ar7
+;	SPI.c:164: spi_control_write(2, 0x12, 0);        // Clear MICMD.MIIRD bit
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x12
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	clr	a
+	movx	@dptr,a
+	mov	dpl, #0x02
+	push	ar7
+	lcall	_spi_control_write
+	pop	ar7
+;	SPI.c:166: uint16_t data_LSB = mac_spi_read(0x18, 2); // Read LSB of data
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,#0x02
+	movx	@dptr,a
+	mov	dpl, #0x18
+	push	ar7
+	lcall	_mac_spi_read
+	mov	r6, dpl
+	pop	ar7
+	mov	r5,#0x00
+;	SPI.c:167: uint16_t data_MSB = mac_spi_read(0x19, 2); // Read MSB of data
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,#0x02
+	movx	@dptr,a
+	mov	dpl, #0x19
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_mac_spi_read
+	mov	r4, dpl
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:169: uint16_t data = (data_MSB << 8) | data_LSB;        // Combine MSB and LSB
+	mov	ar3,r4
+	clr	a
+	orl	ar6,a
+	mov	a,r3
+	orl	ar5,a
+;	SPI.c:172: printf("PHY Read: Address 0x%02X, Data 0x%04X\n\r", addr, data);
+	mov	r4,#0x00
+	push	ar6
+	push	ar5
+	push	ar6
+	push	ar5
+	push	ar7
+	push	ar4
+	mov	a,#___str_5
+	push	acc
+	mov	a,#(___str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar5
+	pop	ar6
+;	SPI.c:174: return data;        // Combine MSB and LSB
+	mov	dpl, r6
+	mov	dph, r5
+;	SPI.c:175: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'busy_wait'
+;------------------------------------------------------------
+;data                      Allocated with name '_busy_wait_data_10000_89'
+;------------------------------------------------------------
+;	SPI.c:177: void busy_wait(void)
+;	-----------------------------------------
+;	 function busy_wait
+;	-----------------------------------------
+_busy_wait:
+;	SPI.c:179: uint8_t data = mac_spi_read(0x0A, 3); // Read ESTAT register (bank 3)
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,#0x03
+	movx	@dptr,a
+	mov	dpl, #0x0a
+	lcall	_mac_spi_read
+	mov	a, dpl
+	mov	dptr,#_busy_wait_data_10000_89
+	movx	@dptr,a
+;	SPI.c:180: while (data & 0x01)
+00101$:
+	mov	dptr,#_busy_wait_data_10000_89
+	movx	a,@dptr
+	jnb	acc.0,00104$
+;	SPI.c:182: data = mac_spi_read(0x0A, 3);
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,#0x03
+	movx	@dptr,a
+	mov	dpl, #0x0a
+	lcall	_mac_spi_read
+	mov	a, dpl
+	mov	dptr,#_busy_wait_data_10000_89
+	movx	@dptr,a
+	sjmp	00101$
+00104$:
+;	SPI.c:184: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'buffer_init'
+;------------------------------------------------------------
+;size                      Allocated with name '_buffer_init_PARM_2'
+;start_address             Allocated with name '_buffer_init_start_address_10000_91'
+;erxst                     Allocated with name '_buffer_init_erxst_10001_94'
+;erxnd                     Allocated with name '_buffer_init_erxnd_10001_94'
+;------------------------------------------------------------
+;	SPI.c:186: void buffer_init(uint16_t start_address, uint16_t size)
+;	-----------------------------------------
+;	 function buffer_init
+;	-----------------------------------------
+_buffer_init:
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_delay_us_us_10000_77
+	mov	dptr,#_buffer_init_start_address_10000_91
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	SPI.c:183: while (us--)
-	mov	dptr,#_delay_us_us_10000_77
+;	SPI.c:188: if (start_address > 0x1FFF || (start_address + size) > 0x1FFF) {
+	mov	dptr,#_buffer_init_start_address_10000_91
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-00101$:
 	mov	ar4,r6
 	mov	ar5,r7
+	clr	c
+	mov	a,#0xff
+	subb	a,r4
+	mov	a,#0x1f
+	subb	a,r5
+	jc	00101$
+	mov	dptr,#_buffer_init_PARM_2
+	movx	a,@dptr
+	mov	r2,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r3,a
+	mov	a,r2
+	add	a, r6
+	mov	r0,a
+	mov	a,r3
+	addc	a, r7
+	mov	r1,a
+	clr	c
+	mov	a,#0xff
+	subb	a,r0
+	mov	a,#0x1f
+	subb	a,r1
+	jnc	00102$
+00101$:
+;	SPI.c:189: printf("\n\rInvalid Buffer Address or Size: Start 0x%04X, Size 0x%04X\n\r", start_address, size);
+	mov	dptr,#_buffer_init_PARM_2
+	movx	a,@dptr
+	push	acc
+	inc	dptr
+	movx	a,@dptr
+	push	acc
+	mov	dptr,#_buffer_init_start_address_10000_91
+	movx	a,@dptr
+	push	acc
+	inc	dptr
+	movx	a,@dptr
+	push	acc
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	SPI.c:190: return;
+	ret
+00102$:
+;	SPI.c:194: uint16_t erxst = start_address & ~1; // Make sure ERXST is even
+	anl	ar4,#0xfe
+;	SPI.c:195: uint16_t erxnd = (start_address + size - 1) & ~1; // Make sure ERXND is even
+	mov	a,r2
+	add	a, r6
+	mov	r6,a
+	mov	a,r3
+	addc	a, r7
+	mov	r7,a
 	dec	r6
-	cjne	r6,#0xff,00118$
+	cjne	r6,#0xff,00114$
 	dec	r7
-00118$:
-	mov	dptr,#_delay_us_us_10000_77
+00114$:
+	anl	ar6,#0xfe
+;	SPI.c:198: spi_control_write(0, 0x08, (uint8_t)(erxst >> 8)); // High byte of ERXST
+	mov	ar3,r5
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x08
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r3
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:199: spi_control_write(0, 0x09, (uint8_t)(erxst & 0xFF)); // Low byte of ERXST
+	mov	ar3,r4
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x09
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r3
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:202: spi_control_write(0, 0x0A, (uint8_t)(erxnd >> 8)); // High byte of ERXND
+	mov	ar3,r7
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0a
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r3
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:203: spi_control_write(0, 0x0B, (uint8_t)(erxnd & 0xFF)); // Low byte of ERXND
+	mov	ar3,r6
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0b
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r3
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:205: printf("\n\rBuffer Initialized: Start 0x%04X, End 0x%04X\n\r", erxst, erxnd);
+	push	ar6
+	push	ar7
+	push	ar4
+	push	ar5
+	mov	a,#___str_7
+	push	acc
+	mov	a,#(___str_7 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+;	SPI.c:206: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'spi_buffer_read'
+;------------------------------------------------------------
+;start_address             Allocated with name '_spi_buffer_read_PARM_2'
+;data_ptr                  Allocated with name '_spi_buffer_read_PARM_3'
+;num_bytes                 Allocated with name '_spi_buffer_read_num_bytes_10000_95'
+;higher_byte               Allocated with name '_spi_buffer_read_higher_byte_10001_100'
+;lower_byte                Allocated with name '_spi_buffer_read_lower_byte_10001_100'
+;opcode                    Allocated with name '_spi_buffer_read_opcode_10002_101'
+;i                         Allocated with name '_spi_buffer_read_i_20002_102'
+;------------------------------------------------------------
+;	SPI.c:209: void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
+;	-----------------------------------------
+;	 function spi_buffer_read
+;	-----------------------------------------
+_spi_buffer_read:
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_spi_buffer_read_num_bytes_10000_95
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	SPI.c:211: if (num_bytes < 1) {
+	mov	dptr,#_spi_buffer_read_num_bytes_10000_95
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,#0x01
+	mov	a,r7
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00102$
+;	SPI.c:212: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
+	push	ar6
+	push	ar7
+	mov	a,#___str_8
+	push	acc
+	mov	a,#(___str_8 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:213: return;
+	ret
+00102$:
+;	SPI.c:215: if (start_address > 0x1FFF) {
+	mov	dptr,#_spi_buffer_read_PARM_2
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	ar2,r4
+	mov	ar3,r5
+	clr	c
+	mov	a,#0xff
+	subb	a,r2
+	mov	a,#0x1f
+	subb	a,r3
+	jnc	00104$
+;	SPI.c:216: printf("\n\rInvalid address: %04X\n\r", start_address);
+	push	ar4
+	push	ar5
+	mov	a,#___str_9
+	push	acc
+	mov	a,#(___str_9 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:217: return;
+	ret
+00104$:
+;	SPI.c:220: if (num_bytes > 1) {
+	clr	c
+	mov	a,#0x01
+	subb	a,r6
+	mov	a,#(0x00 ^ 0x80)
+	mov	b,r7
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00106$
+;	SPI.c:221: spi_set_autoinc();
+	push	ar5
+	push	ar4
+	lcall	_spi_set_autoinc
+	pop	ar4
+	pop	ar5
+00106$:
+;	SPI.c:224: buffer_init(start_address, num_bytes);
+	mov	dptr,#_spi_buffer_read_num_bytes_10000_95
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dptr,#_buffer_init_PARM_2
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-	mov	a,r4
-	orl	a,r5
-	jnz	00101$
-	mov	dptr,#_delay_us_us_10000_77
-	mov	a,r6
+	mov	dpl, r4
+	mov	dph, r5
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_buffer_init
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:225: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
+	mov	ar3,r5
+;	SPI.c:226: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
+	mov	ar2,r4
+;	SPI.c:228: spi_control_write(0, 0x01, higher_byte); // High byte
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r3
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar2
+	lcall	_spi_control_write
+	pop	ar2
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:229: spi_control_write(0, 0x00, lower_byte); // Low byte
+	mov	dptr,#_spi_control_write_PARM_2
+	clr	a
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r2
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+;	SPI.c:232: CS_LOW; // Pull CS Low
+;	assignBit
+	clr	_P1_1
+;	SPI.c:233: SPI_send(opcode); // Send opcode
+	mov	dpl, #0x3a
+	lcall	_SPI_send
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:236: printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
+	push	ar7
+	push	ar6
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	a,#___str_10
+	push	acc
+	mov	a,#(___str_10 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar6
+	pop	ar7
+;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
+	mov	dptr,#_spi_buffer_read_i_20002_102
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#_spi_buffer_read_PARM_3
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+00109$:
+	mov	dptr,#_spi_buffer_read_i_20002_102
+	movx	a,@dptr
+	mov	r1,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r2,a
+	clr	c
+	mov	a,r1
+	subb	a,r6
+	mov	a,r2
+	xrl	a,#0x80
+	mov	b,r7
+	xrl	b,#0x80
+	subb	a,b
+	jc	00147$
+	ljmp	00107$
+00147$:
+;	SPI.c:238: *data_ptr = SPI_ReadByte(); // Read data
+	push	ar6
+	push	ar7
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar3
+	push	ar2
+	push	ar1
+	lcall	_SPI_ReadByte
+	mov	r0, dpl
+	pop	ar1
+	pop	ar2
+	pop	ar3
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+	mov	dpl,r3
+	mov	dph,r4
+	mov	b,r5
+	mov	a,r0
+	lcall	__gptrput
+	inc	dptr
+	mov	r3,dpl
+	mov	r4,dph
+;	SPI.c:239: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+	mov	r7,#0x00
+	inc	r1
+	cjne	r1,#0x00,00148$
+	inc	r2
+00148$:
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar3
+	push	ar2
+	push	ar1
+	push	ar0
+	push	ar7
+	push	ar1
+	push	ar2
+	mov	a,#___str_11
+	push	acc
+	mov	a,#(___str_11 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar1
+	pop	ar2
+	pop	ar3
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:240: data_ptr++;
+;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
+	mov	dptr,#_spi_buffer_read_i_20002_102
+	mov	a,r1
+	movx	@dptr,a
+	mov	a,r2
+	inc	dptr
+	movx	@dptr,a
+	pop	ar7
+	pop	ar6
+	ljmp	00109$
+00107$:
+;	SPI.c:242: CS_HIGH; // Pull CS High
+;	assignBit
+	setb	_P1_1
+;	SPI.c:243: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'spi_buffer_write'
+;------------------------------------------------------------
+;start_address             Allocated with name '_spi_buffer_write_PARM_2'
+;data_ptr                  Allocated with name '_spi_buffer_write_PARM_3'
+;num_bytes                 Allocated with name '_spi_buffer_write_num_bytes_10000_104'
+;higher_byte               Allocated with name '_spi_buffer_write_higher_byte_10001_109'
+;lower_byte                Allocated with name '_spi_buffer_write_lower_byte_10001_109'
+;opcode                    Allocated with name '_spi_buffer_write_opcode_10002_110'
+;i                         Allocated with name '_spi_buffer_write_i_20002_111'
+;------------------------------------------------------------
+;	SPI.c:246: void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
+;	-----------------------------------------
+;	 function spi_buffer_write
+;	-----------------------------------------
+_spi_buffer_write:
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_spi_buffer_write_num_bytes_10000_104
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	SPI.c:186: }
+;	SPI.c:248: if (num_bytes < 1)
+	mov	dptr,#_spi_buffer_write_num_bytes_10000_104
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,#0x01
+	mov	a,r7
+	xrl	a,#0x80
+	subb	a,#0x80
+	jnc	00102$
+;	SPI.c:250: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
+	push	ar6
+	push	ar7
+	mov	a,#___str_8
+	push	acc
+	mov	a,#(___str_8 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:251: return;
+	ret
+00102$:
+;	SPI.c:253: if (start_address > 0x1FFF) {
+	mov	dptr,#_spi_buffer_write_PARM_2
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	ar2,r4
+	mov	ar3,r5
+	clr	c
+	mov	a,#0xff
+	subb	a,r2
+	mov	a,#0x1f
+	subb	a,r3
+	jnc	00104$
+;	SPI.c:254: printf("\n\rInvalid address: %04X\n\r", start_address);
+	push	ar4
+	push	ar5
+	mov	a,#___str_9
+	push	acc
+	mov	a,#(___str_9 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	SPI.c:255: return;
+	ret
+00104$:
+;	SPI.c:258: buffer_init(0x0000, start_address - 1);
+	dec	r2
+	cjne	r2,#0xff,00146$
+	dec	r3
+00146$:
+	mov	dptr,#_buffer_init_PARM_2
+	mov	a,r2
+	movx	@dptr,a
+	mov	a,r3
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#0x0000
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_buffer_init
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:259: if (num_bytes > 1) {
+	clr	c
+	mov	a,#0x01
+	subb	a,r6
+	mov	a,#(0x00 ^ 0x80)
+	mov	b,r7
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00106$
+;	SPI.c:260: spi_set_autoinc();
+	push	ar5
+	push	ar4
+	lcall	_spi_set_autoinc
+	pop	ar4
+	pop	ar5
+00106$:
+;	SPI.c:263: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
+	mov	ar7,r5
+;	SPI.c:264: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
+	mov	ar6,r4
+;	SPI.c:266: spi_control_write(0, 0x03, higher_byte); // High byte
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x03
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r7
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar6
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+	pop	ar4
+	pop	ar5
+	pop	ar6
+;	SPI.c:267: spi_control_write(0, 0x02, lower_byte); // Low byte
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x02
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r6
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar5
+	push	ar4
+	lcall	_spi_control_write
+;	SPI.c:270: CS_LOW; // Pull CS Low
+;	assignBit
+	clr	_P1_1
+;	SPI.c:271: SPI_send(opcode); // Send opcode
+	mov	dpl, #0x7a
+	lcall	_SPI_send
+	pop	ar4
+	pop	ar5
+;	SPI.c:274: printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
+	mov	dptr,#_spi_buffer_write_num_bytes_10000_104
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	push	ar7
+	push	ar6
+	push	ar4
+	push	ar5
+	push	ar6
+	push	ar7
+	mov	a,#___str_12
+	push	acc
+	mov	a,#(___str_12 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar6
+	pop	ar7
+;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
+	mov	dptr,#_spi_buffer_write_i_20002_111
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
+	mov	dptr,#_spi_buffer_write_PARM_3
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+00109$:
+	mov	dptr,#_spi_buffer_write_i_20002_111
+	movx	a,@dptr
+	mov	r1,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r2,a
+	clr	c
+	mov	a,r1
+	subb	a,r6
+	mov	a,r2
+	xrl	a,#0x80
+	mov	b,r7
+	xrl	b,#0x80
+	subb	a,b
+	jc	00148$
+	ljmp	00107$
+00148$:
+;	SPI.c:276: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+	push	ar6
+	push	ar7
+	mov	dpl,r3
+	mov	dph,r4
+	mov	b,r5
+	lcall	__gptrget
+	mov	r0,a
+	mov	r7,#0x00
+	inc	r1
+	cjne	r1,#0x00,00149$
+	inc	r2
+00149$:
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar3
+	push	ar2
+	push	ar1
+	push	ar0
+	push	ar7
+	push	ar1
+	push	ar2
+	mov	a,#___str_11
+	push	acc
+	mov	a,#(___str_11 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar1
+	pop	ar2
+	pop	ar3
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:277: SPI_send(*data_ptr); // Send data
+	mov	dpl,r3
+	mov	dph,r4
+	mov	b,r5
+	lcall	__gptrget
+	mov	r7,a
+	inc	dptr
+	mov	r3,dpl
+	mov	r4,dph
+	mov	dpl, r7
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar3
+	push	ar2
+	push	ar1
+	lcall	_SPI_send
+	pop	ar1
+	pop	ar2
+	pop	ar3
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	SPI.c:278: data_ptr++;
+;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
+	mov	dptr,#_spi_buffer_write_i_20002_111
+	mov	a,r1
+	movx	@dptr,a
+	mov	a,r2
+	inc	dptr
+	movx	@dptr,a
+	pop	ar7
+	pop	ar6
+	ljmp	00109$
+00107$:
+;	SPI.c:280: CS_HIGH; // Pull CS High
+;	assignBit
+	setb	_P1_1
+;	SPI.c:281: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)
 ___str_0:
-	.ascii "Busy wait!!"
+	.ascii "Write: Address 0x%02X, Data 0x%02X"
+	.db 0x0a
+	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_1:
-	.ascii "Sending BB data: %x"
+	.db 0x0a
+	.db 0x0d
+	.ascii "Invalid address: MAC register address range [0, 0x1F]"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_2:
+	.ascii "Read: Address 0x%02X, Data 0x%02X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_3:
+	.ascii "PHY Write: Address 0x%02X, Data 0x%04X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_4:
+	.ascii "Read: Address 0x%02X, Data 0x%02X"
+	.db 0x0a
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_5:
+	.ascii "PHY Read: Address 0x%02X, Data 0x%04X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_6:
+	.db 0x0a
+	.db 0x0d
+	.ascii "Invalid Buffer Address or Size: Start 0x%04X, Size 0x%04X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_7:
+	.db 0x0a
+	.db 0x0d
+	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_8:
+	.db 0x0a
+	.db 0x0d
+	.ascii "Invalid number of bytes: %d"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_9:
+	.db 0x0a
+	.db 0x0d
+	.ascii "Invalid address: %04X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_10:
+	.ascii "Reading %d bytes from buffer starting at address 0x%04X:"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_11:
+	.ascii "Byte %d: 0x%02X"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_12:
+	.ascii "Writing %d bytes to buffer starting at address 0x%04X:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00

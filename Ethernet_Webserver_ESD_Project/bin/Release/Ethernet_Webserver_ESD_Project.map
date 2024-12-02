@@ -53,10 +53,10 @@ C:   00000020  s_BSEG_BYTES
 C:   00000020  s__CODE                         
 C:   00000022  l_GSINIT3                       
 C:   0000002A  l_GSINIT4                       
-C:   00000056  l_XSEG                          
 C:   00000080  l_DSEG                          
-C:   000000B6  l_CONST                         
 C:   000000E7  l_SSEG                          
+C:   00000100  l_IRAM                          
+C:   00000100  s_PSEG                          
 ASxxxx Linker V03.00/V05.40 + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
@@ -66,11 +66,11 @@ CABS                                00000000    00000000 =           0. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000100  l_IRAM                          
-C:   00000100  s_PSEG                          
 C:   00000100  s_XSEG                          
-C:   00000156  s_XISEG                         
-C:   00001146  l_CSEG                          
+C:   00000275  l_XSEG                          
+C:   00000375  s_XISEG                         
+C:   0000060A  l_CONST                         
+C:   00001CB9  l_CSEG                          
 C:   00002000  s_HOME                          
 C:   00002006  s_GSINIT0                       
 C:   00002009  s_GSINIT1                       
@@ -81,8 +81,8 @@ C:   0000205F  s_GSFINAL
 C:   0000205F  s_GSINIT                        
 C:   0000205F  s_GSINIT5                       
 C:   00002062  s_CSEG                          
-C:   000031A8  s_CONST                         
-C:   0000325E  s_XINIT                         
+C:   00003D1B  s_CONST                         
+C:   00004325  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -389,15 +389,26 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XSEG                                00000100    00000056 =          86. bytes (REL,CON,XDATA)
+XSEG                                00000100    00000275 =         629. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-D:   0000011D  _vprintf_PARM_2                    vprintf
-D:   00000132  __print_format_PARM_2              printf_large
-D:   00000135  __print_format_PARM_3              printf_large
-D:   00000138  __print_format_PARM_4              printf_large
-D:   00000154  __mulint_PARM_2                    _mulint
+D:   00000313  _spi_control_write_PARM_2          SPI
+D:   00000314  _spi_control_write_PARM_3          SPI
+D:   00000317  _eth_spi_read_PARM_2               SPI
+D:   00000319  _phy_spi_write_PARM_2              SPI
+D:   0000031C  _mac_spi_read_PARM_2               SPI
+D:   00000320  _buffer_init_PARM_2                SPI
+D:   00000324  _spi_buffer_read_PARM_2            SPI
+D:   00000326  _spi_buffer_read_PARM_3            SPI
+D:   0000032D  _spi_buffer_write_PARM_2           SPI
+D:   0000032F  _spi_buffer_write_PARM_3           SPI
+D:   0000033B  __gptrput_PARM_2                   _gptrput
+D:   0000033C  _vprintf_PARM_2                    vprintf
+D:   00000351  __print_format_PARM_2              printf_large
+D:   00000354  __print_format_PARM_3              printf_large
+D:   00000357  __print_format_PARM_4              printf_large
+D:   00000373  __mulint_PARM_2                    _mulint
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 13.
 Hexadecimal  [32-Bits]
@@ -467,43 +478,51 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00002062    00001146 =        4422. bytes (REL,CON,CODE)
+CSEG                                00002062    00001CB9 =        7353. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   00002062  _hex_to_int                        main
 C:   0000221C  _get_user_buffer_size              main
 C:   000022A0  _main                              main
-C:   0000235B  _LED_Fast_Blink                    Operations
-C:   0000238B  _LED_Slow_Blink                    Operations
-C:   0000238C  _LED_On                            Operations
-C:   000023CD  _LED_Off                           Operations
-C:   000023CE  _configure_SPI                     SPI
-C:   000023DD  _SPI_send                          SPI
-C:   000023EC  _SPI_ctrl_read                     SPI
-C:   00002404  _poll_MISTAT_BUSY                  SPI
-C:   00002439  _test_read_ctrl                    SPI
-C:   00002468  _ENC_PHY_read                      SPI
-C:   000024C5  _SPI_BB_init                       SPI
-C:   000024CF  _SPI_send_BB                       SPI
-C:   0000251B  _delay_us                          SPI
-C:   0000254C  _putchar                           Utilities
-C:   0000256B  _getchar                           Utilities
-C:   00002579  _putstr                            Utilities
-C:   000025EF  _printf_tiny                       printf_tiny
-C:   00002707  _vprintf                           vprintf
-C:   00002746  _printf                            vprintf
-C:   0000284C  __print_format                     printf_large
-C:   00003150  _strlen                            _strlen
-C:   00003168  __mulint                           _mulint
-C:   00003188  __gptrget                          _gptrget
-C:   000031A4  ___sdcc_external_startup           _startup
+C:   0000287A  _LED_Fast_Blink                    Operations
+C:   000028AA  _LED_Slow_Blink                    Operations
+C:   000028AB  _LED_On                            Operations
+C:   000028EC  _LED_Off                           Operations
+C:   000028ED  _SPI_ReadByte                      SPI
+C:   000028FF  _spi_set_autoinc                   SPI
+C:   00002910  _select_reg_bank                   SPI
+C:   0000292A  _spi_control_write                 SPI
+C:   00002986  _configure_SPI                     SPI
+C:   00002995  _SPI_send                          SPI
+C:   000029A4  _enc_reset                         SPI
+C:   000029AF  _eth_spi_read                      SPI
+C:   00002A1D  _phy_spi_write                     SPI
+C:   00002AA0  _mac_spi_read                      SPI
+C:   00002B0E  _phy_spi_read                      SPI
+C:   00002BBB  _busy_wait                         SPI
+C:   00002BE9  _buffer_init                       SPI
+C:   00002D05  _spi_buffer_read                   SPI
+C:   00002ED5  _spi_buffer_write                  SPI
+C:   000030A4  _putchar                           Utilities
+C:   000030C3  _getchar                           Utilities
+C:   000030D1  _putstr                            Utilities
+C:   00003147  __gptrput                          _gptrput
+C:   00003162  _printf_tiny                       printf_tiny
+C:   0000327A  _vprintf                           vprintf
+C:   000032B9  _printf                            vprintf
+C:   000033BF  __print_format                     printf_large
+C:   00003CC3  _strlen                            _strlen
+C:   00003CDB  __mulint                           _mulint
+C:   00003CFB  __gptrget                          _gptrget
+C:   00003D17  ___sdcc_external_startup           _startup
+
 ASxxxx Linker V03.00/V05.40 + sdld,  page 20.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               000031A8    000000B6 =         182. bytes (REL,CON,CODE)
+CONST                               00003D1B    0000060A =        1546. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -523,6 +542,8 @@ C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
                                           [ crtclear.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib
                                           [ crtxinit.rel ]
+C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
+                                          [ _gptrput.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\large/libsdcc.lib
                                           [ printf_tiny.rel ]
 C:\Program Files (x86)\SDCC\bin\..\lib\large/mcs51.lib

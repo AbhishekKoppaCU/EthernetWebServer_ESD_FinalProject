@@ -34,7 +34,7 @@ int hex_to_int(char* str)
 //Function to take the user buffer size
 int get_user_buffer_size(void)
 {
-    int size, i = 0, output;
+    int i = 0, output;
     char input[10], ch;
 
 
@@ -53,78 +53,120 @@ int get_user_buffer_size(void)
 
 void main(void)
 {
-
-    printf("test\n\r");
+    printf("SPI Operations on 8051\n\r");
     configure_SPI();
+
     while(1)
     {
-        printf("Choose action: L-->LED ON\n\rR-->Read\n\r");
+        printf("\n\rChoose an action: \n\r");
+        printf("1 --> Control Write\n\r");
+        printf("2 --> Buffer Write\n\r");
+        printf("3 --> Buffer Read\n\r");
+        printf("4 --> MAC Register Read\n\r");
+        printf("5 --> PHY SPI Write\n\r");
+        printf("6 --> PHY SPI Read\n\r");
+        printf("7 --> ENC Reset\n\r");
+        printf("8 --> Read ETH Register\n\r");
+        printf("9 --> Display Menu\n\r");
+
         char c = getchar();
         putchar(c);
         printf("\n\r");
+
         switch(c)
         {
-        case 'L':
-            LED_On();
-            break;
-        case 'R':
-            printf("Enter the Control register address you want to read from\n\r");
-            uint8_t addr = get_user_buffer_size();
-            test_read_ctrl(addr);
-            break;
-        case 'W':
-            printf("Enter the 16 bit data write\n\r");
-            P1_1 = 0;
-            delay_us(2);
-            //uint16_t data = get_user_buffer_size();
-            SPI_send(0x5F);
-            SPI_send(0x02);
-            delay_us(2);
-            P1_1 = 1;
-            break;
+            case '1': {
+                printf("Enter the register bank to select:\n\r");
+                uint8_t reg_bank = get_user_buffer_size();
+                printf("Enter the address of the Control Register:\n\r");
+                uint8_t addr = get_user_buffer_size();
+                printf("Enter the data you want to write:\n\r");
+                uint8_t data = get_user_buffer_size();
+                spi_control_write(reg_bank, addr, data);
+                break;
+            }
+            case '2': {
+                printf("Enter the number of bytes to write:\n\r");
+                int num_bytes = get_user_buffer_size();
+                printf("Enter the starting address:\n\r");
+                uint16_t start_address = get_user_buffer_size();
+                uint8_t buffer[256];
+                printf("Enter %d bytes of data (in hex):\n\r", num_bytes);
+                for (int i = 0; i < num_bytes; i++) {
+                    printf("Byte %d: ", i);
+                    buffer[i] = get_user_buffer_size();
+                }
+                spi_buffer_write(num_bytes, start_address, buffer);
+                break;
+            }
+            case '3': {
+                printf("Enter the number of bytes to read:\n\r");
+                int num_bytes = get_user_buffer_size();
+                printf("Enter the starting address:\n\r");
+                uint16_t start_address = get_user_buffer_size();
+                uint8_t buffer[256];
+                spi_buffer_read(num_bytes, start_address, buffer);
+                printf("Read Data:\n\r");
+                for (int i = 0; i < num_bytes; i++) {
+                    printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
+                }
+                break;
+            }
+            case '4': {
+                printf("Enter the MAC register bank to select:\n\r");
+                uint8_t reg_bank = get_user_buffer_size();
+                printf("Enter the address of the MAC Register:\n\r");
+                uint8_t addr = get_user_buffer_size();
+                uint8_t data = mac_spi_read(addr, reg_bank);
+                printf("MAC Register Data: 0x%02X\n\r", data);
+                break;
+            }
+            case '5': {
+                printf("Enter the PHY register address:\n\r");
+                uint8_t addr = get_user_buffer_size();
+                printf("Enter the 16-bit data to write:\n\r");
+                uint16_t data = get_user_buffer_size();
+                phy_spi_write(addr, data);
+                printf("PHY Write Data: 0x%04X\n\r", data);
+                break;
+            }
+            case '6': {
+                printf("Enter the PHY register address to read:\n\r");
+                uint8_t addr = get_user_buffer_size();
+                uint16_t data = phy_spi_read(addr);
+                printf("PHY Read Data: 0x%04X\n\r", data);
+                break;
+            }
+            case '7': {
+                printf("Resetting ENC28J60...\n\r");
+                enc_reset();
+                break;
+            }
+            case '8': {
+                printf("Enter the ETH register address to read:\n\r");
+                uint8_t addr = get_user_buffer_size();
+                printf("Enter the bank (0 or 1):\n\r");
+                uint8_t bank = get_user_buffer_size();
+                uint8_t data = eth_spi_read(addr, bank);
+                printf("ETH Register Data: 0x%02X\n\r", data);
+                break;
+            }
+            case '9': {
+                printf("\n\rChoose an action: \n\r");
+                printf("1 --> Control Write\n\r");
+                printf("2 --> Buffer Write\n\r");
+                printf("3 --> Buffer Read\n\r");
+                printf("4 --> MAC Register Read\n\r");
+                printf("5 --> PHY SPI Write\n\r");
+                printf("6 --> PHY SPI Read\n\r");
+                printf("7 --> ENC Reset\n\r");
+                printf("8 --> Read ETH Register\n\r");
+                break;
+            }
+            default: {
+                printf("Invalid option. Please select a valid action.\n\r");
+                break;
+            }
         }
     }
-    //LED_Fast_Blink();
-    //SPI_BB_init();
-    //LED_On();
-    //uint8_t received_byte;
-    //P1_1 = 0;
-    //SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);
-    //SPI_send(ENC_REGISTER_BANK_2);
-    //P1_1 = 1;
-    //delay_us(100);
-    /*while(1)
-    {
-        //LED_On();
-        //LED_On();
-        test_read_ctrl();
-        //ENC_PHY_read(0x14);
-    }
-    LED_On();
-    //test_read_ctrl();
-    //ENC_PHY_read(0x14);
-    while(1)
-        ;
-        */
-/*
-       P1_1 = 0;
-    SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);     //Write to the ECON1 register
-    //delay_us(10);
-    SPI_send(ENC_REGISTER_BANK_2);                          //Select register bank2
-    //delay_us(10);
-    P1_1 = 1;
-    delay_us(100);
-
-    P1_1 = 0;
-    SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | 0x09);  //Select the MIREGADR register
-    //delay_us(10);
-    SPI_send(0x04);                                   //Write the address of the PHY register in the MIREGADR register
-    //delay_us(10);
-    P1_1 = 1;
-    delay_us(100);
-    */
-
-
-        while(1)
-        ;
 }

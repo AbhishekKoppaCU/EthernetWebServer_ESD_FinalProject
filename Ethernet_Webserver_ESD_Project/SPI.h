@@ -64,21 +64,49 @@
 #define SPI_DATA P1_7
 #define SPI_CLOCK P1_6
 #define SPI_CHIP_SELECT P1_1
+
+#define CS_PIN P1_1
+#define CS_HIGH CS_PIN = 1
+#define CS_LOW CS_PIN = 0
+#define SCK P1_6
+#define MOSI P1_7
+// SPI Bit Masks
+#define SPI_ENABLE      (1 << 6)
+#define SS_DISABLE     (1 << 5)
+#define MASTER_MODE       (1 << 4)
+#define SPIF_BIT 0X80
 //************************************************************
 
 
-
-//Prototypes
 void configure_SPI(void);
+void enc_reset(void);
+// SPI Communication Functions
 void SPI_send(uint8_t data);
-void delay_us(uint16_t us);
-void SPI_send_BB(uint8_t data);
-void SPI_BB_init(void);
-void SPI_receive(void);
-void poll_MISTAT_BUSY(void);
-uint16_t ENC_PHY_read(uint8_t PHY_reg);
-uint8_t SPI_ctrl_read(uint8_t addr);
-void test_read_ctrl(uint8_t address);
+uint8_t SPI_ReadByte(void);
+
+// SPI MAC Register Access Functions
+uint8_t mac_spi_read(uint8_t addr, uint8_t bank);
+void select_reg_bank(uint8_t bank);
+
+// SPI Buffer Operations
+void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr);
+void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr);
+void buffer_init(uint16_t start_address, uint16_t size);
+
+//PHY operations
+uint16_t phy_spi_read(uint8_t addr);
+void phy_spi_write(uint8_t addr, uint16_t data);
+
+//Eth register
+uint8_t eth_spi_read(uint8_t addr, uint8_t bank);
+
+// SPI Control Register Write
+void spi_control_write(uint8_t bank, uint8_t addr, uint8_t data);
+
+// SPI Auto-Increment Mode
+void spi_set_autoinc(void);
+
+void busy_wait(void);
 
 
 
