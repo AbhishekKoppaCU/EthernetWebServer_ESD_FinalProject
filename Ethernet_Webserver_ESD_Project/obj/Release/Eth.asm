@@ -503,8 +503,16 @@ _enc28j60_set_transmit_pointers_start_address_10000_76:
 	.ds 2
 _wait_for_transmission_complete_timeout_ms_10000_78:
 	.ds 2
+_send_arp_request_source_mac_10000_84:
+	.ds 6
+_send_arp_request_dest_mac_10000_84:
+	.ds 6
+_send_arp_request_source_ip_10000_84:
+	.ds 4
+_send_arp_request_target_ip_10000_84:
+	.ds 4
 _send_arp_request_arp_packet_10000_84:
-	.ds 42
+	.ds 51
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -1145,6 +1153,10 @@ _enc28j60_transmission_successful:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'send_arp_request'
 ;------------------------------------------------------------
+;source_mac                Allocated with name '_send_arp_request_source_mac_10000_84'
+;dest_mac                  Allocated with name '_send_arp_request_dest_mac_10000_84'
+;source_ip                 Allocated with name '_send_arp_request_source_ip_10000_84'
+;target_ip                 Allocated with name '_send_arp_request_target_ip_10000_84'
 ;arp_packet                Allocated with name '_send_arp_request_arp_packet_10000_84'
 ;i                         Allocated with name '_send_arp_request_i_20000_85'
 ;i                         Allocated with name '_send_arp_request_i_20000_87'
@@ -1160,15 +1172,78 @@ _enc28j60_transmission_successful:
 ;	 function send_arp_request
 ;	-----------------------------------------
 _send_arp_request:
-;	Eth.c:132: arp_packet[0] = 0x0E;
+;	Eth.c:130: uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
+	mov	dptr,#_send_arp_request_source_mac_10000_84
+	mov	a,#0x02
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_mac_10000_84 + 0x0001)
+	mov	a,#0x11
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_mac_10000_84 + 0x0002)
+	rl	a
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_mac_10000_84 + 0x0003)
+	mov	a,#0x33
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_mac_10000_84 + 0x0004)
+	mov	a,#0x44
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_mac_10000_84 + 0x0005)
+	mov	a,#0x55
+	movx	@dptr,a
+;	Eth.c:131: uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
+	mov	dptr,#_send_arp_request_dest_mac_10000_84
+	mov	a,#0xf8
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_dest_mac_10000_84 + 0x0001)
+	mov	a,#0x75
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_dest_mac_10000_84 + 0x0002)
+	mov	a,#0xa4
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_dest_mac_10000_84 + 0x0003)
+	mov	a,#0x8c
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_dest_mac_10000_84 + 0x0004)
+	mov	a,#0x41
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_dest_mac_10000_84 + 0x0005)
+	mov	a,#0x31
+	movx	@dptr,a
+;	Eth.c:132: uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
+	mov	dptr,#_send_arp_request_source_ip_10000_84
+	mov	a,#0xc0
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_ip_10000_84 + 0x0001)
+	mov	a,#0xa8
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_ip_10000_84 + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_source_ip_10000_84 + 0x0003)
+	mov	a,#0x64
+	movx	@dptr,a
+;	Eth.c:133: uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
+	mov	dptr,#_send_arp_request_target_ip_10000_84
+	mov	a,#0xc0
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_target_ip_10000_84 + 0x0001)
+	mov	a,#0xa8
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_target_ip_10000_84 + 0x0002)
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	dptr,#(_send_arp_request_target_ip_10000_84 + 0x0003)
+	movx	@dptr,a
+;	Eth.c:137: arp_packet[0] = 0x0E;
 	mov	dptr,#_send_arp_request_arp_packet_10000_84
 	mov	a,#0x0e
 	movx	@dptr,a
-;	Eth.c:136: set_mac_address(source_mac);
-	mov	dptr,#_source_mac
+;	Eth.c:141: set_mac_address(source_mac);
+	mov	dptr,#_send_arp_request_source_mac_10000_84
 	mov	b, #0x00
 	lcall	_set_mac_address
-;	Eth.c:138: for (int i = 0; i < 6; i++)
+;	Eth.c:143: for (int i = 0; i < 6; i++)
 	mov	r6,#0x00
 	mov	r7,#0x00
 00115$:
@@ -1179,7 +1254,7 @@ _send_arp_request:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00101$
-;	Eth.c:140: arp_packet[i + 1] = dest_mac[i];  // Destination MAC address
+;	Eth.c:145: arp_packet[i + 1] = dest_mac[i];  // Destination MAC address
 	mov	ar5,r6
 	mov	a,r5
 	inc	a
@@ -1194,16 +1269,16 @@ _send_arp_request:
 	addc	a, #(_send_arp_request_arp_packet_10000_84 >> 8)
 	mov	r3,a
 	mov	a,r6
-	add	a, #_dest_mac
+	add	a, #_send_arp_request_dest_mac_10000_84
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_dest_mac >> 8)
+	addc	a, #(_send_arp_request_dest_mac_10000_84 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r4
 	mov	dph,r3
 	movx	@dptr,a
-;	Eth.c:141: arp_packet[i + 7] = source_mac[i];  // Source MAC address
+;	Eth.c:146: arp_packet[i + 7] = source_mac[i];  // Source MAC address
 	mov	a,#0x07
 	add	a, r5
 	mov	r5,a
@@ -1217,62 +1292,62 @@ _send_arp_request:
 	addc	a, #(_send_arp_request_arp_packet_10000_84 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_source_mac
+	add	a, #_send_arp_request_source_mac_10000_84
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_source_mac >> 8)
+	addc	a, #(_send_arp_request_source_mac_10000_84 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
 	mov	dph,r4
 	movx	@dptr,a
-;	Eth.c:138: for (int i = 0; i < 6; i++)
+;	Eth.c:143: for (int i = 0; i < 6; i++)
 	inc	r6
 	cjne	r6,#0x00,00115$
 	inc	r7
 	sjmp	00115$
 00101$:
-;	Eth.c:145: arp_packet[13] = (ETH_TYPE_ARP >> 8) & 0xFF;
+;	Eth.c:150: arp_packet[13] = (ETH_TYPE_ARP >> 8) & 0xFF;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x000d)
 	mov	a,#0x08
 	movx	@dptr,a
-;	Eth.c:146: arp_packet[14] = ETH_TYPE_ARP & 0xFF;
+;	Eth.c:151: arp_packet[14] = ETH_TYPE_ARP & 0xFF;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x000e)
 	mov	a,#0x06
 	movx	@dptr,a
-;	Eth.c:150: arp_packet[15] = 0x00;
+;	Eth.c:155: arp_packet[15] = 0x00;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x000f)
 	clr	a
 	movx	@dptr,a
-;	Eth.c:151: arp_packet[16] = 0x01;
+;	Eth.c:156: arp_packet[16] = 0x01;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0010)
 	inc	a
 	movx	@dptr,a
-;	Eth.c:154: arp_packet[17] = 0x08;
+;	Eth.c:159: arp_packet[17] = 0x08;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0011)
 	mov	a,#0x08
 	movx	@dptr,a
-;	Eth.c:155: arp_packet[18] = 0x00;
+;	Eth.c:160: arp_packet[18] = 0x00;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0012)
 	clr	a
 	movx	@dptr,a
-;	Eth.c:158: arp_packet[19] = 0x06;
+;	Eth.c:163: arp_packet[19] = 0x06;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0013)
 	mov	a,#0x06
 	movx	@dptr,a
-;	Eth.c:161: arp_packet[20] = 0x04;
+;	Eth.c:166: arp_packet[20] = 0x04;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0014)
 	mov	a,#0x04
 	movx	@dptr,a
-;	Eth.c:164: arp_packet[21] = 0x00;
+;	Eth.c:169: arp_packet[21] = 0x00;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0015)
 	clr	a
 	movx	@dptr,a
-;	Eth.c:165: arp_packet[22] = 0x01;
+;	Eth.c:170: arp_packet[22] = 0x01;
 	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0016)
 	inc	a
 	movx	@dptr,a
-;	Eth.c:168: for (int i = 0; i < 6; i++) {
+;	Eth.c:173: for (int i = 0; i < 6; i++) {
 	mov	r6,#0x00
 	mov	r7,#0x00
 00118$:
@@ -1283,7 +1358,7 @@ _send_arp_request:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00102$
-;	Eth.c:169: arp_packet[23 + i] = source_mac[i];
+;	Eth.c:174: arp_packet[23 + i] = source_mac[i];
 	mov	ar5,r6
 	mov	a,#0x17
 	add	a, r5
@@ -1298,22 +1373,22 @@ _send_arp_request:
 	addc	a, #(_send_arp_request_arp_packet_10000_84 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_source_mac
+	add	a, #_send_arp_request_source_mac_10000_84
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_source_mac >> 8)
+	addc	a, #(_send_arp_request_source_mac_10000_84 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
 	mov	dph,r4
 	movx	@dptr,a
-;	Eth.c:168: for (int i = 0; i < 6; i++) {
+;	Eth.c:173: for (int i = 0; i < 6; i++) {
 	inc	r6
 	cjne	r6,#0x00,00118$
 	inc	r7
 	sjmp	00118$
 00102$:
-;	Eth.c:173: for (int i = 0; i < 4; i++) {
+;	Eth.c:178: for (int i = 0; i < 4; i++) {
 	mov	r6,#0x00
 	mov	r7,#0x00
 00121$:
@@ -1324,7 +1399,7 @@ _send_arp_request:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00103$
-;	Eth.c:174: arp_packet[29 + i] = source_ip[i];
+;	Eth.c:179: arp_packet[29 + i] = source_ip[i];
 	mov	ar5,r6
 	mov	a,#0x1d
 	add	a, r5
@@ -1339,28 +1414,28 @@ _send_arp_request:
 	addc	a, #(_send_arp_request_arp_packet_10000_84 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_source_ip
+	add	a, #_send_arp_request_source_ip_10000_84
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_source_ip >> 8)
+	addc	a, #(_send_arp_request_source_ip_10000_84 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
 	mov	dph,r4
 	movx	@dptr,a
-;	Eth.c:173: for (int i = 0; i < 4; i++) {
+;	Eth.c:178: for (int i = 0; i < 4; i++) {
 	inc	r6
 	cjne	r6,#0x00,00121$
 	inc	r7
 	sjmp	00121$
 00103$:
-;	Eth.c:178: for (int i = 0; i < 6; i++) {
+;	Eth.c:183: for (int i = 0; i < 6; i++) {
 	mov	r7,#0x00
 00124$:
 	cjne	r7,#0x06,00215$
 00215$:
 	jnc	00104$
-;	Eth.c:179: arp_packet[33 + i] = 0x00;
+;	Eth.c:184: arp_packet[33 + i] = 0x00;
 	mov	ar6,r7
 	mov	a,#0x21
 	add	a, r6
@@ -1376,11 +1451,11 @@ _send_arp_request:
 	mov	dph,a
 	clr	a
 	movx	@dptr,a
-;	Eth.c:178: for (int i = 0; i < 6; i++) {
+;	Eth.c:183: for (int i = 0; i < 6; i++) {
 	inc	r7
 	sjmp	00124$
 00104$:
-;	Eth.c:183: for (int i = 0; i < 4; i++) {
+;	Eth.c:188: for (int i = 0; i < 4; i++) {
 	mov	r6,#0x00
 	mov	r7,#0x00
 00127$:
@@ -1391,7 +1466,7 @@ _send_arp_request:
 	xrl	a,#0x80
 	subb	a,#0x80
 	jnc	00105$
-;	Eth.c:184: arp_packet[39 + i] = target_ip[i];
+;	Eth.c:189: arp_packet[39 + i] = target_ip[i];
 	mov	ar5,r6
 	mov	a,#0x27
 	add	a, r5
@@ -1406,22 +1481,54 @@ _send_arp_request:
 	addc	a, #(_send_arp_request_arp_packet_10000_84 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_target_ip
+	add	a, #_send_arp_request_target_ip_10000_84
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_target_ip >> 8)
+	addc	a, #(_send_arp_request_target_ip_10000_84 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
 	mov	dph,r4
 	movx	@dptr,a
-;	Eth.c:183: for (int i = 0; i < 4; i++) {
+;	Eth.c:188: for (int i = 0; i < 4; i++) {
 	inc	r6
 	cjne	r6,#0x00,00127$
 	inc	r7
 	sjmp	00127$
 00105$:
-;	Eth.c:196: spi_buffer_write(frame_size, start_address, arp_packet);
+;	Eth.c:191: arp_packet[44] = 'A';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002c)
+	mov	a,#0x41
+	movx	@dptr,a
+;	Eth.c:192: arp_packet[45] = 'B';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002d)
+	inc	a
+	movx	@dptr,a
+;	Eth.c:193: arp_packet[46] = 'H';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002e)
+	mov	a,#0x48
+	movx	@dptr,a
+;	Eth.c:194: arp_packet[47] = 'I';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002f)
+	inc	a
+	movx	@dptr,a
+;	Eth.c:195: arp_packet[48] = 'S';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0030)
+	mov	a,#0x53
+	movx	@dptr,a
+;	Eth.c:196: arp_packet[49] = 'H';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0031)
+	mov	a,#0x48
+	movx	@dptr,a
+;	Eth.c:197: arp_packet[50] = 'E';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0032)
+	mov	a,#0x45
+	movx	@dptr,a
+;	Eth.c:198: arp_packet[51] = 'K';
+	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0033)
+	mov	a,#0x4b
+	movx	@dptr,a
+;	Eth.c:209: spi_buffer_write(frame_size, start_address, arp_packet);
 	mov	dptr,#_spi_buffer_write_PARM_2
 	mov	a,#0xf0
 	movx	@dptr,a
@@ -1437,29 +1544,29 @@ _send_arp_request:
 	clr	a
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x002a
+	mov	dptr,#0x0033
 	lcall	_spi_buffer_write
-;	Eth.c:199: enc28j60_set_transmit_pointers(start_address, end_address);
+;	Eth.c:212: enc28j60_set_transmit_pointers(start_address, end_address);
 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
-	mov	a,#0x19
+	mov	a,#0x22
 	movx	@dptr,a
 	mov	a,#0x01
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#0x00f0
 	lcall	_enc28j60_set_transmit_pointers
-;	Eth.c:202: enc28j60_start_transmission();
+;	Eth.c:215: enc28j60_start_transmission();
 	lcall	_enc28j60_start_transmission
-;	Eth.c:205: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
+;	Eth.c:218: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
 	mov	dptr,#0x01f4
 	lcall	_wait_for_transmission_complete
 	mov	a, dpl
 	jz	00112$
-;	Eth.c:207: if (enc28j60_transmission_successful()) {
+;	Eth.c:220: if (enc28j60_transmission_successful()) {
 	lcall	_enc28j60_transmission_successful
 	mov	a, dpl
 	jz	00109$
-;	Eth.c:208: printf("ARP request sent successfully.\n\r");
+;	Eth.c:221: printf("ARP request sent successfully.\n\r");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1472,7 +1579,7 @@ _send_arp_request:
 	dec	sp
 	ret
 00109$:
-;	Eth.c:210: printf("ARP transmission failed. Check error flags.\n\r");
+;	Eth.c:223: printf("ARP transmission failed. Check error flags.\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1485,7 +1592,7 @@ _send_arp_request:
 	dec	sp
 	ret
 00112$:
-;	Eth.c:213: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
+;	Eth.c:226: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1496,7 +1603,7 @@ _send_arp_request:
 	dec	sp
 	dec	sp
 	dec	sp
-;	Eth.c:215: }
+;	Eth.c:228: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -1543,7 +1650,7 @@ ___str_5:
 	.area CSEG    (CODE)
 	.area XINIT   (CODE)
 __xinit__source_mac:
-	.db #0x00	; 0
+	.db #0x02	; 2
 	.db #0x11	; 17
 	.db #0x22	; 34
 	.db #0x33	; 51	'3'
@@ -1557,13 +1664,13 @@ __xinit__dest_mac:
 	.db #0xff	; 255
 	.db #0xff	; 255
 __xinit__source_ip:
-	.db #0xa9	; 169
-	.db #0xfe	; 254
-	.db #0xed	; 237
+	.db #0xc0	; 192
+	.db #0xa8	; 168
+	.db #0x01	; 1
 	.db #0x64	; 100	'd'
 __xinit__target_ip:
-	.db #0xff	; 255
-	.db #0xff	; 255
-	.db #0xff	; 255
-	.db #0xff	; 255
+	.db #0xc0	; 192
+	.db #0xa8	; 168
+	.db #0x01	; 1
+	.db #0x01	; 1
 	.area CABS    (ABS,CODE)

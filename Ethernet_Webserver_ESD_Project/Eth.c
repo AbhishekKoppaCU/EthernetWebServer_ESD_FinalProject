@@ -1,10 +1,10 @@
 #include "Eth.h"
 
 // Example addresses
-uint8_t source_mac[6] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
+uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
 uint8_t dest_mac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};  // Target PC MAC address
-uint8_t source_ip[4] = {169, 254, 237, 100};  // ENC28J60 IP address (Example)
-uint8_t target_ip[4] = {255, 255, 255, 255};  // Target PC IP address
+uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
+uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
 
 // Define ARP packet structure
 struct arp_packet {
@@ -126,7 +126,12 @@ bool enc28j60_transmission_successful()
 
 void send_arp_request(void)
 {
-    uint8_t arp_packet[42]; // Minimum ARP packet size for Ethernet
+    // Example addresses
+uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
+uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
+uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
+uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
+    uint8_t arp_packet[52]; // Minimum ARP packet size for Ethernet
 
     // Set the first byte to 0x0E
     arp_packet[0] = 0x0E;
@@ -183,9 +188,17 @@ void send_arp_request(void)
     for (int i = 0; i < 4; i++) {
         arp_packet[39 + i] = target_ip[i];
     }
+    arp_packet[44] = 'A';
+    arp_packet[45] = 'B';
+    arp_packet[46] = 'H';
+    arp_packet[47] = 'I';
+    arp_packet[48] = 'S';
+    arp_packet[49] = 'H';
+    arp_packet[50] = 'E';
+    arp_packet[51] = 'K';
 
     // Write the ARP packet to the ENC28J60 buffer
-    uint16_t frame_size = 42;  // The total length is now exactly 42 bytes (without padding)
+    uint16_t frame_size = 51;  // The total length is now exactly 42 bytes (without padding)
     uint16_t start_address = 0x00F0;
     if ((start_address + frame_size - 1) > 0x1FFF) {
         printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
