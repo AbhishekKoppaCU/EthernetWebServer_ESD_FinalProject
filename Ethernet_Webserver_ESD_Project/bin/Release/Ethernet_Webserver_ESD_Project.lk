@@ -16,6 +16,7 @@
 -l libint
 -l liblong
 -l libfloat
+obj\Release\Eth.rel
 obj\Release\main.rel
 obj\Release\Operations.rel
 obj\Release\SPI.rel

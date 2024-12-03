@@ -9,6 +9,8 @@
 
 #include <stdint.h>
 
+#include "Eth.h"
+
 
 //MASK defines
 #define ENC_OPCODE_MASK 5
@@ -107,6 +109,9 @@ void spi_control_write(uint8_t bank, uint8_t addr, uint8_t data);
 void spi_set_autoinc(void);
 
 void busy_wait(void);
+
+void init_ENC(void);
+void init_MAC(void);
 
 
 

@@ -221,7 +221,7 @@ void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
         spi_set_autoinc();
     }
 
-    buffer_init(start_address, num_bytes);
+    //buffer_init(start_address, num_bytes);
     uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
     uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
 
@@ -255,7 +255,7 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
         return;
     }
 
-    buffer_init(0x0000, start_address - 1);
+    //buffer_init(0x0000, start_address - 1);
     if (num_bytes > 1) {
         spi_set_autoinc();
     }
@@ -279,5 +279,25 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
     }
     CS_HIGH; // Pull CS High
 }
+
+void init_ENC(void)
+{
+    //Init RX buffer so that the TX buffer is also defined
+    enc28j60_init_rx_buffer(0x0000, 0x0010);
+
+}
+
+void init_MAC(void)
+{
+    //spi_control_write(0x02, 0x00, 0x01); // Write 0x01 to MACON1 (address 0x00 in bank 2)
+    spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
+    spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
+    spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
+    spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
+    spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
+    spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
+    spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
+}
+
 
 

@@ -3,6 +3,7 @@
 
 #include "SPI.h"
 #include "Operations.h"
+#include "Eth.h"
 
 //Function to convert hex string to integer
 int hex_to_int(char* str)
@@ -55,6 +56,7 @@ void main(void)
 {
     printf("SPI Operations on 8051\n\r");
     configure_SPI();
+    init_ENC();
 
     while(1)
     {
@@ -68,6 +70,8 @@ void main(void)
         printf("7 --> ENC Reset\n\r");
         printf("8 --> Read ETH Register\n\r");
         printf("9 --> Display Menu\n\r");
+        printf("A --> Send ARP Request\n\r");
+        printf("B --> Init RX buffers\n\r");
 
         char c = getchar();
         putchar(c);
@@ -161,6 +165,15 @@ void main(void)
                 printf("6 --> PHY SPI Read\n\r");
                 printf("7 --> ENC Reset\n\r");
                 printf("8 --> Read ETH Register\n\r");
+                break;
+            }
+            case 'A':{
+                init_MAC();
+                send_arp_request();
+                break;
+            }
+            case 'B':{
+                init_ENC();
                 break;
             }
             default: {
