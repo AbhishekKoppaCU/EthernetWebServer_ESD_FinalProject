@@ -6,6 +6,9 @@
 #include "Eth.h"
 
 //Function to convert hex string to integer
+void external_interrupt0_isr(void) __interrupt (0);
+
+
 int hex_to_int(char* str)
 {
 
@@ -54,9 +57,9 @@ int get_user_buffer_size(void)
 
 void main(void)
 {
+    ENC_RESET = 1;
     printf("SPI Operations on 8051\n\r");
     configure_SPI();
-    init_ENC();
 
     while(1)
     {
@@ -72,6 +75,7 @@ void main(void)
         printf("9 --> Display Menu\n\r");
         printf("A --> Send ARP Request\n\r");
         printf("B --> Init RX buffers\n\r");
+        printf("C --> Hard Reset(nRESET pin)\n\r");
 
         char c = getchar();
         putchar(c);
@@ -168,12 +172,20 @@ void main(void)
                 break;
             }
             case 'A':{
-                init_MAC();
+                init_ENC();
+                //init_MAC();
                 send_arp_request();
                 break;
             }
             case 'B':{
                 init_ENC();
+                break;
+            }
+            case 'C':{
+                printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
+                ENC_RESET = 0;
+                for(int i = 0; i < 6000; i++);
+                ENC_RESET = 1;
                 break;
             }
             default: {

@@ -67,6 +67,8 @@
 #define SPI_CLOCK P1_6
 #define SPI_CHIP_SELECT P1_1
 
+#define ENC_RESET P1_0
+
 #define CS_PIN P1_1
 #define CS_HIGH CS_PIN = 1
 #define CS_LOW CS_PIN = 0

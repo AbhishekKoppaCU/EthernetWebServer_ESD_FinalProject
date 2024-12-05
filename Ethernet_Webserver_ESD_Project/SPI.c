@@ -38,7 +38,7 @@ void select_reg_bank(uint8_t bank)
     SPI_send(0x5F);
 
     // Send the bank number
-    SPI_send(bank);
+    SPI_send(bank + 4);
 
     // Pull CS high to end the SPI transaction
     CS_HIGH;
@@ -282,13 +282,15 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
 
 void init_ENC(void)
 {
+    spi_control_write(1, 0x18, 0x41);
     //Init RX buffer so that the TX buffer is also defined
-    enc28j60_init_rx_buffer(0x0000, 0x0010);
+    enc28j60_init_rx_buffer(0x0000, 0x00FF);
 
-}
+    IT0 = 1;  // Edge-triggered mode for INT0
+    EX0 = 1;  // Enable INT0
+    EA = 1;   // Enable global interrupts
 
-void init_MAC(void)
-{
+
     //spi_control_write(0x02, 0x00, 0x01); // Write 0x01 to MACON1 (address 0x00 in bank 2)
     spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
     spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
@@ -297,6 +299,16 @@ void init_MAC(void)
     spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
     spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
     spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
+
+
+    //Enable Rception interrupts
+    spi_control_write(0, 0x1B, 0xC0);
+
+}
+
+void init_MAC(void)
+{
+
 }
 
 

@@ -38,7 +38,7 @@ void set_mac_address(uint8_t* mac_address)
     // The MAC address is 6 bytes long
     //select_reg_bank(3);
 
-    spi_control_write(3, 0x01, 0x00);  // MAADR6
+    spi_control_write(3, 0x01, 0x02);  // MAADR6
     spi_control_write(3, 0x00, 0x11);  // MAADR5
     spi_control_write(3, 0x03, 0x22);  // MAADR4
     spi_control_write(3, 0x02, 0x33);  // MAADR3
@@ -131,7 +131,7 @@ uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC a
 uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
 uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
 uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
-    uint8_t arp_packet[52]; // Minimum ARP packet size for Ethernet
+    uint8_t arp_packet[43]; // Minimum ARP packet size for Ethernet
 
     // Set the first byte to 0x0E
     arp_packet[0] = 0x0E;
@@ -188,18 +188,11 @@ uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
     for (int i = 0; i < 4; i++) {
         arp_packet[39 + i] = target_ip[i];
     }
-    arp_packet[44] = 'A';
-    arp_packet[45] = 'B';
-    arp_packet[46] = 'H';
-    arp_packet[47] = 'I';
-    arp_packet[48] = 'S';
-    arp_packet[49] = 'H';
-    arp_packet[50] = 'E';
-    arp_packet[51] = 'K';
+
 
     // Write the ARP packet to the ENC28J60 buffer
-    uint16_t frame_size = 51;  // The total length is now exactly 42 bytes (without padding)
-    uint16_t start_address = 0x00F0;
+    uint16_t frame_size = 44;  // The total length is now exactly 42 bytes (without padding)
+    uint16_t start_address = 0x0300;
     if ((start_address + frame_size - 1) > 0x1FFF) {
         printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
         return;
@@ -225,5 +218,14 @@ uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
     } else {
         printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
     }
+}
+
+void external_interrupt0_isr(void) __interrupt (0)
+{
+    uint8_t eir = mac_spi_read(0x1C, 0); // Read EIR register (address 0x1C, bank 0)
+    printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
+    //if (eir & (1 << 0)) { // RXERIF is bit 0 of EIR
+       // printf("RX Error Interrupt occurred!\n\r");
+        //}
 }
 

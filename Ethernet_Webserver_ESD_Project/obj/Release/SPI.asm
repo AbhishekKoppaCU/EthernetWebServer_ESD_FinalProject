@@ -654,9 +654,10 @@ _select_reg_bank:
 ;	SPI.c:38: SPI_send(0x5F);
 	mov	dpl, #0x5f
 	lcall	_SPI_send
-;	SPI.c:41: SPI_send(bank);
+;	SPI.c:41: SPI_send(bank + 4);
 	mov	dptr,#_select_reg_bank_bank_10000_68
 	movx	a,@dptr
+	add	a,#0x04
 	mov	dpl,a
 	lcall	_SPI_send
 ;	SPI.c:44: CS_HIGH;
@@ -1926,25 +1927,34 @@ _spi_buffer_write:
 ;	 function init_ENC
 ;	-----------------------------------------
 _init_ENC:
-;	SPI.c:286: enc28j60_init_rx_buffer(0x0000, 0x0010);
+;	SPI.c:285: spi_control_write(1, 0x18, 0x41);
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x18
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,#0x41
+	movx	@dptr,a
+	mov	dpl, #0x01
+	lcall	_spi_control_write
+;	SPI.c:287: enc28j60_init_rx_buffer(0x0000, 0x00FF);
 	mov	dptr,#_enc28j60_init_rx_buffer_PARM_2
-	mov	a,#0x10
+	mov	a,#0xff
 	movx	@dptr,a
 	clr	a
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#0x0000
-;	SPI.c:288: }
-	ljmp	_enc28j60_init_rx_buffer
-;------------------------------------------------------------
-;Allocation info for local variables in function 'init_MAC'
-;------------------------------------------------------------
-;	SPI.c:290: void init_MAC(void)
-;	-----------------------------------------
-;	 function init_MAC
-;	-----------------------------------------
-_init_MAC:
-;	SPI.c:293: spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
+	lcall	_enc28j60_init_rx_buffer
+;	SPI.c:289: IT0 = 1;  // Edge-triggered mode for INT0
+;	assignBit
+	setb	_IT0
+;	SPI.c:290: EX0 = 1;  // Enable INT0
+;	assignBit
+	setb	_EX0
+;	SPI.c:291: EA = 1;   // Enable global interrupts
+;	assignBit
+	setb	_EA
+;	SPI.c:295: spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x02
 	movx	@dptr,a
@@ -1953,7 +1963,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:294: spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
+;	SPI.c:296: spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x03
 	movx	@dptr,a
@@ -1962,7 +1972,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:295: spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
+;	SPI.c:297: spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0a
 	movx	@dptr,a
@@ -1971,7 +1981,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:296: spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
+;	SPI.c:298: spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0b
 	movx	@dptr,a
@@ -1980,7 +1990,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:297: spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
+;	SPI.c:299: spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x04
 	movx	@dptr,a
@@ -1989,7 +1999,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:298: spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
+;	SPI.c:300: spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x06
 	movx	@dptr,a
@@ -1998,7 +2008,7 @@ _init_MAC:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	SPI.c:299: spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
+;	SPI.c:301: spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x07
 	movx	@dptr,a
@@ -2006,8 +2016,27 @@ _init_MAC:
 	mov	a,#0x0c
 	movx	@dptr,a
 	mov	dpl, #0x02
-;	SPI.c:300: }
+	lcall	_spi_control_write
+;	SPI.c:305: spi_control_write(0, 0x1B, 0xC0);
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x1b
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,#0xc0
+	movx	@dptr,a
+	mov	dpl, #0x00
+;	SPI.c:307: }
 	ljmp	_spi_control_write
+;------------------------------------------------------------
+;Allocation info for local variables in function 'init_MAC'
+;------------------------------------------------------------
+;	SPI.c:309: void init_MAC(void)
+;	-----------------------------------------
+;	 function init_MAC
+;	-----------------------------------------
+_init_MAC:
+;	SPI.c:312: }
+	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)

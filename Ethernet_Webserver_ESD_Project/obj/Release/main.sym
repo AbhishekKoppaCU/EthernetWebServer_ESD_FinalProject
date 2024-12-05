@@ -434,30 +434,32 @@ Symbol Table
  19 ___str_12                                                      0000F8 R
  19 ___str_13                                                      000111 R
  19 ___str_14                                                      000129 R
- 19 ___str_15                                                      00014E R
- 19 ___str_16                                                      00017B R
- 19 ___str_17                                                      00019F R
- 19 ___str_18                                                      0001C5 R
- 19 ___str_19                                                      0001E3 R
+ 19 ___str_15                                                      000148 R
+ 19 ___str_16                                                      00016D R
+ 19 ___str_17                                                      00019A R
+ 19 ___str_18                                                      0001BE R
+ 19 ___str_19                                                      0001E4 R
  19 ___str_2                                                       00001C R
- 19 ___str_20                                                      000206 R
- 19 ___str_21                                                      000210 R
- 19 ___str_22                                                      000235 R
- 19 ___str_23                                                      000242 R
- 19 ___str_24                                                      000254 R
- 19 ___str_25                                                      00027D R
- 19 ___str_26                                                      0002A6 R
- 19 ___str_27                                                      0002C2 R
- 19 ___str_28                                                      0002E4 R
- 19 ___str_29                                                      000306 R
+ 19 ___str_20                                                      000202 R
+ 19 ___str_21                                                      000225 R
+ 19 ___str_22                                                      00022F R
+ 19 ___str_23                                                      000254 R
+ 19 ___str_24                                                      000261 R
+ 19 ___str_25                                                      000273 R
+ 19 ___str_26                                                      00029C R
+ 19 ___str_27                                                      0002C5 R
+ 19 ___str_28                                                      0002E1 R
+ 19 ___str_29                                                      000303 R
  19 ___str_3                                                       000033 R
- 19 ___str_30                                                      00031F R
- 19 ___str_31                                                      000349 R
- 19 ___str_32                                                      000361 R
- 19 ___str_33                                                      000379 R
- 19 ___str_34                                                      0003A3 R
- 19 ___str_35                                                      0003BE R
- 19 ___str_36                                                      0003DA R
+ 19 ___str_30                                                      000325 R
+ 19 ___str_31                                                      00033E R
+ 19 ___str_32                                                      000368 R
+ 19 ___str_33                                                      000380 R
+ 19 ___str_34                                                      000398 R
+ 19 ___str_35                                                      0003C2 R
+ 19 ___str_36                                                      0003DD R
+ 19 ___str_37                                                      0003F9 R
+ 19 ___str_38                                                      00042C R
  19 ___str_4                                                       000049 R
  19 ___str_5                                                       00005E R
  19 ___str_6                                                       000072 R
@@ -470,34 +472,34 @@ Symbol Table
     __mcs51_genXINIT                                               ****** GX
     __mcs51_genXRAMCLEAR                                           ****** GX
     __sdcc_gsinit_startup                                          ****** GX
-  F __sdcc_program_startup                                         000003 GR
+  F __sdcc_program_startup                                         000006 GR
   7 __start__stack                                                 000000 GR
     _configure_SPI                                                 ****** GX
     _enc_reset                                                     ****** GX
     _eth_spi_read                                                  ****** GX
     _eth_spi_read_PARM_2                                           ****** GX
- 18 _get_user_buffer_size                                          0001BA GR
-  C _get_user_buffer_size_input_10000_76                           000007 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    _external_interrupt0_isr                                       ****** GX
+ 18 _get_user_buffer_size                                          0001BA GR
+  C _get_user_buffer_size_input_10000_77                           000007 R
     _getchar                                                       ****** GX
  18 _hex_to_int                                                    000000 GR
-  C _hex_to_int_ASCII_20000_71                                     000005 R
-  C _hex_to_int_result_10000_70                                    000003 R
+  C _hex_to_int_ASCII_20000_72                                     000005 R
+  C _hex_to_int_result_10000_71                                    000003 R
   6 _hex_to_int_sloc0_1_0                                          000000 R
   6 _hex_to_int_sloc1_1_0                                          000003 R
   6 _hex_to_int_sloc2_1_0                                          000004 R
-  C _hex_to_int_str_10000_69                                       000000 R
+  C _hex_to_int_str_10000_70                                       000000 R
     _init_ENC                                                      ****** GX
-    _init_MAC                                                      ****** GX
     _mac_spi_read                                                  ****** GX
     _mac_spi_read_PARM_2                                           ****** GX
  18 _main                                                          00023E GR
-  C _main_buffer_40003_89                                          000011 R
-  C _main_buffer_40003_94                                          000111 R
+  C _main_buffer_40003_90                                          000011 R
+  C _main_buffer_40003_95                                          000111 R
     _phy_spi_read                                                  ****** GX
     _phy_spi_write                                                 ****** GX
     _phy_spi_write_PARM_2                                          ****** GX
@@ -536,13 +538,13 @@ Symbol Table
     ar0                                                         =  000000 
     ar1                                                         =  000001 
     ar2                                                         =  000002 
-    ar3                                                         =  000003 
-    ar4                                                         =  000004 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    ar3                                                         =  000003 
+    ar4                                                         =  000004 
     ar5                                                         =  000005 
     ar6                                                         =  000006 
     ar7                                                         =  000007 
@@ -596,13 +598,13 @@ Symbol Table
     p0                                                          =  000080 L
     p0.0                                                        =  000080 L
     p0.1                                                        =  000081 L
-    p0.2                                                        =  000082 L
-    p0.3                                                        =  000083 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    p0.2                                                        =  000082 L
+    p0.3                                                        =  000083 L
     p0.4                                                        =  000084 L
     p0.5                                                        =  000085 L
     p0.6                                                        =  000086 L
@@ -656,13 +658,13 @@ Symbol Table
     rclk                                                        =  0000CD L
     ren                                                         =  00009C L
     ri                                                          =  000098 L
-    rs0                                                         =  0000D3 L
-    rs1                                                         =  0000D4 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    rs0                                                         =  0000D3 L
+    rs1                                                         =  0000D4 L
     rxd                                                         =  0000B0 L
     sbuf                                                        =  000099 L
     scon                                                        =  000098 L
@@ -714,7 +716,6 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
-
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 13
 Hexadecimal [24-Bits]
 
@@ -735,7 +736,7 @@ Area Table
    C XSEG                                       size    211   flags   40
    D XABS                                       size      0   flags   48
    E XISEG                                      size      0   flags   40
-   F HOME                                       size      6   flags   20
+   F HOME                                       size      9   flags   20
   10 GSINIT0                                    size      0   flags   20
   11 GSINIT1                                    size      0   flags   20
   12 GSINIT2                                    size      0   flags   20
@@ -744,8 +745,8 @@ Area Table
   15 GSINIT5                                    size      0   flags   20
   16 GSINIT                                     size      0   flags   20
   17 GSFINAL                                    size      3   flags   20
-  18 CSEG                                       size    866   flags   20
-  19 CONST                                      size    40A   flags   20
+  18 CSEG                                       size    8AE   flags   20
+  19 CONST                                      size    45C   flags   20
   1A XINIT                                      size      0   flags   20
   1B CABS                                       size      0   flags   28
 

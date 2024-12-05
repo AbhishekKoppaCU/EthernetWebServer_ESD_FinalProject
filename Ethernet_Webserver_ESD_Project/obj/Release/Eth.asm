@@ -8,6 +8,7 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _external_interrupt0_isr
 	.globl _enc28j60_transmission_successful
 	.globl _wait_for_transmission_complete
 	.globl _enc28j60_set_transmit_pointers
@@ -460,6 +461,20 @@ _TF1	=	0x008f
 	.area REG_BANK_0	(REL,OVR,DATA)
 	.ds 8
 ;--------------------------------------------------------
+; overlayable bit register bank
+;--------------------------------------------------------
+	.area BIT_BANK	(REL,OVR,DATA)
+bits:
+	.ds 1
+	b0 = bits[0]
+	b1 = bits[1]
+	b2 = bits[2]
+	b3 = bits[3]
+	b4 = bits[4]
+	b5 = bits[5]
+	b6 = bits[6]
+	b7 = bits[7]
+;--------------------------------------------------------
 ; internal ram data
 ;--------------------------------------------------------
 	.area DSEG    (DATA)
@@ -512,7 +527,7 @@ _send_arp_request_source_ip_10000_84:
 _send_arp_request_target_ip_10000_84:
 	.ds 4
 _send_arp_request_arp_packet_10000_84:
-	.ds 51
+	.ds 43
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -573,12 +588,12 @@ _set_mac_address:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	Eth.c:41: spi_control_write(3, 0x01, 0x00);  // MAADR6
+;	Eth.c:41: spi_control_write(3, 0x01, 0x02);  // MAADR6
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x01
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	clr	a
+	inc	a
 	movx	@dptr,a
 	mov	dpl, #0x03
 	lcall	_spi_control_write
@@ -1496,43 +1511,11 @@ _send_arp_request:
 	inc	r7
 	sjmp	00127$
 00105$:
-;	Eth.c:191: arp_packet[44] = 'A';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002c)
-	mov	a,#0x41
-	movx	@dptr,a
-;	Eth.c:192: arp_packet[45] = 'B';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002d)
-	inc	a
-	movx	@dptr,a
-;	Eth.c:193: arp_packet[46] = 'H';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002e)
-	mov	a,#0x48
-	movx	@dptr,a
-;	Eth.c:194: arp_packet[47] = 'I';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x002f)
-	inc	a
-	movx	@dptr,a
-;	Eth.c:195: arp_packet[48] = 'S';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0030)
-	mov	a,#0x53
-	movx	@dptr,a
-;	Eth.c:196: arp_packet[49] = 'H';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0031)
-	mov	a,#0x48
-	movx	@dptr,a
-;	Eth.c:197: arp_packet[50] = 'E';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0032)
-	mov	a,#0x45
-	movx	@dptr,a
-;	Eth.c:198: arp_packet[51] = 'K';
-	mov	dptr,#(_send_arp_request_arp_packet_10000_84 + 0x0033)
-	mov	a,#0x4b
-	movx	@dptr,a
-;	Eth.c:209: spi_buffer_write(frame_size, start_address, arp_packet);
+;	Eth.c:202: spi_buffer_write(frame_size, start_address, arp_packet);
 	mov	dptr,#_spi_buffer_write_PARM_2
-	mov	a,#0xf0
-	movx	@dptr,a
 	clr	a
+	movx	@dptr,a
+	mov	a,#0x03
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -1544,29 +1527,29 @@ _send_arp_request:
 	clr	a
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0033
+	mov	dptr,#0x002c
 	lcall	_spi_buffer_write
-;	Eth.c:212: enc28j60_set_transmit_pointers(start_address, end_address);
+;	Eth.c:205: enc28j60_set_transmit_pointers(start_address, end_address);
 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
-	mov	a,#0x22
+	mov	a,#0x2b
 	movx	@dptr,a
-	mov	a,#0x01
+	mov	a,#0x03
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x00f0
+	mov	dptr,#0x0300
 	lcall	_enc28j60_set_transmit_pointers
-;	Eth.c:215: enc28j60_start_transmission();
+;	Eth.c:208: enc28j60_start_transmission();
 	lcall	_enc28j60_start_transmission
-;	Eth.c:218: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
+;	Eth.c:211: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
 	mov	dptr,#0x01f4
 	lcall	_wait_for_transmission_complete
 	mov	a, dpl
 	jz	00112$
-;	Eth.c:220: if (enc28j60_transmission_successful()) {
+;	Eth.c:213: if (enc28j60_transmission_successful()) {
 	lcall	_enc28j60_transmission_successful
 	mov	a, dpl
 	jz	00109$
-;	Eth.c:221: printf("ARP request sent successfully.\n\r");
+;	Eth.c:214: printf("ARP request sent successfully.\n\r");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1579,7 +1562,7 @@ _send_arp_request:
 	dec	sp
 	ret
 00109$:
-;	Eth.c:223: printf("ARP transmission failed. Check error flags.\n\r");
+;	Eth.c:216: printf("ARP transmission failed. Check error flags.\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1592,7 +1575,7 @@ _send_arp_request:
 	dec	sp
 	ret
 00112$:
-;	Eth.c:226: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
+;	Eth.c:219: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1603,8 +1586,66 @@ _send_arp_request:
 	dec	sp
 	dec	sp
 	dec	sp
-;	Eth.c:228: }
+;	Eth.c:221: }
 	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'external_interrupt0_isr'
+;------------------------------------------------------------
+;eir                       Allocated with name '_external_interrupt0_isr_eir_10000_103'
+;------------------------------------------------------------
+;	Eth.c:223: void external_interrupt0_isr(void) __interrupt (0)
+;	-----------------------------------------
+;	 function external_interrupt0_isr
+;	-----------------------------------------
+_external_interrupt0_isr:
+	push	bits
+	push	acc
+	push	b
+	push	dpl
+	push	dph
+	push	(0+7)
+	push	(0+6)
+	push	(0+5)
+	push	(0+4)
+	push	(0+3)
+	push	(0+2)
+	push	(0+1)
+	push	(0+0)
+	push	psw
+	mov	psw,#0x00
+;	Eth.c:225: uint8_t eir = mac_spi_read(0x1C, 0); // Read EIR register (address 0x1C, bank 0)
+	mov	dptr,#_mac_spi_read_PARM_2
+	clr	a
+	movx	@dptr,a
+	mov	dpl, #0x1c
+	lcall	_mac_spi_read
+;	Eth.c:226: printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	Eth.c:230: }
+	pop	psw
+	pop	(0+0)
+	pop	(0+1)
+	pop	(0+2)
+	pop	(0+3)
+	pop	(0+4)
+	pop	(0+5)
+	pop	(0+6)
+	pop	(0+7)
+	pop	dph
+	pop	dpl
+	pop	b
+	pop	acc
+	pop	bits
+	reti
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)
@@ -1644,6 +1685,13 @@ ___str_4:
 ___str_5:
 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
 	.ascii "tly."
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_6:
+	.ascii "Interrrrrrrruuuuuuuuuppppppppttttttt"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00

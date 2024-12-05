@@ -498,54 +498,54 @@
                                     498 ; uninitialized external ram data
                                     499 ;--------------------------------------------------------
                                     500 	.area XSEG    (XDATA)
-      000368                        501 _SPI_ReadByte_received_data_10000_64:
-      000368                        502 	.ds 1
-      000369                        503 _select_reg_bank_bank_10000_68:
-      000369                        504 	.ds 1
-      00036A                        505 _spi_control_write_PARM_2:
-      00036A                        506 	.ds 1
-      00036B                        507 _spi_control_write_PARM_3:
-      00036B                        508 	.ds 1
-      00036C                        509 _spi_control_write_reg_bank_10000_70:
-      00036C                        510 	.ds 1
-      00036D                        511 _SPI_send_data_10000_74:
-      00036D                        512 	.ds 1
-      00036E                        513 _eth_spi_read_PARM_2:
-      00036E                        514 	.ds 1
-      00036F                        515 _eth_spi_read_addr_10000_79:
-      00036F                        516 	.ds 1
-      000370                        517 _phy_spi_write_PARM_2:
-      000370                        518 	.ds 2
-      000372                        519 _phy_spi_write_addr_10000_83:
-      000372                        520 	.ds 1
-      000373                        521 _mac_spi_read_PARM_2:
-      000373                        522 	.ds 1
-      000374                        523 _mac_spi_read_addr_10000_85:
-      000374                        524 	.ds 1
-      000375                        525 _phy_spi_read_addr_10000_89:
-      000375                        526 	.ds 1
-      000376                        527 _busy_wait_data_10000_93:
-      000376                        528 	.ds 1
-      000377                        529 _buffer_init_PARM_2:
-      000377                        530 	.ds 2
-      000379                        531 _buffer_init_start_address_10000_95:
-      000379                        532 	.ds 2
-      00037B                        533 _spi_buffer_read_PARM_2:
-      00037B                        534 	.ds 2
-      00037D                        535 _spi_buffer_read_PARM_3:
-      00037D                        536 	.ds 3
-      000380                        537 _spi_buffer_read_num_bytes_10000_99:
-      000380                        538 	.ds 2
-      000382                        539 _spi_buffer_read_i_20002_106:
-      000382                        540 	.ds 2
-      000384                        541 _spi_buffer_write_PARM_2:
-      000384                        542 	.ds 2
-      000386                        543 _spi_buffer_write_PARM_3:
-      000386                        544 	.ds 3
-      000389                        545 _spi_buffer_write_num_bytes_10000_108:
-      000389                        546 	.ds 2
-      00038B                        547 _spi_buffer_write_i_20002_115:
-      00038B                        548 	.ds 2
+      000360                        501 _SPI_ReadByte_received_data_10000_64:
+      000360                        502 	.ds 1
+      000361                        503 _select_reg_bank_bank_10000_68:
+      000361                        504 	.ds 1
+      000362                        505 _spi_control_write_PARM_2:
+      000362                        506 	.ds 1
+      000363                        507 _spi_control_write_PARM_3:
+      000363                        508 	.ds 1
+      000364                        509 _spi_control_write_reg_bank_10000_70:
+      000364                        510 	.ds 1
+      000365                        511 _SPI_send_data_10000_74:
+      000365                        512 	.ds 1
+      000366                        513 _eth_spi_read_PARM_2:
+      000366                        514 	.ds 1
+      000367                        515 _eth_spi_read_addr_10000_79:
+      000367                        516 	.ds 1
+      000368                        517 _phy_spi_write_PARM_2:
+      000368                        518 	.ds 2
+      00036A                        519 _phy_spi_write_addr_10000_83:
+      00036A                        520 	.ds 1
+      00036B                        521 _mac_spi_read_PARM_2:
+      00036B                        522 	.ds 1
+      00036C                        523 _mac_spi_read_addr_10000_85:
+      00036C                        524 	.ds 1
+      00036D                        525 _phy_spi_read_addr_10000_89:
+      00036D                        526 	.ds 1
+      00036E                        527 _busy_wait_data_10000_93:
+      00036E                        528 	.ds 1
+      00036F                        529 _buffer_init_PARM_2:
+      00036F                        530 	.ds 2
+      000371                        531 _buffer_init_start_address_10000_95:
+      000371                        532 	.ds 2
+      000373                        533 _spi_buffer_read_PARM_2:
+      000373                        534 	.ds 2
+      000375                        535 _spi_buffer_read_PARM_3:
+      000375                        536 	.ds 3
+      000378                        537 _spi_buffer_read_num_bytes_10000_99:
+      000378                        538 	.ds 2
+      00037A                        539 _spi_buffer_read_i_20002_106:
+      00037A                        540 	.ds 2
+      00037C                        541 _spi_buffer_write_PARM_2:
+      00037C                        542 	.ds 2
+      00037E                        543 _spi_buffer_write_PARM_3:
+      00037E                        544 	.ds 3
+      000381                        545 _spi_buffer_write_num_bytes_10000_108:
+      000381                        546 	.ds 2
+      000383                        547 _spi_buffer_write_i_20002_115:
+      000383                        548 	.ds 2
                                     549 ;--------------------------------------------------------
                                     550 ; absolute external ram data
                                     551 ;--------------------------------------------------------
@@ -589,7 +589,7 @@
                                     589 ;	-----------------------------------------
                                     590 ;	 function SPI_ReadByte
                                     591 ;	-----------------------------------------
-      002F16                        592 _SPI_ReadByte:
+      002F8F                        592 _SPI_ReadByte:
                            000007   593 	ar7 = 0x07
                            000006   594 	ar6 = 0x06
                            000005   595 	ar5 = 0x05
@@ -599,20 +599,20 @@
                            000001   599 	ar1 = 0x01
                            000000   600 	ar0 = 0x00
                                     601 ;	SPI.c:9: SPDAT = 0xFF;
-      002F16 75 C5 FF         [24]  602 	mov	_SPDAT,#0xff
+      002F8F 75 C5 FF         [24]  602 	mov	_SPDAT,#0xff
                                     603 ;	SPI.c:12: while (!(SPSTA & 0x80)) {
-      002F19                        604 00101$:
-      002F19 E5 C4            [12]  605 	mov	a,_SPSTA
-      002F1B 30 E7 FB         [24]  606 	jnb	acc.7,00101$
+      002F92                        604 00101$:
+      002F92 E5 C4            [12]  605 	mov	a,_SPSTA
+      002F94 30 E7 FB         [24]  606 	jnb	acc.7,00101$
                                     607 ;	SPI.c:17: received_data = SPDAT;
-      002F1E 90 03 68         [24]  608 	mov	dptr,#_SPI_ReadByte_received_data_10000_64
-      002F21 E5 C5            [12]  609 	mov	a,_SPDAT
-      002F23 F0               [24]  610 	movx	@dptr,a
+      002F97 90 03 60         [24]  608 	mov	dptr,#_SPI_ReadByte_received_data_10000_64
+      002F9A E5 C5            [12]  609 	mov	a,_SPDAT
+      002F9C F0               [24]  610 	movx	@dptr,a
                                     611 ;	SPI.c:19: return received_data;
-      002F24 E0               [24]  612 	movx	a,@dptr
+      002F9D E0               [24]  612 	movx	a,@dptr
                                     613 ;	SPI.c:20: }
-      002F25 F5 82            [12]  614 	mov	dpl,a
-      002F27 22               [24]  615 	ret
+      002F9E F5 82            [12]  614 	mov	dpl,a
+      002FA0 22               [24]  615 	ret
                                     616 ;------------------------------------------------------------
                                     617 ;Allocation info for local variables in function 'spi_set_autoinc'
                                     618 ;------------------------------------------------------------
@@ -620,21 +620,21 @@
                                     620 ;	-----------------------------------------
                                     621 ;	 function spi_set_autoinc
                                     622 ;	-----------------------------------------
-      002F28                        623 _spi_set_autoinc:
+      002FA1                        623 _spi_set_autoinc:
                                     624 ;	SPI.c:24: CS_LOW;                          // Pull CS low to select the ENC28J60
                                     625 ;	assignBit
-      002F28 C2 91            [12]  626 	clr	_P1_1
+      002FA1 C2 91            [12]  626 	clr	_P1_1
                                     627 ;	SPI.c:26: SPI_send(0x5E);                  // Write ECON2 register address
-      002F2A 75 82 5E         [24]  628 	mov	dpl, #0x5e
-      002F2D 12 2F BE         [24]  629 	lcall	_SPI_send
+      002FA3 75 82 5E         [24]  628 	mov	dpl, #0x5e
+      002FA6 12 30 39         [24]  629 	lcall	_SPI_send
                                     630 ;	SPI.c:27: SPI_send(0x80);                  // Set the AUTOINC bit
-      002F30 75 82 80         [24]  631 	mov	dpl, #0x80
-      002F33 12 2F BE         [24]  632 	lcall	_SPI_send
+      002FA9 75 82 80         [24]  631 	mov	dpl, #0x80
+      002FAC 12 30 39         [24]  632 	lcall	_SPI_send
                                     633 ;	SPI.c:29: CS_HIGH;                         // Pull CS high to deselect the ENC28J60
                                     634 ;	assignBit
-      002F36 D2 91            [12]  635 	setb	_P1_1
+      002FAF D2 91            [12]  635 	setb	_P1_1
                                     636 ;	SPI.c:30: }
-      002F38 22               [24]  637 	ret
+      002FB1 22               [24]  637 	ret
                                     638 ;------------------------------------------------------------
                                     639 ;Allocation info for local variables in function 'select_reg_bank'
                                     640 ;------------------------------------------------------------
@@ -644,1388 +644,1417 @@
                                     644 ;	-----------------------------------------
                                     645 ;	 function select_reg_bank
                                     646 ;	-----------------------------------------
-      002F39                        647 _select_reg_bank:
-      002F39 E5 82            [12]  648 	mov	a,dpl
-      002F3B 90 03 69         [24]  649 	mov	dptr,#_select_reg_bank_bank_10000_68
-      002F3E F0               [24]  650 	movx	@dptr,a
+      002FB2                        647 _select_reg_bank:
+      002FB2 E5 82            [12]  648 	mov	a,dpl
+      002FB4 90 03 61         [24]  649 	mov	dptr,#_select_reg_bank_bank_10000_68
+      002FB7 F0               [24]  650 	movx	@dptr,a
                                     651 ;	SPI.c:35: CS_LOW;
                                     652 ;	assignBit
-      002F3F C2 91            [12]  653 	clr	_P1_1
+      002FB8 C2 91            [12]  653 	clr	_P1_1
                                     654 ;	SPI.c:38: SPI_send(0x5F);
-      002F41 75 82 5F         [24]  655 	mov	dpl, #0x5f
-      002F44 12 2F BE         [24]  656 	lcall	_SPI_send
-                                    657 ;	SPI.c:41: SPI_send(bank);
-      002F47 90 03 69         [24]  658 	mov	dptr,#_select_reg_bank_bank_10000_68
-      002F4A E0               [24]  659 	movx	a,@dptr
-      002F4B F5 82            [12]  660 	mov	dpl,a
-      002F4D 12 2F BE         [24]  661 	lcall	_SPI_send
-                                    662 ;	SPI.c:44: CS_HIGH;
-                                    663 ;	assignBit
-      002F50 D2 91            [12]  664 	setb	_P1_1
-                                    665 ;	SPI.c:45: }
-      002F52 22               [24]  666 	ret
-                                    667 ;------------------------------------------------------------
-                                    668 ;Allocation info for local variables in function 'spi_control_write'
-                                    669 ;------------------------------------------------------------
-                                    670 ;addr                      Allocated with name '_spi_control_write_PARM_2'
-                                    671 ;data                      Allocated with name '_spi_control_write_PARM_3'
-                                    672 ;reg_bank                  Allocated with name '_spi_control_write_reg_bank_10000_70'
-                                    673 ;opcode                    Allocated with name '_spi_control_write_opcode_10000_71'
-                                    674 ;------------------------------------------------------------
-                                    675 ;	SPI.c:46: void spi_control_write(uint8_t reg_bank, uint8_t addr, uint8_t data)
-                                    676 ;	-----------------------------------------
-                                    677 ;	 function spi_control_write
-                                    678 ;	-----------------------------------------
-      002F53                        679 _spi_control_write:
-      002F53 E5 82            [12]  680 	mov	a,dpl
-      002F55 90 03 6C         [24]  681 	mov	dptr,#_spi_control_write_reg_bank_10000_70
-      002F58 F0               [24]  682 	movx	@dptr,a
-                                    683 ;	SPI.c:49: addr = addr + opcode; // Add the opcode to the address
-      002F59 90 03 6A         [24]  684 	mov	dptr,#_spi_control_write_PARM_2
-      002F5C E0               [24]  685 	movx	a,@dptr
-      002F5D 24 40            [12]  686 	add	a, #0x40
-      002F5F F0               [24]  687 	movx	@dptr,a
-                                    688 ;	SPI.c:51: select_reg_bank(reg_bank); // Function to select the register bank
-      002F60 90 03 6C         [24]  689 	mov	dptr,#_spi_control_write_reg_bank_10000_70
-      002F63 E0               [24]  690 	movx	a,@dptr
-      002F64 F5 82            [12]  691 	mov	dpl,a
-      002F66 12 2F 39         [24]  692 	lcall	_select_reg_bank
-                                    693 ;	SPI.c:54: CS_LOW;
-                                    694 ;	assignBit
-      002F69 C2 91            [12]  695 	clr	_P1_1
-                                    696 ;	SPI.c:57: SPI_send(addr);
-      002F6B 90 03 6A         [24]  697 	mov	dptr,#_spi_control_write_PARM_2
-      002F6E E0               [24]  698 	movx	a,@dptr
-      002F6F FF               [12]  699 	mov	r7,a
-      002F70 F5 82            [12]  700 	mov	dpl,a
-      002F72 C0 07            [24]  701 	push	ar7
-      002F74 12 2F BE         [24]  702 	lcall	_SPI_send
-      002F77 D0 07            [24]  703 	pop	ar7
-                                    704 ;	SPI.c:60: SPI_send(data);
-      002F79 90 03 6B         [24]  705 	mov	dptr,#_spi_control_write_PARM_3
-      002F7C E0               [24]  706 	movx	a,@dptr
-      002F7D FE               [12]  707 	mov	r6,a
-      002F7E F5 82            [12]  708 	mov	dpl,a
-      002F80 C0 07            [24]  709 	push	ar7
-      002F82 C0 06            [24]  710 	push	ar6
-      002F84 12 2F BE         [24]  711 	lcall	_SPI_send
-      002F87 D0 06            [24]  712 	pop	ar6
-      002F89 D0 07            [24]  713 	pop	ar7
-                                    714 ;	SPI.c:63: CS_HIGH;
-                                    715 ;	assignBit
-      002F8B D2 91            [12]  716 	setb	_P1_1
-                                    717 ;	SPI.c:66: printf("Write: Address 0x%02X, Data 0x%02X\n\r", addr, data);
-      002F8D 7D 00            [12]  718 	mov	r5,#0x00
-      002F8F 7C 00            [12]  719 	mov	r4,#0x00
-      002F91 C0 06            [24]  720 	push	ar6
-      002F93 C0 05            [24]  721 	push	ar5
-      002F95 C0 07            [24]  722 	push	ar7
-      002F97 C0 04            [24]  723 	push	ar4
-      002F99 74 9A            [12]  724 	mov	a,#___str_0
-      002F9B C0 E0            [24]  725 	push	acc
-      002F9D 74 48            [12]  726 	mov	a,#(___str_0 >> 8)
-      002F9F C0 E0            [24]  727 	push	acc
-      002FA1 74 80            [12]  728 	mov	a,#0x80
-      002FA3 C0 E0            [24]  729 	push	acc
-      002FA5 12 39 3D         [24]  730 	lcall	_printf
-      002FA8 E5 81            [12]  731 	mov	a,sp
-      002FAA 24 F9            [12]  732 	add	a,#0xf9
-      002FAC F5 81            [12]  733 	mov	sp,a
-                                    734 ;	SPI.c:67: }
-      002FAE 22               [24]  735 	ret
-                                    736 ;------------------------------------------------------------
-                                    737 ;Allocation info for local variables in function 'configure_SPI'
-                                    738 ;------------------------------------------------------------
-                                    739 ;	SPI.c:70: void configure_SPI(void)
-                                    740 ;	-----------------------------------------
-                                    741 ;	 function configure_SPI
-                                    742 ;	-----------------------------------------
-      002FAF                        743 _configure_SPI:
-                                    744 ;	SPI.c:72: CS_PIN = 1;
-                                    745 ;	assignBit
-      002FAF D2 91            [12]  746 	setb	_P1_1
-                                    747 ;	SPI.c:73: SPCON = 0x00;
-      002FB1 75 C3 00         [24]  748 	mov	_SPCON,#0x00
-                                    749 ;	SPI.c:74: SPCON |= SS_DISABLE;
-      002FB4 43 C3 20         [24]  750 	orl	_SPCON,#0x20
-                                    751 ;	SPI.c:75: SPCON |= MASTER_MODE;
-      002FB7 43 C3 10         [24]  752 	orl	_SPCON,#0x10
-                                    753 ;	SPI.c:76: SPCON |= SPI_ENABLE;
-      002FBA 43 C3 40         [24]  754 	orl	_SPCON,#0x40
-                                    755 ;	SPI.c:77: }
-      002FBD 22               [24]  756 	ret
-                                    757 ;------------------------------------------------------------
-                                    758 ;Allocation info for local variables in function 'SPI_send'
-                                    759 ;------------------------------------------------------------
-                                    760 ;data                      Allocated with name '_SPI_send_data_10000_74'
-                                    761 ;------------------------------------------------------------
-                                    762 ;	SPI.c:80: void SPI_send(uint8_t data)
-                                    763 ;	-----------------------------------------
-                                    764 ;	 function SPI_send
-                                    765 ;	-----------------------------------------
-      002FBE                        766 _SPI_send:
-      002FBE E5 82            [12]  767 	mov	a,dpl
-      002FC0 90 03 6D         [24]  768 	mov	dptr,#_SPI_send_data_10000_74
-      002FC3 F0               [24]  769 	movx	@dptr,a
-                                    770 ;	SPI.c:83: SPDAT = data;           // Config + MSB of data
-      002FC4 E0               [24]  771 	movx	a,@dptr
-      002FC5 F5 C5            [12]  772 	mov	_SPDAT,a
-                                    773 ;	SPI.c:85: while (!(SPSTA & 0x80))
-      002FC7                        774 00101$:
-      002FC7 E5 C4            [12]  775 	mov	a,_SPSTA
-      002FC9 30 E7 FB         [24]  776 	jnb	acc.7,00101$
-                                    777 ;	SPI.c:90: }
-      002FCC 22               [24]  778 	ret
-                                    779 ;------------------------------------------------------------
-                                    780 ;Allocation info for local variables in function 'enc_reset'
-                                    781 ;------------------------------------------------------------
-                                    782 ;	SPI.c:92: void enc_reset(void)
-                                    783 ;	-----------------------------------------
-                                    784 ;	 function enc_reset
-                                    785 ;	-----------------------------------------
-      002FCD                        786 _enc_reset:
-                                    787 ;	SPI.c:94: CS_LOW;                    // Pull CS low to select the ENC28J60
-                                    788 ;	assignBit
-      002FCD C2 91            [12]  789 	clr	_P1_1
-                                    790 ;	SPI.c:95: SPI_send(0xFF);            // Send reset command
-      002FCF 75 82 FF         [24]  791 	mov	dpl, #0xff
-      002FD2 12 2F BE         [24]  792 	lcall	_SPI_send
-                                    793 ;	SPI.c:96: CS_HIGH;                   // Pull CS high to deselect the ENC28J60
-                                    794 ;	assignBit
-      002FD5 D2 91            [12]  795 	setb	_P1_1
-                                    796 ;	SPI.c:97: }
-      002FD7 22               [24]  797 	ret
-                                    798 ;------------------------------------------------------------
-                                    799 ;Allocation info for local variables in function 'eth_spi_read'
-                                    800 ;------------------------------------------------------------
-                                    801 ;bank                      Allocated with name '_eth_spi_read_PARM_2'
-                                    802 ;addr                      Allocated with name '_eth_spi_read_addr_10000_79'
-                                    803 ;data                      Allocated with name '_eth_spi_read_data_10001_82'
-                                    804 ;------------------------------------------------------------
-                                    805 ;	SPI.c:99: uint8_t eth_spi_read(uint8_t addr, uint8_t bank)
-                                    806 ;	-----------------------------------------
-                                    807 ;	 function eth_spi_read
-                                    808 ;	-----------------------------------------
-      002FD8                        809 _eth_spi_read:
-      002FD8 E5 82            [12]  810 	mov	a,dpl
-      002FDA 90 03 6F         [24]  811 	mov	dptr,#_eth_spi_read_addr_10000_79
-      002FDD F0               [24]  812 	movx	@dptr,a
-                                    813 ;	SPI.c:101: if (addr > 0x1F) {
-      002FDE E0               [24]  814 	movx	a,@dptr
-      002FDF FF               [12]  815 	mov  r7,a
-      002FE0 24 E0            [12]  816 	add	a,#0xff - 0x1f
-      002FE2 50 19            [24]  817 	jnc	00102$
-                                    818 ;	SPI.c:102: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
-      002FE4 74 BF            [12]  819 	mov	a,#___str_1
-      002FE6 C0 E0            [24]  820 	push	acc
-      002FE8 74 48            [12]  821 	mov	a,#(___str_1 >> 8)
-      002FEA C0 E0            [24]  822 	push	acc
-      002FEC 74 80            [12]  823 	mov	a,#0x80
-      002FEE C0 E0            [24]  824 	push	acc
-      002FF0 12 39 3D         [24]  825 	lcall	_printf
-      002FF3 15 81            [12]  826 	dec	sp
-      002FF5 15 81            [12]  827 	dec	sp
-      002FF7 15 81            [12]  828 	dec	sp
-                                    829 ;	SPI.c:103: return 0;
-      002FF9 75 82 00         [24]  830 	mov	dpl, #0x00
-      002FFC 22               [24]  831 	ret
-      002FFD                        832 00102$:
-                                    833 ;	SPI.c:106: select_reg_bank(bank);     // Select the appropriate bank
-      002FFD 90 03 6E         [24]  834 	mov	dptr,#_eth_spi_read_PARM_2
-      003000 E0               [24]  835 	movx	a,@dptr
-      003001 F5 82            [12]  836 	mov	dpl,a
-      003003 C0 07            [24]  837 	push	ar7
-      003005 12 2F 39         [24]  838 	lcall	_select_reg_bank
-      003008 D0 07            [24]  839 	pop	ar7
-                                    840 ;	SPI.c:108: CS_LOW;                    // Pull CS low to start communication
-                                    841 ;	assignBit
-      00300A C2 91            [12]  842 	clr	_P1_1
-                                    843 ;	SPI.c:109: SPI_send(addr);            // Send the address
-      00300C 8F 82            [24]  844 	mov	dpl, r7
-      00300E C0 07            [24]  845 	push	ar7
-      003010 12 2F BE         [24]  846 	lcall	_SPI_send
-                                    847 ;	SPI.c:110: uint8_t data = SPI_ReadByte(); // Read the data
-      003013 12 2F 16         [24]  848 	lcall	_SPI_ReadByte
-      003016 AE 82            [24]  849 	mov	r6, dpl
-      003018 D0 07            [24]  850 	pop	ar7
-                                    851 ;	SPI.c:111: CS_HIGH;                   // Pull CS high to end communication
-                                    852 ;	assignBit
-      00301A D2 91            [12]  853 	setb	_P1_1
-                                    854 ;	SPI.c:114: printf("Read: Address 0x%02X, Data 0x%02X\n\r", addr, data);
-      00301C 8E 04            [24]  855 	mov	ar4,r6
-      00301E 7D 00            [12]  856 	mov	r5,#0x00
-      003020 7B 00            [12]  857 	mov	r3,#0x00
-      003022 C0 06            [24]  858 	push	ar6
-      003024 C0 04            [24]  859 	push	ar4
-      003026 C0 05            [24]  860 	push	ar5
-      003028 C0 07            [24]  861 	push	ar7
-      00302A C0 03            [24]  862 	push	ar3
-      00302C 74 F9            [12]  863 	mov	a,#___str_2
-      00302E C0 E0            [24]  864 	push	acc
-      003030 74 48            [12]  865 	mov	a,#(___str_2 >> 8)
-      003032 C0 E0            [24]  866 	push	acc
-      003034 74 80            [12]  867 	mov	a,#0x80
-      003036 C0 E0            [24]  868 	push	acc
-      003038 12 39 3D         [24]  869 	lcall	_printf
-      00303B E5 81            [12]  870 	mov	a,sp
-      00303D 24 F9            [12]  871 	add	a,#0xf9
-      00303F F5 81            [12]  872 	mov	sp,a
-      003041 D0 06            [24]  873 	pop	ar6
-                                    874 ;	SPI.c:116: return data;
-      003043 8E 82            [24]  875 	mov	dpl, r6
-                                    876 ;	SPI.c:117: }
-      003045 22               [24]  877 	ret
-                                    878 ;------------------------------------------------------------
-                                    879 ;Allocation info for local variables in function 'phy_spi_write'
-                                    880 ;------------------------------------------------------------
-                                    881 ;data                      Allocated with name '_phy_spi_write_PARM_2'
-                                    882 ;addr                      Allocated with name '_phy_spi_write_addr_10000_83'
-                                    883 ;------------------------------------------------------------
-                                    884 ;	SPI.c:119: void phy_spi_write(uint8_t addr, uint16_t data)
-                                    885 ;	-----------------------------------------
-                                    886 ;	 function phy_spi_write
-                                    887 ;	-----------------------------------------
-      003046                        888 _phy_spi_write:
-      003046 E5 82            [12]  889 	mov	a,dpl
-      003048 90 03 72         [24]  890 	mov	dptr,#_phy_spi_write_addr_10000_83
-      00304B F0               [24]  891 	movx	@dptr,a
-                                    892 ;	SPI.c:121: spi_control_write(2, 0x14, addr);                      // Write PHY address
-      00304C E0               [24]  893 	movx	a,@dptr
-      00304D FF               [12]  894 	mov	r7,a
-      00304E 90 03 6A         [24]  895 	mov	dptr,#_spi_control_write_PARM_2
-      003051 74 14            [12]  896 	mov	a,#0x14
-      003053 F0               [24]  897 	movx	@dptr,a
-      003054 90 03 6B         [24]  898 	mov	dptr,#_spi_control_write_PARM_3
-      003057 EF               [12]  899 	mov	a,r7
-      003058 F0               [24]  900 	movx	@dptr,a
-      003059 75 82 02         [24]  901 	mov	dpl, #0x02
-      00305C C0 07            [24]  902 	push	ar7
-      00305E 12 2F 53         [24]  903 	lcall	_spi_control_write
-      003061 D0 07            [24]  904 	pop	ar7
-                                    905 ;	SPI.c:122: spi_control_write(2, 0x16, (uint8_t)(data & 0xFF));    // Write LSB of data
-      003063 90 03 70         [24]  906 	mov	dptr,#_phy_spi_write_PARM_2
-      003066 E0               [24]  907 	movx	a,@dptr
-      003067 FD               [12]  908 	mov	r5,a
-      003068 A3               [24]  909 	inc	dptr
-      003069 E0               [24]  910 	movx	a,@dptr
-      00306A FE               [12]  911 	mov	r6,a
-      00306B 8D 04            [24]  912 	mov	ar4,r5
-      00306D 90 03 6A         [24]  913 	mov	dptr,#_spi_control_write_PARM_2
-      003070 74 16            [12]  914 	mov	a,#0x16
-      003072 F0               [24]  915 	movx	@dptr,a
-      003073 90 03 6B         [24]  916 	mov	dptr,#_spi_control_write_PARM_3
-      003076 EC               [12]  917 	mov	a,r4
-      003077 F0               [24]  918 	movx	@dptr,a
-      003078 75 82 02         [24]  919 	mov	dpl, #0x02
-      00307B C0 07            [24]  920 	push	ar7
-      00307D C0 06            [24]  921 	push	ar6
-      00307F C0 05            [24]  922 	push	ar5
-      003081 12 2F 53         [24]  923 	lcall	_spi_control_write
-      003084 D0 05            [24]  924 	pop	ar5
-      003086 D0 06            [24]  925 	pop	ar6
-      003088 D0 07            [24]  926 	pop	ar7
-                                    927 ;	SPI.c:123: spi_control_write(2, 0x17, (uint8_t)((data >> 8) & 0xFF)); // Write MSB of data
-      00308A 8E 04            [24]  928 	mov	ar4,r6
-      00308C 90 03 6A         [24]  929 	mov	dptr,#_spi_control_write_PARM_2
-      00308F 74 17            [12]  930 	mov	a,#0x17
-      003091 F0               [24]  931 	movx	@dptr,a
-      003092 90 03 6B         [24]  932 	mov	dptr,#_spi_control_write_PARM_3
-      003095 EC               [12]  933 	mov	a,r4
-      003096 F0               [24]  934 	movx	@dptr,a
-      003097 75 82 02         [24]  935 	mov	dpl, #0x02
-      00309A C0 07            [24]  936 	push	ar7
-      00309C C0 06            [24]  937 	push	ar6
-      00309E C0 05            [24]  938 	push	ar5
-      0030A0 12 2F 53         [24]  939 	lcall	_spi_control_write
-      0030A3 D0 05            [24]  940 	pop	ar5
-      0030A5 D0 06            [24]  941 	pop	ar6
-      0030A7 D0 07            [24]  942 	pop	ar7
-                                    943 ;	SPI.c:126: printf("PHY Write: Address 0x%02X, Data 0x%04X\n\r", addr, data);
-      0030A9 7C 00            [12]  944 	mov	r4,#0x00
-      0030AB C0 05            [24]  945 	push	ar5
-      0030AD C0 06            [24]  946 	push	ar6
-      0030AF C0 07            [24]  947 	push	ar7
-      0030B1 C0 04            [24]  948 	push	ar4
-      0030B3 74 1D            [12]  949 	mov	a,#___str_3
-      0030B5 C0 E0            [24]  950 	push	acc
-      0030B7 74 49            [12]  951 	mov	a,#(___str_3 >> 8)
-      0030B9 C0 E0            [24]  952 	push	acc
-      0030BB 74 80            [12]  953 	mov	a,#0x80
-      0030BD C0 E0            [24]  954 	push	acc
-      0030BF 12 39 3D         [24]  955 	lcall	_printf
-      0030C2 E5 81            [12]  956 	mov	a,sp
-      0030C4 24 F9            [12]  957 	add	a,#0xf9
-      0030C6 F5 81            [12]  958 	mov	sp,a
-                                    959 ;	SPI.c:127: }
-      0030C8 22               [24]  960 	ret
-                                    961 ;------------------------------------------------------------
-                                    962 ;Allocation info for local variables in function 'mac_spi_read'
-                                    963 ;------------------------------------------------------------
-                                    964 ;bank                      Allocated with name '_mac_spi_read_PARM_2'
-                                    965 ;addr                      Allocated with name '_mac_spi_read_addr_10000_85'
-                                    966 ;data                      Allocated with name '_mac_spi_read_data_10001_88'
-                                    967 ;------------------------------------------------------------
-                                    968 ;	SPI.c:129: uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
-                                    969 ;	-----------------------------------------
-                                    970 ;	 function mac_spi_read
-                                    971 ;	-----------------------------------------
-      0030C9                        972 _mac_spi_read:
-      0030C9 E5 82            [12]  973 	mov	a,dpl
-      0030CB 90 03 74         [24]  974 	mov	dptr,#_mac_spi_read_addr_10000_85
-      0030CE F0               [24]  975 	movx	@dptr,a
-                                    976 ;	SPI.c:131: if (addr > 0x1F) {
-      0030CF E0               [24]  977 	movx	a,@dptr
-      0030D0 FF               [12]  978 	mov  r7,a
-      0030D1 24 E0            [12]  979 	add	a,#0xff - 0x1f
-      0030D3 50 19            [24]  980 	jnc	00102$
-                                    981 ;	SPI.c:132: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
-      0030D5 74 BF            [12]  982 	mov	a,#___str_1
-      0030D7 C0 E0            [24]  983 	push	acc
-      0030D9 74 48            [12]  984 	mov	a,#(___str_1 >> 8)
-      0030DB C0 E0            [24]  985 	push	acc
-      0030DD 74 80            [12]  986 	mov	a,#0x80
-      0030DF C0 E0            [24]  987 	push	acc
-      0030E1 12 39 3D         [24]  988 	lcall	_printf
-      0030E4 15 81            [12]  989 	dec	sp
-      0030E6 15 81            [12]  990 	dec	sp
-      0030E8 15 81            [12]  991 	dec	sp
-                                    992 ;	SPI.c:133: return 0; // Return 0 if address is invalid
-      0030EA 75 82 00         [24]  993 	mov	dpl, #0x00
-      0030ED 22               [24]  994 	ret
-      0030EE                        995 00102$:
-                                    996 ;	SPI.c:136: select_reg_bank(bank); // Select the appropriate register bank
-      0030EE 90 03 73         [24]  997 	mov	dptr,#_mac_spi_read_PARM_2
-      0030F1 E0               [24]  998 	movx	a,@dptr
-      0030F2 F5 82            [12]  999 	mov	dpl,a
-      0030F4 C0 07            [24] 1000 	push	ar7
-      0030F6 12 2F 39         [24] 1001 	lcall	_select_reg_bank
-      0030F9 D0 07            [24] 1002 	pop	ar7
-                                   1003 ;	SPI.c:139: CS_LOW;
-                                   1004 ;	assignBit
-      0030FB C2 91            [12] 1005 	clr	_P1_1
-                                   1006 ;	SPI.c:142: SPI_send(addr);
-      0030FD 8F 82            [24] 1007 	mov	dpl, r7
-      0030FF C0 07            [24] 1008 	push	ar7
-      003101 12 2F BE         [24] 1009 	lcall	_SPI_send
-                                   1010 ;	SPI.c:145: uint8_t data = SPI_ReadByte();
-      003104 12 2F 16         [24] 1011 	lcall	_SPI_ReadByte
-      003107 AE 82            [24] 1012 	mov	r6, dpl
-      003109 D0 07            [24] 1013 	pop	ar7
-                                   1014 ;	SPI.c:148: CS_HIGH;
-                                   1015 ;	assignBit
-      00310B D2 91            [12] 1016 	setb	_P1_1
-                                   1017 ;	SPI.c:151: printf("Read: Address 0x%02X, Data 0x%02X\n", addr, data);
-      00310D 8E 04            [24] 1018 	mov	ar4,r6
-      00310F 7D 00            [12] 1019 	mov	r5,#0x00
-      003111 7B 00            [12] 1020 	mov	r3,#0x00
-      003113 C0 06            [24] 1021 	push	ar6
-      003115 C0 04            [24] 1022 	push	ar4
-      003117 C0 05            [24] 1023 	push	ar5
-      003119 C0 07            [24] 1024 	push	ar7
-      00311B C0 03            [24] 1025 	push	ar3
-      00311D 74 46            [12] 1026 	mov	a,#___str_4
-      00311F C0 E0            [24] 1027 	push	acc
-      003121 74 49            [12] 1028 	mov	a,#(___str_4 >> 8)
-      003123 C0 E0            [24] 1029 	push	acc
-      003125 74 80            [12] 1030 	mov	a,#0x80
-      003127 C0 E0            [24] 1031 	push	acc
-      003129 12 39 3D         [24] 1032 	lcall	_printf
-      00312C E5 81            [12] 1033 	mov	a,sp
-      00312E 24 F9            [12] 1034 	add	a,#0xf9
-      003130 F5 81            [12] 1035 	mov	sp,a
-      003132 D0 06            [24] 1036 	pop	ar6
-                                   1037 ;	SPI.c:153: return data;
-      003134 8E 82            [24] 1038 	mov	dpl, r6
-                                   1039 ;	SPI.c:154: }
-      003136 22               [24] 1040 	ret
-                                   1041 ;------------------------------------------------------------
-                                   1042 ;Allocation info for local variables in function 'phy_spi_read'
-                                   1043 ;------------------------------------------------------------
-                                   1044 ;addr                      Allocated with name '_phy_spi_read_addr_10000_89'
-                                   1045 ;data_LSB                  Allocated with name '_phy_spi_read_data_LSB_10001_91'
-                                   1046 ;data_MSB                  Allocated with name '_phy_spi_read_data_MSB_10001_91'
-                                   1047 ;data                      Allocated with name '_phy_spi_read_data_10001_91'
-                                   1048 ;------------------------------------------------------------
-                                   1049 ;	SPI.c:157: uint16_t phy_spi_read(uint8_t addr)
-                                   1050 ;	-----------------------------------------
-                                   1051 ;	 function phy_spi_read
-                                   1052 ;	-----------------------------------------
-      003137                       1053 _phy_spi_read:
-      003137 E5 82            [12] 1054 	mov	a,dpl
-      003139 90 03 75         [24] 1055 	mov	dptr,#_phy_spi_read_addr_10000_89
-      00313C F0               [24] 1056 	movx	@dptr,a
-                                   1057 ;	SPI.c:159: spi_control_write(2, 0x14, addr);     // Write PHY address
-      00313D E0               [24] 1058 	movx	a,@dptr
-      00313E FF               [12] 1059 	mov	r7,a
-      00313F 90 03 6A         [24] 1060 	mov	dptr,#_spi_control_write_PARM_2
-      003142 74 14            [12] 1061 	mov	a,#0x14
-      003144 F0               [24] 1062 	movx	@dptr,a
-      003145 90 03 6B         [24] 1063 	mov	dptr,#_spi_control_write_PARM_3
-      003148 EF               [12] 1064 	mov	a,r7
-      003149 F0               [24] 1065 	movx	@dptr,a
-      00314A 75 82 02         [24] 1066 	mov	dpl, #0x02
-      00314D C0 07            [24] 1067 	push	ar7
-      00314F 12 2F 53         [24] 1068 	lcall	_spi_control_write
-      003152 D0 07            [24] 1069 	pop	ar7
-                                   1070 ;	SPI.c:160: spi_control_write(2, 0x12, 1);        // Set MICMD.MIIRD bit
-      003154 90 03 6A         [24] 1071 	mov	dptr,#_spi_control_write_PARM_2
-      003157 74 12            [12] 1072 	mov	a,#0x12
-      003159 F0               [24] 1073 	movx	@dptr,a
-      00315A 90 03 6B         [24] 1074 	mov	dptr,#_spi_control_write_PARM_3
-      00315D 74 01            [12] 1075 	mov	a,#0x01
-      00315F F0               [24] 1076 	movx	@dptr,a
-      003160 75 82 02         [24] 1077 	mov	dpl, #0x02
-      003163 C0 07            [24] 1078 	push	ar7
-      003165 12 2F 53         [24] 1079 	lcall	_spi_control_write
-                                   1080 ;	SPI.c:162: busy_wait();                          // Wait for the read to complete
-      003168 12 31 E4         [24] 1081 	lcall	_busy_wait
-      00316B D0 07            [24] 1082 	pop	ar7
-                                   1083 ;	SPI.c:164: spi_control_write(2, 0x12, 0);        // Clear MICMD.MIIRD bit
-      00316D 90 03 6A         [24] 1084 	mov	dptr,#_spi_control_write_PARM_2
-      003170 74 12            [12] 1085 	mov	a,#0x12
-      003172 F0               [24] 1086 	movx	@dptr,a
-      003173 90 03 6B         [24] 1087 	mov	dptr,#_spi_control_write_PARM_3
-      003176 E4               [12] 1088 	clr	a
-      003177 F0               [24] 1089 	movx	@dptr,a
-      003178 75 82 02         [24] 1090 	mov	dpl, #0x02
-      00317B C0 07            [24] 1091 	push	ar7
-      00317D 12 2F 53         [24] 1092 	lcall	_spi_control_write
-      003180 D0 07            [24] 1093 	pop	ar7
-                                   1094 ;	SPI.c:166: uint16_t data_LSB = mac_spi_read(0x18, 2); // Read LSB of data
-      003182 90 03 73         [24] 1095 	mov	dptr,#_mac_spi_read_PARM_2
-      003185 74 02            [12] 1096 	mov	a,#0x02
-      003187 F0               [24] 1097 	movx	@dptr,a
-      003188 75 82 18         [24] 1098 	mov	dpl, #0x18
-      00318B C0 07            [24] 1099 	push	ar7
-      00318D 12 30 C9         [24] 1100 	lcall	_mac_spi_read
-      003190 AE 82            [24] 1101 	mov	r6, dpl
-      003192 D0 07            [24] 1102 	pop	ar7
-      003194 7D 00            [12] 1103 	mov	r5,#0x00
-                                   1104 ;	SPI.c:167: uint16_t data_MSB = mac_spi_read(0x19, 2); // Read MSB of data
-      003196 90 03 73         [24] 1105 	mov	dptr,#_mac_spi_read_PARM_2
-      003199 74 02            [12] 1106 	mov	a,#0x02
-      00319B F0               [24] 1107 	movx	@dptr,a
-      00319C 75 82 19         [24] 1108 	mov	dpl, #0x19
-      00319F C0 07            [24] 1109 	push	ar7
-      0031A1 C0 06            [24] 1110 	push	ar6
-      0031A3 C0 05            [24] 1111 	push	ar5
-      0031A5 12 30 C9         [24] 1112 	lcall	_mac_spi_read
-      0031A8 AC 82            [24] 1113 	mov	r4, dpl
-      0031AA D0 05            [24] 1114 	pop	ar5
-      0031AC D0 06            [24] 1115 	pop	ar6
-      0031AE D0 07            [24] 1116 	pop	ar7
-                                   1117 ;	SPI.c:169: uint16_t data = (data_MSB << 8) | data_LSB;        // Combine MSB and LSB
-      0031B0 8C 03            [24] 1118 	mov	ar3,r4
-      0031B2 E4               [12] 1119 	clr	a
-      0031B3 42 06            [12] 1120 	orl	ar6,a
-      0031B5 EB               [12] 1121 	mov	a,r3
-      0031B6 42 05            [12] 1122 	orl	ar5,a
-                                   1123 ;	SPI.c:172: printf("PHY Read: Address 0x%02X, Data 0x%04X\n\r", addr, data);
-      0031B8 7C 00            [12] 1124 	mov	r4,#0x00
-      0031BA C0 06            [24] 1125 	push	ar6
-      0031BC C0 05            [24] 1126 	push	ar5
-      0031BE C0 06            [24] 1127 	push	ar6
-      0031C0 C0 05            [24] 1128 	push	ar5
-      0031C2 C0 07            [24] 1129 	push	ar7
-      0031C4 C0 04            [24] 1130 	push	ar4
-      0031C6 74 69            [12] 1131 	mov	a,#___str_5
-      0031C8 C0 E0            [24] 1132 	push	acc
-      0031CA 74 49            [12] 1133 	mov	a,#(___str_5 >> 8)
-      0031CC C0 E0            [24] 1134 	push	acc
-      0031CE 74 80            [12] 1135 	mov	a,#0x80
-      0031D0 C0 E0            [24] 1136 	push	acc
-      0031D2 12 39 3D         [24] 1137 	lcall	_printf
-      0031D5 E5 81            [12] 1138 	mov	a,sp
-      0031D7 24 F9            [12] 1139 	add	a,#0xf9
-      0031D9 F5 81            [12] 1140 	mov	sp,a
-      0031DB D0 05            [24] 1141 	pop	ar5
-      0031DD D0 06            [24] 1142 	pop	ar6
-                                   1143 ;	SPI.c:174: return data;        // Combine MSB and LSB
-      0031DF 8E 82            [24] 1144 	mov	dpl, r6
-      0031E1 8D 83            [24] 1145 	mov	dph, r5
-                                   1146 ;	SPI.c:175: }
-      0031E3 22               [24] 1147 	ret
-                                   1148 ;------------------------------------------------------------
-                                   1149 ;Allocation info for local variables in function 'busy_wait'
-                                   1150 ;------------------------------------------------------------
-                                   1151 ;data                      Allocated with name '_busy_wait_data_10000_93'
-                                   1152 ;------------------------------------------------------------
-                                   1153 ;	SPI.c:177: void busy_wait(void)
-                                   1154 ;	-----------------------------------------
-                                   1155 ;	 function busy_wait
-                                   1156 ;	-----------------------------------------
-      0031E4                       1157 _busy_wait:
-                                   1158 ;	SPI.c:179: uint8_t data = mac_spi_read(0x0A, 3); // Read ESTAT register (bank 3)
-      0031E4 90 03 73         [24] 1159 	mov	dptr,#_mac_spi_read_PARM_2
-      0031E7 74 03            [12] 1160 	mov	a,#0x03
-      0031E9 F0               [24] 1161 	movx	@dptr,a
-      0031EA 75 82 0A         [24] 1162 	mov	dpl, #0x0a
-      0031ED 12 30 C9         [24] 1163 	lcall	_mac_spi_read
-      0031F0 E5 82            [12] 1164 	mov	a, dpl
-      0031F2 90 03 76         [24] 1165 	mov	dptr,#_busy_wait_data_10000_93
-      0031F5 F0               [24] 1166 	movx	@dptr,a
-                                   1167 ;	SPI.c:180: while (data & 0x01)
-      0031F6                       1168 00101$:
-      0031F6 90 03 76         [24] 1169 	mov	dptr,#_busy_wait_data_10000_93
-      0031F9 E0               [24] 1170 	movx	a,@dptr
-      0031FA 30 E0 14         [24] 1171 	jnb	acc.0,00104$
-                                   1172 ;	SPI.c:182: data = mac_spi_read(0x0A, 3);
-      0031FD 90 03 73         [24] 1173 	mov	dptr,#_mac_spi_read_PARM_2
-      003200 74 03            [12] 1174 	mov	a,#0x03
-      003202 F0               [24] 1175 	movx	@dptr,a
-      003203 75 82 0A         [24] 1176 	mov	dpl, #0x0a
-      003206 12 30 C9         [24] 1177 	lcall	_mac_spi_read
-      003209 E5 82            [12] 1178 	mov	a, dpl
-      00320B 90 03 76         [24] 1179 	mov	dptr,#_busy_wait_data_10000_93
-      00320E F0               [24] 1180 	movx	@dptr,a
-      00320F 80 E5            [24] 1181 	sjmp	00101$
-      003211                       1182 00104$:
-                                   1183 ;	SPI.c:184: }
-      003211 22               [24] 1184 	ret
-                                   1185 ;------------------------------------------------------------
-                                   1186 ;Allocation info for local variables in function 'buffer_init'
-                                   1187 ;------------------------------------------------------------
-                                   1188 ;size                      Allocated with name '_buffer_init_PARM_2'
-                                   1189 ;start_address             Allocated with name '_buffer_init_start_address_10000_95'
-                                   1190 ;erxst                     Allocated with name '_buffer_init_erxst_10001_98'
-                                   1191 ;erxnd                     Allocated with name '_buffer_init_erxnd_10001_98'
-                                   1192 ;------------------------------------------------------------
-                                   1193 ;	SPI.c:186: void buffer_init(uint16_t start_address, uint16_t size)
-                                   1194 ;	-----------------------------------------
-                                   1195 ;	 function buffer_init
-                                   1196 ;	-----------------------------------------
-      003212                       1197 _buffer_init:
-      003212 AF 83            [24] 1198 	mov	r7,dph
-      003214 E5 82            [12] 1199 	mov	a,dpl
-      003216 90 03 79         [24] 1200 	mov	dptr,#_buffer_init_start_address_10000_95
-      003219 F0               [24] 1201 	movx	@dptr,a
-      00321A EF               [12] 1202 	mov	a,r7
-      00321B A3               [24] 1203 	inc	dptr
-      00321C F0               [24] 1204 	movx	@dptr,a
-                                   1205 ;	SPI.c:188: if (start_address > 0x1FFF || (start_address + size) > 0x1FFF) {
-      00321D 90 03 79         [24] 1206 	mov	dptr,#_buffer_init_start_address_10000_95
-      003220 E0               [24] 1207 	movx	a,@dptr
-      003221 FE               [12] 1208 	mov	r6,a
-      003222 A3               [24] 1209 	inc	dptr
-      003223 E0               [24] 1210 	movx	a,@dptr
-      003224 FF               [12] 1211 	mov	r7,a
-      003225 8E 04            [24] 1212 	mov	ar4,r6
-      003227 8F 05            [24] 1213 	mov	ar5,r7
-      003229 C3               [12] 1214 	clr	c
-      00322A 74 FF            [12] 1215 	mov	a,#0xff
-      00322C 9C               [12] 1216 	subb	a,r4
-      00322D 74 1F            [12] 1217 	mov	a,#0x1f
-      00322F 9D               [12] 1218 	subb	a,r5
-      003230 40 17            [24] 1219 	jc	00101$
-      003232 90 03 77         [24] 1220 	mov	dptr,#_buffer_init_PARM_2
-      003235 E0               [24] 1221 	movx	a,@dptr
-      003236 FA               [12] 1222 	mov	r2,a
-      003237 A3               [24] 1223 	inc	dptr
-      003238 E0               [24] 1224 	movx	a,@dptr
-      003239 FB               [12] 1225 	mov	r3,a
-      00323A EA               [12] 1226 	mov	a,r2
-      00323B 2E               [12] 1227 	add	a, r6
-      00323C F8               [12] 1228 	mov	r0,a
-      00323D EB               [12] 1229 	mov	a,r3
-      00323E 3F               [12] 1230 	addc	a, r7
-      00323F F9               [12] 1231 	mov	r1,a
-      003240 C3               [12] 1232 	clr	c
-      003241 74 FF            [12] 1233 	mov	a,#0xff
-      003243 98               [12] 1234 	subb	a,r0
-      003244 74 1F            [12] 1235 	mov	a,#0x1f
-      003246 99               [12] 1236 	subb	a,r1
-      003247 50 2A            [24] 1237 	jnc	00102$
-      003249                       1238 00101$:
-                                   1239 ;	SPI.c:189: printf("\n\rInvalid Buffer Address or Size: Start 0x%04X, Size 0x%04X\n\r", start_address, size);
-      003249 90 03 77         [24] 1240 	mov	dptr,#_buffer_init_PARM_2
-      00324C E0               [24] 1241 	movx	a,@dptr
-      00324D C0 E0            [24] 1242 	push	acc
-      00324F A3               [24] 1243 	inc	dptr
-      003250 E0               [24] 1244 	movx	a,@dptr
-      003251 C0 E0            [24] 1245 	push	acc
-      003253 90 03 79         [24] 1246 	mov	dptr,#_buffer_init_start_address_10000_95
-      003256 E0               [24] 1247 	movx	a,@dptr
-      003257 C0 E0            [24] 1248 	push	acc
-      003259 A3               [24] 1249 	inc	dptr
-      00325A E0               [24] 1250 	movx	a,@dptr
-      00325B C0 E0            [24] 1251 	push	acc
-      00325D 74 91            [12] 1252 	mov	a,#___str_6
-      00325F C0 E0            [24] 1253 	push	acc
-      003261 74 49            [12] 1254 	mov	a,#(___str_6 >> 8)
-      003263 C0 E0            [24] 1255 	push	acc
-      003265 74 80            [12] 1256 	mov	a,#0x80
-      003267 C0 E0            [24] 1257 	push	acc
-      003269 12 39 3D         [24] 1258 	lcall	_printf
-      00326C E5 81            [12] 1259 	mov	a,sp
-      00326E 24 F9            [12] 1260 	add	a,#0xf9
-      003270 F5 81            [12] 1261 	mov	sp,a
-                                   1262 ;	SPI.c:190: return;
-      003272 22               [24] 1263 	ret
-      003273                       1264 00102$:
-                                   1265 ;	SPI.c:194: uint16_t erxst = start_address & ~1; // Make sure ERXST is even
-      003273 53 04 FE         [24] 1266 	anl	ar4,#0xfe
-                                   1267 ;	SPI.c:195: uint16_t erxnd = (start_address + size - 1) & ~1; // Make sure ERXND is even
-      003276 EA               [12] 1268 	mov	a,r2
-      003277 2E               [12] 1269 	add	a, r6
-      003278 FE               [12] 1270 	mov	r6,a
-      003279 EB               [12] 1271 	mov	a,r3
-      00327A 3F               [12] 1272 	addc	a, r7
-      00327B FF               [12] 1273 	mov	r7,a
-      00327C 1E               [12] 1274 	dec	r6
-      00327D BE FF 01         [24] 1275 	cjne	r6,#0xff,00114$
-      003280 1F               [12] 1276 	dec	r7
-      003281                       1277 00114$:
-      003281 53 06 FE         [24] 1278 	anl	ar6,#0xfe
-                                   1279 ;	SPI.c:198: spi_control_write(0, 0x08, (uint8_t)(erxst >> 8)); // High byte of ERXST
-      003284 8D 03            [24] 1280 	mov	ar3,r5
-      003286 90 03 6A         [24] 1281 	mov	dptr,#_spi_control_write_PARM_2
-      003289 74 08            [12] 1282 	mov	a,#0x08
-      00328B F0               [24] 1283 	movx	@dptr,a
-      00328C 90 03 6B         [24] 1284 	mov	dptr,#_spi_control_write_PARM_3
-      00328F EB               [12] 1285 	mov	a,r3
-      003290 F0               [24] 1286 	movx	@dptr,a
-      003291 75 82 00         [24] 1287 	mov	dpl, #0x00
-      003294 C0 07            [24] 1288 	push	ar7
-      003296 C0 06            [24] 1289 	push	ar6
-      003298 C0 05            [24] 1290 	push	ar5
-      00329A C0 04            [24] 1291 	push	ar4
-      00329C 12 2F 53         [24] 1292 	lcall	_spi_control_write
-      00329F D0 04            [24] 1293 	pop	ar4
-      0032A1 D0 05            [24] 1294 	pop	ar5
-      0032A3 D0 06            [24] 1295 	pop	ar6
-      0032A5 D0 07            [24] 1296 	pop	ar7
-                                   1297 ;	SPI.c:199: spi_control_write(0, 0x09, (uint8_t)(erxst & 0xFF)); // Low byte of ERXST
-      0032A7 8C 03            [24] 1298 	mov	ar3,r4
-      0032A9 90 03 6A         [24] 1299 	mov	dptr,#_spi_control_write_PARM_2
-      0032AC 74 09            [12] 1300 	mov	a,#0x09
-      0032AE F0               [24] 1301 	movx	@dptr,a
-      0032AF 90 03 6B         [24] 1302 	mov	dptr,#_spi_control_write_PARM_3
-      0032B2 EB               [12] 1303 	mov	a,r3
-      0032B3 F0               [24] 1304 	movx	@dptr,a
-      0032B4 75 82 00         [24] 1305 	mov	dpl, #0x00
-      0032B7 C0 07            [24] 1306 	push	ar7
-      0032B9 C0 06            [24] 1307 	push	ar6
-      0032BB C0 05            [24] 1308 	push	ar5
-      0032BD C0 04            [24] 1309 	push	ar4
-      0032BF 12 2F 53         [24] 1310 	lcall	_spi_control_write
-      0032C2 D0 04            [24] 1311 	pop	ar4
-      0032C4 D0 05            [24] 1312 	pop	ar5
-      0032C6 D0 06            [24] 1313 	pop	ar6
-      0032C8 D0 07            [24] 1314 	pop	ar7
-                                   1315 ;	SPI.c:202: spi_control_write(0, 0x0A, (uint8_t)(erxnd >> 8)); // High byte of ERXND
-      0032CA 8F 03            [24] 1316 	mov	ar3,r7
-      0032CC 90 03 6A         [24] 1317 	mov	dptr,#_spi_control_write_PARM_2
-      0032CF 74 0A            [12] 1318 	mov	a,#0x0a
-      0032D1 F0               [24] 1319 	movx	@dptr,a
-      0032D2 90 03 6B         [24] 1320 	mov	dptr,#_spi_control_write_PARM_3
-      0032D5 EB               [12] 1321 	mov	a,r3
-      0032D6 F0               [24] 1322 	movx	@dptr,a
-      0032D7 75 82 00         [24] 1323 	mov	dpl, #0x00
-      0032DA C0 07            [24] 1324 	push	ar7
-      0032DC C0 06            [24] 1325 	push	ar6
-      0032DE C0 05            [24] 1326 	push	ar5
-      0032E0 C0 04            [24] 1327 	push	ar4
-      0032E2 12 2F 53         [24] 1328 	lcall	_spi_control_write
-      0032E5 D0 04            [24] 1329 	pop	ar4
-      0032E7 D0 05            [24] 1330 	pop	ar5
-      0032E9 D0 06            [24] 1331 	pop	ar6
-      0032EB D0 07            [24] 1332 	pop	ar7
-                                   1333 ;	SPI.c:203: spi_control_write(0, 0x0B, (uint8_t)(erxnd & 0xFF)); // Low byte of ERXND
-      0032ED 8E 03            [24] 1334 	mov	ar3,r6
-      0032EF 90 03 6A         [24] 1335 	mov	dptr,#_spi_control_write_PARM_2
-      0032F2 74 0B            [12] 1336 	mov	a,#0x0b
-      0032F4 F0               [24] 1337 	movx	@dptr,a
-      0032F5 90 03 6B         [24] 1338 	mov	dptr,#_spi_control_write_PARM_3
-      0032F8 EB               [12] 1339 	mov	a,r3
-      0032F9 F0               [24] 1340 	movx	@dptr,a
-      0032FA 75 82 00         [24] 1341 	mov	dpl, #0x00
-      0032FD C0 07            [24] 1342 	push	ar7
-      0032FF C0 06            [24] 1343 	push	ar6
-      003301 C0 05            [24] 1344 	push	ar5
-      003303 C0 04            [24] 1345 	push	ar4
-      003305 12 2F 53         [24] 1346 	lcall	_spi_control_write
-      003308 D0 04            [24] 1347 	pop	ar4
-      00330A D0 05            [24] 1348 	pop	ar5
-      00330C D0 06            [24] 1349 	pop	ar6
-      00330E D0 07            [24] 1350 	pop	ar7
-                                   1351 ;	SPI.c:205: printf("\n\rBuffer Initialized: Start 0x%04X, End 0x%04X\n\r", erxst, erxnd);
-      003310 C0 06            [24] 1352 	push	ar6
-      003312 C0 07            [24] 1353 	push	ar7
-      003314 C0 04            [24] 1354 	push	ar4
-      003316 C0 05            [24] 1355 	push	ar5
-      003318 74 CF            [12] 1356 	mov	a,#___str_7
-      00331A C0 E0            [24] 1357 	push	acc
-      00331C 74 49            [12] 1358 	mov	a,#(___str_7 >> 8)
-      00331E C0 E0            [24] 1359 	push	acc
-      003320 74 80            [12] 1360 	mov	a,#0x80
-      003322 C0 E0            [24] 1361 	push	acc
-      003324 12 39 3D         [24] 1362 	lcall	_printf
-      003327 E5 81            [12] 1363 	mov	a,sp
-      003329 24 F9            [12] 1364 	add	a,#0xf9
-      00332B F5 81            [12] 1365 	mov	sp,a
-                                   1366 ;	SPI.c:206: }
-      00332D 22               [24] 1367 	ret
-                                   1368 ;------------------------------------------------------------
-                                   1369 ;Allocation info for local variables in function 'spi_buffer_read'
-                                   1370 ;------------------------------------------------------------
-                                   1371 ;start_address             Allocated with name '_spi_buffer_read_PARM_2'
-                                   1372 ;data_ptr                  Allocated with name '_spi_buffer_read_PARM_3'
-                                   1373 ;num_bytes                 Allocated with name '_spi_buffer_read_num_bytes_10000_99'
-                                   1374 ;higher_byte               Allocated with name '_spi_buffer_read_higher_byte_10001_104'
-                                   1375 ;lower_byte                Allocated with name '_spi_buffer_read_lower_byte_10001_104'
-                                   1376 ;opcode                    Allocated with name '_spi_buffer_read_opcode_10002_105'
-                                   1377 ;i                         Allocated with name '_spi_buffer_read_i_20002_106'
-                                   1378 ;------------------------------------------------------------
-                                   1379 ;	SPI.c:209: void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
-                                   1380 ;	-----------------------------------------
-                                   1381 ;	 function spi_buffer_read
-                                   1382 ;	-----------------------------------------
-      00332E                       1383 _spi_buffer_read:
-      00332E AF 83            [24] 1384 	mov	r7,dph
-      003330 E5 82            [12] 1385 	mov	a,dpl
-      003332 90 03 80         [24] 1386 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
-      003335 F0               [24] 1387 	movx	@dptr,a
-      003336 EF               [12] 1388 	mov	a,r7
-      003337 A3               [24] 1389 	inc	dptr
-      003338 F0               [24] 1390 	movx	@dptr,a
-                                   1391 ;	SPI.c:211: if (num_bytes < 1) {
-      003339 90 03 80         [24] 1392 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
-      00333C E0               [24] 1393 	movx	a,@dptr
-      00333D FE               [12] 1394 	mov	r6,a
-      00333E A3               [24] 1395 	inc	dptr
-      00333F E0               [24] 1396 	movx	a,@dptr
-      003340 FF               [12] 1397 	mov	r7,a
-      003341 C3               [12] 1398 	clr	c
-      003342 EE               [12] 1399 	mov	a,r6
-      003343 94 01            [12] 1400 	subb	a,#0x01
-      003345 EF               [12] 1401 	mov	a,r7
-      003346 64 80            [12] 1402 	xrl	a,#0x80
-      003348 94 80            [12] 1403 	subb	a,#0x80
-      00334A 50 1A            [24] 1404 	jnc	00102$
-                                   1405 ;	SPI.c:212: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
-      00334C C0 06            [24] 1406 	push	ar6
-      00334E C0 07            [24] 1407 	push	ar7
-      003350 74 00            [12] 1408 	mov	a,#___str_8
-      003352 C0 E0            [24] 1409 	push	acc
-      003354 74 4A            [12] 1410 	mov	a,#(___str_8 >> 8)
-      003356 C0 E0            [24] 1411 	push	acc
-      003358 74 80            [12] 1412 	mov	a,#0x80
-      00335A C0 E0            [24] 1413 	push	acc
-      00335C 12 39 3D         [24] 1414 	lcall	_printf
-      00335F E5 81            [12] 1415 	mov	a,sp
-      003361 24 FB            [12] 1416 	add	a,#0xfb
-      003363 F5 81            [12] 1417 	mov	sp,a
-                                   1418 ;	SPI.c:213: return;
-      003365 22               [24] 1419 	ret
-      003366                       1420 00102$:
-                                   1421 ;	SPI.c:215: if (start_address > 0x1FFF) {
-      003366 90 03 7B         [24] 1422 	mov	dptr,#_spi_buffer_read_PARM_2
-      003369 E0               [24] 1423 	movx	a,@dptr
-      00336A FC               [12] 1424 	mov	r4,a
-      00336B A3               [24] 1425 	inc	dptr
-      00336C E0               [24] 1426 	movx	a,@dptr
-      00336D FD               [12] 1427 	mov	r5,a
-      00336E 8C 02            [24] 1428 	mov	ar2,r4
-      003370 8D 03            [24] 1429 	mov	ar3,r5
-      003372 C3               [12] 1430 	clr	c
-      003373 74 FF            [12] 1431 	mov	a,#0xff
-      003375 9A               [12] 1432 	subb	a,r2
-      003376 74 1F            [12] 1433 	mov	a,#0x1f
-      003378 9B               [12] 1434 	subb	a,r3
-      003379 50 1A            [24] 1435 	jnc	00104$
-                                   1436 ;	SPI.c:216: printf("\n\rInvalid address: %04X\n\r", start_address);
-      00337B C0 04            [24] 1437 	push	ar4
-      00337D C0 05            [24] 1438 	push	ar5
-      00337F 74 20            [12] 1439 	mov	a,#___str_9
-      003381 C0 E0            [24] 1440 	push	acc
-      003383 74 4A            [12] 1441 	mov	a,#(___str_9 >> 8)
-      003385 C0 E0            [24] 1442 	push	acc
-      003387 74 80            [12] 1443 	mov	a,#0x80
-      003389 C0 E0            [24] 1444 	push	acc
-      00338B 12 39 3D         [24] 1445 	lcall	_printf
-      00338E E5 81            [12] 1446 	mov	a,sp
-      003390 24 FB            [12] 1447 	add	a,#0xfb
-      003392 F5 81            [12] 1448 	mov	sp,a
-                                   1449 ;	SPI.c:217: return;
-      003394 22               [24] 1450 	ret
-      003395                       1451 00104$:
-                                   1452 ;	SPI.c:220: if (num_bytes > 1) {
-      003395 C3               [12] 1453 	clr	c
-      003396 74 01            [12] 1454 	mov	a,#0x01
-      003398 9E               [12] 1455 	subb	a,r6
-      003399 74 80            [12] 1456 	mov	a,#(0x00 ^ 0x80)
-      00339B 8F F0            [24] 1457 	mov	b,r7
-      00339D 63 F0 80         [24] 1458 	xrl	b,#0x80
-      0033A0 95 F0            [12] 1459 	subb	a,b
-      0033A2 50 0B            [24] 1460 	jnc	00106$
-                                   1461 ;	SPI.c:221: spi_set_autoinc();
-      0033A4 C0 05            [24] 1462 	push	ar5
-      0033A6 C0 04            [24] 1463 	push	ar4
-      0033A8 12 2F 28         [24] 1464 	lcall	_spi_set_autoinc
-      0033AB D0 04            [24] 1465 	pop	ar4
-      0033AD D0 05            [24] 1466 	pop	ar5
-      0033AF                       1467 00106$:
-                                   1468 ;	SPI.c:225: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
-      0033AF 8D 07            [24] 1469 	mov	ar7,r5
-                                   1470 ;	SPI.c:226: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
-      0033B1 8C 06            [24] 1471 	mov	ar6,r4
-                                   1472 ;	SPI.c:228: spi_control_write(0, 0x01, higher_byte); // High byte
-      0033B3 90 03 6A         [24] 1473 	mov	dptr,#_spi_control_write_PARM_2
-      0033B6 74 01            [12] 1474 	mov	a,#0x01
-      0033B8 F0               [24] 1475 	movx	@dptr,a
-      0033B9 90 03 6B         [24] 1476 	mov	dptr,#_spi_control_write_PARM_3
-      0033BC EF               [12] 1477 	mov	a,r7
-      0033BD F0               [24] 1478 	movx	@dptr,a
-      0033BE 75 82 00         [24] 1479 	mov	dpl, #0x00
-      0033C1 C0 06            [24] 1480 	push	ar6
-      0033C3 C0 05            [24] 1481 	push	ar5
-      0033C5 C0 04            [24] 1482 	push	ar4
-      0033C7 12 2F 53         [24] 1483 	lcall	_spi_control_write
-      0033CA D0 04            [24] 1484 	pop	ar4
-      0033CC D0 05            [24] 1485 	pop	ar5
-      0033CE D0 06            [24] 1486 	pop	ar6
-                                   1487 ;	SPI.c:229: spi_control_write(0, 0x00, lower_byte); // Low byte
-      0033D0 90 03 6A         [24] 1488 	mov	dptr,#_spi_control_write_PARM_2
-      0033D3 E4               [12] 1489 	clr	a
-      0033D4 F0               [24] 1490 	movx	@dptr,a
-      0033D5 90 03 6B         [24] 1491 	mov	dptr,#_spi_control_write_PARM_3
-      0033D8 EE               [12] 1492 	mov	a,r6
-      0033D9 F0               [24] 1493 	movx	@dptr,a
-      0033DA 75 82 00         [24] 1494 	mov	dpl, #0x00
-      0033DD C0 05            [24] 1495 	push	ar5
-      0033DF C0 04            [24] 1496 	push	ar4
-      0033E1 12 2F 53         [24] 1497 	lcall	_spi_control_write
-                                   1498 ;	SPI.c:232: CS_LOW; // Pull CS Low
-                                   1499 ;	assignBit
-      0033E4 C2 91            [12] 1500 	clr	_P1_1
-                                   1501 ;	SPI.c:233: SPI_send(opcode); // Send opcode
-      0033E6 75 82 3A         [24] 1502 	mov	dpl, #0x3a
-      0033E9 12 2F BE         [24] 1503 	lcall	_SPI_send
-      0033EC D0 04            [24] 1504 	pop	ar4
-      0033EE D0 05            [24] 1505 	pop	ar5
-                                   1506 ;	SPI.c:236: printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
-      0033F0 90 03 80         [24] 1507 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
-      0033F3 E0               [24] 1508 	movx	a,@dptr
-      0033F4 FE               [12] 1509 	mov	r6,a
-      0033F5 A3               [24] 1510 	inc	dptr
-      0033F6 E0               [24] 1511 	movx	a,@dptr
-      0033F7 FF               [12] 1512 	mov	r7,a
-      0033F8 C0 07            [24] 1513 	push	ar7
-      0033FA C0 06            [24] 1514 	push	ar6
-      0033FC C0 04            [24] 1515 	push	ar4
-      0033FE C0 05            [24] 1516 	push	ar5
-      003400 C0 06            [24] 1517 	push	ar6
-      003402 C0 07            [24] 1518 	push	ar7
-      003404 74 3A            [12] 1519 	mov	a,#___str_10
-      003406 C0 E0            [24] 1520 	push	acc
-      003408 74 4A            [12] 1521 	mov	a,#(___str_10 >> 8)
-      00340A C0 E0            [24] 1522 	push	acc
-      00340C 74 80            [12] 1523 	mov	a,#0x80
-      00340E C0 E0            [24] 1524 	push	acc
-      003410 12 39 3D         [24] 1525 	lcall	_printf
-      003413 E5 81            [12] 1526 	mov	a,sp
-      003415 24 F9            [12] 1527 	add	a,#0xf9
-      003417 F5 81            [12] 1528 	mov	sp,a
-      003419 D0 06            [24] 1529 	pop	ar6
-      00341B D0 07            [24] 1530 	pop	ar7
-                                   1531 ;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
-      00341D 90 03 82         [24] 1532 	mov	dptr,#_spi_buffer_read_i_20002_106
-      003420 E4               [12] 1533 	clr	a
-      003421 F0               [24] 1534 	movx	@dptr,a
-      003422 A3               [24] 1535 	inc	dptr
-      003423 F0               [24] 1536 	movx	@dptr,a
-      003424 90 03 7D         [24] 1537 	mov	dptr,#_spi_buffer_read_PARM_3
-      003427 E0               [24] 1538 	movx	a,@dptr
-      003428 FB               [12] 1539 	mov	r3,a
-      003429 A3               [24] 1540 	inc	dptr
-      00342A E0               [24] 1541 	movx	a,@dptr
-      00342B FC               [12] 1542 	mov	r4,a
-      00342C A3               [24] 1543 	inc	dptr
-      00342D E0               [24] 1544 	movx	a,@dptr
-      00342E FD               [12] 1545 	mov	r5,a
-      00342F                       1546 00109$:
-      00342F 90 03 82         [24] 1547 	mov	dptr,#_spi_buffer_read_i_20002_106
-      003432 E0               [24] 1548 	movx	a,@dptr
-      003433 F9               [12] 1549 	mov	r1,a
-      003434 A3               [24] 1550 	inc	dptr
-      003435 E0               [24] 1551 	movx	a,@dptr
-      003436 FA               [12] 1552 	mov	r2,a
-      003437 C3               [12] 1553 	clr	c
-      003438 E9               [12] 1554 	mov	a,r1
-      003439 9E               [12] 1555 	subb	a,r6
-      00343A EA               [12] 1556 	mov	a,r2
-      00343B 64 80            [12] 1557 	xrl	a,#0x80
-      00343D 8F F0            [24] 1558 	mov	b,r7
-      00343F 63 F0 80         [24] 1559 	xrl	b,#0x80
-      003442 95 F0            [12] 1560 	subb	a,b
-      003444 40 03            [24] 1561 	jc	00147$
-      003446 02 34 CC         [24] 1562 	ljmp	00107$
-      003449                       1563 00147$:
-                                   1564 ;	SPI.c:238: *data_ptr = SPI_ReadByte(); // Read data
-      003449 C0 06            [24] 1565 	push	ar6
-      00344B C0 07            [24] 1566 	push	ar7
-      00344D C0 07            [24] 1567 	push	ar7
-      00344F C0 06            [24] 1568 	push	ar6
-      003451 C0 05            [24] 1569 	push	ar5
-      003453 C0 04            [24] 1570 	push	ar4
-      003455 C0 03            [24] 1571 	push	ar3
-      003457 C0 02            [24] 1572 	push	ar2
-      003459 C0 01            [24] 1573 	push	ar1
-      00345B 12 2F 16         [24] 1574 	lcall	_SPI_ReadByte
-      00345E A8 82            [24] 1575 	mov	r0, dpl
-      003460 D0 01            [24] 1576 	pop	ar1
-      003462 D0 02            [24] 1577 	pop	ar2
-      003464 D0 03            [24] 1578 	pop	ar3
-      003466 D0 04            [24] 1579 	pop	ar4
-      003468 D0 05            [24] 1580 	pop	ar5
-      00346A D0 06            [24] 1581 	pop	ar6
-      00346C D0 07            [24] 1582 	pop	ar7
-      00346E 8B 82            [24] 1583 	mov	dpl,r3
-      003470 8C 83            [24] 1584 	mov	dph,r4
-      003472 8D F0            [24] 1585 	mov	b,r5
-      003474 E8               [12] 1586 	mov	a,r0
-      003475 12 37 AB         [24] 1587 	lcall	__gptrput
-      003478 A3               [24] 1588 	inc	dptr
-      003479 AB 82            [24] 1589 	mov	r3,dpl
-      00347B AC 83            [24] 1590 	mov	r4,dph
-                                   1591 ;	SPI.c:239: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
-      00347D 7F 00            [12] 1592 	mov	r7,#0x00
-      00347F 09               [12] 1593 	inc	r1
-      003480 B9 00 01         [24] 1594 	cjne	r1,#0x00,00148$
-      003483 0A               [12] 1595 	inc	r2
-      003484                       1596 00148$:
-      003484 C0 07            [24] 1597 	push	ar7
-      003486 C0 06            [24] 1598 	push	ar6
-      003488 C0 05            [24] 1599 	push	ar5
-      00348A C0 04            [24] 1600 	push	ar4
-      00348C C0 03            [24] 1601 	push	ar3
-      00348E C0 02            [24] 1602 	push	ar2
-      003490 C0 01            [24] 1603 	push	ar1
-      003492 C0 00            [24] 1604 	push	ar0
-      003494 C0 07            [24] 1605 	push	ar7
-      003496 C0 01            [24] 1606 	push	ar1
-      003498 C0 02            [24] 1607 	push	ar2
-      00349A 74 75            [12] 1608 	mov	a,#___str_11
-      00349C C0 E0            [24] 1609 	push	acc
-      00349E 74 4A            [12] 1610 	mov	a,#(___str_11 >> 8)
-      0034A0 C0 E0            [24] 1611 	push	acc
-      0034A2 74 80            [12] 1612 	mov	a,#0x80
-      0034A4 C0 E0            [24] 1613 	push	acc
-      0034A6 12 39 3D         [24] 1614 	lcall	_printf
-      0034A9 E5 81            [12] 1615 	mov	a,sp
-      0034AB 24 F9            [12] 1616 	add	a,#0xf9
-      0034AD F5 81            [12] 1617 	mov	sp,a
-      0034AF D0 01            [24] 1618 	pop	ar1
-      0034B1 D0 02            [24] 1619 	pop	ar2
-      0034B3 D0 03            [24] 1620 	pop	ar3
-      0034B5 D0 04            [24] 1621 	pop	ar4
-      0034B7 D0 05            [24] 1622 	pop	ar5
-      0034B9 D0 06            [24] 1623 	pop	ar6
-      0034BB D0 07            [24] 1624 	pop	ar7
-                                   1625 ;	SPI.c:240: data_ptr++;
-                                   1626 ;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
-      0034BD 90 03 82         [24] 1627 	mov	dptr,#_spi_buffer_read_i_20002_106
-      0034C0 E9               [12] 1628 	mov	a,r1
-      0034C1 F0               [24] 1629 	movx	@dptr,a
-      0034C2 EA               [12] 1630 	mov	a,r2
-      0034C3 A3               [24] 1631 	inc	dptr
-      0034C4 F0               [24] 1632 	movx	@dptr,a
-      0034C5 D0 07            [24] 1633 	pop	ar7
-      0034C7 D0 06            [24] 1634 	pop	ar6
-      0034C9 02 34 2F         [24] 1635 	ljmp	00109$
-      0034CC                       1636 00107$:
-                                   1637 ;	SPI.c:242: CS_HIGH; // Pull CS High
-                                   1638 ;	assignBit
-      0034CC D2 91            [12] 1639 	setb	_P1_1
-                                   1640 ;	SPI.c:243: }
-      0034CE 22               [24] 1641 	ret
-                                   1642 ;------------------------------------------------------------
-                                   1643 ;Allocation info for local variables in function 'spi_buffer_write'
-                                   1644 ;------------------------------------------------------------
-                                   1645 ;start_address             Allocated with name '_spi_buffer_write_PARM_2'
-                                   1646 ;data_ptr                  Allocated with name '_spi_buffer_write_PARM_3'
-                                   1647 ;num_bytes                 Allocated with name '_spi_buffer_write_num_bytes_10000_108'
-                                   1648 ;higher_byte               Allocated with name '_spi_buffer_write_higher_byte_10001_113'
-                                   1649 ;lower_byte                Allocated with name '_spi_buffer_write_lower_byte_10001_113'
-                                   1650 ;opcode                    Allocated with name '_spi_buffer_write_opcode_10002_114'
-                                   1651 ;i                         Allocated with name '_spi_buffer_write_i_20002_115'
-                                   1652 ;------------------------------------------------------------
-                                   1653 ;	SPI.c:246: void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
-                                   1654 ;	-----------------------------------------
-                                   1655 ;	 function spi_buffer_write
-                                   1656 ;	-----------------------------------------
-      0034CF                       1657 _spi_buffer_write:
-      0034CF AF 83            [24] 1658 	mov	r7,dph
-      0034D1 E5 82            [12] 1659 	mov	a,dpl
-      0034D3 90 03 89         [24] 1660 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
-      0034D6 F0               [24] 1661 	movx	@dptr,a
-      0034D7 EF               [12] 1662 	mov	a,r7
-      0034D8 A3               [24] 1663 	inc	dptr
-      0034D9 F0               [24] 1664 	movx	@dptr,a
-                                   1665 ;	SPI.c:248: if (num_bytes < 1)
-      0034DA 90 03 89         [24] 1666 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
-      0034DD E0               [24] 1667 	movx	a,@dptr
-      0034DE FE               [12] 1668 	mov	r6,a
-      0034DF A3               [24] 1669 	inc	dptr
-      0034E0 E0               [24] 1670 	movx	a,@dptr
-      0034E1 FF               [12] 1671 	mov	r7,a
-      0034E2 C3               [12] 1672 	clr	c
-      0034E3 EE               [12] 1673 	mov	a,r6
-      0034E4 94 01            [12] 1674 	subb	a,#0x01
-      0034E6 EF               [12] 1675 	mov	a,r7
-      0034E7 64 80            [12] 1676 	xrl	a,#0x80
-      0034E9 94 80            [12] 1677 	subb	a,#0x80
-      0034EB 50 1A            [24] 1678 	jnc	00102$
-                                   1679 ;	SPI.c:250: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
-      0034ED C0 06            [24] 1680 	push	ar6
-      0034EF C0 07            [24] 1681 	push	ar7
-      0034F1 74 00            [12] 1682 	mov	a,#___str_8
-      0034F3 C0 E0            [24] 1683 	push	acc
-      0034F5 74 4A            [12] 1684 	mov	a,#(___str_8 >> 8)
-      0034F7 C0 E0            [24] 1685 	push	acc
-      0034F9 74 80            [12] 1686 	mov	a,#0x80
-      0034FB C0 E0            [24] 1687 	push	acc
-      0034FD 12 39 3D         [24] 1688 	lcall	_printf
-      003500 E5 81            [12] 1689 	mov	a,sp
-      003502 24 FB            [12] 1690 	add	a,#0xfb
-      003504 F5 81            [12] 1691 	mov	sp,a
-                                   1692 ;	SPI.c:251: return;
-      003506 22               [24] 1693 	ret
-      003507                       1694 00102$:
-                                   1695 ;	SPI.c:253: if (start_address > 0x1FFF) {
-      003507 90 03 84         [24] 1696 	mov	dptr,#_spi_buffer_write_PARM_2
-      00350A E0               [24] 1697 	movx	a,@dptr
-      00350B FC               [12] 1698 	mov	r4,a
-      00350C A3               [24] 1699 	inc	dptr
-      00350D E0               [24] 1700 	movx	a,@dptr
-      00350E FD               [12] 1701 	mov	r5,a
-      00350F 8C 02            [24] 1702 	mov	ar2,r4
-      003511 8D 03            [24] 1703 	mov	ar3,r5
-      003513 C3               [12] 1704 	clr	c
-      003514 74 FF            [12] 1705 	mov	a,#0xff
-      003516 9A               [12] 1706 	subb	a,r2
-      003517 74 1F            [12] 1707 	mov	a,#0x1f
-      003519 9B               [12] 1708 	subb	a,r3
-      00351A 50 1A            [24] 1709 	jnc	00104$
-                                   1710 ;	SPI.c:254: printf("\n\rInvalid address: %04X\n\r", start_address);
-      00351C C0 04            [24] 1711 	push	ar4
-      00351E C0 05            [24] 1712 	push	ar5
-      003520 74 20            [12] 1713 	mov	a,#___str_9
-      003522 C0 E0            [24] 1714 	push	acc
-      003524 74 4A            [12] 1715 	mov	a,#(___str_9 >> 8)
-      003526 C0 E0            [24] 1716 	push	acc
-      003528 74 80            [12] 1717 	mov	a,#0x80
-      00352A C0 E0            [24] 1718 	push	acc
-      00352C 12 39 3D         [24] 1719 	lcall	_printf
-      00352F E5 81            [12] 1720 	mov	a,sp
-      003531 24 FB            [12] 1721 	add	a,#0xfb
-      003533 F5 81            [12] 1722 	mov	sp,a
-                                   1723 ;	SPI.c:255: return;
-      003535 22               [24] 1724 	ret
-      003536                       1725 00104$:
-                                   1726 ;	SPI.c:259: if (num_bytes > 1) {
-      003536 C3               [12] 1727 	clr	c
-      003537 74 01            [12] 1728 	mov	a,#0x01
-      003539 9E               [12] 1729 	subb	a,r6
-      00353A 74 80            [12] 1730 	mov	a,#(0x00 ^ 0x80)
-      00353C 8F F0            [24] 1731 	mov	b,r7
-      00353E 63 F0 80         [24] 1732 	xrl	b,#0x80
-      003541 95 F0            [12] 1733 	subb	a,b
-      003543 50 0B            [24] 1734 	jnc	00106$
-                                   1735 ;	SPI.c:260: spi_set_autoinc();
-      003545 C0 05            [24] 1736 	push	ar5
-      003547 C0 04            [24] 1737 	push	ar4
-      003549 12 2F 28         [24] 1738 	lcall	_spi_set_autoinc
-      00354C D0 04            [24] 1739 	pop	ar4
-      00354E D0 05            [24] 1740 	pop	ar5
-      003550                       1741 00106$:
-                                   1742 ;	SPI.c:263: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
-      003550 8D 07            [24] 1743 	mov	ar7,r5
-                                   1744 ;	SPI.c:264: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
-      003552 8C 06            [24] 1745 	mov	ar6,r4
-                                   1746 ;	SPI.c:266: spi_control_write(0, 0x03, higher_byte); // High byte
-      003554 90 03 6A         [24] 1747 	mov	dptr,#_spi_control_write_PARM_2
-      003557 74 03            [12] 1748 	mov	a,#0x03
-      003559 F0               [24] 1749 	movx	@dptr,a
-      00355A 90 03 6B         [24] 1750 	mov	dptr,#_spi_control_write_PARM_3
-      00355D EF               [12] 1751 	mov	a,r7
-      00355E F0               [24] 1752 	movx	@dptr,a
-      00355F 75 82 00         [24] 1753 	mov	dpl, #0x00
-      003562 C0 06            [24] 1754 	push	ar6
-      003564 C0 05            [24] 1755 	push	ar5
-      003566 C0 04            [24] 1756 	push	ar4
-      003568 12 2F 53         [24] 1757 	lcall	_spi_control_write
-      00356B D0 04            [24] 1758 	pop	ar4
-      00356D D0 05            [24] 1759 	pop	ar5
-      00356F D0 06            [24] 1760 	pop	ar6
-                                   1761 ;	SPI.c:267: spi_control_write(0, 0x02, lower_byte); // Low byte
-      003571 90 03 6A         [24] 1762 	mov	dptr,#_spi_control_write_PARM_2
-      003574 74 02            [12] 1763 	mov	a,#0x02
-      003576 F0               [24] 1764 	movx	@dptr,a
-      003577 90 03 6B         [24] 1765 	mov	dptr,#_spi_control_write_PARM_3
-      00357A EE               [12] 1766 	mov	a,r6
-      00357B F0               [24] 1767 	movx	@dptr,a
-      00357C 75 82 00         [24] 1768 	mov	dpl, #0x00
-      00357F C0 05            [24] 1769 	push	ar5
-      003581 C0 04            [24] 1770 	push	ar4
-      003583 12 2F 53         [24] 1771 	lcall	_spi_control_write
-                                   1772 ;	SPI.c:270: CS_LOW; // Pull CS Low
-                                   1773 ;	assignBit
-      003586 C2 91            [12] 1774 	clr	_P1_1
-                                   1775 ;	SPI.c:271: SPI_send(opcode); // Send opcode
-      003588 75 82 7A         [24] 1776 	mov	dpl, #0x7a
-      00358B 12 2F BE         [24] 1777 	lcall	_SPI_send
-      00358E D0 04            [24] 1778 	pop	ar4
-      003590 D0 05            [24] 1779 	pop	ar5
-                                   1780 ;	SPI.c:274: printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
-      003592 90 03 89         [24] 1781 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
-      003595 E0               [24] 1782 	movx	a,@dptr
-      003596 FE               [12] 1783 	mov	r6,a
-      003597 A3               [24] 1784 	inc	dptr
-      003598 E0               [24] 1785 	movx	a,@dptr
-      003599 FF               [12] 1786 	mov	r7,a
-      00359A C0 07            [24] 1787 	push	ar7
-      00359C C0 06            [24] 1788 	push	ar6
-      00359E C0 04            [24] 1789 	push	ar4
-      0035A0 C0 05            [24] 1790 	push	ar5
-      0035A2 C0 06            [24] 1791 	push	ar6
-      0035A4 C0 07            [24] 1792 	push	ar7
-      0035A6 74 87            [12] 1793 	mov	a,#___str_12
-      0035A8 C0 E0            [24] 1794 	push	acc
-      0035AA 74 4A            [12] 1795 	mov	a,#(___str_12 >> 8)
-      0035AC C0 E0            [24] 1796 	push	acc
-      0035AE 74 80            [12] 1797 	mov	a,#0x80
-      0035B0 C0 E0            [24] 1798 	push	acc
-      0035B2 12 39 3D         [24] 1799 	lcall	_printf
-      0035B5 E5 81            [12] 1800 	mov	a,sp
-      0035B7 24 F9            [12] 1801 	add	a,#0xf9
-      0035B9 F5 81            [12] 1802 	mov	sp,a
-      0035BB D0 06            [24] 1803 	pop	ar6
-      0035BD D0 07            [24] 1804 	pop	ar7
-                                   1805 ;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
-      0035BF 90 03 8B         [24] 1806 	mov	dptr,#_spi_buffer_write_i_20002_115
-      0035C2 E4               [12] 1807 	clr	a
-      0035C3 F0               [24] 1808 	movx	@dptr,a
-      0035C4 A3               [24] 1809 	inc	dptr
-      0035C5 F0               [24] 1810 	movx	@dptr,a
-      0035C6 90 03 86         [24] 1811 	mov	dptr,#_spi_buffer_write_PARM_3
-      0035C9 E0               [24] 1812 	movx	a,@dptr
-      0035CA FB               [12] 1813 	mov	r3,a
-      0035CB A3               [24] 1814 	inc	dptr
-      0035CC E0               [24] 1815 	movx	a,@dptr
-      0035CD FC               [12] 1816 	mov	r4,a
-      0035CE A3               [24] 1817 	inc	dptr
-      0035CF E0               [24] 1818 	movx	a,@dptr
-      0035D0 FD               [12] 1819 	mov	r5,a
-      0035D1                       1820 00109$:
-      0035D1 90 03 8B         [24] 1821 	mov	dptr,#_spi_buffer_write_i_20002_115
-      0035D4 E0               [24] 1822 	movx	a,@dptr
-      0035D5 F9               [12] 1823 	mov	r1,a
-      0035D6 A3               [24] 1824 	inc	dptr
-      0035D7 E0               [24] 1825 	movx	a,@dptr
-      0035D8 FA               [12] 1826 	mov	r2,a
-      0035D9 C3               [12] 1827 	clr	c
-      0035DA E9               [12] 1828 	mov	a,r1
-      0035DB 9E               [12] 1829 	subb	a,r6
-      0035DC EA               [12] 1830 	mov	a,r2
-      0035DD 64 80            [12] 1831 	xrl	a,#0x80
-      0035DF 8F F0            [24] 1832 	mov	b,r7
-      0035E1 63 F0 80         [24] 1833 	xrl	b,#0x80
-      0035E4 95 F0            [12] 1834 	subb	a,b
-      0035E6 40 03            [24] 1835 	jc	00147$
-      0035E8 02 36 78         [24] 1836 	ljmp	00107$
-      0035EB                       1837 00147$:
-                                   1838 ;	SPI.c:276: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
-      0035EB C0 06            [24] 1839 	push	ar6
-      0035ED C0 07            [24] 1840 	push	ar7
-      0035EF 8B 82            [24] 1841 	mov	dpl,r3
-      0035F1 8C 83            [24] 1842 	mov	dph,r4
-      0035F3 8D F0            [24] 1843 	mov	b,r5
-      0035F5 12 43 5F         [24] 1844 	lcall	__gptrget
-      0035F8 F8               [12] 1845 	mov	r0,a
-      0035F9 7F 00            [12] 1846 	mov	r7,#0x00
-      0035FB 09               [12] 1847 	inc	r1
-      0035FC B9 00 01         [24] 1848 	cjne	r1,#0x00,00148$
-      0035FF 0A               [12] 1849 	inc	r2
-      003600                       1850 00148$:
-      003600 C0 07            [24] 1851 	push	ar7
-      003602 C0 06            [24] 1852 	push	ar6
-      003604 C0 05            [24] 1853 	push	ar5
-      003606 C0 04            [24] 1854 	push	ar4
-      003608 C0 03            [24] 1855 	push	ar3
-      00360A C0 02            [24] 1856 	push	ar2
-      00360C C0 01            [24] 1857 	push	ar1
-      00360E C0 00            [24] 1858 	push	ar0
-      003610 C0 07            [24] 1859 	push	ar7
-      003612 C0 01            [24] 1860 	push	ar1
-      003614 C0 02            [24] 1861 	push	ar2
-      003616 74 75            [12] 1862 	mov	a,#___str_11
-      003618 C0 E0            [24] 1863 	push	acc
-      00361A 74 4A            [12] 1864 	mov	a,#(___str_11 >> 8)
-      00361C C0 E0            [24] 1865 	push	acc
-      00361E 74 80            [12] 1866 	mov	a,#0x80
-      003620 C0 E0            [24] 1867 	push	acc
-      003622 12 39 3D         [24] 1868 	lcall	_printf
-      003625 E5 81            [12] 1869 	mov	a,sp
-      003627 24 F9            [12] 1870 	add	a,#0xf9
-      003629 F5 81            [12] 1871 	mov	sp,a
-      00362B D0 01            [24] 1872 	pop	ar1
-      00362D D0 02            [24] 1873 	pop	ar2
-      00362F D0 03            [24] 1874 	pop	ar3
-      003631 D0 04            [24] 1875 	pop	ar4
-      003633 D0 05            [24] 1876 	pop	ar5
-      003635 D0 06            [24] 1877 	pop	ar6
-      003637 D0 07            [24] 1878 	pop	ar7
-                                   1879 ;	SPI.c:277: SPI_send(*data_ptr); // Send data
-      003639 8B 82            [24] 1880 	mov	dpl,r3
-      00363B 8C 83            [24] 1881 	mov	dph,r4
-      00363D 8D F0            [24] 1882 	mov	b,r5
-      00363F 12 43 5F         [24] 1883 	lcall	__gptrget
-      003642 FF               [12] 1884 	mov	r7,a
-      003643 A3               [24] 1885 	inc	dptr
-      003644 AB 82            [24] 1886 	mov	r3,dpl
-      003646 AC 83            [24] 1887 	mov	r4,dph
-      003648 8F 82            [24] 1888 	mov	dpl, r7
-      00364A C0 07            [24] 1889 	push	ar7
-      00364C C0 06            [24] 1890 	push	ar6
-      00364E C0 05            [24] 1891 	push	ar5
-      003650 C0 04            [24] 1892 	push	ar4
-      003652 C0 03            [24] 1893 	push	ar3
-      003654 C0 02            [24] 1894 	push	ar2
-      003656 C0 01            [24] 1895 	push	ar1
-      003658 12 2F BE         [24] 1896 	lcall	_SPI_send
-      00365B D0 01            [24] 1897 	pop	ar1
-      00365D D0 02            [24] 1898 	pop	ar2
-      00365F D0 03            [24] 1899 	pop	ar3
-      003661 D0 04            [24] 1900 	pop	ar4
-      003663 D0 05            [24] 1901 	pop	ar5
-      003665 D0 06            [24] 1902 	pop	ar6
-      003667 D0 07            [24] 1903 	pop	ar7
-                                   1904 ;	SPI.c:278: data_ptr++;
-                                   1905 ;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
-      003669 90 03 8B         [24] 1906 	mov	dptr,#_spi_buffer_write_i_20002_115
-      00366C E9               [12] 1907 	mov	a,r1
-      00366D F0               [24] 1908 	movx	@dptr,a
-      00366E EA               [12] 1909 	mov	a,r2
-      00366F A3               [24] 1910 	inc	dptr
-      003670 F0               [24] 1911 	movx	@dptr,a
-      003671 D0 07            [24] 1912 	pop	ar7
-      003673 D0 06            [24] 1913 	pop	ar6
-      003675 02 35 D1         [24] 1914 	ljmp	00109$
-      003678                       1915 00107$:
-                                   1916 ;	SPI.c:280: CS_HIGH; // Pull CS High
-                                   1917 ;	assignBit
-      003678 D2 91            [12] 1918 	setb	_P1_1
-                                   1919 ;	SPI.c:281: }
-      00367A 22               [24] 1920 	ret
-                                   1921 ;------------------------------------------------------------
-                                   1922 ;Allocation info for local variables in function 'init_ENC'
-                                   1923 ;------------------------------------------------------------
-                                   1924 ;	SPI.c:283: void init_ENC(void)
-                                   1925 ;	-----------------------------------------
-                                   1926 ;	 function init_ENC
-                                   1927 ;	-----------------------------------------
-      00367B                       1928 _init_ENC:
-                                   1929 ;	SPI.c:286: enc28j60_init_rx_buffer(0x0000, 0x0010);
-      00367B 90 01 06         [24] 1930 	mov	dptr,#_enc28j60_init_rx_buffer_PARM_2
-      00367E 74 10            [12] 1931 	mov	a,#0x10
-      003680 F0               [24] 1932 	movx	@dptr,a
-      003681 E4               [12] 1933 	clr	a
-      003682 A3               [24] 1934 	inc	dptr
-      003683 F0               [24] 1935 	movx	@dptr,a
-      003684 90 00 00         [24] 1936 	mov	dptr,#0x0000
-                                   1937 ;	SPI.c:288: }
-      003687 02 21 6E         [24] 1938 	ljmp	_enc28j60_init_rx_buffer
-                                   1939 ;------------------------------------------------------------
-                                   1940 ;Allocation info for local variables in function 'init_MAC'
-                                   1941 ;------------------------------------------------------------
-                                   1942 ;	SPI.c:290: void init_MAC(void)
-                                   1943 ;	-----------------------------------------
-                                   1944 ;	 function init_MAC
-                                   1945 ;	-----------------------------------------
-      00368A                       1946 _init_MAC:
-                                   1947 ;	SPI.c:293: spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
-      00368A 90 03 6A         [24] 1948 	mov	dptr,#_spi_control_write_PARM_2
-      00368D 74 02            [12] 1949 	mov	a,#0x02
-      00368F F0               [24] 1950 	movx	@dptr,a
-      003690 90 03 6B         [24] 1951 	mov	dptr,#_spi_control_write_PARM_3
-      003693 74 70            [12] 1952 	mov	a,#0x70
-      003695 F0               [24] 1953 	movx	@dptr,a
-      003696 75 82 02         [24] 1954 	mov	dpl, #0x02
-      003699 12 2F 53         [24] 1955 	lcall	_spi_control_write
-                                   1956 ;	SPI.c:294: spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
-      00369C 90 03 6A         [24] 1957 	mov	dptr,#_spi_control_write_PARM_2
-      00369F 74 03            [12] 1958 	mov	a,#0x03
-      0036A1 F0               [24] 1959 	movx	@dptr,a
-      0036A2 90 03 6B         [24] 1960 	mov	dptr,#_spi_control_write_PARM_3
-      0036A5 74 40            [12] 1961 	mov	a,#0x40
-      0036A7 F0               [24] 1962 	movx	@dptr,a
-      0036A8 75 82 02         [24] 1963 	mov	dpl, #0x02
-      0036AB 12 2F 53         [24] 1964 	lcall	_spi_control_write
-                                   1965 ;	SPI.c:295: spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
-      0036AE 90 03 6A         [24] 1966 	mov	dptr,#_spi_control_write_PARM_2
-      0036B1 74 0A            [12] 1967 	mov	a,#0x0a
-      0036B3 F0               [24] 1968 	movx	@dptr,a
-      0036B4 90 03 6B         [24] 1969 	mov	dptr,#_spi_control_write_PARM_3
-      0036B7 74 EE            [12] 1970 	mov	a,#0xee
-      0036B9 F0               [24] 1971 	movx	@dptr,a
-      0036BA 75 82 02         [24] 1972 	mov	dpl, #0x02
-      0036BD 12 2F 53         [24] 1973 	lcall	_spi_control_write
-                                   1974 ;	SPI.c:296: spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
-      0036C0 90 03 6A         [24] 1975 	mov	dptr,#_spi_control_write_PARM_2
-      0036C3 74 0B            [12] 1976 	mov	a,#0x0b
-      0036C5 F0               [24] 1977 	movx	@dptr,a
-      0036C6 90 03 6B         [24] 1978 	mov	dptr,#_spi_control_write_PARM_3
-      0036C9 74 05            [12] 1979 	mov	a,#0x05
-      0036CB F0               [24] 1980 	movx	@dptr,a
-      0036CC 75 82 02         [24] 1981 	mov	dpl, #0x02
-      0036CF 12 2F 53         [24] 1982 	lcall	_spi_control_write
-                                   1983 ;	SPI.c:297: spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
-      0036D2 90 03 6A         [24] 1984 	mov	dptr,#_spi_control_write_PARM_2
-      0036D5 74 04            [12] 1985 	mov	a,#0x04
-      0036D7 F0               [24] 1986 	movx	@dptr,a
-      0036D8 90 03 6B         [24] 1987 	mov	dptr,#_spi_control_write_PARM_3
-      0036DB 74 12            [12] 1988 	mov	a,#0x12
-      0036DD F0               [24] 1989 	movx	@dptr,a
-      0036DE 75 82 02         [24] 1990 	mov	dpl, #0x02
-      0036E1 12 2F 53         [24] 1991 	lcall	_spi_control_write
-                                   1992 ;	SPI.c:298: spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
-      0036E4 90 03 6A         [24] 1993 	mov	dptr,#_spi_control_write_PARM_2
-      0036E7 74 06            [12] 1994 	mov	a,#0x06
-      0036E9 F0               [24] 1995 	movx	@dptr,a
-      0036EA 90 03 6B         [24] 1996 	mov	dptr,#_spi_control_write_PARM_3
-      0036ED 74 12            [12] 1997 	mov	a,#0x12
-      0036EF F0               [24] 1998 	movx	@dptr,a
-      0036F0 75 82 02         [24] 1999 	mov	dpl, #0x02
-      0036F3 12 2F 53         [24] 2000 	lcall	_spi_control_write
-                                   2001 ;	SPI.c:299: spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
-      0036F6 90 03 6A         [24] 2002 	mov	dptr,#_spi_control_write_PARM_2
-      0036F9 74 07            [12] 2003 	mov	a,#0x07
-      0036FB F0               [24] 2004 	movx	@dptr,a
-      0036FC 90 03 6B         [24] 2005 	mov	dptr,#_spi_control_write_PARM_3
-      0036FF 74 0C            [12] 2006 	mov	a,#0x0c
-      003701 F0               [24] 2007 	movx	@dptr,a
-      003702 75 82 02         [24] 2008 	mov	dpl, #0x02
-                                   2009 ;	SPI.c:300: }
-      003705 02 2F 53         [24] 2010 	ljmp	_spi_control_write
-                                   2011 	.area CSEG    (CODE)
-                                   2012 	.area CONST   (CODE)
-                                   2013 	.area CONST   (CODE)
-      00489A                       2014 ___str_0:
-      00489A 57 72 69 74 65 3A 20  2015 	.ascii "Write: Address 0x%02X, Data 0x%02X"
+      002FBA 75 82 5F         [24]  655 	mov	dpl, #0x5f
+      002FBD 12 30 39         [24]  656 	lcall	_SPI_send
+                                    657 ;	SPI.c:41: SPI_send(bank + 4);
+      002FC0 90 03 61         [24]  658 	mov	dptr,#_select_reg_bank_bank_10000_68
+      002FC3 E0               [24]  659 	movx	a,@dptr
+      002FC4 24 04            [12]  660 	add	a,#0x04
+      002FC6 F5 82            [12]  661 	mov	dpl,a
+      002FC8 12 30 39         [24]  662 	lcall	_SPI_send
+                                    663 ;	SPI.c:44: CS_HIGH;
+                                    664 ;	assignBit
+      002FCB D2 91            [12]  665 	setb	_P1_1
+                                    666 ;	SPI.c:45: }
+      002FCD 22               [24]  667 	ret
+                                    668 ;------------------------------------------------------------
+                                    669 ;Allocation info for local variables in function 'spi_control_write'
+                                    670 ;------------------------------------------------------------
+                                    671 ;addr                      Allocated with name '_spi_control_write_PARM_2'
+                                    672 ;data                      Allocated with name '_spi_control_write_PARM_3'
+                                    673 ;reg_bank                  Allocated with name '_spi_control_write_reg_bank_10000_70'
+                                    674 ;opcode                    Allocated with name '_spi_control_write_opcode_10000_71'
+                                    675 ;------------------------------------------------------------
+                                    676 ;	SPI.c:46: void spi_control_write(uint8_t reg_bank, uint8_t addr, uint8_t data)
+                                    677 ;	-----------------------------------------
+                                    678 ;	 function spi_control_write
+                                    679 ;	-----------------------------------------
+      002FCE                        680 _spi_control_write:
+      002FCE E5 82            [12]  681 	mov	a,dpl
+      002FD0 90 03 64         [24]  682 	mov	dptr,#_spi_control_write_reg_bank_10000_70
+      002FD3 F0               [24]  683 	movx	@dptr,a
+                                    684 ;	SPI.c:49: addr = addr + opcode; // Add the opcode to the address
+      002FD4 90 03 62         [24]  685 	mov	dptr,#_spi_control_write_PARM_2
+      002FD7 E0               [24]  686 	movx	a,@dptr
+      002FD8 24 40            [12]  687 	add	a, #0x40
+      002FDA F0               [24]  688 	movx	@dptr,a
+                                    689 ;	SPI.c:51: select_reg_bank(reg_bank); // Function to select the register bank
+      002FDB 90 03 64         [24]  690 	mov	dptr,#_spi_control_write_reg_bank_10000_70
+      002FDE E0               [24]  691 	movx	a,@dptr
+      002FDF F5 82            [12]  692 	mov	dpl,a
+      002FE1 12 2F B2         [24]  693 	lcall	_select_reg_bank
+                                    694 ;	SPI.c:54: CS_LOW;
+                                    695 ;	assignBit
+      002FE4 C2 91            [12]  696 	clr	_P1_1
+                                    697 ;	SPI.c:57: SPI_send(addr);
+      002FE6 90 03 62         [24]  698 	mov	dptr,#_spi_control_write_PARM_2
+      002FE9 E0               [24]  699 	movx	a,@dptr
+      002FEA FF               [12]  700 	mov	r7,a
+      002FEB F5 82            [12]  701 	mov	dpl,a
+      002FED C0 07            [24]  702 	push	ar7
+      002FEF 12 30 39         [24]  703 	lcall	_SPI_send
+      002FF2 D0 07            [24]  704 	pop	ar7
+                                    705 ;	SPI.c:60: SPI_send(data);
+      002FF4 90 03 63         [24]  706 	mov	dptr,#_spi_control_write_PARM_3
+      002FF7 E0               [24]  707 	movx	a,@dptr
+      002FF8 FE               [12]  708 	mov	r6,a
+      002FF9 F5 82            [12]  709 	mov	dpl,a
+      002FFB C0 07            [24]  710 	push	ar7
+      002FFD C0 06            [24]  711 	push	ar6
+      002FFF 12 30 39         [24]  712 	lcall	_SPI_send
+      003002 D0 06            [24]  713 	pop	ar6
+      003004 D0 07            [24]  714 	pop	ar7
+                                    715 ;	SPI.c:63: CS_HIGH;
+                                    716 ;	assignBit
+      003006 D2 91            [12]  717 	setb	_P1_1
+                                    718 ;	SPI.c:66: printf("Write: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+      003008 7D 00            [12]  719 	mov	r5,#0x00
+      00300A 7C 00            [12]  720 	mov	r4,#0x00
+      00300C C0 06            [24]  721 	push	ar6
+      00300E C0 05            [24]  722 	push	ar5
+      003010 C0 07            [24]  723 	push	ar7
+      003012 C0 04            [24]  724 	push	ar4
+      003014 74 B9            [12]  725 	mov	a,#___str_0
+      003016 C0 E0            [24]  726 	push	acc
+      003018 74 49            [12]  727 	mov	a,#(___str_0 >> 8)
+      00301A C0 E0            [24]  728 	push	acc
+      00301C 74 80            [12]  729 	mov	a,#0x80
+      00301E C0 E0            [24]  730 	push	acc
+      003020 12 39 E3         [24]  731 	lcall	_printf
+      003023 E5 81            [12]  732 	mov	a,sp
+      003025 24 F9            [12]  733 	add	a,#0xf9
+      003027 F5 81            [12]  734 	mov	sp,a
+                                    735 ;	SPI.c:67: }
+      003029 22               [24]  736 	ret
+                                    737 ;------------------------------------------------------------
+                                    738 ;Allocation info for local variables in function 'configure_SPI'
+                                    739 ;------------------------------------------------------------
+                                    740 ;	SPI.c:70: void configure_SPI(void)
+                                    741 ;	-----------------------------------------
+                                    742 ;	 function configure_SPI
+                                    743 ;	-----------------------------------------
+      00302A                        744 _configure_SPI:
+                                    745 ;	SPI.c:72: CS_PIN = 1;
+                                    746 ;	assignBit
+      00302A D2 91            [12]  747 	setb	_P1_1
+                                    748 ;	SPI.c:73: SPCON = 0x00;
+      00302C 75 C3 00         [24]  749 	mov	_SPCON,#0x00
+                                    750 ;	SPI.c:74: SPCON |= SS_DISABLE;
+      00302F 43 C3 20         [24]  751 	orl	_SPCON,#0x20
+                                    752 ;	SPI.c:75: SPCON |= MASTER_MODE;
+      003032 43 C3 10         [24]  753 	orl	_SPCON,#0x10
+                                    754 ;	SPI.c:76: SPCON |= SPI_ENABLE;
+      003035 43 C3 40         [24]  755 	orl	_SPCON,#0x40
+                                    756 ;	SPI.c:77: }
+      003038 22               [24]  757 	ret
+                                    758 ;------------------------------------------------------------
+                                    759 ;Allocation info for local variables in function 'SPI_send'
+                                    760 ;------------------------------------------------------------
+                                    761 ;data                      Allocated with name '_SPI_send_data_10000_74'
+                                    762 ;------------------------------------------------------------
+                                    763 ;	SPI.c:80: void SPI_send(uint8_t data)
+                                    764 ;	-----------------------------------------
+                                    765 ;	 function SPI_send
+                                    766 ;	-----------------------------------------
+      003039                        767 _SPI_send:
+      003039 E5 82            [12]  768 	mov	a,dpl
+      00303B 90 03 65         [24]  769 	mov	dptr,#_SPI_send_data_10000_74
+      00303E F0               [24]  770 	movx	@dptr,a
+                                    771 ;	SPI.c:83: SPDAT = data;           // Config + MSB of data
+      00303F E0               [24]  772 	movx	a,@dptr
+      003040 F5 C5            [12]  773 	mov	_SPDAT,a
+                                    774 ;	SPI.c:85: while (!(SPSTA & 0x80))
+      003042                        775 00101$:
+      003042 E5 C4            [12]  776 	mov	a,_SPSTA
+      003044 30 E7 FB         [24]  777 	jnb	acc.7,00101$
+                                    778 ;	SPI.c:90: }
+      003047 22               [24]  779 	ret
+                                    780 ;------------------------------------------------------------
+                                    781 ;Allocation info for local variables in function 'enc_reset'
+                                    782 ;------------------------------------------------------------
+                                    783 ;	SPI.c:92: void enc_reset(void)
+                                    784 ;	-----------------------------------------
+                                    785 ;	 function enc_reset
+                                    786 ;	-----------------------------------------
+      003048                        787 _enc_reset:
+                                    788 ;	SPI.c:94: CS_LOW;                    // Pull CS low to select the ENC28J60
+                                    789 ;	assignBit
+      003048 C2 91            [12]  790 	clr	_P1_1
+                                    791 ;	SPI.c:95: SPI_send(0xFF);            // Send reset command
+      00304A 75 82 FF         [24]  792 	mov	dpl, #0xff
+      00304D 12 30 39         [24]  793 	lcall	_SPI_send
+                                    794 ;	SPI.c:96: CS_HIGH;                   // Pull CS high to deselect the ENC28J60
+                                    795 ;	assignBit
+      003050 D2 91            [12]  796 	setb	_P1_1
+                                    797 ;	SPI.c:97: }
+      003052 22               [24]  798 	ret
+                                    799 ;------------------------------------------------------------
+                                    800 ;Allocation info for local variables in function 'eth_spi_read'
+                                    801 ;------------------------------------------------------------
+                                    802 ;bank                      Allocated with name '_eth_spi_read_PARM_2'
+                                    803 ;addr                      Allocated with name '_eth_spi_read_addr_10000_79'
+                                    804 ;data                      Allocated with name '_eth_spi_read_data_10001_82'
+                                    805 ;------------------------------------------------------------
+                                    806 ;	SPI.c:99: uint8_t eth_spi_read(uint8_t addr, uint8_t bank)
+                                    807 ;	-----------------------------------------
+                                    808 ;	 function eth_spi_read
+                                    809 ;	-----------------------------------------
+      003053                        810 _eth_spi_read:
+      003053 E5 82            [12]  811 	mov	a,dpl
+      003055 90 03 67         [24]  812 	mov	dptr,#_eth_spi_read_addr_10000_79
+      003058 F0               [24]  813 	movx	@dptr,a
+                                    814 ;	SPI.c:101: if (addr > 0x1F) {
+      003059 E0               [24]  815 	movx	a,@dptr
+      00305A FF               [12]  816 	mov  r7,a
+      00305B 24 E0            [12]  817 	add	a,#0xff - 0x1f
+      00305D 50 19            [24]  818 	jnc	00102$
+                                    819 ;	SPI.c:102: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
+      00305F 74 DE            [12]  820 	mov	a,#___str_1
+      003061 C0 E0            [24]  821 	push	acc
+      003063 74 49            [12]  822 	mov	a,#(___str_1 >> 8)
+      003065 C0 E0            [24]  823 	push	acc
+      003067 74 80            [12]  824 	mov	a,#0x80
+      003069 C0 E0            [24]  825 	push	acc
+      00306B 12 39 E3         [24]  826 	lcall	_printf
+      00306E 15 81            [12]  827 	dec	sp
+      003070 15 81            [12]  828 	dec	sp
+      003072 15 81            [12]  829 	dec	sp
+                                    830 ;	SPI.c:103: return 0;
+      003074 75 82 00         [24]  831 	mov	dpl, #0x00
+      003077 22               [24]  832 	ret
+      003078                        833 00102$:
+                                    834 ;	SPI.c:106: select_reg_bank(bank);     // Select the appropriate bank
+      003078 90 03 66         [24]  835 	mov	dptr,#_eth_spi_read_PARM_2
+      00307B E0               [24]  836 	movx	a,@dptr
+      00307C F5 82            [12]  837 	mov	dpl,a
+      00307E C0 07            [24]  838 	push	ar7
+      003080 12 2F B2         [24]  839 	lcall	_select_reg_bank
+      003083 D0 07            [24]  840 	pop	ar7
+                                    841 ;	SPI.c:108: CS_LOW;                    // Pull CS low to start communication
+                                    842 ;	assignBit
+      003085 C2 91            [12]  843 	clr	_P1_1
+                                    844 ;	SPI.c:109: SPI_send(addr);            // Send the address
+      003087 8F 82            [24]  845 	mov	dpl, r7
+      003089 C0 07            [24]  846 	push	ar7
+      00308B 12 30 39         [24]  847 	lcall	_SPI_send
+                                    848 ;	SPI.c:110: uint8_t data = SPI_ReadByte(); // Read the data
+      00308E 12 2F 8F         [24]  849 	lcall	_SPI_ReadByte
+      003091 AE 82            [24]  850 	mov	r6, dpl
+      003093 D0 07            [24]  851 	pop	ar7
+                                    852 ;	SPI.c:111: CS_HIGH;                   // Pull CS high to end communication
+                                    853 ;	assignBit
+      003095 D2 91            [12]  854 	setb	_P1_1
+                                    855 ;	SPI.c:114: printf("Read: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+      003097 8E 04            [24]  856 	mov	ar4,r6
+      003099 7D 00            [12]  857 	mov	r5,#0x00
+      00309B 7B 00            [12]  858 	mov	r3,#0x00
+      00309D C0 06            [24]  859 	push	ar6
+      00309F C0 04            [24]  860 	push	ar4
+      0030A1 C0 05            [24]  861 	push	ar5
+      0030A3 C0 07            [24]  862 	push	ar7
+      0030A5 C0 03            [24]  863 	push	ar3
+      0030A7 74 18            [12]  864 	mov	a,#___str_2
+      0030A9 C0 E0            [24]  865 	push	acc
+      0030AB 74 4A            [12]  866 	mov	a,#(___str_2 >> 8)
+      0030AD C0 E0            [24]  867 	push	acc
+      0030AF 74 80            [12]  868 	mov	a,#0x80
+      0030B1 C0 E0            [24]  869 	push	acc
+      0030B3 12 39 E3         [24]  870 	lcall	_printf
+      0030B6 E5 81            [12]  871 	mov	a,sp
+      0030B8 24 F9            [12]  872 	add	a,#0xf9
+      0030BA F5 81            [12]  873 	mov	sp,a
+      0030BC D0 06            [24]  874 	pop	ar6
+                                    875 ;	SPI.c:116: return data;
+      0030BE 8E 82            [24]  876 	mov	dpl, r6
+                                    877 ;	SPI.c:117: }
+      0030C0 22               [24]  878 	ret
+                                    879 ;------------------------------------------------------------
+                                    880 ;Allocation info for local variables in function 'phy_spi_write'
+                                    881 ;------------------------------------------------------------
+                                    882 ;data                      Allocated with name '_phy_spi_write_PARM_2'
+                                    883 ;addr                      Allocated with name '_phy_spi_write_addr_10000_83'
+                                    884 ;------------------------------------------------------------
+                                    885 ;	SPI.c:119: void phy_spi_write(uint8_t addr, uint16_t data)
+                                    886 ;	-----------------------------------------
+                                    887 ;	 function phy_spi_write
+                                    888 ;	-----------------------------------------
+      0030C1                        889 _phy_spi_write:
+      0030C1 E5 82            [12]  890 	mov	a,dpl
+      0030C3 90 03 6A         [24]  891 	mov	dptr,#_phy_spi_write_addr_10000_83
+      0030C6 F0               [24]  892 	movx	@dptr,a
+                                    893 ;	SPI.c:121: spi_control_write(2, 0x14, addr);                      // Write PHY address
+      0030C7 E0               [24]  894 	movx	a,@dptr
+      0030C8 FF               [12]  895 	mov	r7,a
+      0030C9 90 03 62         [24]  896 	mov	dptr,#_spi_control_write_PARM_2
+      0030CC 74 14            [12]  897 	mov	a,#0x14
+      0030CE F0               [24]  898 	movx	@dptr,a
+      0030CF 90 03 63         [24]  899 	mov	dptr,#_spi_control_write_PARM_3
+      0030D2 EF               [12]  900 	mov	a,r7
+      0030D3 F0               [24]  901 	movx	@dptr,a
+      0030D4 75 82 02         [24]  902 	mov	dpl, #0x02
+      0030D7 C0 07            [24]  903 	push	ar7
+      0030D9 12 2F CE         [24]  904 	lcall	_spi_control_write
+      0030DC D0 07            [24]  905 	pop	ar7
+                                    906 ;	SPI.c:122: spi_control_write(2, 0x16, (uint8_t)(data & 0xFF));    // Write LSB of data
+      0030DE 90 03 68         [24]  907 	mov	dptr,#_phy_spi_write_PARM_2
+      0030E1 E0               [24]  908 	movx	a,@dptr
+      0030E2 FD               [12]  909 	mov	r5,a
+      0030E3 A3               [24]  910 	inc	dptr
+      0030E4 E0               [24]  911 	movx	a,@dptr
+      0030E5 FE               [12]  912 	mov	r6,a
+      0030E6 8D 04            [24]  913 	mov	ar4,r5
+      0030E8 90 03 62         [24]  914 	mov	dptr,#_spi_control_write_PARM_2
+      0030EB 74 16            [12]  915 	mov	a,#0x16
+      0030ED F0               [24]  916 	movx	@dptr,a
+      0030EE 90 03 63         [24]  917 	mov	dptr,#_spi_control_write_PARM_3
+      0030F1 EC               [12]  918 	mov	a,r4
+      0030F2 F0               [24]  919 	movx	@dptr,a
+      0030F3 75 82 02         [24]  920 	mov	dpl, #0x02
+      0030F6 C0 07            [24]  921 	push	ar7
+      0030F8 C0 06            [24]  922 	push	ar6
+      0030FA C0 05            [24]  923 	push	ar5
+      0030FC 12 2F CE         [24]  924 	lcall	_spi_control_write
+      0030FF D0 05            [24]  925 	pop	ar5
+      003101 D0 06            [24]  926 	pop	ar6
+      003103 D0 07            [24]  927 	pop	ar7
+                                    928 ;	SPI.c:123: spi_control_write(2, 0x17, (uint8_t)((data >> 8) & 0xFF)); // Write MSB of data
+      003105 8E 04            [24]  929 	mov	ar4,r6
+      003107 90 03 62         [24]  930 	mov	dptr,#_spi_control_write_PARM_2
+      00310A 74 17            [12]  931 	mov	a,#0x17
+      00310C F0               [24]  932 	movx	@dptr,a
+      00310D 90 03 63         [24]  933 	mov	dptr,#_spi_control_write_PARM_3
+      003110 EC               [12]  934 	mov	a,r4
+      003111 F0               [24]  935 	movx	@dptr,a
+      003112 75 82 02         [24]  936 	mov	dpl, #0x02
+      003115 C0 07            [24]  937 	push	ar7
+      003117 C0 06            [24]  938 	push	ar6
+      003119 C0 05            [24]  939 	push	ar5
+      00311B 12 2F CE         [24]  940 	lcall	_spi_control_write
+      00311E D0 05            [24]  941 	pop	ar5
+      003120 D0 06            [24]  942 	pop	ar6
+      003122 D0 07            [24]  943 	pop	ar7
+                                    944 ;	SPI.c:126: printf("PHY Write: Address 0x%02X, Data 0x%04X\n\r", addr, data);
+      003124 7C 00            [12]  945 	mov	r4,#0x00
+      003126 C0 05            [24]  946 	push	ar5
+      003128 C0 06            [24]  947 	push	ar6
+      00312A C0 07            [24]  948 	push	ar7
+      00312C C0 04            [24]  949 	push	ar4
+      00312E 74 3C            [12]  950 	mov	a,#___str_3
+      003130 C0 E0            [24]  951 	push	acc
+      003132 74 4A            [12]  952 	mov	a,#(___str_3 >> 8)
+      003134 C0 E0            [24]  953 	push	acc
+      003136 74 80            [12]  954 	mov	a,#0x80
+      003138 C0 E0            [24]  955 	push	acc
+      00313A 12 39 E3         [24]  956 	lcall	_printf
+      00313D E5 81            [12]  957 	mov	a,sp
+      00313F 24 F9            [12]  958 	add	a,#0xf9
+      003141 F5 81            [12]  959 	mov	sp,a
+                                    960 ;	SPI.c:127: }
+      003143 22               [24]  961 	ret
+                                    962 ;------------------------------------------------------------
+                                    963 ;Allocation info for local variables in function 'mac_spi_read'
+                                    964 ;------------------------------------------------------------
+                                    965 ;bank                      Allocated with name '_mac_spi_read_PARM_2'
+                                    966 ;addr                      Allocated with name '_mac_spi_read_addr_10000_85'
+                                    967 ;data                      Allocated with name '_mac_spi_read_data_10001_88'
+                                    968 ;------------------------------------------------------------
+                                    969 ;	SPI.c:129: uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
+                                    970 ;	-----------------------------------------
+                                    971 ;	 function mac_spi_read
+                                    972 ;	-----------------------------------------
+      003144                        973 _mac_spi_read:
+      003144 E5 82            [12]  974 	mov	a,dpl
+      003146 90 03 6C         [24]  975 	mov	dptr,#_mac_spi_read_addr_10000_85
+      003149 F0               [24]  976 	movx	@dptr,a
+                                    977 ;	SPI.c:131: if (addr > 0x1F) {
+      00314A E0               [24]  978 	movx	a,@dptr
+      00314B FF               [12]  979 	mov  r7,a
+      00314C 24 E0            [12]  980 	add	a,#0xff - 0x1f
+      00314E 50 19            [24]  981 	jnc	00102$
+                                    982 ;	SPI.c:132: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
+      003150 74 DE            [12]  983 	mov	a,#___str_1
+      003152 C0 E0            [24]  984 	push	acc
+      003154 74 49            [12]  985 	mov	a,#(___str_1 >> 8)
+      003156 C0 E0            [24]  986 	push	acc
+      003158 74 80            [12]  987 	mov	a,#0x80
+      00315A C0 E0            [24]  988 	push	acc
+      00315C 12 39 E3         [24]  989 	lcall	_printf
+      00315F 15 81            [12]  990 	dec	sp
+      003161 15 81            [12]  991 	dec	sp
+      003163 15 81            [12]  992 	dec	sp
+                                    993 ;	SPI.c:133: return 0; // Return 0 if address is invalid
+      003165 75 82 00         [24]  994 	mov	dpl, #0x00
+      003168 22               [24]  995 	ret
+      003169                        996 00102$:
+                                    997 ;	SPI.c:136: select_reg_bank(bank); // Select the appropriate register bank
+      003169 90 03 6B         [24]  998 	mov	dptr,#_mac_spi_read_PARM_2
+      00316C E0               [24]  999 	movx	a,@dptr
+      00316D F5 82            [12] 1000 	mov	dpl,a
+      00316F C0 07            [24] 1001 	push	ar7
+      003171 12 2F B2         [24] 1002 	lcall	_select_reg_bank
+      003174 D0 07            [24] 1003 	pop	ar7
+                                   1004 ;	SPI.c:139: CS_LOW;
+                                   1005 ;	assignBit
+      003176 C2 91            [12] 1006 	clr	_P1_1
+                                   1007 ;	SPI.c:142: SPI_send(addr);
+      003178 8F 82            [24] 1008 	mov	dpl, r7
+      00317A C0 07            [24] 1009 	push	ar7
+      00317C 12 30 39         [24] 1010 	lcall	_SPI_send
+                                   1011 ;	SPI.c:145: uint8_t data = SPI_ReadByte();
+      00317F 12 2F 8F         [24] 1012 	lcall	_SPI_ReadByte
+      003182 AE 82            [24] 1013 	mov	r6, dpl
+      003184 D0 07            [24] 1014 	pop	ar7
+                                   1015 ;	SPI.c:148: CS_HIGH;
+                                   1016 ;	assignBit
+      003186 D2 91            [12] 1017 	setb	_P1_1
+                                   1018 ;	SPI.c:151: printf("Read: Address 0x%02X, Data 0x%02X\n", addr, data);
+      003188 8E 04            [24] 1019 	mov	ar4,r6
+      00318A 7D 00            [12] 1020 	mov	r5,#0x00
+      00318C 7B 00            [12] 1021 	mov	r3,#0x00
+      00318E C0 06            [24] 1022 	push	ar6
+      003190 C0 04            [24] 1023 	push	ar4
+      003192 C0 05            [24] 1024 	push	ar5
+      003194 C0 07            [24] 1025 	push	ar7
+      003196 C0 03            [24] 1026 	push	ar3
+      003198 74 65            [12] 1027 	mov	a,#___str_4
+      00319A C0 E0            [24] 1028 	push	acc
+      00319C 74 4A            [12] 1029 	mov	a,#(___str_4 >> 8)
+      00319E C0 E0            [24] 1030 	push	acc
+      0031A0 74 80            [12] 1031 	mov	a,#0x80
+      0031A2 C0 E0            [24] 1032 	push	acc
+      0031A4 12 39 E3         [24] 1033 	lcall	_printf
+      0031A7 E5 81            [12] 1034 	mov	a,sp
+      0031A9 24 F9            [12] 1035 	add	a,#0xf9
+      0031AB F5 81            [12] 1036 	mov	sp,a
+      0031AD D0 06            [24] 1037 	pop	ar6
+                                   1038 ;	SPI.c:153: return data;
+      0031AF 8E 82            [24] 1039 	mov	dpl, r6
+                                   1040 ;	SPI.c:154: }
+      0031B1 22               [24] 1041 	ret
+                                   1042 ;------------------------------------------------------------
+                                   1043 ;Allocation info for local variables in function 'phy_spi_read'
+                                   1044 ;------------------------------------------------------------
+                                   1045 ;addr                      Allocated with name '_phy_spi_read_addr_10000_89'
+                                   1046 ;data_LSB                  Allocated with name '_phy_spi_read_data_LSB_10001_91'
+                                   1047 ;data_MSB                  Allocated with name '_phy_spi_read_data_MSB_10001_91'
+                                   1048 ;data                      Allocated with name '_phy_spi_read_data_10001_91'
+                                   1049 ;------------------------------------------------------------
+                                   1050 ;	SPI.c:157: uint16_t phy_spi_read(uint8_t addr)
+                                   1051 ;	-----------------------------------------
+                                   1052 ;	 function phy_spi_read
+                                   1053 ;	-----------------------------------------
+      0031B2                       1054 _phy_spi_read:
+      0031B2 E5 82            [12] 1055 	mov	a,dpl
+      0031B4 90 03 6D         [24] 1056 	mov	dptr,#_phy_spi_read_addr_10000_89
+      0031B7 F0               [24] 1057 	movx	@dptr,a
+                                   1058 ;	SPI.c:159: spi_control_write(2, 0x14, addr);     // Write PHY address
+      0031B8 E0               [24] 1059 	movx	a,@dptr
+      0031B9 FF               [12] 1060 	mov	r7,a
+      0031BA 90 03 62         [24] 1061 	mov	dptr,#_spi_control_write_PARM_2
+      0031BD 74 14            [12] 1062 	mov	a,#0x14
+      0031BF F0               [24] 1063 	movx	@dptr,a
+      0031C0 90 03 63         [24] 1064 	mov	dptr,#_spi_control_write_PARM_3
+      0031C3 EF               [12] 1065 	mov	a,r7
+      0031C4 F0               [24] 1066 	movx	@dptr,a
+      0031C5 75 82 02         [24] 1067 	mov	dpl, #0x02
+      0031C8 C0 07            [24] 1068 	push	ar7
+      0031CA 12 2F CE         [24] 1069 	lcall	_spi_control_write
+      0031CD D0 07            [24] 1070 	pop	ar7
+                                   1071 ;	SPI.c:160: spi_control_write(2, 0x12, 1);        // Set MICMD.MIIRD bit
+      0031CF 90 03 62         [24] 1072 	mov	dptr,#_spi_control_write_PARM_2
+      0031D2 74 12            [12] 1073 	mov	a,#0x12
+      0031D4 F0               [24] 1074 	movx	@dptr,a
+      0031D5 90 03 63         [24] 1075 	mov	dptr,#_spi_control_write_PARM_3
+      0031D8 74 01            [12] 1076 	mov	a,#0x01
+      0031DA F0               [24] 1077 	movx	@dptr,a
+      0031DB 75 82 02         [24] 1078 	mov	dpl, #0x02
+      0031DE C0 07            [24] 1079 	push	ar7
+      0031E0 12 2F CE         [24] 1080 	lcall	_spi_control_write
+                                   1081 ;	SPI.c:162: busy_wait();                          // Wait for the read to complete
+      0031E3 12 32 5F         [24] 1082 	lcall	_busy_wait
+      0031E6 D0 07            [24] 1083 	pop	ar7
+                                   1084 ;	SPI.c:164: spi_control_write(2, 0x12, 0);        // Clear MICMD.MIIRD bit
+      0031E8 90 03 62         [24] 1085 	mov	dptr,#_spi_control_write_PARM_2
+      0031EB 74 12            [12] 1086 	mov	a,#0x12
+      0031ED F0               [24] 1087 	movx	@dptr,a
+      0031EE 90 03 63         [24] 1088 	mov	dptr,#_spi_control_write_PARM_3
+      0031F1 E4               [12] 1089 	clr	a
+      0031F2 F0               [24] 1090 	movx	@dptr,a
+      0031F3 75 82 02         [24] 1091 	mov	dpl, #0x02
+      0031F6 C0 07            [24] 1092 	push	ar7
+      0031F8 12 2F CE         [24] 1093 	lcall	_spi_control_write
+      0031FB D0 07            [24] 1094 	pop	ar7
+                                   1095 ;	SPI.c:166: uint16_t data_LSB = mac_spi_read(0x18, 2); // Read LSB of data
+      0031FD 90 03 6B         [24] 1096 	mov	dptr,#_mac_spi_read_PARM_2
+      003200 74 02            [12] 1097 	mov	a,#0x02
+      003202 F0               [24] 1098 	movx	@dptr,a
+      003203 75 82 18         [24] 1099 	mov	dpl, #0x18
+      003206 C0 07            [24] 1100 	push	ar7
+      003208 12 31 44         [24] 1101 	lcall	_mac_spi_read
+      00320B AE 82            [24] 1102 	mov	r6, dpl
+      00320D D0 07            [24] 1103 	pop	ar7
+      00320F 7D 00            [12] 1104 	mov	r5,#0x00
+                                   1105 ;	SPI.c:167: uint16_t data_MSB = mac_spi_read(0x19, 2); // Read MSB of data
+      003211 90 03 6B         [24] 1106 	mov	dptr,#_mac_spi_read_PARM_2
+      003214 74 02            [12] 1107 	mov	a,#0x02
+      003216 F0               [24] 1108 	movx	@dptr,a
+      003217 75 82 19         [24] 1109 	mov	dpl, #0x19
+      00321A C0 07            [24] 1110 	push	ar7
+      00321C C0 06            [24] 1111 	push	ar6
+      00321E C0 05            [24] 1112 	push	ar5
+      003220 12 31 44         [24] 1113 	lcall	_mac_spi_read
+      003223 AC 82            [24] 1114 	mov	r4, dpl
+      003225 D0 05            [24] 1115 	pop	ar5
+      003227 D0 06            [24] 1116 	pop	ar6
+      003229 D0 07            [24] 1117 	pop	ar7
+                                   1118 ;	SPI.c:169: uint16_t data = (data_MSB << 8) | data_LSB;        // Combine MSB and LSB
+      00322B 8C 03            [24] 1119 	mov	ar3,r4
+      00322D E4               [12] 1120 	clr	a
+      00322E 42 06            [12] 1121 	orl	ar6,a
+      003230 EB               [12] 1122 	mov	a,r3
+      003231 42 05            [12] 1123 	orl	ar5,a
+                                   1124 ;	SPI.c:172: printf("PHY Read: Address 0x%02X, Data 0x%04X\n\r", addr, data);
+      003233 7C 00            [12] 1125 	mov	r4,#0x00
+      003235 C0 06            [24] 1126 	push	ar6
+      003237 C0 05            [24] 1127 	push	ar5
+      003239 C0 06            [24] 1128 	push	ar6
+      00323B C0 05            [24] 1129 	push	ar5
+      00323D C0 07            [24] 1130 	push	ar7
+      00323F C0 04            [24] 1131 	push	ar4
+      003241 74 88            [12] 1132 	mov	a,#___str_5
+      003243 C0 E0            [24] 1133 	push	acc
+      003245 74 4A            [12] 1134 	mov	a,#(___str_5 >> 8)
+      003247 C0 E0            [24] 1135 	push	acc
+      003249 74 80            [12] 1136 	mov	a,#0x80
+      00324B C0 E0            [24] 1137 	push	acc
+      00324D 12 39 E3         [24] 1138 	lcall	_printf
+      003250 E5 81            [12] 1139 	mov	a,sp
+      003252 24 F9            [12] 1140 	add	a,#0xf9
+      003254 F5 81            [12] 1141 	mov	sp,a
+      003256 D0 05            [24] 1142 	pop	ar5
+      003258 D0 06            [24] 1143 	pop	ar6
+                                   1144 ;	SPI.c:174: return data;        // Combine MSB and LSB
+      00325A 8E 82            [24] 1145 	mov	dpl, r6
+      00325C 8D 83            [24] 1146 	mov	dph, r5
+                                   1147 ;	SPI.c:175: }
+      00325E 22               [24] 1148 	ret
+                                   1149 ;------------------------------------------------------------
+                                   1150 ;Allocation info for local variables in function 'busy_wait'
+                                   1151 ;------------------------------------------------------------
+                                   1152 ;data                      Allocated with name '_busy_wait_data_10000_93'
+                                   1153 ;------------------------------------------------------------
+                                   1154 ;	SPI.c:177: void busy_wait(void)
+                                   1155 ;	-----------------------------------------
+                                   1156 ;	 function busy_wait
+                                   1157 ;	-----------------------------------------
+      00325F                       1158 _busy_wait:
+                                   1159 ;	SPI.c:179: uint8_t data = mac_spi_read(0x0A, 3); // Read ESTAT register (bank 3)
+      00325F 90 03 6B         [24] 1160 	mov	dptr,#_mac_spi_read_PARM_2
+      003262 74 03            [12] 1161 	mov	a,#0x03
+      003264 F0               [24] 1162 	movx	@dptr,a
+      003265 75 82 0A         [24] 1163 	mov	dpl, #0x0a
+      003268 12 31 44         [24] 1164 	lcall	_mac_spi_read
+      00326B E5 82            [12] 1165 	mov	a, dpl
+      00326D 90 03 6E         [24] 1166 	mov	dptr,#_busy_wait_data_10000_93
+      003270 F0               [24] 1167 	movx	@dptr,a
+                                   1168 ;	SPI.c:180: while (data & 0x01)
+      003271                       1169 00101$:
+      003271 90 03 6E         [24] 1170 	mov	dptr,#_busy_wait_data_10000_93
+      003274 E0               [24] 1171 	movx	a,@dptr
+      003275 30 E0 14         [24] 1172 	jnb	acc.0,00104$
+                                   1173 ;	SPI.c:182: data = mac_spi_read(0x0A, 3);
+      003278 90 03 6B         [24] 1174 	mov	dptr,#_mac_spi_read_PARM_2
+      00327B 74 03            [12] 1175 	mov	a,#0x03
+      00327D F0               [24] 1176 	movx	@dptr,a
+      00327E 75 82 0A         [24] 1177 	mov	dpl, #0x0a
+      003281 12 31 44         [24] 1178 	lcall	_mac_spi_read
+      003284 E5 82            [12] 1179 	mov	a, dpl
+      003286 90 03 6E         [24] 1180 	mov	dptr,#_busy_wait_data_10000_93
+      003289 F0               [24] 1181 	movx	@dptr,a
+      00328A 80 E5            [24] 1182 	sjmp	00101$
+      00328C                       1183 00104$:
+                                   1184 ;	SPI.c:184: }
+      00328C 22               [24] 1185 	ret
+                                   1186 ;------------------------------------------------------------
+                                   1187 ;Allocation info for local variables in function 'buffer_init'
+                                   1188 ;------------------------------------------------------------
+                                   1189 ;size                      Allocated with name '_buffer_init_PARM_2'
+                                   1190 ;start_address             Allocated with name '_buffer_init_start_address_10000_95'
+                                   1191 ;erxst                     Allocated with name '_buffer_init_erxst_10001_98'
+                                   1192 ;erxnd                     Allocated with name '_buffer_init_erxnd_10001_98'
+                                   1193 ;------------------------------------------------------------
+                                   1194 ;	SPI.c:186: void buffer_init(uint16_t start_address, uint16_t size)
+                                   1195 ;	-----------------------------------------
+                                   1196 ;	 function buffer_init
+                                   1197 ;	-----------------------------------------
+      00328D                       1198 _buffer_init:
+      00328D AF 83            [24] 1199 	mov	r7,dph
+      00328F E5 82            [12] 1200 	mov	a,dpl
+      003291 90 03 71         [24] 1201 	mov	dptr,#_buffer_init_start_address_10000_95
+      003294 F0               [24] 1202 	movx	@dptr,a
+      003295 EF               [12] 1203 	mov	a,r7
+      003296 A3               [24] 1204 	inc	dptr
+      003297 F0               [24] 1205 	movx	@dptr,a
+                                   1206 ;	SPI.c:188: if (start_address > 0x1FFF || (start_address + size) > 0x1FFF) {
+      003298 90 03 71         [24] 1207 	mov	dptr,#_buffer_init_start_address_10000_95
+      00329B E0               [24] 1208 	movx	a,@dptr
+      00329C FE               [12] 1209 	mov	r6,a
+      00329D A3               [24] 1210 	inc	dptr
+      00329E E0               [24] 1211 	movx	a,@dptr
+      00329F FF               [12] 1212 	mov	r7,a
+      0032A0 8E 04            [24] 1213 	mov	ar4,r6
+      0032A2 8F 05            [24] 1214 	mov	ar5,r7
+      0032A4 C3               [12] 1215 	clr	c
+      0032A5 74 FF            [12] 1216 	mov	a,#0xff
+      0032A7 9C               [12] 1217 	subb	a,r4
+      0032A8 74 1F            [12] 1218 	mov	a,#0x1f
+      0032AA 9D               [12] 1219 	subb	a,r5
+      0032AB 40 17            [24] 1220 	jc	00101$
+      0032AD 90 03 6F         [24] 1221 	mov	dptr,#_buffer_init_PARM_2
+      0032B0 E0               [24] 1222 	movx	a,@dptr
+      0032B1 FA               [12] 1223 	mov	r2,a
+      0032B2 A3               [24] 1224 	inc	dptr
+      0032B3 E0               [24] 1225 	movx	a,@dptr
+      0032B4 FB               [12] 1226 	mov	r3,a
+      0032B5 EA               [12] 1227 	mov	a,r2
+      0032B6 2E               [12] 1228 	add	a, r6
+      0032B7 F8               [12] 1229 	mov	r0,a
+      0032B8 EB               [12] 1230 	mov	a,r3
+      0032B9 3F               [12] 1231 	addc	a, r7
+      0032BA F9               [12] 1232 	mov	r1,a
+      0032BB C3               [12] 1233 	clr	c
+      0032BC 74 FF            [12] 1234 	mov	a,#0xff
+      0032BE 98               [12] 1235 	subb	a,r0
+      0032BF 74 1F            [12] 1236 	mov	a,#0x1f
+      0032C1 99               [12] 1237 	subb	a,r1
+      0032C2 50 2A            [24] 1238 	jnc	00102$
+      0032C4                       1239 00101$:
+                                   1240 ;	SPI.c:189: printf("\n\rInvalid Buffer Address or Size: Start 0x%04X, Size 0x%04X\n\r", start_address, size);
+      0032C4 90 03 6F         [24] 1241 	mov	dptr,#_buffer_init_PARM_2
+      0032C7 E0               [24] 1242 	movx	a,@dptr
+      0032C8 C0 E0            [24] 1243 	push	acc
+      0032CA A3               [24] 1244 	inc	dptr
+      0032CB E0               [24] 1245 	movx	a,@dptr
+      0032CC C0 E0            [24] 1246 	push	acc
+      0032CE 90 03 71         [24] 1247 	mov	dptr,#_buffer_init_start_address_10000_95
+      0032D1 E0               [24] 1248 	movx	a,@dptr
+      0032D2 C0 E0            [24] 1249 	push	acc
+      0032D4 A3               [24] 1250 	inc	dptr
+      0032D5 E0               [24] 1251 	movx	a,@dptr
+      0032D6 C0 E0            [24] 1252 	push	acc
+      0032D8 74 B0            [12] 1253 	mov	a,#___str_6
+      0032DA C0 E0            [24] 1254 	push	acc
+      0032DC 74 4A            [12] 1255 	mov	a,#(___str_6 >> 8)
+      0032DE C0 E0            [24] 1256 	push	acc
+      0032E0 74 80            [12] 1257 	mov	a,#0x80
+      0032E2 C0 E0            [24] 1258 	push	acc
+      0032E4 12 39 E3         [24] 1259 	lcall	_printf
+      0032E7 E5 81            [12] 1260 	mov	a,sp
+      0032E9 24 F9            [12] 1261 	add	a,#0xf9
+      0032EB F5 81            [12] 1262 	mov	sp,a
+                                   1263 ;	SPI.c:190: return;
+      0032ED 22               [24] 1264 	ret
+      0032EE                       1265 00102$:
+                                   1266 ;	SPI.c:194: uint16_t erxst = start_address & ~1; // Make sure ERXST is even
+      0032EE 53 04 FE         [24] 1267 	anl	ar4,#0xfe
+                                   1268 ;	SPI.c:195: uint16_t erxnd = (start_address + size - 1) & ~1; // Make sure ERXND is even
+      0032F1 EA               [12] 1269 	mov	a,r2
+      0032F2 2E               [12] 1270 	add	a, r6
+      0032F3 FE               [12] 1271 	mov	r6,a
+      0032F4 EB               [12] 1272 	mov	a,r3
+      0032F5 3F               [12] 1273 	addc	a, r7
+      0032F6 FF               [12] 1274 	mov	r7,a
+      0032F7 1E               [12] 1275 	dec	r6
+      0032F8 BE FF 01         [24] 1276 	cjne	r6,#0xff,00114$
+      0032FB 1F               [12] 1277 	dec	r7
+      0032FC                       1278 00114$:
+      0032FC 53 06 FE         [24] 1279 	anl	ar6,#0xfe
+                                   1280 ;	SPI.c:198: spi_control_write(0, 0x08, (uint8_t)(erxst >> 8)); // High byte of ERXST
+      0032FF 8D 03            [24] 1281 	mov	ar3,r5
+      003301 90 03 62         [24] 1282 	mov	dptr,#_spi_control_write_PARM_2
+      003304 74 08            [12] 1283 	mov	a,#0x08
+      003306 F0               [24] 1284 	movx	@dptr,a
+      003307 90 03 63         [24] 1285 	mov	dptr,#_spi_control_write_PARM_3
+      00330A EB               [12] 1286 	mov	a,r3
+      00330B F0               [24] 1287 	movx	@dptr,a
+      00330C 75 82 00         [24] 1288 	mov	dpl, #0x00
+      00330F C0 07            [24] 1289 	push	ar7
+      003311 C0 06            [24] 1290 	push	ar6
+      003313 C0 05            [24] 1291 	push	ar5
+      003315 C0 04            [24] 1292 	push	ar4
+      003317 12 2F CE         [24] 1293 	lcall	_spi_control_write
+      00331A D0 04            [24] 1294 	pop	ar4
+      00331C D0 05            [24] 1295 	pop	ar5
+      00331E D0 06            [24] 1296 	pop	ar6
+      003320 D0 07            [24] 1297 	pop	ar7
+                                   1298 ;	SPI.c:199: spi_control_write(0, 0x09, (uint8_t)(erxst & 0xFF)); // Low byte of ERXST
+      003322 8C 03            [24] 1299 	mov	ar3,r4
+      003324 90 03 62         [24] 1300 	mov	dptr,#_spi_control_write_PARM_2
+      003327 74 09            [12] 1301 	mov	a,#0x09
+      003329 F0               [24] 1302 	movx	@dptr,a
+      00332A 90 03 63         [24] 1303 	mov	dptr,#_spi_control_write_PARM_3
+      00332D EB               [12] 1304 	mov	a,r3
+      00332E F0               [24] 1305 	movx	@dptr,a
+      00332F 75 82 00         [24] 1306 	mov	dpl, #0x00
+      003332 C0 07            [24] 1307 	push	ar7
+      003334 C0 06            [24] 1308 	push	ar6
+      003336 C0 05            [24] 1309 	push	ar5
+      003338 C0 04            [24] 1310 	push	ar4
+      00333A 12 2F CE         [24] 1311 	lcall	_spi_control_write
+      00333D D0 04            [24] 1312 	pop	ar4
+      00333F D0 05            [24] 1313 	pop	ar5
+      003341 D0 06            [24] 1314 	pop	ar6
+      003343 D0 07            [24] 1315 	pop	ar7
+                                   1316 ;	SPI.c:202: spi_control_write(0, 0x0A, (uint8_t)(erxnd >> 8)); // High byte of ERXND
+      003345 8F 03            [24] 1317 	mov	ar3,r7
+      003347 90 03 62         [24] 1318 	mov	dptr,#_spi_control_write_PARM_2
+      00334A 74 0A            [12] 1319 	mov	a,#0x0a
+      00334C F0               [24] 1320 	movx	@dptr,a
+      00334D 90 03 63         [24] 1321 	mov	dptr,#_spi_control_write_PARM_3
+      003350 EB               [12] 1322 	mov	a,r3
+      003351 F0               [24] 1323 	movx	@dptr,a
+      003352 75 82 00         [24] 1324 	mov	dpl, #0x00
+      003355 C0 07            [24] 1325 	push	ar7
+      003357 C0 06            [24] 1326 	push	ar6
+      003359 C0 05            [24] 1327 	push	ar5
+      00335B C0 04            [24] 1328 	push	ar4
+      00335D 12 2F CE         [24] 1329 	lcall	_spi_control_write
+      003360 D0 04            [24] 1330 	pop	ar4
+      003362 D0 05            [24] 1331 	pop	ar5
+      003364 D0 06            [24] 1332 	pop	ar6
+      003366 D0 07            [24] 1333 	pop	ar7
+                                   1334 ;	SPI.c:203: spi_control_write(0, 0x0B, (uint8_t)(erxnd & 0xFF)); // Low byte of ERXND
+      003368 8E 03            [24] 1335 	mov	ar3,r6
+      00336A 90 03 62         [24] 1336 	mov	dptr,#_spi_control_write_PARM_2
+      00336D 74 0B            [12] 1337 	mov	a,#0x0b
+      00336F F0               [24] 1338 	movx	@dptr,a
+      003370 90 03 63         [24] 1339 	mov	dptr,#_spi_control_write_PARM_3
+      003373 EB               [12] 1340 	mov	a,r3
+      003374 F0               [24] 1341 	movx	@dptr,a
+      003375 75 82 00         [24] 1342 	mov	dpl, #0x00
+      003378 C0 07            [24] 1343 	push	ar7
+      00337A C0 06            [24] 1344 	push	ar6
+      00337C C0 05            [24] 1345 	push	ar5
+      00337E C0 04            [24] 1346 	push	ar4
+      003380 12 2F CE         [24] 1347 	lcall	_spi_control_write
+      003383 D0 04            [24] 1348 	pop	ar4
+      003385 D0 05            [24] 1349 	pop	ar5
+      003387 D0 06            [24] 1350 	pop	ar6
+      003389 D0 07            [24] 1351 	pop	ar7
+                                   1352 ;	SPI.c:205: printf("\n\rBuffer Initialized: Start 0x%04X, End 0x%04X\n\r", erxst, erxnd);
+      00338B C0 06            [24] 1353 	push	ar6
+      00338D C0 07            [24] 1354 	push	ar7
+      00338F C0 04            [24] 1355 	push	ar4
+      003391 C0 05            [24] 1356 	push	ar5
+      003393 74 EE            [12] 1357 	mov	a,#___str_7
+      003395 C0 E0            [24] 1358 	push	acc
+      003397 74 4A            [12] 1359 	mov	a,#(___str_7 >> 8)
+      003399 C0 E0            [24] 1360 	push	acc
+      00339B 74 80            [12] 1361 	mov	a,#0x80
+      00339D C0 E0            [24] 1362 	push	acc
+      00339F 12 39 E3         [24] 1363 	lcall	_printf
+      0033A2 E5 81            [12] 1364 	mov	a,sp
+      0033A4 24 F9            [12] 1365 	add	a,#0xf9
+      0033A6 F5 81            [12] 1366 	mov	sp,a
+                                   1367 ;	SPI.c:206: }
+      0033A8 22               [24] 1368 	ret
+                                   1369 ;------------------------------------------------------------
+                                   1370 ;Allocation info for local variables in function 'spi_buffer_read'
+                                   1371 ;------------------------------------------------------------
+                                   1372 ;start_address             Allocated with name '_spi_buffer_read_PARM_2'
+                                   1373 ;data_ptr                  Allocated with name '_spi_buffer_read_PARM_3'
+                                   1374 ;num_bytes                 Allocated with name '_spi_buffer_read_num_bytes_10000_99'
+                                   1375 ;higher_byte               Allocated with name '_spi_buffer_read_higher_byte_10001_104'
+                                   1376 ;lower_byte                Allocated with name '_spi_buffer_read_lower_byte_10001_104'
+                                   1377 ;opcode                    Allocated with name '_spi_buffer_read_opcode_10002_105'
+                                   1378 ;i                         Allocated with name '_spi_buffer_read_i_20002_106'
+                                   1379 ;------------------------------------------------------------
+                                   1380 ;	SPI.c:209: void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
+                                   1381 ;	-----------------------------------------
+                                   1382 ;	 function spi_buffer_read
+                                   1383 ;	-----------------------------------------
+      0033A9                       1384 _spi_buffer_read:
+      0033A9 AF 83            [24] 1385 	mov	r7,dph
+      0033AB E5 82            [12] 1386 	mov	a,dpl
+      0033AD 90 03 78         [24] 1387 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
+      0033B0 F0               [24] 1388 	movx	@dptr,a
+      0033B1 EF               [12] 1389 	mov	a,r7
+      0033B2 A3               [24] 1390 	inc	dptr
+      0033B3 F0               [24] 1391 	movx	@dptr,a
+                                   1392 ;	SPI.c:211: if (num_bytes < 1) {
+      0033B4 90 03 78         [24] 1393 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
+      0033B7 E0               [24] 1394 	movx	a,@dptr
+      0033B8 FE               [12] 1395 	mov	r6,a
+      0033B9 A3               [24] 1396 	inc	dptr
+      0033BA E0               [24] 1397 	movx	a,@dptr
+      0033BB FF               [12] 1398 	mov	r7,a
+      0033BC C3               [12] 1399 	clr	c
+      0033BD EE               [12] 1400 	mov	a,r6
+      0033BE 94 01            [12] 1401 	subb	a,#0x01
+      0033C0 EF               [12] 1402 	mov	a,r7
+      0033C1 64 80            [12] 1403 	xrl	a,#0x80
+      0033C3 94 80            [12] 1404 	subb	a,#0x80
+      0033C5 50 1A            [24] 1405 	jnc	00102$
+                                   1406 ;	SPI.c:212: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
+      0033C7 C0 06            [24] 1407 	push	ar6
+      0033C9 C0 07            [24] 1408 	push	ar7
+      0033CB 74 1F            [12] 1409 	mov	a,#___str_8
+      0033CD C0 E0            [24] 1410 	push	acc
+      0033CF 74 4B            [12] 1411 	mov	a,#(___str_8 >> 8)
+      0033D1 C0 E0            [24] 1412 	push	acc
+      0033D3 74 80            [12] 1413 	mov	a,#0x80
+      0033D5 C0 E0            [24] 1414 	push	acc
+      0033D7 12 39 E3         [24] 1415 	lcall	_printf
+      0033DA E5 81            [12] 1416 	mov	a,sp
+      0033DC 24 FB            [12] 1417 	add	a,#0xfb
+      0033DE F5 81            [12] 1418 	mov	sp,a
+                                   1419 ;	SPI.c:213: return;
+      0033E0 22               [24] 1420 	ret
+      0033E1                       1421 00102$:
+                                   1422 ;	SPI.c:215: if (start_address > 0x1FFF) {
+      0033E1 90 03 73         [24] 1423 	mov	dptr,#_spi_buffer_read_PARM_2
+      0033E4 E0               [24] 1424 	movx	a,@dptr
+      0033E5 FC               [12] 1425 	mov	r4,a
+      0033E6 A3               [24] 1426 	inc	dptr
+      0033E7 E0               [24] 1427 	movx	a,@dptr
+      0033E8 FD               [12] 1428 	mov	r5,a
+      0033E9 8C 02            [24] 1429 	mov	ar2,r4
+      0033EB 8D 03            [24] 1430 	mov	ar3,r5
+      0033ED C3               [12] 1431 	clr	c
+      0033EE 74 FF            [12] 1432 	mov	a,#0xff
+      0033F0 9A               [12] 1433 	subb	a,r2
+      0033F1 74 1F            [12] 1434 	mov	a,#0x1f
+      0033F3 9B               [12] 1435 	subb	a,r3
+      0033F4 50 1A            [24] 1436 	jnc	00104$
+                                   1437 ;	SPI.c:216: printf("\n\rInvalid address: %04X\n\r", start_address);
+      0033F6 C0 04            [24] 1438 	push	ar4
+      0033F8 C0 05            [24] 1439 	push	ar5
+      0033FA 74 3F            [12] 1440 	mov	a,#___str_9
+      0033FC C0 E0            [24] 1441 	push	acc
+      0033FE 74 4B            [12] 1442 	mov	a,#(___str_9 >> 8)
+      003400 C0 E0            [24] 1443 	push	acc
+      003402 74 80            [12] 1444 	mov	a,#0x80
+      003404 C0 E0            [24] 1445 	push	acc
+      003406 12 39 E3         [24] 1446 	lcall	_printf
+      003409 E5 81            [12] 1447 	mov	a,sp
+      00340B 24 FB            [12] 1448 	add	a,#0xfb
+      00340D F5 81            [12] 1449 	mov	sp,a
+                                   1450 ;	SPI.c:217: return;
+      00340F 22               [24] 1451 	ret
+      003410                       1452 00104$:
+                                   1453 ;	SPI.c:220: if (num_bytes > 1) {
+      003410 C3               [12] 1454 	clr	c
+      003411 74 01            [12] 1455 	mov	a,#0x01
+      003413 9E               [12] 1456 	subb	a,r6
+      003414 74 80            [12] 1457 	mov	a,#(0x00 ^ 0x80)
+      003416 8F F0            [24] 1458 	mov	b,r7
+      003418 63 F0 80         [24] 1459 	xrl	b,#0x80
+      00341B 95 F0            [12] 1460 	subb	a,b
+      00341D 50 0B            [24] 1461 	jnc	00106$
+                                   1462 ;	SPI.c:221: spi_set_autoinc();
+      00341F C0 05            [24] 1463 	push	ar5
+      003421 C0 04            [24] 1464 	push	ar4
+      003423 12 2F A1         [24] 1465 	lcall	_spi_set_autoinc
+      003426 D0 04            [24] 1466 	pop	ar4
+      003428 D0 05            [24] 1467 	pop	ar5
+      00342A                       1468 00106$:
+                                   1469 ;	SPI.c:225: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
+      00342A 8D 07            [24] 1470 	mov	ar7,r5
+                                   1471 ;	SPI.c:226: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
+      00342C 8C 06            [24] 1472 	mov	ar6,r4
+                                   1473 ;	SPI.c:228: spi_control_write(0, 0x01, higher_byte); // High byte
+      00342E 90 03 62         [24] 1474 	mov	dptr,#_spi_control_write_PARM_2
+      003431 74 01            [12] 1475 	mov	a,#0x01
+      003433 F0               [24] 1476 	movx	@dptr,a
+      003434 90 03 63         [24] 1477 	mov	dptr,#_spi_control_write_PARM_3
+      003437 EF               [12] 1478 	mov	a,r7
+      003438 F0               [24] 1479 	movx	@dptr,a
+      003439 75 82 00         [24] 1480 	mov	dpl, #0x00
+      00343C C0 06            [24] 1481 	push	ar6
+      00343E C0 05            [24] 1482 	push	ar5
+      003440 C0 04            [24] 1483 	push	ar4
+      003442 12 2F CE         [24] 1484 	lcall	_spi_control_write
+      003445 D0 04            [24] 1485 	pop	ar4
+      003447 D0 05            [24] 1486 	pop	ar5
+      003449 D0 06            [24] 1487 	pop	ar6
+                                   1488 ;	SPI.c:229: spi_control_write(0, 0x00, lower_byte); // Low byte
+      00344B 90 03 62         [24] 1489 	mov	dptr,#_spi_control_write_PARM_2
+      00344E E4               [12] 1490 	clr	a
+      00344F F0               [24] 1491 	movx	@dptr,a
+      003450 90 03 63         [24] 1492 	mov	dptr,#_spi_control_write_PARM_3
+      003453 EE               [12] 1493 	mov	a,r6
+      003454 F0               [24] 1494 	movx	@dptr,a
+      003455 75 82 00         [24] 1495 	mov	dpl, #0x00
+      003458 C0 05            [24] 1496 	push	ar5
+      00345A C0 04            [24] 1497 	push	ar4
+      00345C 12 2F CE         [24] 1498 	lcall	_spi_control_write
+                                   1499 ;	SPI.c:232: CS_LOW; // Pull CS Low
+                                   1500 ;	assignBit
+      00345F C2 91            [12] 1501 	clr	_P1_1
+                                   1502 ;	SPI.c:233: SPI_send(opcode); // Send opcode
+      003461 75 82 3A         [24] 1503 	mov	dpl, #0x3a
+      003464 12 30 39         [24] 1504 	lcall	_SPI_send
+      003467 D0 04            [24] 1505 	pop	ar4
+      003469 D0 05            [24] 1506 	pop	ar5
+                                   1507 ;	SPI.c:236: printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
+      00346B 90 03 78         [24] 1508 	mov	dptr,#_spi_buffer_read_num_bytes_10000_99
+      00346E E0               [24] 1509 	movx	a,@dptr
+      00346F FE               [12] 1510 	mov	r6,a
+      003470 A3               [24] 1511 	inc	dptr
+      003471 E0               [24] 1512 	movx	a,@dptr
+      003472 FF               [12] 1513 	mov	r7,a
+      003473 C0 07            [24] 1514 	push	ar7
+      003475 C0 06            [24] 1515 	push	ar6
+      003477 C0 04            [24] 1516 	push	ar4
+      003479 C0 05            [24] 1517 	push	ar5
+      00347B C0 06            [24] 1518 	push	ar6
+      00347D C0 07            [24] 1519 	push	ar7
+      00347F 74 59            [12] 1520 	mov	a,#___str_10
+      003481 C0 E0            [24] 1521 	push	acc
+      003483 74 4B            [12] 1522 	mov	a,#(___str_10 >> 8)
+      003485 C0 E0            [24] 1523 	push	acc
+      003487 74 80            [12] 1524 	mov	a,#0x80
+      003489 C0 E0            [24] 1525 	push	acc
+      00348B 12 39 E3         [24] 1526 	lcall	_printf
+      00348E E5 81            [12] 1527 	mov	a,sp
+      003490 24 F9            [12] 1528 	add	a,#0xf9
+      003492 F5 81            [12] 1529 	mov	sp,a
+      003494 D0 06            [24] 1530 	pop	ar6
+      003496 D0 07            [24] 1531 	pop	ar7
+                                   1532 ;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
+      003498 90 03 7A         [24] 1533 	mov	dptr,#_spi_buffer_read_i_20002_106
+      00349B E4               [12] 1534 	clr	a
+      00349C F0               [24] 1535 	movx	@dptr,a
+      00349D A3               [24] 1536 	inc	dptr
+      00349E F0               [24] 1537 	movx	@dptr,a
+      00349F 90 03 75         [24] 1538 	mov	dptr,#_spi_buffer_read_PARM_3
+      0034A2 E0               [24] 1539 	movx	a,@dptr
+      0034A3 FB               [12] 1540 	mov	r3,a
+      0034A4 A3               [24] 1541 	inc	dptr
+      0034A5 E0               [24] 1542 	movx	a,@dptr
+      0034A6 FC               [12] 1543 	mov	r4,a
+      0034A7 A3               [24] 1544 	inc	dptr
+      0034A8 E0               [24] 1545 	movx	a,@dptr
+      0034A9 FD               [12] 1546 	mov	r5,a
+      0034AA                       1547 00109$:
+      0034AA 90 03 7A         [24] 1548 	mov	dptr,#_spi_buffer_read_i_20002_106
+      0034AD E0               [24] 1549 	movx	a,@dptr
+      0034AE F9               [12] 1550 	mov	r1,a
+      0034AF A3               [24] 1551 	inc	dptr
+      0034B0 E0               [24] 1552 	movx	a,@dptr
+      0034B1 FA               [12] 1553 	mov	r2,a
+      0034B2 C3               [12] 1554 	clr	c
+      0034B3 E9               [12] 1555 	mov	a,r1
+      0034B4 9E               [12] 1556 	subb	a,r6
+      0034B5 EA               [12] 1557 	mov	a,r2
+      0034B6 64 80            [12] 1558 	xrl	a,#0x80
+      0034B8 8F F0            [24] 1559 	mov	b,r7
+      0034BA 63 F0 80         [24] 1560 	xrl	b,#0x80
+      0034BD 95 F0            [12] 1561 	subb	a,b
+      0034BF 40 03            [24] 1562 	jc	00147$
+      0034C1 02 35 47         [24] 1563 	ljmp	00107$
+      0034C4                       1564 00147$:
+                                   1565 ;	SPI.c:238: *data_ptr = SPI_ReadByte(); // Read data
+      0034C4 C0 06            [24] 1566 	push	ar6
+      0034C6 C0 07            [24] 1567 	push	ar7
+      0034C8 C0 07            [24] 1568 	push	ar7
+      0034CA C0 06            [24] 1569 	push	ar6
+      0034CC C0 05            [24] 1570 	push	ar5
+      0034CE C0 04            [24] 1571 	push	ar4
+      0034D0 C0 03            [24] 1572 	push	ar3
+      0034D2 C0 02            [24] 1573 	push	ar2
+      0034D4 C0 01            [24] 1574 	push	ar1
+      0034D6 12 2F 8F         [24] 1575 	lcall	_SPI_ReadByte
+      0034D9 A8 82            [24] 1576 	mov	r0, dpl
+      0034DB D0 01            [24] 1577 	pop	ar1
+      0034DD D0 02            [24] 1578 	pop	ar2
+      0034DF D0 03            [24] 1579 	pop	ar3
+      0034E1 D0 04            [24] 1580 	pop	ar4
+      0034E3 D0 05            [24] 1581 	pop	ar5
+      0034E5 D0 06            [24] 1582 	pop	ar6
+      0034E7 D0 07            [24] 1583 	pop	ar7
+      0034E9 8B 82            [24] 1584 	mov	dpl,r3
+      0034EB 8C 83            [24] 1585 	mov	dph,r4
+      0034ED 8D F0            [24] 1586 	mov	b,r5
+      0034EF E8               [12] 1587 	mov	a,r0
+      0034F0 12 38 51         [24] 1588 	lcall	__gptrput
+      0034F3 A3               [24] 1589 	inc	dptr
+      0034F4 AB 82            [24] 1590 	mov	r3,dpl
+      0034F6 AC 83            [24] 1591 	mov	r4,dph
+                                   1592 ;	SPI.c:239: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+      0034F8 7F 00            [12] 1593 	mov	r7,#0x00
+      0034FA 09               [12] 1594 	inc	r1
+      0034FB B9 00 01         [24] 1595 	cjne	r1,#0x00,00148$
+      0034FE 0A               [12] 1596 	inc	r2
+      0034FF                       1597 00148$:
+      0034FF C0 07            [24] 1598 	push	ar7
+      003501 C0 06            [24] 1599 	push	ar6
+      003503 C0 05            [24] 1600 	push	ar5
+      003505 C0 04            [24] 1601 	push	ar4
+      003507 C0 03            [24] 1602 	push	ar3
+      003509 C0 02            [24] 1603 	push	ar2
+      00350B C0 01            [24] 1604 	push	ar1
+      00350D C0 00            [24] 1605 	push	ar0
+      00350F C0 07            [24] 1606 	push	ar7
+      003511 C0 01            [24] 1607 	push	ar1
+      003513 C0 02            [24] 1608 	push	ar2
+      003515 74 94            [12] 1609 	mov	a,#___str_11
+      003517 C0 E0            [24] 1610 	push	acc
+      003519 74 4B            [12] 1611 	mov	a,#(___str_11 >> 8)
+      00351B C0 E0            [24] 1612 	push	acc
+      00351D 74 80            [12] 1613 	mov	a,#0x80
+      00351F C0 E0            [24] 1614 	push	acc
+      003521 12 39 E3         [24] 1615 	lcall	_printf
+      003524 E5 81            [12] 1616 	mov	a,sp
+      003526 24 F9            [12] 1617 	add	a,#0xf9
+      003528 F5 81            [12] 1618 	mov	sp,a
+      00352A D0 01            [24] 1619 	pop	ar1
+      00352C D0 02            [24] 1620 	pop	ar2
+      00352E D0 03            [24] 1621 	pop	ar3
+      003530 D0 04            [24] 1622 	pop	ar4
+      003532 D0 05            [24] 1623 	pop	ar5
+      003534 D0 06            [24] 1624 	pop	ar6
+      003536 D0 07            [24] 1625 	pop	ar7
+                                   1626 ;	SPI.c:240: data_ptr++;
+                                   1627 ;	SPI.c:237: for (int i = 0; i < num_bytes; i++) {
+      003538 90 03 7A         [24] 1628 	mov	dptr,#_spi_buffer_read_i_20002_106
+      00353B E9               [12] 1629 	mov	a,r1
+      00353C F0               [24] 1630 	movx	@dptr,a
+      00353D EA               [12] 1631 	mov	a,r2
+      00353E A3               [24] 1632 	inc	dptr
+      00353F F0               [24] 1633 	movx	@dptr,a
+      003540 D0 07            [24] 1634 	pop	ar7
+      003542 D0 06            [24] 1635 	pop	ar6
+      003544 02 34 AA         [24] 1636 	ljmp	00109$
+      003547                       1637 00107$:
+                                   1638 ;	SPI.c:242: CS_HIGH; // Pull CS High
+                                   1639 ;	assignBit
+      003547 D2 91            [12] 1640 	setb	_P1_1
+                                   1641 ;	SPI.c:243: }
+      003549 22               [24] 1642 	ret
+                                   1643 ;------------------------------------------------------------
+                                   1644 ;Allocation info for local variables in function 'spi_buffer_write'
+                                   1645 ;------------------------------------------------------------
+                                   1646 ;start_address             Allocated with name '_spi_buffer_write_PARM_2'
+                                   1647 ;data_ptr                  Allocated with name '_spi_buffer_write_PARM_3'
+                                   1648 ;num_bytes                 Allocated with name '_spi_buffer_write_num_bytes_10000_108'
+                                   1649 ;higher_byte               Allocated with name '_spi_buffer_write_higher_byte_10001_113'
+                                   1650 ;lower_byte                Allocated with name '_spi_buffer_write_lower_byte_10001_113'
+                                   1651 ;opcode                    Allocated with name '_spi_buffer_write_opcode_10002_114'
+                                   1652 ;i                         Allocated with name '_spi_buffer_write_i_20002_115'
+                                   1653 ;------------------------------------------------------------
+                                   1654 ;	SPI.c:246: void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
+                                   1655 ;	-----------------------------------------
+                                   1656 ;	 function spi_buffer_write
+                                   1657 ;	-----------------------------------------
+      00354A                       1658 _spi_buffer_write:
+      00354A AF 83            [24] 1659 	mov	r7,dph
+      00354C E5 82            [12] 1660 	mov	a,dpl
+      00354E 90 03 81         [24] 1661 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
+      003551 F0               [24] 1662 	movx	@dptr,a
+      003552 EF               [12] 1663 	mov	a,r7
+      003553 A3               [24] 1664 	inc	dptr
+      003554 F0               [24] 1665 	movx	@dptr,a
+                                   1666 ;	SPI.c:248: if (num_bytes < 1)
+      003555 90 03 81         [24] 1667 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
+      003558 E0               [24] 1668 	movx	a,@dptr
+      003559 FE               [12] 1669 	mov	r6,a
+      00355A A3               [24] 1670 	inc	dptr
+      00355B E0               [24] 1671 	movx	a,@dptr
+      00355C FF               [12] 1672 	mov	r7,a
+      00355D C3               [12] 1673 	clr	c
+      00355E EE               [12] 1674 	mov	a,r6
+      00355F 94 01            [12] 1675 	subb	a,#0x01
+      003561 EF               [12] 1676 	mov	a,r7
+      003562 64 80            [12] 1677 	xrl	a,#0x80
+      003564 94 80            [12] 1678 	subb	a,#0x80
+      003566 50 1A            [24] 1679 	jnc	00102$
+                                   1680 ;	SPI.c:250: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
+      003568 C0 06            [24] 1681 	push	ar6
+      00356A C0 07            [24] 1682 	push	ar7
+      00356C 74 1F            [12] 1683 	mov	a,#___str_8
+      00356E C0 E0            [24] 1684 	push	acc
+      003570 74 4B            [12] 1685 	mov	a,#(___str_8 >> 8)
+      003572 C0 E0            [24] 1686 	push	acc
+      003574 74 80            [12] 1687 	mov	a,#0x80
+      003576 C0 E0            [24] 1688 	push	acc
+      003578 12 39 E3         [24] 1689 	lcall	_printf
+      00357B E5 81            [12] 1690 	mov	a,sp
+      00357D 24 FB            [12] 1691 	add	a,#0xfb
+      00357F F5 81            [12] 1692 	mov	sp,a
+                                   1693 ;	SPI.c:251: return;
+      003581 22               [24] 1694 	ret
+      003582                       1695 00102$:
+                                   1696 ;	SPI.c:253: if (start_address > 0x1FFF) {
+      003582 90 03 7C         [24] 1697 	mov	dptr,#_spi_buffer_write_PARM_2
+      003585 E0               [24] 1698 	movx	a,@dptr
+      003586 FC               [12] 1699 	mov	r4,a
+      003587 A3               [24] 1700 	inc	dptr
+      003588 E0               [24] 1701 	movx	a,@dptr
+      003589 FD               [12] 1702 	mov	r5,a
+      00358A 8C 02            [24] 1703 	mov	ar2,r4
+      00358C 8D 03            [24] 1704 	mov	ar3,r5
+      00358E C3               [12] 1705 	clr	c
+      00358F 74 FF            [12] 1706 	mov	a,#0xff
+      003591 9A               [12] 1707 	subb	a,r2
+      003592 74 1F            [12] 1708 	mov	a,#0x1f
+      003594 9B               [12] 1709 	subb	a,r3
+      003595 50 1A            [24] 1710 	jnc	00104$
+                                   1711 ;	SPI.c:254: printf("\n\rInvalid address: %04X\n\r", start_address);
+      003597 C0 04            [24] 1712 	push	ar4
+      003599 C0 05            [24] 1713 	push	ar5
+      00359B 74 3F            [12] 1714 	mov	a,#___str_9
+      00359D C0 E0            [24] 1715 	push	acc
+      00359F 74 4B            [12] 1716 	mov	a,#(___str_9 >> 8)
+      0035A1 C0 E0            [24] 1717 	push	acc
+      0035A3 74 80            [12] 1718 	mov	a,#0x80
+      0035A5 C0 E0            [24] 1719 	push	acc
+      0035A7 12 39 E3         [24] 1720 	lcall	_printf
+      0035AA E5 81            [12] 1721 	mov	a,sp
+      0035AC 24 FB            [12] 1722 	add	a,#0xfb
+      0035AE F5 81            [12] 1723 	mov	sp,a
+                                   1724 ;	SPI.c:255: return;
+      0035B0 22               [24] 1725 	ret
+      0035B1                       1726 00104$:
+                                   1727 ;	SPI.c:259: if (num_bytes > 1) {
+      0035B1 C3               [12] 1728 	clr	c
+      0035B2 74 01            [12] 1729 	mov	a,#0x01
+      0035B4 9E               [12] 1730 	subb	a,r6
+      0035B5 74 80            [12] 1731 	mov	a,#(0x00 ^ 0x80)
+      0035B7 8F F0            [24] 1732 	mov	b,r7
+      0035B9 63 F0 80         [24] 1733 	xrl	b,#0x80
+      0035BC 95 F0            [12] 1734 	subb	a,b
+      0035BE 50 0B            [24] 1735 	jnc	00106$
+                                   1736 ;	SPI.c:260: spi_set_autoinc();
+      0035C0 C0 05            [24] 1737 	push	ar5
+      0035C2 C0 04            [24] 1738 	push	ar4
+      0035C4 12 2F A1         [24] 1739 	lcall	_spi_set_autoinc
+      0035C7 D0 04            [24] 1740 	pop	ar4
+      0035C9 D0 05            [24] 1741 	pop	ar5
+      0035CB                       1742 00106$:
+                                   1743 ;	SPI.c:263: uint8_t higher_byte = (uint8_t)((start_address >> 8) & 0xFF);
+      0035CB 8D 07            [24] 1744 	mov	ar7,r5
+                                   1745 ;	SPI.c:264: uint8_t lower_byte = (uint8_t)(start_address & 0xFF);
+      0035CD 8C 06            [24] 1746 	mov	ar6,r4
+                                   1747 ;	SPI.c:266: spi_control_write(0, 0x03, higher_byte); // High byte
+      0035CF 90 03 62         [24] 1748 	mov	dptr,#_spi_control_write_PARM_2
+      0035D2 74 03            [12] 1749 	mov	a,#0x03
+      0035D4 F0               [24] 1750 	movx	@dptr,a
+      0035D5 90 03 63         [24] 1751 	mov	dptr,#_spi_control_write_PARM_3
+      0035D8 EF               [12] 1752 	mov	a,r7
+      0035D9 F0               [24] 1753 	movx	@dptr,a
+      0035DA 75 82 00         [24] 1754 	mov	dpl, #0x00
+      0035DD C0 06            [24] 1755 	push	ar6
+      0035DF C0 05            [24] 1756 	push	ar5
+      0035E1 C0 04            [24] 1757 	push	ar4
+      0035E3 12 2F CE         [24] 1758 	lcall	_spi_control_write
+      0035E6 D0 04            [24] 1759 	pop	ar4
+      0035E8 D0 05            [24] 1760 	pop	ar5
+      0035EA D0 06            [24] 1761 	pop	ar6
+                                   1762 ;	SPI.c:267: spi_control_write(0, 0x02, lower_byte); // Low byte
+      0035EC 90 03 62         [24] 1763 	mov	dptr,#_spi_control_write_PARM_2
+      0035EF 74 02            [12] 1764 	mov	a,#0x02
+      0035F1 F0               [24] 1765 	movx	@dptr,a
+      0035F2 90 03 63         [24] 1766 	mov	dptr,#_spi_control_write_PARM_3
+      0035F5 EE               [12] 1767 	mov	a,r6
+      0035F6 F0               [24] 1768 	movx	@dptr,a
+      0035F7 75 82 00         [24] 1769 	mov	dpl, #0x00
+      0035FA C0 05            [24] 1770 	push	ar5
+      0035FC C0 04            [24] 1771 	push	ar4
+      0035FE 12 2F CE         [24] 1772 	lcall	_spi_control_write
+                                   1773 ;	SPI.c:270: CS_LOW; // Pull CS Low
+                                   1774 ;	assignBit
+      003601 C2 91            [12] 1775 	clr	_P1_1
+                                   1776 ;	SPI.c:271: SPI_send(opcode); // Send opcode
+      003603 75 82 7A         [24] 1777 	mov	dpl, #0x7a
+      003606 12 30 39         [24] 1778 	lcall	_SPI_send
+      003609 D0 04            [24] 1779 	pop	ar4
+      00360B D0 05            [24] 1780 	pop	ar5
+                                   1781 ;	SPI.c:274: printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
+      00360D 90 03 81         [24] 1782 	mov	dptr,#_spi_buffer_write_num_bytes_10000_108
+      003610 E0               [24] 1783 	movx	a,@dptr
+      003611 FE               [12] 1784 	mov	r6,a
+      003612 A3               [24] 1785 	inc	dptr
+      003613 E0               [24] 1786 	movx	a,@dptr
+      003614 FF               [12] 1787 	mov	r7,a
+      003615 C0 07            [24] 1788 	push	ar7
+      003617 C0 06            [24] 1789 	push	ar6
+      003619 C0 04            [24] 1790 	push	ar4
+      00361B C0 05            [24] 1791 	push	ar5
+      00361D C0 06            [24] 1792 	push	ar6
+      00361F C0 07            [24] 1793 	push	ar7
+      003621 74 A6            [12] 1794 	mov	a,#___str_12
+      003623 C0 E0            [24] 1795 	push	acc
+      003625 74 4B            [12] 1796 	mov	a,#(___str_12 >> 8)
+      003627 C0 E0            [24] 1797 	push	acc
+      003629 74 80            [12] 1798 	mov	a,#0x80
+      00362B C0 E0            [24] 1799 	push	acc
+      00362D 12 39 E3         [24] 1800 	lcall	_printf
+      003630 E5 81            [12] 1801 	mov	a,sp
+      003632 24 F9            [12] 1802 	add	a,#0xf9
+      003634 F5 81            [12] 1803 	mov	sp,a
+      003636 D0 06            [24] 1804 	pop	ar6
+      003638 D0 07            [24] 1805 	pop	ar7
+                                   1806 ;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
+      00363A 90 03 83         [24] 1807 	mov	dptr,#_spi_buffer_write_i_20002_115
+      00363D E4               [12] 1808 	clr	a
+      00363E F0               [24] 1809 	movx	@dptr,a
+      00363F A3               [24] 1810 	inc	dptr
+      003640 F0               [24] 1811 	movx	@dptr,a
+      003641 90 03 7E         [24] 1812 	mov	dptr,#_spi_buffer_write_PARM_3
+      003644 E0               [24] 1813 	movx	a,@dptr
+      003645 FB               [12] 1814 	mov	r3,a
+      003646 A3               [24] 1815 	inc	dptr
+      003647 E0               [24] 1816 	movx	a,@dptr
+      003648 FC               [12] 1817 	mov	r4,a
+      003649 A3               [24] 1818 	inc	dptr
+      00364A E0               [24] 1819 	movx	a,@dptr
+      00364B FD               [12] 1820 	mov	r5,a
+      00364C                       1821 00109$:
+      00364C 90 03 83         [24] 1822 	mov	dptr,#_spi_buffer_write_i_20002_115
+      00364F E0               [24] 1823 	movx	a,@dptr
+      003650 F9               [12] 1824 	mov	r1,a
+      003651 A3               [24] 1825 	inc	dptr
+      003652 E0               [24] 1826 	movx	a,@dptr
+      003653 FA               [12] 1827 	mov	r2,a
+      003654 C3               [12] 1828 	clr	c
+      003655 E9               [12] 1829 	mov	a,r1
+      003656 9E               [12] 1830 	subb	a,r6
+      003657 EA               [12] 1831 	mov	a,r2
+      003658 64 80            [12] 1832 	xrl	a,#0x80
+      00365A 8F F0            [24] 1833 	mov	b,r7
+      00365C 63 F0 80         [24] 1834 	xrl	b,#0x80
+      00365F 95 F0            [12] 1835 	subb	a,b
+      003661 40 03            [24] 1836 	jc	00147$
+      003663 02 36 F3         [24] 1837 	ljmp	00107$
+      003666                       1838 00147$:
+                                   1839 ;	SPI.c:276: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+      003666 C0 06            [24] 1840 	push	ar6
+      003668 C0 07            [24] 1841 	push	ar7
+      00366A 8B 82            [24] 1842 	mov	dpl,r3
+      00366C 8C 83            [24] 1843 	mov	dph,r4
+      00366E 8D F0            [24] 1844 	mov	b,r5
+      003670 12 44 05         [24] 1845 	lcall	__gptrget
+      003673 F8               [12] 1846 	mov	r0,a
+      003674 7F 00            [12] 1847 	mov	r7,#0x00
+      003676 09               [12] 1848 	inc	r1
+      003677 B9 00 01         [24] 1849 	cjne	r1,#0x00,00148$
+      00367A 0A               [12] 1850 	inc	r2
+      00367B                       1851 00148$:
+      00367B C0 07            [24] 1852 	push	ar7
+      00367D C0 06            [24] 1853 	push	ar6
+      00367F C0 05            [24] 1854 	push	ar5
+      003681 C0 04            [24] 1855 	push	ar4
+      003683 C0 03            [24] 1856 	push	ar3
+      003685 C0 02            [24] 1857 	push	ar2
+      003687 C0 01            [24] 1858 	push	ar1
+      003689 C0 00            [24] 1859 	push	ar0
+      00368B C0 07            [24] 1860 	push	ar7
+      00368D C0 01            [24] 1861 	push	ar1
+      00368F C0 02            [24] 1862 	push	ar2
+      003691 74 94            [12] 1863 	mov	a,#___str_11
+      003693 C0 E0            [24] 1864 	push	acc
+      003695 74 4B            [12] 1865 	mov	a,#(___str_11 >> 8)
+      003697 C0 E0            [24] 1866 	push	acc
+      003699 74 80            [12] 1867 	mov	a,#0x80
+      00369B C0 E0            [24] 1868 	push	acc
+      00369D 12 39 E3         [24] 1869 	lcall	_printf
+      0036A0 E5 81            [12] 1870 	mov	a,sp
+      0036A2 24 F9            [12] 1871 	add	a,#0xf9
+      0036A4 F5 81            [12] 1872 	mov	sp,a
+      0036A6 D0 01            [24] 1873 	pop	ar1
+      0036A8 D0 02            [24] 1874 	pop	ar2
+      0036AA D0 03            [24] 1875 	pop	ar3
+      0036AC D0 04            [24] 1876 	pop	ar4
+      0036AE D0 05            [24] 1877 	pop	ar5
+      0036B0 D0 06            [24] 1878 	pop	ar6
+      0036B2 D0 07            [24] 1879 	pop	ar7
+                                   1880 ;	SPI.c:277: SPI_send(*data_ptr); // Send data
+      0036B4 8B 82            [24] 1881 	mov	dpl,r3
+      0036B6 8C 83            [24] 1882 	mov	dph,r4
+      0036B8 8D F0            [24] 1883 	mov	b,r5
+      0036BA 12 44 05         [24] 1884 	lcall	__gptrget
+      0036BD FF               [12] 1885 	mov	r7,a
+      0036BE A3               [24] 1886 	inc	dptr
+      0036BF AB 82            [24] 1887 	mov	r3,dpl
+      0036C1 AC 83            [24] 1888 	mov	r4,dph
+      0036C3 8F 82            [24] 1889 	mov	dpl, r7
+      0036C5 C0 07            [24] 1890 	push	ar7
+      0036C7 C0 06            [24] 1891 	push	ar6
+      0036C9 C0 05            [24] 1892 	push	ar5
+      0036CB C0 04            [24] 1893 	push	ar4
+      0036CD C0 03            [24] 1894 	push	ar3
+      0036CF C0 02            [24] 1895 	push	ar2
+      0036D1 C0 01            [24] 1896 	push	ar1
+      0036D3 12 30 39         [24] 1897 	lcall	_SPI_send
+      0036D6 D0 01            [24] 1898 	pop	ar1
+      0036D8 D0 02            [24] 1899 	pop	ar2
+      0036DA D0 03            [24] 1900 	pop	ar3
+      0036DC D0 04            [24] 1901 	pop	ar4
+      0036DE D0 05            [24] 1902 	pop	ar5
+      0036E0 D0 06            [24] 1903 	pop	ar6
+      0036E2 D0 07            [24] 1904 	pop	ar7
+                                   1905 ;	SPI.c:278: data_ptr++;
+                                   1906 ;	SPI.c:275: for (int i = 0; i < num_bytes; i++) {
+      0036E4 90 03 83         [24] 1907 	mov	dptr,#_spi_buffer_write_i_20002_115
+      0036E7 E9               [12] 1908 	mov	a,r1
+      0036E8 F0               [24] 1909 	movx	@dptr,a
+      0036E9 EA               [12] 1910 	mov	a,r2
+      0036EA A3               [24] 1911 	inc	dptr
+      0036EB F0               [24] 1912 	movx	@dptr,a
+      0036EC D0 07            [24] 1913 	pop	ar7
+      0036EE D0 06            [24] 1914 	pop	ar6
+      0036F0 02 36 4C         [24] 1915 	ljmp	00109$
+      0036F3                       1916 00107$:
+                                   1917 ;	SPI.c:280: CS_HIGH; // Pull CS High
+                                   1918 ;	assignBit
+      0036F3 D2 91            [12] 1919 	setb	_P1_1
+                                   1920 ;	SPI.c:281: }
+      0036F5 22               [24] 1921 	ret
+                                   1922 ;------------------------------------------------------------
+                                   1923 ;Allocation info for local variables in function 'init_ENC'
+                                   1924 ;------------------------------------------------------------
+                                   1925 ;	SPI.c:283: void init_ENC(void)
+                                   1926 ;	-----------------------------------------
+                                   1927 ;	 function init_ENC
+                                   1928 ;	-----------------------------------------
+      0036F6                       1929 _init_ENC:
+                                   1930 ;	SPI.c:285: spi_control_write(1, 0x18, 0x41);
+      0036F6 90 03 62         [24] 1931 	mov	dptr,#_spi_control_write_PARM_2
+      0036F9 74 18            [12] 1932 	mov	a,#0x18
+      0036FB F0               [24] 1933 	movx	@dptr,a
+      0036FC 90 03 63         [24] 1934 	mov	dptr,#_spi_control_write_PARM_3
+      0036FF 74 41            [12] 1935 	mov	a,#0x41
+      003701 F0               [24] 1936 	movx	@dptr,a
+      003702 75 82 01         [24] 1937 	mov	dpl, #0x01
+      003705 12 2F CE         [24] 1938 	lcall	_spi_control_write
+                                   1939 ;	SPI.c:287: enc28j60_init_rx_buffer(0x0000, 0x00FF);
+      003708 90 01 06         [24] 1940 	mov	dptr,#_enc28j60_init_rx_buffer_PARM_2
+      00370B 74 FF            [12] 1941 	mov	a,#0xff
+      00370D F0               [24] 1942 	movx	@dptr,a
+      00370E E4               [12] 1943 	clr	a
+      00370F A3               [24] 1944 	inc	dptr
+      003710 F0               [24] 1945 	movx	@dptr,a
+      003711 90 00 00         [24] 1946 	mov	dptr,#0x0000
+      003714 12 21 71         [24] 1947 	lcall	_enc28j60_init_rx_buffer
+                                   1948 ;	SPI.c:289: IT0 = 1;  // Edge-triggered mode for INT0
+                                   1949 ;	assignBit
+      003717 D2 88            [12] 1950 	setb	_IT0
+                                   1951 ;	SPI.c:290: EX0 = 1;  // Enable INT0
+                                   1952 ;	assignBit
+      003719 D2 A8            [12] 1953 	setb	_EX0
+                                   1954 ;	SPI.c:291: EA = 1;   // Enable global interrupts
+                                   1955 ;	assignBit
+      00371B D2 AF            [12] 1956 	setb	_EA
+                                   1957 ;	SPI.c:295: spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
+      00371D 90 03 62         [24] 1958 	mov	dptr,#_spi_control_write_PARM_2
+      003720 74 02            [12] 1959 	mov	a,#0x02
+      003722 F0               [24] 1960 	movx	@dptr,a
+      003723 90 03 63         [24] 1961 	mov	dptr,#_spi_control_write_PARM_3
+      003726 74 70            [12] 1962 	mov	a,#0x70
+      003728 F0               [24] 1963 	movx	@dptr,a
+      003729 75 82 02         [24] 1964 	mov	dpl, #0x02
+      00372C 12 2F CE         [24] 1965 	lcall	_spi_control_write
+                                   1966 ;	SPI.c:296: spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
+      00372F 90 03 62         [24] 1967 	mov	dptr,#_spi_control_write_PARM_2
+      003732 74 03            [12] 1968 	mov	a,#0x03
+      003734 F0               [24] 1969 	movx	@dptr,a
+      003735 90 03 63         [24] 1970 	mov	dptr,#_spi_control_write_PARM_3
+      003738 74 40            [12] 1971 	mov	a,#0x40
+      00373A F0               [24] 1972 	movx	@dptr,a
+      00373B 75 82 02         [24] 1973 	mov	dpl, #0x02
+      00373E 12 2F CE         [24] 1974 	lcall	_spi_control_write
+                                   1975 ;	SPI.c:297: spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
+      003741 90 03 62         [24] 1976 	mov	dptr,#_spi_control_write_PARM_2
+      003744 74 0A            [12] 1977 	mov	a,#0x0a
+      003746 F0               [24] 1978 	movx	@dptr,a
+      003747 90 03 63         [24] 1979 	mov	dptr,#_spi_control_write_PARM_3
+      00374A 74 EE            [12] 1980 	mov	a,#0xee
+      00374C F0               [24] 1981 	movx	@dptr,a
+      00374D 75 82 02         [24] 1982 	mov	dpl, #0x02
+      003750 12 2F CE         [24] 1983 	lcall	_spi_control_write
+                                   1984 ;	SPI.c:298: spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
+      003753 90 03 62         [24] 1985 	mov	dptr,#_spi_control_write_PARM_2
+      003756 74 0B            [12] 1986 	mov	a,#0x0b
+      003758 F0               [24] 1987 	movx	@dptr,a
+      003759 90 03 63         [24] 1988 	mov	dptr,#_spi_control_write_PARM_3
+      00375C 74 05            [12] 1989 	mov	a,#0x05
+      00375E F0               [24] 1990 	movx	@dptr,a
+      00375F 75 82 02         [24] 1991 	mov	dpl, #0x02
+      003762 12 2F CE         [24] 1992 	lcall	_spi_control_write
+                                   1993 ;	SPI.c:299: spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
+      003765 90 03 62         [24] 1994 	mov	dptr,#_spi_control_write_PARM_2
+      003768 74 04            [12] 1995 	mov	a,#0x04
+      00376A F0               [24] 1996 	movx	@dptr,a
+      00376B 90 03 63         [24] 1997 	mov	dptr,#_spi_control_write_PARM_3
+      00376E 74 12            [12] 1998 	mov	a,#0x12
+      003770 F0               [24] 1999 	movx	@dptr,a
+      003771 75 82 02         [24] 2000 	mov	dpl, #0x02
+      003774 12 2F CE         [24] 2001 	lcall	_spi_control_write
+                                   2002 ;	SPI.c:300: spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
+      003777 90 03 62         [24] 2003 	mov	dptr,#_spi_control_write_PARM_2
+      00377A 74 06            [12] 2004 	mov	a,#0x06
+      00377C F0               [24] 2005 	movx	@dptr,a
+      00377D 90 03 63         [24] 2006 	mov	dptr,#_spi_control_write_PARM_3
+      003780 74 12            [12] 2007 	mov	a,#0x12
+      003782 F0               [24] 2008 	movx	@dptr,a
+      003783 75 82 02         [24] 2009 	mov	dpl, #0x02
+      003786 12 2F CE         [24] 2010 	lcall	_spi_control_write
+                                   2011 ;	SPI.c:301: spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
+      003789 90 03 62         [24] 2012 	mov	dptr,#_spi_control_write_PARM_2
+      00378C 74 07            [12] 2013 	mov	a,#0x07
+      00378E F0               [24] 2014 	movx	@dptr,a
+      00378F 90 03 63         [24] 2015 	mov	dptr,#_spi_control_write_PARM_3
+      003792 74 0C            [12] 2016 	mov	a,#0x0c
+      003794 F0               [24] 2017 	movx	@dptr,a
+      003795 75 82 02         [24] 2018 	mov	dpl, #0x02
+      003798 12 2F CE         [24] 2019 	lcall	_spi_control_write
+                                   2020 ;	SPI.c:305: spi_control_write(0, 0x1B, 0xC0);
+      00379B 90 03 62         [24] 2021 	mov	dptr,#_spi_control_write_PARM_2
+      00379E 74 1B            [12] 2022 	mov	a,#0x1b
+      0037A0 F0               [24] 2023 	movx	@dptr,a
+      0037A1 90 03 63         [24] 2024 	mov	dptr,#_spi_control_write_PARM_3
+      0037A4 74 C0            [12] 2025 	mov	a,#0xc0
+      0037A6 F0               [24] 2026 	movx	@dptr,a
+      0037A7 75 82 00         [24] 2027 	mov	dpl, #0x00
+                                   2028 ;	SPI.c:307: }
+      0037AA 02 2F CE         [24] 2029 	ljmp	_spi_control_write
+                                   2030 ;------------------------------------------------------------
+                                   2031 ;Allocation info for local variables in function 'init_MAC'
+                                   2032 ;------------------------------------------------------------
+                                   2033 ;	SPI.c:309: void init_MAC(void)
+                                   2034 ;	-----------------------------------------
+                                   2035 ;	 function init_MAC
+                                   2036 ;	-----------------------------------------
+      0037AD                       2037 _init_MAC:
+                                   2038 ;	SPI.c:312: }
+      0037AD 22               [24] 2039 	ret
+                                   2040 	.area CSEG    (CODE)
+                                   2041 	.area CONST   (CODE)
+                                   2042 	.area CONST   (CODE)
+      0049B9                       2043 ___str_0:
+      0049B9 57 72 69 74 65 3A 20  2044 	.ascii "Write: Address 0x%02X, Data 0x%02X"
              41 64 64 72 65 73 73
              20 30 78 25 30 32 58
              2C 20 44 61 74 61 20
              30 78 25 30 32 58
-      0048BC 0A                    2016 	.db 0x0a
-      0048BD 0D                    2017 	.db 0x0d
-      0048BE 00                    2018 	.db 0x00
-                                   2019 	.area CSEG    (CODE)
-                                   2020 	.area CONST   (CODE)
-      0048BF                       2021 ___str_1:
-      0048BF 0A                    2022 	.db 0x0a
-      0048C0 0D                    2023 	.db 0x0d
-      0048C1 49 6E 76 61 6C 69 64  2024 	.ascii "Invalid address: MAC register address range [0, 0x1F]"
+      0049DB 0A                    2045 	.db 0x0a
+      0049DC 0D                    2046 	.db 0x0d
+      0049DD 00                    2047 	.db 0x00
+                                   2048 	.area CSEG    (CODE)
+                                   2049 	.area CONST   (CODE)
+      0049DE                       2050 ___str_1:
+      0049DE 0A                    2051 	.db 0x0a
+      0049DF 0D                    2052 	.db 0x0d
+      0049E0 49 6E 76 61 6C 69 64  2053 	.ascii "Invalid address: MAC register address range [0, 0x1F]"
              20 61 64 64 72 65 73
              73 3A 20 4D 41 43 20
              72 65 67 69 73 74 65
@@ -2033,60 +2062,60 @@
              73 73 20 72 61 6E 67
              65 20 5B 30 2C 20 30
              78 31 46 5D
-      0048F6 0A                    2025 	.db 0x0a
-      0048F7 0D                    2026 	.db 0x0d
-      0048F8 00                    2027 	.db 0x00
-                                   2028 	.area CSEG    (CODE)
-                                   2029 	.area CONST   (CODE)
-      0048F9                       2030 ___str_2:
-      0048F9 52 65 61 64 3A 20 41  2031 	.ascii "Read: Address 0x%02X, Data 0x%02X"
+      004A15 0A                    2054 	.db 0x0a
+      004A16 0D                    2055 	.db 0x0d
+      004A17 00                    2056 	.db 0x00
+                                   2057 	.area CSEG    (CODE)
+                                   2058 	.area CONST   (CODE)
+      004A18                       2059 ___str_2:
+      004A18 52 65 61 64 3A 20 41  2060 	.ascii "Read: Address 0x%02X, Data 0x%02X"
              64 64 72 65 73 73 20
              30 78 25 30 32 58 2C
              20 44 61 74 61 20 30
              78 25 30 32 58
-      00491A 0A                    2032 	.db 0x0a
-      00491B 0D                    2033 	.db 0x0d
-      00491C 00                    2034 	.db 0x00
-                                   2035 	.area CSEG    (CODE)
-                                   2036 	.area CONST   (CODE)
-      00491D                       2037 ___str_3:
-      00491D 50 48 59 20 57 72 69  2038 	.ascii "PHY Write: Address 0x%02X, Data 0x%04X"
+      004A39 0A                    2061 	.db 0x0a
+      004A3A 0D                    2062 	.db 0x0d
+      004A3B 00                    2063 	.db 0x00
+                                   2064 	.area CSEG    (CODE)
+                                   2065 	.area CONST   (CODE)
+      004A3C                       2066 ___str_3:
+      004A3C 50 48 59 20 57 72 69  2067 	.ascii "PHY Write: Address 0x%02X, Data 0x%04X"
              74 65 3A 20 41 64 64
              72 65 73 73 20 30 78
              25 30 32 58 2C 20 44
              61 74 61 20 30 78 25
              30 34 58
-      004943 0A                    2039 	.db 0x0a
-      004944 0D                    2040 	.db 0x0d
-      004945 00                    2041 	.db 0x00
-                                   2042 	.area CSEG    (CODE)
-                                   2043 	.area CONST   (CODE)
-      004946                       2044 ___str_4:
-      004946 52 65 61 64 3A 20 41  2045 	.ascii "Read: Address 0x%02X, Data 0x%02X"
+      004A62 0A                    2068 	.db 0x0a
+      004A63 0D                    2069 	.db 0x0d
+      004A64 00                    2070 	.db 0x00
+                                   2071 	.area CSEG    (CODE)
+                                   2072 	.area CONST   (CODE)
+      004A65                       2073 ___str_4:
+      004A65 52 65 61 64 3A 20 41  2074 	.ascii "Read: Address 0x%02X, Data 0x%02X"
              64 64 72 65 73 73 20
              30 78 25 30 32 58 2C
              20 44 61 74 61 20 30
              78 25 30 32 58
-      004967 0A                    2046 	.db 0x0a
-      004968 00                    2047 	.db 0x00
-                                   2048 	.area CSEG    (CODE)
-                                   2049 	.area CONST   (CODE)
-      004969                       2050 ___str_5:
-      004969 50 48 59 20 52 65 61  2051 	.ascii "PHY Read: Address 0x%02X, Data 0x%04X"
+      004A86 0A                    2075 	.db 0x0a
+      004A87 00                    2076 	.db 0x00
+                                   2077 	.area CSEG    (CODE)
+                                   2078 	.area CONST   (CODE)
+      004A88                       2079 ___str_5:
+      004A88 50 48 59 20 52 65 61  2080 	.ascii "PHY Read: Address 0x%02X, Data 0x%04X"
              64 3A 20 41 64 64 72
              65 73 73 20 30 78 25
              30 32 58 2C 20 44 61
              74 61 20 30 78 25 30
              34 58
-      00498E 0A                    2052 	.db 0x0a
-      00498F 0D                    2053 	.db 0x0d
-      004990 00                    2054 	.db 0x00
-                                   2055 	.area CSEG    (CODE)
-                                   2056 	.area CONST   (CODE)
-      004991                       2057 ___str_6:
-      004991 0A                    2058 	.db 0x0a
-      004992 0D                    2059 	.db 0x0d
-      004993 49 6E 76 61 6C 69 64  2060 	.ascii "Invalid Buffer Address or Size: Start 0x%04X, Size 0x%04X"
+      004AAD 0A                    2081 	.db 0x0a
+      004AAE 0D                    2082 	.db 0x0d
+      004AAF 00                    2083 	.db 0x00
+                                   2084 	.area CSEG    (CODE)
+                                   2085 	.area CONST   (CODE)
+      004AB0                       2086 ___str_6:
+      004AB0 0A                    2087 	.db 0x0a
+      004AB1 0D                    2088 	.db 0x0d
+      004AB2 49 6E 76 61 6C 69 64  2089 	.ascii "Invalid Buffer Address or Size: Start 0x%04X, Size 0x%04X"
              20 42 75 66 66 65 72
              20 41 64 64 72 65 73
              73 20 6F 72 20 53 69
@@ -2095,51 +2124,51 @@
              34 58 2C 20 53 69 7A
              65 20 30 78 25 30 34
              58
-      0049CC 0A                    2061 	.db 0x0a
-      0049CD 0D                    2062 	.db 0x0d
-      0049CE 00                    2063 	.db 0x00
-                                   2064 	.area CSEG    (CODE)
-                                   2065 	.area CONST   (CODE)
-      0049CF                       2066 ___str_7:
-      0049CF 0A                    2067 	.db 0x0a
-      0049D0 0D                    2068 	.db 0x0d
-      0049D1 42 75 66 66 65 72 20  2069 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
+      004AEB 0A                    2090 	.db 0x0a
+      004AEC 0D                    2091 	.db 0x0d
+      004AED 00                    2092 	.db 0x00
+                                   2093 	.area CSEG    (CODE)
+                                   2094 	.area CONST   (CODE)
+      004AEE                       2095 ___str_7:
+      004AEE 0A                    2096 	.db 0x0a
+      004AEF 0D                    2097 	.db 0x0d
+      004AF0 42 75 66 66 65 72 20  2098 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
              49 6E 69 74 69 61 6C
              69 7A 65 64 3A 20 53
              74 61 72 74 20 30 78
              25 30 34 58 2C 20 45
              6E 64 20 30 78 25 30
              34 58
-      0049FD 0A                    2070 	.db 0x0a
-      0049FE 0D                    2071 	.db 0x0d
-      0049FF 00                    2072 	.db 0x00
-                                   2073 	.area CSEG    (CODE)
-                                   2074 	.area CONST   (CODE)
-      004A00                       2075 ___str_8:
-      004A00 0A                    2076 	.db 0x0a
-      004A01 0D                    2077 	.db 0x0d
-      004A02 49 6E 76 61 6C 69 64  2078 	.ascii "Invalid number of bytes: %d"
+      004B1C 0A                    2099 	.db 0x0a
+      004B1D 0D                    2100 	.db 0x0d
+      004B1E 00                    2101 	.db 0x00
+                                   2102 	.area CSEG    (CODE)
+                                   2103 	.area CONST   (CODE)
+      004B1F                       2104 ___str_8:
+      004B1F 0A                    2105 	.db 0x0a
+      004B20 0D                    2106 	.db 0x0d
+      004B21 49 6E 76 61 6C 69 64  2107 	.ascii "Invalid number of bytes: %d"
              20 6E 75 6D 62 65 72
              20 6F 66 20 62 79 74
              65 73 3A 20 25 64
-      004A1D 0A                    2079 	.db 0x0a
-      004A1E 0D                    2080 	.db 0x0d
-      004A1F 00                    2081 	.db 0x00
-                                   2082 	.area CSEG    (CODE)
-                                   2083 	.area CONST   (CODE)
-      004A20                       2084 ___str_9:
-      004A20 0A                    2085 	.db 0x0a
-      004A21 0D                    2086 	.db 0x0d
-      004A22 49 6E 76 61 6C 69 64  2087 	.ascii "Invalid address: %04X"
+      004B3C 0A                    2108 	.db 0x0a
+      004B3D 0D                    2109 	.db 0x0d
+      004B3E 00                    2110 	.db 0x00
+                                   2111 	.area CSEG    (CODE)
+                                   2112 	.area CONST   (CODE)
+      004B3F                       2113 ___str_9:
+      004B3F 0A                    2114 	.db 0x0a
+      004B40 0D                    2115 	.db 0x0d
+      004B41 49 6E 76 61 6C 69 64  2116 	.ascii "Invalid address: %04X"
              20 61 64 64 72 65 73
              73 3A 20 25 30 34 58
-      004A37 0A                    2088 	.db 0x0a
-      004A38 0D                    2089 	.db 0x0d
-      004A39 00                    2090 	.db 0x00
-                                   2091 	.area CSEG    (CODE)
-                                   2092 	.area CONST   (CODE)
-      004A3A                       2093 ___str_10:
-      004A3A 52 65 61 64 69 6E 67  2094 	.ascii "Reading %d bytes from buffer starting at address 0x%04X:"
+      004B56 0A                    2117 	.db 0x0a
+      004B57 0D                    2118 	.db 0x0d
+      004B58 00                    2119 	.db 0x00
+                                   2120 	.area CSEG    (CODE)
+                                   2121 	.area CONST   (CODE)
+      004B59                       2122 ___str_10:
+      004B59 52 65 61 64 69 6E 67  2123 	.ascii "Reading %d bytes from buffer starting at address 0x%04X:"
              20 25 64 20 62 79 74
              65 73 20 66 72 6F 6D
              20 62 75 66 66 65 72
@@ -2147,22 +2176,22 @@
              6E 67 20 61 74 20 61
              64 64 72 65 73 73 20
              30 78 25 30 34 58 3A
-      004A72 0A                    2095 	.db 0x0a
-      004A73 0D                    2096 	.db 0x0d
-      004A74 00                    2097 	.db 0x00
-                                   2098 	.area CSEG    (CODE)
-                                   2099 	.area CONST   (CODE)
-      004A75                       2100 ___str_11:
-      004A75 42 79 74 65 20 25 64  2101 	.ascii "Byte %d: 0x%02X"
+      004B91 0A                    2124 	.db 0x0a
+      004B92 0D                    2125 	.db 0x0d
+      004B93 00                    2126 	.db 0x00
+                                   2127 	.area CSEG    (CODE)
+                                   2128 	.area CONST   (CODE)
+      004B94                       2129 ___str_11:
+      004B94 42 79 74 65 20 25 64  2130 	.ascii "Byte %d: 0x%02X"
              3A 20 30 78 25 30 32
              58
-      004A84 0A                    2102 	.db 0x0a
-      004A85 0D                    2103 	.db 0x0d
-      004A86 00                    2104 	.db 0x00
-                                   2105 	.area CSEG    (CODE)
-                                   2106 	.area CONST   (CODE)
-      004A87                       2107 ___str_12:
-      004A87 57 72 69 74 69 6E 67  2108 	.ascii "Writing %d bytes to buffer starting at address 0x%04X:"
+      004BA3 0A                    2131 	.db 0x0a
+      004BA4 0D                    2132 	.db 0x0d
+      004BA5 00                    2133 	.db 0x00
+                                   2134 	.area CSEG    (CODE)
+                                   2135 	.area CONST   (CODE)
+      004BA6                       2136 ___str_12:
+      004BA6 57 72 69 74 69 6E 67  2137 	.ascii "Writing %d bytes to buffer starting at address 0x%04X:"
              20 25 64 20 62 79 74
              65 73 20 74 6F 20 62
              75 66 66 65 72 20 73
@@ -2170,9 +2199,9 @@
              20 61 74 20 61 64 64
              72 65 73 73 20 30 78
              25 30 34 58 3A
-      004ABD 0A                    2109 	.db 0x0a
-      004ABE 0D                    2110 	.db 0x0d
-      004ABF 00                    2111 	.db 0x00
-                                   2112 	.area CSEG    (CODE)
-                                   2113 	.area XINIT   (CODE)
-                                   2114 	.area CABS    (ABS,CODE)
+      004BDC 0A                    2138 	.db 0x0a
+      004BDD 0D                    2139 	.db 0x0d
+      004BDE 00                    2140 	.db 0x00
+                                   2141 	.area CSEG    (CODE)
+                                   2142 	.area XINIT   (CODE)
+                                   2143 	.area CABS    (ABS,CODE)
