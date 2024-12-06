@@ -515,7 +515,7 @@
                                     515 ;	-----------------------------------------
                                     516 ;	 function LED_Fast_Blink
                                     517 ;	-----------------------------------------
-      0032D4                        518 _LED_Fast_Blink:
+      003304                        518 _LED_Fast_Blink:
                            000007   519 	ar7 = 0x07
                            000006   520 	ar6 = 0x06
                            000005   521 	ar5 = 0x05
@@ -525,30 +525,30 @@
                            000001   525 	ar1 = 0x01
                            000000   526 	ar0 = 0x00
                                     527 ;	Operations.c:6: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);     //Write to the ECON1 register
-      0032D4 75 82 5F         [24]  528 	mov	dpl, #0x5f
-      0032D7 12 34 5A         [24]  529 	lcall	_SPI_send
+      003304 75 82 5F         [24]  528 	mov	dpl, #0x5f
+      003307 12 34 8A         [24]  529 	lcall	_SPI_send
                                     530 ;	Operations.c:7: SPI_send(ENC_REGISTER_BANK_2);                          //Select register bank2
-      0032DA 75 82 02         [24]  531 	mov	dpl, #0x02
-      0032DD 12 34 5A         [24]  532 	lcall	_SPI_send
+      00330A 75 82 02         [24]  531 	mov	dpl, #0x02
+      00330D 12 34 8A         [24]  532 	lcall	_SPI_send
                                     533 ;	Operations.c:9: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);  //Select the MIREGADR register
-      0032E0 75 82 54         [24]  534 	mov	dpl, #0x54
-      0032E3 12 34 5A         [24]  535 	lcall	_SPI_send
+      003310 75 82 54         [24]  534 	mov	dpl, #0x54
+      003313 12 34 8A         [24]  535 	lcall	_SPI_send
                                     536 ;	Operations.c:10: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
-      0032E6 75 82 14         [24]  537 	mov	dpl, #0x14
-      0032E9 12 34 5A         [24]  538 	lcall	_SPI_send
+      003316 75 82 14         [24]  537 	mov	dpl, #0x14
+      003319 12 34 8A         [24]  538 	lcall	_SPI_send
                                     539 ;	Operations.c:12: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRL);
-      0032EC 75 82 56         [24]  540 	mov	dpl, #0x56
-      0032EF 12 34 5A         [24]  541 	lcall	_SPI_send
+      00331C 75 82 56         [24]  540 	mov	dpl, #0x56
+      00331F 12 34 8A         [24]  541 	lcall	_SPI_send
                                     542 ;	Operations.c:13: SPI_send(LED_FAST_BLINK_LSB);
-      0032F2 75 82 00         [24]  543 	mov	dpl, #0x00
-      0032F5 12 34 5A         [24]  544 	lcall	_SPI_send
+      003322 75 82 00         [24]  543 	mov	dpl, #0x00
+      003325 12 34 8A         [24]  544 	lcall	_SPI_send
                                     545 ;	Operations.c:14: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRH);
-      0032F8 75 82 57         [24]  546 	mov	dpl, #0x57
-      0032FB 12 34 5A         [24]  547 	lcall	_SPI_send
+      003328 75 82 57         [24]  546 	mov	dpl, #0x57
+      00332B 12 34 8A         [24]  547 	lcall	_SPI_send
                                     548 ;	Operations.c:15: SPI_send(LED_FAST_BLINK_MSB);
-      0032FE 75 82 0A         [24]  549 	mov	dpl, #0x0a
+      00332E 75 82 0A         [24]  549 	mov	dpl, #0x0a
                                     550 ;	Operations.c:17: }
-      003301 02 34 5A         [24]  551 	ljmp	_SPI_send
+      003331 02 34 8A         [24]  551 	ljmp	_SPI_send
                                     552 ;------------------------------------------------------------
                                     553 ;Allocation info for local variables in function 'LED_Slow_Blink'
                                     554 ;------------------------------------------------------------
@@ -556,9 +556,9 @@
                                     556 ;	-----------------------------------------
                                     557 ;	 function LED_Slow_Blink
                                     558 ;	-----------------------------------------
-      003304                        559 _LED_Slow_Blink:
+      003334                        559 _LED_Slow_Blink:
                                     560 ;	Operations.c:22: }
-      003304 22               [24]  561 	ret
+      003334 22               [24]  561 	ret
                                     562 ;------------------------------------------------------------
                                     563 ;Allocation info for local variables in function 'LED_On'
                                     564 ;------------------------------------------------------------
@@ -566,57 +566,57 @@
                                     566 ;	-----------------------------------------
                                     567 ;	 function LED_On
                                     568 ;	-----------------------------------------
-      003305                        569 _LED_On:
+      003335                        569 _LED_On:
                                     570 ;	Operations.c:26: P1_1 = 0;
                                     571 ;	assignBit
-      003305 C2 91            [12]  572 	clr	_P1_1
+      003335 C2 91            [12]  572 	clr	_P1_1
                                     573 ;	Operations.c:27: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_ECON1);     //Write to the ECON1 register
-      003307 75 82 5F         [24]  574 	mov	dpl, #0x5f
-      00330A 12 34 5A         [24]  575 	lcall	_SPI_send
+      003337 75 82 5F         [24]  574 	mov	dpl, #0x5f
+      00333A 12 34 8A         [24]  575 	lcall	_SPI_send
                                     576 ;	Operations.c:29: SPI_send(ENC_REGISTER_BANK_2);                          //Select register bank2
-      00330D 75 82 02         [24]  577 	mov	dpl, #0x02
-      003310 12 34 5A         [24]  578 	lcall	_SPI_send
+      00333D 75 82 02         [24]  577 	mov	dpl, #0x02
+      003340 12 34 8A         [24]  578 	lcall	_SPI_send
                                     579 ;	Operations.c:31: P1_1 = 1;
                                     580 ;	assignBit
-      003313 D2 91            [12]  581 	setb	_P1_1
+      003343 D2 91            [12]  581 	setb	_P1_1
                                     582 ;	Operations.c:34: P1_1 = 0;
                                     583 ;	assignBit
-      003315 C2 91            [12]  584 	clr	_P1_1
+      003345 C2 91            [12]  584 	clr	_P1_1
                                     585 ;	Operations.c:35: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIREGADR);  //Select the MIREGADR register
-      003317 75 82 54         [24]  586 	mov	dpl, #0x54
-      00331A 12 34 5A         [24]  587 	lcall	_SPI_send
+      003347 75 82 54         [24]  586 	mov	dpl, #0x54
+      00334A 12 34 8A         [24]  587 	lcall	_SPI_send
                                     588 ;	Operations.c:37: SPI_send(ENC_PHLCON);                                   //Write the address of the PHY register in the MIREGADR register
-      00331D 75 82 14         [24]  589 	mov	dpl, #0x14
-      003320 12 34 5A         [24]  590 	lcall	_SPI_send
+      00334D 75 82 14         [24]  589 	mov	dpl, #0x14
+      003350 12 34 8A         [24]  590 	lcall	_SPI_send
                                     591 ;	Operations.c:39: P1_1 = 1;
                                     592 ;	assignBit
-      003323 D2 91            [12]  593 	setb	_P1_1
+      003353 D2 91            [12]  593 	setb	_P1_1
                                     594 ;	Operations.c:43: P1_1 = 0;
                                     595 ;	assignBit
-      003325 C2 91            [12]  596 	clr	_P1_1
+      003355 C2 91            [12]  596 	clr	_P1_1
                                     597 ;	Operations.c:44: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRL);
-      003327 75 82 56         [24]  598 	mov	dpl, #0x56
-      00332A 12 34 5A         [24]  599 	lcall	_SPI_send
+      003357 75 82 56         [24]  598 	mov	dpl, #0x56
+      00335A 12 34 8A         [24]  599 	lcall	_SPI_send
                                     600 ;	Operations.c:46: SPI_send(0xA8);
-      00332D 75 82 A8         [24]  601 	mov	dpl, #0xa8
-      003330 12 34 5A         [24]  602 	lcall	_SPI_send
+      00335D 75 82 A8         [24]  601 	mov	dpl, #0xa8
+      003360 12 34 8A         [24]  602 	lcall	_SPI_send
                                     603 ;	Operations.c:47: P1_1 = 1;
                                     604 ;	assignBit
-      003333 D2 91            [12]  605 	setb	_P1_1
+      003363 D2 91            [12]  605 	setb	_P1_1
                                     606 ;	Operations.c:51: P1_1 = 0;
                                     607 ;	assignBit
-      003335 C2 91            [12]  608 	clr	_P1_1
+      003365 C2 91            [12]  608 	clr	_P1_1
                                     609 ;	Operations.c:52: SPI_send(ENC_WRITE_CONTROL_REG_OPCODE | ENC_MIWRH);
-      003337 75 82 57         [24]  610 	mov	dpl, #0x57
-      00333A 12 34 5A         [24]  611 	lcall	_SPI_send
+      003367 75 82 57         [24]  610 	mov	dpl, #0x57
+      00336A 12 34 8A         [24]  611 	lcall	_SPI_send
                                     612 ;	Operations.c:54: SPI_send(0x3A);
-      00333D 75 82 3A         [24]  613 	mov	dpl, #0x3a
-      003340 12 34 5A         [24]  614 	lcall	_SPI_send
+      00336D 75 82 3A         [24]  613 	mov	dpl, #0x3a
+      003370 12 34 8A         [24]  614 	lcall	_SPI_send
                                     615 ;	Operations.c:55: P1_1 = 1;
                                     616 ;	assignBit
-      003343 D2 91            [12]  617 	setb	_P1_1
+      003373 D2 91            [12]  617 	setb	_P1_1
                                     618 ;	Operations.c:57: }
-      003345 22               [24]  619 	ret
+      003375 22               [24]  619 	ret
                                     620 ;------------------------------------------------------------
                                     621 ;Allocation info for local variables in function 'LED_Off'
                                     622 ;------------------------------------------------------------
@@ -624,9 +624,9 @@
                                     624 ;	-----------------------------------------
                                     625 ;	 function LED_Off
                                     626 ;	-----------------------------------------
-      003346                        627 _LED_Off:
+      003376                        627 _LED_Off:
                                     628 ;	Operations.c:62: }
-      003346 22               [24]  629 	ret
+      003376 22               [24]  629 	ret
                                     630 	.area CSEG    (CODE)
                                     631 	.area CONST   (CODE)
                                     632 	.area XINIT   (CODE)

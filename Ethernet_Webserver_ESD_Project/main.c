@@ -67,6 +67,10 @@ int get_user_buffer_size(void)
 
 void main(void)
 {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
     //ENC_RESET = 1;
     printf("SPI Operations on 8051\n\r");
     configure_SPI();

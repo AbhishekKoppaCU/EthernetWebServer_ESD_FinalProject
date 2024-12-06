@@ -94,27 +94,6 @@ bool enc28j60_transmission_successful()
     uint8_t estat = mac_spi_read(0x1D, 0); // Read ESTAT
     return !(estat & 0x02); // Check if TXABRT (bit 1) is not set
 }
-void RX_disable(void)
-{
-    uint8_t econ1_value = mac_spi_read(0x1F, 0); // Read ECON1
-
-    // Clear RXEN bit to 0 to disable RX
-    econ1_value &= ~(0x04);
-
-    // Write the new value back to ECON1 register
-    spi_control_write(0, 0x1F, econ1_value); // Write back to ECON1
-}
-
-void RX_enable(void)
-{
-    uint8_t econ1_value = mac_spi_read(0x1F, 0); // Read ECON1
-
-    // Set RXEN bit to 1 to enable RX
-    econ1_value |= 0x04;
-
-    // Write the new value back to ECON1 register
-    spi_control_write(0, 0x1F, econ1_value); // Write back to ECON1
-}
 
 void send_arp_request(void)
 {
@@ -187,7 +166,7 @@ void send_arp_request(void)
 
     // Write the ARP packet to the ENC28J60 buffer
     uint16_t frame_size = 44;  // The total length is now exactly 42 bytes (without padding)
-    uint16_t start_address = 0x0000;
+    uint16_t start_address = TX_BUFFER_START;
     if ((start_address + frame_size - 1) > 0x1FFF) {
         printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
         return;
@@ -200,7 +179,7 @@ void send_arp_request(void)
     enc28j60_set_transmit_pointers(start_address, end_address);
 
     // Start transmission
-    RX_enable();
+    //RX_enable();
     enc28j60_start_transmission();
 
     // Wait for transmission to complete
