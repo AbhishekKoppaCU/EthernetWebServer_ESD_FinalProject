@@ -1,0 +1,5 @@
+../Src/tcp.c:11:10:calculate_checksum	4
+../Src/tcp.c:31:10:process_tcp_packet	1
+../Src/tcp.c:189:6:print_hexdump	4
+../Src/tcp.c:201:6:process_packet_from_buffer	7
+../Src/tcp.c:264:6:transmit_tcp_packet	4

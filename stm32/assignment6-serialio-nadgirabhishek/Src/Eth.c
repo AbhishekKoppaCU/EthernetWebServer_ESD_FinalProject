@@ -18,13 +18,13 @@
 
 uint16_t read_packet(uint8_t *buffer) {
 	// Read the next packet pointer (ERXRDPT)
-	uint8_t low_byte = mac_spi_read(0x00, 0); // ERXRDPTL
-	uint8_t high_byte = mac_spi_read(0x01, 0); // ERXRDPTH
+	uint8_t low_byte = enc_mac_read(0x00, 0); // ERXRDPTL
+	uint8_t high_byte = enc_mac_read(0x01, 0); // ERXRDPTH
 	uint16_t next_packet_ptr = (high_byte << 8) | low_byte;
 
 	// Set ERDPT to the start of the packet
-	spi_control_write(0, 0x03, high_byte); // ERDPTH
-	spi_control_write(0, 0x02, low_byte);  // ERDPTL
+	enc_control_write(0, 0x03, high_byte); // ERDPTH
+	enc_control_write(0, 0x02, low_byte);  // ERDPTL
 
 	// Read the length of the packet
 	uint16_t length = SPI_ReadByte() | (SPI_ReadByte() << 8);
@@ -39,11 +39,11 @@ uint16_t read_packet(uint8_t *buffer) {
 	}
 
 	// Advance the RX read pointer
-	spi_control_write(0, 0x0C, (next_packet_ptr - 1) & 0xFF); // ERXRDPTL
-	spi_control_write(0, 0x0D, ((next_packet_ptr - 1) >> 8) & 0xFF); // ERXRDPTH
+	enc_control_write(0, 0x0C, (next_packet_ptr - 1) & 0xFF); // ERXRDPTL
+	enc_control_write(0, 0x0D, ((next_packet_ptr - 1) >> 8) & 0xFF); // ERXRDPTH
 
 	// Signal ENC28J60 to free the packet
-	bit_set(0x1E, 0x40); // ECON2: Set PKTDEC bit
+	enc_bit_set(0x1E, 0x40); // ECON2: Set PKTDEC bit
 
 	return length;
 }
@@ -113,7 +113,7 @@ void eth_send_frame(uint8_t *payload, uint16_t payload_len, uint16_t eth_type, u
     uint16_t end_address = start_address + sizeof(EthernetHeader) + total_payload_len - 1;
 
     // Write frame to ENC28J60 TX buffer
-    spi_buffer_write(sizeof(EthernetHeader) + total_payload_len, start_address, frame);
+    enc_buffer_write(sizeof(EthernetHeader) + total_payload_len, start_address, frame);
 
     // Set transmit pointers
     enc28j60_set_transmit_pointers(start_address, end_address);

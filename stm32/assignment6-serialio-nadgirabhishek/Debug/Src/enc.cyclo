@@ -1,0 +1,15 @@
+../Src/enc.c:10:6:enc_set_autoinc	1
+../Src/enc.c:21:6:enc_select_reg_bank	8
+../Src/enc.c:55:6:enc_control_write	1
+../Src/enc.c:65:6:enc_buffer_init	3
+../Src/enc.c:87:6:enc_buffer_write	6
+../Src/enc.c:126:10:enc_buffer_read	7
+../Src/enc.c:166:9:enc_mac_read	2
+../Src/enc.c:188:6:enc_busy_wait	2
+../Src/enc.c:194:10:enc_phy_read	1
+../Src/enc.c:210:6:enc_phy_write	1
+../Src/enc.c:217:9:enc_eth_read	2
+../Src/enc.c:237:6:enc_reset	1
+../Src/enc.c:248:6:enc_init	2
+../Src/enc.c:306:6:enc_bit_set	1
+../Src/enc.c:314:6:enc_bit_clear	1

@@ -21,6 +21,7 @@
 #include "Eth.h"
 #include "icmp.h"
 #include "spi.h"
+#include "enc.h"
 #include <stdbool.h>
 
 #define htons(x) __builtin_bswap16(x)

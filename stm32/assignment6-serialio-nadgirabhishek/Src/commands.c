@@ -16,14 +16,15 @@
  *
  */
 
-const command_table_t commands[] ={
-		{"LED", cmd_led }, { "ECHO", cmd_echo }, { "HEXDUMP", cmd_hexdump },
-		{"WRITE", cmd_spi_write }, { "READ", cmd_spi_read },{"WRITECONTROL", cmd_control_spi_write },
-		{"WRITEBUFFER", cmd_buffer_spi_write },{"READBUFFER",cmd_buffer_spi_read },
-		{"READMAC", cmd_mac_spi_read },{"READETH", cmd_eth_spi_read },
-		{"WRITEPHY", cmd_phy_spi_write },{"READPHY", cmd_phy_spi_read },
-		{"RESET", cmd_enc_reset },{"INIT", cmd_enc_init },{"ARP", cmd_arp_send } };
-
+const command_table_t commands[] = { { "LED", cmd_led }, { "ECHO", cmd_echo }, {
+		"HEXDUMP", cmd_hexdump }, { "WRITE", cmd_spi_write }, { "READ",
+		cmd_spi_read }, { "WRITECONTROL", cmd_control_spi_write }, {
+		"WRITEBUFFER", cmd_buffer_spi_write }, { "READBUFFER",
+		cmd_buffer_spi_read }, { "READMAC", cmd_mac_spi_read }, { "READETH",
+		cmd_eth_spi_read }, { "WRITEPHY", cmd_phy_spi_write }, { "READPHY",
+		cmd_phy_spi_read }, { "RESET", cmd_enc_reset },
+		{ "INIT", cmd_enc_init }, { "ARP", cmd_arp_send }, { "TCP",
+				cmd_tcp_packet_process } };
 
 const int num_commands = sizeof(commands) / sizeof(command_table_t);
 
@@ -217,7 +218,7 @@ void cmd_control_spi_write(int argc, char *argv[]) {
 		return;
 	}
 
-	spi_control_write(reg_bank, addr, data);
+	enc_control_write(reg_bank, addr, data);
 	printf(
 			"\nSPI Write Completed: Sent %x data to %x address in %dnd register bank\n",
 			data, addr, reg_bank);
@@ -254,7 +255,7 @@ void cmd_buffer_spi_write(int argc, char *argv[]) {
 			return;
 		}
 	}
-	spi_buffer_write(num_bytes, start_address, data_array);
+	enc_buffer_write(num_bytes, start_address, data_array);
 	printf(
 			"\nSPI BUFFER Write Completed: Sent %d bytes starting address %04X\n",
 			num_bytes, start_address);
@@ -293,7 +294,7 @@ void cmd_buffer_spi_read(int argc, char *argv[]) {
 		printf("\nInvalid number of bytes: %d\n", num_bytes);
 		//return NULL;
 	}
-	spi_buffer_read(num_bytes, start_address, data_buffer);
+	enc_buffer_read(num_bytes, start_address, data_buffer);
 	printf("\nSPI Read Completed: Address 0x%02X\n", start_address);
 	for (int i = 0; i < num_bytes; i++) {
 		printf("Data[%d]: 0x%02X\n", i, data_buffer[i]);
@@ -345,7 +346,7 @@ void cmd_phy_spi_read(int argc, char *argv[]) {
 		return;
 	}
 
-	uint16_t data = phy_spi_read(addr);
+	uint16_t data = enc_phy_read(addr);
 	printf("\nSPI PHY Read Completed: Address 0x%02X, Data 0x%04X\n", addr,
 			data);
 
@@ -374,7 +375,7 @@ void cmd_phy_spi_write(int argc, char *argv[]) {
 		return;
 	}
 
-	phy_spi_write(addr, data);
+	enc_phy_write(addr, data);
 
 	printf("\nSPI PHY Write Completed: Address 0x%02X, Data 0x%04X\n", addr,
 			data);
@@ -400,7 +401,7 @@ void cmd_eth_spi_read(int argc, char *argv[]) {
 		return;
 	}
 
-	uint8_t data = eth_spi_read(addr, reg_bank);
+	uint8_t data = enc_eth_read(addr, reg_bank);
 
 	// Print the received data
 	printf("\nSPI ETH Read Completed: Address 0x%02X, Data 0x%02X\n", addr,
@@ -427,7 +428,7 @@ void cmd_mac_spi_read(int argc, char *argv[]) {
 		return;
 	}
 
-	uint8_t data = mac_spi_read(addr, reg_bank);
+	uint8_t data = enc_mac_read(addr, reg_bank);
 
 	// Print the received data
 	printf("\nSPI MAC Read Completed: Address 0x%02X, Data 0x%02X\n", addr,
@@ -469,13 +470,31 @@ void cmd_enc_init(int argc, char *argv[]) {
 	printf("\nENC28J60 Initialized.\n");
 }
 
-
 void cmd_arp_send(int argc, char *argv[]) {
 	if (argc != 1) {
 		printf("\nInvalid command: Reset \n");
 		return;
 	}
 	arp_request();
+	//arp_request(target_ip);
+	// Print the received data
+	printf("\n\r ARP Request Sent\n\r");
+}
+
+void cmd_tcp_packet_process(int argc, char *argv[]) {
+	if (argc != 2) {
+		printf("\nInvalid command: packetprocess \n");
+		return;
+	}
+	char *endptr;
+	uint16_t addr = (uint16_t) strtol(argv[1], &endptr, 16);
+	printf("addr = %x\n\r", addr);
+	if (*endptr != '\0') {
+		printf("\nInvalid addr: %s\n", argv[1]);
+		//GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
+		return;
+	}
+	process_packet_from_buffer(addr);
 	//arp_request(target_ip);
 	// Print the received data
 	printf("\n\r ARP Request Sent\n\r");
