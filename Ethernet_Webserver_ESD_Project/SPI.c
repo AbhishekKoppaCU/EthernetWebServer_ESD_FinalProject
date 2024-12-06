@@ -29,19 +29,42 @@ void spi_set_autoinc(void)
     CS_HIGH;                         // Pull CS high to deselect the ENC28J60
 }
 
+
 void select_reg_bank(uint8_t bank)
 {
-    // Pull CS low to start the SPI transaction
     CS_LOW;
-
-    // Send the opcode for bank selection (0x5F for ENC28J60)
-    SPI_send(0x5F);
-
-    // Send the bank number
-    SPI_send(bank + 4);
-
-    // Pull CS high to end the SPI transaction
+    SPI_send(0X1F); // Send the address
+    uint8_t data = SPI_ReadByte(); // Read the data
     CS_HIGH;
+
+    // Modify the last two bits of 'data' based on 'bank'
+    data &= ~0x03; // Clear the last two bits
+    switch (bank)
+    {
+        case 0:
+            data |= 0x00; // Last two bits: 00
+            break;
+        case 1:
+            data |= 0x01; // Last two bits: 01
+            break;
+        case 2:
+            data |= 0x02; // Last two bits: 10
+            break;
+        case 3:
+            data |= 0x03; // Last two bits: 11
+            break;
+        default:
+           printf("wrong bank");
+           return;
+    }
+
+    for (int i = 0; i < 16; i++); // Delay
+
+    CS_LOW;
+    SPI_send(0x5F);
+    SPI_send(data); // Send the modified data
+    CS_HIGH;
+
 }
 void spi_control_write(uint8_t reg_bank, uint8_t addr, uint8_t data)
 {
@@ -291,7 +314,7 @@ void init_ENC(void)
     EA = 1;   // Enable global interrupts
 
 
-    //spi_control_write(0x02, 0x00, 0x01); // Write 0x01 to MACON1 (address 0x00 in bank 2)
+    spi_control_write(0x02, 0x00, 0x01); // Write 0x01 to MACON1 (address 0x00 in bank 2)
     spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
     spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
     spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
@@ -302,7 +325,7 @@ void init_ENC(void)
 
 
     //Enable Rception interrupts
-    spi_control_write(0, 0x1B, 0xC0);
+    spi_control_write(0, 0x1B, 0x81);
 
 }
 

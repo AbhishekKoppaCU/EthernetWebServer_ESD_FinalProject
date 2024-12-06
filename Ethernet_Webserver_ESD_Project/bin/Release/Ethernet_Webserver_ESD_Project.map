@@ -67,9 +67,9 @@ CABS                                00000000    00000000 =           0. bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   00000100  s_XSEG                          
-C:   000002C4  l_XSEG                          
-C:   000003C4  s_XISEG                         
-C:   000007C5  l_CONST                         
+C:   000002C5  l_XSEG                          
+C:   000003C5  s_XISEG                         
+C:   000007E8  l_CONST                         
 C:   00002000  s_HOME                          
 C:   00002009  s_GSINIT0                       
 C:   0000200C  s_GSINIT1                       
@@ -80,9 +80,9 @@ C:   00002062  s_GSFINAL
 C:   00002062  s_GSINIT                        
 C:   00002062  s_GSINIT5                       
 C:   00002065  s_CSEG                          
-C:   000023C0  l_CSEG                          
-C:   00004425  s_CONST                         
-C:   00004BEA  s_XINIT                         
+C:   000024BE  l_CSEG                          
+C:   00004523  s_CONST                         
+C:   00004D0B  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -407,41 +407,41 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XSEG                                00000100    000002C4 =         708. bytes (REL,CON,XDATA)
+XSEG                                00000100    000002C5 =         709. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 D:   00000106  _enc28j60_init_rx_buffer_PARM_2    Eth
 D:   0000010A  _enc28j60_set_transmit_pointers_   Eth
-D:   00000362  _spi_control_write_PARM_2          SPI
-D:   00000363  _spi_control_write_PARM_3          SPI
-D:   00000366  _eth_spi_read_PARM_2               SPI
-D:   00000368  _phy_spi_write_PARM_2              SPI
-D:   0000036B  _mac_spi_read_PARM_2               SPI
-D:   0000036F  _buffer_init_PARM_2                SPI
-D:   00000373  _spi_buffer_read_PARM_2            SPI
-D:   00000375  _spi_buffer_read_PARM_3            SPI
-D:   0000037C  _spi_buffer_write_PARM_2           SPI
-D:   0000037E  _spi_buffer_write_PARM_3           SPI
-D:   0000038A  __gptrput_PARM_2                   _gptrput
-D:   0000038B  __mulint_PARM_2                    _mulint
-D:   0000038D  _vprintf_PARM_2                    vprintf
-D:   000003A2  __print_format_PARM_2              printf_large
-D:   000003A5  __print_format_PARM_3              printf_large
-D:   000003A8  __print_format_PARM_4              printf_large
+D:   00000363  _spi_control_write_PARM_2          SPI
+D:   00000364  _spi_control_write_PARM_3          SPI
+D:   00000367  _eth_spi_read_PARM_2               SPI
+D:   00000369  _phy_spi_write_PARM_2              SPI
+D:   0000036C  _mac_spi_read_PARM_2               SPI
+D:   00000370  _buffer_init_PARM_2                SPI
+D:   00000374  _spi_buffer_read_PARM_2            SPI
+D:   00000376  _spi_buffer_read_PARM_3            SPI
+D:   0000037D  _spi_buffer_write_PARM_2           SPI
+D:   0000037F  _spi_buffer_write_PARM_3           SPI
+D:   0000038B  __gptrput_PARM_2                   _gptrput
+D:   0000038C  __mulint_PARM_2                    _mulint
+D:   0000038E  _vprintf_PARM_2                    vprintf
+D:   000003A3  __print_format_PARM_2              printf_large
+D:   000003A6  __print_format_PARM_3              printf_large
+D:   000003A9  __print_format_PARM_4              printf_large
 ASxxxx Linker V03.00/V05.40 + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XISEG                               000003C4    00000014 =          20. bytes (REL,CON,XDATA)
+XISEG                               000003C5    00000014 =          20. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-D:   000003C4  _source_mac                        Eth
-D:   000003CA  _dest_mac                          Eth
-D:   000003D0  _source_ip                         Eth
-D:   000003D4  _target_ip                         Eth
+D:   000003C5  _source_mac                        Eth
+D:   000003CB  _dest_mac                          Eth
+D:   000003D1  _source_ip                         Eth
+D:   000003D5  _target_ip                         Eth
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 16.
 Hexadecimal  [32-Bits]
@@ -511,7 +511,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00002065    000023C0 =        9152. bytes (REL,CON,CODE)
+CSEG                                00002065    000024BE =        9406. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -522,50 +522,53 @@ C:   00002171  _enc28j60_init_rx_buffer           Eth
 C:   000022C2  _enc28j60_set_transmit_pointers    Eth
 C:   00002339  _wait_for_transmission_complete    Eth
 C:   0000239C  _enc28j60_transmission_successfu   Eth
-C:   000023B6  _send_arp_request                  Eth
-C:   00002612  _external_interrupt0_isr           Eth
-C:   0000266E  _hex_to_int                        main
-C:   00002828  _get_user_buffer_size              main
-C:   000028AC  _main                              main
-C:   00002F1C  _LED_Fast_Blink                    Operations
-C:   00002F4C  _LED_Slow_Blink                    Operations
-C:   00002F4D  _LED_On                            Operations
-C:   00002F8E  _LED_Off                           Operations
-C:   00002F8F  _SPI_ReadByte                      SPI
-C:   00002FA1  _spi_set_autoinc                   SPI
-C:   00002FB2  _select_reg_bank                   SPI
-C:   00002FCE  _spi_control_write                 SPI
-C:   0000302A  _configure_SPI                     SPI
-C:   00003039  _SPI_send                          SPI
-C:   00003048  _enc_reset                         SPI
-C:   00003053  _eth_spi_read                      SPI
-C:   000030C1  _phy_spi_write                     SPI
-C:   00003144  _mac_spi_read                      SPI
-C:   000031B2  _phy_spi_read                      SPI
-C:   0000325F  _busy_wait                         SPI
-C:   0000328D  _buffer_init                       SPI
-C:   000033A9  _spi_buffer_read                   SPI
-C:   0000354A  _spi_buffer_write                  SPI
-C:   000036F6  _init_ENC                          SPI
-C:   000037AD  _init_MAC                          SPI
-C:   000037AE  _putchar                           Utilities
-C:   000037CD  _getchar                           Utilities
-C:   000037DB  _putstr                            Utilities
-C:   00003851  __gptrput                          _gptrput
-C:   0000386C  _printf_tiny                       printf_tiny
-C:   00003975  __mulint                           _mulint
-C:   000039A4  _vprintf                           vprintf
-C:   000039E3  _printf                            vprintf
-C:   00003AE9  __print_format                     printf_large
-C:   000043ED  _strlen                            _strlen
-C:   00004405  __gptrget                          _gptrget
-C:   00004421  ___sdcc_external_startup           _startup
+C:   000023B6  _RX_disable                        Eth
+C:   000023D7  _RX_enable                         Eth
+C:   000023F8  _send_arp_request                  Eth
+C:   00002657  _external_interrupt0_isr           Eth
+C:   000026B3  _hex_to_int                        main
+C:   0000286D  _get_user_buffer_size              main
+C:   000028F1  _main                              main
+C:   00002FA1  _LED_Fast_Blink                    Operations
+C:   00002FD1  _LED_Slow_Blink                    Operations
+C:   00002FD2  _LED_On                            Operations
+C:   00003013  _LED_Off                           Operations
+C:   00003014  _SPI_ReadByte                      SPI
+C:   00003026  _spi_set_autoinc                   SPI
+C:   00003037  _select_reg_bank                   SPI
+C:   000030BC  _spi_control_write                 SPI
+C:   00003118  _configure_SPI                     SPI
+C:   00003127  _SPI_send                          SPI
+C:   00003136  _enc_reset                         SPI
+C:   00003141  _eth_spi_read                      SPI
+C:   000031AF  _phy_spi_write                     SPI
+C:   00003232  _mac_spi_read                      SPI
+C:   000032A0  _phy_spi_read                      SPI
+C:   0000334D  _busy_wait                         SPI
+C:   0000337B  _buffer_init                       SPI
+C:   00003497  _spi_buffer_read                   SPI
+C:   00003638  _spi_buffer_write                  SPI
+C:   000037E4  _init_ENC                          SPI
+C:   000038AB  _init_MAC                          SPI
+C:   000038AC  _putchar                           Utilities
+C:   000038CB  _getchar                           Utilities
+C:   000038D9  _putstr                            Utilities
+C:   0000394F  __gptrput                          _gptrput
+C:   0000396A  _printf_tiny                       printf_tiny
+C:   00003A73  __mulint                           _mulint
+C:   00003AA2  _vprintf                           vprintf
+C:   00003AE1  _printf                            vprintf
+C:   00003BE7  __print_format                     printf_large
+C:   000044EB  _strlen                            _strlen
+C:   00004503  __gptrget                          _gptrget
+C:   0000451F  ___sdcc_external_startup           _startup
+
 ASxxxx Linker V03.00/V05.40 + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               00004425    000007C5 =        1989. bytes (REL,CON,CODE)
+CONST                               00004523    000007E8 =        2024. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -574,7 +577,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XINIT                               00004BEA    00000014 =          20. bytes (REL,CON,CODE)
+XINIT                               00004D0B    00000014 =          20. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

@@ -60,6 +60,7 @@ void main(void)
     ENC_RESET = 1;
     printf("SPI Operations on 8051\n\r");
     configure_SPI();
+    RX_disable();
 
     while(1)
     {
@@ -114,10 +115,32 @@ void main(void)
                 uint16_t start_address = get_user_buffer_size();
                 uint8_t buffer[256];
                 spi_buffer_read(num_bytes, start_address, buffer);
-                printf("Read Data:\n\r");
-                for (int i = 0; i < num_bytes; i++) {
-                    printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
-                }
+                //printf("Read Data:\n\r");
+                //for (int i = 0; i < num_bytes; i++) {
+                    //printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
+                //}
+                // Increment the ERXRDPT register by the number of bytes read
+
+    uint16_t current_erxrdpt;
+
+    // Read ERXRDPTL (low byte) and ERXRDPTH (high byte) using mac_spi_read
+    uint8_t erxrdpt_low = mac_spi_read(0x0C, 0);  // ERXRDPTL
+    uint8_t erxrdpt_high = mac_spi_read(0x0D, 0); // ERXRDPTH
+    current_erxrdpt = ((uint16_t)erxrdpt_high << 8) | erxrdpt_low;
+
+    printf("Current ERXRDPT: 0x%04X\n\r", current_erxrdpt);
+
+    // Increment ERXRDPT by the number of bytes read
+    current_erxrdpt += num_bytes;
+
+    // Write the updated ERXRDPT value back using spi_control_write
+    spi_control_write(0, 0x0C, (uint8_t)(current_erxrdpt & 0xFF));  // ERXRDPTL (low byte)
+    spi_control_write(0, 0x0D, (uint8_t)((current_erxrdpt >> 8) & 0xFF));  // ERXRDPTH (high byte)
+
+    printf("Updated ERXRDPT to: 0x%04X\n\r", current_erxrdpt);
+
+
+
                 break;
             }
             case '4': {

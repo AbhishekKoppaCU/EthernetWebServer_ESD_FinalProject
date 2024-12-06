@@ -11,6 +11,7 @@
 	.globl _main
 	.globl _get_user_buffer_size
 	.globl _hex_to_int
+	.globl _RX_disable
 	.globl _send_arp_request
 	.globl _init_ENC
 	.globl _spi_control_write
@@ -501,17 +502,17 @@ __start__stack:
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_hex_to_int_str_10000_70:
+_hex_to_int_str_10000_74:
 	.ds 3
-_hex_to_int_result_10000_71:
+_hex_to_int_result_10000_75:
 	.ds 2
-_hex_to_int_ASCII_20000_72:
+_hex_to_int_ASCII_20000_76:
 	.ds 2
-_get_user_buffer_size_input_10000_77:
+_get_user_buffer_size_input_10000_81:
 	.ds 10
-_main_buffer_40003_90:
+_main_buffer_40003_94:
 	.ds 256
-_main_buffer_40003_95:
+_main_buffer_40003_99:
 	.ds 256
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -568,10 +569,10 @@ __sdcc_program_startup:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'hex_to_int'
 ;------------------------------------------------------------
-;str                       Allocated with name '_hex_to_int_str_10000_70'
-;i                         Allocated with name '_hex_to_int_i_10000_71'
-;result                    Allocated with name '_hex_to_int_result_10000_71'
-;ASCII                     Allocated with name '_hex_to_int_ASCII_20000_72'
+;str                       Allocated with name '_hex_to_int_str_10000_74'
+;i                         Allocated with name '_hex_to_int_i_10000_75'
+;result                    Allocated with name '_hex_to_int_result_10000_75'
+;ASCII                     Allocated with name '_hex_to_int_ASCII_20000_76'
 ;sloc0                     Allocated with name '_hex_to_int_sloc0_1_0'
 ;sloc1                     Allocated with name '_hex_to_int_sloc1_1_0'
 ;sloc2                     Allocated with name '_hex_to_int_sloc2_1_0'
@@ -592,7 +593,7 @@ _hex_to_int:
 	mov	r7,b
 	mov	r6,dph
 	mov	a,dpl
-	mov	dptr,#_hex_to_int_str_10000_70
+	mov	dptr,#_hex_to_int_str_10000_74
 	movx	@dptr,a
 	mov	a,r6
 	inc	dptr
@@ -601,13 +602,13 @@ _hex_to_int:
 	inc	dptr
 	movx	@dptr,a
 ;	main.c:15: int i = 0, result = 0;
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	clr	a
 	movx	@dptr,a
 	inc	dptr
 	movx	@dptr,a
 ;	main.c:16: while(str[i] != '\0')
-	mov	dptr,#_hex_to_int_str_10000_70
+	mov	dptr,#_hex_to_int_str_10000_74
 	movx	a,@dptr
 	mov	r5,a
 	inc	dptr
@@ -653,14 +654,14 @@ _hex_to_int:
 	push	ar4
 	mov	_hex_to_int_sloc2_1_0,_hex_to_int_sloc1_1_0
 	mov	(_hex_to_int_sloc2_1_0 + 1),#0x00
-	mov	dptr,#_hex_to_int_ASCII_20000_72
+	mov	dptr,#_hex_to_int_ASCII_20000_76
 	mov	a,_hex_to_int_sloc2_1_0
 	movx	@dptr,a
 	mov	a,(_hex_to_int_sloc2_1_0 + 1)
 	inc	dptr
 	movx	@dptr,a
 ;	main.c:19: result *= 16;
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	movx	a,@dptr
 	mov	r3,a
 	inc	dptr
@@ -676,7 +677,7 @@ _hex_to_int:
 	xch	a,r3
 	xrl	a,r3
 	mov	r4,a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	mov	a,r3
 	movx	@dptr,a
 	mov	a,r4
@@ -710,13 +711,13 @@ _hex_to_int:
 	mov	a,(_hex_to_int_sloc2_1_0 + 1)
 	addc	a,#0xff
 	mov	(_hex_to_int_sloc2_1_0 + 1),a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	movx	a,@dptr
 	mov	r2,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r4,a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	mov	a,_hex_to_int_sloc2_1_0
 	add	a, r2
 	movx	@dptr,a
@@ -730,7 +731,7 @@ _hex_to_int:
 	ljmp	00110$
 00109$:
 ;	main.c:24: else if(ASCII >= 'A' && ASCII <= 'F')
-	mov	dptr,#_hex_to_int_ASCII_20000_72
+	mov	dptr,#_hex_to_int_ASCII_20000_76
 	movx	a,@dptr
 	mov	_hex_to_int_sloc2_1_0,a
 	inc	dptr
@@ -771,13 +772,13 @@ _hex_to_int:
 	mov	a,r7
 	addc	a,#0xff
 	mov	(_hex_to_int_sloc2_1_0 + 1),a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	mov	a,_hex_to_int_sloc2_1_0
 	add	a, r6
 	movx	@dptr,a
@@ -791,7 +792,7 @@ _hex_to_int:
 	sjmp	00110$
 00105$:
 ;	main.c:28: else if(ASCII >= 'a' && ASCII <= 'f')
-	mov	dptr,#_hex_to_int_ASCII_20000_72
+	mov	dptr,#_hex_to_int_ASCII_20000_76
 	movx	a,@dptr
 	mov	_hex_to_int_sloc2_1_0,a
 	inc	dptr
@@ -832,13 +833,13 @@ _hex_to_int:
 	mov	a,r4
 	addc	a,#0xff
 	mov	(_hex_to_int_sloc2_1_0 + 1),a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	movx	a,@dptr
 	mov	r3,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r4,a
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	mov	a,_hex_to_int_sloc2_1_0
 	add	a, r3
 	movx	@dptr,a
@@ -860,7 +861,7 @@ _hex_to_int:
 	ljmp	00112$
 00114$:
 ;	main.c:34: return result;
-	mov	dptr,#_hex_to_int_result_10000_71
+	mov	dptr,#_hex_to_int_result_10000_75
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -872,10 +873,10 @@ _hex_to_int:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'get_user_buffer_size'
 ;------------------------------------------------------------
-;i                         Allocated with name '_get_user_buffer_size_i_10000_77'
-;output                    Allocated with name '_get_user_buffer_size_output_10000_77'
-;input                     Allocated with name '_get_user_buffer_size_input_10000_77'
-;ch                        Allocated with name '_get_user_buffer_size_ch_10000_77'
+;i                         Allocated with name '_get_user_buffer_size_i_10000_81'
+;output                    Allocated with name '_get_user_buffer_size_output_10000_81'
+;input                     Allocated with name '_get_user_buffer_size_input_10000_81'
+;ch                        Allocated with name '_get_user_buffer_size_ch_10000_81'
 ;------------------------------------------------------------
 ;	main.c:39: int get_user_buffer_size(void)
 ;	-----------------------------------------
@@ -919,10 +920,10 @@ _get_user_buffer_size:
 	pop	ar7
 ;	main.c:48: input[i] = ch;      //Append the input array with the received character
 	mov	a,r6
-	add	a, #_get_user_buffer_size_input_10000_77
+	add	a, #_get_user_buffer_size_input_10000_81
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_get_user_buffer_size_input_10000_77 >> 8)
+	addc	a, #(_get_user_buffer_size_input_10000_81 >> 8)
 	mov	dph,a
 	mov	a,r4
 	movx	@dptr,a
@@ -934,15 +935,15 @@ _get_user_buffer_size:
 00105$:
 ;	main.c:51: input[i] = '\0';
 	mov	a,r6
-	add	a, #_get_user_buffer_size_input_10000_77
+	add	a, #_get_user_buffer_size_input_10000_81
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_get_user_buffer_size_input_10000_77 >> 8)
+	addc	a, #(_get_user_buffer_size_input_10000_81 >> 8)
 	mov	dph,a
 	clr	a
 	movx	@dptr,a
 ;	main.c:52: output = hex_to_int(input); //Convert the char hex data to int
-	mov	dptr,#_get_user_buffer_size_input_10000_77
+	mov	dptr,#_get_user_buffer_size_input_10000_81
 	mov	b,a
 	lcall	_hex_to_int
 	mov	r6, dpl
@@ -967,29 +968,31 @@ _get_user_buffer_size:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-;c                         Allocated with name '_main_c_20001_82'
-;reg_bank                  Allocated with name '_main_reg_bank_40002_85'
-;addr                      Allocated with name '_main_addr_40003_86'
-;data                      Allocated with name '_main_data_40004_87'
-;num_bytes                 Allocated with name '_main_num_bytes_40002_89'
-;start_address             Allocated with name '_main_start_address_40003_90'
-;buffer                    Allocated with name '_main_buffer_40003_90'
-;i                         Allocated with name '_main_i_50003_91'
-;num_bytes                 Allocated with name '_main_num_bytes_40002_94'
-;start_address             Allocated with name '_main_start_address_40003_95'
-;buffer                    Allocated with name '_main_buffer_40003_95'
-;i                         Allocated with name '_main_i_50003_96'
-;reg_bank                  Allocated with name '_main_reg_bank_40002_99'
-;addr                      Allocated with name '_main_addr_40003_100'
-;data                      Allocated with name '_main_data_40003_100'
-;addr                      Allocated with name '_main_addr_40002_102'
+;c                         Allocated with name '_main_c_20001_86'
+;reg_bank                  Allocated with name '_main_reg_bank_40002_89'
+;addr                      Allocated with name '_main_addr_40003_90'
+;data                      Allocated with name '_main_data_40004_91'
+;num_bytes                 Allocated with name '_main_num_bytes_40002_93'
+;start_address             Allocated with name '_main_start_address_40003_94'
+;buffer                    Allocated with name '_main_buffer_40003_94'
+;i                         Allocated with name '_main_i_50003_95'
+;num_bytes                 Allocated with name '_main_num_bytes_40002_98'
+;start_address             Allocated with name '_main_start_address_40003_99'
+;buffer                    Allocated with name '_main_buffer_40003_99'
+;current_erxrdpt           Allocated with name '_main_current_erxrdpt_40004_100'
+;erxrdpt_low               Allocated with name '_main_erxrdpt_low_40004_100'
+;erxrdpt_high              Allocated with name '_main_erxrdpt_high_40004_100'
+;reg_bank                  Allocated with name '_main_reg_bank_40002_102'
+;addr                      Allocated with name '_main_addr_40003_103'
 ;data                      Allocated with name '_main_data_40003_103'
 ;addr                      Allocated with name '_main_addr_40002_105'
-;data                      Allocated with name '_main_data_40002_105'
+;data                      Allocated with name '_main_data_40003_106'
 ;addr                      Allocated with name '_main_addr_40002_108'
-;bank                      Allocated with name '_main_bank_40003_109'
-;data                      Allocated with name '_main_data_40003_109'
-;i                         Allocated with name '_main_i_50001_114'
+;data                      Allocated with name '_main_data_40002_108'
+;addr                      Allocated with name '_main_addr_40002_111'
+;bank                      Allocated with name '_main_bank_40003_112'
+;data                      Allocated with name '_main_data_40003_112'
+;i                         Allocated with name '_main_i_50001_117'
 ;------------------------------------------------------------
 ;	main.c:58: void main(void)
 ;	-----------------------------------------
@@ -1012,9 +1015,11 @@ _main:
 	dec	sp
 ;	main.c:62: configure_SPI();
 	lcall	_configure_SPI
-;	main.c:64: while(1)
-00119$:
-;	main.c:66: printf("\n\rChoose an action: \n\r");
+;	main.c:63: RX_disable();
+	lcall	_RX_disable
+;	main.c:65: while(1)
+00118$:
+;	main.c:67: printf("\n\rChoose an action: \n\r");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1025,7 +1030,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:67: printf("1 --> Control Write\n\r");
+;	main.c:68: printf("1 --> Control Write\n\r");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1036,7 +1041,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:68: printf("2 --> Buffer Write\n\r");
+;	main.c:69: printf("2 --> Buffer Write\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1047,7 +1052,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:69: printf("3 --> Buffer Read\n\r");
+;	main.c:70: printf("3 --> Buffer Read\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1058,7 +1063,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:70: printf("4 --> MAC Register Read\n\r");
+;	main.c:71: printf("4 --> MAC Register Read\n\r");
 	mov	a,#___str_6
 	push	acc
 	mov	a,#(___str_6 >> 8)
@@ -1069,7 +1074,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:71: printf("5 --> PHY SPI Write\n\r");
+;	main.c:72: printf("5 --> PHY SPI Write\n\r");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -1080,7 +1085,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:72: printf("6 --> PHY SPI Read\n\r");
+;	main.c:73: printf("6 --> PHY SPI Read\n\r");
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -1091,7 +1096,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:73: printf("7 --> ENC Reset\n\r");
+;	main.c:74: printf("7 --> ENC Reset\n\r");
 	mov	a,#___str_9
 	push	acc
 	mov	a,#(___str_9 >> 8)
@@ -1102,7 +1107,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:74: printf("8 --> Read ETH Register\n\r");
+;	main.c:75: printf("8 --> Read ETH Register\n\r");
 	mov	a,#___str_10
 	push	acc
 	mov	a,#(___str_10 >> 8)
@@ -1113,7 +1118,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:75: printf("9 --> Display Menu\n\r");
+;	main.c:76: printf("9 --> Display Menu\n\r");
 	mov	a,#___str_11
 	push	acc
 	mov	a,#(___str_11 >> 8)
@@ -1124,7 +1129,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:76: printf("A --> Send ARP Request\n\r");
+;	main.c:77: printf("A --> Send ARP Request\n\r");
 	mov	a,#___str_12
 	push	acc
 	mov	a,#(___str_12 >> 8)
@@ -1135,7 +1140,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:77: printf("B --> Init RX buffers\n\r");
+;	main.c:78: printf("B --> Init RX buffers\n\r");
 	mov	a,#___str_13
 	push	acc
 	mov	a,#(___str_13 >> 8)
@@ -1146,7 +1151,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:78: printf("C --> Hard Reset(nRESET pin)\n\r");
+;	main.c:79: printf("C --> Hard Reset(nRESET pin)\n\r");
 	mov	a,#___str_14
 	push	acc
 	mov	a,#(___str_14 >> 8)
@@ -1157,17 +1162,17 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:80: char c = getchar();
+;	main.c:81: char c = getchar();
 	lcall	_getchar
 	mov	r6, dpl
-;	main.c:81: putchar(c);
+;	main.c:82: putchar(c);
 	mov	ar5,r6
 	mov	r7,#0x00
 	mov	dpl, r5
 	mov	dph, r7
 	push	ar6
 	lcall	_putchar
-;	main.c:82: printf("\n\r");
+;	main.c:83: printf("\n\r");
 	mov	a,#___str_0
 	push	acc
 	mov	a,#(___str_0 >> 8)
@@ -1179,72 +1184,72 @@ _main:
 	dec	sp
 	dec	sp
 	pop	ar6
-;	main.c:84: switch(c)
-	cjne	r6,#0x31,00188$
-00188$:
-	jnc	00189$
-	ljmp	00116$
-00189$:
+;	main.c:85: switch(c)
+	cjne	r6,#0x31,00172$
+00172$:
+	jnc	00173$
+	ljmp	00115$
+00173$:
 	mov	a,r6
 	add	a,#0xff - 0x43
-	jnc	00190$
-	ljmp	00116$
-00190$:
+	jnc	00174$
+	ljmp	00115$
+00174$:
 	mov	a,r6
 	add	a,#0xcf
 	mov	r6,a
-	add	a,#(00191$-3-.)
+	add	a,#(00175$-3-.)
 	movc	a,@a+pc
 	mov	dpl,a
 	mov	a,r6
-	add	a,#(00192$-3-.)
+	add	a,#(00176$-3-.)
 	movc	a,@a+pc
 	mov	dph,a
 	clr	a
 	jmp	@a+dptr
-00191$:
+00175$:
 	.db	00101$
 	.db	00102$
 	.db	00104$
+	.db	00105$
 	.db	00106$
 	.db	00107$
 	.db	00108$
 	.db	00109$
 	.db	00110$
+	.db	00115$
+	.db	00115$
+	.db	00115$
+	.db	00115$
+	.db	00115$
+	.db	00115$
+	.db	00115$
 	.db	00111$
-	.db	00116$
-	.db	00116$
-	.db	00116$
-	.db	00116$
-	.db	00116$
-	.db	00116$
-	.db	00116$
 	.db	00112$
 	.db	00113$
-	.db	00114$
-00192$:
+00176$:
 	.db	00101$>>8
 	.db	00102$>>8
 	.db	00104$>>8
+	.db	00105$>>8
 	.db	00106$>>8
 	.db	00107$>>8
 	.db	00108$>>8
 	.db	00109$>>8
 	.db	00110$>>8
+	.db	00115$>>8
+	.db	00115$>>8
+	.db	00115$>>8
+	.db	00115$>>8
+	.db	00115$>>8
+	.db	00115$>>8
+	.db	00115$>>8
 	.db	00111$>>8
-	.db	00116$>>8
-	.db	00116$>>8
-	.db	00116$>>8
-	.db	00116$>>8
-	.db	00116$>>8
-	.db	00116$>>8
-	.db	00116$>>8
 	.db	00112$>>8
 	.db	00113$>>8
-	.db	00114$>>8
-;	main.c:86: case '1': {
+;	main.c:87: case '1': {
 00101$:
-;	main.c:87: printf("Enter the register bank to select:\n\r");
+;	main.c:88: printf("Enter the register bank to select:\n\r");
 	mov	a,#___str_15
 	push	acc
 	mov	a,#(___str_15 >> 8)
@@ -1255,10 +1260,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:88: uint8_t reg_bank = get_user_buffer_size();
+;	main.c:89: uint8_t reg_bank = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
-;	main.c:89: printf("Enter the address of the Control Register:\n\r");
+;	main.c:90: printf("Enter the address of the Control Register:\n\r");
 	push	ar6
 	mov	a,#___str_16
 	push	acc
@@ -1270,10 +1275,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:90: uint8_t addr = get_user_buffer_size();
+;	main.c:91: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r5, dpl
-;	main.c:91: printf("Enter the data you want to write:\n\r");
+;	main.c:92: printf("Enter the data you want to write:\n\r");
 	push	ar5
 	mov	a,#___str_17
 	push	acc
@@ -1285,12 +1290,12 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:92: uint8_t data = get_user_buffer_size();
+;	main.c:93: uint8_t data = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r4, dpl
 	pop	ar5
 	pop	ar6
-;	main.c:93: spi_control_write(reg_bank, addr, data);
+;	main.c:94: spi_control_write(reg_bank, addr, data);
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,r5
 	movx	@dptr,a
@@ -1299,11 +1304,11 @@ _main:
 	movx	@dptr,a
 	mov	dpl, r6
 	lcall	_spi_control_write
-;	main.c:94: break;
-	ljmp	00119$
-;	main.c:96: case '2': {
+;	main.c:95: break;
+	ljmp	00118$
+;	main.c:97: case '2': {
 00102$:
-;	main.c:97: printf("Enter the number of bytes to write:\n\r");
+;	main.c:98: printf("Enter the number of bytes to write:\n\r");
 	mov	a,#___str_18
 	push	acc
 	mov	a,#(___str_18 >> 8)
@@ -1314,11 +1319,11 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:98: int num_bytes = get_user_buffer_size();
+;	main.c:99: int num_bytes = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
 	mov	r7, dph
-;	main.c:99: printf("Enter the starting address:\n\r");
+;	main.c:100: printf("Enter the starting address:\n\r");
 	push	ar7
 	push	ar6
 	mov	a,#___str_19
@@ -1331,13 +1336,13 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:100: uint16_t start_address = get_user_buffer_size();
+;	main.c:101: uint16_t start_address = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r4, dpl
 	mov	r5, dph
 	pop	ar6
 	pop	ar7
-;	main.c:102: printf("Enter %d bytes of data (in hex):\n\r", num_bytes);
+;	main.c:103: printf("Enter %d bytes of data (in hex):\n\r", num_bytes);
 	push	ar7
 	push	ar6
 	push	ar5
@@ -1358,10 +1363,10 @@ _main:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	main.c:103: for (int i = 0; i < num_bytes; i++) {
+;	main.c:104: for (int i = 0; i < num_bytes; i++) {
 	mov	r2,#0x00
 	mov	r3,#0x00
-00122$:
+00121$:
 	clr	c
 	mov	a,r2
 	subb	a,r6
@@ -1371,7 +1376,7 @@ _main:
 	xrl	b,#0x80
 	subb	a,b
 	jnc	00103$
-;	main.c:104: printf("Byte %d: ", i);
+;	main.c:105: printf("Byte %d: ", i);
 	push	ar4
 	push	ar5
 	push	ar7
@@ -1396,12 +1401,12 @@ _main:
 	pop	ar3
 	pop	ar4
 	pop	ar5
-;	main.c:105: buffer[i] = get_user_buffer_size();
+;	main.c:106: buffer[i] = get_user_buffer_size();
 	mov	a,r2
-	add	a, #_main_buffer_40003_90
+	add	a, #_main_buffer_40003_94
 	mov	r0,a
 	mov	a,r3
-	addc	a, #(_main_buffer_40003_90 >> 8)
+	addc	a, #(_main_buffer_40003_94 >> 8)
 	mov	r1,a
 	push	ar3
 	push	ar2
@@ -1419,16 +1424,16 @@ _main:
 	mov	dph,r1
 	mov	a,r4
 	movx	@dptr,a
-;	main.c:103: for (int i = 0; i < num_bytes; i++) {
+;	main.c:104: for (int i = 0; i < num_bytes; i++) {
 	inc	r2
-	cjne	r2,#0x00,00194$
+	cjne	r2,#0x00,00178$
 	inc	r3
-00194$:
+00178$:
 	pop	ar5
 	pop	ar4
-	sjmp	00122$
+	sjmp	00121$
 00103$:
-;	main.c:107: spi_buffer_write(num_bytes, start_address, buffer);
+;	main.c:108: spi_buffer_write(num_bytes, start_address, buffer);
 	mov	dptr,#_spi_buffer_write_PARM_2
 	mov	a,r4
 	movx	@dptr,a
@@ -1436,9 +1441,9 @@ _main:
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_write_PARM_3
-	mov	a,#_main_buffer_40003_90
+	mov	a,#_main_buffer_40003_94
 	movx	@dptr,a
-	mov	a,#(_main_buffer_40003_90 >> 8)
+	mov	a,#(_main_buffer_40003_94 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -1447,11 +1452,11 @@ _main:
 	mov	dpl, r6
 	mov	dph, r7
 	lcall	_spi_buffer_write
-;	main.c:108: break;
-	ljmp	00119$
-;	main.c:110: case '3': {
+;	main.c:109: break;
+	ljmp	00118$
+;	main.c:111: case '3': {
 00104$:
-;	main.c:111: printf("Enter the number of bytes to read:\n\r");
+;	main.c:112: printf("Enter the number of bytes to read:\n\r");
 	mov	a,#___str_22
 	push	acc
 	mov	a,#(___str_22 >> 8)
@@ -1462,11 +1467,11 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:112: int num_bytes = get_user_buffer_size();
+;	main.c:113: int num_bytes = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
 	mov	r7, dph
-;	main.c:113: printf("Enter the starting address:\n\r");
+;	main.c:114: printf("Enter the starting address:\n\r");
 	push	ar7
 	push	ar6
 	mov	a,#___str_19
@@ -1479,13 +1484,13 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:114: uint16_t start_address = get_user_buffer_size();
+;	main.c:115: uint16_t start_address = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r4, dpl
 	mov	r5, dph
 	pop	ar6
 	pop	ar7
-;	main.c:116: spi_buffer_read(num_bytes, start_address, buffer);
+;	main.c:117: spi_buffer_read(num_bytes, start_address, buffer);
 	mov	dptr,#_spi_buffer_read_PARM_2
 	mov	a,r4
 	movx	@dptr,a
@@ -1493,9 +1498,9 @@ _main:
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_read_PARM_3
-	mov	a,#_main_buffer_40003_95
+	mov	a,#_main_buffer_40003_99
 	movx	@dptr,a
-	mov	a,#(_main_buffer_40003_95 >> 8)
+	mov	a,#(_main_buffer_40003_99 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -1506,7 +1511,44 @@ _main:
 	push	ar7
 	push	ar6
 	lcall	_spi_buffer_read
-;	main.c:117: printf("Read Data:\n\r");
+	pop	ar6
+	pop	ar7
+;	main.c:127: uint8_t erxrdpt_low = mac_spi_read(0x0C, 0);  // ERXRDPTL
+	mov	dptr,#_mac_spi_read_PARM_2
+	clr	a
+	movx	@dptr,a
+	mov	dpl, #0x0c
+	push	ar7
+	push	ar6
+	lcall	_mac_spi_read
+	mov	r5, dpl
+	pop	ar6
+	pop	ar7
+;	main.c:128: uint8_t erxrdpt_high = mac_spi_read(0x0D, 0); // ERXRDPTH
+	mov	dptr,#_mac_spi_read_PARM_2
+	clr	a
+	movx	@dptr,a
+	mov	dpl, #0x0d
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_mac_spi_read
+	mov	r4, dpl
+	pop	ar5
+;	main.c:129: current_erxrdpt = ((uint16_t)erxrdpt_high << 8) | erxrdpt_low;
+	mov	ar3,r4
+	clr	a
+	mov	r4,a
+	mov	r2,a
+	mov	a,r5
+	orl	ar4,a
+	mov	a,r2
+	orl	ar3,a
+;	main.c:131: printf("Current ERXRDPT: 0x%04X\n\r", current_erxrdpt);
+	push	ar4
+	push	ar3
+	push	ar4
+	push	ar3
 	mov	a,#___str_23
 	push	acc
 	mov	a,#(___str_23 >> 8)
@@ -1514,44 +1556,47 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+	pop	ar3
+	pop	ar4
 	pop	ar6
 	pop	ar7
-;	main.c:118: for (int i = 0; i < num_bytes; i++) {
-	mov	r4,#0x00
-	mov	r5,#0x00
-00125$:
-	clr	c
-	mov	a,r4
-	subb	a,r6
-	mov	a,r5
-	xrl	a,#0x80
-	mov	b,r7
-	xrl	b,#0x80
-	subb	a,b
-	jc	00195$
-	ljmp	00119$
-00195$:
-;	main.c:119: printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
-	mov	a,r4
-	add	a, #_main_buffer_40003_95
-	mov	dpl,a
-	mov	a,r5
-	addc	a, #(_main_buffer_40003_95 >> 8)
-	mov	dph,a
-	movx	a,@dptr
+;	main.c:134: current_erxrdpt += num_bytes;
+	mov	a,r6
+	add	a, r4
+	mov	r4,a
+	mov	a,r7
+	addc	a, r3
 	mov	r3,a
-	mov	r2,#0x00
-	push	ar7
-	push	ar6
-	push	ar5
+;	main.c:137: spi_control_write(0, 0x0C, (uint8_t)(current_erxrdpt & 0xFF));  // ERXRDPTL (low byte)
+	mov	ar7,r4
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0c
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r7
+	movx	@dptr,a
+	mov	dpl, #0x00
 	push	ar4
 	push	ar3
-	push	ar2
+	lcall	_spi_control_write
+	pop	ar3
+	pop	ar4
+;	main.c:138: spi_control_write(0, 0x0D, (uint8_t)((current_erxrdpt >> 8) & 0xFF));  // ERXRDPTH (high byte)
+	mov	ar7,r3
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0d
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r7
+	movx	@dptr,a
+	mov	dpl, #0x00
 	push	ar4
-	push	ar5
+	push	ar3
+	lcall	_spi_control_write
+;	main.c:140: printf("Updated ERXRDPT to: 0x%04X\n\r", current_erxrdpt);
 	mov	a,#___str_24
 	push	acc
 	mov	a,#(___str_24 >> 8)
@@ -1560,20 +1605,13 @@ _main:
 	push	acc
 	lcall	_printf
 	mov	a,sp
-	add	a,#0xf9
+	add	a,#0xfb
 	mov	sp,a
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
-;	main.c:118: for (int i = 0; i < num_bytes; i++) {
-	inc	r4
-;	main.c:123: case '4': {
-	cjne	r4,#0x00,00125$
-	inc	r5
-	sjmp	00125$
-00106$:
-;	main.c:124: printf("Enter the MAC register bank to select:\n\r");
+;	main.c:144: break;
+	ljmp	00118$
+;	main.c:146: case '4': {
+00105$:
+;	main.c:147: printf("Enter the MAC register bank to select:\n\r");
 	mov	a,#___str_25
 	push	acc
 	mov	a,#(___str_25 >> 8)
@@ -1584,10 +1622,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:125: uint8_t reg_bank = get_user_buffer_size();
+;	main.c:148: uint8_t reg_bank = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
-;	main.c:126: printf("Enter the address of the MAC Register:\n\r");
+;	main.c:149: printf("Enter the address of the MAC Register:\n\r");
 	push	ar6
 	mov	a,#___str_26
 	push	acc
@@ -1599,18 +1637,18 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:127: uint8_t addr = get_user_buffer_size();
+;	main.c:150: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r5, dpl
 	pop	ar6
-;	main.c:128: uint8_t data = mac_spi_read(addr, reg_bank);
+;	main.c:151: uint8_t data = mac_spi_read(addr, reg_bank);
 	mov	dptr,#_mac_spi_read_PARM_2
 	mov	a,r6
 	movx	@dptr,a
 	mov	dpl, r5
 	lcall	_mac_spi_read
 	mov	r7, dpl
-;	main.c:129: printf("MAC Register Data: 0x%02X\n\r", data);
+;	main.c:152: printf("MAC Register Data: 0x%02X\n\r", data);
 	mov	r6,#0x00
 	push	ar7
 	push	ar6
@@ -1624,11 +1662,11 @@ _main:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:130: break;
-	ljmp	00119$
-;	main.c:132: case '5': {
-00107$:
-;	main.c:133: printf("Enter the PHY register address:\n\r");
+;	main.c:153: break;
+	ljmp	00118$
+;	main.c:155: case '5': {
+00106$:
+;	main.c:156: printf("Enter the PHY register address:\n\r");
 	mov	a,#___str_28
 	push	acc
 	mov	a,#(___str_28 >> 8)
@@ -1639,10 +1677,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:134: uint8_t addr = get_user_buffer_size();
+;	main.c:157: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
-;	main.c:135: printf("Enter the 16-bit data to write:\n\r");
+;	main.c:158: printf("Enter the 16-bit data to write:\n\r");
 	push	ar6
 	mov	a,#___str_29
 	push	acc
@@ -1654,12 +1692,12 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:136: uint16_t data = get_user_buffer_size();
+;	main.c:159: uint16_t data = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r5, dpl
 	mov	r7, dph
 	pop	ar6
-;	main.c:137: phy_spi_write(addr, data);
+;	main.c:160: phy_spi_write(addr, data);
 	mov	dptr,#_phy_spi_write_PARM_2
 	mov	a,r5
 	movx	@dptr,a
@@ -1672,7 +1710,7 @@ _main:
 	lcall	_phy_spi_write
 	pop	ar5
 	pop	ar7
-;	main.c:138: printf("PHY Write Data: 0x%04X\n\r", data);
+;	main.c:161: printf("PHY Write Data: 0x%04X\n\r", data);
 	push	ar5
 	push	ar7
 	mov	a,#___str_30
@@ -1685,11 +1723,11 @@ _main:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:139: break;
-	ljmp	00119$
-;	main.c:141: case '6': {
-00108$:
-;	main.c:142: printf("Enter the PHY register address to read:\n\r");
+;	main.c:162: break;
+	ljmp	00118$
+;	main.c:164: case '6': {
+00107$:
+;	main.c:165: printf("Enter the PHY register address to read:\n\r");
 	mov	a,#___str_31
 	push	acc
 	mov	a,#(___str_31 >> 8)
@@ -1700,13 +1738,13 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:143: uint8_t addr = get_user_buffer_size();
+;	main.c:166: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
-;	main.c:144: uint16_t data = phy_spi_read(addr);
+;	main.c:167: uint16_t data = phy_spi_read(addr);
 	lcall	_phy_spi_read
 	mov	r6, dpl
 	mov	r7, dph
-;	main.c:145: printf("PHY Read Data: 0x%04X\n\r", data);
+;	main.c:168: printf("PHY Read Data: 0x%04X\n\r", data);
 	push	ar6
 	push	ar7
 	mov	a,#___str_32
@@ -1719,11 +1757,11 @@ _main:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:146: break;
-	ljmp	00119$
-;	main.c:148: case '7': {
-00109$:
-;	main.c:149: printf("Resetting ENC28J60...\n\r");
+;	main.c:169: break;
+	ljmp	00118$
+;	main.c:171: case '7': {
+00108$:
+;	main.c:172: printf("Resetting ENC28J60...\n\r");
 	mov	a,#___str_33
 	push	acc
 	mov	a,#(___str_33 >> 8)
@@ -1734,13 +1772,13 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:150: enc_reset();
+;	main.c:173: enc_reset();
 	lcall	_enc_reset
-;	main.c:151: break;
-	ljmp	00119$
-;	main.c:153: case '8': {
-00110$:
-;	main.c:154: printf("Enter the ETH register address to read:\n\r");
+;	main.c:174: break;
+	ljmp	00118$
+;	main.c:176: case '8': {
+00109$:
+;	main.c:177: printf("Enter the ETH register address to read:\n\r");
 	mov	a,#___str_34
 	push	acc
 	mov	a,#(___str_34 >> 8)
@@ -1751,10 +1789,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:155: uint8_t addr = get_user_buffer_size();
+;	main.c:178: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r6, dpl
-;	main.c:156: printf("Enter the bank (0 or 1):\n\r");
+;	main.c:179: printf("Enter the bank (0 or 1):\n\r");
 	push	ar6
 	mov	a,#___str_35
 	push	acc
@@ -1766,18 +1804,18 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:157: uint8_t bank = get_user_buffer_size();
+;	main.c:180: uint8_t bank = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r5, dpl
 	pop	ar6
 	mov	dptr,#_eth_spi_read_PARM_2
 	mov	a,r5
 	movx	@dptr,a
-;	main.c:158: uint8_t data = eth_spi_read(addr, bank);
+;	main.c:181: uint8_t data = eth_spi_read(addr, bank);
 	mov	dpl, r6
 	lcall	_eth_spi_read
 	mov	r7, dpl
-;	main.c:159: printf("ETH Register Data: 0x%02X\n\r", data);
+;	main.c:182: printf("ETH Register Data: 0x%02X\n\r", data);
 	mov	r6,#0x00
 	push	ar7
 	push	ar6
@@ -1791,11 +1829,11 @@ _main:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:160: break;
-	ljmp	00119$
-;	main.c:162: case '9': {
-00111$:
-;	main.c:163: printf("\n\rChoose an action: \n\r");
+;	main.c:183: break;
+	ljmp	00118$
+;	main.c:185: case '9': {
+00110$:
+;	main.c:186: printf("\n\rChoose an action: \n\r");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1806,7 +1844,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:164: printf("1 --> Control Write\n\r");
+;	main.c:187: printf("1 --> Control Write\n\r");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1817,7 +1855,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:165: printf("2 --> Buffer Write\n\r");
+;	main.c:188: printf("2 --> Buffer Write\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1828,7 +1866,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:166: printf("3 --> Buffer Read\n\r");
+;	main.c:189: printf("3 --> Buffer Read\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1839,7 +1877,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:167: printf("4 --> MAC Register Read\n\r");
+;	main.c:190: printf("4 --> MAC Register Read\n\r");
 	mov	a,#___str_6
 	push	acc
 	mov	a,#(___str_6 >> 8)
@@ -1850,7 +1888,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:168: printf("5 --> PHY SPI Write\n\r");
+;	main.c:191: printf("5 --> PHY SPI Write\n\r");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -1861,7 +1899,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:169: printf("6 --> PHY SPI Read\n\r");
+;	main.c:192: printf("6 --> PHY SPI Read\n\r");
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -1872,7 +1910,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:170: printf("7 --> ENC Reset\n\r");
+;	main.c:193: printf("7 --> ENC Reset\n\r");
 	mov	a,#___str_9
 	push	acc
 	mov	a,#(___str_9 >> 8)
@@ -1883,7 +1921,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:171: printf("8 --> Read ETH Register\n\r");
+;	main.c:194: printf("8 --> Read ETH Register\n\r");
 	mov	a,#___str_10
 	push	acc
 	mov	a,#(___str_10 >> 8)
@@ -1894,25 +1932,25 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:172: break;
-	ljmp	00119$
-;	main.c:174: case 'A':{
-00112$:
-;	main.c:175: init_ENC();
+;	main.c:195: break;
+	ljmp	00118$
+;	main.c:197: case 'A':{
+00111$:
+;	main.c:198: init_ENC();
 	lcall	_init_ENC
-;	main.c:177: send_arp_request();
+;	main.c:200: send_arp_request();
 	lcall	_send_arp_request
-;	main.c:178: break;
-	ljmp	00119$
-;	main.c:180: case 'B':{
-00113$:
-;	main.c:181: init_ENC();
+;	main.c:201: break;
+	ljmp	00118$
+;	main.c:203: case 'B':{
+00112$:
+;	main.c:204: init_ENC();
 	lcall	_init_ENC
-;	main.c:182: break;
-	ljmp	00119$
-;	main.c:184: case 'C':{
-00114$:
-;	main.c:185: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
+;	main.c:205: break;
+	ljmp	00118$
+;	main.c:207: case 'C':{
+00113$:
+;	main.c:208: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
 	mov	a,#___str_37
 	push	acc
 	mov	a,#(___str_37 >> 8)
@@ -1923,33 +1961,33 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:186: ENC_RESET = 0;
+;	main.c:209: ENC_RESET = 0;
 ;	assignBit
 	clr	_P1_0
-;	main.c:187: for(int i = 0; i < 6000; i++);
+;	main.c:210: for(int i = 0; i < 6000; i++);
 	mov	r6,#0x00
 	mov	r7,#0x00
-00128$:
+00124$:
 	clr	c
 	mov	a,r6
 	subb	a,#0x70
 	mov	a,r7
 	xrl	a,#0x80
 	subb	a,#0x97
-	jnc	00115$
+	jnc	00114$
 	inc	r6
-	cjne	r6,#0x00,00128$
+	cjne	r6,#0x00,00124$
 	inc	r7
-	sjmp	00128$
-00115$:
-;	main.c:188: ENC_RESET = 1;
+	sjmp	00124$
+00114$:
+;	main.c:211: ENC_RESET = 1;
 ;	assignBit
 	setb	_P1_0
-;	main.c:189: break;
-	ljmp	00119$
-;	main.c:191: default: {
-00116$:
-;	main.c:192: printf("Invalid option. Please select a valid action.\n\r");
+;	main.c:212: break;
+	ljmp	00118$
+;	main.c:214: default: {
+00115$:
+;	main.c:215: printf("Invalid option. Please select a valid action.\n\r");
 	mov	a,#___str_38
 	push	acc
 	mov	a,#(___str_38 >> 8)
@@ -1960,9 +1998,9 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:195: }
-;	main.c:197: }
-	ljmp	00119$
+;	main.c:218: }
+;	main.c:220: }
+	ljmp	00118$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area CONST   (CODE)
@@ -2127,14 +2165,14 @@ ___str_22:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_23:
-	.ascii "Read Data:"
+	.ascii "Current ERXRDPT: 0x%04X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_24:
-	.ascii "Byte %d: 0x%02X"
+	.ascii "Updated ERXRDPT to: 0x%04X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00

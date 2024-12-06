@@ -77,11 +77,12 @@ void enc28j60_init_rx_buffer(uint16_t start_address, uint16_t end_address)
     spi_control_write(0, 0x0A, (uint8_t)(end_address & 0xFF)); // ERXNDL (low byte)
     spi_control_write(0, 0x0B, (uint8_t)((end_address >> 8) & 0xFF)); // ERXNDH (high byte)
 
-    // Set ERXRDPT to ERXST (initial pointer for RX read)
+   // Set ERXRDPT to ERXST (initial pointer for RX read)
     spi_control_write(0, 0x0C, (uint8_t)(start_address & 0xFF)); // ERXRDPTL (low byte)
     spi_control_write(0, 0x0D, (uint8_t)((start_address >> 8) & 0xFF)); // ERXRDPTH (high byte)
 
-    // Enable RX (set ECON1.RXEN bit)
+
+    //Enable RX (set ECON1.RXEN bit)
     //uint8_t econ1 = spi_control_read(3, 0x1F); // ECON1
     //econ1 |= 0x04; // RXEN bit
     //spi_control_write(3, 0x1F, econ1);
@@ -122,15 +123,36 @@ bool enc28j60_transmission_successful()
     uint8_t estat = mac_spi_read(0x1D, 0); // Read ESTAT
     return !(estat & 0x02); // Check if TXABRT (bit 1) is not set
 }
+void RX_disable(void)
+{
+    uint8_t econ1_value = mac_spi_read(0x1F, 0); // Read ECON1
 
+    // Clear RXEN bit to 0 to disable RX
+    econ1_value &= ~(0x04);
+
+    // Write the new value back to ECON1 register
+    spi_control_write(0, 0x1F, econ1_value); // Write back to ECON1
+}
+
+void RX_enable(void)
+{
+    uint8_t econ1_value = mac_spi_read(0x1F, 0); // Read ECON1
+
+    // Set RXEN bit to 1 to enable RX
+    econ1_value |= 0x04;
+
+    // Write the new value back to ECON1 register
+    spi_control_write(0, 0x1F, econ1_value); // Write back to ECON1
+}
 
 void send_arp_request(void)
 {
+
     // Example addresses
-uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
-uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
-uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
-uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
+    uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
+    uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
+    uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
+    uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
     uint8_t arp_packet[43]; // Minimum ARP packet size for Ethernet
 
     // Set the first byte to 0x0E
@@ -139,6 +161,7 @@ uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
     // Ethernet header
     // Set the MAC address
     set_mac_address(source_mac);
+
 
     for (int i = 0; i < 6; i++)
     {
@@ -192,7 +215,7 @@ uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
 
     // Write the ARP packet to the ENC28J60 buffer
     uint16_t frame_size = 44;  // The total length is now exactly 42 bytes (without padding)
-    uint16_t start_address = 0x0300;
+    uint16_t start_address = 0x0200;
     if ((start_address + frame_size - 1) > 0x1FFF) {
         printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
         return;
@@ -205,6 +228,7 @@ uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
     enc28j60_set_transmit_pointers(start_address, end_address);
 
     // Start transmission
+    RX_enable();
     enc28j60_start_transmission();
 
     // Wait for transmission to complete

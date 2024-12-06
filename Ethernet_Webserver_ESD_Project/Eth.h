@@ -14,3 +14,5 @@
 
 void send_arp_request(void);
 void enc28j60_init_rx_buffer(uint16_t start_address, uint16_t end_address);
+void RX_disable(void);
+void RX_enable(void);

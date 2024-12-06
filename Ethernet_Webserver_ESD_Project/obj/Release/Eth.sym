@@ -376,6 +376,8 @@ Symbol Table
     _RS1                                                        =  0000D4 G
     _RXD                                                        =  0000B0 G
     _RXD0                                                       =  0000B0 G
+ 17 _RX_disable                                                    000351 GR
+ 17 _RX_enable                                                     000372 GR
     _SADDR                                                      =  0000A9 G
     _SADEN                                                      =  0000B9 G
     _SBUF                                                       =  000099 G
@@ -416,13 +418,13 @@ Symbol Table
     _TMOD                                                       =  000089 G
     _TR0                                                        =  00008C G
     _TR1                                                        =  00008E G
-    _TR2                                                        =  0000CA G
-    _TXD                                                        =  0000B1 G
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 8
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    _TR2                                                        =  0000CA G
+    _TXD                                                        =  0000B1 G
     _TXD0                                                       =  0000B1 G
     _WDTPRG                                                     =  0000A7 G
     _WDTRST                                                     =  0000A6 G
@@ -441,28 +443,28 @@ Symbol Table
  19 __xinit__source_mac                                            000000 R
  19 __xinit__target_ip                                             000010 R
  17 _delay_ms                                                      00006A GR
-  B _delay_ms_i_20000_69                                           000002 R
-  B _delay_ms_ms_10000_67                                          000000 R
+  B _delay_ms_i_20000_73                                           000002 R
+  B _delay_ms_ms_10000_71                                          000000 R
   D _dest_mac                                                      000006 GR
  17 _enc28j60_init_rx_buffer                                       00010C GR
   B _enc28j60_init_rx_buffer_PARM_2                                000006 GR
-  B _enc28j60_init_rx_buffer_start_address_10000_73                000008 R
+  B _enc28j60_init_rx_buffer_start_address_10000_77                000008 R
  17 _enc28j60_set_transmit_pointers                                00025D GR
   B _enc28j60_set_transmit_pointers_PARM_2                         00000A GR
-  B _enc28j60_set_transmit_pointers_start_address_10000_76         00000C R
+  B _enc28j60_set_transmit_pointers_start_address_10000_80         00000C R
  17 _enc28j60_start_transmission                                   0000EB GR
  17 _enc28j60_transmission_successful                              000337 GR
   9 _enc28j60_transmission_successful_sloc0_1_0                    000000 R
- 17 _external_interrupt0_isr                                       0005AD GR
+ 17 _external_interrupt0_isr                                       0005F2 GR
     _mac_spi_read                                                  ****** GX
     _mac_spi_read_PARM_2                                           ****** GX
     _printf                                                        ****** GX
- 17 _send_arp_request                                              000351 GR
-  B _send_arp_request_arp_packet_10000_84                          000024 R
-  B _send_arp_request_dest_mac_10000_84                            000016 R
-  B _send_arp_request_source_ip_10000_84                           00001C R
-  B _send_arp_request_source_mac_10000_84                          000010 R
-  B _send_arp_request_target_ip_10000_84                           000020 R
+ 17 _send_arp_request                                              000393 GR
+  B _send_arp_request_arp_packet_10000_92                          000024 R
+  B _send_arp_request_dest_mac_10000_92                            000016 R
+  B _send_arp_request_source_ip_10000_92                           00001C R
+  B _send_arp_request_source_mac_10000_92                          000010 R
+  B _send_arp_request_target_ip_10000_92                           000020 R
  17 _set_mac_address                                               000000 GR
   D _source_ip                                                     00000C GR
   D _source_mac                                                    000000 GR
@@ -474,15 +476,15 @@ Symbol Table
     _spi_control_write_PARM_3                                      ****** GX
   D _target_ip                                                     000010 GR
  17 _wait_for_transmission_complete                                0002D4 GR
-  B _wait_for_transmission_complete_timeout_ms_10000_78            00000E R
+  B _wait_for_transmission_complete_timeout_ms_10000_82            00000E R
     a                                                           =  0000E0 L
-    a.0                                                         =  0000E0 L
-    a.1                                                         =  0000E1 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    a.0                                                         =  0000E0 L
+    a.1                                                         =  0000E1 L
     a.2                                                         =  0000E2 L
     a.3                                                         =  0000E3 L
     a.4                                                         =  0000E4 L
@@ -536,13 +538,13 @@ Symbol Table
     et1                                                         =  0000AB L
     et2                                                         =  0000AD L
     ex0                                                         =  0000A8 L
-    ex1                                                         =  0000AA L
-    exen2                                                       =  0000CB L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    ex1                                                         =  0000AA L
+    exen2                                                       =  0000CB L
     exf2                                                        =  0000CE L
     f0                                                          =  0000D5 L
     ie                                                          =  0000A8 L
@@ -596,13 +598,13 @@ Symbol Table
     p2.6                                                        =  0000A6 L
     p2.7                                                        =  0000A7 L
     p3                                                          =  0000B0 L
-    p3.0                                                        =  0000B0 L
-    p3.1                                                        =  0000B1 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    p3.0                                                        =  0000B0 L
+    p3.1                                                        =  0000B1 L
     p3.2                                                        =  0000B2 L
     p3.3                                                        =  0000B3 L
     p3.4                                                        =  0000B4 L
@@ -656,13 +658,13 @@ Symbol Table
     t2con.4                                                     =  0000CC L
     t2con.5                                                     =  0000CD L
     t2con.6                                                     =  0000CE L
-    t2con.7                                                     =  0000CF L
-    tb8                                                         =  00009B L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    t2con.7                                                     =  0000CF L
+    tb8                                                         =  00009B L
     tclk                                                        =  0000CC L
     tcon                                                        =  000088 L
     tcon.0                                                      =  000088 L
@@ -688,6 +690,7 @@ Symbol Table
     tr1                                                         =  00008E L
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 13
 Hexadecimal [24-Bits]
@@ -717,7 +720,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size    609   flags   20
+  17 CSEG                                       size    64E   flags   20
   18 CONST                                      size    138   flags   20
   19 XINIT                                      size     14   flags   20
   1A CABS                                       size      0   flags   28
