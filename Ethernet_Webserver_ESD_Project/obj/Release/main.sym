@@ -445,22 +445,20 @@ Symbol Table
  19 ___str_21                                                      000225 R
  19 ___str_22                                                      00022F R
  19 ___str_23                                                      000254 R
- 19 ___str_24                                                      00026E R
- 19 ___str_25                                                      00028B R
- 19 ___str_26                                                      0002B4 R
- 19 ___str_27                                                      0002DD R
- 19 ___str_28                                                      0002F9 R
- 19 ___str_29                                                      00031B R
+ 19 ___str_24                                                      00027D R
+ 19 ___str_25                                                      0002A6 R
+ 19 ___str_26                                                      0002C2 R
+ 19 ___str_27                                                      0002E4 R
+ 19 ___str_28                                                      000306 R
+ 19 ___str_29                                                      00031F R
  19 ___str_3                                                       000033 R
- 19 ___str_30                                                      00033D R
- 19 ___str_31                                                      000356 R
- 19 ___str_32                                                      000380 R
- 19 ___str_33                                                      000398 R
- 19 ___str_34                                                      0003B0 R
+ 19 ___str_30                                                      000349 R
+ 19 ___str_31                                                      000361 R
+ 19 ___str_32                                                      000379 R
+ 19 ___str_33                                                      0003A3 R
+ 19 ___str_34                                                      0003BE R
  19 ___str_35                                                      0003DA R
- 19 ___str_36                                                      0003F5 R
- 19 ___str_37                                                      000411 R
- 19 ___str_38                                                      000444 R
+ 19 ___str_36                                                      00040D R
  19 ___str_4                                                       000049 R
  19 ___str_5                                                       00005E R
  19 ___str_6                                                       000072 R
@@ -478,13 +476,13 @@ Symbol Table
     _configure_SPI                                                 ****** GX
     _enc_reset                                                     ****** GX
     _eth_spi_read                                                  ****** GX
+    _eth_spi_read_PARM_2                                           ****** GX
+    _external_interrupt0_isr                                       ****** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    _eth_spi_read_PARM_2                                           ****** GX
-    _external_interrupt0_isr                                       ****** GX
  18 _get_user_buffer_size                                          0001BA GR
   C _get_user_buffer_size_input_10000_81                           000007 R
     _getchar                                                       ****** GX
@@ -538,13 +536,13 @@ Symbol Table
     acc.7                                                       =  0000E7 L
     ar0                                                         =  000000 
     ar1                                                         =  000001 
+    ar2                                                         =  000002 
+    ar3                                                         =  000003 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    ar2                                                         =  000002 
-    ar3                                                         =  000003 
     ar4                                                         =  000004 
     ar5                                                         =  000005 
     ar6                                                         =  000006 
@@ -598,13 +596,13 @@ Symbol Table
     p                                                           =  0000D0 L
     p0                                                          =  000080 L
     p0.0                                                        =  000080 L
+    p0.1                                                        =  000081 L
+    p0.2                                                        =  000082 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    p0.1                                                        =  000081 L
-    p0.2                                                        =  000082 L
     p0.3                                                        =  000083 L
     p0.4                                                        =  000084 L
     p0.5                                                        =  000085 L
@@ -658,13 +656,13 @@ Symbol Table
     rcap2l                                                      =  0000CA L
     rclk                                                        =  0000CD L
     ren                                                         =  00009C L
+    ri                                                          =  000098 L
+    rs0                                                         =  0000D3 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    ri                                                          =  000098 L
-    rs0                                                         =  0000D3 L
     rs1                                                         =  0000D4 L
     rxd                                                         =  0000B0 L
     sbuf                                                        =  000099 L
@@ -747,8 +745,8 @@ Area Table
   15 GSINIT5                                    size      0   flags   20
   16 GSINIT                                     size      0   flags   20
   17 GSFINAL                                    size      3   flags   20
-  18 CSEG                                       size    8EE   flags   20
-  19 CONST                                      size    474   flags   20
+  18 CSEG                                       size    83F   flags   20
+  19 CONST                                      size    43D   flags   20
   1A XINIT                                      size      0   flags   20
   1B CABS                                       size      0   flags   28
 

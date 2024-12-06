@@ -460,7 +460,7 @@ Symbol Table
   A _eth_spi_read_PARM_2                                           000007 GR
   A _eth_spi_read_addr_10000_84                                    000008 R
  16 _init_ENC                                                      0007D0 GR
- 16 _init_MAC                                                      000897 GR
+ 16 _init_MAC                                                      000898 GR
  16 _mac_spi_read                                                  00021E GR
   A _mac_spi_read_PARM_2                                           00000C GR
   A _mac_spi_read_addr_10000_90                                    00000D R
@@ -721,7 +721,7 @@ Area Table
   13 GSINIT5                                    size      0   flags   20
   14 GSINIT                                     size      0   flags   20
   15 GSFINAL                                    size      0   flags   20
-  16 CSEG                                       size    898   flags   20
+  16 CSEG                                       size    899   flags   20
   17 CONST                                      size    231   flags   20
   18 XINIT                                      size      0   flags   20
   19 CABS                                       size      0   flags   28

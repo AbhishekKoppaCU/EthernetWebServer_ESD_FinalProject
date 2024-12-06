@@ -376,8 +376,8 @@ Symbol Table
     _RS1                                                        =  0000D4 G
     _RXD                                                        =  0000B0 G
     _RXD0                                                       =  0000B0 G
- 17 _RX_disable                                                    000351 GR
- 17 _RX_enable                                                     000372 GR
+ 17 _RX_disable                                                    000337 GR
+ 17 _RX_enable                                                     000358 GR
     _SADDR                                                      =  0000A9 G
     _SADEN                                                      =  0000B9 G
     _SBUF                                                       =  000099 G
@@ -449,17 +449,17 @@ Symbol Table
  17 _enc28j60_init_rx_buffer                                       00010C GR
   B _enc28j60_init_rx_buffer_PARM_2                                000006 GR
   B _enc28j60_init_rx_buffer_start_address_10000_77                000008 R
- 17 _enc28j60_set_transmit_pointers                                00025D GR
+ 17 _enc28j60_set_transmit_pointers                                000243 GR
   B _enc28j60_set_transmit_pointers_PARM_2                         00000A GR
   B _enc28j60_set_transmit_pointers_start_address_10000_80         00000C R
  17 _enc28j60_start_transmission                                   0000EB GR
- 17 _enc28j60_transmission_successful                              000337 GR
+ 17 _enc28j60_transmission_successful                              00031D GR
   9 _enc28j60_transmission_successful_sloc0_1_0                    000000 R
- 17 _external_interrupt0_isr                                       0005F2 GR
+ 17 _external_interrupt0_isr                                       0005D5 GR
     _mac_spi_read                                                  ****** GX
     _mac_spi_read_PARM_2                                           ****** GX
     _printf                                                        ****** GX
- 17 _send_arp_request                                              000393 GR
+ 17 _send_arp_request                                              000379 GR
   B _send_arp_request_arp_packet_10000_92                          000024 R
   B _send_arp_request_dest_mac_10000_92                            000016 R
   B _send_arp_request_source_ip_10000_92                           00001C R
@@ -475,7 +475,7 @@ Symbol Table
     _spi_control_write_PARM_2                                      ****** GX
     _spi_control_write_PARM_3                                      ****** GX
   D _target_ip                                                     000010 GR
- 17 _wait_for_transmission_complete                                0002D4 GR
+ 17 _wait_for_transmission_complete                                0002BA GR
   B _wait_for_transmission_complete_timeout_ms_10000_82            00000E R
     a                                                           =  0000E0 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
@@ -720,7 +720,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size    64E   flags   20
+  17 CSEG                                       size    631   flags   20
   18 CONST                                      size    138   flags   20
   19 XINIT                                      size     14   flags   20
   1A CABS                                       size      0   flags   28

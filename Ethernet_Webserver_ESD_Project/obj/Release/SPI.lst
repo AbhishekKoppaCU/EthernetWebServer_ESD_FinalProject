@@ -2028,106 +2028,106 @@
       0007DB F0               [24] 2028 	movx	@dptr,a
       0007DC 75 82 01         [24] 2029 	mov	dpl, #0x01
       0007DF 12r00rA8         [24] 2030 	lcall	_spi_control_write
-                                   2031 ;	SPI.c:310: enc28j60_init_rx_buffer(0x0000, 0x00FF);
+                                   2031 ;	SPI.c:310: enc28j60_init_rx_buffer(0x0800, 0x1FFF);
       0007E2 90r00r00         [24] 2032 	mov	dptr,#_enc28j60_init_rx_buffer_PARM_2
       0007E5 74 FF            [12] 2033 	mov	a,#0xff
       0007E7 F0               [24] 2034 	movx	@dptr,a
-      0007E8 E4               [12] 2035 	clr	a
-      0007E9 A3               [24] 2036 	inc	dptr
-      0007EA F0               [24] 2037 	movx	@dptr,a
-      0007EB 90 00 00         [24] 2038 	mov	dptr,#0x0000
-      0007EE 12r00r00         [24] 2039 	lcall	_enc28j60_init_rx_buffer
+      0007E8 74 1F            [12] 2035 	mov	a,#0x1f
+      0007EA A3               [24] 2036 	inc	dptr
+      0007EB F0               [24] 2037 	movx	@dptr,a
+      0007EC 90 08 00         [24] 2038 	mov	dptr,#0x0800
+      0007EF 12r00r00         [24] 2039 	lcall	_enc28j60_init_rx_buffer
                                    2040 ;	SPI.c:312: IT0 = 1;  // Edge-triggered mode for INT0
                                    2041 ;	assignBit
-      0007F1 D2 88            [12] 2042 	setb	_IT0
+      0007F2 D2 88            [12] 2042 	setb	_IT0
                                    2043 ;	SPI.c:313: EX0 = 1;  // Enable INT0
                                    2044 ;	assignBit
-      0007F3 D2 A8            [12] 2045 	setb	_EX0
+      0007F4 D2 A8            [12] 2045 	setb	_EX0
                                    2046 ;	SPI.c:314: EA = 1;   // Enable global interrupts
                                    2047 ;	assignBit
-      0007F5 D2 AF            [12] 2048 	setb	_EA
+      0007F6 D2 AF            [12] 2048 	setb	_EA
                                    2049 ;	SPI.c:317: spi_control_write(0x02, 0x00, 0x01); // Write 0x01 to MACON1 (address 0x00 in bank 2)
-      0007F7 90r00r03         [24] 2050 	mov	dptr,#_spi_control_write_PARM_2
-      0007FA E4               [12] 2051 	clr	a
-      0007FB F0               [24] 2052 	movx	@dptr,a
-      0007FC 90r00r04         [24] 2053 	mov	dptr,#_spi_control_write_PARM_3
-      0007FF 04               [12] 2054 	inc	a
-      000800 F0               [24] 2055 	movx	@dptr,a
-      000801 75 82 02         [24] 2056 	mov	dpl, #0x02
-      000804 12r00rA8         [24] 2057 	lcall	_spi_control_write
+      0007F8 90r00r03         [24] 2050 	mov	dptr,#_spi_control_write_PARM_2
+      0007FB E4               [12] 2051 	clr	a
+      0007FC F0               [24] 2052 	movx	@dptr,a
+      0007FD 90r00r04         [24] 2053 	mov	dptr,#_spi_control_write_PARM_3
+      000800 04               [12] 2054 	inc	a
+      000801 F0               [24] 2055 	movx	@dptr,a
+      000802 75 82 02         [24] 2056 	mov	dpl, #0x02
+      000805 12r00rA8         [24] 2057 	lcall	_spi_control_write
                                    2058 ;	SPI.c:318: spi_control_write(0x02, 0x02, 0x70); // Write 0x30 to MACON3 (address 0x02 in bank 2)
-      000807 90r00r03         [24] 2059 	mov	dptr,#_spi_control_write_PARM_2
-      00080A 74 02            [12] 2060 	mov	a,#0x02
-      00080C F0               [24] 2061 	movx	@dptr,a
-      00080D 90r00r04         [24] 2062 	mov	dptr,#_spi_control_write_PARM_3
-      000810 74 70            [12] 2063 	mov	a,#0x70
-      000812 F0               [24] 2064 	movx	@dptr,a
-      000813 75 82 02         [24] 2065 	mov	dpl, #0x02
-      000816 12r00rA8         [24] 2066 	lcall	_spi_control_write
+      000808 90r00r03         [24] 2059 	mov	dptr,#_spi_control_write_PARM_2
+      00080B 74 02            [12] 2060 	mov	a,#0x02
+      00080D F0               [24] 2061 	movx	@dptr,a
+      00080E 90r00r04         [24] 2062 	mov	dptr,#_spi_control_write_PARM_3
+      000811 74 70            [12] 2063 	mov	a,#0x70
+      000813 F0               [24] 2064 	movx	@dptr,a
+      000814 75 82 02         [24] 2065 	mov	dpl, #0x02
+      000817 12r00rA8         [24] 2066 	lcall	_spi_control_write
                                    2067 ;	SPI.c:319: spi_control_write(0x02, 0x03, 0x40); // Write 0x40 to MACON4 (address 0x02 in bank 2) - DEFER bit
-      000819 90r00r03         [24] 2068 	mov	dptr,#_spi_control_write_PARM_2
-      00081C 74 03            [12] 2069 	mov	a,#0x03
-      00081E F0               [24] 2070 	movx	@dptr,a
-      00081F 90r00r04         [24] 2071 	mov	dptr,#_spi_control_write_PARM_3
-      000822 74 40            [12] 2072 	mov	a,#0x40
-      000824 F0               [24] 2073 	movx	@dptr,a
-      000825 75 82 02         [24] 2074 	mov	dpl, #0x02
-      000828 12r00rA8         [24] 2075 	lcall	_spi_control_write
+      00081A 90r00r03         [24] 2068 	mov	dptr,#_spi_control_write_PARM_2
+      00081D 74 03            [12] 2069 	mov	a,#0x03
+      00081F F0               [24] 2070 	movx	@dptr,a
+      000820 90r00r04         [24] 2071 	mov	dptr,#_spi_control_write_PARM_3
+      000823 74 40            [12] 2072 	mov	a,#0x40
+      000825 F0               [24] 2073 	movx	@dptr,a
+      000826 75 82 02         [24] 2074 	mov	dpl, #0x02
+      000829 12r00rA8         [24] 2075 	lcall	_spi_control_write
                                    2076 ;	SPI.c:320: spi_control_write(0x02, 0x0A, 0xEE); // Write 0xEE to MAMXFLL (low byte, address 0x0A in bank 2)
-      00082B 90r00r03         [24] 2077 	mov	dptr,#_spi_control_write_PARM_2
-      00082E 74 0A            [12] 2078 	mov	a,#0x0a
-      000830 F0               [24] 2079 	movx	@dptr,a
-      000831 90r00r04         [24] 2080 	mov	dptr,#_spi_control_write_PARM_3
-      000834 74 EE            [12] 2081 	mov	a,#0xee
-      000836 F0               [24] 2082 	movx	@dptr,a
-      000837 75 82 02         [24] 2083 	mov	dpl, #0x02
-      00083A 12r00rA8         [24] 2084 	lcall	_spi_control_write
+      00082C 90r00r03         [24] 2077 	mov	dptr,#_spi_control_write_PARM_2
+      00082F 74 0A            [12] 2078 	mov	a,#0x0a
+      000831 F0               [24] 2079 	movx	@dptr,a
+      000832 90r00r04         [24] 2080 	mov	dptr,#_spi_control_write_PARM_3
+      000835 74 EE            [12] 2081 	mov	a,#0xee
+      000837 F0               [24] 2082 	movx	@dptr,a
+      000838 75 82 02         [24] 2083 	mov	dpl, #0x02
+      00083B 12r00rA8         [24] 2084 	lcall	_spi_control_write
                                    2085 ;	SPI.c:321: spi_control_write(0x02, 0x0B, 0x05); // Write 0x05 to MAMXFLH (high byte, address 0x0B in bank 2)
-      00083D 90r00r03         [24] 2086 	mov	dptr,#_spi_control_write_PARM_2
-      000840 74 0B            [12] 2087 	mov	a,#0x0b
-      000842 F0               [24] 2088 	movx	@dptr,a
-      000843 90r00r04         [24] 2089 	mov	dptr,#_spi_control_write_PARM_3
-      000846 74 05            [12] 2090 	mov	a,#0x05
-      000848 F0               [24] 2091 	movx	@dptr,a
-      000849 75 82 02         [24] 2092 	mov	dpl, #0x02
-      00084C 12r00rA8         [24] 2093 	lcall	_spi_control_write
+      00083E 90r00r03         [24] 2086 	mov	dptr,#_spi_control_write_PARM_2
+      000841 74 0B            [12] 2087 	mov	a,#0x0b
+      000843 F0               [24] 2088 	movx	@dptr,a
+      000844 90r00r04         [24] 2089 	mov	dptr,#_spi_control_write_PARM_3
+      000847 74 05            [12] 2090 	mov	a,#0x05
+      000849 F0               [24] 2091 	movx	@dptr,a
+      00084A 75 82 02         [24] 2092 	mov	dpl, #0x02
+      00084D 12r00rA8         [24] 2093 	lcall	_spi_control_write
                                    2094 ;	SPI.c:322: spi_control_write(0x02, 0x04, 0x12); // Write 0x15 to MABBIPG (address 0x04 in bank 2)
-      00084F 90r00r03         [24] 2095 	mov	dptr,#_spi_control_write_PARM_2
-      000852 74 04            [12] 2096 	mov	a,#0x04
-      000854 F0               [24] 2097 	movx	@dptr,a
-      000855 90r00r04         [24] 2098 	mov	dptr,#_spi_control_write_PARM_3
-      000858 74 12            [12] 2099 	mov	a,#0x12
-      00085A F0               [24] 2100 	movx	@dptr,a
-      00085B 75 82 02         [24] 2101 	mov	dpl, #0x02
-      00085E 12r00rA8         [24] 2102 	lcall	_spi_control_write
+      000850 90r00r03         [24] 2095 	mov	dptr,#_spi_control_write_PARM_2
+      000853 74 04            [12] 2096 	mov	a,#0x04
+      000855 F0               [24] 2097 	movx	@dptr,a
+      000856 90r00r04         [24] 2098 	mov	dptr,#_spi_control_write_PARM_3
+      000859 74 12            [12] 2099 	mov	a,#0x12
+      00085B F0               [24] 2100 	movx	@dptr,a
+      00085C 75 82 02         [24] 2101 	mov	dpl, #0x02
+      00085F 12r00rA8         [24] 2102 	lcall	_spi_control_write
                                    2103 ;	SPI.c:323: spi_control_write(0x02, 0x06, 0x12); // Write 0x12 to MAIPGL (low byte, address 0x06 in bank 2)
-      000861 90r00r03         [24] 2104 	mov	dptr,#_spi_control_write_PARM_2
-      000864 74 06            [12] 2105 	mov	a,#0x06
-      000866 F0               [24] 2106 	movx	@dptr,a
-      000867 90r00r04         [24] 2107 	mov	dptr,#_spi_control_write_PARM_3
-      00086A 74 12            [12] 2108 	mov	a,#0x12
-      00086C F0               [24] 2109 	movx	@dptr,a
-      00086D 75 82 02         [24] 2110 	mov	dpl, #0x02
-      000870 12r00rA8         [24] 2111 	lcall	_spi_control_write
+      000862 90r00r03         [24] 2104 	mov	dptr,#_spi_control_write_PARM_2
+      000865 74 06            [12] 2105 	mov	a,#0x06
+      000867 F0               [24] 2106 	movx	@dptr,a
+      000868 90r00r04         [24] 2107 	mov	dptr,#_spi_control_write_PARM_3
+      00086B 74 12            [12] 2108 	mov	a,#0x12
+      00086D F0               [24] 2109 	movx	@dptr,a
+      00086E 75 82 02         [24] 2110 	mov	dpl, #0x02
+      000871 12r00rA8         [24] 2111 	lcall	_spi_control_write
                                    2112 ;	SPI.c:324: spi_control_write(0x02, 0x07, 0x0C); // Write 0x12 to MAIPGH (low byte, address 0x06 in bank 2)
-      000873 90r00r03         [24] 2113 	mov	dptr,#_spi_control_write_PARM_2
-      000876 74 07            [12] 2114 	mov	a,#0x07
-      000878 F0               [24] 2115 	movx	@dptr,a
-      000879 90r00r04         [24] 2116 	mov	dptr,#_spi_control_write_PARM_3
-      00087C 74 0C            [12] 2117 	mov	a,#0x0c
-      00087E F0               [24] 2118 	movx	@dptr,a
-      00087F 75 82 02         [24] 2119 	mov	dpl, #0x02
-      000882 12r00rA8         [24] 2120 	lcall	_spi_control_write
+      000874 90r00r03         [24] 2113 	mov	dptr,#_spi_control_write_PARM_2
+      000877 74 07            [12] 2114 	mov	a,#0x07
+      000879 F0               [24] 2115 	movx	@dptr,a
+      00087A 90r00r04         [24] 2116 	mov	dptr,#_spi_control_write_PARM_3
+      00087D 74 0C            [12] 2117 	mov	a,#0x0c
+      00087F F0               [24] 2118 	movx	@dptr,a
+      000880 75 82 02         [24] 2119 	mov	dpl, #0x02
+      000883 12r00rA8         [24] 2120 	lcall	_spi_control_write
                                    2121 ;	SPI.c:328: spi_control_write(0, 0x1B, 0x81);
-      000885 90r00r03         [24] 2122 	mov	dptr,#_spi_control_write_PARM_2
-      000888 74 1B            [12] 2123 	mov	a,#0x1b
-      00088A F0               [24] 2124 	movx	@dptr,a
-      00088B 90r00r04         [24] 2125 	mov	dptr,#_spi_control_write_PARM_3
-      00088E 74 81            [12] 2126 	mov	a,#0x81
-      000890 F0               [24] 2127 	movx	@dptr,a
-      000891 75 82 00         [24] 2128 	mov	dpl, #0x00
+      000886 90r00r03         [24] 2122 	mov	dptr,#_spi_control_write_PARM_2
+      000889 74 1B            [12] 2123 	mov	a,#0x1b
+      00088B F0               [24] 2124 	movx	@dptr,a
+      00088C 90r00r04         [24] 2125 	mov	dptr,#_spi_control_write_PARM_3
+      00088F 74 81            [12] 2126 	mov	a,#0x81
+      000891 F0               [24] 2127 	movx	@dptr,a
+      000892 75 82 00         [24] 2128 	mov	dpl, #0x00
                                    2129 ;	SPI.c:330: }
-      000894 02r00rA8         [24] 2130 	ljmp	_spi_control_write
+      000895 02r00rA8         [24] 2130 	ljmp	_spi_control_write
                                    2131 ;------------------------------------------------------------
                                    2132 ;Allocation info for local variables in function 'init_MAC'
                                    2133 ;------------------------------------------------------------
@@ -2135,9 +2135,9 @@
                                    2135 ;	-----------------------------------------
                                    2136 ;	 function init_MAC
                                    2137 ;	-----------------------------------------
-      000897                       2138 _init_MAC:
+      000898                       2138 _init_MAC:
                                    2139 ;	SPI.c:335: }
-      000897 22               [24] 2140 	ret
+      000898 22               [24] 2140 	ret
                                    2141 	.area CSEG    (CODE)
                                    2142 	.area CONST   (CODE)
                                    2143 	.area CONST   (CODE)

@@ -78,8 +78,8 @@ void enc28j60_init_rx_buffer(uint16_t start_address, uint16_t end_address)
     spi_control_write(0, 0x0B, (uint8_t)((end_address >> 8) & 0xFF)); // ERXNDH (high byte)
 
    // Set ERXRDPT to ERXST (initial pointer for RX read)
-    spi_control_write(0, 0x0C, (uint8_t)(start_address & 0xFF)); // ERXRDPTL (low byte)
-    spi_control_write(0, 0x0D, (uint8_t)((start_address >> 8) & 0xFF)); // ERXRDPTH (high byte)
+    spi_control_write(0, 0x0C, start_address); // ERXRDPTL (low byte)
+    spi_control_write(0, 0x0D, start_address); // ERXRDPTH (high byte)
 
 
     //Enable RX (set ECON1.RXEN bit)
@@ -215,7 +215,7 @@ void send_arp_request(void)
 
     // Write the ARP packet to the ENC28J60 buffer
     uint16_t frame_size = 44;  // The total length is now exactly 42 bytes (without padding)
-    uint16_t start_address = 0x0200;
+    uint16_t start_address = 0x0000;
     if ((start_address + frame_size - 1) > 0x1FFF) {
         printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
         return;

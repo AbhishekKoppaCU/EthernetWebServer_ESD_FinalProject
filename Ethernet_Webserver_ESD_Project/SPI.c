@@ -307,7 +307,7 @@ void init_ENC(void)
 {
     spi_control_write(1, 0x18, 0x41);
     //Init RX buffer so that the TX buffer is also defined
-    enc28j60_init_rx_buffer(0x0000, 0x00FF);
+    enc28j60_init_rx_buffer(0x0800, 0x1FFF);
 
     IT0 = 1;  // Edge-triggered mode for INT0
     EX0 = 1;  // Enable INT0

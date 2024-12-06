@@ -120,7 +120,7 @@ void main(void)
                     //printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
                 //}
                 // Increment the ERXRDPT register by the number of bytes read
-
+    /*
     uint16_t current_erxrdpt;
 
     // Read ERXRDPTL (low byte) and ERXRDPTH (high byte) using mac_spi_read
@@ -138,6 +138,7 @@ void main(void)
     spi_control_write(0, 0x0D, (uint8_t)((current_erxrdpt >> 8) & 0xFF));  // ERXRDPTH (high byte)
 
     printf("Updated ERXRDPT to: 0x%04X\n\r", current_erxrdpt);
+    */
 
 
 

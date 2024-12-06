@@ -857,80 +857,67 @@ _enc28j60_init_rx_buffer:
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
 	lcall	_spi_control_write
-	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
 ;	Eth.c:74: spi_control_write(0, 0x09, (uint8_t)((start_address >> 8) & 0xFF)); // ERXSTH (high byte)
-	mov	ar2,r7
+	mov	ar3,r7
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x09
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r2
+	mov	a,r3
 	movx	@dptr,a
 	mov	dpl, #0x00
 	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	push	ar2
 	lcall	_spi_control_write
-	pop	ar2
-	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
 ;	Eth.c:77: spi_control_write(0, 0x0A, (uint8_t)(end_address & 0xFF)); // ERXNDL (low byte)
-	mov	ar1,r4
+	mov	ar3,r4
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0a
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r1
+	mov	a,r3
 	movx	@dptr,a
 	mov	dpl, #0x00
 	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	push	ar2
 	lcall	_spi_control_write
-	pop	ar2
-	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
 ;	Eth.c:78: spi_control_write(0, 0x0B, (uint8_t)((end_address >> 8) & 0xFF)); // ERXNDH (high byte)
-	mov	ar1,r5
+	mov	ar3,r5
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0b
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r1
+	mov	a,r3
 	movx	@dptr,a
 	mov	dpl, #0x00
 	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar3
-	push	ar2
 	lcall	_spi_control_write
-	pop	ar2
-	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:81: spi_control_write(0, 0x0C, (uint8_t)(start_address & 0xFF)); // ERXRDPTL (low byte)
+;	Eth.c:81: spi_control_write(0, 0x0C, start_address); // ERXRDPTL (low byte)
+	mov	ar3,r6
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0c
 	movx	@dptr,a
@@ -942,19 +929,19 @@ _enc28j60_init_rx_buffer:
 	push	ar6
 	push	ar5
 	push	ar4
-	push	ar2
+	push	ar3
 	lcall	_spi_control_write
-	pop	ar2
+	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:82: spi_control_write(0, 0x0D, (uint8_t)((start_address >> 8) & 0xFF)); // ERXRDPTH (high byte)
+;	Eth.c:82: spi_control_write(0, 0x0D, start_address); // ERXRDPTH (high byte)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0d
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r2
+	mov	a,r3
 	movx	@dptr,a
 	mov	dpl, #0x00
 	push	ar7
@@ -1577,7 +1564,6 @@ _send_arp_request:
 	mov	dptr,#_spi_buffer_write_PARM_2
 	clr	a
 	movx	@dptr,a
-	mov	a,#0x02
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -1595,10 +1581,10 @@ _send_arp_request:
 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
 	mov	a,#0x2b
 	movx	@dptr,a
-	mov	a,#0x02
+	clr	a
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0200
+	mov	dptr,#0x0000
 	lcall	_enc28j60_set_transmit_pointers
 ;	Eth.c:231: RX_enable();
 	lcall	_RX_enable

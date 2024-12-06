@@ -979,20 +979,17 @@ _get_user_buffer_size:
 ;num_bytes                 Allocated with name '_main_num_bytes_40002_98'
 ;start_address             Allocated with name '_main_start_address_40003_99'
 ;buffer                    Allocated with name '_main_buffer_40003_99'
-;current_erxrdpt           Allocated with name '_main_current_erxrdpt_40004_100'
-;erxrdpt_low               Allocated with name '_main_erxrdpt_low_40004_100'
-;erxrdpt_high              Allocated with name '_main_erxrdpt_high_40004_100'
-;reg_bank                  Allocated with name '_main_reg_bank_40002_102'
-;addr                      Allocated with name '_main_addr_40003_103'
-;data                      Allocated with name '_main_data_40003_103'
-;addr                      Allocated with name '_main_addr_40002_105'
-;data                      Allocated with name '_main_data_40003_106'
-;addr                      Allocated with name '_main_addr_40002_108'
-;data                      Allocated with name '_main_data_40002_108'
-;addr                      Allocated with name '_main_addr_40002_111'
-;bank                      Allocated with name '_main_bank_40003_112'
-;data                      Allocated with name '_main_data_40003_112'
-;i                         Allocated with name '_main_i_50001_117'
+;reg_bank                  Allocated with name '_main_reg_bank_40002_101'
+;addr                      Allocated with name '_main_addr_40003_102'
+;data                      Allocated with name '_main_data_40003_102'
+;addr                      Allocated with name '_main_addr_40002_104'
+;data                      Allocated with name '_main_data_40003_105'
+;addr                      Allocated with name '_main_addr_40002_107'
+;data                      Allocated with name '_main_data_40002_107'
+;addr                      Allocated with name '_main_addr_40002_110'
+;bank                      Allocated with name '_main_bank_40003_111'
+;data                      Allocated with name '_main_data_40003_111'
+;i                         Allocated with name '_main_i_50001_116'
 ;------------------------------------------------------------
 ;	main.c:58: void main(void)
 ;	-----------------------------------------
@@ -1508,47 +1505,12 @@ _main:
 	movx	@dptr,a
 	mov	dpl, r6
 	mov	dph, r7
-	push	ar7
-	push	ar6
 	lcall	_spi_buffer_read
-	pop	ar6
-	pop	ar7
-;	main.c:127: uint8_t erxrdpt_low = mac_spi_read(0x0C, 0);  // ERXRDPTL
-	mov	dptr,#_mac_spi_read_PARM_2
-	clr	a
-	movx	@dptr,a
-	mov	dpl, #0x0c
-	push	ar7
-	push	ar6
-	lcall	_mac_spi_read
-	mov	r5, dpl
-	pop	ar6
-	pop	ar7
-;	main.c:128: uint8_t erxrdpt_high = mac_spi_read(0x0D, 0); // ERXRDPTH
-	mov	dptr,#_mac_spi_read_PARM_2
-	clr	a
-	movx	@dptr,a
-	mov	dpl, #0x0d
-	push	ar7
-	push	ar6
-	push	ar5
-	lcall	_mac_spi_read
-	mov	r4, dpl
-	pop	ar5
-;	main.c:129: current_erxrdpt = ((uint16_t)erxrdpt_high << 8) | erxrdpt_low;
-	mov	ar3,r4
-	clr	a
-	mov	r4,a
-	mov	r2,a
-	mov	a,r5
-	orl	ar4,a
-	mov	a,r2
-	orl	ar3,a
-;	main.c:131: printf("Current ERXRDPT: 0x%04X\n\r", current_erxrdpt);
-	push	ar4
-	push	ar3
-	push	ar4
-	push	ar3
+;	main.c:145: break;
+	ljmp	00118$
+;	main.c:147: case '4': {
+00105$:
+;	main.c:148: printf("Enter the MAC register bank to select:\n\r");
 	mov	a,#___str_23
 	push	acc
 	mov	a,#(___str_23 >> 8)
@@ -1556,47 +1518,14 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-	pop	ar3
-	pop	ar4
-	pop	ar6
-	pop	ar7
-;	main.c:134: current_erxrdpt += num_bytes;
-	mov	a,r6
-	add	a, r4
-	mov	r4,a
-	mov	a,r7
-	addc	a, r3
-	mov	r3,a
-;	main.c:137: spi_control_write(0, 0x0C, (uint8_t)(current_erxrdpt & 0xFF));  // ERXRDPTL (low byte)
-	mov	ar7,r4
-	mov	dptr,#_spi_control_write_PARM_2
-	mov	a,#0x0c
-	movx	@dptr,a
-	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r7
-	movx	@dptr,a
-	mov	dpl, #0x00
-	push	ar4
-	push	ar3
-	lcall	_spi_control_write
-	pop	ar3
-	pop	ar4
-;	main.c:138: spi_control_write(0, 0x0D, (uint8_t)((current_erxrdpt >> 8) & 0xFF));  // ERXRDPTH (high byte)
-	mov	ar7,r3
-	mov	dptr,#_spi_control_write_PARM_2
-	mov	a,#0x0d
-	movx	@dptr,a
-	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,r7
-	movx	@dptr,a
-	mov	dpl, #0x00
-	push	ar4
-	push	ar3
-	lcall	_spi_control_write
-;	main.c:140: printf("Updated ERXRDPT to: 0x%04X\n\r", current_erxrdpt);
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:149: uint8_t reg_bank = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+	mov	r6, dpl
+;	main.c:150: printf("Enter the address of the MAC Register:\n\r");
+	push	ar6
 	mov	a,#___str_24
 	push	acc
 	mov	a,#(___str_24 >> 8)
@@ -1604,14 +1533,24 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-;	main.c:144: break;
-	ljmp	00118$
-;	main.c:146: case '4': {
-00105$:
-;	main.c:147: printf("Enter the MAC register bank to select:\n\r");
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:151: uint8_t addr = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+	mov	r5, dpl
+	pop	ar6
+;	main.c:152: uint8_t data = mac_spi_read(addr, reg_bank);
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,r6
+	movx	@dptr,a
+	mov	dpl, r5
+	lcall	_mac_spi_read
+	mov	r7, dpl
+;	main.c:153: printf("MAC Register Data: 0x%02X\n\r", data);
+	mov	r6,#0x00
+	push	ar7
+	push	ar6
 	mov	a,#___str_25
 	push	acc
 	mov	a,#(___str_25 >> 8)
@@ -1619,14 +1558,14 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	main.c:148: uint8_t reg_bank = get_user_buffer_size();
-	lcall	_get_user_buffer_size
-	mov	r6, dpl
-;	main.c:149: printf("Enter the address of the MAC Register:\n\r");
-	push	ar6
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	main.c:154: break;
+	ljmp	00118$
+;	main.c:156: case '5': {
+00106$:
+;	main.c:157: printf("Enter the PHY register address:\n\r");
 	mov	a,#___str_26
 	push	acc
 	mov	a,#(___str_26 >> 8)
@@ -1637,20 +1576,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:150: uint8_t addr = get_user_buffer_size();
+;	main.c:158: uint8_t addr = get_user_buffer_size();
 	lcall	_get_user_buffer_size
-	mov	r5, dpl
-	pop	ar6
-;	main.c:151: uint8_t data = mac_spi_read(addr, reg_bank);
-	mov	dptr,#_mac_spi_read_PARM_2
-	mov	a,r6
-	movx	@dptr,a
-	mov	dpl, r5
-	lcall	_mac_spi_read
-	mov	r7, dpl
-;	main.c:152: printf("MAC Register Data: 0x%02X\n\r", data);
-	mov	r6,#0x00
-	push	ar7
+	mov	r6, dpl
+;	main.c:159: printf("Enter the 16-bit data to write:\n\r");
 	push	ar6
 	mov	a,#___str_27
 	push	acc
@@ -1659,45 +1588,15 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-;	main.c:153: break;
-	ljmp	00118$
-;	main.c:155: case '5': {
-00106$:
-;	main.c:156: printf("Enter the PHY register address:\n\r");
-	mov	a,#___str_28
-	push	acc
-	mov	a,#(___str_28 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:157: uint8_t addr = get_user_buffer_size();
-	lcall	_get_user_buffer_size
-	mov	r6, dpl
-;	main.c:158: printf("Enter the 16-bit data to write:\n\r");
-	push	ar6
-	mov	a,#___str_29
-	push	acc
-	mov	a,#(___str_29 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	main.c:159: uint16_t data = get_user_buffer_size();
+;	main.c:160: uint16_t data = get_user_buffer_size();
 	lcall	_get_user_buffer_size
 	mov	r5, dpl
 	mov	r7, dph
 	pop	ar6
-;	main.c:160: phy_spi_write(addr, data);
+;	main.c:161: phy_spi_write(addr, data);
 	mov	dptr,#_phy_spi_write_PARM_2
 	mov	a,r5
 	movx	@dptr,a
@@ -1710,8 +1609,42 @@ _main:
 	lcall	_phy_spi_write
 	pop	ar5
 	pop	ar7
-;	main.c:161: printf("PHY Write Data: 0x%04X\n\r", data);
+;	main.c:162: printf("PHY Write Data: 0x%04X\n\r", data);
 	push	ar5
+	push	ar7
+	mov	a,#___str_28
+	push	acc
+	mov	a,#(___str_28 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	main.c:163: break;
+	ljmp	00118$
+;	main.c:165: case '6': {
+00107$:
+;	main.c:166: printf("Enter the PHY register address to read:\n\r");
+	mov	a,#___str_29
+	push	acc
+	mov	a,#(___str_29 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:167: uint8_t addr = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+;	main.c:168: uint16_t data = phy_spi_read(addr);
+	lcall	_phy_spi_read
+	mov	r6, dpl
+	mov	r7, dph
+;	main.c:169: printf("PHY Read Data: 0x%04X\n\r", data);
+	push	ar6
 	push	ar7
 	mov	a,#___str_30
 	push	acc
@@ -1723,11 +1656,11 @@ _main:
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:162: break;
+;	main.c:170: break;
 	ljmp	00118$
-;	main.c:164: case '6': {
-00107$:
-;	main.c:165: printf("Enter the PHY register address to read:\n\r");
+;	main.c:172: case '7': {
+00108$:
+;	main.c:173: printf("Resetting ENC28J60...\n\r");
 	mov	a,#___str_31
 	push	acc
 	mov	a,#(___str_31 >> 8)
@@ -1738,15 +1671,13 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:166: uint8_t addr = get_user_buffer_size();
-	lcall	_get_user_buffer_size
-;	main.c:167: uint16_t data = phy_spi_read(addr);
-	lcall	_phy_spi_read
-	mov	r6, dpl
-	mov	r7, dph
-;	main.c:168: printf("PHY Read Data: 0x%04X\n\r", data);
-	push	ar6
-	push	ar7
+;	main.c:174: enc_reset();
+	lcall	_enc_reset
+;	main.c:175: break;
+	ljmp	00118$
+;	main.c:177: case '8': {
+00109$:
+;	main.c:178: printf("Enter the ETH register address to read:\n\r");
 	mov	a,#___str_32
 	push	acc
 	mov	a,#(___str_32 >> 8)
@@ -1754,14 +1685,14 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	mov	a,sp
-	add	a,#0xfb
-	mov	sp,a
-;	main.c:169: break;
-	ljmp	00118$
-;	main.c:171: case '7': {
-00108$:
-;	main.c:172: printf("Resetting ENC28J60...\n\r");
+	dec	sp
+	dec	sp
+	dec	sp
+;	main.c:179: uint8_t addr = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+	mov	r6, dpl
+;	main.c:180: printf("Enter the bank (0 or 1):\n\r");
+	push	ar6
 	mov	a,#___str_33
 	push	acc
 	mov	a,#(___str_33 >> 8)
@@ -1772,13 +1703,21 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:173: enc_reset();
-	lcall	_enc_reset
-;	main.c:174: break;
-	ljmp	00118$
-;	main.c:176: case '8': {
-00109$:
-;	main.c:177: printf("Enter the ETH register address to read:\n\r");
+;	main.c:181: uint8_t bank = get_user_buffer_size();
+	lcall	_get_user_buffer_size
+	mov	r5, dpl
+	pop	ar6
+	mov	dptr,#_eth_spi_read_PARM_2
+	mov	a,r5
+	movx	@dptr,a
+;	main.c:182: uint8_t data = eth_spi_read(addr, bank);
+	mov	dpl, r6
+	lcall	_eth_spi_read
+	mov	r7, dpl
+;	main.c:183: printf("ETH Register Data: 0x%02X\n\r", data);
+	mov	r6,#0x00
+	push	ar7
+	push	ar6
 	mov	a,#___str_34
 	push	acc
 	mov	a,#(___str_34 >> 8)
@@ -1786,54 +1725,14 @@ _main:
 	mov	a,#0x80
 	push	acc
 	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	main.c:178: uint8_t addr = get_user_buffer_size();
-	lcall	_get_user_buffer_size
-	mov	r6, dpl
-;	main.c:179: printf("Enter the bank (0 or 1):\n\r");
-	push	ar6
-	mov	a,#___str_35
-	push	acc
-	mov	a,#(___str_35 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	main.c:180: uint8_t bank = get_user_buffer_size();
-	lcall	_get_user_buffer_size
-	mov	r5, dpl
-	pop	ar6
-	mov	dptr,#_eth_spi_read_PARM_2
-	mov	a,r5
-	movx	@dptr,a
-;	main.c:181: uint8_t data = eth_spi_read(addr, bank);
-	mov	dpl, r6
-	lcall	_eth_spi_read
-	mov	r7, dpl
-;	main.c:182: printf("ETH Register Data: 0x%02X\n\r", data);
-	mov	r6,#0x00
-	push	ar7
-	push	ar6
-	mov	a,#___str_36
-	push	acc
-	mov	a,#(___str_36 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
 	mov	a,sp
 	add	a,#0xfb
 	mov	sp,a
-;	main.c:183: break;
+;	main.c:184: break;
 	ljmp	00118$
-;	main.c:185: case '9': {
+;	main.c:186: case '9': {
 00110$:
-;	main.c:186: printf("\n\rChoose an action: \n\r");
+;	main.c:187: printf("\n\rChoose an action: \n\r");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1844,7 +1743,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:187: printf("1 --> Control Write\n\r");
+;	main.c:188: printf("1 --> Control Write\n\r");
 	mov	a,#___str_3
 	push	acc
 	mov	a,#(___str_3 >> 8)
@@ -1855,7 +1754,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:188: printf("2 --> Buffer Write\n\r");
+;	main.c:189: printf("2 --> Buffer Write\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1866,7 +1765,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:189: printf("3 --> Buffer Read\n\r");
+;	main.c:190: printf("3 --> Buffer Read\n\r");
 	mov	a,#___str_5
 	push	acc
 	mov	a,#(___str_5 >> 8)
@@ -1877,7 +1776,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:190: printf("4 --> MAC Register Read\n\r");
+;	main.c:191: printf("4 --> MAC Register Read\n\r");
 	mov	a,#___str_6
 	push	acc
 	mov	a,#(___str_6 >> 8)
@@ -1888,7 +1787,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:191: printf("5 --> PHY SPI Write\n\r");
+;	main.c:192: printf("5 --> PHY SPI Write\n\r");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -1899,7 +1798,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:192: printf("6 --> PHY SPI Read\n\r");
+;	main.c:193: printf("6 --> PHY SPI Read\n\r");
 	mov	a,#___str_8
 	push	acc
 	mov	a,#(___str_8 >> 8)
@@ -1910,7 +1809,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:193: printf("7 --> ENC Reset\n\r");
+;	main.c:194: printf("7 --> ENC Reset\n\r");
 	mov	a,#___str_9
 	push	acc
 	mov	a,#(___str_9 >> 8)
@@ -1921,7 +1820,7 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:194: printf("8 --> Read ETH Register\n\r");
+;	main.c:195: printf("8 --> Read ETH Register\n\r");
 	mov	a,#___str_10
 	push	acc
 	mov	a,#(___str_10 >> 8)
@@ -1932,28 +1831,28 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:195: break;
+;	main.c:196: break;
 	ljmp	00118$
-;	main.c:197: case 'A':{
+;	main.c:198: case 'A':{
 00111$:
-;	main.c:198: init_ENC();
+;	main.c:199: init_ENC();
 	lcall	_init_ENC
-;	main.c:200: send_arp_request();
+;	main.c:201: send_arp_request();
 	lcall	_send_arp_request
-;	main.c:201: break;
+;	main.c:202: break;
 	ljmp	00118$
-;	main.c:203: case 'B':{
+;	main.c:204: case 'B':{
 00112$:
-;	main.c:204: init_ENC();
+;	main.c:205: init_ENC();
 	lcall	_init_ENC
-;	main.c:205: break;
+;	main.c:206: break;
 	ljmp	00118$
-;	main.c:207: case 'C':{
+;	main.c:208: case 'C':{
 00113$:
-;	main.c:208: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
-	mov	a,#___str_37
+;	main.c:209: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
+	mov	a,#___str_35
 	push	acc
-	mov	a,#(___str_37 >> 8)
+	mov	a,#(___str_35 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1961,10 +1860,10 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:209: ENC_RESET = 0;
+;	main.c:210: ENC_RESET = 0;
 ;	assignBit
 	clr	_P1_0
-;	main.c:210: for(int i = 0; i < 6000; i++);
+;	main.c:211: for(int i = 0; i < 6000; i++);
 	mov	r6,#0x00
 	mov	r7,#0x00
 00124$:
@@ -1980,17 +1879,17 @@ _main:
 	inc	r7
 	sjmp	00124$
 00114$:
-;	main.c:211: ENC_RESET = 1;
+;	main.c:212: ENC_RESET = 1;
 ;	assignBit
 	setb	_P1_0
-;	main.c:212: break;
+;	main.c:213: break;
 	ljmp	00118$
-;	main.c:214: default: {
+;	main.c:215: default: {
 00115$:
-;	main.c:215: printf("Invalid option. Please select a valid action.\n\r");
-	mov	a,#___str_38
+;	main.c:216: printf("Invalid option. Please select a valid action.\n\r");
+	mov	a,#___str_36
 	push	acc
-	mov	a,#(___str_38 >> 8)
+	mov	a,#(___str_36 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -1998,8 +1897,8 @@ _main:
 	dec	sp
 	dec	sp
 	dec	sp
-;	main.c:218: }
-;	main.c:220: }
+;	main.c:219: }
+;	main.c:221: }
 	ljmp	00118$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -2165,111 +2064,97 @@ ___str_22:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_23:
-	.ascii "Current ERXRDPT: 0x%04X"
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_24:
-	.ascii "Updated ERXRDPT to: 0x%04X"
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_25:
 	.ascii "Enter the MAC register bank to select:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_26:
+___str_24:
 	.ascii "Enter the address of the MAC Register:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_27:
+___str_25:
 	.ascii "MAC Register Data: 0x%02X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_28:
+___str_26:
 	.ascii "Enter the PHY register address:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_29:
+___str_27:
 	.ascii "Enter the 16-bit data to write:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_30:
+___str_28:
 	.ascii "PHY Write Data: 0x%04X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_31:
+___str_29:
 	.ascii "Enter the PHY register address to read:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_32:
+___str_30:
 	.ascii "PHY Read Data: 0x%04X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_33:
+___str_31:
 	.ascii "Resetting ENC28J60..."
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_34:
+___str_32:
 	.ascii "Enter the ETH register address to read:"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_35:
+___str_33:
 	.ascii "Enter the bank (0 or 1):"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_36:
+___str_34:
 	.ascii "ETH Register Data: 0x%02X"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_37:
+___str_35:
 	.ascii " Resetting ENC using RESET pin in Hardware(P1_0)"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_38:
+___str_36:
 	.ascii "Invalid option. Please select a valid action."
 	.db 0x0a
 	.db 0x0d

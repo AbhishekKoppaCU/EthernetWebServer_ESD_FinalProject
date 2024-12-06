@@ -69,7 +69,7 @@ CABS                                00000000    00000000 =           0. bytes (A
 C:   00000100  s_XSEG                          
 C:   000002C5  l_XSEG                          
 C:   000003C5  s_XISEG                         
-C:   000007E8  l_CONST                         
+C:   000007B1  l_CONST                         
 C:   00002000  s_HOME                          
 C:   00002009  s_GSINIT0                       
 C:   0000200C  s_GSINIT1                       
@@ -80,9 +80,9 @@ C:   00002062  s_GSFINAL
 C:   00002062  s_GSINIT                        
 C:   00002062  s_GSINIT5                       
 C:   00002065  s_CSEG                          
-C:   000024BE  l_CSEG                          
-C:   00004523  s_CONST                         
-C:   00004D0B  s_XINIT                         
+C:   000023F3  l_CSEG                          
+C:   00004458  s_CONST                         
+C:   00004C09  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -511,7 +511,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00002065    000024BE =        9406. bytes (REL,CON,CODE)
+CSEG                                00002065    000023F3 =        9203. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -519,56 +519,56 @@ C:   00002065  _set_mac_address                   Eth
 C:   000020CF  _delay_ms                          Eth
 C:   00002150  _enc28j60_start_transmission       Eth
 C:   00002171  _enc28j60_init_rx_buffer           Eth
-C:   000022C2  _enc28j60_set_transmit_pointers    Eth
-C:   00002339  _wait_for_transmission_complete    Eth
-C:   0000239C  _enc28j60_transmission_successfu   Eth
-C:   000023B6  _RX_disable                        Eth
-C:   000023D7  _RX_enable                         Eth
-C:   000023F8  _send_arp_request                  Eth
-C:   00002657  _external_interrupt0_isr           Eth
-C:   000026B3  _hex_to_int                        main
-C:   0000286D  _get_user_buffer_size              main
-C:   000028F1  _main                              main
-C:   00002FA1  _LED_Fast_Blink                    Operations
-C:   00002FD1  _LED_Slow_Blink                    Operations
-C:   00002FD2  _LED_On                            Operations
-C:   00003013  _LED_Off                           Operations
-C:   00003014  _SPI_ReadByte                      SPI
-C:   00003026  _spi_set_autoinc                   SPI
-C:   00003037  _select_reg_bank                   SPI
-C:   000030BC  _spi_control_write                 SPI
-C:   00003118  _configure_SPI                     SPI
-C:   00003127  _SPI_send                          SPI
-C:   00003136  _enc_reset                         SPI
-C:   00003141  _eth_spi_read                      SPI
-C:   000031AF  _phy_spi_write                     SPI
-C:   00003232  _mac_spi_read                      SPI
-C:   000032A0  _phy_spi_read                      SPI
-C:   0000334D  _busy_wait                         SPI
-C:   0000337B  _buffer_init                       SPI
-C:   00003497  _spi_buffer_read                   SPI
-C:   00003638  _spi_buffer_write                  SPI
-C:   000037E4  _init_ENC                          SPI
-C:   000038AB  _init_MAC                          SPI
-C:   000038AC  _putchar                           Utilities
-C:   000038CB  _getchar                           Utilities
-C:   000038D9  _putstr                            Utilities
-C:   0000394F  __gptrput                          _gptrput
-C:   0000396A  _printf_tiny                       printf_tiny
-C:   00003A73  __mulint                           _mulint
-C:   00003AA2  _vprintf                           vprintf
-C:   00003AE1  _printf                            vprintf
-C:   00003BE7  __print_format                     printf_large
-C:   000044EB  _strlen                            _strlen
-C:   00004503  __gptrget                          _gptrget
-C:   0000451F  ___sdcc_external_startup           _startup
+C:   000022A8  _enc28j60_set_transmit_pointers    Eth
+C:   0000231F  _wait_for_transmission_complete    Eth
+C:   00002382  _enc28j60_transmission_successfu   Eth
+C:   0000239C  _RX_disable                        Eth
+C:   000023BD  _RX_enable                         Eth
+C:   000023DE  _send_arp_request                  Eth
+C:   0000263A  _external_interrupt0_isr           Eth
+C:   00002696  _hex_to_int                        main
+C:   00002850  _get_user_buffer_size              main
+C:   000028D4  _main                              main
+C:   00002ED5  _LED_Fast_Blink                    Operations
+C:   00002F05  _LED_Slow_Blink                    Operations
+C:   00002F06  _LED_On                            Operations
+C:   00002F47  _LED_Off                           Operations
+C:   00002F48  _SPI_ReadByte                      SPI
+C:   00002F5A  _spi_set_autoinc                   SPI
+C:   00002F6B  _select_reg_bank                   SPI
+C:   00002FF0  _spi_control_write                 SPI
+C:   0000304C  _configure_SPI                     SPI
+C:   0000305B  _SPI_send                          SPI
+C:   0000306A  _enc_reset                         SPI
+C:   00003075  _eth_spi_read                      SPI
+C:   000030E3  _phy_spi_write                     SPI
+C:   00003166  _mac_spi_read                      SPI
+C:   000031D4  _phy_spi_read                      SPI
+C:   00003281  _busy_wait                         SPI
+C:   000032AF  _buffer_init                       SPI
+C:   000033CB  _spi_buffer_read                   SPI
+C:   0000356C  _spi_buffer_write                  SPI
+C:   00003718  _init_ENC                          SPI
+C:   000037E0  _init_MAC                          SPI
+C:   000037E1  _putchar                           Utilities
+C:   00003800  _getchar                           Utilities
+C:   0000380E  _putstr                            Utilities
+C:   00003884  __gptrput                          _gptrput
+C:   0000389F  _printf_tiny                       printf_tiny
+C:   000039A8  __mulint                           _mulint
+C:   000039D7  _vprintf                           vprintf
+C:   00003A16  _printf                            vprintf
+C:   00003B1C  __print_format                     printf_large
+C:   00004420  _strlen                            _strlen
+C:   00004438  __gptrget                          _gptrget
+C:   00004454  ___sdcc_external_startup           _startup
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 23.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               00004523    000007E8 =        2024. bytes (REL,CON,CODE)
+CONST                               00004458    000007B1 =        1969. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -577,7 +577,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XINIT                               00004D0B    00000014 =          20. bytes (REL,CON,CODE)
+XINIT                               00004C09    00000014 =          20. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

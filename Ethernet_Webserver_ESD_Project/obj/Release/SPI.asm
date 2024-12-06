@@ -2028,14 +2028,14 @@ _init_ENC:
 	movx	@dptr,a
 	mov	dpl, #0x01
 	lcall	_spi_control_write
-;	SPI.c:310: enc28j60_init_rx_buffer(0x0000, 0x00FF);
+;	SPI.c:310: enc28j60_init_rx_buffer(0x0800, 0x1FFF);
 	mov	dptr,#_enc28j60_init_rx_buffer_PARM_2
 	mov	a,#0xff
 	movx	@dptr,a
-	clr	a
+	mov	a,#0x1f
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0000
+	mov	dptr,#0x0800
 	lcall	_enc28j60_init_rx_buffer
 ;	SPI.c:312: IT0 = 1;  // Edge-triggered mode for INT0
 ;	assignBit
