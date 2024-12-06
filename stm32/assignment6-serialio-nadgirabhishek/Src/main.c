@@ -17,13 +17,20 @@
  */
 // Reference USed: Lecture Presentation Slides utilised for Command table and Command processing
 #include "main.h"
-#include "spi.h"
+
+//#define UNUSED(x) (void)(x)
+uint8_t device_mac[6] = { 0x02, 0x04, 0xA3, 0x3C, 0x4D, 0x50 }; // Default MAC
+uint8_t target_mac[6] = { 0xFF, 0XFF, 0XFF, 0xFF, 0XFF, 0XFF }; // Default MAC
+uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+uint8_t target_ip[4] = { 192, 168, 1, 1 };
+void runWebServer(const uint8_t *macAddress, const uint8_t *ipAddress);
 int main(void) {
 	/*
 	 * Clocks: Processor = 48 Mhz. AHB = 48 MHz. APB = 24 MHz.
 	 *
 	 */
 	//init_uled(); //On board LED Initialisation
+	SPI_Init();
 	uart_init(); //UART 2 Initialisation for Serial COmmunication
 	cbfifo_init(&fiforx); // Initialising RX Buffer
 	cbfifo_init(&fifotx); // Initialising TX buffer
@@ -31,19 +38,203 @@ int main(void) {
 	char *argv[ARGUMENT_BUFFER_SIZE]; // Defining a buffer to store Argument Vectors after tokenization
 	int argc; //TO store Argument COunt
 	printf("\nWelcome to SerialIO!\n");
-	//IO_Init();
-	SPI_Init();
-	GPIOA->MODER &= ~(GPIO_MODER_MODER2 | GPIO_MODER_MODER3); // Clear
-	GPIOA->MODER |= (GPIO_MODER_MODER2_1 | GPIO_MODER_MODER3_1); // Set to AF mode
-	GPIOA->AFR[0] |= (1 << GPIO_AFRL_AFSEL2_Pos) | (1 << GPIO_AFRL_AFSEL3_Pos); // AF7
-
-	printf("SPI2->CR1: 0x%08lX\n", SPI2->CR1);
-	printf("SPI2->CR2: 0x%08lX\n", SPI2->CR2);
-	printf("GPIOB->AFR[1]: 0x%08lX\n", GPIOB->AFR[1]);
+	enc_init(device_mac);
+	//runWebServer(device_mac,device_ip);
 	while (1) {
+
 		printf("\n$$ ");
 		accumulate_line(inputval, INPUT_BUFFER_SIZE); //Takes character from Serial Terminal
 		argc = tokenize_line(inputval, argv, ARGUMENT_BUFFER_SIZE); // Takes array of string as input and returs Number of Arguments and buffer of argument vector
 		process_command(argc, argv); // Takes argument count and vector as input and processes the command accordingly
 	}
+}
+#include "spi.h"
+typedef struct {
+    uint8_t version_ihl;     // Version (4 bits) + Internet Header Length (4 bits)
+    uint8_t type_of_service; // Type of Service
+    uint16_t total_length;   // Total Length
+    uint16_t identification; // Identification
+    uint16_t flags_fragment_offset; // Flags (3 bits) + Fragment Offset (13 bits)
+    uint8_t time_to_live;    // Time to Live
+    uint8_t protocol;        // Protocol
+    uint16_t checksum;       // Header Checksum
+    uint8_t src_ip[4];       // Source IP Address
+    uint8_t dest_ip[4];      // Destination IP Address
+} IPHeader;
+
+typedef struct {
+    uint16_t src_port;       // Source Port
+    uint16_t dest_port;      // Destination Port
+    uint32_t seq_number;     // Sequence Number
+    uint32_t ack_number;     // Acknowledgment Number
+    uint16_t offset_reserved_flags; // Data Offset + Reserved + Flags
+    uint16_t window;         // Window Size
+    uint16_t checksum;       // Checksum
+    uint16_t urgent_pointer; // Urgent Pointer
+} TCPHeader;
+
+// Define a simple static HTML page
+const char htmlPage[] =
+    "HTTP/1.0 200 OK\r\n"
+    "Content-Type: text/html\r\n"
+    "\r\n"
+    "<html>"
+    "<head><title>ENC28J60 Web Server</title></head>"
+    "<body>"
+    "<h1>Welcome to ENC28J60 Web Server!</h1>"
+    "<p>This page is served directly by the ENC28J60 module.</p>"
+    "</body>"
+    "</html>";
+
+#define ARP_REQUEST 1
+#define ARP_REPLY 2
+#define ETH_TYPE_ARP 0x0806
+#define ETH_TYPE_IP  0x0800
+#define IP_PROTO_TCP 0x06
+
+// Function prototypes
+void handleARPRequest(uint8_t *rx_buffer);
+void sendTCPResponse(uint8_t *dest_mac, uint8_t *dest_ip, uint16_t dest_port);
+
+void runWebServer(const uint8_t *macAddress, const uint8_t *ipAddress) {
+    uint8_t rx_buffer[1500]; // Buffer for receiving packets
+    uint16_t rx_len;
+
+    // Initialize ENC28J60
+    enc_init(macAddress);
+    buffer_init(RX_BUFFER_START, RX_BUFFER_END);
+
+    printf("Web Server Initialized at IP: %d.%d.%d.%d\n",
+           ipAddress[0], ipAddress[1], ipAddress[2], ipAddress[3]);
+
+    while (1) {
+        // Read packet from ENC28J60
+        rx_len = spi_buffer_read(1500, RX_BUFFER_START, rx_buffer);
+
+        if (rx_len > 0) {
+            // Parse Ethernet type
+            uint16_t eth_type = (rx_buffer[12] << 8) | rx_buffer[13];
+
+            if (eth_type == ETH_TYPE_ARP) {
+                handleARPRequest(rx_buffer);
+            } else if (eth_type == ETH_TYPE_IP) {
+                // Check for TCP requests (e.g., HTTP GET)
+                uint8_t ip_proto = rx_buffer[23];
+                if (ip_proto == IP_PROTO_TCP) {
+                    sendTCPResponse(&rx_buffer[6], &rx_buffer[26], (rx_buffer[36] << 8) | rx_buffer[37]);
+                }
+            }
+        }
+    }
+}
+// Convert a 32-bit integer from host to network byte order
+uint32_t htonl(uint32_t value) {
+    return ((value & 0xFF) << 24) | ((value & 0xFF00) << 8) |
+           ((value & 0xFF0000) >> 8) | ((value & 0xFF000000) >> 24);
+}
+
+// Calculate IP checksum
+uint16_t calculateIPChecksum(uint8_t *data, int length) {
+    uint32_t sum = 0;
+    for (int i = 0; i < length; i += 2) {
+        sum += (data[i] << 8) | data[i + 1];
+        if (sum > 0xFFFF)
+            sum -= 0xFFFF;
+    }
+    return ~sum;
+}
+
+// Calculate TCP checksum
+uint16_t calculateTCPChecksum(uint8_t *tcp_data, int tcp_length, IPHeader *ip_hdr) {
+    uint32_t sum = 0;
+
+    // Add pseudo-header
+    for (int i = 0; i < 4; i++) {
+        sum += ip_hdr->src_ip[i] << 8 | ip_hdr->src_ip[i + 1];
+        sum += ip_hdr->dest_ip[i] << 8 | ip_hdr->dest_ip[i + 1];
+    }
+    sum += htons(IP_PROTO_TCP);
+    sum += htons(tcp_length);
+
+    // Add TCP data
+    for (int i = 0; i < tcp_length; i += 2) {
+        sum += (tcp_data[i] << 8) | tcp_data[i + 1];
+        if (sum > 0xFFFF)
+            sum -= 0xFFFF;
+    }
+    return ~sum;
+}
+
+void handleARPRequest(uint8_t *rx_buffer) {
+    uint8_t reply[42];
+    uint8_t dest_ip[4] = {rx_buffer[38], rx_buffer[39], rx_buffer[40], rx_buffer[41]};
+
+    // Form ARP Reply
+    memcpy(reply, rx_buffer + 6, 6);        // Destination MAC
+    memcpy(reply + 6, device_mac, 6);      // Source MAC
+    reply[12] = 0x08;                      // ARP EtherType
+    reply[13] = 0x06;
+    reply[14] = 0x00;                      // Hardware Type: Ethernet
+    reply[15] = 0x01;
+    reply[16] = 0x08;                      // Protocol Type: IPv4
+    reply[17] = 0x00;
+    reply[18] = 0x06;                      // Hardware Size
+    reply[19] = 0x04;                      // Protocol Size
+    reply[20] = 0x00;                      // Opcode: ARP Reply
+    reply[21] = 0x02;
+    memcpy(reply + 22, device_mac, 6);     // Sender MAC
+    memcpy(reply + 28, device_ip, 4);      // Sender IP
+    memcpy(reply + 32, rx_buffer + 22, 6); // Target MAC
+    memcpy(reply + 38, dest_ip, 4);        // Target IP
+
+    // Send ARP Reply
+    spi_buffer_write(42, TX_BUFFER_START, reply);
+    bit_set(0x1E, 0x08); // ECON1.TXRTS
+}
+
+void sendTCPResponse(uint8_t *dest_mac, uint8_t *dest_ip, uint16_t dest_port) {
+    uint8_t tcp_packet[1500];
+    uint16_t payload_offset = sizeof(EthernetHeader) + sizeof(IPHeader) + sizeof(TCPHeader);
+    uint16_t packet_len = payload_offset + sizeof(htmlPage) - 1;
+
+    // Populate Ethernet Header
+    EthernetHeader *eth_hdr = (EthernetHeader *)tcp_packet;
+    memcpy(eth_hdr->dest_mac, dest_mac, 6);
+    memcpy(eth_hdr->src_mac, device_mac, 6);
+    eth_hdr->eth_type = htons(ETH_TYPE_IP);
+
+    // Populate IP Header
+    IPHeader *ip_hdr = (IPHeader *)(tcp_packet + sizeof(EthernetHeader));
+    ip_hdr->version_ihl = 0x45;
+    ip_hdr->type_of_service = 0;
+    ip_hdr->total_length = htons(packet_len - sizeof(EthernetHeader));
+    ip_hdr->identification = htons(1);
+    ip_hdr->flags_fragment_offset = htons(0x4000); // Don't fragment
+    ip_hdr->time_to_live = 64;
+    ip_hdr->protocol = IP_PROTO_TCP;
+    memcpy(ip_hdr->src_ip, device_ip, 4);
+    memcpy(ip_hdr->dest_ip, dest_ip, 4);
+    ip_hdr->checksum = 0; // Calculated later
+
+    // Populate TCP Header
+    TCPHeader *tcp_hdr = (TCPHeader *)(tcp_packet + sizeof(EthernetHeader) + sizeof(IPHeader));
+    tcp_hdr->src_port = htons(80); // HTTP port
+    tcp_hdr->dest_port = htons(dest_port);
+    tcp_hdr->seq_number = htonl(1);
+    tcp_hdr->ack_number = htonl(0);
+    tcp_hdr->offset_reserved_flags = htons(0x5010); // ACK + PSH
+    tcp_hdr->window = htons(1024);
+    tcp_hdr->checksum = 0; // Calculated later
+    tcp_hdr->urgent_pointer = 0;
+
+    // Copy HTML Page
+    memcpy(tcp_packet + payload_offset, htmlPage, sizeof(htmlPage) - 1);
+
+    // Calculate Checksums
+    ip_hdr->checksum = calculateIPChecksum((uint8_t *)ip_hdr, sizeof(IPHeader));
+    tcp_hdr->checksum = calculateTCPChecksum((uint8_t *)tcp_hdr, sizeof(TCPHeader) + sizeof(htmlPage) - 1, ip_hdr);
+
+    // Send Packet
+    spi_buffer_write(packet_len, TX_BUFFER_START, tcp_packet);
+    bit_set(0x1E, 0x08); // ECON1.TXRTS
 }

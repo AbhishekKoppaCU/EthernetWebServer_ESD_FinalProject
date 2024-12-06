@@ -27,7 +27,8 @@ void cmd_eth_spi_read(int argc, char *argv[]);
 void cmd_phy_spi_write(int argc, char *argv[]);
 void cmd_phy_spi_read(int argc, char *argv[]);
 void cmd_enc_reset(int argc, char *argv[]);
-
+void cmd_enc_init(int argc, char *argv[]);
+void cmd_arp_send(int argc, char *argv[]);
 typedef void (*command_handler_t)(int, char *argv[]);
 
 typedef struct {

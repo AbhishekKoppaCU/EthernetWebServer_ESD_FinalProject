@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include "init_functions.h"
+#include "spi.h"
 
 #define INPUT_BUFFER_SIZE 128
 #define ARGUMENT_BUFFER_SIZE 128

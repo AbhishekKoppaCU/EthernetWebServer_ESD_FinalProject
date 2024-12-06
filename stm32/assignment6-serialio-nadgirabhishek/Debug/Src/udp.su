@@ -1,0 +1,2 @@
+../Src/udp.c:14:6:ip_send	40	static
+../Src/udp.c:21:6:udp_send	1560	static
