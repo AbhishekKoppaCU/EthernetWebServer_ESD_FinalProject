@@ -1,10 +1,7 @@
 #include "Eth.h"
 
 // Example addresses
-uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
-uint8_t dest_mac[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};  // Target PC MAC address
-uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
-uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
+
 
 // Define ARP packet structure
 struct arp_packet {
@@ -31,7 +28,7 @@ struct ethernet_header {
 
 
 
-
+/*
 void set_mac_address(uint8_t* mac_address)
 {
     // Write the MAC address to the MAC Address registers (MAADR6 to MAADR1)
@@ -47,7 +44,7 @@ void set_mac_address(uint8_t* mac_address)
     //select_reg_bank(0);
 }
 
-
+*/
 void delay_ms(uint16_t ms)
 {
     for (volatile uint32_t i = 0; i < ms * 1000; i++)
@@ -62,33 +59,7 @@ void enc28j60_start_transmission(void)
     econ1 |= 0x08; // Set TXRTS (bit 3)
     spi_control_write(0, 0x1F, econ1); // Write back to ECON1
 }
-void enc28j60_init_rx_buffer(uint16_t start_address, uint16_t end_address)
-{
-    // Validate the buffer range
-    if (start_address >= end_address || end_address > 0x1FFF) {
-        printf("Invalid RX buffer range.\n");
-        return;
-    }
-    // Write start address to ERXST (Receive Buffer Start Pointer)
-    spi_control_write(0, 0x08, (uint8_t)(start_address & 0xFF)); // ERXSTL (low byte)
-    spi_control_write(0, 0x09, (uint8_t)((start_address >> 8) & 0xFF)); // ERXSTH (high byte)
 
-    // Write end address to ERXND (Receive Buffer End Pointer)
-    spi_control_write(0, 0x0A, (uint8_t)(end_address & 0xFF)); // ERXNDL (low byte)
-    spi_control_write(0, 0x0B, (uint8_t)((end_address >> 8) & 0xFF)); // ERXNDH (high byte)
-
-   // Set ERXRDPT to ERXST (initial pointer for RX read)
-    spi_control_write(0, 0x0C, start_address); // ERXRDPTL (low byte)
-    spi_control_write(0, 0x0D, start_address); // ERXRDPTH (high byte)
-
-
-    //Enable RX (set ECON1.RXEN bit)
-    //uint8_t econ1 = spi_control_read(3, 0x1F); // ECON1
-    //econ1 |= 0x04; // RXEN bit
-    //spi_control_write(3, 0x1F, econ1);
-
-    printf("RX buffer initialized: 0x%04X to 0x%04X.\n", start_address, end_address);
-}
 
 void enc28j60_set_transmit_pointers(uint16_t start_address, uint16_t end_address)
 {
@@ -158,9 +129,10 @@ void send_arp_request(void)
     // Set the first byte to 0x0E
     arp_packet[0] = 0x0E;
 
+
     // Ethernet header
     // Set the MAC address
-    set_mac_address(source_mac);
+    //set_mac_address(source_mac);
 
 
     for (int i = 0; i < 6; i++)
@@ -252,4 +224,88 @@ void external_interrupt0_isr(void) __interrupt (0)
        // printf("RX Error Interrupt occurred!\n\r");
         //}
 }
+
+
+void enc_buffer_init(uint16_t start_address, uint16_t end_address) {
+
+	if (start_address > 0x1FFF || end_address > 0x1FFF) {
+		printf("\nInvalid Buffer Range: Start 0x%04X, End 0x%04X\n",
+				start_address, end_address);
+		return;
+	}
+
+	start_address &= ~1;  // Align to even address
+
+	spi_control_write(0, 0x00, (uint8_t) (start_address & 0xFF)); // ERDPTL
+	spi_control_write(0, 0x01, (uint8_t) (start_address >> 8)); // ERDPTH
+	spi_control_write(0, 0x08, (uint8_t) (start_address & 0xFF)); // ERXSTL
+	spi_control_write(0, 0x09, (uint8_t) (start_address >> 8)); // ERXSTH
+	spi_control_write(0, 0x0A, (uint8_t) (end_address & 0xFF)); // ERXNDL
+	spi_control_write(0, 0x0B, (uint8_t) (end_address >> 8)); // ERXNDH
+	spi_control_write(0, 0x0C, (uint8_t) (start_address & 0xFF)); // ERXRDPTL
+	spi_control_write(0, 0x0D, (uint8_t) (start_address >> 8)); // ERXRDPTH
+	printf("\nBuffer Initialized: Start 0x%04X, End 0x%04X\n", start_address,
+			end_address);
+}
+
+void enc_init(const uint8_t *mac)
+{
+	// Perform a system reset
+	enc_reset();
+
+	// Wait for the ENC28J60 to stabilize (poll CLKRDY bit in ESTAT register)
+	while (!(mac_spi_read(0x1D, 0) & 0x01))
+		; // ESTAT.CLKRDY
+
+	// Split Memory: Reserve RX and TX buffers
+	uint16_t rx_start = RX_BUFFER_START;
+	uint16_t rx_end = RX_BUFFER_END;
+
+	// Initialize RX Buffer
+	enc_buffer_init(rx_start, rx_end);
+
+
+	// Set RX Read Pointer to Start Address
+	//spi_control_write(0, 0x0C, (uint8_t) (rx_start & 0xFF)); // ERXRDPTL
+	//spi_control_write(0, 0x0D, (uint8_t) ((rx_start >> 8) & 0xFF)); // ERXRDPTH
+
+	// Enable MAC Receive
+	//spi_control_write(2, 0x00, 0x0D); // MACON1: Enable RX (MARXEN), TXPAUS, RXPAUS
+
+	// Configure MACON3 for padding, CRC, and frame length
+	spi_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
+	spi_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
+
+	// Set maximum frame length (1518 bytes for standard Ethernet)
+	spi_control_write(2, 0x0A, 0xEE); // MAMXFLL
+	spi_control_write(2, 0x0B, 0x05); // MAMXFLH
+
+	// Configure Inter-Packet Gap
+	spi_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
+	spi_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
+	spi_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
+
+	// Configure MAC Address (write in reverse order)
+	spi_control_write(3, 0x01, mac[5]); // MAADR6
+	spi_control_write(3, 0x00, mac[4]); // MAADR5
+	spi_control_write(3, 0x03, mac[3]); // MAADR4
+	spi_control_write(3, 0x02, mac[2]); // MAADR3
+	spi_control_write(3, 0x05, mac[1]); // MAADR2
+	spi_control_write(3, 0x04, mac[0]); // MAADR1
+
+	spi_control_write(1, 0x18, 0x80); //unicast filter funcationality register
+	uint8_t read_macon3 = mac_spi_read(0x03, 2);
+	spi_control_write(2, 0x03, (read_macon3 | (1 << 0)));
+	uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
+	spi_control_write(2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
+	phy_spi_write(0x00, 0x0100);
+
+	// Configure PHY LEDs for activity indication
+	phy_spi_write(0x14, 0x3422); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
+	spi_control_write(0, 0X1F, 0X04); // reception enable bit
+	printf("\nENC28J60 Initialization Complete.\n");
+	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
+			mac[2], mac[3], mac[4], mac[5]);
+}
+
 

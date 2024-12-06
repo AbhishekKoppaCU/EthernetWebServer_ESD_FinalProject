@@ -302,7 +302,7 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
     }
     CS_HIGH; // Pull CS High
 }
-
+/*
 void init_ENC(void)
 {
     spi_control_write(1, 0x18, 0x41);
@@ -329,10 +329,10 @@ void init_ENC(void)
 
 }
 
-void init_MAC(void)
+void enc_init(const uint8_t *mac)
 {
 
 }
-
+*/
 
 

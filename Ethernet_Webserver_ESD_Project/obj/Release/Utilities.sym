@@ -430,9 +430,9 @@ Symbol Table
     __gptrget                                                      ****** GX
  16 _getchar                                                       00001F GR
  16 _putchar                                                       000000 GR
-  A _putchar_c_10000_68                                            000000 R
+  A _putchar_c_10000_70                                            000000 R
  16 _putstr                                                        00002D GR
-  A _putstr_s_10000_72                                             000002 R
+  A _putstr_s_10000_74                                             000002 R
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
     a.1                                                         =  0000E1 L
