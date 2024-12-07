@@ -256,17 +256,23 @@ void enc_init(const uint8_t *mac) {
 	// Split Memory: Reserve RX and TX buffers
 	uint16_t rx_start = RX_BUFFER_START;
 	uint16_t rx_end = RX_BUFFER_END;
-
+	uint16_t rx_start = TX_BUFFER_START;
+	uint16_t rx_end  = TX_BUFFER_END;
 	// Initialize RX Buffer
 	enc_buffer_init(rx_start, rx_end);
+	enc_control_write(0, 0x04, (uint8_t) (rx_start & 0xFF)); // Low byte
+	enc_control_write(0, 0x05, (uint8_t) ((rx_start >> 8) & 0xFF)); // High byte
 
+	// Write to ETXND (Transmit End Pointer)
+	enc_control_write(0, 0x06, (uint8_t) (rx_endrx_end & 0xFF)); // Low byte
+	enc_control_write(0, 0x07, (uint8_t) ((rx_end >> 8) & 0xFF)); // High byte
 	// Set RX Read Pointer to Start Address
 	//spi_control_write(0, 0x0C, (uint8_t) (rx_start & 0xFF)); // ERXRDPTL
 	//spi_control_write(0, 0x0D, (uint8_t) ((rx_start >> 8) & 0xFF)); // ERXRDPTH
 
 	// Enable MAC Receive
 	//spi_control_write(2, 0x00, 0x0D); // MACON1: Enable RX (MARXEN), TXPAUS, RXPAUS
-
+	enc_phy_write(0x14, 0x0476); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
 	// Configure MACON3 for padding, CRC, and frame length
 	enc_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
 	enc_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
@@ -296,7 +302,7 @@ void enc_init(const uint8_t *mac) {
 	enc_phy_write(0x00, 0x0100);
 
 	// Configure PHY LEDs for activity indication
-	enc_phy_write(0x14, 0x3422); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
+
 	enc_control_write(0, 0X1F, 0X04); // reception enable bit
 	printf("\nENC28J60 Initialization Complete.\n");
 	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],

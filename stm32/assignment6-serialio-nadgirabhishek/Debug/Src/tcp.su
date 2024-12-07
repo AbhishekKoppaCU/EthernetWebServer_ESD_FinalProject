@@ -1,5 +1,6 @@
-../Src/tcp.c:11:10:calculate_checksum	24	static
-../Src/tcp.c:31:10:process_tcp_packet	88	static
-../Src/tcp.c:189:6:print_hexdump	32	static
-../Src/tcp.c:201:6:process_packet_from_buffer	48	static
-../Src/tcp.c:264:6:transmit_tcp_packet	32	static
+../Src/tcp.c:15:10:calculate_checksum	24	static
+../Src/tcp.c:37:10:calculate_tcp_checksum	40	static
+../Src/tcp.c:58:10:process_tcp_packet	96	static
+../Src/tcp.c:150:6:print_hexdump	32	static
+../Src/tcp.c:163:6:process_packet_from_buffer	48	static
+../Src/tcp.c:226:6:transmit_tcp_packet	32	static

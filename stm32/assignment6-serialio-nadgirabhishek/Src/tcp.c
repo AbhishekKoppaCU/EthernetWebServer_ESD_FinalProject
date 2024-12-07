@@ -1,11 +1,15 @@
-/*
- * tcp.c
- *
- *  Created on: Dec 6, 2024
- *      Author: nadgi
- */
 #include "tcp.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
 
+// Define buffer sizes
+#define MAX_PACKET_SIZE 1500
+#define ETHERNET_HEADER_SIZE 14
+#define IP_HEADER_SIZE 20
+#define TCP_HEADER_SIZE 20
+#define TX_BUFFER_START 0x0000
 
 // Function to calculate the checksum
 uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
@@ -22,56 +26,77 @@ uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
         }
     }
 
-    // Final wrap around
+    // Final wrap-around
     sum = (sum & 0xFFFF) + (sum >> 16);
 
     // Return one's complement
     return ~sum;
 }
+
+// Function to calculate TCP checksum (with pseudo-header)
+uint16_t calculate_tcp_checksum(uint8_t *pseudo_header, uint8_t *tcp_header, uint16_t tcp_length) {
+    uint32_t sum = 0;
+
+    // Add pseudo-header
+    for (uint16_t i = 0; i < 12; i += 2) {
+        uint16_t word = (pseudo_header[i] << 8) | pseudo_header[i + 1];
+        sum += word;
+        if (sum > 0xFFFF) sum = (sum & 0xFFFF) + (sum >> 16);
+    }
+
+    // Add TCP header and data
+    for (uint16_t i = 0; i < tcp_length; i += 2) {
+        uint16_t word = (tcp_header[i] << 8) | (i + 1 < tcp_length ? tcp_header[i + 1] : 0);
+        sum += word;
+        if (sum > 0xFFFF) sum = (sum & 0xFFFF) + (sum >> 16);
+    }
+
+    // Final wrap-around and one's complement
+    return ~((sum & 0xFFFF) + (sum >> 16));
+}
+
 uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
     static uint8_t response[MAX_PACKET_SIZE + 1];  // Add extra byte for 0x0E at the start
     memset(response, 0, MAX_PACKET_SIZE + 1);      // Clear the response buffer
 
     response[0] = 0x0E;  // Ensure the first byte of the response is always 0x0E
+    uint8_t *data_start = response + 1;  // Start processing after the 0x0E byte
 
-    // Shift the response pointer to include the 0x0E without overwriting actual data
-    uint8_t *data_start = response + 1;
+    // Validate packet size
+    if (packet_size < ETHERNET_HEADER_SIZE + IP_HEADER_SIZE + TCP_HEADER_SIZE) {
+        printf("Invalid packet size: %d\n", packet_size);
+        return NULL;
+    }
 
     // Parse the Ethernet header
     uint8_t *ethernet_header = packet;
     uint8_t *response_ethernet_header = data_start;
     memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
 
-    // Swap MAC addresses for the response
+    // Swap MAC addresses
     memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
     memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
 
     // Parse the IP header
     uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
     uint8_t *response_ip_header = data_start + ETHERNET_HEADER_SIZE;
-
-    // Copy and adjust IP header
     memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
-    response_ip_header[12] = ip_header[16];  // Swap Source IP
-    response_ip_header[13] = ip_header[17];
-    response_ip_header[14] = ip_header[18];
-    response_ip_header[15] = ip_header[19];
-    response_ip_header[16] = ip_header[12];  // Swap Destination IP
-    response_ip_header[17] = ip_header[13];
-    response_ip_header[18] = ip_header[14];
-    response_ip_header[19] = ip_header[15];
-    response_ip_header[10] = 0;              // Clear checksum
+
+    // Swap source and destination IPs
+    memcpy(response_ip_header + 12, ip_header + 16, 4);  // Source IP
+    memcpy(response_ip_header + 16, ip_header + 12, 4);  // Destination IP
+    response_ip_header[10] = 0;  // Clear IP checksum
     response_ip_header[11] = 0;
 
     // Parse the TCP header
     uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
     uint8_t *response_tcp_header = data_start + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-
-    // Copy and adjust TCP header
     memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
-    response_tcp_header[0] = tcp_header[2];  // Swap Source Port
+
+    // Swap source and destination ports
+    response_tcp_header[0] = tcp_header[2];
     response_tcp_header[1] = tcp_header[3];
-    response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
+    response_tcp_header[2] = tcp_header[0];
     response_tcp_header[3] = tcp_header[1];
 
     // Process sequence and acknowledgment numbers
@@ -93,13 +118,25 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
     uint16_t tcp_length = TCP_HEADER_SIZE;
     uint16_t ip_total_length = IP_HEADER_SIZE + tcp_length;
 
+    // Update IP total length
     response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
     response_ip_header[3] = ip_total_length & 0xFF;
+
+    // Calculate IP checksum
     uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
     response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
     response_ip_header[11] = ip_checksum & 0xFF;
 
-    uint16_t tcp_checksum = calculate_checksum(data_start + ETHERNET_HEADER_SIZE, ip_total_length);
+    // Calculate TCP checksum with pseudo-header
+    uint8_t pseudo_header[12];
+    memcpy(pseudo_header, response_ip_header + 12, 4);  // Source IP
+    memcpy(pseudo_header + 4, response_ip_header + 16, 4);  // Destination IP
+    pseudo_header[8] = 0x00;  // Reserved
+    pseudo_header[9] = 0x06;  // Protocol (TCP)
+    pseudo_header[10] = (tcp_length >> 8) & 0xFF;
+    pseudo_header[11] = tcp_length & 0xFF;
+
+    uint16_t tcp_checksum = calculate_tcp_checksum(pseudo_header, response_tcp_header, tcp_length);
     response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
     response_tcp_header[17] = tcp_checksum & 0xFF;
 
@@ -109,95 +146,20 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
     return response;
 }
 
-
-/*
-uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
-    static uint8_t response[MAX_PACKET_SIZE];
-    memset(response, 0, MAX_PACKET_SIZE);  // Clear the response buffer
-
-    // Parse the Ethernet header
-    uint8_t *ethernet_header = packet;
-    uint8_t *response_ethernet_header = response;
-    memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
-
-    // Swap MAC addresses for the response
-    memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
-    memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
-
-    // Parse the IP header
-    uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
-    uint8_t *response_ip_header = response + ETHERNET_HEADER_SIZE;
-
-    // Copy and adjust IP header
-    memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
-    response_ip_header[12] = ip_header[16];  // Swap Source IP
-    response_ip_header[13] = ip_header[17];
-    response_ip_header[14] = ip_header[18];
-    response_ip_header[15] = ip_header[19];
-    response_ip_header[16] = ip_header[12];  // Swap Destination IP
-    response_ip_header[17] = ip_header[13];
-    response_ip_header[18] = ip_header[14];
-    response_ip_header[19] = ip_header[15];
-    response_ip_header[10] = 0;              // Clear checksum
-    response_ip_header[11] = 0;
-
-    // Parse the TCP header
-    uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-    uint8_t *response_tcp_header = response + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-
-    // Copy and adjust TCP header
-    memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
-    response_tcp_header[0] = tcp_header[2];  // Swap Source Port
-    response_tcp_header[1] = tcp_header[3];
-    response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
-    response_tcp_header[3] = tcp_header[1];
-
-    // Process sequence and acknowledgment numbers
-    uint32_t seq_num = (tcp_header[4] << 24) | (tcp_header[5] << 16) | (tcp_header[6] << 8) | tcp_header[7];
-    uint32_t ack_num = seq_num + 1;  // ACK for SYN
-    response_tcp_header[4] = (ack_num >> 24) & 0xFF;
-    response_tcp_header[5] = (ack_num >> 16) & 0xFF;
-    response_tcp_header[6] = (ack_num >> 8) & 0xFF;
-    response_tcp_header[7] = ack_num & 0xFF;
-
-    // Set flags: SYN-ACK
-    response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
-
-    // Clear urgent pointer
-    response_tcp_header[18] = 0;
-    response_tcp_header[19] = 0;
-
-    // Recalculate checksums
-    uint16_t tcp_length = TCP_HEADER_SIZE;
-    uint16_t ip_total_length = IP_HEADER_SIZE + tcp_length;
-
-    response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
-    response_ip_header[3] = ip_total_length & 0xFF;
-    uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
-    response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
-    response_ip_header[11] = ip_checksum & 0xFF;
-
-    uint16_t tcp_checksum = calculate_checksum(response + ETHERNET_HEADER_SIZE, ip_total_length);
-    response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
-    response_tcp_header[17] = tcp_checksum & 0xFF;
-
-    // Set response size
-    *response_size = ETHERNET_HEADER_SIZE + ip_total_length;
-
-    return response;
-}*/
+// Debug function to print a hexdump of the packet
 void print_hexdump(const uint8_t *data, uint16_t size) {
     printf("\nHexdump (Size: %d):\n", size);
     for (uint16_t i = 0; i < size; i++) {
-        printf("%02X ", data[i]); // Print each byte in hexadecimal format
+        printf("%02X ", data[i]);
         if ((i + 1) % 16 == 0) {
-            printf("\n"); // Newline after every 16 bytes for readability
+            printf("\n");
         }
     }
     if (size % 16 != 0) {
-        printf("\n"); // Final newline if not already printed
+        printf("\n");
     }
 }
+
 void process_packet_from_buffer(uint16_t start_address) {
     // Ensure valid address
     if (start_address > 0x1FFF) {
