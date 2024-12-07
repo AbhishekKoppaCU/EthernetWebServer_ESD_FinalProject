@@ -197,11 +197,24 @@ void send_arp_request(void)
 
 void external_interrupt0_isr(void) __interrupt (0)
 {
-    uint8_t eir = mac_spi_read(0x1C, 0); // Read EIR register (address 0x1C, bank 0)
+    static int i = 0;
+    //uint8_t eir = mac_spi_read(0x1C, 0); // Read EIR register (address 0x1C, bank 0)
     printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
     //if (eir & (1 << 0)) { // RXERIF is bit 0 of EIR
        // printf("RX Error Interrupt occurred!\n\r");
         //}
+        /*
+        uint8_t ERXWRPTL = mac_spi_read(0x0E, 0);
+        uint8_t ERXWRPTH = mac_spi_read(0x0F, 0);
+        uint16_t ERXWRPT = (ERXWRPTH & 0xFF);  // You extract ERXWRPTH as the lower byte.
+        ERXWRPT = ERXWRPT << 8;  // Shift ERXWRPTH to the upper byte.
+        ERXWRPT |= (ERXWRPTL & 0xFF);  // Combine ERXWRPTL as the lower byte.
+        */
+        if(i == 1)
+        {
+            //process_packet_from_buffer(0x0846);
+        }
+        i++;
 }
 
 
@@ -273,6 +286,7 @@ void enc_init(const uint8_t *mac)
 	spi_control_write(3, 0x04, mac[0]); // MAADR1
 
 	spi_control_write(1, 0x18, 0x80); //unicast filter funcationality register
+
 	uint8_t read_macon3 = mac_spi_read(0x03, 2);
 	spi_control_write(2, 0x03, (read_macon3 | (1 << 0)));
 	uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
@@ -285,6 +299,25 @@ void enc_init(const uint8_t *mac)
 	printf("\nENC28J60 Initialization Complete.\n");
 	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
 			mac[2], mac[3], mac[4], mac[5]);
+}
+
+uint8_t ENC_pkt_count(void)
+{
+    uint8_t count = mac_spi_read(0x19, 1);
+    return count;
+}
+
+void update_ERXRDPT(uint16_t new_address) {
+    // Split the 16-bit address into high and low bytes
+    uint8_t high_byte = (uint8_t)((new_address >> 8) & 0xFF);
+    uint8_t low_byte = (uint8_t)(new_address & 0xFF);
+
+    // Write the high and low bytes to the ERXRDPT registers
+    spi_control_write(0, 0x0C, low_byte);  // Write to low-byte register
+    spi_control_write(0, 0x0D, high_byte); // Write to high-byte register
+
+
+    printf("Updated ERXRDPT to 0x%04X\n", new_address);
 }
 
 

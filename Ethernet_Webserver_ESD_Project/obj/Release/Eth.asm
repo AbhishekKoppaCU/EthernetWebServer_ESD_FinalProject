@@ -10,8 +10,6 @@
 ;--------------------------------------------------------
 	.globl _external_interrupt0_isr
 	.globl _enc28j60_transmission_successful
-	.globl _wait_for_transmission_complete
-	.globl _enc28j60_set_transmit_pointers
 	.globl _enc28j60_start_transmission
 	.globl _delay_ms
 	.globl _spi_control_write
@@ -231,9 +229,13 @@
 	.globl _T2CON
 	.globl _enc_buffer_init_PARM_2
 	.globl _enc28j60_set_transmit_pointers_PARM_2
+	.globl _enc28j60_set_transmit_pointers
+	.globl _wait_for_transmission_complete
 	.globl _send_arp_request
 	.globl _enc_buffer_init
 	.globl _enc_init
+	.globl _ENC_pkt_count
+	.globl _update_ERXRDPT
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -510,32 +512,36 @@ _enc28j60_transmission_successful_sloc0_1_0:
 ; uninitialized external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_delay_ms_ms_10000_73:
+_delay_ms_ms_10000_122:
 	.ds 2
-_delay_ms_i_20000_75:
+_delay_ms_i_20000_124:
 	.ds 4
 _enc28j60_set_transmit_pointers_PARM_2:
 	.ds 2
-_enc28j60_set_transmit_pointers_start_address_10000_79:
+_enc28j60_set_transmit_pointers_start_address_10000_128:
 	.ds 2
-_wait_for_transmission_complete_timeout_ms_10000_81:
+_wait_for_transmission_complete_timeout_ms_10000_130:
 	.ds 2
-_send_arp_request_source_mac_10000_87:
+_send_arp_request_source_mac_10000_136:
 	.ds 6
-_send_arp_request_dest_mac_10000_87:
+_send_arp_request_dest_mac_10000_136:
 	.ds 6
-_send_arp_request_source_ip_10000_87:
+_send_arp_request_source_ip_10000_136:
 	.ds 4
-_send_arp_request_target_ip_10000_87:
+_send_arp_request_target_ip_10000_136:
 	.ds 4
-_send_arp_request_arp_packet_10000_87:
+_send_arp_request_arp_packet_10000_136:
 	.ds 43
+_external_interrupt0_isr_i_10000_155:
+	.ds 2
 _enc_buffer_init_PARM_2:
 	.ds 2
-_enc_buffer_init_start_address_10000_107:
+_enc_buffer_init_start_address_10000_157:
 	.ds 2
-_enc_init_mac_10000_110:
+_enc_init_mac_10000_160:
 	.ds 3
+_update_ERXRDPT_new_address_10000_167:
+	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -561,6 +567,17 @@ _enc_init_mac_10000_110:
 	.area GSINIT  (CODE)
 	.area GSFINAL (CODE)
 	.area GSINIT  (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'external_interrupt0_isr'
+;------------------------------------------------------------
+;i                         Allocated with name '_external_interrupt0_isr_i_10000_155'
+;------------------------------------------------------------
+;	Eth.c:200: static int i = 0;
+	mov	dptr,#_external_interrupt0_isr_i_10000_155
+	clr	a
+	movx	@dptr,a
+	inc	dptr
+	movx	@dptr,a
 ;--------------------------------------------------------
 ; Home
 ;--------------------------------------------------------
@@ -573,8 +590,8 @@ _enc_init_mac_10000_110:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'delay_ms'
 ;------------------------------------------------------------
-;ms                        Allocated with name '_delay_ms_ms_10000_73'
-;i                         Allocated with name '_delay_ms_i_20000_75'
+;ms                        Allocated with name '_delay_ms_ms_10000_122'
+;i                         Allocated with name '_delay_ms_i_20000_124'
 ;------------------------------------------------------------
 ;	Eth.c:48: void delay_ms(uint16_t ms)
 ;	-----------------------------------------
@@ -591,13 +608,13 @@ _delay_ms:
 	ar0 = 0x00
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_delay_ms_ms_10000_73
+	mov	dptr,#_delay_ms_ms_10000_122
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
 ;	Eth.c:50: for (volatile uint32_t i = 0; i < ms * 1000; i++)
-	mov	dptr,#_delay_ms_i_20000_75
+	mov	dptr,#_delay_ms_i_20000_124
 	clr	a
 	movx	@dptr,a
 	inc	dptr
@@ -606,7 +623,7 @@ _delay_ms:
 	movx	@dptr,a
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#_delay_ms_ms_10000_73
+	mov	dptr,#_delay_ms_ms_10000_122
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -627,7 +644,7 @@ _delay_ms:
 	mov	r5, dph
 	pop	ar6
 	pop	ar7
-	mov	dptr,#_delay_ms_i_20000_75
+	mov	dptr,#_delay_ms_i_20000_124
 	movx	a,@dptr
 	mov	r0,a
 	inc	dptr
@@ -655,7 +672,7 @@ _delay_ms:
 	pop	ar7
 	pop	ar6
 	jnc	00105$
-	mov	dptr,#_delay_ms_i_20000_75
+	mov	dptr,#_delay_ms_i_20000_124
 	movx	a,@dptr
 	mov	r2,a
 	inc	dptr
@@ -667,7 +684,7 @@ _delay_ms:
 	inc	dptr
 	movx	a,@dptr
 	mov	r5,a
-	mov	dptr,#_delay_ms_i_20000_75
+	mov	dptr,#_delay_ms_i_20000_124
 	mov	a,#0x01
 	add	a, r2
 	movx	@dptr,a
@@ -690,7 +707,7 @@ _delay_ms:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'enc28j60_start_transmission'
 ;------------------------------------------------------------
-;econ1                     Allocated with name '_enc28j60_start_transmission_econ1_10000_78'
+;econ1                     Allocated with name '_enc28j60_start_transmission_econ1_10000_127'
 ;------------------------------------------------------------
 ;	Eth.c:56: void enc28j60_start_transmission(void)
 ;	-----------------------------------------
@@ -721,7 +738,7 @@ _enc28j60_start_transmission:
 ;Allocation info for local variables in function 'enc28j60_set_transmit_pointers'
 ;------------------------------------------------------------
 ;end_address               Allocated with name '_enc28j60_set_transmit_pointers_PARM_2'
-;start_address             Allocated with name '_enc28j60_set_transmit_pointers_start_address_10000_79'
+;start_address             Allocated with name '_enc28j60_set_transmit_pointers_start_address_10000_128'
 ;------------------------------------------------------------
 ;	Eth.c:64: void enc28j60_set_transmit_pointers(uint16_t start_address, uint16_t end_address)
 ;	-----------------------------------------
@@ -730,13 +747,13 @@ _enc28j60_start_transmission:
 _enc28j60_set_transmit_pointers:
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_enc28j60_set_transmit_pointers_start_address_10000_79
+	mov	dptr,#_enc28j60_set_transmit_pointers_start_address_10000_128
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
 ;	Eth.c:67: spi_control_write(0, 0x04, (uint8_t)(start_address & 0xFF)); // Low byte
-	mov	dptr,#_enc28j60_set_transmit_pointers_start_address_10000_79
+	mov	dptr,#_enc28j60_set_transmit_pointers_start_address_10000_128
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -799,9 +816,9 @@ _enc28j60_set_transmit_pointers:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'wait_for_transmission_complete'
 ;------------------------------------------------------------
-;timeout_ms                Allocated with name '_wait_for_transmission_complete_timeout_ms_10000_81'
-;elapsed                   Allocated with name '_wait_for_transmission_complete_elapsed_10000_82'
-;econ1                     Allocated with name '_wait_for_transmission_complete_econ1_20000_83'
+;timeout_ms                Allocated with name '_wait_for_transmission_complete_timeout_ms_10000_130'
+;elapsed                   Allocated with name '_wait_for_transmission_complete_elapsed_10000_131'
+;econ1                     Allocated with name '_wait_for_transmission_complete_econ1_20000_132'
 ;------------------------------------------------------------
 ;	Eth.c:75: bool wait_for_transmission_complete(uint16_t timeout_ms)
 ;	-----------------------------------------
@@ -810,13 +827,13 @@ _enc28j60_set_transmit_pointers:
 _wait_for_transmission_complete:
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_wait_for_transmission_complete_timeout_ms_10000_81
+	mov	dptr,#_wait_for_transmission_complete_timeout_ms_10000_130
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
 ;	Eth.c:79: while (elapsed < timeout_ms) {
-	mov	dptr,#_wait_for_transmission_complete_timeout_ms_10000_81
+	mov	dptr,#_wait_for_transmission_complete_timeout_ms_10000_130
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -876,7 +893,7 @@ _wait_for_transmission_complete:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'enc28j60_transmission_successful'
 ;------------------------------------------------------------
-;estat                     Allocated with name '_enc28j60_transmission_successful_estat_10000_85'
+;estat                     Allocated with name '_enc28j60_transmission_successful_estat_10000_134'
 ;------------------------------------------------------------
 ;	Eth.c:92: bool enc28j60_transmission_successful()
 ;	-----------------------------------------
@@ -904,19 +921,19 @@ _enc28j60_transmission_successful:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'send_arp_request'
 ;------------------------------------------------------------
-;source_mac                Allocated with name '_send_arp_request_source_mac_10000_87'
-;dest_mac                  Allocated with name '_send_arp_request_dest_mac_10000_87'
-;source_ip                 Allocated with name '_send_arp_request_source_ip_10000_87'
-;target_ip                 Allocated with name '_send_arp_request_target_ip_10000_87'
-;arp_packet                Allocated with name '_send_arp_request_arp_packet_10000_87'
-;i                         Allocated with name '_send_arp_request_i_20000_88'
-;i                         Allocated with name '_send_arp_request_i_20000_90'
-;i                         Allocated with name '_send_arp_request_i_20000_92'
-;i                         Allocated with name '_send_arp_request_i_20000_94'
-;i                         Allocated with name '_send_arp_request_i_20000_96'
-;frame_size                Allocated with name '_send_arp_request_frame_size_10001_98'
-;start_address             Allocated with name '_send_arp_request_start_address_10001_98'
-;end_address               Allocated with name '_send_arp_request_end_address_10002_100'
+;source_mac                Allocated with name '_send_arp_request_source_mac_10000_136'
+;dest_mac                  Allocated with name '_send_arp_request_dest_mac_10000_136'
+;source_ip                 Allocated with name '_send_arp_request_source_ip_10000_136'
+;target_ip                 Allocated with name '_send_arp_request_target_ip_10000_136'
+;arp_packet                Allocated with name '_send_arp_request_arp_packet_10000_136'
+;i                         Allocated with name '_send_arp_request_i_20000_137'
+;i                         Allocated with name '_send_arp_request_i_20000_139'
+;i                         Allocated with name '_send_arp_request_i_20000_141'
+;i                         Allocated with name '_send_arp_request_i_20000_143'
+;i                         Allocated with name '_send_arp_request_i_20000_145'
+;frame_size                Allocated with name '_send_arp_request_frame_size_10001_147'
+;start_address             Allocated with name '_send_arp_request_start_address_10001_147'
+;end_address               Allocated with name '_send_arp_request_end_address_10002_149'
 ;------------------------------------------------------------
 ;	Eth.c:98: void send_arp_request(void)
 ;	-----------------------------------------
@@ -924,70 +941,70 @@ _enc28j60_transmission_successful:
 ;	-----------------------------------------
 _send_arp_request:
 ;	Eth.c:102: uint8_t source_mac[6] = {0x02, 0x11, 0x22, 0x33, 0x44, 0x55};  // ENC28J60 MAC address
-	mov	dptr,#_send_arp_request_source_mac_10000_87
+	mov	dptr,#_send_arp_request_source_mac_10000_136
 	mov	a,#0x02
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_mac_10000_87 + 0x0001)
+	mov	dptr,#(_send_arp_request_source_mac_10000_136 + 0x0001)
 	mov	a,#0x11
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_mac_10000_87 + 0x0002)
+	mov	dptr,#(_send_arp_request_source_mac_10000_136 + 0x0002)
 	rl	a
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_mac_10000_87 + 0x0003)
+	mov	dptr,#(_send_arp_request_source_mac_10000_136 + 0x0003)
 	mov	a,#0x33
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_mac_10000_87 + 0x0004)
+	mov	dptr,#(_send_arp_request_source_mac_10000_136 + 0x0004)
 	mov	a,#0x44
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_mac_10000_87 + 0x0005)
+	mov	dptr,#(_send_arp_request_source_mac_10000_136 + 0x0005)
 	mov	a,#0x55
 	movx	@dptr,a
 ;	Eth.c:103: uint8_t dest_mac[6] = {0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31};  // Target PC MAC address
-	mov	dptr,#_send_arp_request_dest_mac_10000_87
+	mov	dptr,#_send_arp_request_dest_mac_10000_136
 	mov	a,#0xf8
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_dest_mac_10000_87 + 0x0001)
+	mov	dptr,#(_send_arp_request_dest_mac_10000_136 + 0x0001)
 	mov	a,#0x75
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_dest_mac_10000_87 + 0x0002)
+	mov	dptr,#(_send_arp_request_dest_mac_10000_136 + 0x0002)
 	mov	a,#0xa4
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_dest_mac_10000_87 + 0x0003)
+	mov	dptr,#(_send_arp_request_dest_mac_10000_136 + 0x0003)
 	mov	a,#0x8c
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_dest_mac_10000_87 + 0x0004)
+	mov	dptr,#(_send_arp_request_dest_mac_10000_136 + 0x0004)
 	mov	a,#0x41
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_dest_mac_10000_87 + 0x0005)
+	mov	dptr,#(_send_arp_request_dest_mac_10000_136 + 0x0005)
 	mov	a,#0x31
 	movx	@dptr,a
 ;	Eth.c:104: uint8_t source_ip[4] = {192, 168, 1, 100};  // ENC28J60 IP address (Example)
-	mov	dptr,#_send_arp_request_source_ip_10000_87
+	mov	dptr,#_send_arp_request_source_ip_10000_136
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_ip_10000_87 + 0x0001)
+	mov	dptr,#(_send_arp_request_source_ip_10000_136 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_ip_10000_87 + 0x0002)
+	mov	dptr,#(_send_arp_request_source_ip_10000_136 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_source_ip_10000_87 + 0x0003)
+	mov	dptr,#(_send_arp_request_source_ip_10000_136 + 0x0003)
 	mov	a,#0x64
 	movx	@dptr,a
 ;	Eth.c:105: uint8_t target_ip[4] = {192, 168, 1, 1};  // Target PC IP address
-	mov	dptr,#_send_arp_request_target_ip_10000_87
+	mov	dptr,#_send_arp_request_target_ip_10000_136
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_target_ip_10000_87 + 0x0001)
+	mov	dptr,#(_send_arp_request_target_ip_10000_136 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_target_ip_10000_87 + 0x0002)
+	mov	dptr,#(_send_arp_request_target_ip_10000_136 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_send_arp_request_target_ip_10000_87 + 0x0003)
+	mov	dptr,#(_send_arp_request_target_ip_10000_136 + 0x0003)
 	movx	@dptr,a
 ;	Eth.c:109: arp_packet[0] = 0x0E;
-	mov	dptr,#_send_arp_request_arp_packet_10000_87
+	mov	dptr,#_send_arp_request_arp_packet_10000_136
 	mov	a,#0x0e
 	movx	@dptr,a
 ;	Eth.c:117: for (int i = 0; i < 6; i++)
@@ -1010,16 +1027,16 @@ _send_arp_request:
 	subb	a,acc
 	mov	r3,a
 	mov	a,r4
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	r4,a
 	mov	a,r3
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	r3,a
 	mov	a,r6
-	add	a, #_send_arp_request_dest_mac_10000_87
+	add	a, #_send_arp_request_dest_mac_10000_136
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_send_arp_request_dest_mac_10000_87 >> 8)
+	addc	a, #(_send_arp_request_dest_mac_10000_136 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r4
@@ -1033,16 +1050,16 @@ _send_arp_request:
 	subb	a,acc
 	mov	r4,a
 	mov	a,r5
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	r5,a
 	mov	a,r4
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_send_arp_request_source_mac_10000_87
+	add	a, #_send_arp_request_source_mac_10000_136
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_send_arp_request_source_mac_10000_87 >> 8)
+	addc	a, #(_send_arp_request_source_mac_10000_136 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
@@ -1055,43 +1072,43 @@ _send_arp_request:
 	sjmp	00115$
 00101$:
 ;	Eth.c:124: arp_packet[13] = (ETH_TYPE_ARP >> 8) & 0xFF;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x000d)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x000d)
 	mov	a,#0x08
 	movx	@dptr,a
 ;	Eth.c:125: arp_packet[14] = ETH_TYPE_ARP & 0xFF;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x000e)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x000e)
 	mov	a,#0x06
 	movx	@dptr,a
 ;	Eth.c:129: arp_packet[15] = 0x00;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x000f)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x000f)
 	clr	a
 	movx	@dptr,a
 ;	Eth.c:130: arp_packet[16] = 0x01;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0010)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0010)
 	inc	a
 	movx	@dptr,a
 ;	Eth.c:133: arp_packet[17] = 0x08;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0011)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0011)
 	mov	a,#0x08
 	movx	@dptr,a
 ;	Eth.c:134: arp_packet[18] = 0x00;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0012)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0012)
 	clr	a
 	movx	@dptr,a
 ;	Eth.c:137: arp_packet[19] = 0x06;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0013)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0013)
 	mov	a,#0x06
 	movx	@dptr,a
 ;	Eth.c:140: arp_packet[20] = 0x04;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0014)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0014)
 	mov	a,#0x04
 	movx	@dptr,a
 ;	Eth.c:143: arp_packet[21] = 0x00;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0015)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0015)
 	clr	a
 	movx	@dptr,a
 ;	Eth.c:144: arp_packet[22] = 0x01;
-	mov	dptr,#(_send_arp_request_arp_packet_10000_87 + 0x0016)
+	mov	dptr,#(_send_arp_request_arp_packet_10000_136 + 0x0016)
 	inc	a
 	movx	@dptr,a
 ;	Eth.c:147: for (int i = 0; i < 6; i++) {
@@ -1114,16 +1131,16 @@ _send_arp_request:
 	subb	a,acc
 	mov	r4,a
 	mov	a,r5
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	r5,a
 	mov	a,r4
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_send_arp_request_source_mac_10000_87
+	add	a, #_send_arp_request_source_mac_10000_136
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_send_arp_request_source_mac_10000_87 >> 8)
+	addc	a, #(_send_arp_request_source_mac_10000_136 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
@@ -1155,16 +1172,16 @@ _send_arp_request:
 	subb	a,acc
 	mov	r4,a
 	mov	a,r5
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	r5,a
 	mov	a,r4
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_send_arp_request_source_ip_10000_87
+	add	a, #_send_arp_request_source_ip_10000_136
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_send_arp_request_source_ip_10000_87 >> 8)
+	addc	a, #(_send_arp_request_source_ip_10000_136 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
@@ -1191,10 +1208,10 @@ _send_arp_request:
 	subb	a,acc
 	mov	r5,a
 	mov	a,r6
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	dpl,a
 	mov	a,r5
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	dph,a
 	clr	a
 	movx	@dptr,a
@@ -1222,16 +1239,16 @@ _send_arp_request:
 	subb	a,acc
 	mov	r4,a
 	mov	a,r5
-	add	a, #_send_arp_request_arp_packet_10000_87
+	add	a, #_send_arp_request_arp_packet_10000_136
 	mov	r5,a
 	mov	a,r4
-	addc	a, #(_send_arp_request_arp_packet_10000_87 >> 8)
+	addc	a, #(_send_arp_request_arp_packet_10000_136 >> 8)
 	mov	r4,a
 	mov	a,r6
-	add	a, #_send_arp_request_target_ip_10000_87
+	add	a, #_send_arp_request_target_ip_10000_136
 	mov	dpl,a
 	mov	a,r7
-	addc	a, #(_send_arp_request_target_ip_10000_87 >> 8)
+	addc	a, #(_send_arp_request_target_ip_10000_136 >> 8)
 	mov	dph,a
 	movx	a,@dptr
 	mov	dpl,r5
@@ -1247,12 +1264,13 @@ _send_arp_request:
 	mov	dptr,#_spi_buffer_write_PARM_2
 	clr	a
 	movx	@dptr,a
+	mov	a,#0x0c
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_write_PARM_3
-	mov	a,#_send_arp_request_arp_packet_10000_87
+	mov	a,#_send_arp_request_arp_packet_10000_136
 	movx	@dptr,a
-	mov	a,#(_send_arp_request_arp_packet_10000_87 >> 8)
+	mov	a,#(_send_arp_request_arp_packet_10000_136 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -1264,10 +1282,10 @@ _send_arp_request:
 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
 	mov	a,#0x2b
 	movx	@dptr,a
-	clr	a
+	mov	a,#0x0c
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0000
+	mov	dptr,#0x0c00
 	lcall	_enc28j60_set_transmit_pointers
 ;	Eth.c:183: enc28j60_start_transmission();
 	lcall	_enc28j60_start_transmission
@@ -1322,7 +1340,7 @@ _send_arp_request:
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'external_interrupt0_isr'
 ;------------------------------------------------------------
-;eir                       Allocated with name '_external_interrupt0_isr_eir_10000_106'
+;i                         Allocated with name '_external_interrupt0_isr_i_10000_155'
 ;------------------------------------------------------------
 ;	Eth.c:198: void external_interrupt0_isr(void) __interrupt (0)
 ;	-----------------------------------------
@@ -1344,13 +1362,7 @@ _external_interrupt0_isr:
 	push	(0+0)
 	push	psw
 	mov	psw,#0x00
-;	Eth.c:200: uint8_t eir = mac_spi_read(0x1C, 0); // Read EIR register (address 0x1C, bank 0)
-	mov	dptr,#_mac_spi_read_PARM_2
-	clr	a
-	movx	@dptr,a
-	mov	dpl, #0x1c
-	lcall	_mac_spi_read
-;	Eth.c:201: printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
+;	Eth.c:202: printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
 	mov	a,#___str_4
 	push	acc
 	mov	a,#(___str_4 >> 8)
@@ -1361,7 +1373,16 @@ _external_interrupt0_isr:
 	dec	sp
 	dec	sp
 	dec	sp
-;	Eth.c:205: }
+;	Eth.c:217: i++;
+	mov	dptr,#_external_interrupt0_isr_i_10000_155
+	movx	a,@dptr
+	add	a, #0x01
+	movx	@dptr,a
+	inc	dptr
+	movx	a,@dptr
+	addc	a, #0x00
+	movx	@dptr,a
+;	Eth.c:218: }
 	pop	psw
 	pop	(0+0)
 	pop	(0+1)
@@ -1381,22 +1402,22 @@ _external_interrupt0_isr:
 ;Allocation info for local variables in function 'enc_buffer_init'
 ;------------------------------------------------------------
 ;end_address               Allocated with name '_enc_buffer_init_PARM_2'
-;start_address             Allocated with name '_enc_buffer_init_start_address_10000_107'
+;start_address             Allocated with name '_enc_buffer_init_start_address_10000_157'
 ;------------------------------------------------------------
-;	Eth.c:208: void enc_buffer_init(uint16_t start_address, uint16_t end_address) {
+;	Eth.c:221: void enc_buffer_init(uint16_t start_address, uint16_t end_address) {
 ;	-----------------------------------------
 ;	 function enc_buffer_init
 ;	-----------------------------------------
 _enc_buffer_init:
 	mov	r7,dph
 	mov	a,dpl
-	mov	dptr,#_enc_buffer_init_start_address_10000_107
+	mov	dptr,#_enc_buffer_init_start_address_10000_157
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	Eth.c:210: if (start_address > 0x1FFF || end_address > 0x1FFF) {
-	mov	dptr,#_enc_buffer_init_start_address_10000_107
+;	Eth.c:223: if (start_address > 0x1FFF || end_address > 0x1FFF) {
+	mov	dptr,#_enc_buffer_init_start_address_10000_157
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -1423,14 +1444,14 @@ _enc_buffer_init:
 	subb	a,r3
 	jnc	00102$
 00101$:
-;	Eth.c:211: printf("\nInvalid Buffer Range: Start 0x%04X, End 0x%04X\n",
+;	Eth.c:224: printf("\nInvalid Buffer Range: Start 0x%04X, End 0x%04X\n",
 	mov	dptr,#_enc_buffer_init_PARM_2
 	movx	a,@dptr
 	push	acc
 	inc	dptr
 	movx	a,@dptr
 	push	acc
-	mov	dptr,#_enc_buffer_init_start_address_10000_107
+	mov	dptr,#_enc_buffer_init_start_address_10000_157
 	movx	a,@dptr
 	push	acc
 	inc	dptr
@@ -1446,19 +1467,19 @@ _enc_buffer_init:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	Eth.c:213: return;
+;	Eth.c:226: return;
 	ret
 00102$:
-;	Eth.c:216: start_address &= ~1;  // Align to even address
+;	Eth.c:229: start_address &= ~1;  // Align to even address
 	anl	ar6,#0xfe
-	mov	dptr,#_enc_buffer_init_start_address_10000_107
+	mov	dptr,#_enc_buffer_init_start_address_10000_157
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	Eth.c:218: spi_control_write(0, 0x00, (uint8_t) (start_address & 0xFF)); // ERDPTL
-	mov	dptr,#_enc_buffer_init_start_address_10000_107
+;	Eth.c:231: spi_control_write(0, 0x00, (uint8_t) (start_address & 0xFF)); // ERDPTL
+	mov	dptr,#_enc_buffer_init_start_address_10000_157
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -1483,7 +1504,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:219: spi_control_write(0, 0x01, (uint8_t) (start_address >> 8)); // ERDPTH
+;	Eth.c:232: spi_control_write(0, 0x01, (uint8_t) (start_address >> 8)); // ERDPTH
 	mov	ar2,r7
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x01
@@ -1505,7 +1526,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:220: spi_control_write(0, 0x08, (uint8_t) (start_address & 0xFF)); // ERXSTL
+;	Eth.c:233: spi_control_write(0, 0x08, (uint8_t) (start_address & 0xFF)); // ERXSTL
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x08
 	movx	@dptr,a
@@ -1526,7 +1547,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:221: spi_control_write(0, 0x09, (uint8_t) (start_address >> 8)); // ERXSTH
+;	Eth.c:234: spi_control_write(0, 0x09, (uint8_t) (start_address >> 8)); // ERXSTH
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x09
 	movx	@dptr,a
@@ -1547,7 +1568,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:222: spi_control_write(0, 0x0A, (uint8_t) (end_address & 0xFF)); // ERXNDL
+;	Eth.c:235: spi_control_write(0, 0x0A, (uint8_t) (end_address & 0xFF)); // ERXNDL
 	mov	ar1,r4
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0a
@@ -1569,7 +1590,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:223: spi_control_write(0, 0x0B, (uint8_t) (end_address >> 8)); // ERXNDH
+;	Eth.c:236: spi_control_write(0, 0x0B, (uint8_t) (end_address >> 8)); // ERXNDH
 	mov	ar1,r5
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0b
@@ -1591,7 +1612,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:224: spi_control_write(0, 0x0C, (uint8_t) (start_address & 0xFF)); // ERXRDPTL
+;	Eth.c:237: spi_control_write(0, 0x0C, (uint8_t) (start_address & 0xFF)); // ERXRDPTL
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0c
 	movx	@dptr,a
@@ -1610,7 +1631,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:225: spi_control_write(0, 0x0D, (uint8_t) (start_address >> 8)); // ERXRDPTH
+;	Eth.c:238: spi_control_write(0, 0x0D, (uint8_t) (start_address >> 8)); // ERXRDPTH
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0d
 	movx	@dptr,a
@@ -1627,7 +1648,7 @@ _enc_buffer_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:226: printf("\nBuffer Initialized: Start 0x%04X, End 0x%04X\n", start_address,
+;	Eth.c:239: printf("\nBuffer Initialized: Start 0x%04X, End 0x%04X\n", start_address,
 	push	ar4
 	push	ar5
 	push	ar6
@@ -1642,7 +1663,7 @@ _enc_buffer_init:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-;	Eth.c:228: }
+;	Eth.c:241: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'enc_init'
@@ -1651,13 +1672,13 @@ _enc_buffer_init:
 ;sloc1                     Allocated with name '_enc_init_sloc1_1_0'
 ;sloc2                     Allocated with name '_enc_init_sloc2_1_0'
 ;sloc3                     Allocated with name '_enc_init_sloc3_1_0'
-;mac                       Allocated with name '_enc_init_mac_10000_110'
-;rx_start                  Allocated with name '_enc_init_rx_start_10001_112'
-;rx_end                    Allocated with name '_enc_init_rx_end_10001_112'
-;read_macon3               Allocated with name '_enc_init_read_macon3_10002_113'
-;read_macon1               Allocated with name '_enc_init_read_macon1_10003_114'
+;mac                       Allocated with name '_enc_init_mac_10000_160'
+;rx_start                  Allocated with name '_enc_init_rx_start_10001_162'
+;rx_end                    Allocated with name '_enc_init_rx_end_10001_162'
+;read_macon3               Allocated with name '_enc_init_read_macon3_10002_163'
+;read_macon1               Allocated with name '_enc_init_read_macon1_10003_164'
 ;------------------------------------------------------------
-;	Eth.c:230: void enc_init(const uint8_t *mac)
+;	Eth.c:243: void enc_init(const uint8_t *mac)
 ;	-----------------------------------------
 ;	 function enc_init
 ;	-----------------------------------------
@@ -1665,7 +1686,7 @@ _enc_init:
 	mov	r7,b
 	mov	r6,dph
 	mov	a,dpl
-	mov	dptr,#_enc_init_mac_10000_110
+	mov	dptr,#_enc_init_mac_10000_160
 	movx	@dptr,a
 	mov	a,r6
 	inc	dptr
@@ -1673,9 +1694,9 @@ _enc_init:
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	Eth.c:233: enc_reset();
+;	Eth.c:246: enc_reset();
 	lcall	_enc_reset
-;	Eth.c:236: while (!(mac_spi_read(0x1D, 0) & 0x01))
+;	Eth.c:249: while (!(mac_spi_read(0x1D, 0) & 0x01))
 00101$:
 	mov	dptr,#_mac_spi_read_PARM_2
 	clr	a
@@ -1684,16 +1705,16 @@ _enc_init:
 	lcall	_mac_spi_read
 	mov	a, dpl
 	jnb	acc.0,00101$
-;	Eth.c:244: enc_buffer_init(rx_start, rx_end);
+;	Eth.c:257: enc_buffer_init(rx_start, rx_end);
 	mov	dptr,#_enc_buffer_init_PARM_2
 	mov	a,#0xff
 	movx	@dptr,a
-	mov	a,#0x1f
+	mov	a,#0x0b
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0800
+	mov	dptr,#0x0000
 	lcall	_enc_buffer_init
-;	Eth.c:255: spi_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
+;	Eth.c:268: spi_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x02
 	movx	@dptr,a
@@ -1702,7 +1723,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:256: spi_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
+;	Eth.c:269: spi_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x03
 	movx	@dptr,a
@@ -1711,7 +1732,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:259: spi_control_write(2, 0x0A, 0xEE); // MAMXFLL
+;	Eth.c:272: spi_control_write(2, 0x0A, 0xEE); // MAMXFLL
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0a
 	movx	@dptr,a
@@ -1720,7 +1741,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:260: spi_control_write(2, 0x0B, 0x05); // MAMXFLH
+;	Eth.c:273: spi_control_write(2, 0x0B, 0x05); // MAMXFLH
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0b
 	movx	@dptr,a
@@ -1729,7 +1750,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:263: spi_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
+;	Eth.c:276: spi_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x04
 	movx	@dptr,a
@@ -1738,7 +1759,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:264: spi_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
+;	Eth.c:277: spi_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x06
 	movx	@dptr,a
@@ -1747,7 +1768,7 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:265: spi_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
+;	Eth.c:278: spi_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x07
 	movx	@dptr,a
@@ -1756,8 +1777,8 @@ _enc_init:
 	movx	@dptr,a
 	mov	dpl, #0x02
 	lcall	_spi_control_write
-;	Eth.c:268: spi_control_write(3, 0x01, mac[5]); // MAADR6
-	mov	dptr,#_enc_init_mac_10000_110
+;	Eth.c:281: spi_control_write(3, 0x01, mac[5]); // MAADR6
+	mov	dptr,#_enc_init_mac_10000_160
 	movx	a,@dptr
 	mov	r5,a
 	inc	dptr
@@ -1792,7 +1813,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:269: spi_control_write(3, 0x00, mac[4]); // MAADR5
+;	Eth.c:282: spi_control_write(3, 0x00, mac[4]); // MAADR5
 	mov	a,#0x04
 	add	a, r5
 	mov	_enc_init_sloc1_1_0,a
@@ -1819,7 +1840,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:270: spi_control_write(3, 0x03, mac[3]); // MAADR4
+;	Eth.c:283: spi_control_write(3, 0x03, mac[3]); // MAADR4
 	mov	a,#0x03
 	add	a, r5
 	mov	_enc_init_sloc2_1_0,a
@@ -1846,7 +1867,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:271: spi_control_write(3, 0x02, mac[2]); // MAADR3
+;	Eth.c:284: spi_control_write(3, 0x02, mac[2]); // MAADR3
 	mov	a,#0x02
 	add	a, r5
 	mov	_enc_init_sloc3_1_0,a
@@ -1873,7 +1894,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:272: spi_control_write(3, 0x05, mac[1]); // MAADR2
+;	Eth.c:285: spi_control_write(3, 0x05, mac[1]); // MAADR2
 	mov	a,#0x01
 	add	a, r5
 	mov	r2,a
@@ -1906,7 +1927,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:273: spi_control_write(3, 0x04, mac[0]); // MAADR1
+;	Eth.c:286: spi_control_write(3, 0x04, mac[0]); // MAADR1
 	mov	dpl,r5
 	mov	dph,r6
 	mov	b,r7
@@ -1932,7 +1953,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:275: spi_control_write(1, 0x18, 0x80); //unicast filter funcationality register
+;	Eth.c:288: spi_control_write(1, 0x18, 0x80); //unicast filter funcationality register
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x18
 	movx	@dptr,a
@@ -1953,7 +1974,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:276: uint8_t read_macon3 = mac_spi_read(0x03, 2);
+;	Eth.c:290: uint8_t read_macon3 = mac_spi_read(0x03, 2);
 	mov	dptr,#_mac_spi_read_PARM_2
 	mov	a,#0x02
 	movx	@dptr,a
@@ -1972,7 +1993,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:277: spi_control_write(2, 0x03, (read_macon3 | (1 << 0)));
+;	Eth.c:291: spi_control_write(2, 0x03, (read_macon3 | (1 << 0)));
 	orl	a,#0x01
 	mov	r1,a
 	mov	dptr,#_spi_control_write_PARM_2
@@ -1995,7 +2016,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:278: uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
+;	Eth.c:292: uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
 	mov	dptr,#_mac_spi_read_PARM_2
 	mov	a,#0x02
 	movx	@dptr,a
@@ -2014,7 +2035,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:279: spi_control_write(2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
+;	Eth.c:293: spi_control_write(2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
 	orl	a,#0x01
 	mov	r1,a
 	mov	dptr,#_spi_control_write_PARM_2
@@ -2037,7 +2058,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:280: phy_spi_write(0x00, 0x0100);
+;	Eth.c:294: phy_spi_write(0x00, 0x0100);
 	mov	dptr,#_phy_spi_write_PARM_2
 	clr	a
 	movx	@dptr,a
@@ -2058,7 +2079,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:283: phy_spi_write(0x14, 0x3422); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
+;	Eth.c:297: phy_spi_write(0x14, 0x3422); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
 	mov	dptr,#_phy_spi_write_PARM_2
 	mov	a,#0x22
 	movx	@dptr,a
@@ -2079,7 +2100,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:284: spi_control_write(0, 0X1F, 0X04); // reception enable bit
+;	Eth.c:298: spi_control_write(0, 0X1F, 0X04); // reception enable bit
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x1f
 	movx	@dptr,a
@@ -2094,7 +2115,7 @@ _enc_init:
 	push	ar3
 	push	ar2
 	lcall	_spi_control_write
-;	Eth.c:285: printf("\nENC28J60 Initialization Complete.\n");
+;	Eth.c:299: printf("\nENC28J60 Initialization Complete.\n");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -2111,7 +2132,7 @@ _enc_init:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	Eth.c:287: mac[2], mac[3], mac[4], mac[5]);
+;	Eth.c:301: mac[2], mac[3], mac[4], mac[5]);
 	mov	dpl,_enc_init_sloc0_1_0
 	mov	dph,(_enc_init_sloc0_1_0 + 1)
 	mov	b,(_enc_init_sloc0_1_0 + 2)
@@ -2139,7 +2160,7 @@ _enc_init:
 	lcall	__gptrget
 	mov	r0,a
 	mov	r1,#0x00
-;	Eth.c:286: printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
+;	Eth.c:300: printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
 	mov	dpl,r2
 	mov	dph,r3
 	mov	b,r4
@@ -2174,7 +2195,97 @@ _enc_init:
 	mov	a,sp
 	add	a,#0xf1
 	mov	sp,a
-;	Eth.c:288: }
+;	Eth.c:302: }
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ENC_pkt_count'
+;------------------------------------------------------------
+;count                     Allocated with name '_ENC_pkt_count_count_10000_166'
+;------------------------------------------------------------
+;	Eth.c:304: uint8_t ENC_pkt_count(void)
+;	-----------------------------------------
+;	 function ENC_pkt_count
+;	-----------------------------------------
+_ENC_pkt_count:
+;	Eth.c:306: uint8_t count = mac_spi_read(0x19, 1);
+	mov	dptr,#_mac_spi_read_PARM_2
+	mov	a,#0x01
+	movx	@dptr,a
+	mov	dpl, #0x19
+;	Eth.c:307: return count;
+;	Eth.c:308: }
+	ljmp	_mac_spi_read
+;------------------------------------------------------------
+;Allocation info for local variables in function 'update_ERXRDPT'
+;------------------------------------------------------------
+;new_address               Allocated with name '_update_ERXRDPT_new_address_10000_167'
+;high_byte                 Allocated with name '_update_ERXRDPT_high_byte_10000_168'
+;low_byte                  Allocated with name '_update_ERXRDPT_low_byte_10000_168'
+;------------------------------------------------------------
+;	Eth.c:310: void update_ERXRDPT(uint16_t new_address) {
+;	-----------------------------------------
+;	 function update_ERXRDPT
+;	-----------------------------------------
+_update_ERXRDPT:
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_update_ERXRDPT_new_address_10000_167
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	Eth.c:312: uint8_t high_byte = (uint8_t)((new_address >> 8) & 0xFF);
+	mov	dptr,#_update_ERXRDPT_new_address_10000_167
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	r5,a
+;	Eth.c:313: uint8_t low_byte = (uint8_t)(new_address & 0xFF);
+	mov	ar4,r6
+;	Eth.c:316: spi_control_write(0, 0x0C, low_byte);  // Write to low-byte register
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0c
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r4
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	push	ar5
+	lcall	_spi_control_write
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	Eth.c:317: spi_control_write(0, 0x0D, high_byte); // Write to high-byte register
+	mov	dptr,#_spi_control_write_PARM_2
+	mov	a,#0x0d
+	movx	@dptr,a
+	mov	dptr,#_spi_control_write_PARM_3
+	mov	a,r5
+	movx	@dptr,a
+	mov	dpl, #0x00
+	push	ar7
+	push	ar6
+	lcall	_spi_control_write
+	pop	ar6
+	pop	ar7
+;	Eth.c:320: printf("Updated ERXRDPT to 0x%04X\n", new_address);
+	push	ar6
+	push	ar7
+	mov	a,#___str_9
+	push	acc
+	mov	a,#(___str_9 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xfb
+	mov	sp,a
+;	Eth.c:321: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -2238,6 +2349,12 @@ ___str_7:
 	.area CONST   (CODE)
 ___str_8:
 	.ascii "MAC Address: %02X:%02X:%02X:%02X:%02X:%02X"
+	.db 0x0a
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_9:
+	.ascii "Updated ERXRDPT to 0x%04X"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)

@@ -4,6 +4,7 @@
 #include "SPI.h"
 #include "Operations.h"
 #include "Eth.h"
+#include "tcp.h"
 
 
 //Function to convert hex string to integer
@@ -92,6 +93,9 @@ void main(void)
         printf("A --> Send ARP Request\n\r");
         printf("B --> Init RX buffers\n\r");
         printf("C --> Hard Reset(nRESET pin)\n\r");
+        printf("D --> Process TCP\n\r");
+        printf("E --> Enable TX interrupt\n\r");
+        printf("F --> Disabling TX interrupt\n\r");
 
         char c = getchar();
         putchar(c);
@@ -130,33 +134,6 @@ void main(void)
                 uint16_t start_address = get_user_buffer_size();
                 uint8_t buffer[256];
                 spi_buffer_read(num_bytes, start_address, buffer);
-                //printf("Read Data:\n\r");
-                //for (int i = 0; i < num_bytes; i++) {
-                    //printf("Byte %d: 0x%02X\n\r", i, buffer[i]);
-                //}
-                // Increment the ERXRDPT register by the number of bytes read
-    /*
-    uint16_t current_erxrdpt;
-
-    // Read ERXRDPTL (low byte) and ERXRDPTH (high byte) using mac_spi_read
-    uint8_t erxrdpt_low = mac_spi_read(0x0C, 0);  // ERXRDPTL
-    uint8_t erxrdpt_high = mac_spi_read(0x0D, 0); // ERXRDPTH
-    current_erxrdpt = ((uint16_t)erxrdpt_high << 8) | erxrdpt_low;
-
-    printf("Current ERXRDPT: 0x%04X\n\r", current_erxrdpt);
-
-    // Increment ERXRDPT by the number of bytes read
-    current_erxrdpt += num_bytes;
-
-    // Write the updated ERXRDPT value back using spi_control_write
-    spi_control_write(0, 0x0C, (uint8_t)(current_erxrdpt & 0xFF));  // ERXRDPTL (low byte)
-    spi_control_write(0, 0x0D, (uint8_t)((current_erxrdpt >> 8) & 0xFF));  // ERXRDPTH (high byte)
-
-    printf("Updated ERXRDPT to: 0x%04X\n\r", current_erxrdpt);
-    */
-
-
-
                 break;
             }
             case '4': {
@@ -211,13 +188,99 @@ void main(void)
                 break;
             }
             case 'A':{
-                //init_ENC();
-                //init_MAC();
                 send_arp_request();
+                while(1)
+                {
+                    if(ENC_pkt_count() > 0)
+                    {
+                        uint16_t nextPacket;
+                        uint16_t byteCount;
+                        uint16_t status;
+                        static uint16_t gNextPacketPtr = RX_BUFFER_START;
+                        uint16_t len = 0;
+                        if (gNextPacketPtr == 0)
+                        {
+                            update_ERXRDPT(RX_BUFFER_END);
+                        }
+                        else
+                        {
+                            update_ERXRDPT(gNextPacketPtr - 1);
+                        }
+                        uint8_t *packet_data = (uint8_t *)malloc(6);
+                        spi_buffer_read(6, gNextPacketPtr, packet_data);
+
+                        // Extract the first three bytes and assign them to nextPacket, byteCount, and status
+                        // Extract the first three values with correct byte order
+                        nextPacket = (uint16_t)(packet_data[1] << 8 | packet_data[0]); // Next Packet (MSB, LSB)
+                        byteCount = (uint16_t)(packet_data[3] << 8 | packet_data[2]);  // Byte Count (MSB, LSB)
+                        status = (uint16_t)(packet_data[5] << 8 | packet_data[4]);     // Status (MSB, LSB)
+
+
+                        len = byteCount - 4;
+
+                        uint8_t *packet_data_actual = (uint8_t *)malloc(len);
+                        spi_buffer_read(len, gNextPacketPtr + 6, packet_data_actual);
+
+                        int is_tcp_for_target = 0;
+
+                        // Check Destination MAC
+                        if (memcmp(packet_data_actual, device_mac, 6) == 0) {
+                                printf("MAC matched\n................\r");
+                            // Check EtherType (bytes 12-13 should be 0x0800 for IPv4)
+                            if (packet_data_actual[12] == 0x08 && packet_data_actual[13] == 0x00) {
+                                printf("Valid ETHER packet.....................\n\r");
+                                // Check IP Protocol (byte 23 should be 6 for TCP)
+                                if (packet_data_actual[23] == 0x06) {
+                                    is_tcp_for_target = 1;
+                                }
+                            }
+                        }
+                        if (is_tcp_for_target)
+                        {
+
+                        // Step 6: Pass the data to TCP packet processing
+                        uint16_t response_size; // Variable to hold the response size
+                        uint8_t *response = process_tcp_packet(packet_data_actual, len+4, &response_size);
+
+                        // Print the response in hexdump format before freeing
+                        if (response != NULL) {
+                            printf("\nProcessed response data:\n");
+                            print_hexdump(response, response_size);
+                            transmit_tcp_packet(response, response_size);
+                            free(response); // Free response memory if allocated dynamically
+                        } else {
+                            printf("\nNo response generated by TCP packet processing.\n");
+                        }
+
+                            printf("YESSSS\n");
+                        }
+                        else
+                        {
+                            printf("NOOOO\n");
+                        }
+
+
+                        gNextPacketPtr = nextPacket;
+
+
+
+                        // Optionally, print the extracted values
+                        printf("nextPacket: 0x%04X\n", nextPacket);
+                        printf("byteCount: %d\n", byteCount);
+                        printf("status: 0x%02X\n", status);
+
+                        // Free the allocated memory if no longer needed
+                        uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
+                        spi_control_write(2, 0x1E, (read_econ2 | (1 << 6))); //mac enable for reception
+                        free(packet_data);
+
+
+
+                    }
+                }
                 break;
             }
             case 'B':{
-                //init_ENC();
                 break;
             }
             case 'C':{
@@ -226,6 +289,27 @@ void main(void)
                 for(int i = 0; i < 6000; i++);
                 ENC_RESET = 1;
                 break;
+            }
+            case 'D':
+            {
+                //printf("Enter the start address of the TCP\n\r");
+                //uint16_t addr = get_user_buffer_size();
+                process_packet_from_buffer(0x0846);
+                break;
+            }
+            case 'E':{
+                IT0 = 1;  // Edge-triggered mode for INT0
+                EX0 = 1;  // Enable INT0
+                EA = 1;   // Enable global interrupts
+                uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
+                //spi_control_write(2, 0x1E, (read_econ2 | (1 << 6))); //mac enable for reception
+                printf("Enabling TXPKTIE\n\r");
+                spi_control_write(0, 0x1B, 0xC0);
+                break;
+            }
+            case 'F':{
+                printf("Disabling TXPKTIE\n\r");
+                spi_control_write(0, 0x1B, 0);
             }
             default: {
                 printf("Invalid option. Please select a valid action.\n\r");

@@ -171,7 +171,7 @@ uint8_t mac_spi_read(uint8_t addr, uint8_t bank)
     CS_HIGH;
 
     // Print the address and data read
-    printf("Read: Address 0x%02X, Data 0x%02X\n", addr, data);
+    //printf("Read: Address 0x%02X, Data 0x%02X\n", addr, data);
 
     return data;
 }
@@ -229,7 +229,7 @@ void buffer_init(uint16_t start_address, uint16_t size)
 }
 
 
-void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
+uint16_t spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
 {
     if (num_bytes < 1) {
         printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
@@ -239,6 +239,12 @@ void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
         printf("\n\rInvalid address: %04X\n\r", start_address);
         return;
     }
+    if (start_address < RX_BUFFER_START
+			|| (start_address + num_bytes) > RX_BUFFER_END) {
+		printf("\nInvalid RX Address: Start 0x%04X, Size %d\n", start_address,
+				num_bytes);
+		return 0;
+	}
 
     if (num_bytes > 1) {
         spi_set_autoinc();
@@ -263,6 +269,7 @@ void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
         data_ptr++;
     }
     CS_HIGH; // Pull CS High
+    return (uint16_t) num_bytes;
 }
 
 

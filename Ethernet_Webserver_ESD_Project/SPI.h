@@ -93,7 +93,7 @@ uint8_t mac_spi_read(uint8_t addr, uint8_t bank);
 void select_reg_bank(uint8_t bank);
 
 // SPI Buffer Operations
-void spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr);
+uint16_t spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_ptr);
 void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr);
 void buffer_init(uint16_t start_address, uint16_t size);
 

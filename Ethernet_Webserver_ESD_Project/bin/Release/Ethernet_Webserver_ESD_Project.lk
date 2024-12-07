@@ -20,6 +20,7 @@ obj\Release\Eth.rel
 obj\Release\main.rel
 obj\Release\Operations.rel
 obj\Release\SPI.rel
+obj\Release\tcp.rel
 obj\Release\Utilities.rel
 
 -e

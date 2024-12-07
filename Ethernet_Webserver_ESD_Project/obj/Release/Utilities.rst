@@ -472,10 +472,10 @@
                                     472 ; uninitialized external ram data
                                     473 ;--------------------------------------------------------
                                     474 	.area XSEG    (XDATA)
-      00039D                        475 _putchar_c_10000_70:
-      00039D                        476 	.ds 2
-      00039F                        477 _putstr_s_10000_74:
-      00039F                        478 	.ds 3
+      0009A7                        475 _putchar_c_10000_115:
+      0009A7                        476 	.ds 2
+      0009A9                        477 _putstr_s_10000_119:
+      0009A9                        478 	.ds 3
                                     479 ;--------------------------------------------------------
                                     480 ; absolute external ram data
                                     481 ;--------------------------------------------------------
@@ -513,13 +513,13 @@
                                     513 ;------------------------------------------------------------
                                     514 ;Allocation info for local variables in function 'putchar'
                                     515 ;------------------------------------------------------------
-                                    516 ;c                         Allocated with name '_putchar_c_10000_70'
+                                    516 ;c                         Allocated with name '_putchar_c_10000_115'
                                     517 ;------------------------------------------------------------
                                     518 ;	Utilities.c:6: int putchar (int c)
                                     519 ;	-----------------------------------------
                                     520 ;	 function putchar
                                     521 ;	-----------------------------------------
-      003B47                        522 _putchar:
+      004A5D                        522 _putchar:
                            000007   523 	ar7 = 0x07
                            000006   524 	ar6 = 0x06
                            000005   525 	ar5 = 0x05
@@ -528,32 +528,32 @@
                            000002   528 	ar2 = 0x02
                            000001   529 	ar1 = 0x01
                            000000   530 	ar0 = 0x00
-      003B47 AF 83            [24]  531 	mov	r7,dph
-      003B49 E5 82            [12]  532 	mov	a,dpl
-      003B4B 90 03 9D         [24]  533 	mov	dptr,#_putchar_c_10000_70
-      003B4E F0               [24]  534 	movx	@dptr,a
-      003B4F EF               [12]  535 	mov	a,r7
-      003B50 A3               [24]  536 	inc	dptr
-      003B51 F0               [24]  537 	movx	@dptr,a
+      004A5D AF 83            [24]  531 	mov	r7,dph
+      004A5F E5 82            [12]  532 	mov	a,dpl
+      004A61 90 09 A7         [24]  533 	mov	dptr,#_putchar_c_10000_115
+      004A64 F0               [24]  534 	movx	@dptr,a
+      004A65 EF               [12]  535 	mov	a,r7
+      004A66 A3               [24]  536 	inc	dptr
+      004A67 F0               [24]  537 	movx	@dptr,a
                                     538 ;	Utilities.c:9: while (!TI);
-      003B52                        539 00101$:
-      003B52 30 99 FD         [24]  540 	jnb	_TI,00101$
+      004A68                        539 00101$:
+      004A68 30 99 FD         [24]  540 	jnb	_TI,00101$
                                     541 ;	Utilities.c:11: SBUF = c;           // load serial port with transmit value
-      003B55 90 03 9D         [24]  542 	mov	dptr,#_putchar_c_10000_70
-      003B58 E0               [24]  543 	movx	a,@dptr
-      003B59 FE               [12]  544 	mov	r6,a
-      003B5A A3               [24]  545 	inc	dptr
-      003B5B E0               [24]  546 	movx	a,@dptr
-      003B5C FF               [12]  547 	mov	r7,a
-      003B5D 8E 99            [24]  548 	mov	_SBUF,r6
+      004A6B 90 09 A7         [24]  542 	mov	dptr,#_putchar_c_10000_115
+      004A6E E0               [24]  543 	movx	a,@dptr
+      004A6F FE               [12]  544 	mov	r6,a
+      004A70 A3               [24]  545 	inc	dptr
+      004A71 E0               [24]  546 	movx	a,@dptr
+      004A72 FF               [12]  547 	mov	r7,a
+      004A73 8E 99            [24]  548 	mov	_SBUF,r6
                                     549 ;	Utilities.c:12: TI = 0;             // clear TI flag
                                     550 ;	assignBit
-      003B5F C2 99            [12]  551 	clr	_TI
+      004A75 C2 99            [12]  551 	clr	_TI
                                     552 ;	Utilities.c:14: return c;
-      003B61 8E 82            [24]  553 	mov	dpl, r6
-      003B63 8F 83            [24]  554 	mov	dph, r7
+      004A77 8E 82            [24]  553 	mov	dpl, r6
+      004A79 8F 83            [24]  554 	mov	dph, r7
                                     555 ;	Utilities.c:15: }
-      003B65 22               [24]  556 	ret
+      004A7B 22               [24]  556 	ret
                                     557 ;------------------------------------------------------------
                                     558 ;Allocation info for local variables in function 'getchar'
                                     559 ;------------------------------------------------------------
@@ -561,115 +561,115 @@
                                     561 ;	-----------------------------------------
                                     562 ;	 function getchar
                                     563 ;	-----------------------------------------
-      003B66                        564 _getchar:
+      004A7C                        564 _getchar:
                                     565 ;	Utilities.c:21: while (!RI);
-      003B66                        566 00101$:
+      004A7C                        566 00101$:
                                     567 ;	Utilities.c:23: RI = 0;                         // clear RI flag
                                     568 ;	assignBit
-      003B66 10 98 02         [24]  569 	jbc	_RI,00118$
-      003B69 80 FB            [24]  570 	sjmp	00101$
-      003B6B                        571 00118$:
+      004A7C 10 98 02         [24]  569 	jbc	_RI,00118$
+      004A7F 80 FB            [24]  570 	sjmp	00101$
+      004A81                        571 00118$:
                                     572 ;	Utilities.c:24: return SBUF;                    // return character from SBUF
-      003B6B AE 99            [24]  573 	mov	r6,_SBUF
-      003B6D 7F 00            [12]  574 	mov	r7,#0x00
-      003B6F 8E 82            [24]  575 	mov	dpl, r6
-      003B71 8F 83            [24]  576 	mov	dph, r7
+      004A81 AE 99            [24]  573 	mov	r6,_SBUF
+      004A83 7F 00            [12]  574 	mov	r7,#0x00
+      004A85 8E 82            [24]  575 	mov	dpl, r6
+      004A87 8F 83            [24]  576 	mov	dph, r7
                                     577 ;	Utilities.c:25: }
-      003B73 22               [24]  578 	ret
+      004A89 22               [24]  578 	ret
                                     579 ;------------------------------------------------------------
                                     580 ;Allocation info for local variables in function 'putstr'
                                     581 ;------------------------------------------------------------
-                                    582 ;s                         Allocated with name '_putstr_s_10000_74'
-                                    583 ;i                         Allocated with name '_putstr_i_10000_75'
+                                    582 ;s                         Allocated with name '_putstr_s_10000_119'
+                                    583 ;i                         Allocated with name '_putstr_i_10000_120'
                                     584 ;------------------------------------------------------------
                                     585 ;	Utilities.c:27: int putstr (char *s)
                                     586 ;	-----------------------------------------
                                     587 ;	 function putstr
                                     588 ;	-----------------------------------------
-      003B74                        589 _putstr:
-      003B74 AF F0            [24]  590 	mov	r7,b
-      003B76 AE 83            [24]  591 	mov	r6,dph
-      003B78 E5 82            [12]  592 	mov	a,dpl
-      003B7A 90 03 9F         [24]  593 	mov	dptr,#_putstr_s_10000_74
-      003B7D F0               [24]  594 	movx	@dptr,a
-      003B7E EE               [12]  595 	mov	a,r6
-      003B7F A3               [24]  596 	inc	dptr
-      003B80 F0               [24]  597 	movx	@dptr,a
-      003B81 EF               [12]  598 	mov	a,r7
-      003B82 A3               [24]  599 	inc	dptr
-      003B83 F0               [24]  600 	movx	@dptr,a
+      004A8A                        589 _putstr:
+      004A8A AF F0            [24]  590 	mov	r7,b
+      004A8C AE 83            [24]  591 	mov	r6,dph
+      004A8E E5 82            [12]  592 	mov	a,dpl
+      004A90 90 09 A9         [24]  593 	mov	dptr,#_putstr_s_10000_119
+      004A93 F0               [24]  594 	movx	@dptr,a
+      004A94 EE               [12]  595 	mov	a,r6
+      004A95 A3               [24]  596 	inc	dptr
+      004A96 F0               [24]  597 	movx	@dptr,a
+      004A97 EF               [12]  598 	mov	a,r7
+      004A98 A3               [24]  599 	inc	dptr
+      004A99 F0               [24]  600 	movx	@dptr,a
                                     601 ;	Utilities.c:30: while (*s){            // output characters until NULL found
-      003B84 90 03 9F         [24]  602 	mov	dptr,#_putstr_s_10000_74
-      003B87 E0               [24]  603 	movx	a,@dptr
-      003B88 FD               [12]  604 	mov	r5,a
-      003B89 A3               [24]  605 	inc	dptr
-      003B8A E0               [24]  606 	movx	a,@dptr
-      003B8B FE               [12]  607 	mov	r6,a
-      003B8C A3               [24]  608 	inc	dptr
-      003B8D E0               [24]  609 	movx	a,@dptr
-      003B8E FF               [12]  610 	mov	r7,a
-      003B8F 7B 00            [12]  611 	mov	r3,#0x00
-      003B91 7C 00            [12]  612 	mov	r4,#0x00
-      003B93                        613 00101$:
-      003B93 8D 82            [24]  614 	mov	dpl,r5
-      003B95 8E 83            [24]  615 	mov	dph,r6
-      003B97 8F F0            [24]  616 	mov	b,r7
-      003B99 12 47 9E         [24]  617 	lcall	__gptrget
-      003B9C FA               [12]  618 	mov	r2,a
-      003B9D 60 36            [24]  619 	jz	00108$
+      004A9A 90 09 A9         [24]  602 	mov	dptr,#_putstr_s_10000_119
+      004A9D E0               [24]  603 	movx	a,@dptr
+      004A9E FD               [12]  604 	mov	r5,a
+      004A9F A3               [24]  605 	inc	dptr
+      004AA0 E0               [24]  606 	movx	a,@dptr
+      004AA1 FE               [12]  607 	mov	r6,a
+      004AA2 A3               [24]  608 	inc	dptr
+      004AA3 E0               [24]  609 	movx	a,@dptr
+      004AA4 FF               [12]  610 	mov	r7,a
+      004AA5 7B 00            [12]  611 	mov	r3,#0x00
+      004AA7 7C 00            [12]  612 	mov	r4,#0x00
+      004AA9                        613 00101$:
+      004AA9 8D 82            [24]  614 	mov	dpl,r5
+      004AAB 8E 83            [24]  615 	mov	dph,r6
+      004AAD 8F F0            [24]  616 	mov	b,r7
+      004AAF 12 5B 2B         [24]  617 	lcall	__gptrget
+      004AB2 FA               [12]  618 	mov	r2,a
+      004AB3 60 36            [24]  619 	jz	00108$
                                     620 ;	Utilities.c:31: putchar(*s++);
-      003B9F 0D               [12]  621 	inc	r5
-      003BA0 BD 00 01         [24]  622 	cjne	r5,#0x00,00120$
-      003BA3 0E               [12]  623 	inc	r6
-      003BA4                        624 00120$:
-      003BA4 90 03 9F         [24]  625 	mov	dptr,#_putstr_s_10000_74
-      003BA7 ED               [12]  626 	mov	a,r5
-      003BA8 F0               [24]  627 	movx	@dptr,a
-      003BA9 EE               [12]  628 	mov	a,r6
-      003BAA A3               [24]  629 	inc	dptr
-      003BAB F0               [24]  630 	movx	@dptr,a
-      003BAC EF               [12]  631 	mov	a,r7
-      003BAD A3               [24]  632 	inc	dptr
-      003BAE F0               [24]  633 	movx	@dptr,a
-      003BAF 8A 01            [24]  634 	mov	ar1,r2
-      003BB1 7A 00            [12]  635 	mov	r2,#0x00
-      003BB3 89 82            [24]  636 	mov	dpl, r1
-      003BB5 8A 83            [24]  637 	mov	dph, r2
-      003BB7 C0 07            [24]  638 	push	ar7
-      003BB9 C0 06            [24]  639 	push	ar6
-      003BBB C0 05            [24]  640 	push	ar5
-      003BBD C0 04            [24]  641 	push	ar4
-      003BBF C0 03            [24]  642 	push	ar3
-      003BC1 12 3B 47         [24]  643 	lcall	_putchar
-      003BC4 D0 03            [24]  644 	pop	ar3
-      003BC6 D0 04            [24]  645 	pop	ar4
-      003BC8 D0 05            [24]  646 	pop	ar5
-      003BCA D0 06            [24]  647 	pop	ar6
-      003BCC D0 07            [24]  648 	pop	ar7
+      004AB5 0D               [12]  621 	inc	r5
+      004AB6 BD 00 01         [24]  622 	cjne	r5,#0x00,00120$
+      004AB9 0E               [12]  623 	inc	r6
+      004ABA                        624 00120$:
+      004ABA 90 09 A9         [24]  625 	mov	dptr,#_putstr_s_10000_119
+      004ABD ED               [12]  626 	mov	a,r5
+      004ABE F0               [24]  627 	movx	@dptr,a
+      004ABF EE               [12]  628 	mov	a,r6
+      004AC0 A3               [24]  629 	inc	dptr
+      004AC1 F0               [24]  630 	movx	@dptr,a
+      004AC2 EF               [12]  631 	mov	a,r7
+      004AC3 A3               [24]  632 	inc	dptr
+      004AC4 F0               [24]  633 	movx	@dptr,a
+      004AC5 8A 01            [24]  634 	mov	ar1,r2
+      004AC7 7A 00            [12]  635 	mov	r2,#0x00
+      004AC9 89 82            [24]  636 	mov	dpl, r1
+      004ACB 8A 83            [24]  637 	mov	dph, r2
+      004ACD C0 07            [24]  638 	push	ar7
+      004ACF C0 06            [24]  639 	push	ar6
+      004AD1 C0 05            [24]  640 	push	ar5
+      004AD3 C0 04            [24]  641 	push	ar4
+      004AD5 C0 03            [24]  642 	push	ar3
+      004AD7 12 4A 5D         [24]  643 	lcall	_putchar
+      004ADA D0 03            [24]  644 	pop	ar3
+      004ADC D0 04            [24]  645 	pop	ar4
+      004ADE D0 05            [24]  646 	pop	ar5
+      004AE0 D0 06            [24]  647 	pop	ar6
+      004AE2 D0 07            [24]  648 	pop	ar7
                                     649 ;	Utilities.c:32: i++;
-      003BCE 0B               [12]  650 	inc	r3
-      003BCF BB 00 C1         [24]  651 	cjne	r3,#0x00,00101$
-      003BD2 0C               [12]  652 	inc	r4
-      003BD3 80 BE            [24]  653 	sjmp	00101$
-      003BD5                        654 00108$:
-      003BD5 90 03 9F         [24]  655 	mov	dptr,#_putstr_s_10000_74
-      003BD8 ED               [12]  656 	mov	a,r5
-      003BD9 F0               [24]  657 	movx	@dptr,a
-      003BDA EE               [12]  658 	mov	a,r6
-      003BDB A3               [24]  659 	inc	dptr
-      003BDC F0               [24]  660 	movx	@dptr,a
-      003BDD EF               [12]  661 	mov	a,r7
-      003BDE A3               [24]  662 	inc	dptr
-      003BDF F0               [24]  663 	movx	@dptr,a
+      004AE4 0B               [12]  650 	inc	r3
+      004AE5 BB 00 C1         [24]  651 	cjne	r3,#0x00,00101$
+      004AE8 0C               [12]  652 	inc	r4
+      004AE9 80 BE            [24]  653 	sjmp	00101$
+      004AEB                        654 00108$:
+      004AEB 90 09 A9         [24]  655 	mov	dptr,#_putstr_s_10000_119
+      004AEE ED               [12]  656 	mov	a,r5
+      004AEF F0               [24]  657 	movx	@dptr,a
+      004AF0 EE               [12]  658 	mov	a,r6
+      004AF1 A3               [24]  659 	inc	dptr
+      004AF2 F0               [24]  660 	movx	@dptr,a
+      004AF3 EF               [12]  661 	mov	a,r7
+      004AF4 A3               [24]  662 	inc	dptr
+      004AF5 F0               [24]  663 	movx	@dptr,a
                                     664 ;	Utilities.c:34: return i+1;
-      003BE0 0B               [12]  665 	inc	r3
-      003BE1 BB 00 01         [24]  666 	cjne	r3,#0x00,00122$
-      003BE4 0C               [12]  667 	inc	r4
-      003BE5                        668 00122$:
-      003BE5 8B 82            [24]  669 	mov	dpl, r3
-      003BE7 8C 83            [24]  670 	mov	dph, r4
+      004AF6 0B               [12]  665 	inc	r3
+      004AF7 BB 00 01         [24]  666 	cjne	r3,#0x00,00122$
+      004AFA 0C               [12]  667 	inc	r4
+      004AFB                        668 00122$:
+      004AFB 8B 82            [24]  669 	mov	dpl, r3
+      004AFD 8C 83            [24]  670 	mov	dph, r4
                                     671 ;	Utilities.c:35: }
-      003BE9 22               [24]  672 	ret
+      004AFF 22               [24]  672 	ret
                                     673 	.area CSEG    (CODE)
                                     674 	.area CONST   (CODE)
                                     675 	.area XINIT   (CODE)
