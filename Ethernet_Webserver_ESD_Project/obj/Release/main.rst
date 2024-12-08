@@ -739,7 +739,7 @@
       002B1B 8A 82            [24]  739 	mov	dpl,r2
       002B1D 8B 83            [24]  740 	mov	dph,r3
       002B1F 8C F0            [24]  741 	mov	b,r4
-      002B21 12 5B 2B         [24]  742 	lcall	__gptrget
+      002B21 12 5B BA         [24]  742 	lcall	__gptrget
       002B24 F5 3C            [12]  743 	mov	_hex_to_int_sloc1_1_0,a
       002B26 D0 04            [24]  744 	pop	ar4
       002B28 D0 03            [24]  745 	pop	ar3
@@ -865,7 +865,7 @@
       002BEC 8D 82            [24]  865 	mov	dpl,r5
       002BEE 8E 83            [24]  866 	mov	dph,r6
       002BF0 8F F0            [24]  867 	mov	b,r7
-      002BF2 12 5B 2B         [24]  868 	lcall	__gptrget
+      002BF2 12 5B BA         [24]  868 	lcall	__gptrget
       002BF5 7F 00            [12]  869 	mov	r7,#0x00
       002BF7 24 C9            [12]  870 	add	a,#0xc9
       002BF9 F5 3D            [12]  871 	mov	_hex_to_int_sloc2_1_0,a
@@ -926,7 +926,7 @@
       002C51 8A 82            [24]  926 	mov	dpl,r2
       002C53 8B 83            [24]  927 	mov	dph,r3
       002C55 8C F0            [24]  928 	mov	b,r4
-      002C57 12 5B 2B         [24]  929 	lcall	__gptrget
+      002C57 12 5B BA         [24]  929 	lcall	__gptrget
       002C5A 7C 00            [12]  930 	mov	r4,#0x00
       002C5C 24 A9            [12]  931 	add	a,#0xa9
       002C5E F5 3D            [12]  932 	mov	_hex_to_int_sloc2_1_0,a
@@ -989,7 +989,7 @@
       002C97                        989 00103$:
       002C97 C0 07            [24]  990 	push	ar7
       002C99 C0 06            [24]  991 	push	ar6
-      002C9B 12 4A 7C         [24]  992 	lcall	_getchar
+      002C9B 12 4B 0B         [24]  992 	lcall	_getchar
       002C9E AC 82            [24]  993 	mov	r4, dpl
       002CA0 D0 06            [24]  994 	pop	ar6
       002CA2 D0 07            [24]  995 	pop	ar7
@@ -1014,7 +1014,7 @@
       002CC1 C0 07            [24] 1014 	push	ar7
       002CC3 C0 06            [24] 1015 	push	ar6
       002CC5 C0 04            [24] 1016 	push	ar4
-      002CC7 12 4A 5D         [24] 1017 	lcall	_putchar
+      002CC7 12 4A EC         [24] 1017 	lcall	_putchar
       002CCA D0 04            [24] 1018 	pop	ar4
       002CCC D0 06            [24] 1019 	pop	ar6
       002CCE D0 07            [24] 1020 	pop	ar7
@@ -1051,11 +1051,11 @@
                                    1051 ;	main.c:64: printf_tiny("\n\r");
       002CFB C0 07            [24] 1052 	push	ar7
       002CFD C0 06            [24] 1053 	push	ar6
-      002CFF 74 0A            [12] 1054 	mov	a,#___str_0
+      002CFF 74 99            [12] 1054 	mov	a,#___str_0
       002D01 C0 E0            [24] 1055 	push	acc
       002D03 74 5D            [12] 1056 	mov	a,#(___str_0 >> 8)
       002D05 C0 E0            [24] 1057 	push	acc
-      002D07 12 4D 0E         [24] 1058 	lcall	_printf_tiny
+      002D07 12 4D 9D         [24] 1058 	lcall	_printf_tiny
       002D0A 15 81            [12] 1059 	dec	sp
       002D0C 15 81            [12] 1060 	dec	sp
       002D0E D0 06            [24] 1061 	pop	ar6
@@ -1182,18 +1182,18 @@
       002D88 90 01 7A         [24] 1182 	mov	dptr,#(_main_target_ip_10000_137 + 0x0003)
       002D8B F0               [24] 1183 	movx	@dptr,a
                                    1184 ;	main.c:76: printf("SPI Operations on 8051\n\r");
-      002D8C 74 0D            [12] 1185 	mov	a,#___str_1
+      002D8C 74 9C            [12] 1185 	mov	a,#___str_1
       002D8E C0 E0            [24] 1186 	push	acc
       002D90 74 5D            [12] 1187 	mov	a,#(___str_1 >> 8)
       002D92 C0 E0            [24] 1188 	push	acc
       002D94 74 80            [12] 1189 	mov	a,#0x80
       002D96 C0 E0            [24] 1190 	push	acc
-      002D98 12 51 09         [24] 1191 	lcall	_printf
+      002D98 12 51 98         [24] 1191 	lcall	_printf
       002D9B 15 81            [12] 1192 	dec	sp
       002D9D 15 81            [12] 1193 	dec	sp
       002D9F 15 81            [12] 1194 	dec	sp
                                    1195 ;	main.c:77: configure_SPI();
-      002DA1 12 39 D9         [24] 1196 	lcall	_configure_SPI
+      002DA1 12 39 E0         [24] 1196 	lcall	_configure_SPI
                                    1197 ;	main.c:79: enc_init(device_mac);
       002DA4 90 01 67         [24] 1198 	mov	dptr,#_main_device_mac_10000_137
       002DA7 75 F0 00         [24] 1199 	mov	b, #0x00
@@ -1201,183 +1201,183 @@
                                    1201 ;	main.c:81: while(1)
       002DAD                       1202 00142$:
                                    1203 ;	main.c:83: printf("\n\rChoose an action: \n\r");
-      002DAD 74 26            [12] 1204 	mov	a,#___str_2
+      002DAD 74 B5            [12] 1204 	mov	a,#___str_2
       002DAF C0 E0            [24] 1205 	push	acc
       002DB1 74 5D            [12] 1206 	mov	a,#(___str_2 >> 8)
       002DB3 C0 E0            [24] 1207 	push	acc
       002DB5 74 80            [12] 1208 	mov	a,#0x80
       002DB7 C0 E0            [24] 1209 	push	acc
-      002DB9 12 51 09         [24] 1210 	lcall	_printf
+      002DB9 12 51 98         [24] 1210 	lcall	_printf
       002DBC 15 81            [12] 1211 	dec	sp
       002DBE 15 81            [12] 1212 	dec	sp
       002DC0 15 81            [12] 1213 	dec	sp
                                    1214 ;	main.c:84: printf("1 --> Control Write\n\r");
-      002DC2 74 3D            [12] 1215 	mov	a,#___str_3
+      002DC2 74 CC            [12] 1215 	mov	a,#___str_3
       002DC4 C0 E0            [24] 1216 	push	acc
       002DC6 74 5D            [12] 1217 	mov	a,#(___str_3 >> 8)
       002DC8 C0 E0            [24] 1218 	push	acc
       002DCA 74 80            [12] 1219 	mov	a,#0x80
       002DCC C0 E0            [24] 1220 	push	acc
-      002DCE 12 51 09         [24] 1221 	lcall	_printf
+      002DCE 12 51 98         [24] 1221 	lcall	_printf
       002DD1 15 81            [12] 1222 	dec	sp
       002DD3 15 81            [12] 1223 	dec	sp
       002DD5 15 81            [12] 1224 	dec	sp
                                    1225 ;	main.c:85: printf("2 --> Buffer Write\n\r");
-      002DD7 74 53            [12] 1226 	mov	a,#___str_4
+      002DD7 74 E2            [12] 1226 	mov	a,#___str_4
       002DD9 C0 E0            [24] 1227 	push	acc
       002DDB 74 5D            [12] 1228 	mov	a,#(___str_4 >> 8)
       002DDD C0 E0            [24] 1229 	push	acc
       002DDF 74 80            [12] 1230 	mov	a,#0x80
       002DE1 C0 E0            [24] 1231 	push	acc
-      002DE3 12 51 09         [24] 1232 	lcall	_printf
+      002DE3 12 51 98         [24] 1232 	lcall	_printf
       002DE6 15 81            [12] 1233 	dec	sp
       002DE8 15 81            [12] 1234 	dec	sp
       002DEA 15 81            [12] 1235 	dec	sp
                                    1236 ;	main.c:86: printf("3 --> Buffer Read\n\r");
-      002DEC 74 68            [12] 1237 	mov	a,#___str_5
+      002DEC 74 F7            [12] 1237 	mov	a,#___str_5
       002DEE C0 E0            [24] 1238 	push	acc
       002DF0 74 5D            [12] 1239 	mov	a,#(___str_5 >> 8)
       002DF2 C0 E0            [24] 1240 	push	acc
       002DF4 74 80            [12] 1241 	mov	a,#0x80
       002DF6 C0 E0            [24] 1242 	push	acc
-      002DF8 12 51 09         [24] 1243 	lcall	_printf
+      002DF8 12 51 98         [24] 1243 	lcall	_printf
       002DFB 15 81            [12] 1244 	dec	sp
       002DFD 15 81            [12] 1245 	dec	sp
       002DFF 15 81            [12] 1246 	dec	sp
                                    1247 ;	main.c:87: printf("4 --> MAC Register Read\n\r");
-      002E01 74 7C            [12] 1248 	mov	a,#___str_6
+      002E01 74 0B            [12] 1248 	mov	a,#___str_6
       002E03 C0 E0            [24] 1249 	push	acc
-      002E05 74 5D            [12] 1250 	mov	a,#(___str_6 >> 8)
+      002E05 74 5E            [12] 1250 	mov	a,#(___str_6 >> 8)
       002E07 C0 E0            [24] 1251 	push	acc
       002E09 74 80            [12] 1252 	mov	a,#0x80
       002E0B C0 E0            [24] 1253 	push	acc
-      002E0D 12 51 09         [24] 1254 	lcall	_printf
+      002E0D 12 51 98         [24] 1254 	lcall	_printf
       002E10 15 81            [12] 1255 	dec	sp
       002E12 15 81            [12] 1256 	dec	sp
       002E14 15 81            [12] 1257 	dec	sp
                                    1258 ;	main.c:88: printf("5 --> PHY SPI Write\n\r");
-      002E16 74 96            [12] 1259 	mov	a,#___str_7
+      002E16 74 25            [12] 1259 	mov	a,#___str_7
       002E18 C0 E0            [24] 1260 	push	acc
-      002E1A 74 5D            [12] 1261 	mov	a,#(___str_7 >> 8)
+      002E1A 74 5E            [12] 1261 	mov	a,#(___str_7 >> 8)
       002E1C C0 E0            [24] 1262 	push	acc
       002E1E 74 80            [12] 1263 	mov	a,#0x80
       002E20 C0 E0            [24] 1264 	push	acc
-      002E22 12 51 09         [24] 1265 	lcall	_printf
+      002E22 12 51 98         [24] 1265 	lcall	_printf
       002E25 15 81            [12] 1266 	dec	sp
       002E27 15 81            [12] 1267 	dec	sp
       002E29 15 81            [12] 1268 	dec	sp
                                    1269 ;	main.c:89: printf("6 --> PHY SPI Read\n\r");
-      002E2B 74 AC            [12] 1270 	mov	a,#___str_8
+      002E2B 74 3B            [12] 1270 	mov	a,#___str_8
       002E2D C0 E0            [24] 1271 	push	acc
-      002E2F 74 5D            [12] 1272 	mov	a,#(___str_8 >> 8)
+      002E2F 74 5E            [12] 1272 	mov	a,#(___str_8 >> 8)
       002E31 C0 E0            [24] 1273 	push	acc
       002E33 74 80            [12] 1274 	mov	a,#0x80
       002E35 C0 E0            [24] 1275 	push	acc
-      002E37 12 51 09         [24] 1276 	lcall	_printf
+      002E37 12 51 98         [24] 1276 	lcall	_printf
       002E3A 15 81            [12] 1277 	dec	sp
       002E3C 15 81            [12] 1278 	dec	sp
       002E3E 15 81            [12] 1279 	dec	sp
                                    1280 ;	main.c:90: printf("7 --> ENC Reset\n\r");
-      002E40 74 C1            [12] 1281 	mov	a,#___str_9
+      002E40 74 50            [12] 1281 	mov	a,#___str_9
       002E42 C0 E0            [24] 1282 	push	acc
-      002E44 74 5D            [12] 1283 	mov	a,#(___str_9 >> 8)
+      002E44 74 5E            [12] 1283 	mov	a,#(___str_9 >> 8)
       002E46 C0 E0            [24] 1284 	push	acc
       002E48 74 80            [12] 1285 	mov	a,#0x80
       002E4A C0 E0            [24] 1286 	push	acc
-      002E4C 12 51 09         [24] 1287 	lcall	_printf
+      002E4C 12 51 98         [24] 1287 	lcall	_printf
       002E4F 15 81            [12] 1288 	dec	sp
       002E51 15 81            [12] 1289 	dec	sp
       002E53 15 81            [12] 1290 	dec	sp
                                    1291 ;	main.c:91: printf("8 --> Read ETH Register\n\r");
-      002E55 74 D3            [12] 1292 	mov	a,#___str_10
+      002E55 74 62            [12] 1292 	mov	a,#___str_10
       002E57 C0 E0            [24] 1293 	push	acc
-      002E59 74 5D            [12] 1294 	mov	a,#(___str_10 >> 8)
+      002E59 74 5E            [12] 1294 	mov	a,#(___str_10 >> 8)
       002E5B C0 E0            [24] 1295 	push	acc
       002E5D 74 80            [12] 1296 	mov	a,#0x80
       002E5F C0 E0            [24] 1297 	push	acc
-      002E61 12 51 09         [24] 1298 	lcall	_printf
+      002E61 12 51 98         [24] 1298 	lcall	_printf
       002E64 15 81            [12] 1299 	dec	sp
       002E66 15 81            [12] 1300 	dec	sp
       002E68 15 81            [12] 1301 	dec	sp
                                    1302 ;	main.c:92: printf("9 --> Display Menu\n\r");
-      002E6A 74 ED            [12] 1303 	mov	a,#___str_11
+      002E6A 74 7C            [12] 1303 	mov	a,#___str_11
       002E6C C0 E0            [24] 1304 	push	acc
-      002E6E 74 5D            [12] 1305 	mov	a,#(___str_11 >> 8)
+      002E6E 74 5E            [12] 1305 	mov	a,#(___str_11 >> 8)
       002E70 C0 E0            [24] 1306 	push	acc
       002E72 74 80            [12] 1307 	mov	a,#0x80
       002E74 C0 E0            [24] 1308 	push	acc
-      002E76 12 51 09         [24] 1309 	lcall	_printf
+      002E76 12 51 98         [24] 1309 	lcall	_printf
       002E79 15 81            [12] 1310 	dec	sp
       002E7B 15 81            [12] 1311 	dec	sp
       002E7D 15 81            [12] 1312 	dec	sp
                                    1313 ;	main.c:93: printf("A --> Send ARP Request\n\r");
-      002E7F 74 02            [12] 1314 	mov	a,#___str_12
+      002E7F 74 91            [12] 1314 	mov	a,#___str_12
       002E81 C0 E0            [24] 1315 	push	acc
       002E83 74 5E            [12] 1316 	mov	a,#(___str_12 >> 8)
       002E85 C0 E0            [24] 1317 	push	acc
       002E87 74 80            [12] 1318 	mov	a,#0x80
       002E89 C0 E0            [24] 1319 	push	acc
-      002E8B 12 51 09         [24] 1320 	lcall	_printf
+      002E8B 12 51 98         [24] 1320 	lcall	_printf
       002E8E 15 81            [12] 1321 	dec	sp
       002E90 15 81            [12] 1322 	dec	sp
       002E92 15 81            [12] 1323 	dec	sp
                                    1324 ;	main.c:94: printf("B --> Init RX buffers\n\r");
-      002E94 74 1B            [12] 1325 	mov	a,#___str_13
+      002E94 74 AA            [12] 1325 	mov	a,#___str_13
       002E96 C0 E0            [24] 1326 	push	acc
       002E98 74 5E            [12] 1327 	mov	a,#(___str_13 >> 8)
       002E9A C0 E0            [24] 1328 	push	acc
       002E9C 74 80            [12] 1329 	mov	a,#0x80
       002E9E C0 E0            [24] 1330 	push	acc
-      002EA0 12 51 09         [24] 1331 	lcall	_printf
+      002EA0 12 51 98         [24] 1331 	lcall	_printf
       002EA3 15 81            [12] 1332 	dec	sp
       002EA5 15 81            [12] 1333 	dec	sp
       002EA7 15 81            [12] 1334 	dec	sp
                                    1335 ;	main.c:95: printf("C --> Hard Reset(nRESET pin)\n\r");
-      002EA9 74 33            [12] 1336 	mov	a,#___str_14
+      002EA9 74 C2            [12] 1336 	mov	a,#___str_14
       002EAB C0 E0            [24] 1337 	push	acc
       002EAD 74 5E            [12] 1338 	mov	a,#(___str_14 >> 8)
       002EAF C0 E0            [24] 1339 	push	acc
       002EB1 74 80            [12] 1340 	mov	a,#0x80
       002EB3 C0 E0            [24] 1341 	push	acc
-      002EB5 12 51 09         [24] 1342 	lcall	_printf
+      002EB5 12 51 98         [24] 1342 	lcall	_printf
       002EB8 15 81            [12] 1343 	dec	sp
       002EBA 15 81            [12] 1344 	dec	sp
       002EBC 15 81            [12] 1345 	dec	sp
                                    1346 ;	main.c:96: printf("D --> Process TCP\n\r");
-      002EBE 74 52            [12] 1347 	mov	a,#___str_15
+      002EBE 74 E1            [12] 1347 	mov	a,#___str_15
       002EC0 C0 E0            [24] 1348 	push	acc
       002EC2 74 5E            [12] 1349 	mov	a,#(___str_15 >> 8)
       002EC4 C0 E0            [24] 1350 	push	acc
       002EC6 74 80            [12] 1351 	mov	a,#0x80
       002EC8 C0 E0            [24] 1352 	push	acc
-      002ECA 12 51 09         [24] 1353 	lcall	_printf
+      002ECA 12 51 98         [24] 1353 	lcall	_printf
       002ECD 15 81            [12] 1354 	dec	sp
       002ECF 15 81            [12] 1355 	dec	sp
       002ED1 15 81            [12] 1356 	dec	sp
                                    1357 ;	main.c:97: printf("E --> Enable TX interrupt\n\r");
-      002ED3 74 66            [12] 1358 	mov	a,#___str_16
+      002ED3 74 F5            [12] 1358 	mov	a,#___str_16
       002ED5 C0 E0            [24] 1359 	push	acc
       002ED7 74 5E            [12] 1360 	mov	a,#(___str_16 >> 8)
       002ED9 C0 E0            [24] 1361 	push	acc
       002EDB 74 80            [12] 1362 	mov	a,#0x80
       002EDD C0 E0            [24] 1363 	push	acc
-      002EDF 12 51 09         [24] 1364 	lcall	_printf
+      002EDF 12 51 98         [24] 1364 	lcall	_printf
       002EE2 15 81            [12] 1365 	dec	sp
       002EE4 15 81            [12] 1366 	dec	sp
       002EE6 15 81            [12] 1367 	dec	sp
                                    1368 ;	main.c:98: printf("F --> Disabling TX interrupt\n\r");
-      002EE8 74 82            [12] 1369 	mov	a,#___str_17
+      002EE8 74 11            [12] 1369 	mov	a,#___str_17
       002EEA C0 E0            [24] 1370 	push	acc
-      002EEC 74 5E            [12] 1371 	mov	a,#(___str_17 >> 8)
+      002EEC 74 5F            [12] 1371 	mov	a,#(___str_17 >> 8)
       002EEE C0 E0            [24] 1372 	push	acc
       002EF0 74 80            [12] 1373 	mov	a,#0x80
       002EF2 C0 E0            [24] 1374 	push	acc
-      002EF4 12 51 09         [24] 1375 	lcall	_printf
+      002EF4 12 51 98         [24] 1375 	lcall	_printf
       002EF7 15 81            [12] 1376 	dec	sp
       002EF9 15 81            [12] 1377 	dec	sp
       002EFB 15 81            [12] 1378 	dec	sp
                                    1379 ;	main.c:100: char c = getchar();
-      002EFD 12 4A 7C         [24] 1380 	lcall	_getchar
+      002EFD 12 4B 0B         [24] 1380 	lcall	_getchar
       002F00 AE 82            [24] 1381 	mov	r6, dpl
                                    1382 ;	main.c:101: putchar(c);
       002F02 8E 05            [24] 1383 	mov	ar5,r6
@@ -1385,15 +1385,15 @@
       002F06 8D 82            [24] 1385 	mov	dpl, r5
       002F08 8F 83            [24] 1386 	mov	dph, r7
       002F0A C0 06            [24] 1387 	push	ar6
-      002F0C 12 4A 5D         [24] 1388 	lcall	_putchar
+      002F0C 12 4A EC         [24] 1388 	lcall	_putchar
                                    1389 ;	main.c:102: printf("\n\r");
-      002F0F 74 0A            [12] 1390 	mov	a,#___str_0
+      002F0F 74 99            [12] 1390 	mov	a,#___str_0
       002F11 C0 E0            [24] 1391 	push	acc
       002F13 74 5D            [12] 1392 	mov	a,#(___str_0 >> 8)
       002F15 C0 E0            [24] 1393 	push	acc
       002F17 74 80            [12] 1394 	mov	a,#0x80
       002F19 C0 E0            [24] 1395 	push	acc
-      002F1B 12 51 09         [24] 1396 	lcall	_printf
+      002F1B 12 51 98         [24] 1396 	lcall	_printf
       002F1E 15 81            [12] 1397 	dec	sp
       002F20 15 81            [12] 1398 	dec	sp
       002F22 15 81            [12] 1399 	dec	sp
@@ -1402,12 +1402,12 @@
       002F26 BE 31 00         [24] 1402 	cjne	r6,#0x31,00250$
       002F29                       1403 00250$:
       002F29 50 03            [24] 1404 	jnc	00251$
-      002F2B 02 38 4A         [24] 1405 	ljmp	00139$
+      002F2B 02 38 51         [24] 1405 	ljmp	00139$
       002F2E                       1406 00251$:
       002F2E EE               [12] 1407 	mov	a,r6
       002F2F 24 B9            [12] 1408 	add	a,#0xff - 0x46
       002F31 50 03            [24] 1409 	jnc	00252$
-      002F33 02 38 4A         [24] 1410 	ljmp	00139$
+      002F33 02 38 51         [24] 1410 	ljmp	00139$
       002F36                       1411 00252$:
       002F36 EE               [12] 1412 	mov	a,r6
       002F37 24 CF            [12] 1413 	add	a,#0xcf
@@ -1431,19 +1431,19 @@
       002F4D 40                    1431 	.db	00108$
       002F4E 5B                    1432 	.db	00109$
       002F4F BD                    1433 	.db	00110$
-      002F50 4A                    1434 	.db	00139$
-      002F51 4A                    1435 	.db	00139$
-      002F52 4A                    1436 	.db	00139$
-      002F53 4A                    1437 	.db	00139$
-      002F54 4A                    1438 	.db	00139$
-      002F55 4A                    1439 	.db	00139$
-      002F56 4A                    1440 	.db	00139$
+      002F50 51                    1434 	.db	00139$
+      002F51 51                    1435 	.db	00139$
+      002F52 51                    1436 	.db	00139$
+      002F53 51                    1437 	.db	00139$
+      002F54 51                    1438 	.db	00139$
+      002F55 51                    1439 	.db	00139$
+      002F56 51                    1440 	.db	00139$
       002F57 7D                    1441 	.db	00111$
       002F58 AD                    1442 	.db	00142$
-      002F59 AE                    1443 	.db	00134$
-      002F5A E0                    1444 	.db	00136$
-      002F5B E9                    1445 	.db	00137$
-      002F5C 24                    1446 	.db	00138$
+      002F59 B5                    1443 	.db	00134$
+      002F5A E7                    1444 	.db	00136$
+      002F5B F0                    1445 	.db	00137$
+      002F5C 2B                    1446 	.db	00138$
       002F5D                       1447 00254$:
       002F5D 2F                    1448 	.db	00101$>>8
       002F5E 2F                    1449 	.db	00102$>>8
@@ -1470,13 +1470,13 @@
                                    1470 ;	main.c:106: case '1': {
       002F73                       1471 00101$:
                                    1472 ;	main.c:107: printf("Enter the register bank to select:\n\r");
-      002F73 74 A1            [12] 1473 	mov	a,#___str_18
+      002F73 74 30            [12] 1473 	mov	a,#___str_18
       002F75 C0 E0            [24] 1474 	push	acc
-      002F77 74 5E            [12] 1475 	mov	a,#(___str_18 >> 8)
+      002F77 74 5F            [12] 1475 	mov	a,#(___str_18 >> 8)
       002F79 C0 E0            [24] 1476 	push	acc
       002F7B 74 80            [12] 1477 	mov	a,#0x80
       002F7D C0 E0            [24] 1478 	push	acc
-      002F7F 12 51 09         [24] 1479 	lcall	_printf
+      002F7F 12 51 98         [24] 1479 	lcall	_printf
       002F82 15 81            [12] 1480 	dec	sp
       002F84 15 81            [12] 1481 	dec	sp
       002F86 15 81            [12] 1482 	dec	sp
@@ -1485,13 +1485,13 @@
       002F8B AE 82            [24] 1485 	mov	r6, dpl
                                    1486 ;	main.c:109: printf("Enter the address of the Control Register:\n\r");
       002F8D C0 06            [24] 1487 	push	ar6
-      002F8F 74 C6            [12] 1488 	mov	a,#___str_19
+      002F8F 74 55            [12] 1488 	mov	a,#___str_19
       002F91 C0 E0            [24] 1489 	push	acc
-      002F93 74 5E            [12] 1490 	mov	a,#(___str_19 >> 8)
+      002F93 74 5F            [12] 1490 	mov	a,#(___str_19 >> 8)
       002F95 C0 E0            [24] 1491 	push	acc
       002F97 74 80            [12] 1492 	mov	a,#0x80
       002F99 C0 E0            [24] 1493 	push	acc
-      002F9B 12 51 09         [24] 1494 	lcall	_printf
+      002F9B 12 51 98         [24] 1494 	lcall	_printf
       002F9E 15 81            [12] 1495 	dec	sp
       002FA0 15 81            [12] 1496 	dec	sp
       002FA2 15 81            [12] 1497 	dec	sp
@@ -1500,13 +1500,13 @@
       002FA7 AD 82            [24] 1500 	mov	r5, dpl
                                    1501 ;	main.c:111: printf("Enter the data you want to write:\n\r");
       002FA9 C0 05            [24] 1502 	push	ar5
-      002FAB 74 F3            [12] 1503 	mov	a,#___str_20
+      002FAB 74 82            [12] 1503 	mov	a,#___str_20
       002FAD C0 E0            [24] 1504 	push	acc
-      002FAF 74 5E            [12] 1505 	mov	a,#(___str_20 >> 8)
+      002FAF 74 5F            [12] 1505 	mov	a,#(___str_20 >> 8)
       002FB1 C0 E0            [24] 1506 	push	acc
       002FB3 74 80            [12] 1507 	mov	a,#0x80
       002FB5 C0 E0            [24] 1508 	push	acc
-      002FB7 12 51 09         [24] 1509 	lcall	_printf
+      002FB7 12 51 98         [24] 1509 	lcall	_printf
       002FBA 15 81            [12] 1510 	dec	sp
       002FBC 15 81            [12] 1511 	dec	sp
       002FBE 15 81            [12] 1512 	dec	sp
@@ -1523,19 +1523,19 @@
       002FD1 EC               [12] 1523 	mov	a,r4
       002FD2 F0               [24] 1524 	movx	@dptr,a
       002FD3 8E 82            [24] 1525 	mov	dpl, r6
-      002FD5 12 39 7D         [24] 1526 	lcall	_spi_control_write
+      002FD5 12 39 84         [24] 1526 	lcall	_spi_control_write
                                    1527 ;	main.c:114: break;
       002FD8 02 2D AD         [24] 1528 	ljmp	00142$
                                    1529 ;	main.c:116: case '2': {
       002FDB                       1530 00102$:
                                    1531 ;	main.c:117: printf("Enter the number of bytes to write:\n\r");
-      002FDB 74 17            [12] 1532 	mov	a,#___str_21
+      002FDB 74 A6            [12] 1532 	mov	a,#___str_21
       002FDD C0 E0            [24] 1533 	push	acc
       002FDF 74 5F            [12] 1534 	mov	a,#(___str_21 >> 8)
       002FE1 C0 E0            [24] 1535 	push	acc
       002FE3 74 80            [12] 1536 	mov	a,#0x80
       002FE5 C0 E0            [24] 1537 	push	acc
-      002FE7 12 51 09         [24] 1538 	lcall	_printf
+      002FE7 12 51 98         [24] 1538 	lcall	_printf
       002FEA 15 81            [12] 1539 	dec	sp
       002FEC 15 81            [12] 1540 	dec	sp
       002FEE 15 81            [12] 1541 	dec	sp
@@ -1546,13 +1546,13 @@
                                    1546 ;	main.c:119: printf("Enter the starting address:\n\r");
       002FF7 C0 07            [24] 1547 	push	ar7
       002FF9 C0 06            [24] 1548 	push	ar6
-      002FFB 74 3D            [12] 1549 	mov	a,#___str_22
+      002FFB 74 CC            [12] 1549 	mov	a,#___str_22
       002FFD C0 E0            [24] 1550 	push	acc
       002FFF 74 5F            [12] 1551 	mov	a,#(___str_22 >> 8)
       003001 C0 E0            [24] 1552 	push	acc
       003003 74 80            [12] 1553 	mov	a,#0x80
       003005 C0 E0            [24] 1554 	push	acc
-      003007 12 51 09         [24] 1555 	lcall	_printf
+      003007 12 51 98         [24] 1555 	lcall	_printf
       00300A 15 81            [12] 1556 	dec	sp
       00300C 15 81            [12] 1557 	dec	sp
       00300E 15 81            [12] 1558 	dec	sp
@@ -1569,13 +1569,13 @@
       003021 C0 04            [24] 1569 	push	ar4
       003023 C0 06            [24] 1570 	push	ar6
       003025 C0 07            [24] 1571 	push	ar7
-      003027 74 5B            [12] 1572 	mov	a,#___str_23
+      003027 74 EA            [12] 1572 	mov	a,#___str_23
       003029 C0 E0            [24] 1573 	push	acc
       00302B 74 5F            [12] 1574 	mov	a,#(___str_23 >> 8)
       00302D C0 E0            [24] 1575 	push	acc
       00302F 74 80            [12] 1576 	mov	a,#0x80
       003031 C0 E0            [24] 1577 	push	acc
-      003033 12 51 09         [24] 1578 	lcall	_printf
+      003033 12 51 98         [24] 1578 	lcall	_printf
       003036 E5 81            [12] 1579 	mov	a,sp
       003038 24 FB            [12] 1580 	add	a,#0xfb
       00303A F5 81            [12] 1581 	mov	sp,a
@@ -1607,13 +1607,13 @@
       003065 C0 02            [24] 1607 	push	ar2
       003067 C0 02            [24] 1608 	push	ar2
       003069 C0 03            [24] 1609 	push	ar3
-      00306B 74 7E            [12] 1610 	mov	a,#___str_24
+      00306B 74 0D            [12] 1610 	mov	a,#___str_24
       00306D C0 E0            [24] 1611 	push	acc
-      00306F 74 5F            [12] 1612 	mov	a,#(___str_24 >> 8)
+      00306F 74 60            [12] 1612 	mov	a,#(___str_24 >> 8)
       003071 C0 E0            [24] 1613 	push	acc
       003073 74 80            [12] 1614 	mov	a,#0x80
       003075 C0 E0            [24] 1615 	push	acc
-      003077 12 51 09         [24] 1616 	lcall	_printf
+      003077 12 51 98         [24] 1616 	lcall	_printf
       00307A E5 81            [12] 1617 	mov	a,sp
       00307C 24 FB            [12] 1618 	add	a,#0xfb
       00307E F5 81            [12] 1619 	mov	sp,a
@@ -1671,19 +1671,19 @@
       0030CE F0               [24] 1671 	movx	@dptr,a
       0030CF 8E 82            [24] 1672 	mov	dpl, r6
       0030D1 8F 83            [24] 1673 	mov	dph, r7
-      0030D3 12 3F 06         [24] 1674 	lcall	_spi_buffer_write
+      0030D3 12 3F 0D         [24] 1674 	lcall	_spi_buffer_write
                                    1675 ;	main.c:128: break;
       0030D6 02 2D AD         [24] 1676 	ljmp	00142$
                                    1677 ;	main.c:130: case '3': {
       0030D9                       1678 00104$:
                                    1679 ;	main.c:131: printf("Enter the number of bytes to read:\n\r");
-      0030D9 74 88            [12] 1680 	mov	a,#___str_25
+      0030D9 74 17            [12] 1680 	mov	a,#___str_25
       0030DB C0 E0            [24] 1681 	push	acc
-      0030DD 74 5F            [12] 1682 	mov	a,#(___str_25 >> 8)
+      0030DD 74 60            [12] 1682 	mov	a,#(___str_25 >> 8)
       0030DF C0 E0            [24] 1683 	push	acc
       0030E1 74 80            [12] 1684 	mov	a,#0x80
       0030E3 C0 E0            [24] 1685 	push	acc
-      0030E5 12 51 09         [24] 1686 	lcall	_printf
+      0030E5 12 51 98         [24] 1686 	lcall	_printf
       0030E8 15 81            [12] 1687 	dec	sp
       0030EA 15 81            [12] 1688 	dec	sp
       0030EC 15 81            [12] 1689 	dec	sp
@@ -1694,13 +1694,13 @@
                                    1694 ;	main.c:133: printf("Enter the starting address:\n\r");
       0030F5 C0 07            [24] 1695 	push	ar7
       0030F7 C0 06            [24] 1696 	push	ar6
-      0030F9 74 3D            [12] 1697 	mov	a,#___str_22
+      0030F9 74 CC            [12] 1697 	mov	a,#___str_22
       0030FB C0 E0            [24] 1698 	push	acc
       0030FD 74 5F            [12] 1699 	mov	a,#(___str_22 >> 8)
       0030FF C0 E0            [24] 1700 	push	acc
       003101 74 80            [12] 1701 	mov	a,#0x80
       003103 C0 E0            [24] 1702 	push	acc
-      003105 12 51 09         [24] 1703 	lcall	_printf
+      003105 12 51 98         [24] 1703 	lcall	_printf
       003108 15 81            [12] 1704 	dec	sp
       00310A 15 81            [12] 1705 	dec	sp
       00310C 15 81            [12] 1706 	dec	sp
@@ -1728,19 +1728,19 @@
       00312D F0               [24] 1728 	movx	@dptr,a
       00312E 8E 82            [24] 1729 	mov	dpl, r6
       003130 8F 83            [24] 1730 	mov	dph, r7
-      003132 12 3D 2D         [24] 1731 	lcall	_spi_buffer_read
+      003132 12 3D 34         [24] 1731 	lcall	_spi_buffer_read
                                    1732 ;	main.c:137: break;
       003135 02 2D AD         [24] 1733 	ljmp	00142$
                                    1734 ;	main.c:139: case '4': {
       003138                       1735 00105$:
                                    1736 ;	main.c:140: printf("Enter the MAC register bank to select:\n\r");
-      003138 74 AD            [12] 1737 	mov	a,#___str_26
+      003138 74 3C            [12] 1737 	mov	a,#___str_26
       00313A C0 E0            [24] 1738 	push	acc
-      00313C 74 5F            [12] 1739 	mov	a,#(___str_26 >> 8)
+      00313C 74 60            [12] 1739 	mov	a,#(___str_26 >> 8)
       00313E C0 E0            [24] 1740 	push	acc
       003140 74 80            [12] 1741 	mov	a,#0x80
       003142 C0 E0            [24] 1742 	push	acc
-      003144 12 51 09         [24] 1743 	lcall	_printf
+      003144 12 51 98         [24] 1743 	lcall	_printf
       003147 15 81            [12] 1744 	dec	sp
       003149 15 81            [12] 1745 	dec	sp
       00314B 15 81            [12] 1746 	dec	sp
@@ -1749,13 +1749,13 @@
       003150 AE 82            [24] 1749 	mov	r6, dpl
                                    1750 ;	main.c:142: printf("Enter the address of the MAC Register:\n\r");
       003152 C0 06            [24] 1751 	push	ar6
-      003154 74 D6            [12] 1752 	mov	a,#___str_27
+      003154 74 65            [12] 1752 	mov	a,#___str_27
       003156 C0 E0            [24] 1753 	push	acc
-      003158 74 5F            [12] 1754 	mov	a,#(___str_27 >> 8)
+      003158 74 60            [12] 1754 	mov	a,#(___str_27 >> 8)
       00315A C0 E0            [24] 1755 	push	acc
       00315C 74 80            [12] 1756 	mov	a,#0x80
       00315E C0 E0            [24] 1757 	push	acc
-      003160 12 51 09         [24] 1758 	lcall	_printf
+      003160 12 51 98         [24] 1758 	lcall	_printf
       003163 15 81            [12] 1759 	dec	sp
       003165 15 81            [12] 1760 	dec	sp
       003167 15 81            [12] 1761 	dec	sp
@@ -1768,19 +1768,19 @@
       003173 EE               [12] 1768 	mov	a,r6
       003174 F0               [24] 1769 	movx	@dptr,a
       003175 8D 82            [24] 1770 	mov	dpl, r5
-      003177 12 3A F3         [24] 1771 	lcall	_mac_spi_read
+      003177 12 3A FA         [24] 1771 	lcall	_mac_spi_read
       00317A AF 82            [24] 1772 	mov	r7, dpl
                                    1773 ;	main.c:145: printf("MAC Register Data: 0x%02X\n\r", data);
       00317C 7E 00            [12] 1774 	mov	r6,#0x00
       00317E C0 07            [24] 1775 	push	ar7
       003180 C0 06            [24] 1776 	push	ar6
-      003182 74 FF            [12] 1777 	mov	a,#___str_28
+      003182 74 8E            [12] 1777 	mov	a,#___str_28
       003184 C0 E0            [24] 1778 	push	acc
-      003186 74 5F            [12] 1779 	mov	a,#(___str_28 >> 8)
+      003186 74 60            [12] 1779 	mov	a,#(___str_28 >> 8)
       003188 C0 E0            [24] 1780 	push	acc
       00318A 74 80            [12] 1781 	mov	a,#0x80
       00318C C0 E0            [24] 1782 	push	acc
-      00318E 12 51 09         [24] 1783 	lcall	_printf
+      00318E 12 51 98         [24] 1783 	lcall	_printf
       003191 E5 81            [12] 1784 	mov	a,sp
       003193 24 FB            [12] 1785 	add	a,#0xfb
       003195 F5 81            [12] 1786 	mov	sp,a
@@ -1789,13 +1789,13 @@
                                    1789 ;	main.c:148: case '5': {
       00319A                       1790 00106$:
                                    1791 ;	main.c:149: printf("Enter the PHY register address:\n\r");
-      00319A 74 1B            [12] 1792 	mov	a,#___str_29
+      00319A 74 AA            [12] 1792 	mov	a,#___str_29
       00319C C0 E0            [24] 1793 	push	acc
       00319E 74 60            [12] 1794 	mov	a,#(___str_29 >> 8)
       0031A0 C0 E0            [24] 1795 	push	acc
       0031A2 74 80            [12] 1796 	mov	a,#0x80
       0031A4 C0 E0            [24] 1797 	push	acc
-      0031A6 12 51 09         [24] 1798 	lcall	_printf
+      0031A6 12 51 98         [24] 1798 	lcall	_printf
       0031A9 15 81            [12] 1799 	dec	sp
       0031AB 15 81            [12] 1800 	dec	sp
       0031AD 15 81            [12] 1801 	dec	sp
@@ -1804,13 +1804,13 @@
       0031B2 AE 82            [24] 1804 	mov	r6, dpl
                                    1805 ;	main.c:151: printf("Enter the 16-bit data to write:\n\r");
       0031B4 C0 06            [24] 1806 	push	ar6
-      0031B6 74 3D            [12] 1807 	mov	a,#___str_30
+      0031B6 74 CC            [12] 1807 	mov	a,#___str_30
       0031B8 C0 E0            [24] 1808 	push	acc
       0031BA 74 60            [12] 1809 	mov	a,#(___str_30 >> 8)
       0031BC C0 E0            [24] 1810 	push	acc
       0031BE 74 80            [12] 1811 	mov	a,#0x80
       0031C0 C0 E0            [24] 1812 	push	acc
-      0031C2 12 51 09         [24] 1813 	lcall	_printf
+      0031C2 12 51 98         [24] 1813 	lcall	_printf
       0031C5 15 81            [12] 1814 	dec	sp
       0031C7 15 81            [12] 1815 	dec	sp
       0031C9 15 81            [12] 1816 	dec	sp
@@ -1829,19 +1829,19 @@
       0031DC 8E 82            [24] 1829 	mov	dpl, r6
       0031DE C0 07            [24] 1830 	push	ar7
       0031E0 C0 05            [24] 1831 	push	ar5
-      0031E2 12 3A 70         [24] 1832 	lcall	_phy_spi_write
+      0031E2 12 3A 77         [24] 1832 	lcall	_phy_spi_write
       0031E5 D0 05            [24] 1833 	pop	ar5
       0031E7 D0 07            [24] 1834 	pop	ar7
                                    1835 ;	main.c:154: printf("PHY Write Data: 0x%04X\n\r", data);
       0031E9 C0 05            [24] 1836 	push	ar5
       0031EB C0 07            [24] 1837 	push	ar7
-      0031ED 74 5F            [12] 1838 	mov	a,#___str_31
+      0031ED 74 EE            [12] 1838 	mov	a,#___str_31
       0031EF C0 E0            [24] 1839 	push	acc
       0031F1 74 60            [12] 1840 	mov	a,#(___str_31 >> 8)
       0031F3 C0 E0            [24] 1841 	push	acc
       0031F5 74 80            [12] 1842 	mov	a,#0x80
       0031F7 C0 E0            [24] 1843 	push	acc
-      0031F9 12 51 09         [24] 1844 	lcall	_printf
+      0031F9 12 51 98         [24] 1844 	lcall	_printf
       0031FC E5 81            [12] 1845 	mov	a,sp
       0031FE 24 FB            [12] 1846 	add	a,#0xfb
       003200 F5 81            [12] 1847 	mov	sp,a
@@ -1850,32 +1850,32 @@
                                    1850 ;	main.c:157: case '6': {
       003205                       1851 00107$:
                                    1852 ;	main.c:158: printf("Enter the PHY register address to read:\n\r");
-      003205 74 78            [12] 1853 	mov	a,#___str_32
+      003205 74 07            [12] 1853 	mov	a,#___str_32
       003207 C0 E0            [24] 1854 	push	acc
-      003209 74 60            [12] 1855 	mov	a,#(___str_32 >> 8)
+      003209 74 61            [12] 1855 	mov	a,#(___str_32 >> 8)
       00320B C0 E0            [24] 1856 	push	acc
       00320D 74 80            [12] 1857 	mov	a,#0x80
       00320F C0 E0            [24] 1858 	push	acc
-      003211 12 51 09         [24] 1859 	lcall	_printf
+      003211 12 51 98         [24] 1859 	lcall	_printf
       003214 15 81            [12] 1860 	dec	sp
       003216 15 81            [12] 1861 	dec	sp
       003218 15 81            [12] 1862 	dec	sp
                                    1863 ;	main.c:159: uint8_t addr = get_user_buffer_size();
       00321A 12 2C 93         [24] 1864 	lcall	_get_user_buffer_size
                                    1865 ;	main.c:160: uint16_t data = phy_spi_read(addr);
-      00321D 12 3B 36         [24] 1866 	lcall	_phy_spi_read
+      00321D 12 3B 3D         [24] 1866 	lcall	_phy_spi_read
       003220 AE 82            [24] 1867 	mov	r6, dpl
       003222 AF 83            [24] 1868 	mov	r7, dph
                                    1869 ;	main.c:161: printf("PHY Read Data: 0x%04X\n\r", data);
       003224 C0 06            [24] 1870 	push	ar6
       003226 C0 07            [24] 1871 	push	ar7
-      003228 74 A2            [12] 1872 	mov	a,#___str_33
+      003228 74 31            [12] 1872 	mov	a,#___str_33
       00322A C0 E0            [24] 1873 	push	acc
-      00322C 74 60            [12] 1874 	mov	a,#(___str_33 >> 8)
+      00322C 74 61            [12] 1874 	mov	a,#(___str_33 >> 8)
       00322E C0 E0            [24] 1875 	push	acc
       003230 74 80            [12] 1876 	mov	a,#0x80
       003232 C0 E0            [24] 1877 	push	acc
-      003234 12 51 09         [24] 1878 	lcall	_printf
+      003234 12 51 98         [24] 1878 	lcall	_printf
       003237 E5 81            [12] 1879 	mov	a,sp
       003239 24 FB            [12] 1880 	add	a,#0xfb
       00323B F5 81            [12] 1881 	mov	sp,a
@@ -1884,30 +1884,30 @@
                                    1884 ;	main.c:164: case '7': {
       003240                       1885 00108$:
                                    1886 ;	main.c:165: printf("Resetting ENC28J60...\n\r");
-      003240 74 BA            [12] 1887 	mov	a,#___str_34
+      003240 74 49            [12] 1887 	mov	a,#___str_34
       003242 C0 E0            [24] 1888 	push	acc
-      003244 74 60            [12] 1889 	mov	a,#(___str_34 >> 8)
+      003244 74 61            [12] 1889 	mov	a,#(___str_34 >> 8)
       003246 C0 E0            [24] 1890 	push	acc
       003248 74 80            [12] 1891 	mov	a,#0x80
       00324A C0 E0            [24] 1892 	push	acc
-      00324C 12 51 09         [24] 1893 	lcall	_printf
+      00324C 12 51 98         [24] 1893 	lcall	_printf
       00324F 15 81            [12] 1894 	dec	sp
       003251 15 81            [12] 1895 	dec	sp
       003253 15 81            [12] 1896 	dec	sp
                                    1897 ;	main.c:166: enc_reset();
-      003255 12 39 F7         [24] 1898 	lcall	_enc_reset
+      003255 12 39 FE         [24] 1898 	lcall	_enc_reset
                                    1899 ;	main.c:167: break;
       003258 02 2D AD         [24] 1900 	ljmp	00142$
                                    1901 ;	main.c:169: case '8': {
       00325B                       1902 00109$:
                                    1903 ;	main.c:170: printf("Enter the ETH register address to read:\n\r");
-      00325B 74 D2            [12] 1904 	mov	a,#___str_35
+      00325B 74 61            [12] 1904 	mov	a,#___str_35
       00325D C0 E0            [24] 1905 	push	acc
-      00325F 74 60            [12] 1906 	mov	a,#(___str_35 >> 8)
+      00325F 74 61            [12] 1906 	mov	a,#(___str_35 >> 8)
       003261 C0 E0            [24] 1907 	push	acc
       003263 74 80            [12] 1908 	mov	a,#0x80
       003265 C0 E0            [24] 1909 	push	acc
-      003267 12 51 09         [24] 1910 	lcall	_printf
+      003267 12 51 98         [24] 1910 	lcall	_printf
       00326A 15 81            [12] 1911 	dec	sp
       00326C 15 81            [12] 1912 	dec	sp
       00326E 15 81            [12] 1913 	dec	sp
@@ -1916,13 +1916,13 @@
       003273 AE 82            [24] 1916 	mov	r6, dpl
                                    1917 ;	main.c:172: printf("Enter the bank (0 or 1):\n\r");
       003275 C0 06            [24] 1918 	push	ar6
-      003277 74 FC            [12] 1919 	mov	a,#___str_36
+      003277 74 8B            [12] 1919 	mov	a,#___str_36
       003279 C0 E0            [24] 1920 	push	acc
-      00327B 74 60            [12] 1921 	mov	a,#(___str_36 >> 8)
+      00327B 74 61            [12] 1921 	mov	a,#(___str_36 >> 8)
       00327D C0 E0            [24] 1922 	push	acc
       00327F 74 80            [12] 1923 	mov	a,#0x80
       003281 C0 E0            [24] 1924 	push	acc
-      003283 12 51 09         [24] 1925 	lcall	_printf
+      003283 12 51 98         [24] 1925 	lcall	_printf
       003286 15 81            [12] 1926 	dec	sp
       003288 15 81            [12] 1927 	dec	sp
       00328A 15 81            [12] 1928 	dec	sp
@@ -1935,19 +1935,19 @@
       003297 F0               [24] 1935 	movx	@dptr,a
                                    1936 ;	main.c:174: uint8_t data = eth_spi_read(addr, bank);
       003298 8E 82            [24] 1937 	mov	dpl, r6
-      00329A 12 3A 02         [24] 1938 	lcall	_eth_spi_read
+      00329A 12 3A 09         [24] 1938 	lcall	_eth_spi_read
       00329D AF 82            [24] 1939 	mov	r7, dpl
                                    1940 ;	main.c:175: printf("ETH Register Data: 0x%02X\n\r", data);
       00329F 7E 00            [12] 1941 	mov	r6,#0x00
       0032A1 C0 07            [24] 1942 	push	ar7
       0032A3 C0 06            [24] 1943 	push	ar6
-      0032A5 74 17            [12] 1944 	mov	a,#___str_37
+      0032A5 74 A6            [12] 1944 	mov	a,#___str_37
       0032A7 C0 E0            [24] 1945 	push	acc
       0032A9 74 61            [12] 1946 	mov	a,#(___str_37 >> 8)
       0032AB C0 E0            [24] 1947 	push	acc
       0032AD 74 80            [12] 1948 	mov	a,#0x80
       0032AF C0 E0            [24] 1949 	push	acc
-      0032B1 12 51 09         [24] 1950 	lcall	_printf
+      0032B1 12 51 98         [24] 1950 	lcall	_printf
       0032B4 E5 81            [12] 1951 	mov	a,sp
       0032B6 24 FB            [12] 1952 	add	a,#0xfb
       0032B8 F5 81            [12] 1953 	mov	sp,a
@@ -1956,101 +1956,101 @@
                                    1956 ;	main.c:178: case '9': {
       0032BD                       1957 00110$:
                                    1958 ;	main.c:179: printf("\n\rChoose an action: \n\r");
-      0032BD 74 26            [12] 1959 	mov	a,#___str_2
+      0032BD 74 B5            [12] 1959 	mov	a,#___str_2
       0032BF C0 E0            [24] 1960 	push	acc
       0032C1 74 5D            [12] 1961 	mov	a,#(___str_2 >> 8)
       0032C3 C0 E0            [24] 1962 	push	acc
       0032C5 74 80            [12] 1963 	mov	a,#0x80
       0032C7 C0 E0            [24] 1964 	push	acc
-      0032C9 12 51 09         [24] 1965 	lcall	_printf
+      0032C9 12 51 98         [24] 1965 	lcall	_printf
       0032CC 15 81            [12] 1966 	dec	sp
       0032CE 15 81            [12] 1967 	dec	sp
       0032D0 15 81            [12] 1968 	dec	sp
                                    1969 ;	main.c:180: printf("1 --> Control Write\n\r");
-      0032D2 74 3D            [12] 1970 	mov	a,#___str_3
+      0032D2 74 CC            [12] 1970 	mov	a,#___str_3
       0032D4 C0 E0            [24] 1971 	push	acc
       0032D6 74 5D            [12] 1972 	mov	a,#(___str_3 >> 8)
       0032D8 C0 E0            [24] 1973 	push	acc
       0032DA 74 80            [12] 1974 	mov	a,#0x80
       0032DC C0 E0            [24] 1975 	push	acc
-      0032DE 12 51 09         [24] 1976 	lcall	_printf
+      0032DE 12 51 98         [24] 1976 	lcall	_printf
       0032E1 15 81            [12] 1977 	dec	sp
       0032E3 15 81            [12] 1978 	dec	sp
       0032E5 15 81            [12] 1979 	dec	sp
                                    1980 ;	main.c:181: printf("2 --> Buffer Write\n\r");
-      0032E7 74 53            [12] 1981 	mov	a,#___str_4
+      0032E7 74 E2            [12] 1981 	mov	a,#___str_4
       0032E9 C0 E0            [24] 1982 	push	acc
       0032EB 74 5D            [12] 1983 	mov	a,#(___str_4 >> 8)
       0032ED C0 E0            [24] 1984 	push	acc
       0032EF 74 80            [12] 1985 	mov	a,#0x80
       0032F1 C0 E0            [24] 1986 	push	acc
-      0032F3 12 51 09         [24] 1987 	lcall	_printf
+      0032F3 12 51 98         [24] 1987 	lcall	_printf
       0032F6 15 81            [12] 1988 	dec	sp
       0032F8 15 81            [12] 1989 	dec	sp
       0032FA 15 81            [12] 1990 	dec	sp
                                    1991 ;	main.c:182: printf("3 --> Buffer Read\n\r");
-      0032FC 74 68            [12] 1992 	mov	a,#___str_5
+      0032FC 74 F7            [12] 1992 	mov	a,#___str_5
       0032FE C0 E0            [24] 1993 	push	acc
       003300 74 5D            [12] 1994 	mov	a,#(___str_5 >> 8)
       003302 C0 E0            [24] 1995 	push	acc
       003304 74 80            [12] 1996 	mov	a,#0x80
       003306 C0 E0            [24] 1997 	push	acc
-      003308 12 51 09         [24] 1998 	lcall	_printf
+      003308 12 51 98         [24] 1998 	lcall	_printf
       00330B 15 81            [12] 1999 	dec	sp
       00330D 15 81            [12] 2000 	dec	sp
       00330F 15 81            [12] 2001 	dec	sp
                                    2002 ;	main.c:183: printf("4 --> MAC Register Read\n\r");
-      003311 74 7C            [12] 2003 	mov	a,#___str_6
+      003311 74 0B            [12] 2003 	mov	a,#___str_6
       003313 C0 E0            [24] 2004 	push	acc
-      003315 74 5D            [12] 2005 	mov	a,#(___str_6 >> 8)
+      003315 74 5E            [12] 2005 	mov	a,#(___str_6 >> 8)
       003317 C0 E0            [24] 2006 	push	acc
       003319 74 80            [12] 2007 	mov	a,#0x80
       00331B C0 E0            [24] 2008 	push	acc
-      00331D 12 51 09         [24] 2009 	lcall	_printf
+      00331D 12 51 98         [24] 2009 	lcall	_printf
       003320 15 81            [12] 2010 	dec	sp
       003322 15 81            [12] 2011 	dec	sp
       003324 15 81            [12] 2012 	dec	sp
                                    2013 ;	main.c:184: printf("5 --> PHY SPI Write\n\r");
-      003326 74 96            [12] 2014 	mov	a,#___str_7
+      003326 74 25            [12] 2014 	mov	a,#___str_7
       003328 C0 E0            [24] 2015 	push	acc
-      00332A 74 5D            [12] 2016 	mov	a,#(___str_7 >> 8)
+      00332A 74 5E            [12] 2016 	mov	a,#(___str_7 >> 8)
       00332C C0 E0            [24] 2017 	push	acc
       00332E 74 80            [12] 2018 	mov	a,#0x80
       003330 C0 E0            [24] 2019 	push	acc
-      003332 12 51 09         [24] 2020 	lcall	_printf
+      003332 12 51 98         [24] 2020 	lcall	_printf
       003335 15 81            [12] 2021 	dec	sp
       003337 15 81            [12] 2022 	dec	sp
       003339 15 81            [12] 2023 	dec	sp
                                    2024 ;	main.c:185: printf("6 --> PHY SPI Read\n\r");
-      00333B 74 AC            [12] 2025 	mov	a,#___str_8
+      00333B 74 3B            [12] 2025 	mov	a,#___str_8
       00333D C0 E0            [24] 2026 	push	acc
-      00333F 74 5D            [12] 2027 	mov	a,#(___str_8 >> 8)
+      00333F 74 5E            [12] 2027 	mov	a,#(___str_8 >> 8)
       003341 C0 E0            [24] 2028 	push	acc
       003343 74 80            [12] 2029 	mov	a,#0x80
       003345 C0 E0            [24] 2030 	push	acc
-      003347 12 51 09         [24] 2031 	lcall	_printf
+      003347 12 51 98         [24] 2031 	lcall	_printf
       00334A 15 81            [12] 2032 	dec	sp
       00334C 15 81            [12] 2033 	dec	sp
       00334E 15 81            [12] 2034 	dec	sp
                                    2035 ;	main.c:186: printf("7 --> ENC Reset\n\r");
-      003350 74 C1            [12] 2036 	mov	a,#___str_9
+      003350 74 50            [12] 2036 	mov	a,#___str_9
       003352 C0 E0            [24] 2037 	push	acc
-      003354 74 5D            [12] 2038 	mov	a,#(___str_9 >> 8)
+      003354 74 5E            [12] 2038 	mov	a,#(___str_9 >> 8)
       003356 C0 E0            [24] 2039 	push	acc
       003358 74 80            [12] 2040 	mov	a,#0x80
       00335A C0 E0            [24] 2041 	push	acc
-      00335C 12 51 09         [24] 2042 	lcall	_printf
+      00335C 12 51 98         [24] 2042 	lcall	_printf
       00335F 15 81            [12] 2043 	dec	sp
       003361 15 81            [12] 2044 	dec	sp
       003363 15 81            [12] 2045 	dec	sp
                                    2046 ;	main.c:187: printf("8 --> Read ETH Register\n\r");
-      003365 74 D3            [12] 2047 	mov	a,#___str_10
+      003365 74 62            [12] 2047 	mov	a,#___str_10
       003367 C0 E0            [24] 2048 	push	acc
-      003369 74 5D            [12] 2049 	mov	a,#(___str_10 >> 8)
+      003369 74 5E            [12] 2049 	mov	a,#(___str_10 >> 8)
       00336B C0 E0            [24] 2050 	push	acc
       00336D 74 80            [12] 2051 	mov	a,#0x80
       00336F C0 E0            [24] 2052 	push	acc
-      003371 12 51 09         [24] 2053 	lcall	_printf
+      003371 12 51 98         [24] 2053 	lcall	_printf
       003374 15 81            [12] 2054 	dec	sp
       003376 15 81            [12] 2055 	dec	sp
       003378 15 81            [12] 2056 	dec	sp
@@ -2096,7 +2096,7 @@
       0033AF                       2096 00114$:
                                    2097 ;	main.c:209: uint8_t *packet_data = (uint8_t *)malloc(6);
       0033AF 90 00 06         [24] 2098 	mov	dptr,#0x0006
-      0033B2 12 4E 53         [24] 2099 	lcall	_malloc
+      0033B2 12 4E E2         [24] 2099 	lcall	_malloc
       0033B5 AE 82            [24] 2100 	mov	r6, dpl
       0033B7 AD 83            [24] 2101 	mov	r5,dph
       0033B9 7F 00            [12] 2102 	mov	r7,#0x00
@@ -2126,7 +2126,7 @@
       0033D9 C0 07            [24] 2126 	push	ar7
       0033DB C0 06            [24] 2127 	push	ar6
       0033DD C0 05            [24] 2128 	push	ar5
-      0033DF 12 3D 2D         [24] 2129 	lcall	_spi_buffer_read
+      0033DF 12 3D 34         [24] 2129 	lcall	_spi_buffer_read
       0033E2 D0 05            [24] 2130 	pop	ar5
       0033E4 D0 06            [24] 2131 	pop	ar6
       0033E6 D0 07            [24] 2132 	pop	ar7
@@ -2141,13 +2141,13 @@
       0033F1 8A 82            [24] 2141 	mov	dpl,r2
       0033F3 8B 83            [24] 2142 	mov	dph,r3
       0033F5 8C F0            [24] 2143 	mov	b,r4
-      0033F7 12 5B 2B         [24] 2144 	lcall	__gptrget
+      0033F7 12 5B BA         [24] 2144 	lcall	__gptrget
       0033FA FC               [12] 2145 	mov	r4,a
       0033FB 7A 00            [12] 2146 	mov	r2,#0x00
       0033FD 8E 82            [24] 2147 	mov	dpl,r6
       0033FF 8D 83            [24] 2148 	mov	dph,r5
       003401 8F F0            [24] 2149 	mov	b,r7
-      003403 12 5B 2B         [24] 2150 	lcall	__gptrget
+      003403 12 5B BA         [24] 2150 	lcall	__gptrget
       003406 7B 00            [12] 2151 	mov	r3,#0x00
       003408 42 02            [12] 2152 	orl	ar2,a
       00340A EB               [12] 2153 	mov	a,r3
@@ -2165,7 +2165,7 @@
       00341A 88 82            [24] 2165 	mov	dpl,r0
       00341C 89 83            [24] 2166 	mov	dph,r1
       00341E 8B F0            [24] 2167 	mov	b,r3
-      003420 12 5B 2B         [24] 2168 	lcall	__gptrget
+      003420 12 5B BA         [24] 2168 	lcall	__gptrget
       003423 F8               [12] 2169 	mov	r0,a
       003424 7B 00            [12] 2170 	mov	r3,#0x00
       003426 88 23            [24] 2171 	mov	(_main_sloc0_1_0 + 1),r0
@@ -2180,7 +2180,7 @@
       003433 88 82            [24] 2180 	mov	dpl,r0
       003435 89 83            [24] 2181 	mov	dph,r1
       003437 8B F0            [24] 2182 	mov	b,r3
-      003439 12 5B 2B         [24] 2183 	lcall	__gptrget
+      003439 12 5B BA         [24] 2183 	lcall	__gptrget
       00343C F8               [12] 2184 	mov	r0,a
       00343D 7B 00            [12] 2185 	mov	r3,#0x00
       00343F E5 23            [12] 2186 	mov	a,(_main_sloc0_1_0 + 1)
@@ -2198,7 +2198,7 @@
       003450 88 82            [24] 2198 	mov	dpl,r0
       003452 89 83            [24] 2199 	mov	dph,r1
       003454 8B F0            [24] 2200 	mov	b,r3
-      003456 12 5B 2B         [24] 2201 	lcall	__gptrget
+      003456 12 5B BA         [24] 2201 	lcall	__gptrget
       003459 F8               [12] 2202 	mov	r0,a
       00345A 7B 00            [12] 2203 	mov	r3,#0x00
       00345C 88 25            [24] 2204 	mov	(_main_sloc1_1_0 + 1),r0
@@ -2213,7 +2213,7 @@
       003469 88 82            [24] 2213 	mov	dpl,r0
       00346B 89 83            [24] 2214 	mov	dph,r1
       00346D 8B F0            [24] 2215 	mov	b,r3
-      00346F 12 5B 2B         [24] 2216 	lcall	__gptrget
+      00346F 12 5B BA         [24] 2216 	lcall	__gptrget
       003472 F8               [12] 2217 	mov	r0,a
       003473 7B 00            [12] 2218 	mov	r3,#0x00
       003475 E5 25            [12] 2219 	mov	a,(_main_sloc1_1_0 + 1)
@@ -2239,7 +2239,7 @@
       003499 C0 07            [24] 2239 	push	ar7
       00349B C0 06            [24] 2240 	push	ar6
       00349D C0 05            [24] 2241 	push	ar5
-      00349F 12 4E 53         [24] 2242 	lcall	_malloc
+      00349F 12 4E E2         [24] 2242 	lcall	_malloc
       0034A2 A8 82            [24] 2243 	mov	r0, dpl
       0034A4 AB 83            [24] 2244 	mov	r3, dph
       0034A6 D0 05            [24] 2245 	pop	ar5
@@ -2281,7 +2281,7 @@
       0034DE C0 07            [24] 2281 	push	ar7
       0034E0 C0 06            [24] 2282 	push	ar6
       0034E2 C0 05            [24] 2283 	push	ar5
-      0034E4 12 3D 2D         [24] 2284 	lcall	_spi_buffer_read
+      0034E4 12 3D 34         [24] 2284 	lcall	_spi_buffer_read
                                    2285 ;	main.c:224: int is_tcp_for_target = 0;
       0034E7 90 03 7D         [24] 2286 	mov	dptr,#_main_is_tcp_for_target_60004_173
       0034EA E4               [12] 2287 	clr	a
@@ -2310,7 +2310,7 @@
       003509 8A 82            [24] 2310 	mov	dpl, r2
       00350B 8B 83            [24] 2311 	mov	dph, r3
       00350D 8C F0            [24] 2312 	mov	b, r4
-      00350F 12 4F DC         [24] 2313 	lcall	_memcmp
+      00350F 12 50 6B         [24] 2313 	lcall	_memcmp
       003512 E5 82            [12] 2314 	mov	a, dpl
       003514 85 83 F0         [24] 2315 	mov	b, dph
       003517 D0 05            [24] 2316 	pop	ar5
@@ -2324,13 +2324,13 @@
       003524 C0 07            [24] 2324 	push	ar7
       003526 C0 06            [24] 2325 	push	ar6
       003528 C0 05            [24] 2326 	push	ar5
-      00352A 74 33            [12] 2327 	mov	a,#___str_38
+      00352A 74 C2            [12] 2327 	mov	a,#___str_38
       00352C C0 E0            [24] 2328 	push	acc
       00352E 74 61            [12] 2329 	mov	a,#(___str_38 >> 8)
       003530 C0 E0            [24] 2330 	push	acc
       003532 74 80            [12] 2331 	mov	a,#0x80
       003534 C0 E0            [24] 2332 	push	acc
-      003536 12 51 09         [24] 2333 	lcall	_printf
+      003536 12 51 98         [24] 2333 	lcall	_printf
       003539 15 81            [12] 2334 	dec	sp
       00353B 15 81            [12] 2335 	dec	sp
       00353D 15 81            [12] 2336 	dec	sp
@@ -2348,7 +2348,7 @@
       003550 8A 82            [24] 2348 	mov	dpl,r2
       003552 8B 83            [24] 2349 	mov	dph,r3
       003554 8C F0            [24] 2350 	mov	b,r4
-      003556 12 5B 2B         [24] 2351 	lcall	__gptrget
+      003556 12 5B BA         [24] 2351 	lcall	__gptrget
       003559 FA               [12] 2352 	mov	r2,a
       00355A BA 08 58         [24] 2353 	cjne	r2,#0x08,00121$
       00355D 74 0D            [12] 2354 	mov	a,#0x0d
@@ -2361,19 +2361,19 @@
       003568 8A 82            [24] 2361 	mov	dpl,r2
       00356A 8B 83            [24] 2362 	mov	dph,r3
       00356C 8C F0            [24] 2363 	mov	b,r4
-      00356E 12 5B 2B         [24] 2364 	lcall	__gptrget
+      00356E 12 5B BA         [24] 2364 	lcall	__gptrget
       003571 70 42            [24] 2365 	jnz	00121$
                                    2366 ;	main.c:231: printf("Valid ETHER packet.....................\n\r");
       003573 C0 07            [24] 2367 	push	ar7
       003575 C0 06            [24] 2368 	push	ar6
       003577 C0 05            [24] 2369 	push	ar5
-      003579 74 51            [12] 2370 	mov	a,#___str_39
+      003579 74 E0            [12] 2370 	mov	a,#___str_39
       00357B C0 E0            [24] 2371 	push	acc
       00357D 74 61            [12] 2372 	mov	a,#(___str_39 >> 8)
       00357F C0 E0            [24] 2373 	push	acc
       003581 74 80            [12] 2374 	mov	a,#0x80
       003583 C0 E0            [24] 2375 	push	acc
-      003585 12 51 09         [24] 2376 	lcall	_printf
+      003585 12 51 98         [24] 2376 	lcall	_printf
       003588 15 81            [12] 2377 	dec	sp
       00358A 15 81            [12] 2378 	dec	sp
       00358C 15 81            [12] 2379 	dec	sp
@@ -2391,7 +2391,7 @@
       00359F 8A 82            [24] 2391 	mov	dpl,r2
       0035A1 8B 83            [24] 2392 	mov	dph,r3
       0035A3 8C F0            [24] 2393 	mov	b,r4
-      0035A5 12 5B 2B         [24] 2394 	lcall	__gptrget
+      0035A5 12 5B BA         [24] 2394 	lcall	__gptrget
       0035A8 FA               [12] 2395 	mov	r2,a
       0035A9 BA 06 09         [24] 2396 	cjne	r2,#0x06,00121$
                                    2397 ;	main.c:234: is_tcp_for_target = 1;
@@ -2410,10 +2410,10 @@
       0035BC E0               [24] 2410 	movx	a,@dptr
       0035BD 45 F0            [12] 2411 	orl	a,b
       0035BF 70 03            [24] 2412 	jnz	00266$
-      0035C1 02 36 E5         [24] 2413 	ljmp	00126$
+      0035C1 02 36 EC         [24] 2413 	ljmp	00126$
       0035C4                       2414 00266$:
-                                   2415 ;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4, &response_size);
-      0035C4 74 04            [12] 2416 	mov	a,#0x04
+                                   2415 ;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4+4, &response_size);
+      0035C4 74 08            [12] 2416 	mov	a,#0x08
       0035C6 25 26            [12] 2417 	add	a, _main_sloc2_1_0
       0035C8 FB               [12] 2418 	mov	r3,a
       0035C9 E4               [12] 2419 	clr	a
@@ -2440,7 +2440,7 @@
       0035EB C0 07            [24] 2440 	push	ar7
       0035ED C0 06            [24] 2441 	push	ar6
       0035EF C0 05            [24] 2442 	push	ar5
-      0035F1 12 42 35         [24] 2443 	lcall	_process_tcp_packet
+      0035F1 12 42 3C         [24] 2443 	lcall	_process_tcp_packet
       0035F4 AA 82            [24] 2444 	mov	r2, dpl
       0035F6 AB 83            [24] 2445 	mov	r3, dph
       0035F8 AC F0            [24] 2446 	mov	r4, b
@@ -2451,7 +2451,7 @@
       003600 EA               [12] 2451 	mov	a,r2
       003601 4B               [12] 2452 	orl	a,r3
       003602 70 03            [24] 2453 	jnz	00267$
-      003604 02 36 A1         [24] 2454 	ljmp	00123$
+      003604 02 36 A8         [24] 2454 	ljmp	00123$
       003607                       2455 00267$:
                                    2456 ;	main.c:247: printf("\nProcessed response data:\n");
       003607 C0 07            [24] 2457 	push	ar7
@@ -2460,13 +2460,13 @@
       00360D C0 04            [24] 2460 	push	ar4
       00360F C0 03            [24] 2461 	push	ar3
       003611 C0 02            [24] 2462 	push	ar2
-      003613 74 7B            [12] 2463 	mov	a,#___str_40
+      003613 74 0A            [12] 2463 	mov	a,#___str_40
       003615 C0 E0            [24] 2464 	push	acc
-      003617 74 61            [12] 2465 	mov	a,#(___str_40 >> 8)
+      003617 74 62            [12] 2465 	mov	a,#(___str_40 >> 8)
       003619 C0 E0            [24] 2466 	push	acc
       00361B 74 80            [12] 2467 	mov	a,#0x80
       00361D C0 E0            [24] 2468 	push	acc
-      00361F 12 51 09         [24] 2469 	lcall	_printf
+      00361F 12 51 98         [24] 2469 	lcall	_printf
       003622 15 81            [12] 2470 	dec	sp
       003624 15 81            [12] 2471 	dec	sp
       003626 15 81            [12] 2472 	dec	sp
@@ -2498,842 +2498,848 @@
       003650 C0 04            [24] 2498 	push	ar4
       003652 C0 03            [24] 2499 	push	ar3
       003654 C0 02            [24] 2500 	push	ar2
-      003656 12 45 89         [24] 2501 	lcall	_print_hexdump
+      003656 12 46 18         [24] 2501 	lcall	_print_hexdump
       003659 D0 02            [24] 2502 	pop	ar2
       00365B D0 03            [24] 2503 	pop	ar3
       00365D D0 04            [24] 2504 	pop	ar4
       00365F D0 05            [24] 2505 	pop	ar5
       003661 D0 06            [24] 2506 	pop	ar6
       003663 D0 07            [24] 2507 	pop	ar7
-                                   2508 ;	main.c:249: transmit_tcp_packet(response, response_size);
+                                   2508 ;	main.c:249: transmit_tcp_packet(response, response_size+4);
       003665 90 03 7F         [24] 2509 	mov	dptr,#_main_response_size_70004_177
       003668 E0               [24] 2510 	movx	a,@dptr
       003669 F8               [12] 2511 	mov	r0,a
       00366A A3               [24] 2512 	inc	dptr
       00366B E0               [24] 2513 	movx	a,@dptr
       00366C F9               [12] 2514 	mov	r1,a
-      00366D 90 09 A2         [24] 2515 	mov	dptr,#_transmit_tcp_packet_PARM_2
-      003670 E8               [12] 2516 	mov	a,r0
-      003671 F0               [24] 2517 	movx	@dptr,a
-      003672 E9               [12] 2518 	mov	a,r1
-      003673 A3               [24] 2519 	inc	dptr
-      003674 F0               [24] 2520 	movx	@dptr,a
-      003675 8A 82            [24] 2521 	mov	dpl, r2
-      003677 8B 83            [24] 2522 	mov	dph, r3
-      003679 8C F0            [24] 2523 	mov	b, r4
-      00367B C0 07            [24] 2524 	push	ar7
-      00367D C0 06            [24] 2525 	push	ar6
-      00367F C0 05            [24] 2526 	push	ar5
-      003681 C0 04            [24] 2527 	push	ar4
-      003683 C0 03            [24] 2528 	push	ar3
-      003685 C0 02            [24] 2529 	push	ar2
-      003687 12 49 79         [24] 2530 	lcall	_transmit_tcp_packet
-      00368A D0 02            [24] 2531 	pop	ar2
-      00368C D0 03            [24] 2532 	pop	ar3
-      00368E D0 04            [24] 2533 	pop	ar4
-                                   2534 ;	main.c:250: free(response); // Free response memory if allocated dynamically
-      003690 8A 82            [24] 2535 	mov	dpl, r2
-      003692 8B 83            [24] 2536 	mov	dph, r3
-      003694 8C F0            [24] 2537 	mov	b, r4
-      003696 12 4B 00         [24] 2538 	lcall	_free
-      003699 D0 05            [24] 2539 	pop	ar5
-      00369B D0 06            [24] 2540 	pop	ar6
-      00369D D0 07            [24] 2541 	pop	ar7
-      00369F 80 21            [24] 2542 	sjmp	00124$
-      0036A1                       2543 00123$:
-                                   2544 ;	main.c:252: printf("\nNo response generated by TCP packet processing.\n");
-      0036A1 C0 07            [24] 2545 	push	ar7
-      0036A3 C0 06            [24] 2546 	push	ar6
-      0036A5 C0 05            [24] 2547 	push	ar5
-      0036A7 74 96            [12] 2548 	mov	a,#___str_41
-      0036A9 C0 E0            [24] 2549 	push	acc
-      0036AB 74 61            [12] 2550 	mov	a,#(___str_41 >> 8)
-      0036AD C0 E0            [24] 2551 	push	acc
-      0036AF 74 80            [12] 2552 	mov	a,#0x80
-      0036B1 C0 E0            [24] 2553 	push	acc
-      0036B3 12 51 09         [24] 2554 	lcall	_printf
-      0036B6 15 81            [12] 2555 	dec	sp
-      0036B8 15 81            [12] 2556 	dec	sp
-      0036BA 15 81            [12] 2557 	dec	sp
-      0036BC D0 05            [24] 2558 	pop	ar5
-      0036BE D0 06            [24] 2559 	pop	ar6
-      0036C0 D0 07            [24] 2560 	pop	ar7
-      0036C2                       2561 00124$:
-                                   2562 ;	main.c:255: printf("YESSSS\n");
-      0036C2 C0 07            [24] 2563 	push	ar7
-      0036C4 C0 06            [24] 2564 	push	ar6
-      0036C6 C0 05            [24] 2565 	push	ar5
-      0036C8 74 C8            [12] 2566 	mov	a,#___str_42
-      0036CA C0 E0            [24] 2567 	push	acc
-      0036CC 74 61            [12] 2568 	mov	a,#(___str_42 >> 8)
-      0036CE C0 E0            [24] 2569 	push	acc
-      0036D0 74 80            [12] 2570 	mov	a,#0x80
-      0036D2 C0 E0            [24] 2571 	push	acc
-      0036D4 12 51 09         [24] 2572 	lcall	_printf
-      0036D7 15 81            [12] 2573 	dec	sp
-      0036D9 15 81            [12] 2574 	dec	sp
-      0036DB 15 81            [12] 2575 	dec	sp
-      0036DD D0 05            [24] 2576 	pop	ar5
-      0036DF D0 06            [24] 2577 	pop	ar6
-      0036E1 D0 07            [24] 2578 	pop	ar7
-      0036E3 80 21            [24] 2579 	sjmp	00127$
-      0036E5                       2580 00126$:
-                                   2581 ;	main.c:259: printf("NOOOO\n");
-      0036E5 C0 07            [24] 2582 	push	ar7
-      0036E7 C0 06            [24] 2583 	push	ar6
-      0036E9 C0 05            [24] 2584 	push	ar5
-      0036EB 74 D0            [12] 2585 	mov	a,#___str_43
-      0036ED C0 E0            [24] 2586 	push	acc
-      0036EF 74 61            [12] 2587 	mov	a,#(___str_43 >> 8)
-      0036F1 C0 E0            [24] 2588 	push	acc
-      0036F3 74 80            [12] 2589 	mov	a,#0x80
-      0036F5 C0 E0            [24] 2590 	push	acc
-      0036F7 12 51 09         [24] 2591 	lcall	_printf
-      0036FA 15 81            [12] 2592 	dec	sp
-      0036FC 15 81            [12] 2593 	dec	sp
-      0036FE 15 81            [12] 2594 	dec	sp
-      003700 D0 05            [24] 2595 	pop	ar5
-      003702 D0 06            [24] 2596 	pop	ar6
-      003704 D0 07            [24] 2597 	pop	ar7
-      003706                       2598 00127$:
-                                   2599 ;	main.c:263: gNextPacketPtr = nextPacket;
-      003706 90 03 7B         [24] 2600 	mov	dptr,#_main_gNextPacketPtr_60001_168
-      003709 E5 2A            [12] 2601 	mov	a,_main_sloc4_1_0
-      00370B F0               [24] 2602 	movx	@dptr,a
-      00370C E5 2B            [12] 2603 	mov	a,(_main_sloc4_1_0 + 1)
-      00370E A3               [24] 2604 	inc	dptr
-      00370F F0               [24] 2605 	movx	@dptr,a
-                                   2606 ;	main.c:268: printf("nextPacket: 0x%04X\n", nextPacket);
-      003710 C0 07            [24] 2607 	push	ar7
-      003712 C0 06            [24] 2608 	push	ar6
-      003714 C0 05            [24] 2609 	push	ar5
-      003716 C0 2A            [24] 2610 	push	_main_sloc4_1_0
-      003718 C0 2B            [24] 2611 	push	(_main_sloc4_1_0 + 1)
-      00371A 74 D7            [12] 2612 	mov	a,#___str_44
-      00371C C0 E0            [24] 2613 	push	acc
-      00371E 74 61            [12] 2614 	mov	a,#(___str_44 >> 8)
-      003720 C0 E0            [24] 2615 	push	acc
-      003722 74 80            [12] 2616 	mov	a,#0x80
-      003724 C0 E0            [24] 2617 	push	acc
-      003726 12 51 09         [24] 2618 	lcall	_printf
-      003729 E5 81            [12] 2619 	mov	a,sp
-      00372B 24 FB            [12] 2620 	add	a,#0xfb
-      00372D F5 81            [12] 2621 	mov	sp,a
-                                   2622 ;	main.c:269: printf("byteCount: %d\n", byteCount);
-      00372F C0 22            [24] 2623 	push	_main_sloc0_1_0
-      003731 C0 23            [24] 2624 	push	(_main_sloc0_1_0 + 1)
-      003733 74 EB            [12] 2625 	mov	a,#___str_45
-      003735 C0 E0            [24] 2626 	push	acc
-      003737 74 61            [12] 2627 	mov	a,#(___str_45 >> 8)
-      003739 C0 E0            [24] 2628 	push	acc
-      00373B 74 80            [12] 2629 	mov	a,#0x80
-      00373D C0 E0            [24] 2630 	push	acc
-      00373F 12 51 09         [24] 2631 	lcall	_printf
-      003742 E5 81            [12] 2632 	mov	a,sp
-      003744 24 FB            [12] 2633 	add	a,#0xfb
-      003746 F5 81            [12] 2634 	mov	sp,a
-                                   2635 ;	main.c:270: printf("status: 0x%02X\n", status);
-      003748 C0 24            [24] 2636 	push	_main_sloc1_1_0
-      00374A C0 25            [24] 2637 	push	(_main_sloc1_1_0 + 1)
-      00374C 74 FA            [12] 2638 	mov	a,#___str_46
-      00374E C0 E0            [24] 2639 	push	acc
-      003750 74 61            [12] 2640 	mov	a,#(___str_46 >> 8)
-      003752 C0 E0            [24] 2641 	push	acc
-      003754 74 80            [12] 2642 	mov	a,#0x80
-      003756 C0 E0            [24] 2643 	push	acc
-      003758 12 51 09         [24] 2644 	lcall	_printf
-      00375B E5 81            [12] 2645 	mov	a,sp
-      00375D 24 FB            [12] 2646 	add	a,#0xfb
-      00375F F5 81            [12] 2647 	mov	sp,a
-      003761 D0 05            [24] 2648 	pop	ar5
-      003763 D0 06            [24] 2649 	pop	ar6
-      003765 D0 07            [24] 2650 	pop	ar7
-                                   2651 ;	main.c:273: uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
-      003767 90 03 8D         [24] 2652 	mov	dptr,#_mac_spi_read_PARM_2
-      00376A E4               [12] 2653 	clr	a
-      00376B F0               [24] 2654 	movx	@dptr,a
-      00376C 75 82 1E         [24] 2655 	mov	dpl, #0x1e
-      00376F C0 07            [24] 2656 	push	ar7
-      003771 C0 06            [24] 2657 	push	ar6
-      003773 C0 05            [24] 2658 	push	ar5
-      003775 12 3A F3         [24] 2659 	lcall	_mac_spi_read
-      003778 E5 82            [12] 2660 	mov	a, dpl
-      00377A D0 05            [24] 2661 	pop	ar5
-      00377C D0 06            [24] 2662 	pop	ar6
-      00377E D0 07            [24] 2663 	pop	ar7
-                                   2664 ;	main.c:274: spi_control_write(2, 0x1E, (read_econ2 | (1 << 6))); //mac enable for reception
-      003780 44 40            [12] 2665 	orl	a,#0x40
-      003782 FC               [12] 2666 	mov	r4,a
-      003783 90 03 84         [24] 2667 	mov	dptr,#_spi_control_write_PARM_2
-      003786 74 1E            [12] 2668 	mov	a,#0x1e
-      003788 F0               [24] 2669 	movx	@dptr,a
-      003789 90 03 85         [24] 2670 	mov	dptr,#_spi_control_write_PARM_3
-      00378C EC               [12] 2671 	mov	a,r4
-      00378D F0               [24] 2672 	movx	@dptr,a
-      00378E 75 82 02         [24] 2673 	mov	dpl, #0x02
-      003791 C0 07            [24] 2674 	push	ar7
-      003793 C0 06            [24] 2675 	push	ar6
-      003795 C0 05            [24] 2676 	push	ar5
-      003797 12 39 7D         [24] 2677 	lcall	_spi_control_write
-      00379A D0 05            [24] 2678 	pop	ar5
-      00379C D0 06            [24] 2679 	pop	ar6
-      00379E D0 07            [24] 2680 	pop	ar7
-                                   2681 ;	main.c:275: free(packet_data);
-      0037A0 7F 00            [12] 2682 	mov	r7,#0x00
-      0037A2 8E 82            [24] 2683 	mov	dpl, r6
-      0037A4 8D 83            [24] 2684 	mov	dph, r5
-      0037A6 8F F0            [24] 2685 	mov	b, r7
-      0037A8 12 4B 00         [24] 2686 	lcall	_free
-      0037AB 02 33 80         [24] 2687 	ljmp	00131$
-                                   2688 ;	main.c:286: case 'C':{
-      0037AE                       2689 00134$:
-                                   2690 ;	main.c:287: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
-      0037AE 74 0A            [12] 2691 	mov	a,#___str_47
-      0037B0 C0 E0            [24] 2692 	push	acc
-      0037B2 74 62            [12] 2693 	mov	a,#(___str_47 >> 8)
-      0037B4 C0 E0            [24] 2694 	push	acc
-      0037B6 74 80            [12] 2695 	mov	a,#0x80
-      0037B8 C0 E0            [24] 2696 	push	acc
-      0037BA 12 51 09         [24] 2697 	lcall	_printf
-      0037BD 15 81            [12] 2698 	dec	sp
-      0037BF 15 81            [12] 2699 	dec	sp
-      0037C1 15 81            [12] 2700 	dec	sp
-                                   2701 ;	main.c:288: ENC_RESET = 0;
-                                   2702 ;	assignBit
-      0037C3 C2 90            [12] 2703 	clr	_P1_0
-                                   2704 ;	main.c:289: for(int i = 0; i < 6000; i++);
-      0037C5 7E 00            [12] 2705 	mov	r6,#0x00
-      0037C7 7F 00            [12] 2706 	mov	r7,#0x00
-      0037C9                       2707 00148$:
-      0037C9 C3               [12] 2708 	clr	c
-      0037CA EE               [12] 2709 	mov	a,r6
-      0037CB 94 70            [12] 2710 	subb	a,#0x70
-      0037CD EF               [12] 2711 	mov	a,r7
-      0037CE 64 80            [12] 2712 	xrl	a,#0x80
-      0037D0 94 97            [12] 2713 	subb	a,#0x97
-      0037D2 50 07            [24] 2714 	jnc	00135$
-      0037D4 0E               [12] 2715 	inc	r6
-      0037D5 BE 00 F1         [24] 2716 	cjne	r6,#0x00,00148$
-      0037D8 0F               [12] 2717 	inc	r7
-      0037D9 80 EE            [24] 2718 	sjmp	00148$
-      0037DB                       2719 00135$:
-                                   2720 ;	main.c:290: ENC_RESET = 1;
-                                   2721 ;	assignBit
-      0037DB D2 90            [12] 2722 	setb	_P1_0
-                                   2723 ;	main.c:291: break;
-      0037DD 02 2D AD         [24] 2724 	ljmp	00142$
-                                   2725 ;	main.c:293: case 'D':
-      0037E0                       2726 00136$:
-                                   2727 ;	main.c:297: process_packet_from_buffer(0x0846);
-      0037E0 90 08 46         [24] 2728 	mov	dptr,#0x0846
-      0037E3 12 46 94         [24] 2729 	lcall	_process_packet_from_buffer
-                                   2730 ;	main.c:298: break;
-      0037E6 02 2D AD         [24] 2731 	ljmp	00142$
-                                   2732 ;	main.c:300: case 'E':{
-      0037E9                       2733 00137$:
-                                   2734 ;	main.c:301: IT0 = 1;  // Edge-triggered mode for INT0
-                                   2735 ;	assignBit
-      0037E9 D2 88            [12] 2736 	setb	_IT0
-                                   2737 ;	main.c:302: EX0 = 1;  // Enable INT0
-                                   2738 ;	assignBit
-      0037EB D2 A8            [12] 2739 	setb	_EX0
-                                   2740 ;	main.c:303: EA = 1;   // Enable global interrupts
+      00366D 74 04            [12] 2515 	mov	a,#0x04
+      00366F 28               [12] 2516 	add	a, r0
+      003670 F8               [12] 2517 	mov	r0,a
+      003671 E4               [12] 2518 	clr	a
+      003672 39               [12] 2519 	addc	a, r1
+      003673 F9               [12] 2520 	mov	r1,a
+      003674 90 09 A2         [24] 2521 	mov	dptr,#_transmit_tcp_packet_PARM_2
+      003677 E8               [12] 2522 	mov	a,r0
+      003678 F0               [24] 2523 	movx	@dptr,a
+      003679 E9               [12] 2524 	mov	a,r1
+      00367A A3               [24] 2525 	inc	dptr
+      00367B F0               [24] 2526 	movx	@dptr,a
+      00367C 8A 82            [24] 2527 	mov	dpl, r2
+      00367E 8B 83            [24] 2528 	mov	dph, r3
+      003680 8C F0            [24] 2529 	mov	b, r4
+      003682 C0 07            [24] 2530 	push	ar7
+      003684 C0 06            [24] 2531 	push	ar6
+      003686 C0 05            [24] 2532 	push	ar5
+      003688 C0 04            [24] 2533 	push	ar4
+      00368A C0 03            [24] 2534 	push	ar3
+      00368C C0 02            [24] 2535 	push	ar2
+      00368E 12 4A 08         [24] 2536 	lcall	_transmit_tcp_packet
+      003691 D0 02            [24] 2537 	pop	ar2
+      003693 D0 03            [24] 2538 	pop	ar3
+      003695 D0 04            [24] 2539 	pop	ar4
+                                   2540 ;	main.c:250: free(response); // Free response memory if allocated dynamically
+      003697 8A 82            [24] 2541 	mov	dpl, r2
+      003699 8B 83            [24] 2542 	mov	dph, r3
+      00369B 8C F0            [24] 2543 	mov	b, r4
+      00369D 12 4B 8F         [24] 2544 	lcall	_free
+      0036A0 D0 05            [24] 2545 	pop	ar5
+      0036A2 D0 06            [24] 2546 	pop	ar6
+      0036A4 D0 07            [24] 2547 	pop	ar7
+      0036A6 80 21            [24] 2548 	sjmp	00124$
+      0036A8                       2549 00123$:
+                                   2550 ;	main.c:252: printf("\nNo response generated by TCP packet processing.\n");
+      0036A8 C0 07            [24] 2551 	push	ar7
+      0036AA C0 06            [24] 2552 	push	ar6
+      0036AC C0 05            [24] 2553 	push	ar5
+      0036AE 74 25            [12] 2554 	mov	a,#___str_41
+      0036B0 C0 E0            [24] 2555 	push	acc
+      0036B2 74 62            [12] 2556 	mov	a,#(___str_41 >> 8)
+      0036B4 C0 E0            [24] 2557 	push	acc
+      0036B6 74 80            [12] 2558 	mov	a,#0x80
+      0036B8 C0 E0            [24] 2559 	push	acc
+      0036BA 12 51 98         [24] 2560 	lcall	_printf
+      0036BD 15 81            [12] 2561 	dec	sp
+      0036BF 15 81            [12] 2562 	dec	sp
+      0036C1 15 81            [12] 2563 	dec	sp
+      0036C3 D0 05            [24] 2564 	pop	ar5
+      0036C5 D0 06            [24] 2565 	pop	ar6
+      0036C7 D0 07            [24] 2566 	pop	ar7
+      0036C9                       2567 00124$:
+                                   2568 ;	main.c:255: printf("YESSSS\n");
+      0036C9 C0 07            [24] 2569 	push	ar7
+      0036CB C0 06            [24] 2570 	push	ar6
+      0036CD C0 05            [24] 2571 	push	ar5
+      0036CF 74 57            [12] 2572 	mov	a,#___str_42
+      0036D1 C0 E0            [24] 2573 	push	acc
+      0036D3 74 62            [12] 2574 	mov	a,#(___str_42 >> 8)
+      0036D5 C0 E0            [24] 2575 	push	acc
+      0036D7 74 80            [12] 2576 	mov	a,#0x80
+      0036D9 C0 E0            [24] 2577 	push	acc
+      0036DB 12 51 98         [24] 2578 	lcall	_printf
+      0036DE 15 81            [12] 2579 	dec	sp
+      0036E0 15 81            [12] 2580 	dec	sp
+      0036E2 15 81            [12] 2581 	dec	sp
+      0036E4 D0 05            [24] 2582 	pop	ar5
+      0036E6 D0 06            [24] 2583 	pop	ar6
+      0036E8 D0 07            [24] 2584 	pop	ar7
+      0036EA 80 21            [24] 2585 	sjmp	00127$
+      0036EC                       2586 00126$:
+                                   2587 ;	main.c:259: printf("NOOOO\n");
+      0036EC C0 07            [24] 2588 	push	ar7
+      0036EE C0 06            [24] 2589 	push	ar6
+      0036F0 C0 05            [24] 2590 	push	ar5
+      0036F2 74 5F            [12] 2591 	mov	a,#___str_43
+      0036F4 C0 E0            [24] 2592 	push	acc
+      0036F6 74 62            [12] 2593 	mov	a,#(___str_43 >> 8)
+      0036F8 C0 E0            [24] 2594 	push	acc
+      0036FA 74 80            [12] 2595 	mov	a,#0x80
+      0036FC C0 E0            [24] 2596 	push	acc
+      0036FE 12 51 98         [24] 2597 	lcall	_printf
+      003701 15 81            [12] 2598 	dec	sp
+      003703 15 81            [12] 2599 	dec	sp
+      003705 15 81            [12] 2600 	dec	sp
+      003707 D0 05            [24] 2601 	pop	ar5
+      003709 D0 06            [24] 2602 	pop	ar6
+      00370B D0 07            [24] 2603 	pop	ar7
+      00370D                       2604 00127$:
+                                   2605 ;	main.c:263: gNextPacketPtr = nextPacket;
+      00370D 90 03 7B         [24] 2606 	mov	dptr,#_main_gNextPacketPtr_60001_168
+      003710 E5 2A            [12] 2607 	mov	a,_main_sloc4_1_0
+      003712 F0               [24] 2608 	movx	@dptr,a
+      003713 E5 2B            [12] 2609 	mov	a,(_main_sloc4_1_0 + 1)
+      003715 A3               [24] 2610 	inc	dptr
+      003716 F0               [24] 2611 	movx	@dptr,a
+                                   2612 ;	main.c:268: printf("nextPacket: 0x%04X\n", nextPacket);
+      003717 C0 07            [24] 2613 	push	ar7
+      003719 C0 06            [24] 2614 	push	ar6
+      00371B C0 05            [24] 2615 	push	ar5
+      00371D C0 2A            [24] 2616 	push	_main_sloc4_1_0
+      00371F C0 2B            [24] 2617 	push	(_main_sloc4_1_0 + 1)
+      003721 74 66            [12] 2618 	mov	a,#___str_44
+      003723 C0 E0            [24] 2619 	push	acc
+      003725 74 62            [12] 2620 	mov	a,#(___str_44 >> 8)
+      003727 C0 E0            [24] 2621 	push	acc
+      003729 74 80            [12] 2622 	mov	a,#0x80
+      00372B C0 E0            [24] 2623 	push	acc
+      00372D 12 51 98         [24] 2624 	lcall	_printf
+      003730 E5 81            [12] 2625 	mov	a,sp
+      003732 24 FB            [12] 2626 	add	a,#0xfb
+      003734 F5 81            [12] 2627 	mov	sp,a
+                                   2628 ;	main.c:269: printf("byteCount: %d\n", byteCount);
+      003736 C0 22            [24] 2629 	push	_main_sloc0_1_0
+      003738 C0 23            [24] 2630 	push	(_main_sloc0_1_0 + 1)
+      00373A 74 7A            [12] 2631 	mov	a,#___str_45
+      00373C C0 E0            [24] 2632 	push	acc
+      00373E 74 62            [12] 2633 	mov	a,#(___str_45 >> 8)
+      003740 C0 E0            [24] 2634 	push	acc
+      003742 74 80            [12] 2635 	mov	a,#0x80
+      003744 C0 E0            [24] 2636 	push	acc
+      003746 12 51 98         [24] 2637 	lcall	_printf
+      003749 E5 81            [12] 2638 	mov	a,sp
+      00374B 24 FB            [12] 2639 	add	a,#0xfb
+      00374D F5 81            [12] 2640 	mov	sp,a
+                                   2641 ;	main.c:270: printf("status: 0x%02X\n", status);
+      00374F C0 24            [24] 2642 	push	_main_sloc1_1_0
+      003751 C0 25            [24] 2643 	push	(_main_sloc1_1_0 + 1)
+      003753 74 89            [12] 2644 	mov	a,#___str_46
+      003755 C0 E0            [24] 2645 	push	acc
+      003757 74 62            [12] 2646 	mov	a,#(___str_46 >> 8)
+      003759 C0 E0            [24] 2647 	push	acc
+      00375B 74 80            [12] 2648 	mov	a,#0x80
+      00375D C0 E0            [24] 2649 	push	acc
+      00375F 12 51 98         [24] 2650 	lcall	_printf
+      003762 E5 81            [12] 2651 	mov	a,sp
+      003764 24 FB            [12] 2652 	add	a,#0xfb
+      003766 F5 81            [12] 2653 	mov	sp,a
+      003768 D0 05            [24] 2654 	pop	ar5
+      00376A D0 06            [24] 2655 	pop	ar6
+      00376C D0 07            [24] 2656 	pop	ar7
+                                   2657 ;	main.c:273: uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
+      00376E 90 03 8D         [24] 2658 	mov	dptr,#_mac_spi_read_PARM_2
+      003771 E4               [12] 2659 	clr	a
+      003772 F0               [24] 2660 	movx	@dptr,a
+      003773 75 82 1E         [24] 2661 	mov	dpl, #0x1e
+      003776 C0 07            [24] 2662 	push	ar7
+      003778 C0 06            [24] 2663 	push	ar6
+      00377A C0 05            [24] 2664 	push	ar5
+      00377C 12 3A FA         [24] 2665 	lcall	_mac_spi_read
+      00377F E5 82            [12] 2666 	mov	a, dpl
+      003781 D0 05            [24] 2667 	pop	ar5
+      003783 D0 06            [24] 2668 	pop	ar6
+      003785 D0 07            [24] 2669 	pop	ar7
+                                   2670 ;	main.c:274: spi_control_write(2, 0x1E, (read_econ2 | (1 << 6))); //mac enable for reception
+      003787 44 40            [12] 2671 	orl	a,#0x40
+      003789 FC               [12] 2672 	mov	r4,a
+      00378A 90 03 84         [24] 2673 	mov	dptr,#_spi_control_write_PARM_2
+      00378D 74 1E            [12] 2674 	mov	a,#0x1e
+      00378F F0               [24] 2675 	movx	@dptr,a
+      003790 90 03 85         [24] 2676 	mov	dptr,#_spi_control_write_PARM_3
+      003793 EC               [12] 2677 	mov	a,r4
+      003794 F0               [24] 2678 	movx	@dptr,a
+      003795 75 82 02         [24] 2679 	mov	dpl, #0x02
+      003798 C0 07            [24] 2680 	push	ar7
+      00379A C0 06            [24] 2681 	push	ar6
+      00379C C0 05            [24] 2682 	push	ar5
+      00379E 12 39 84         [24] 2683 	lcall	_spi_control_write
+      0037A1 D0 05            [24] 2684 	pop	ar5
+      0037A3 D0 06            [24] 2685 	pop	ar6
+      0037A5 D0 07            [24] 2686 	pop	ar7
+                                   2687 ;	main.c:275: free(packet_data);
+      0037A7 7F 00            [12] 2688 	mov	r7,#0x00
+      0037A9 8E 82            [24] 2689 	mov	dpl, r6
+      0037AB 8D 83            [24] 2690 	mov	dph, r5
+      0037AD 8F F0            [24] 2691 	mov	b, r7
+      0037AF 12 4B 8F         [24] 2692 	lcall	_free
+      0037B2 02 33 80         [24] 2693 	ljmp	00131$
+                                   2694 ;	main.c:286: case 'C':{
+      0037B5                       2695 00134$:
+                                   2696 ;	main.c:287: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
+      0037B5 74 99            [12] 2697 	mov	a,#___str_47
+      0037B7 C0 E0            [24] 2698 	push	acc
+      0037B9 74 62            [12] 2699 	mov	a,#(___str_47 >> 8)
+      0037BB C0 E0            [24] 2700 	push	acc
+      0037BD 74 80            [12] 2701 	mov	a,#0x80
+      0037BF C0 E0            [24] 2702 	push	acc
+      0037C1 12 51 98         [24] 2703 	lcall	_printf
+      0037C4 15 81            [12] 2704 	dec	sp
+      0037C6 15 81            [12] 2705 	dec	sp
+      0037C8 15 81            [12] 2706 	dec	sp
+                                   2707 ;	main.c:288: ENC_RESET = 0;
+                                   2708 ;	assignBit
+      0037CA C2 90            [12] 2709 	clr	_P1_0
+                                   2710 ;	main.c:289: for(int i = 0; i < 6000; i++);
+      0037CC 7E 00            [12] 2711 	mov	r6,#0x00
+      0037CE 7F 00            [12] 2712 	mov	r7,#0x00
+      0037D0                       2713 00148$:
+      0037D0 C3               [12] 2714 	clr	c
+      0037D1 EE               [12] 2715 	mov	a,r6
+      0037D2 94 70            [12] 2716 	subb	a,#0x70
+      0037D4 EF               [12] 2717 	mov	a,r7
+      0037D5 64 80            [12] 2718 	xrl	a,#0x80
+      0037D7 94 97            [12] 2719 	subb	a,#0x97
+      0037D9 50 07            [24] 2720 	jnc	00135$
+      0037DB 0E               [12] 2721 	inc	r6
+      0037DC BE 00 F1         [24] 2722 	cjne	r6,#0x00,00148$
+      0037DF 0F               [12] 2723 	inc	r7
+      0037E0 80 EE            [24] 2724 	sjmp	00148$
+      0037E2                       2725 00135$:
+                                   2726 ;	main.c:290: ENC_RESET = 1;
+                                   2727 ;	assignBit
+      0037E2 D2 90            [12] 2728 	setb	_P1_0
+                                   2729 ;	main.c:291: break;
+      0037E4 02 2D AD         [24] 2730 	ljmp	00142$
+                                   2731 ;	main.c:293: case 'D':
+      0037E7                       2732 00136$:
+                                   2733 ;	main.c:297: process_packet_from_buffer(0x0846);
+      0037E7 90 08 46         [24] 2734 	mov	dptr,#0x0846
+      0037EA 12 47 23         [24] 2735 	lcall	_process_packet_from_buffer
+                                   2736 ;	main.c:298: break;
+      0037ED 02 2D AD         [24] 2737 	ljmp	00142$
+                                   2738 ;	main.c:300: case 'E':{
+      0037F0                       2739 00137$:
+                                   2740 ;	main.c:301: IT0 = 1;  // Edge-triggered mode for INT0
                                    2741 ;	assignBit
-      0037ED D2 AF            [12] 2742 	setb	_EA
-                                   2743 ;	main.c:304: uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
-      0037EF 90 03 8D         [24] 2744 	mov	dptr,#_mac_spi_read_PARM_2
-      0037F2 E4               [12] 2745 	clr	a
-      0037F3 F0               [24] 2746 	movx	@dptr,a
-      0037F4 75 82 1E         [24] 2747 	mov	dpl, #0x1e
-      0037F7 12 3A F3         [24] 2748 	lcall	_mac_spi_read
-                                   2749 ;	main.c:306: printf("Enabling TXPKTIE\n\r");
-      0037FA 74 3D            [12] 2750 	mov	a,#___str_48
-      0037FC C0 E0            [24] 2751 	push	acc
-      0037FE 74 62            [12] 2752 	mov	a,#(___str_48 >> 8)
-      003800 C0 E0            [24] 2753 	push	acc
-      003802 74 80            [12] 2754 	mov	a,#0x80
-      003804 C0 E0            [24] 2755 	push	acc
-      003806 12 51 09         [24] 2756 	lcall	_printf
-      003809 15 81            [12] 2757 	dec	sp
-      00380B 15 81            [12] 2758 	dec	sp
-      00380D 15 81            [12] 2759 	dec	sp
-                                   2760 ;	main.c:307: spi_control_write(0, 0x1B, 0xC0);
-      00380F 90 03 84         [24] 2761 	mov	dptr,#_spi_control_write_PARM_2
-      003812 74 1B            [12] 2762 	mov	a,#0x1b
-      003814 F0               [24] 2763 	movx	@dptr,a
-      003815 90 03 85         [24] 2764 	mov	dptr,#_spi_control_write_PARM_3
-      003818 74 C0            [12] 2765 	mov	a,#0xc0
-      00381A F0               [24] 2766 	movx	@dptr,a
-      00381B 75 82 00         [24] 2767 	mov	dpl, #0x00
-      00381E 12 39 7D         [24] 2768 	lcall	_spi_control_write
-                                   2769 ;	main.c:308: break;
-      003821 02 2D AD         [24] 2770 	ljmp	00142$
-                                   2771 ;	main.c:310: case 'F':{
-      003824                       2772 00138$:
-                                   2773 ;	main.c:311: printf("Disabling TXPKTIE\n\r");
-      003824 74 50            [12] 2774 	mov	a,#___str_49
-      003826 C0 E0            [24] 2775 	push	acc
-      003828 74 62            [12] 2776 	mov	a,#(___str_49 >> 8)
-      00382A C0 E0            [24] 2777 	push	acc
-      00382C 74 80            [12] 2778 	mov	a,#0x80
-      00382E C0 E0            [24] 2779 	push	acc
-      003830 12 51 09         [24] 2780 	lcall	_printf
-      003833 15 81            [12] 2781 	dec	sp
-      003835 15 81            [12] 2782 	dec	sp
-      003837 15 81            [12] 2783 	dec	sp
-                                   2784 ;	main.c:312: spi_control_write(0, 0x1B, 0);
-      003839 90 03 84         [24] 2785 	mov	dptr,#_spi_control_write_PARM_2
-      00383C 74 1B            [12] 2786 	mov	a,#0x1b
-      00383E F0               [24] 2787 	movx	@dptr,a
-      00383F 90 03 85         [24] 2788 	mov	dptr,#_spi_control_write_PARM_3
-      003842 E4               [12] 2789 	clr	a
-      003843 F0               [24] 2790 	movx	@dptr,a
-      003844 75 82 00         [24] 2791 	mov	dpl, #0x00
-      003847 12 39 7D         [24] 2792 	lcall	_spi_control_write
-                                   2793 ;	main.c:314: default: {
-      00384A                       2794 00139$:
-                                   2795 ;	main.c:315: printf("Invalid option. Please select a valid action.\n\r");
-      00384A 74 64            [12] 2796 	mov	a,#___str_50
-      00384C C0 E0            [24] 2797 	push	acc
-      00384E 74 62            [12] 2798 	mov	a,#(___str_50 >> 8)
-      003850 C0 E0            [24] 2799 	push	acc
-      003852 74 80            [12] 2800 	mov	a,#0x80
-      003854 C0 E0            [24] 2801 	push	acc
-      003856 12 51 09         [24] 2802 	lcall	_printf
-      003859 15 81            [12] 2803 	dec	sp
-      00385B 15 81            [12] 2804 	dec	sp
-      00385D 15 81            [12] 2805 	dec	sp
-                                   2806 ;	main.c:318: }
-                                   2807 ;	main.c:320: }
-      00385F 02 2D AD         [24] 2808 	ljmp	00142$
-                                   2809 	.area CSEG    (CODE)
-                                   2810 	.area CONST   (CODE)
-                                   2811 	.area CONST   (CODE)
-      005D0A                       2812 ___str_0:
-      005D0A 0A                    2813 	.db 0x0a
-      005D0B 0D                    2814 	.db 0x0d
-      005D0C 00                    2815 	.db 0x00
-                                   2816 	.area CSEG    (CODE)
+      0037F0 D2 88            [12] 2742 	setb	_IT0
+                                   2743 ;	main.c:302: EX0 = 1;  // Enable INT0
+                                   2744 ;	assignBit
+      0037F2 D2 A8            [12] 2745 	setb	_EX0
+                                   2746 ;	main.c:303: EA = 1;   // Enable global interrupts
+                                   2747 ;	assignBit
+      0037F4 D2 AF            [12] 2748 	setb	_EA
+                                   2749 ;	main.c:304: uint8_t read_econ2 = mac_spi_read(0x1E, 0); //mac enable for reception
+      0037F6 90 03 8D         [24] 2750 	mov	dptr,#_mac_spi_read_PARM_2
+      0037F9 E4               [12] 2751 	clr	a
+      0037FA F0               [24] 2752 	movx	@dptr,a
+      0037FB 75 82 1E         [24] 2753 	mov	dpl, #0x1e
+      0037FE 12 3A FA         [24] 2754 	lcall	_mac_spi_read
+                                   2755 ;	main.c:306: printf("Enabling TXPKTIE\n\r");
+      003801 74 CC            [12] 2756 	mov	a,#___str_48
+      003803 C0 E0            [24] 2757 	push	acc
+      003805 74 62            [12] 2758 	mov	a,#(___str_48 >> 8)
+      003807 C0 E0            [24] 2759 	push	acc
+      003809 74 80            [12] 2760 	mov	a,#0x80
+      00380B C0 E0            [24] 2761 	push	acc
+      00380D 12 51 98         [24] 2762 	lcall	_printf
+      003810 15 81            [12] 2763 	dec	sp
+      003812 15 81            [12] 2764 	dec	sp
+      003814 15 81            [12] 2765 	dec	sp
+                                   2766 ;	main.c:307: spi_control_write(0, 0x1B, 0xC0);
+      003816 90 03 84         [24] 2767 	mov	dptr,#_spi_control_write_PARM_2
+      003819 74 1B            [12] 2768 	mov	a,#0x1b
+      00381B F0               [24] 2769 	movx	@dptr,a
+      00381C 90 03 85         [24] 2770 	mov	dptr,#_spi_control_write_PARM_3
+      00381F 74 C0            [12] 2771 	mov	a,#0xc0
+      003821 F0               [24] 2772 	movx	@dptr,a
+      003822 75 82 00         [24] 2773 	mov	dpl, #0x00
+      003825 12 39 84         [24] 2774 	lcall	_spi_control_write
+                                   2775 ;	main.c:308: break;
+      003828 02 2D AD         [24] 2776 	ljmp	00142$
+                                   2777 ;	main.c:310: case 'F':{
+      00382B                       2778 00138$:
+                                   2779 ;	main.c:311: printf("Disabling TXPKTIE\n\r");
+      00382B 74 DF            [12] 2780 	mov	a,#___str_49
+      00382D C0 E0            [24] 2781 	push	acc
+      00382F 74 62            [12] 2782 	mov	a,#(___str_49 >> 8)
+      003831 C0 E0            [24] 2783 	push	acc
+      003833 74 80            [12] 2784 	mov	a,#0x80
+      003835 C0 E0            [24] 2785 	push	acc
+      003837 12 51 98         [24] 2786 	lcall	_printf
+      00383A 15 81            [12] 2787 	dec	sp
+      00383C 15 81            [12] 2788 	dec	sp
+      00383E 15 81            [12] 2789 	dec	sp
+                                   2790 ;	main.c:312: spi_control_write(0, 0x1B, 0);
+      003840 90 03 84         [24] 2791 	mov	dptr,#_spi_control_write_PARM_2
+      003843 74 1B            [12] 2792 	mov	a,#0x1b
+      003845 F0               [24] 2793 	movx	@dptr,a
+      003846 90 03 85         [24] 2794 	mov	dptr,#_spi_control_write_PARM_3
+      003849 E4               [12] 2795 	clr	a
+      00384A F0               [24] 2796 	movx	@dptr,a
+      00384B 75 82 00         [24] 2797 	mov	dpl, #0x00
+      00384E 12 39 84         [24] 2798 	lcall	_spi_control_write
+                                   2799 ;	main.c:314: default: {
+      003851                       2800 00139$:
+                                   2801 ;	main.c:315: printf("Invalid option. Please select a valid action.\n\r");
+      003851 74 F3            [12] 2802 	mov	a,#___str_50
+      003853 C0 E0            [24] 2803 	push	acc
+      003855 74 62            [12] 2804 	mov	a,#(___str_50 >> 8)
+      003857 C0 E0            [24] 2805 	push	acc
+      003859 74 80            [12] 2806 	mov	a,#0x80
+      00385B C0 E0            [24] 2807 	push	acc
+      00385D 12 51 98         [24] 2808 	lcall	_printf
+      003860 15 81            [12] 2809 	dec	sp
+      003862 15 81            [12] 2810 	dec	sp
+      003864 15 81            [12] 2811 	dec	sp
+                                   2812 ;	main.c:318: }
+                                   2813 ;	main.c:320: }
+      003866 02 2D AD         [24] 2814 	ljmp	00142$
+                                   2815 	.area CSEG    (CODE)
+                                   2816 	.area CONST   (CODE)
                                    2817 	.area CONST   (CODE)
-      005D0D                       2818 ___str_1:
-      005D0D 53 50 49 20 4F 70 65  2819 	.ascii "SPI Operations on 8051"
+      005D99                       2818 ___str_0:
+      005D99 0A                    2819 	.db 0x0a
+      005D9A 0D                    2820 	.db 0x0d
+      005D9B 00                    2821 	.db 0x00
+                                   2822 	.area CSEG    (CODE)
+                                   2823 	.area CONST   (CODE)
+      005D9C                       2824 ___str_1:
+      005D9C 53 50 49 20 4F 70 65  2825 	.ascii "SPI Operations on 8051"
              72 61 74 69 6F 6E 73
              20 6F 6E 20 38 30 35
              31
-      005D23 0A                    2820 	.db 0x0a
-      005D24 0D                    2821 	.db 0x0d
-      005D25 00                    2822 	.db 0x00
-                                   2823 	.area CSEG    (CODE)
-                                   2824 	.area CONST   (CODE)
-      005D26                       2825 ___str_2:
-      005D26 0A                    2826 	.db 0x0a
-      005D27 0D                    2827 	.db 0x0d
-      005D28 43 68 6F 6F 73 65 20  2828 	.ascii "Choose an action: "
+      005DB2 0A                    2826 	.db 0x0a
+      005DB3 0D                    2827 	.db 0x0d
+      005DB4 00                    2828 	.db 0x00
+                                   2829 	.area CSEG    (CODE)
+                                   2830 	.area CONST   (CODE)
+      005DB5                       2831 ___str_2:
+      005DB5 0A                    2832 	.db 0x0a
+      005DB6 0D                    2833 	.db 0x0d
+      005DB7 43 68 6F 6F 73 65 20  2834 	.ascii "Choose an action: "
              61 6E 20 61 63 74 69
              6F 6E 3A 20
-      005D3A 0A                    2829 	.db 0x0a
-      005D3B 0D                    2830 	.db 0x0d
-      005D3C 00                    2831 	.db 0x00
-                                   2832 	.area CSEG    (CODE)
-                                   2833 	.area CONST   (CODE)
-      005D3D                       2834 ___str_3:
-      005D3D 31 20 2D 2D 3E 20 43  2835 	.ascii "1 --> Control Write"
+      005DC9 0A                    2835 	.db 0x0a
+      005DCA 0D                    2836 	.db 0x0d
+      005DCB 00                    2837 	.db 0x00
+                                   2838 	.area CSEG    (CODE)
+                                   2839 	.area CONST   (CODE)
+      005DCC                       2840 ___str_3:
+      005DCC 31 20 2D 2D 3E 20 43  2841 	.ascii "1 --> Control Write"
              6F 6E 74 72 6F 6C 20
              57 72 69 74 65
-      005D50 0A                    2836 	.db 0x0a
-      005D51 0D                    2837 	.db 0x0d
-      005D52 00                    2838 	.db 0x00
-                                   2839 	.area CSEG    (CODE)
-                                   2840 	.area CONST   (CODE)
-      005D53                       2841 ___str_4:
-      005D53 32 20 2D 2D 3E 20 42  2842 	.ascii "2 --> Buffer Write"
+      005DDF 0A                    2842 	.db 0x0a
+      005DE0 0D                    2843 	.db 0x0d
+      005DE1 00                    2844 	.db 0x00
+                                   2845 	.area CSEG    (CODE)
+                                   2846 	.area CONST   (CODE)
+      005DE2                       2847 ___str_4:
+      005DE2 32 20 2D 2D 3E 20 42  2848 	.ascii "2 --> Buffer Write"
              75 66 66 65 72 20 57
              72 69 74 65
-      005D65 0A                    2843 	.db 0x0a
-      005D66 0D                    2844 	.db 0x0d
-      005D67 00                    2845 	.db 0x00
-                                   2846 	.area CSEG    (CODE)
-                                   2847 	.area CONST   (CODE)
-      005D68                       2848 ___str_5:
-      005D68 33 20 2D 2D 3E 20 42  2849 	.ascii "3 --> Buffer Read"
+      005DF4 0A                    2849 	.db 0x0a
+      005DF5 0D                    2850 	.db 0x0d
+      005DF6 00                    2851 	.db 0x00
+                                   2852 	.area CSEG    (CODE)
+                                   2853 	.area CONST   (CODE)
+      005DF7                       2854 ___str_5:
+      005DF7 33 20 2D 2D 3E 20 42  2855 	.ascii "3 --> Buffer Read"
              75 66 66 65 72 20 52
              65 61 64
-      005D79 0A                    2850 	.db 0x0a
-      005D7A 0D                    2851 	.db 0x0d
-      005D7B 00                    2852 	.db 0x00
-                                   2853 	.area CSEG    (CODE)
-                                   2854 	.area CONST   (CODE)
-      005D7C                       2855 ___str_6:
-      005D7C 34 20 2D 2D 3E 20 4D  2856 	.ascii "4 --> MAC Register Read"
+      005E08 0A                    2856 	.db 0x0a
+      005E09 0D                    2857 	.db 0x0d
+      005E0A 00                    2858 	.db 0x00
+                                   2859 	.area CSEG    (CODE)
+                                   2860 	.area CONST   (CODE)
+      005E0B                       2861 ___str_6:
+      005E0B 34 20 2D 2D 3E 20 4D  2862 	.ascii "4 --> MAC Register Read"
              41 43 20 52 65 67 69
              73 74 65 72 20 52 65
              61 64
-      005D93 0A                    2857 	.db 0x0a
-      005D94 0D                    2858 	.db 0x0d
-      005D95 00                    2859 	.db 0x00
-                                   2860 	.area CSEG    (CODE)
-                                   2861 	.area CONST   (CODE)
-      005D96                       2862 ___str_7:
-      005D96 35 20 2D 2D 3E 20 50  2863 	.ascii "5 --> PHY SPI Write"
+      005E22 0A                    2863 	.db 0x0a
+      005E23 0D                    2864 	.db 0x0d
+      005E24 00                    2865 	.db 0x00
+                                   2866 	.area CSEG    (CODE)
+                                   2867 	.area CONST   (CODE)
+      005E25                       2868 ___str_7:
+      005E25 35 20 2D 2D 3E 20 50  2869 	.ascii "5 --> PHY SPI Write"
              48 59 20 53 50 49 20
              57 72 69 74 65
-      005DA9 0A                    2864 	.db 0x0a
-      005DAA 0D                    2865 	.db 0x0d
-      005DAB 00                    2866 	.db 0x00
-                                   2867 	.area CSEG    (CODE)
-                                   2868 	.area CONST   (CODE)
-      005DAC                       2869 ___str_8:
-      005DAC 36 20 2D 2D 3E 20 50  2870 	.ascii "6 --> PHY SPI Read"
+      005E38 0A                    2870 	.db 0x0a
+      005E39 0D                    2871 	.db 0x0d
+      005E3A 00                    2872 	.db 0x00
+                                   2873 	.area CSEG    (CODE)
+                                   2874 	.area CONST   (CODE)
+      005E3B                       2875 ___str_8:
+      005E3B 36 20 2D 2D 3E 20 50  2876 	.ascii "6 --> PHY SPI Read"
              48 59 20 53 50 49 20
              52 65 61 64
-      005DBE 0A                    2871 	.db 0x0a
-      005DBF 0D                    2872 	.db 0x0d
-      005DC0 00                    2873 	.db 0x00
-                                   2874 	.area CSEG    (CODE)
-                                   2875 	.area CONST   (CODE)
-      005DC1                       2876 ___str_9:
-      005DC1 37 20 2D 2D 3E 20 45  2877 	.ascii "7 --> ENC Reset"
+      005E4D 0A                    2877 	.db 0x0a
+      005E4E 0D                    2878 	.db 0x0d
+      005E4F 00                    2879 	.db 0x00
+                                   2880 	.area CSEG    (CODE)
+                                   2881 	.area CONST   (CODE)
+      005E50                       2882 ___str_9:
+      005E50 37 20 2D 2D 3E 20 45  2883 	.ascii "7 --> ENC Reset"
              4E 43 20 52 65 73 65
              74
-      005DD0 0A                    2878 	.db 0x0a
-      005DD1 0D                    2879 	.db 0x0d
-      005DD2 00                    2880 	.db 0x00
-                                   2881 	.area CSEG    (CODE)
-                                   2882 	.area CONST   (CODE)
-      005DD3                       2883 ___str_10:
-      005DD3 38 20 2D 2D 3E 20 52  2884 	.ascii "8 --> Read ETH Register"
+      005E5F 0A                    2884 	.db 0x0a
+      005E60 0D                    2885 	.db 0x0d
+      005E61 00                    2886 	.db 0x00
+                                   2887 	.area CSEG    (CODE)
+                                   2888 	.area CONST   (CODE)
+      005E62                       2889 ___str_10:
+      005E62 38 20 2D 2D 3E 20 52  2890 	.ascii "8 --> Read ETH Register"
              65 61 64 20 45 54 48
              20 52 65 67 69 73 74
              65 72
-      005DEA 0A                    2885 	.db 0x0a
-      005DEB 0D                    2886 	.db 0x0d
-      005DEC 00                    2887 	.db 0x00
-                                   2888 	.area CSEG    (CODE)
-                                   2889 	.area CONST   (CODE)
-      005DED                       2890 ___str_11:
-      005DED 39 20 2D 2D 3E 20 44  2891 	.ascii "9 --> Display Menu"
+      005E79 0A                    2891 	.db 0x0a
+      005E7A 0D                    2892 	.db 0x0d
+      005E7B 00                    2893 	.db 0x00
+                                   2894 	.area CSEG    (CODE)
+                                   2895 	.area CONST   (CODE)
+      005E7C                       2896 ___str_11:
+      005E7C 39 20 2D 2D 3E 20 44  2897 	.ascii "9 --> Display Menu"
              69 73 70 6C 61 79 20
              4D 65 6E 75
-      005DFF 0A                    2892 	.db 0x0a
-      005E00 0D                    2893 	.db 0x0d
-      005E01 00                    2894 	.db 0x00
-                                   2895 	.area CSEG    (CODE)
-                                   2896 	.area CONST   (CODE)
-      005E02                       2897 ___str_12:
-      005E02 41 20 2D 2D 3E 20 53  2898 	.ascii "A --> Send ARP Request"
+      005E8E 0A                    2898 	.db 0x0a
+      005E8F 0D                    2899 	.db 0x0d
+      005E90 00                    2900 	.db 0x00
+                                   2901 	.area CSEG    (CODE)
+                                   2902 	.area CONST   (CODE)
+      005E91                       2903 ___str_12:
+      005E91 41 20 2D 2D 3E 20 53  2904 	.ascii "A --> Send ARP Request"
              65 6E 64 20 41 52 50
              20 52 65 71 75 65 73
              74
-      005E18 0A                    2899 	.db 0x0a
-      005E19 0D                    2900 	.db 0x0d
-      005E1A 00                    2901 	.db 0x00
-                                   2902 	.area CSEG    (CODE)
-                                   2903 	.area CONST   (CODE)
-      005E1B                       2904 ___str_13:
-      005E1B 42 20 2D 2D 3E 20 49  2905 	.ascii "B --> Init RX buffers"
+      005EA7 0A                    2905 	.db 0x0a
+      005EA8 0D                    2906 	.db 0x0d
+      005EA9 00                    2907 	.db 0x00
+                                   2908 	.area CSEG    (CODE)
+                                   2909 	.area CONST   (CODE)
+      005EAA                       2910 ___str_13:
+      005EAA 42 20 2D 2D 3E 20 49  2911 	.ascii "B --> Init RX buffers"
              6E 69 74 20 52 58 20
              62 75 66 66 65 72 73
-      005E30 0A                    2906 	.db 0x0a
-      005E31 0D                    2907 	.db 0x0d
-      005E32 00                    2908 	.db 0x00
-                                   2909 	.area CSEG    (CODE)
-                                   2910 	.area CONST   (CODE)
-      005E33                       2911 ___str_14:
-      005E33 43 20 2D 2D 3E 20 48  2912 	.ascii "C --> Hard Reset(nRESET pin)"
+      005EBF 0A                    2912 	.db 0x0a
+      005EC0 0D                    2913 	.db 0x0d
+      005EC1 00                    2914 	.db 0x00
+                                   2915 	.area CSEG    (CODE)
+                                   2916 	.area CONST   (CODE)
+      005EC2                       2917 ___str_14:
+      005EC2 43 20 2D 2D 3E 20 48  2918 	.ascii "C --> Hard Reset(nRESET pin)"
              61 72 64 20 52 65 73
              65 74 28 6E 52 45 53
              45 54 20 70 69 6E 29
-      005E4F 0A                    2913 	.db 0x0a
-      005E50 0D                    2914 	.db 0x0d
-      005E51 00                    2915 	.db 0x00
-                                   2916 	.area CSEG    (CODE)
-                                   2917 	.area CONST   (CODE)
-      005E52                       2918 ___str_15:
-      005E52 44 20 2D 2D 3E 20 50  2919 	.ascii "D --> Process TCP"
+      005EDE 0A                    2919 	.db 0x0a
+      005EDF 0D                    2920 	.db 0x0d
+      005EE0 00                    2921 	.db 0x00
+                                   2922 	.area CSEG    (CODE)
+                                   2923 	.area CONST   (CODE)
+      005EE1                       2924 ___str_15:
+      005EE1 44 20 2D 2D 3E 20 50  2925 	.ascii "D --> Process TCP"
              72 6F 63 65 73 73 20
              54 43 50
-      005E63 0A                    2920 	.db 0x0a
-      005E64 0D                    2921 	.db 0x0d
-      005E65 00                    2922 	.db 0x00
-                                   2923 	.area CSEG    (CODE)
-                                   2924 	.area CONST   (CODE)
-      005E66                       2925 ___str_16:
-      005E66 45 20 2D 2D 3E 20 45  2926 	.ascii "E --> Enable TX interrupt"
+      005EF2 0A                    2926 	.db 0x0a
+      005EF3 0D                    2927 	.db 0x0d
+      005EF4 00                    2928 	.db 0x00
+                                   2929 	.area CSEG    (CODE)
+                                   2930 	.area CONST   (CODE)
+      005EF5                       2931 ___str_16:
+      005EF5 45 20 2D 2D 3E 20 45  2932 	.ascii "E --> Enable TX interrupt"
              6E 61 62 6C 65 20 54
              58 20 69 6E 74 65 72
              72 75 70 74
-      005E7F 0A                    2927 	.db 0x0a
-      005E80 0D                    2928 	.db 0x0d
-      005E81 00                    2929 	.db 0x00
-                                   2930 	.area CSEG    (CODE)
-                                   2931 	.area CONST   (CODE)
-      005E82                       2932 ___str_17:
-      005E82 46 20 2D 2D 3E 20 44  2933 	.ascii "F --> Disabling TX interrupt"
+      005F0E 0A                    2933 	.db 0x0a
+      005F0F 0D                    2934 	.db 0x0d
+      005F10 00                    2935 	.db 0x00
+                                   2936 	.area CSEG    (CODE)
+                                   2937 	.area CONST   (CODE)
+      005F11                       2938 ___str_17:
+      005F11 46 20 2D 2D 3E 20 44  2939 	.ascii "F --> Disabling TX interrupt"
              69 73 61 62 6C 69 6E
              67 20 54 58 20 69 6E
              74 65 72 72 75 70 74
-      005E9E 0A                    2934 	.db 0x0a
-      005E9F 0D                    2935 	.db 0x0d
-      005EA0 00                    2936 	.db 0x00
-                                   2937 	.area CSEG    (CODE)
-                                   2938 	.area CONST   (CODE)
-      005EA1                       2939 ___str_18:
-      005EA1 45 6E 74 65 72 20 74  2940 	.ascii "Enter the register bank to select:"
+      005F2D 0A                    2940 	.db 0x0a
+      005F2E 0D                    2941 	.db 0x0d
+      005F2F 00                    2942 	.db 0x00
+                                   2943 	.area CSEG    (CODE)
+                                   2944 	.area CONST   (CODE)
+      005F30                       2945 ___str_18:
+      005F30 45 6E 74 65 72 20 74  2946 	.ascii "Enter the register bank to select:"
              68 65 20 72 65 67 69
              73 74 65 72 20 62 61
              6E 6B 20 74 6F 20 73
              65 6C 65 63 74 3A
-      005EC3 0A                    2941 	.db 0x0a
-      005EC4 0D                    2942 	.db 0x0d
-      005EC5 00                    2943 	.db 0x00
-                                   2944 	.area CSEG    (CODE)
-                                   2945 	.area CONST   (CODE)
-      005EC6                       2946 ___str_19:
-      005EC6 45 6E 74 65 72 20 74  2947 	.ascii "Enter the address of the Control Register:"
+      005F52 0A                    2947 	.db 0x0a
+      005F53 0D                    2948 	.db 0x0d
+      005F54 00                    2949 	.db 0x00
+                                   2950 	.area CSEG    (CODE)
+                                   2951 	.area CONST   (CODE)
+      005F55                       2952 ___str_19:
+      005F55 45 6E 74 65 72 20 74  2953 	.ascii "Enter the address of the Control Register:"
              68 65 20 61 64 64 72
              65 73 73 20 6F 66 20
              74 68 65 20 43 6F 6E
              74 72 6F 6C 20 52 65
              67 69 73 74 65 72 3A
-      005EF0 0A                    2948 	.db 0x0a
-      005EF1 0D                    2949 	.db 0x0d
-      005EF2 00                    2950 	.db 0x00
-                                   2951 	.area CSEG    (CODE)
-                                   2952 	.area CONST   (CODE)
-      005EF3                       2953 ___str_20:
-      005EF3 45 6E 74 65 72 20 74  2954 	.ascii "Enter the data you want to write:"
+      005F7F 0A                    2954 	.db 0x0a
+      005F80 0D                    2955 	.db 0x0d
+      005F81 00                    2956 	.db 0x00
+                                   2957 	.area CSEG    (CODE)
+                                   2958 	.area CONST   (CODE)
+      005F82                       2959 ___str_20:
+      005F82 45 6E 74 65 72 20 74  2960 	.ascii "Enter the data you want to write:"
              68 65 20 64 61 74 61
              20 79 6F 75 20 77 61
              6E 74 20 74 6F 20 77
              72 69 74 65 3A
-      005F14 0A                    2955 	.db 0x0a
-      005F15 0D                    2956 	.db 0x0d
-      005F16 00                    2957 	.db 0x00
-                                   2958 	.area CSEG    (CODE)
-                                   2959 	.area CONST   (CODE)
-      005F17                       2960 ___str_21:
-      005F17 45 6E 74 65 72 20 74  2961 	.ascii "Enter the number of bytes to write:"
+      005FA3 0A                    2961 	.db 0x0a
+      005FA4 0D                    2962 	.db 0x0d
+      005FA5 00                    2963 	.db 0x00
+                                   2964 	.area CSEG    (CODE)
+                                   2965 	.area CONST   (CODE)
+      005FA6                       2966 ___str_21:
+      005FA6 45 6E 74 65 72 20 74  2967 	.ascii "Enter the number of bytes to write:"
              68 65 20 6E 75 6D 62
              65 72 20 6F 66 20 62
              79 74 65 73 20 74 6F
              20 77 72 69 74 65 3A
-      005F3A 0A                    2962 	.db 0x0a
-      005F3B 0D                    2963 	.db 0x0d
-      005F3C 00                    2964 	.db 0x00
-                                   2965 	.area CSEG    (CODE)
-                                   2966 	.area CONST   (CODE)
-      005F3D                       2967 ___str_22:
-      005F3D 45 6E 74 65 72 20 74  2968 	.ascii "Enter the starting address:"
+      005FC9 0A                    2968 	.db 0x0a
+      005FCA 0D                    2969 	.db 0x0d
+      005FCB 00                    2970 	.db 0x00
+                                   2971 	.area CSEG    (CODE)
+                                   2972 	.area CONST   (CODE)
+      005FCC                       2973 ___str_22:
+      005FCC 45 6E 74 65 72 20 74  2974 	.ascii "Enter the starting address:"
              68 65 20 73 74 61 72
              74 69 6E 67 20 61 64
              64 72 65 73 73 3A
-      005F58 0A                    2969 	.db 0x0a
-      005F59 0D                    2970 	.db 0x0d
-      005F5A 00                    2971 	.db 0x00
-                                   2972 	.area CSEG    (CODE)
-                                   2973 	.area CONST   (CODE)
-      005F5B                       2974 ___str_23:
-      005F5B 45 6E 74 65 72 20 25  2975 	.ascii "Enter %d bytes of data (in hex):"
+      005FE7 0A                    2975 	.db 0x0a
+      005FE8 0D                    2976 	.db 0x0d
+      005FE9 00                    2977 	.db 0x00
+                                   2978 	.area CSEG    (CODE)
+                                   2979 	.area CONST   (CODE)
+      005FEA                       2980 ___str_23:
+      005FEA 45 6E 74 65 72 20 25  2981 	.ascii "Enter %d bytes of data (in hex):"
              64 20 62 79 74 65 73
              20 6F 66 20 64 61 74
              61 20 28 69 6E 20 68
              65 78 29 3A
-      005F7B 0A                    2976 	.db 0x0a
-      005F7C 0D                    2977 	.db 0x0d
-      005F7D 00                    2978 	.db 0x00
-                                   2979 	.area CSEG    (CODE)
-                                   2980 	.area CONST   (CODE)
-      005F7E                       2981 ___str_24:
-      005F7E 42 79 74 65 20 25 64  2982 	.ascii "Byte %d: "
+      00600A 0A                    2982 	.db 0x0a
+      00600B 0D                    2983 	.db 0x0d
+      00600C 00                    2984 	.db 0x00
+                                   2985 	.area CSEG    (CODE)
+                                   2986 	.area CONST   (CODE)
+      00600D                       2987 ___str_24:
+      00600D 42 79 74 65 20 25 64  2988 	.ascii "Byte %d: "
              3A 20
-      005F87 00                    2983 	.db 0x00
-                                   2984 	.area CSEG    (CODE)
-                                   2985 	.area CONST   (CODE)
-      005F88                       2986 ___str_25:
-      005F88 45 6E 74 65 72 20 74  2987 	.ascii "Enter the number of bytes to read:"
+      006016 00                    2989 	.db 0x00
+                                   2990 	.area CSEG    (CODE)
+                                   2991 	.area CONST   (CODE)
+      006017                       2992 ___str_25:
+      006017 45 6E 74 65 72 20 74  2993 	.ascii "Enter the number of bytes to read:"
              68 65 20 6E 75 6D 62
              65 72 20 6F 66 20 62
              79 74 65 73 20 74 6F
              20 72 65 61 64 3A
-      005FAA 0A                    2988 	.db 0x0a
-      005FAB 0D                    2989 	.db 0x0d
-      005FAC 00                    2990 	.db 0x00
-                                   2991 	.area CSEG    (CODE)
-                                   2992 	.area CONST   (CODE)
-      005FAD                       2993 ___str_26:
-      005FAD 45 6E 74 65 72 20 74  2994 	.ascii "Enter the MAC register bank to select:"
+      006039 0A                    2994 	.db 0x0a
+      00603A 0D                    2995 	.db 0x0d
+      00603B 00                    2996 	.db 0x00
+                                   2997 	.area CSEG    (CODE)
+                                   2998 	.area CONST   (CODE)
+      00603C                       2999 ___str_26:
+      00603C 45 6E 74 65 72 20 74  3000 	.ascii "Enter the MAC register bank to select:"
              68 65 20 4D 41 43 20
              72 65 67 69 73 74 65
              72 20 62 61 6E 6B 20
              74 6F 20 73 65 6C 65
              63 74 3A
-      005FD3 0A                    2995 	.db 0x0a
-      005FD4 0D                    2996 	.db 0x0d
-      005FD5 00                    2997 	.db 0x00
-                                   2998 	.area CSEG    (CODE)
-                                   2999 	.area CONST   (CODE)
-      005FD6                       3000 ___str_27:
-      005FD6 45 6E 74 65 72 20 74  3001 	.ascii "Enter the address of the MAC Register:"
+      006062 0A                    3001 	.db 0x0a
+      006063 0D                    3002 	.db 0x0d
+      006064 00                    3003 	.db 0x00
+                                   3004 	.area CSEG    (CODE)
+                                   3005 	.area CONST   (CODE)
+      006065                       3006 ___str_27:
+      006065 45 6E 74 65 72 20 74  3007 	.ascii "Enter the address of the MAC Register:"
              68 65 20 61 64 64 72
              65 73 73 20 6F 66 20
              74 68 65 20 4D 41 43
              20 52 65 67 69 73 74
              65 72 3A
-      005FFC 0A                    3002 	.db 0x0a
-      005FFD 0D                    3003 	.db 0x0d
-      005FFE 00                    3004 	.db 0x00
-                                   3005 	.area CSEG    (CODE)
-                                   3006 	.area CONST   (CODE)
-      005FFF                       3007 ___str_28:
-      005FFF 4D 41 43 20 52 65 67  3008 	.ascii "MAC Register Data: 0x%02X"
+      00608B 0A                    3008 	.db 0x0a
+      00608C 0D                    3009 	.db 0x0d
+      00608D 00                    3010 	.db 0x00
+                                   3011 	.area CSEG    (CODE)
+                                   3012 	.area CONST   (CODE)
+      00608E                       3013 ___str_28:
+      00608E 4D 41 43 20 52 65 67  3014 	.ascii "MAC Register Data: 0x%02X"
              69 73 74 65 72 20 44
              61 74 61 3A 20 30 78
              25 30 32 58
-      006018 0A                    3009 	.db 0x0a
-      006019 0D                    3010 	.db 0x0d
-      00601A 00                    3011 	.db 0x00
-                                   3012 	.area CSEG    (CODE)
-                                   3013 	.area CONST   (CODE)
-      00601B                       3014 ___str_29:
-      00601B 45 6E 74 65 72 20 74  3015 	.ascii "Enter the PHY register address:"
+      0060A7 0A                    3015 	.db 0x0a
+      0060A8 0D                    3016 	.db 0x0d
+      0060A9 00                    3017 	.db 0x00
+                                   3018 	.area CSEG    (CODE)
+                                   3019 	.area CONST   (CODE)
+      0060AA                       3020 ___str_29:
+      0060AA 45 6E 74 65 72 20 74  3021 	.ascii "Enter the PHY register address:"
              68 65 20 50 48 59 20
              72 65 67 69 73 74 65
              72 20 61 64 64 72 65
              73 73 3A
-      00603A 0A                    3016 	.db 0x0a
-      00603B 0D                    3017 	.db 0x0d
-      00603C 00                    3018 	.db 0x00
-                                   3019 	.area CSEG    (CODE)
-                                   3020 	.area CONST   (CODE)
-      00603D                       3021 ___str_30:
-      00603D 45 6E 74 65 72 20 74  3022 	.ascii "Enter the 16-bit data to write:"
+      0060C9 0A                    3022 	.db 0x0a
+      0060CA 0D                    3023 	.db 0x0d
+      0060CB 00                    3024 	.db 0x00
+                                   3025 	.area CSEG    (CODE)
+                                   3026 	.area CONST   (CODE)
+      0060CC                       3027 ___str_30:
+      0060CC 45 6E 74 65 72 20 74  3028 	.ascii "Enter the 16-bit data to write:"
              68 65 20 31 36 2D 62
              69 74 20 64 61 74 61
              20 74 6F 20 77 72 69
              74 65 3A
-      00605C 0A                    3023 	.db 0x0a
-      00605D 0D                    3024 	.db 0x0d
-      00605E 00                    3025 	.db 0x00
-                                   3026 	.area CSEG    (CODE)
-                                   3027 	.area CONST   (CODE)
-      00605F                       3028 ___str_31:
-      00605F 50 48 59 20 57 72 69  3029 	.ascii "PHY Write Data: 0x%04X"
+      0060EB 0A                    3029 	.db 0x0a
+      0060EC 0D                    3030 	.db 0x0d
+      0060ED 00                    3031 	.db 0x00
+                                   3032 	.area CSEG    (CODE)
+                                   3033 	.area CONST   (CODE)
+      0060EE                       3034 ___str_31:
+      0060EE 50 48 59 20 57 72 69  3035 	.ascii "PHY Write Data: 0x%04X"
              74 65 20 44 61 74 61
              3A 20 30 78 25 30 34
              58
-      006075 0A                    3030 	.db 0x0a
-      006076 0D                    3031 	.db 0x0d
-      006077 00                    3032 	.db 0x00
-                                   3033 	.area CSEG    (CODE)
-                                   3034 	.area CONST   (CODE)
-      006078                       3035 ___str_32:
-      006078 45 6E 74 65 72 20 74  3036 	.ascii "Enter the PHY register address to read:"
+      006104 0A                    3036 	.db 0x0a
+      006105 0D                    3037 	.db 0x0d
+      006106 00                    3038 	.db 0x00
+                                   3039 	.area CSEG    (CODE)
+                                   3040 	.area CONST   (CODE)
+      006107                       3041 ___str_32:
+      006107 45 6E 74 65 72 20 74  3042 	.ascii "Enter the PHY register address to read:"
              68 65 20 50 48 59 20
              72 65 67 69 73 74 65
              72 20 61 64 64 72 65
              73 73 20 74 6F 20 72
              65 61 64 3A
-      00609F 0A                    3037 	.db 0x0a
-      0060A0 0D                    3038 	.db 0x0d
-      0060A1 00                    3039 	.db 0x00
-                                   3040 	.area CSEG    (CODE)
-                                   3041 	.area CONST   (CODE)
-      0060A2                       3042 ___str_33:
-      0060A2 50 48 59 20 52 65 61  3043 	.ascii "PHY Read Data: 0x%04X"
+      00612E 0A                    3043 	.db 0x0a
+      00612F 0D                    3044 	.db 0x0d
+      006130 00                    3045 	.db 0x00
+                                   3046 	.area CSEG    (CODE)
+                                   3047 	.area CONST   (CODE)
+      006131                       3048 ___str_33:
+      006131 50 48 59 20 52 65 61  3049 	.ascii "PHY Read Data: 0x%04X"
              64 20 44 61 74 61 3A
              20 30 78 25 30 34 58
-      0060B7 0A                    3044 	.db 0x0a
-      0060B8 0D                    3045 	.db 0x0d
-      0060B9 00                    3046 	.db 0x00
-                                   3047 	.area CSEG    (CODE)
-                                   3048 	.area CONST   (CODE)
-      0060BA                       3049 ___str_34:
-      0060BA 52 65 73 65 74 74 69  3050 	.ascii "Resetting ENC28J60..."
+      006146 0A                    3050 	.db 0x0a
+      006147 0D                    3051 	.db 0x0d
+      006148 00                    3052 	.db 0x00
+                                   3053 	.area CSEG    (CODE)
+                                   3054 	.area CONST   (CODE)
+      006149                       3055 ___str_34:
+      006149 52 65 73 65 74 74 69  3056 	.ascii "Resetting ENC28J60..."
              6E 67 20 45 4E 43 32
              38 4A 36 30 2E 2E 2E
-      0060CF 0A                    3051 	.db 0x0a
-      0060D0 0D                    3052 	.db 0x0d
-      0060D1 00                    3053 	.db 0x00
-                                   3054 	.area CSEG    (CODE)
-                                   3055 	.area CONST   (CODE)
-      0060D2                       3056 ___str_35:
-      0060D2 45 6E 74 65 72 20 74  3057 	.ascii "Enter the ETH register address to read:"
+      00615E 0A                    3057 	.db 0x0a
+      00615F 0D                    3058 	.db 0x0d
+      006160 00                    3059 	.db 0x00
+                                   3060 	.area CSEG    (CODE)
+                                   3061 	.area CONST   (CODE)
+      006161                       3062 ___str_35:
+      006161 45 6E 74 65 72 20 74  3063 	.ascii "Enter the ETH register address to read:"
              68 65 20 45 54 48 20
              72 65 67 69 73 74 65
              72 20 61 64 64 72 65
              73 73 20 74 6F 20 72
              65 61 64 3A
-      0060F9 0A                    3058 	.db 0x0a
-      0060FA 0D                    3059 	.db 0x0d
-      0060FB 00                    3060 	.db 0x00
-                                   3061 	.area CSEG    (CODE)
-                                   3062 	.area CONST   (CODE)
-      0060FC                       3063 ___str_36:
-      0060FC 45 6E 74 65 72 20 74  3064 	.ascii "Enter the bank (0 or 1):"
+      006188 0A                    3064 	.db 0x0a
+      006189 0D                    3065 	.db 0x0d
+      00618A 00                    3066 	.db 0x00
+                                   3067 	.area CSEG    (CODE)
+                                   3068 	.area CONST   (CODE)
+      00618B                       3069 ___str_36:
+      00618B 45 6E 74 65 72 20 74  3070 	.ascii "Enter the bank (0 or 1):"
              68 65 20 62 61 6E 6B
              20 28 30 20 6F 72 20
              31 29 3A
-      006114 0A                    3065 	.db 0x0a
-      006115 0D                    3066 	.db 0x0d
-      006116 00                    3067 	.db 0x00
-                                   3068 	.area CSEG    (CODE)
-                                   3069 	.area CONST   (CODE)
-      006117                       3070 ___str_37:
-      006117 45 54 48 20 52 65 67  3071 	.ascii "ETH Register Data: 0x%02X"
+      0061A3 0A                    3071 	.db 0x0a
+      0061A4 0D                    3072 	.db 0x0d
+      0061A5 00                    3073 	.db 0x00
+                                   3074 	.area CSEG    (CODE)
+                                   3075 	.area CONST   (CODE)
+      0061A6                       3076 ___str_37:
+      0061A6 45 54 48 20 52 65 67  3077 	.ascii "ETH Register Data: 0x%02X"
              69 73 74 65 72 20 44
              61 74 61 3A 20 30 78
              25 30 32 58
-      006130 0A                    3072 	.db 0x0a
-      006131 0D                    3073 	.db 0x0d
-      006132 00                    3074 	.db 0x00
-                                   3075 	.area CSEG    (CODE)
-                                   3076 	.area CONST   (CODE)
-      006133                       3077 ___str_38:
-      006133 4D 41 43 20 6D 61 74  3078 	.ascii "MAC matched"
+      0061BF 0A                    3078 	.db 0x0a
+      0061C0 0D                    3079 	.db 0x0d
+      0061C1 00                    3080 	.db 0x00
+                                   3081 	.area CSEG    (CODE)
+                                   3082 	.area CONST   (CODE)
+      0061C2                       3083 ___str_38:
+      0061C2 4D 41 43 20 6D 61 74  3084 	.ascii "MAC matched"
              63 68 65 64
-      00613E 0A                    3079 	.db 0x0a
-      00613F 2E 2E 2E 2E 2E 2E 2E  3080 	.ascii "................"
+      0061CD 0A                    3085 	.db 0x0a
+      0061CE 2E 2E 2E 2E 2E 2E 2E  3086 	.ascii "................"
              2E 2E 2E 2E 2E 2E 2E
              2E 2E
-      00614F 0D                    3081 	.db 0x0d
-      006150 00                    3082 	.db 0x00
-                                   3083 	.area CSEG    (CODE)
-                                   3084 	.area CONST   (CODE)
-      006151                       3085 ___str_39:
-      006151 56 61 6C 69 64 20 45  3086 	.ascii "Valid ETHER packet....................."
+      0061DE 0D                    3087 	.db 0x0d
+      0061DF 00                    3088 	.db 0x00
+                                   3089 	.area CSEG    (CODE)
+                                   3090 	.area CONST   (CODE)
+      0061E0                       3091 ___str_39:
+      0061E0 56 61 6C 69 64 20 45  3092 	.ascii "Valid ETHER packet....................."
              54 48 45 52 20 70 61
              63 6B 65 74 2E 2E 2E
              2E 2E 2E 2E 2E 2E 2E
              2E 2E 2E 2E 2E 2E 2E
              2E 2E 2E 2E
-      006178 0A                    3087 	.db 0x0a
-      006179 0D                    3088 	.db 0x0d
-      00617A 00                    3089 	.db 0x00
-                                   3090 	.area CSEG    (CODE)
-                                   3091 	.area CONST   (CODE)
-      00617B                       3092 ___str_40:
-      00617B 0A                    3093 	.db 0x0a
-      00617C 50 72 6F 63 65 73 73  3094 	.ascii "Processed response data:"
+      006207 0A                    3093 	.db 0x0a
+      006208 0D                    3094 	.db 0x0d
+      006209 00                    3095 	.db 0x00
+                                   3096 	.area CSEG    (CODE)
+                                   3097 	.area CONST   (CODE)
+      00620A                       3098 ___str_40:
+      00620A 0A                    3099 	.db 0x0a
+      00620B 50 72 6F 63 65 73 73  3100 	.ascii "Processed response data:"
              65 64 20 72 65 73 70
              6F 6E 73 65 20 64 61
              74 61 3A
-      006194 0A                    3095 	.db 0x0a
-      006195 00                    3096 	.db 0x00
-                                   3097 	.area CSEG    (CODE)
-                                   3098 	.area CONST   (CODE)
-      006196                       3099 ___str_41:
-      006196 0A                    3100 	.db 0x0a
-      006197 4E 6F 20 72 65 73 70  3101 	.ascii "No response generated by TCP packet processing."
+      006223 0A                    3101 	.db 0x0a
+      006224 00                    3102 	.db 0x00
+                                   3103 	.area CSEG    (CODE)
+                                   3104 	.area CONST   (CODE)
+      006225                       3105 ___str_41:
+      006225 0A                    3106 	.db 0x0a
+      006226 4E 6F 20 72 65 73 70  3107 	.ascii "No response generated by TCP packet processing."
              6F 6E 73 65 20 67 65
              6E 65 72 61 74 65 64
              20 62 79 20 54 43 50
              20 70 61 63 6B 65 74
              20 70 72 6F 63 65 73
              73 69 6E 67 2E
-      0061C6 0A                    3102 	.db 0x0a
-      0061C7 00                    3103 	.db 0x00
-                                   3104 	.area CSEG    (CODE)
-                                   3105 	.area CONST   (CODE)
-      0061C8                       3106 ___str_42:
-      0061C8 59 45 53 53 53 53     3107 	.ascii "YESSSS"
-      0061CE 0A                    3108 	.db 0x0a
-      0061CF 00                    3109 	.db 0x00
+      006255 0A                    3108 	.db 0x0a
+      006256 00                    3109 	.db 0x00
                                    3110 	.area CSEG    (CODE)
                                    3111 	.area CONST   (CODE)
-      0061D0                       3112 ___str_43:
-      0061D0 4E 4F 4F 4F 4F        3113 	.ascii "NOOOO"
-      0061D5 0A                    3114 	.db 0x0a
-      0061D6 00                    3115 	.db 0x00
+      006257                       3112 ___str_42:
+      006257 59 45 53 53 53 53     3113 	.ascii "YESSSS"
+      00625D 0A                    3114 	.db 0x0a
+      00625E 00                    3115 	.db 0x00
                                    3116 	.area CSEG    (CODE)
                                    3117 	.area CONST   (CODE)
-      0061D7                       3118 ___str_44:
-      0061D7 6E 65 78 74 50 61 63  3119 	.ascii "nextPacket: 0x%04X"
-             6B 65 74 3A 20 30 78
-             25 30 34 58
-      0061E9 0A                    3120 	.db 0x0a
-      0061EA 00                    3121 	.db 0x00
+      00625F                       3118 ___str_43:
+      00625F 4E 4F 4F 4F 4F        3119 	.ascii "NOOOO"
+      006264 0A                    3120 	.db 0x0a
+      006265 00                    3121 	.db 0x00
                                    3122 	.area CSEG    (CODE)
                                    3123 	.area CONST   (CODE)
-      0061EB                       3124 ___str_45:
-      0061EB 62 79 74 65 43 6F 75  3125 	.ascii "byteCount: %d"
-             6E 74 3A 20 25 64
-      0061F8 0A                    3126 	.db 0x0a
-      0061F9 00                    3127 	.db 0x00
+      006266                       3124 ___str_44:
+      006266 6E 65 78 74 50 61 63  3125 	.ascii "nextPacket: 0x%04X"
+             6B 65 74 3A 20 30 78
+             25 30 34 58
+      006278 0A                    3126 	.db 0x0a
+      006279 00                    3127 	.db 0x00
                                    3128 	.area CSEG    (CODE)
                                    3129 	.area CONST   (CODE)
-      0061FA                       3130 ___str_46:
-      0061FA 73 74 61 74 75 73 3A  3131 	.ascii "status: 0x%02X"
-             20 30 78 25 30 32 58
-      006208 0A                    3132 	.db 0x0a
-      006209 00                    3133 	.db 0x00
+      00627A                       3130 ___str_45:
+      00627A 62 79 74 65 43 6F 75  3131 	.ascii "byteCount: %d"
+             6E 74 3A 20 25 64
+      006287 0A                    3132 	.db 0x0a
+      006288 00                    3133 	.db 0x00
                                    3134 	.area CSEG    (CODE)
                                    3135 	.area CONST   (CODE)
-      00620A                       3136 ___str_47:
-      00620A 20 52 65 73 65 74 74  3137 	.ascii " Resetting ENC using RESET pin in Hardware(P1_0)"
+      006289                       3136 ___str_46:
+      006289 73 74 61 74 75 73 3A  3137 	.ascii "status: 0x%02X"
+             20 30 78 25 30 32 58
+      006297 0A                    3138 	.db 0x0a
+      006298 00                    3139 	.db 0x00
+                                   3140 	.area CSEG    (CODE)
+                                   3141 	.area CONST   (CODE)
+      006299                       3142 ___str_47:
+      006299 20 52 65 73 65 74 74  3143 	.ascii " Resetting ENC using RESET pin in Hardware(P1_0)"
              69 6E 67 20 45 4E 43
              20 75 73 69 6E 67 20
              52 45 53 45 54 20 70
              69 6E 20 69 6E 20 48
              61 72 64 77 61 72 65
              28 50 31 5F 30 29
-      00623A 0A                    3138 	.db 0x0a
-      00623B 0D                    3139 	.db 0x0d
-      00623C 00                    3140 	.db 0x00
-                                   3141 	.area CSEG    (CODE)
-                                   3142 	.area CONST   (CODE)
-      00623D                       3143 ___str_48:
-      00623D 45 6E 61 62 6C 69 6E  3144 	.ascii "Enabling TXPKTIE"
+      0062C9 0A                    3144 	.db 0x0a
+      0062CA 0D                    3145 	.db 0x0d
+      0062CB 00                    3146 	.db 0x00
+                                   3147 	.area CSEG    (CODE)
+                                   3148 	.area CONST   (CODE)
+      0062CC                       3149 ___str_48:
+      0062CC 45 6E 61 62 6C 69 6E  3150 	.ascii "Enabling TXPKTIE"
              67 20 54 58 50 4B 54
              49 45
-      00624D 0A                    3145 	.db 0x0a
-      00624E 0D                    3146 	.db 0x0d
-      00624F 00                    3147 	.db 0x00
-                                   3148 	.area CSEG    (CODE)
-                                   3149 	.area CONST   (CODE)
-      006250                       3150 ___str_49:
-      006250 44 69 73 61 62 6C 69  3151 	.ascii "Disabling TXPKTIE"
+      0062DC 0A                    3151 	.db 0x0a
+      0062DD 0D                    3152 	.db 0x0d
+      0062DE 00                    3153 	.db 0x00
+                                   3154 	.area CSEG    (CODE)
+                                   3155 	.area CONST   (CODE)
+      0062DF                       3156 ___str_49:
+      0062DF 44 69 73 61 62 6C 69  3157 	.ascii "Disabling TXPKTIE"
              6E 67 20 54 58 50 4B
              54 49 45
-      006261 0A                    3152 	.db 0x0a
-      006262 0D                    3153 	.db 0x0d
-      006263 00                    3154 	.db 0x00
-                                   3155 	.area CSEG    (CODE)
-                                   3156 	.area CONST   (CODE)
-      006264                       3157 ___str_50:
-      006264 49 6E 76 61 6C 69 64  3158 	.ascii "Invalid option. Please select a valid action."
+      0062F0 0A                    3158 	.db 0x0a
+      0062F1 0D                    3159 	.db 0x0d
+      0062F2 00                    3160 	.db 0x00
+                                   3161 	.area CSEG    (CODE)
+                                   3162 	.area CONST   (CODE)
+      0062F3                       3163 ___str_50:
+      0062F3 49 6E 76 61 6C 69 64  3164 	.ascii "Invalid option. Please select a valid action."
              20 6F 70 74 69 6F 6E
              2E 20 50 6C 65 61 73
              65 20 73 65 6C 65 63
              74 20 61 20 76 61 6C
              69 64 20 61 63 74 69
              6F 6E 2E
-      006291 0A                    3159 	.db 0x0a
-      006292 0D                    3160 	.db 0x0d
-      006293 00                    3161 	.db 0x00
-                                   3162 	.area CSEG    (CODE)
-                                   3163 	.area XINIT   (CODE)
-      00671B                       3164 __xinit__device_mac:
-      00671B 02                    3165 	.db #0x02	; 2
-      00671C 11                    3166 	.db #0x11	; 17
-      00671D 22                    3167 	.db #0x22	; 34
-      00671E 33                    3168 	.db #0x33	; 51	'3'
-      00671F 44                    3169 	.db #0x44	; 68	'D'
-      006720 55                    3170 	.db #0x55	; 85	'U'
-      006721                       3171 __xinit__target_mac:
-      006721 F8                    3172 	.db #0xf8	; 248
-      006722 75                    3173 	.db #0x75	; 117	'u'
-      006723 A4                    3174 	.db #0xa4	; 164
-      006724 8C                    3175 	.db #0x8c	; 140
-      006725 41                    3176 	.db #0x41	; 65	'A'
-      006726 31                    3177 	.db #0x31	; 49	'1'
-      006727                       3178 __xinit__device_ip:
-      006727 C0                    3179 	.db #0xc0	; 192
-      006728 A8                    3180 	.db #0xa8	; 168
-      006729 01                    3181 	.db #0x01	; 1
-      00672A 64                    3182 	.db #0x64	; 100	'd'
-      00672B                       3183 __xinit__target_ip:
-      00672B C0                    3184 	.db #0xc0	; 192
-      00672C A8                    3185 	.db #0xa8	; 168
-      00672D 01                    3186 	.db #0x01	; 1
-      00672E 01                    3187 	.db #0x01	; 1
-                                   3188 	.area CABS    (ABS,CODE)
+      006320 0A                    3165 	.db 0x0a
+      006321 0D                    3166 	.db 0x0d
+      006322 00                    3167 	.db 0x00
+                                   3168 	.area CSEG    (CODE)
+                                   3169 	.area XINIT   (CODE)
+      0067AA                       3170 __xinit__device_mac:
+      0067AA 02                    3171 	.db #0x02	; 2
+      0067AB 11                    3172 	.db #0x11	; 17
+      0067AC 22                    3173 	.db #0x22	; 34
+      0067AD 33                    3174 	.db #0x33	; 51	'3'
+      0067AE 44                    3175 	.db #0x44	; 68	'D'
+      0067AF 55                    3176 	.db #0x55	; 85	'U'
+      0067B0                       3177 __xinit__target_mac:
+      0067B0 F8                    3178 	.db #0xf8	; 248
+      0067B1 75                    3179 	.db #0x75	; 117	'u'
+      0067B2 A4                    3180 	.db #0xa4	; 164
+      0067B3 8C                    3181 	.db #0x8c	; 140
+      0067B4 41                    3182 	.db #0x41	; 65	'A'
+      0067B5 31                    3183 	.db #0x31	; 49	'1'
+      0067B6                       3184 __xinit__device_ip:
+      0067B6 C0                    3185 	.db #0xc0	; 192
+      0067B7 A8                    3186 	.db #0xa8	; 168
+      0067B8 01                    3187 	.db #0x01	; 1
+      0067B9 64                    3188 	.db #0x64	; 100	'd'
+      0067BA                       3189 __xinit__target_ip:
+      0067BA C0                    3190 	.db #0xc0	; 192
+      0067BB A8                    3191 	.db #0xa8	; 168
+      0067BC 01                    3192 	.db #0x01	; 1
+      0067BD 01                    3193 	.db #0x01	; 1
+                                   3194 	.area CABS    (ABS,CODE)

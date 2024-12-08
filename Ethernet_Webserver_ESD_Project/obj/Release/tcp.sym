@@ -464,15 +464,15 @@ Symbol Table
     _memset                                                        ****** GX
     _memset_PARM_2                                                 ****** GX
     _memset_PARM_3                                                 ****** GX
- 17 _print_hexdump                                                 0004D7 GR
+ 17 _print_hexdump                                                 00055F GR
   B _print_hexdump_PARM_2                                          0005F0 GR
-  B _print_hexdump_data_10000_130                                  0005F2 R
+  B _print_hexdump_data_10000_131                                  0005F2 R
     _printf                                                        ****** GX
- 17 _process_packet_from_buffer                                    0005E2 GR
-  B _process_packet_from_buffer_next_packet_start_10001_139        0005F7 R
-  B _process_packet_from_buffer_response_size_10001_139            0005F9 R
+ 17 _process_packet_from_buffer                                    00066A GR
+  B _process_packet_from_buffer_next_packet_start_10001_140        0005F7 R
+  B _process_packet_from_buffer_response_size_10001_140            0005F9 R
   5 _process_packet_from_buffer_sloc0_1_0                          000003 R
-  B _process_packet_from_buffer_start_address_10000_136            0005F5 R
+  B _process_packet_from_buffer_start_address_10000_137            0005F5 R
  17 _process_tcp_packet                                            000183 GR
   B _process_tcp_packet_PARM_2                                     00000B GR
   B _process_tcp_packet_PARM_3                                     00000D GR
@@ -490,9 +490,9 @@ Symbol Table
     _spi_buffer_write                                              ****** GX
     _spi_buffer_write_PARM_2                                       ****** GX
     _spi_buffer_write_PARM_3                                       ****** GX
- 17 _transmit_tcp_packet                                           0008C7 GR
+ 17 _transmit_tcp_packet                                           00094F GR
   B _transmit_tcp_packet_PARM_2                                    0005FB GR
-  B _transmit_tcp_packet_packet_10000_148                          0005FD R
+  B _transmit_tcp_packet_packet_10000_149                          0005FD R
     _wait_for_transmission_complete                                ****** GX
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
@@ -723,7 +723,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size    9AB   flags   20
+  17 CSEG                                       size    A33   flags   20
   18 CONST                                      size    240   flags   20
   19 XINIT                                      size      0   flags   20
   1A CABS                                       size      0   flags   28

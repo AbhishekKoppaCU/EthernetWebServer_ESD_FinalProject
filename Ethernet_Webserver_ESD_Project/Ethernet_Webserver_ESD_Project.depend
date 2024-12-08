@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733556703 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\main.c
+1733570602 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\main.c
 	"SPI.h"
 	"Operations.h"
 	"Eth.h"
@@ -41,7 +41,7 @@
 1733557451 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\eth.c
 	"Eth.h"
 
-1733540638 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\tcp.c
+1733567537 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\tcp.c
 	"tcp.h"
 
 1733526122 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\tcp.h

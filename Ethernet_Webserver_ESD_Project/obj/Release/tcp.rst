@@ -517,17 +517,17 @@
       0003BA                        517 	.ds 1501
       000997                        518 _print_hexdump_PARM_2:
       000997                        519 	.ds 2
-      000999                        520 _print_hexdump_data_10000_130:
+      000999                        520 _print_hexdump_data_10000_131:
       000999                        521 	.ds 3
-      00099C                        522 _process_packet_from_buffer_start_address_10000_136:
+      00099C                        522 _process_packet_from_buffer_start_address_10000_137:
       00099C                        523 	.ds 2
-      00099E                        524 _process_packet_from_buffer_next_packet_start_10001_139:
+      00099E                        524 _process_packet_from_buffer_next_packet_start_10001_140:
       00099E                        525 	.ds 2
-      0009A0                        526 _process_packet_from_buffer_response_size_10001_139:
+      0009A0                        526 _process_packet_from_buffer_response_size_10001_140:
       0009A0                        527 	.ds 2
       0009A2                        528 _transmit_tcp_packet_PARM_2:
       0009A2                        529 	.ds 2
-      0009A4                        530 _transmit_tcp_packet_packet_10000_148:
+      0009A4                        530 _transmit_tcp_packet_packet_10000_149:
       0009A4                        531 	.ds 3
                                     532 ;--------------------------------------------------------
                                     533 ; absolute external ram data
@@ -579,7 +579,7 @@
                                     579 ;	-----------------------------------------
                                     580 ;	 function calculate_checksum
                                     581 ;	-----------------------------------------
-      0040B2                        582 _calculate_checksum:
+      0040B9                        582 _calculate_checksum:
                            000007   583 	ar7 = 0x07
                            000006   584 	ar6 = 0x06
                            000005   585 	ar5 = 0x05
@@ -588,293 +588,293 @@
                            000002   588 	ar2 = 0x02
                            000001   589 	ar1 = 0x01
                            000000   590 	ar0 = 0x00
-      0040B2 AF F0            [24]  591 	mov	r7,b
-      0040B4 AE 83            [24]  592 	mov	r6,dph
-      0040B6 E5 82            [12]  593 	mov	a,dpl
-      0040B8 90 03 A9         [24]  594 	mov	dptr,#_calculate_checksum_data_10000_116
-      0040BB F0               [24]  595 	movx	@dptr,a
-      0040BC EE               [12]  596 	mov	a,r6
-      0040BD A3               [24]  597 	inc	dptr
-      0040BE F0               [24]  598 	movx	@dptr,a
-      0040BF EF               [12]  599 	mov	a,r7
-      0040C0 A3               [24]  600 	inc	dptr
-      0040C1 F0               [24]  601 	movx	@dptr,a
+      0040B9 AF F0            [24]  591 	mov	r7,b
+      0040BB AE 83            [24]  592 	mov	r6,dph
+      0040BD E5 82            [12]  593 	mov	a,dpl
+      0040BF 90 03 A9         [24]  594 	mov	dptr,#_calculate_checksum_data_10000_116
+      0040C2 F0               [24]  595 	movx	@dptr,a
+      0040C3 EE               [12]  596 	mov	a,r6
+      0040C4 A3               [24]  597 	inc	dptr
+      0040C5 F0               [24]  598 	movx	@dptr,a
+      0040C6 EF               [12]  599 	mov	a,r7
+      0040C7 A3               [24]  600 	inc	dptr
+      0040C8 F0               [24]  601 	movx	@dptr,a
                                     602 ;	tcp.c:13: uint32_t sum = 0;
-      0040C2 90 03 AC         [24]  603 	mov	dptr,#_calculate_checksum_sum_10000_117
-      0040C5 E4               [12]  604 	clr	a
-      0040C6 F0               [24]  605 	movx	@dptr,a
-      0040C7 A3               [24]  606 	inc	dptr
-      0040C8 F0               [24]  607 	movx	@dptr,a
-      0040C9 A3               [24]  608 	inc	dptr
-      0040CA F0               [24]  609 	movx	@dptr,a
-      0040CB A3               [24]  610 	inc	dptr
-      0040CC F0               [24]  611 	movx	@dptr,a
+      0040C9 90 03 AC         [24]  603 	mov	dptr,#_calculate_checksum_sum_10000_117
+      0040CC E4               [12]  604 	clr	a
+      0040CD F0               [24]  605 	movx	@dptr,a
+      0040CE A3               [24]  606 	inc	dptr
+      0040CF F0               [24]  607 	movx	@dptr,a
+      0040D0 A3               [24]  608 	inc	dptr
+      0040D1 F0               [24]  609 	movx	@dptr,a
+      0040D2 A3               [24]  610 	inc	dptr
+      0040D3 F0               [24]  611 	movx	@dptr,a
                                     612 ;	tcp.c:16: for (uint16_t i = 0; i < length; i += 2) {
-      0040CD 90 03 B0         [24]  613 	mov	dptr,#_calculate_checksum_i_20000_118
-      0040D0 F0               [24]  614 	movx	@dptr,a
-      0040D1 A3               [24]  615 	inc	dptr
-      0040D2 F0               [24]  616 	movx	@dptr,a
-      0040D3 90 03 A9         [24]  617 	mov	dptr,#_calculate_checksum_data_10000_116
-      0040D6 E0               [24]  618 	movx	a,@dptr
-      0040D7 FD               [12]  619 	mov	r5,a
-      0040D8 A3               [24]  620 	inc	dptr
-      0040D9 E0               [24]  621 	movx	a,@dptr
-      0040DA FE               [12]  622 	mov	r6,a
-      0040DB A3               [24]  623 	inc	dptr
-      0040DC E0               [24]  624 	movx	a,@dptr
-      0040DD FF               [12]  625 	mov	r7,a
-      0040DE 90 03 A7         [24]  626 	mov	dptr,#_calculate_checksum_PARM_2
-      0040E1 E0               [24]  627 	movx	a,@dptr
-      0040E2 F5 39            [12]  628 	mov	_calculate_checksum_sloc0_1_0,a
-      0040E4 A3               [24]  629 	inc	dptr
-      0040E5 E0               [24]  630 	movx	a,@dptr
-      0040E6 F5 3A            [12]  631 	mov	(_calculate_checksum_sloc0_1_0 + 1),a
-      0040E8                        632 00105$:
-      0040E8 90 03 B0         [24]  633 	mov	dptr,#_calculate_checksum_i_20000_118
-      0040EB E0               [24]  634 	movx	a,@dptr
-      0040EC F9               [12]  635 	mov	r1,a
-      0040ED A3               [24]  636 	inc	dptr
-      0040EE E0               [24]  637 	movx	a,@dptr
-      0040EF FA               [12]  638 	mov	r2,a
-      0040F0 C3               [12]  639 	clr	c
-      0040F1 E9               [12]  640 	mov	a,r1
-      0040F2 95 39            [12]  641 	subb	a,_calculate_checksum_sloc0_1_0
-      0040F4 EA               [12]  642 	mov	a,r2
-      0040F5 95 3A            [12]  643 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
-      0040F7 40 03            [24]  644 	jc	00135$
-      0040F9 02 41 E8         [24]  645 	ljmp	00103$
-      0040FC                        646 00135$:
+      0040D4 90 03 B0         [24]  613 	mov	dptr,#_calculate_checksum_i_20000_118
+      0040D7 F0               [24]  614 	movx	@dptr,a
+      0040D8 A3               [24]  615 	inc	dptr
+      0040D9 F0               [24]  616 	movx	@dptr,a
+      0040DA 90 03 A9         [24]  617 	mov	dptr,#_calculate_checksum_data_10000_116
+      0040DD E0               [24]  618 	movx	a,@dptr
+      0040DE FD               [12]  619 	mov	r5,a
+      0040DF A3               [24]  620 	inc	dptr
+      0040E0 E0               [24]  621 	movx	a,@dptr
+      0040E1 FE               [12]  622 	mov	r6,a
+      0040E2 A3               [24]  623 	inc	dptr
+      0040E3 E0               [24]  624 	movx	a,@dptr
+      0040E4 FF               [12]  625 	mov	r7,a
+      0040E5 90 03 A7         [24]  626 	mov	dptr,#_calculate_checksum_PARM_2
+      0040E8 E0               [24]  627 	movx	a,@dptr
+      0040E9 F5 39            [12]  628 	mov	_calculate_checksum_sloc0_1_0,a
+      0040EB A3               [24]  629 	inc	dptr
+      0040EC E0               [24]  630 	movx	a,@dptr
+      0040ED F5 3A            [12]  631 	mov	(_calculate_checksum_sloc0_1_0 + 1),a
+      0040EF                        632 00105$:
+      0040EF 90 03 B0         [24]  633 	mov	dptr,#_calculate_checksum_i_20000_118
+      0040F2 E0               [24]  634 	movx	a,@dptr
+      0040F3 F9               [12]  635 	mov	r1,a
+      0040F4 A3               [24]  636 	inc	dptr
+      0040F5 E0               [24]  637 	movx	a,@dptr
+      0040F6 FA               [12]  638 	mov	r2,a
+      0040F7 C3               [12]  639 	clr	c
+      0040F8 E9               [12]  640 	mov	a,r1
+      0040F9 95 39            [12]  641 	subb	a,_calculate_checksum_sloc0_1_0
+      0040FB EA               [12]  642 	mov	a,r2
+      0040FC 95 3A            [12]  643 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
+      0040FE 40 03            [24]  644 	jc	00135$
+      004100 02 41 EF         [24]  645 	ljmp	00103$
+      004103                        646 00135$:
                                     647 ;	tcp.c:17: uint16_t word = (data[i] << 8) + (i + 1 < length ? data[i + 1] : 0);
-      0040FC E9               [12]  648 	mov	a,r1
-      0040FD 2D               [12]  649 	add	a, r5
-      0040FE F8               [12]  650 	mov	r0,a
-      0040FF EA               [12]  651 	mov	a,r2
-      004100 3E               [12]  652 	addc	a, r6
-      004101 FB               [12]  653 	mov	r3,a
-      004102 8F 04            [24]  654 	mov	ar4,r7
-      004104 88 82            [24]  655 	mov	dpl,r0
-      004106 8B 83            [24]  656 	mov	dph,r3
-      004108 8C F0            [24]  657 	mov	b,r4
-      00410A 12 5B 2B         [24]  658 	lcall	__gptrget
-      00410D FC               [12]  659 	mov	r4,a
-      00410E 7B 00            [12]  660 	mov	r3,#0x00
-      004110 C0 05            [24]  661 	push	ar5
-      004112 C0 06            [24]  662 	push	ar6
-      004114 C0 07            [24]  663 	push	ar7
-      004116 74 01            [12]  664 	mov	a,#0x01
-      004118 29               [12]  665 	add	a, r1
-      004119 F8               [12]  666 	mov	r0,a
-      00411A E4               [12]  667 	clr	a
-      00411B 3A               [12]  668 	addc	a, r2
-      00411C FF               [12]  669 	mov	r7,a
-      00411D C3               [12]  670 	clr	c
-      00411E E8               [12]  671 	mov	a,r0
-      00411F 95 39            [12]  672 	subb	a,_calculate_checksum_sloc0_1_0
-      004121 EF               [12]  673 	mov	a,r7
-      004122 95 3A            [12]  674 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
-      004124 D0 07            [24]  675 	pop	ar7
-      004126 D0 06            [24]  676 	pop	ar6
-      004128 D0 05            [24]  677 	pop	ar5
-      00412A 50 1B            [24]  678 	jnc	00109$
-      00412C 09               [12]  679 	inc	r1
-      00412D B9 00 01         [24]  680 	cjne	r1,#0x00,00137$
-      004130 0A               [12]  681 	inc	r2
-      004131                        682 00137$:
-      004131 E9               [12]  683 	mov	a,r1
-      004132 2D               [12]  684 	add	a, r5
-      004133 F9               [12]  685 	mov	r1,a
-      004134 EA               [12]  686 	mov	a,r2
-      004135 3E               [12]  687 	addc	a, r6
-      004136 F8               [12]  688 	mov	r0,a
-      004137 8F 02            [24]  689 	mov	ar2,r7
-      004139 89 82            [24]  690 	mov	dpl,r1
-      00413B 88 83            [24]  691 	mov	dph,r0
-      00413D 8A F0            [24]  692 	mov	b,r2
-      00413F 12 5B 2B         [24]  693 	lcall	__gptrget
-      004142 F9               [12]  694 	mov	r1,a
-      004143 7A 00            [12]  695 	mov	r2,#0x00
-      004145 80 04            [24]  696 	sjmp	00110$
-      004147                        697 00109$:
-      004147 79 00            [12]  698 	mov	r1,#0x00
-      004149 7A 00            [12]  699 	mov	r2,#0x00
-      00414B                        700 00110$:
-      00414B C0 05            [24]  701 	push	ar5
-      00414D C0 06            [24]  702 	push	ar6
-      00414F C0 07            [24]  703 	push	ar7
-      004151 E9               [12]  704 	mov	a,r1
-      004152 2B               [12]  705 	add	a, r3
-      004153 FB               [12]  706 	mov	r3,a
-      004154 EA               [12]  707 	mov	a,r2
-      004155 3C               [12]  708 	addc	a, r4
-      004156 FC               [12]  709 	mov	r4,a
+      004103 E9               [12]  648 	mov	a,r1
+      004104 2D               [12]  649 	add	a, r5
+      004105 F8               [12]  650 	mov	r0,a
+      004106 EA               [12]  651 	mov	a,r2
+      004107 3E               [12]  652 	addc	a, r6
+      004108 FB               [12]  653 	mov	r3,a
+      004109 8F 04            [24]  654 	mov	ar4,r7
+      00410B 88 82            [24]  655 	mov	dpl,r0
+      00410D 8B 83            [24]  656 	mov	dph,r3
+      00410F 8C F0            [24]  657 	mov	b,r4
+      004111 12 5B BA         [24]  658 	lcall	__gptrget
+      004114 FC               [12]  659 	mov	r4,a
+      004115 7B 00            [12]  660 	mov	r3,#0x00
+      004117 C0 05            [24]  661 	push	ar5
+      004119 C0 06            [24]  662 	push	ar6
+      00411B C0 07            [24]  663 	push	ar7
+      00411D 74 01            [12]  664 	mov	a,#0x01
+      00411F 29               [12]  665 	add	a, r1
+      004120 F8               [12]  666 	mov	r0,a
+      004121 E4               [12]  667 	clr	a
+      004122 3A               [12]  668 	addc	a, r2
+      004123 FF               [12]  669 	mov	r7,a
+      004124 C3               [12]  670 	clr	c
+      004125 E8               [12]  671 	mov	a,r0
+      004126 95 39            [12]  672 	subb	a,_calculate_checksum_sloc0_1_0
+      004128 EF               [12]  673 	mov	a,r7
+      004129 95 3A            [12]  674 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
+      00412B D0 07            [24]  675 	pop	ar7
+      00412D D0 06            [24]  676 	pop	ar6
+      00412F D0 05            [24]  677 	pop	ar5
+      004131 50 1B            [24]  678 	jnc	00109$
+      004133 09               [12]  679 	inc	r1
+      004134 B9 00 01         [24]  680 	cjne	r1,#0x00,00137$
+      004137 0A               [12]  681 	inc	r2
+      004138                        682 00137$:
+      004138 E9               [12]  683 	mov	a,r1
+      004139 2D               [12]  684 	add	a, r5
+      00413A F9               [12]  685 	mov	r1,a
+      00413B EA               [12]  686 	mov	a,r2
+      00413C 3E               [12]  687 	addc	a, r6
+      00413D F8               [12]  688 	mov	r0,a
+      00413E 8F 02            [24]  689 	mov	ar2,r7
+      004140 89 82            [24]  690 	mov	dpl,r1
+      004142 88 83            [24]  691 	mov	dph,r0
+      004144 8A F0            [24]  692 	mov	b,r2
+      004146 12 5B BA         [24]  693 	lcall	__gptrget
+      004149 F9               [12]  694 	mov	r1,a
+      00414A 7A 00            [12]  695 	mov	r2,#0x00
+      00414C 80 04            [24]  696 	sjmp	00110$
+      00414E                        697 00109$:
+      00414E 79 00            [12]  698 	mov	r1,#0x00
+      004150 7A 00            [12]  699 	mov	r2,#0x00
+      004152                        700 00110$:
+      004152 C0 05            [24]  701 	push	ar5
+      004154 C0 06            [24]  702 	push	ar6
+      004156 C0 07            [24]  703 	push	ar7
+      004158 E9               [12]  704 	mov	a,r1
+      004159 2B               [12]  705 	add	a, r3
+      00415A FB               [12]  706 	mov	r3,a
+      00415B EA               [12]  707 	mov	a,r2
+      00415C 3C               [12]  708 	addc	a, r4
+      00415D FC               [12]  709 	mov	r4,a
                                     710 ;	tcp.c:18: sum += word;
-      004157 90 03 AC         [24]  711 	mov	dptr,#_calculate_checksum_sum_10000_117
-      00415A E0               [24]  712 	movx	a,@dptr
-      00415B F8               [12]  713 	mov	r0,a
-      00415C A3               [24]  714 	inc	dptr
-      00415D E0               [24]  715 	movx	a,@dptr
-      00415E F9               [12]  716 	mov	r1,a
-      00415F A3               [24]  717 	inc	dptr
-      004160 E0               [24]  718 	movx	a,@dptr
-      004161 FA               [12]  719 	mov	r2,a
-      004162 A3               [24]  720 	inc	dptr
-      004163 E0               [24]  721 	movx	a,@dptr
-      004164 FF               [12]  722 	mov	r7,a
-      004165 7E 00            [12]  723 	mov	r6,#0x00
-      004167 7D 00            [12]  724 	mov	r5,#0x00
-      004169 90 03 AC         [24]  725 	mov	dptr,#_calculate_checksum_sum_10000_117
-      00416C EB               [12]  726 	mov	a,r3
-      00416D 28               [12]  727 	add	a, r0
-      00416E F0               [24]  728 	movx	@dptr,a
-      00416F EC               [12]  729 	mov	a,r4
-      004170 39               [12]  730 	addc	a, r1
-      004171 A3               [24]  731 	inc	dptr
-      004172 F0               [24]  732 	movx	@dptr,a
-      004173 EE               [12]  733 	mov	a,r6
-      004174 3A               [12]  734 	addc	a, r2
-      004175 A3               [24]  735 	inc	dptr
-      004176 F0               [24]  736 	movx	@dptr,a
-      004177 ED               [12]  737 	mov	a,r5
-      004178 3F               [12]  738 	addc	a, r7
-      004179 A3               [24]  739 	inc	dptr
-      00417A F0               [24]  740 	movx	@dptr,a
+      00415E 90 03 AC         [24]  711 	mov	dptr,#_calculate_checksum_sum_10000_117
+      004161 E0               [24]  712 	movx	a,@dptr
+      004162 F8               [12]  713 	mov	r0,a
+      004163 A3               [24]  714 	inc	dptr
+      004164 E0               [24]  715 	movx	a,@dptr
+      004165 F9               [12]  716 	mov	r1,a
+      004166 A3               [24]  717 	inc	dptr
+      004167 E0               [24]  718 	movx	a,@dptr
+      004168 FA               [12]  719 	mov	r2,a
+      004169 A3               [24]  720 	inc	dptr
+      00416A E0               [24]  721 	movx	a,@dptr
+      00416B FF               [12]  722 	mov	r7,a
+      00416C 7E 00            [12]  723 	mov	r6,#0x00
+      00416E 7D 00            [12]  724 	mov	r5,#0x00
+      004170 90 03 AC         [24]  725 	mov	dptr,#_calculate_checksum_sum_10000_117
+      004173 EB               [12]  726 	mov	a,r3
+      004174 28               [12]  727 	add	a, r0
+      004175 F0               [24]  728 	movx	@dptr,a
+      004176 EC               [12]  729 	mov	a,r4
+      004177 39               [12]  730 	addc	a, r1
+      004178 A3               [24]  731 	inc	dptr
+      004179 F0               [24]  732 	movx	@dptr,a
+      00417A EE               [12]  733 	mov	a,r6
+      00417B 3A               [12]  734 	addc	a, r2
+      00417C A3               [24]  735 	inc	dptr
+      00417D F0               [24]  736 	movx	@dptr,a
+      00417E ED               [12]  737 	mov	a,r5
+      00417F 3F               [12]  738 	addc	a, r7
+      004180 A3               [24]  739 	inc	dptr
+      004181 F0               [24]  740 	movx	@dptr,a
                                     741 ;	tcp.c:21: if (sum > 0xFFFF) {
-      00417B 90 03 AC         [24]  742 	mov	dptr,#_calculate_checksum_sum_10000_117
-      00417E E0               [24]  743 	movx	a,@dptr
-      00417F F5 3B            [12]  744 	mov	_calculate_checksum_sloc1_1_0,a
-      004181 A3               [24]  745 	inc	dptr
-      004182 E0               [24]  746 	movx	a,@dptr
-      004183 F5 3C            [12]  747 	mov	(_calculate_checksum_sloc1_1_0 + 1),a
-      004185 A3               [24]  748 	inc	dptr
-      004186 E0               [24]  749 	movx	a,@dptr
-      004187 F5 3D            [12]  750 	mov	(_calculate_checksum_sloc1_1_0 + 2),a
-      004189 A3               [24]  751 	inc	dptr
-      00418A E0               [24]  752 	movx	a,@dptr
-      00418B F5 3E            [12]  753 	mov	(_calculate_checksum_sloc1_1_0 + 3),a
-      00418D C3               [12]  754 	clr	c
-      00418E 74 FF            [12]  755 	mov	a,#0xff
-      004190 95 3B            [12]  756 	subb	a,_calculate_checksum_sloc1_1_0
-      004192 74 FF            [12]  757 	mov	a,#0xff
-      004194 95 3C            [12]  758 	subb	a,(_calculate_checksum_sloc1_1_0 + 1)
-      004196 E4               [12]  759 	clr	a
-      004197 95 3D            [12]  760 	subb	a,(_calculate_checksum_sloc1_1_0 + 2)
-      004199 E4               [12]  761 	clr	a
-      00419A 95 3E            [12]  762 	subb	a,(_calculate_checksum_sloc1_1_0 + 3)
-      00419C D0 07            [24]  763 	pop	ar7
-      00419E D0 06            [24]  764 	pop	ar6
-      0041A0 D0 05            [24]  765 	pop	ar5
-      0041A2 50 2A            [24]  766 	jnc	00106$
+      004182 90 03 AC         [24]  742 	mov	dptr,#_calculate_checksum_sum_10000_117
+      004185 E0               [24]  743 	movx	a,@dptr
+      004186 F5 3B            [12]  744 	mov	_calculate_checksum_sloc1_1_0,a
+      004188 A3               [24]  745 	inc	dptr
+      004189 E0               [24]  746 	movx	a,@dptr
+      00418A F5 3C            [12]  747 	mov	(_calculate_checksum_sloc1_1_0 + 1),a
+      00418C A3               [24]  748 	inc	dptr
+      00418D E0               [24]  749 	movx	a,@dptr
+      00418E F5 3D            [12]  750 	mov	(_calculate_checksum_sloc1_1_0 + 2),a
+      004190 A3               [24]  751 	inc	dptr
+      004191 E0               [24]  752 	movx	a,@dptr
+      004192 F5 3E            [12]  753 	mov	(_calculate_checksum_sloc1_1_0 + 3),a
+      004194 C3               [12]  754 	clr	c
+      004195 74 FF            [12]  755 	mov	a,#0xff
+      004197 95 3B            [12]  756 	subb	a,_calculate_checksum_sloc1_1_0
+      004199 74 FF            [12]  757 	mov	a,#0xff
+      00419B 95 3C            [12]  758 	subb	a,(_calculate_checksum_sloc1_1_0 + 1)
+      00419D E4               [12]  759 	clr	a
+      00419E 95 3D            [12]  760 	subb	a,(_calculate_checksum_sloc1_1_0 + 2)
+      0041A0 E4               [12]  761 	clr	a
+      0041A1 95 3E            [12]  762 	subb	a,(_calculate_checksum_sloc1_1_0 + 3)
+      0041A3 D0 07            [24]  763 	pop	ar7
+      0041A5 D0 06            [24]  764 	pop	ar6
+      0041A7 D0 05            [24]  765 	pop	ar5
+      0041A9 50 2A            [24]  766 	jnc	00106$
                                     767 ;	tcp.c:22: sum = (sum & 0xFFFF) + (sum >> 16);
-      0041A4 85 3B 3F         [24]  768 	mov	_calculate_checksum_sloc2_1_0,_calculate_checksum_sloc1_1_0
-      0041A7 85 3C 40         [24]  769 	mov	(_calculate_checksum_sloc2_1_0 + 1),(_calculate_checksum_sloc1_1_0 + 1)
-      0041AA 75 41 00         [24]  770 	mov	(_calculate_checksum_sloc2_1_0 + 2),#0x00
-      0041AD 75 42 00         [24]  771 	mov	(_calculate_checksum_sloc2_1_0 + 3),#0x00
-      0041B0 A8 3D            [24]  772 	mov	r0,(_calculate_checksum_sloc1_1_0 + 2)
-      0041B2 AA 3E            [24]  773 	mov	r2,(_calculate_checksum_sloc1_1_0 + 3)
-      0041B4 7B 00            [12]  774 	mov	r3,#0x00
-      0041B6 7C 00            [12]  775 	mov	r4,#0x00
-      0041B8 90 03 AC         [24]  776 	mov	dptr,#_calculate_checksum_sum_10000_117
-      0041BB E8               [12]  777 	mov	a,r0
-      0041BC 25 3F            [12]  778 	add	a, _calculate_checksum_sloc2_1_0
-      0041BE F0               [24]  779 	movx	@dptr,a
-      0041BF EA               [12]  780 	mov	a,r2
-      0041C0 35 40            [12]  781 	addc	a, (_calculate_checksum_sloc2_1_0 + 1)
-      0041C2 A3               [24]  782 	inc	dptr
-      0041C3 F0               [24]  783 	movx	@dptr,a
-      0041C4 EB               [12]  784 	mov	a,r3
-      0041C5 35 41            [12]  785 	addc	a, (_calculate_checksum_sloc2_1_0 + 2)
-      0041C7 A3               [24]  786 	inc	dptr
-      0041C8 F0               [24]  787 	movx	@dptr,a
-      0041C9 EC               [12]  788 	mov	a,r4
-      0041CA 35 42            [12]  789 	addc	a, (_calculate_checksum_sloc2_1_0 + 3)
-      0041CC A3               [24]  790 	inc	dptr
-      0041CD F0               [24]  791 	movx	@dptr,a
-      0041CE                        792 00106$:
+      0041AB 85 3B 3F         [24]  768 	mov	_calculate_checksum_sloc2_1_0,_calculate_checksum_sloc1_1_0
+      0041AE 85 3C 40         [24]  769 	mov	(_calculate_checksum_sloc2_1_0 + 1),(_calculate_checksum_sloc1_1_0 + 1)
+      0041B1 75 41 00         [24]  770 	mov	(_calculate_checksum_sloc2_1_0 + 2),#0x00
+      0041B4 75 42 00         [24]  771 	mov	(_calculate_checksum_sloc2_1_0 + 3),#0x00
+      0041B7 A8 3D            [24]  772 	mov	r0,(_calculate_checksum_sloc1_1_0 + 2)
+      0041B9 AA 3E            [24]  773 	mov	r2,(_calculate_checksum_sloc1_1_0 + 3)
+      0041BB 7B 00            [12]  774 	mov	r3,#0x00
+      0041BD 7C 00            [12]  775 	mov	r4,#0x00
+      0041BF 90 03 AC         [24]  776 	mov	dptr,#_calculate_checksum_sum_10000_117
+      0041C2 E8               [12]  777 	mov	a,r0
+      0041C3 25 3F            [12]  778 	add	a, _calculate_checksum_sloc2_1_0
+      0041C5 F0               [24]  779 	movx	@dptr,a
+      0041C6 EA               [12]  780 	mov	a,r2
+      0041C7 35 40            [12]  781 	addc	a, (_calculate_checksum_sloc2_1_0 + 1)
+      0041C9 A3               [24]  782 	inc	dptr
+      0041CA F0               [24]  783 	movx	@dptr,a
+      0041CB EB               [12]  784 	mov	a,r3
+      0041CC 35 41            [12]  785 	addc	a, (_calculate_checksum_sloc2_1_0 + 2)
+      0041CE A3               [24]  786 	inc	dptr
+      0041CF F0               [24]  787 	movx	@dptr,a
+      0041D0 EC               [12]  788 	mov	a,r4
+      0041D1 35 42            [12]  789 	addc	a, (_calculate_checksum_sloc2_1_0 + 3)
+      0041D3 A3               [24]  790 	inc	dptr
+      0041D4 F0               [24]  791 	movx	@dptr,a
+      0041D5                        792 00106$:
                                     793 ;	tcp.c:16: for (uint16_t i = 0; i < length; i += 2) {
-      0041CE 90 03 B0         [24]  794 	mov	dptr,#_calculate_checksum_i_20000_118
-      0041D1 E0               [24]  795 	movx	a,@dptr
-      0041D2 FB               [12]  796 	mov	r3,a
-      0041D3 A3               [24]  797 	inc	dptr
-      0041D4 E0               [24]  798 	movx	a,@dptr
-      0041D5 FC               [12]  799 	mov	r4,a
-      0041D6 74 02            [12]  800 	mov	a,#0x02
-      0041D8 2B               [12]  801 	add	a, r3
-      0041D9 FB               [12]  802 	mov	r3,a
-      0041DA E4               [12]  803 	clr	a
-      0041DB 3C               [12]  804 	addc	a, r4
-      0041DC FC               [12]  805 	mov	r4,a
-      0041DD 90 03 B0         [24]  806 	mov	dptr,#_calculate_checksum_i_20000_118
-      0041E0 EB               [12]  807 	mov	a,r3
-      0041E1 F0               [24]  808 	movx	@dptr,a
-      0041E2 EC               [12]  809 	mov	a,r4
-      0041E3 A3               [24]  810 	inc	dptr
-      0041E4 F0               [24]  811 	movx	@dptr,a
-      0041E5 02 40 E8         [24]  812 	ljmp	00105$
-      0041E8                        813 00103$:
+      0041D5 90 03 B0         [24]  794 	mov	dptr,#_calculate_checksum_i_20000_118
+      0041D8 E0               [24]  795 	movx	a,@dptr
+      0041D9 FB               [12]  796 	mov	r3,a
+      0041DA A3               [24]  797 	inc	dptr
+      0041DB E0               [24]  798 	movx	a,@dptr
+      0041DC FC               [12]  799 	mov	r4,a
+      0041DD 74 02            [12]  800 	mov	a,#0x02
+      0041DF 2B               [12]  801 	add	a, r3
+      0041E0 FB               [12]  802 	mov	r3,a
+      0041E1 E4               [12]  803 	clr	a
+      0041E2 3C               [12]  804 	addc	a, r4
+      0041E3 FC               [12]  805 	mov	r4,a
+      0041E4 90 03 B0         [24]  806 	mov	dptr,#_calculate_checksum_i_20000_118
+      0041E7 EB               [12]  807 	mov	a,r3
+      0041E8 F0               [24]  808 	movx	@dptr,a
+      0041E9 EC               [12]  809 	mov	a,r4
+      0041EA A3               [24]  810 	inc	dptr
+      0041EB F0               [24]  811 	movx	@dptr,a
+      0041EC 02 40 EF         [24]  812 	ljmp	00105$
+      0041EF                        813 00103$:
                                     814 ;	tcp.c:27: sum = (sum & 0xFFFF) + (sum >> 16);
-      0041E8 90 03 AC         [24]  815 	mov	dptr,#_calculate_checksum_sum_10000_117
-      0041EB E0               [24]  816 	movx	a,@dptr
-      0041EC FC               [12]  817 	mov	r4,a
-      0041ED A3               [24]  818 	inc	dptr
-      0041EE E0               [24]  819 	movx	a,@dptr
-      0041EF FD               [12]  820 	mov	r5,a
-      0041F0 A3               [24]  821 	inc	dptr
-      0041F1 E0               [24]  822 	movx	a,@dptr
-      0041F2 FE               [12]  823 	mov	r6,a
-      0041F3 A3               [24]  824 	inc	dptr
-      0041F4 E0               [24]  825 	movx	a,@dptr
-      0041F5 FF               [12]  826 	mov	r7,a
-      0041F6 8C 00            [24]  827 	mov	ar0,r4
-      0041F8 8D 01            [24]  828 	mov	ar1,r5
-      0041FA 7A 00            [12]  829 	mov	r2,#0x00
-      0041FC 7B 00            [12]  830 	mov	r3,#0x00
-      0041FE 8E 04            [24]  831 	mov	ar4,r6
-      004200 8F 05            [24]  832 	mov	ar5,r7
-      004202 7E 00            [12]  833 	mov	r6,#0x00
-      004204 7F 00            [12]  834 	mov	r7,#0x00
-      004206 90 03 AC         [24]  835 	mov	dptr,#_calculate_checksum_sum_10000_117
-      004209 EC               [12]  836 	mov	a,r4
-      00420A 28               [12]  837 	add	a, r0
-      00420B F0               [24]  838 	movx	@dptr,a
-      00420C ED               [12]  839 	mov	a,r5
-      00420D 39               [12]  840 	addc	a, r1
-      00420E A3               [24]  841 	inc	dptr
-      00420F F0               [24]  842 	movx	@dptr,a
-      004210 EE               [12]  843 	mov	a,r6
-      004211 3A               [12]  844 	addc	a, r2
-      004212 A3               [24]  845 	inc	dptr
-      004213 F0               [24]  846 	movx	@dptr,a
-      004214 EF               [12]  847 	mov	a,r7
-      004215 3B               [12]  848 	addc	a, r3
-      004216 A3               [24]  849 	inc	dptr
-      004217 F0               [24]  850 	movx	@dptr,a
+      0041EF 90 03 AC         [24]  815 	mov	dptr,#_calculate_checksum_sum_10000_117
+      0041F2 E0               [24]  816 	movx	a,@dptr
+      0041F3 FC               [12]  817 	mov	r4,a
+      0041F4 A3               [24]  818 	inc	dptr
+      0041F5 E0               [24]  819 	movx	a,@dptr
+      0041F6 FD               [12]  820 	mov	r5,a
+      0041F7 A3               [24]  821 	inc	dptr
+      0041F8 E0               [24]  822 	movx	a,@dptr
+      0041F9 FE               [12]  823 	mov	r6,a
+      0041FA A3               [24]  824 	inc	dptr
+      0041FB E0               [24]  825 	movx	a,@dptr
+      0041FC FF               [12]  826 	mov	r7,a
+      0041FD 8C 00            [24]  827 	mov	ar0,r4
+      0041FF 8D 01            [24]  828 	mov	ar1,r5
+      004201 7A 00            [12]  829 	mov	r2,#0x00
+      004203 7B 00            [12]  830 	mov	r3,#0x00
+      004205 8E 04            [24]  831 	mov	ar4,r6
+      004207 8F 05            [24]  832 	mov	ar5,r7
+      004209 7E 00            [12]  833 	mov	r6,#0x00
+      00420B 7F 00            [12]  834 	mov	r7,#0x00
+      00420D 90 03 AC         [24]  835 	mov	dptr,#_calculate_checksum_sum_10000_117
+      004210 EC               [12]  836 	mov	a,r4
+      004211 28               [12]  837 	add	a, r0
+      004212 F0               [24]  838 	movx	@dptr,a
+      004213 ED               [12]  839 	mov	a,r5
+      004214 39               [12]  840 	addc	a, r1
+      004215 A3               [24]  841 	inc	dptr
+      004216 F0               [24]  842 	movx	@dptr,a
+      004217 EE               [12]  843 	mov	a,r6
+      004218 3A               [12]  844 	addc	a, r2
+      004219 A3               [24]  845 	inc	dptr
+      00421A F0               [24]  846 	movx	@dptr,a
+      00421B EF               [12]  847 	mov	a,r7
+      00421C 3B               [12]  848 	addc	a, r3
+      00421D A3               [24]  849 	inc	dptr
+      00421E F0               [24]  850 	movx	@dptr,a
                                     851 ;	tcp.c:30: return ~sum;
-      004218 90 03 AC         [24]  852 	mov	dptr,#_calculate_checksum_sum_10000_117
-      00421B E0               [24]  853 	movx	a,@dptr
-      00421C FC               [12]  854 	mov	r4,a
-      00421D A3               [24]  855 	inc	dptr
-      00421E E0               [24]  856 	movx	a,@dptr
-      00421F FD               [12]  857 	mov	r5,a
-      004220 A3               [24]  858 	inc	dptr
-      004221 E0               [24]  859 	movx	a,@dptr
-      004222 FE               [12]  860 	mov	r6,a
-      004223 A3               [24]  861 	inc	dptr
-      004224 E0               [24]  862 	movx	a,@dptr
-      004225 FF               [12]  863 	mov	r7,a
-      004226 EC               [12]  864 	mov	a,r4
-      004227 F4               [12]  865 	cpl	a
-      004228 FC               [12]  866 	mov	r4,a
-      004229 ED               [12]  867 	mov	a,r5
-      00422A F4               [12]  868 	cpl	a
-      00422B FD               [12]  869 	mov	r5,a
-      00422C EE               [12]  870 	mov	a,r6
-      00422D F4               [12]  871 	cpl	a
-      00422E EF               [12]  872 	mov	a,r7
-      00422F F4               [12]  873 	cpl	a
-      004230 8C 82            [24]  874 	mov	dpl, r4
-      004232 8D 83            [24]  875 	mov	dph, r5
+      00421F 90 03 AC         [24]  852 	mov	dptr,#_calculate_checksum_sum_10000_117
+      004222 E0               [24]  853 	movx	a,@dptr
+      004223 FC               [12]  854 	mov	r4,a
+      004224 A3               [24]  855 	inc	dptr
+      004225 E0               [24]  856 	movx	a,@dptr
+      004226 FD               [12]  857 	mov	r5,a
+      004227 A3               [24]  858 	inc	dptr
+      004228 E0               [24]  859 	movx	a,@dptr
+      004229 FE               [12]  860 	mov	r6,a
+      00422A A3               [24]  861 	inc	dptr
+      00422B E0               [24]  862 	movx	a,@dptr
+      00422C FF               [12]  863 	mov	r7,a
+      00422D EC               [12]  864 	mov	a,r4
+      00422E F4               [12]  865 	cpl	a
+      00422F FC               [12]  866 	mov	r4,a
+      004230 ED               [12]  867 	mov	a,r5
+      004231 F4               [12]  868 	cpl	a
+      004232 FD               [12]  869 	mov	r5,a
+      004233 EE               [12]  870 	mov	a,r6
+      004234 F4               [12]  871 	cpl	a
+      004235 EF               [12]  872 	mov	a,r7
+      004236 F4               [12]  873 	cpl	a
+      004237 8C 82            [24]  874 	mov	dpl, r4
+      004239 8D 83            [24]  875 	mov	dph, r5
                                     876 ;	tcp.c:31: }
-      004234 22               [24]  877 	ret
+      00423B 22               [24]  877 	ret
                                     878 ;------------------------------------------------------------
                                     879 ;Allocation info for local variables in function 'process_tcp_packet'
                                     880 ;------------------------------------------------------------
@@ -890,1440 +890,1529 @@
                                     890 ;response_ip_header        Allocated with name '_process_tcp_packet_response_ip_header_10002_124'
                                     891 ;tcp_header                Allocated with name '_process_tcp_packet_tcp_header_10003_125'
                                     892 ;response_tcp_header       Allocated with name '_process_tcp_packet_response_tcp_header_10003_125'
-                                    893 ;seq_num                   Allocated with name '_process_tcp_packet_seq_num_10004_126'
-                                    894 ;ack_num                   Allocated with name '_process_tcp_packet_ack_num_10004_126'
-                                    895 ;tcp_length                Allocated with name '_process_tcp_packet_tcp_length_10005_127'
-                                    896 ;ip_total_length           Allocated with name '_process_tcp_packet_ip_total_length_10005_127'
-                                    897 ;ip_checksum               Allocated with name '_process_tcp_packet_ip_checksum_10006_128'
-                                    898 ;tcp_checksum              Allocated with name '_process_tcp_packet_tcp_checksum_10007_129'
-                                    899 ;------------------------------------------------------------
-                                    900 ;	tcp.c:32: uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
-                                    901 ;	-----------------------------------------
-                                    902 ;	 function process_tcp_packet
-                                    903 ;	-----------------------------------------
-      004235                        904 _process_tcp_packet:
-      004235 AF F0            [24]  905 	mov	r7,b
-      004237 AE 83            [24]  906 	mov	r6,dph
-      004239 E5 82            [12]  907 	mov	a,dpl
-      00423B 90 03 B7         [24]  908 	mov	dptr,#_process_tcp_packet_packet_10000_121
-      00423E F0               [24]  909 	movx	@dptr,a
-      00423F EE               [12]  910 	mov	a,r6
-      004240 A3               [24]  911 	inc	dptr
-      004241 F0               [24]  912 	movx	@dptr,a
-      004242 EF               [12]  913 	mov	a,r7
-      004243 A3               [24]  914 	inc	dptr
-      004244 F0               [24]  915 	movx	@dptr,a
-                                    916 ;	tcp.c:34: memset(response, 0, MAX_PACKET_SIZE + 1);      // Clear the response buffer
-      004245 90 09 BD         [24]  917 	mov	dptr,#_memset_PARM_2
-      004248 E4               [12]  918 	clr	a
-      004249 F0               [24]  919 	movx	@dptr,a
-      00424A 90 09 BE         [24]  920 	mov	dptr,#_memset_PARM_3
-      00424D 74 DD            [12]  921 	mov	a,#0xdd
-      00424F F0               [24]  922 	movx	@dptr,a
-      004250 74 05            [12]  923 	mov	a,#0x05
-      004252 A3               [24]  924 	inc	dptr
-      004253 F0               [24]  925 	movx	@dptr,a
-      004254 90 03 BA         [24]  926 	mov	dptr,#_process_tcp_packet_response_10000_122
-      004257 75 F0 00         [24]  927 	mov	b, #0x00
-      00425A 12 4C CB         [24]  928 	lcall	_memset
-                                    929 ;	tcp.c:36: response[0] = 0x0E;  // Ensure the first byte of the response is always 0x0E
-      00425D 90 03 BA         [24]  930 	mov	dptr,#_process_tcp_packet_response_10000_122
-      004260 74 0E            [12]  931 	mov	a,#0x0e
-      004262 F0               [24]  932 	movx	@dptr,a
-                                    933 ;	tcp.c:39: uint8_t *data_start = response + 1;
-                                    934 ;	tcp.c:42: uint8_t *ethernet_header = packet;
-      004263 90 03 B7         [24]  935 	mov	dptr,#_process_tcp_packet_packet_10000_121
-      004266 E0               [24]  936 	movx	a,@dptr
-      004267 FD               [12]  937 	mov	r5,a
-      004268 A3               [24]  938 	inc	dptr
-      004269 E0               [24]  939 	movx	a,@dptr
-      00426A FE               [12]  940 	mov	r6,a
-      00426B A3               [24]  941 	inc	dptr
-      00426C E0               [24]  942 	movx	a,@dptr
-      00426D FF               [12]  943 	mov	r7,a
-                                    944 ;	tcp.c:44: memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
-      00426E 8D 02            [24]  945 	mov	ar2,r5
-      004270 8E 03            [24]  946 	mov	ar3,r6
-      004272 8F 04            [24]  947 	mov	ar4,r7
-      004274 90 09 B5         [24]  948 	mov	dptr,#___memcpy_PARM_2
-      004277 EA               [12]  949 	mov	a,r2
-      004278 F0               [24]  950 	movx	@dptr,a
-      004279 EB               [12]  951 	mov	a,r3
-      00427A A3               [24]  952 	inc	dptr
-      00427B F0               [24]  953 	movx	@dptr,a
-      00427C EC               [12]  954 	mov	a,r4
-      00427D A3               [24]  955 	inc	dptr
-      00427E F0               [24]  956 	movx	@dptr,a
-      00427F 90 09 B8         [24]  957 	mov	dptr,#___memcpy_PARM_3
-      004282 74 0E            [12]  958 	mov	a,#0x0e
-      004284 F0               [24]  959 	movx	@dptr,a
-      004285 E4               [12]  960 	clr	a
-      004286 A3               [24]  961 	inc	dptr
-      004287 F0               [24]  962 	movx	@dptr,a
-      004288 90 03 BB         [24]  963 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0001)
-      00428B F5 F0            [12]  964 	mov	b,a
-      00428D C0 07            [24]  965 	push	ar7
-      00428F C0 06            [24]  966 	push	ar6
-      004291 C0 05            [24]  967 	push	ar5
-      004293 12 4C 57         [24]  968 	lcall	___memcpy
-      004296 D0 05            [24]  969 	pop	ar5
-      004298 D0 06            [24]  970 	pop	ar6
-      00429A D0 07            [24]  971 	pop	ar7
-                                    972 ;	tcp.c:47: memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
-      00429C 74 06            [12]  973 	mov	a,#0x06
-      00429E 2D               [12]  974 	add	a, r5
-      00429F FA               [12]  975 	mov	r2,a
-      0042A0 E4               [12]  976 	clr	a
-      0042A1 3E               [12]  977 	addc	a, r6
-      0042A2 FB               [12]  978 	mov	r3,a
-      0042A3 8F 04            [24]  979 	mov	ar4,r7
-      0042A5 90 09 B5         [24]  980 	mov	dptr,#___memcpy_PARM_2
-      0042A8 EA               [12]  981 	mov	a,r2
-      0042A9 F0               [24]  982 	movx	@dptr,a
-      0042AA EB               [12]  983 	mov	a,r3
-      0042AB A3               [24]  984 	inc	dptr
-      0042AC F0               [24]  985 	movx	@dptr,a
-      0042AD EC               [12]  986 	mov	a,r4
-      0042AE A3               [24]  987 	inc	dptr
-      0042AF F0               [24]  988 	movx	@dptr,a
-      0042B0 90 09 B8         [24]  989 	mov	dptr,#___memcpy_PARM_3
-      0042B3 74 06            [12]  990 	mov	a,#0x06
-      0042B5 F0               [24]  991 	movx	@dptr,a
-      0042B6 E4               [12]  992 	clr	a
-      0042B7 A3               [24]  993 	inc	dptr
-      0042B8 F0               [24]  994 	movx	@dptr,a
-      0042B9 90 03 BB         [24]  995 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0001)
-      0042BC F5 F0            [12]  996 	mov	b,a
-      0042BE C0 07            [24]  997 	push	ar7
-      0042C0 C0 06            [24]  998 	push	ar6
-      0042C2 C0 05            [24]  999 	push	ar5
-      0042C4 12 4C 57         [24] 1000 	lcall	___memcpy
-      0042C7 D0 05            [24] 1001 	pop	ar5
-      0042C9 D0 06            [24] 1002 	pop	ar6
-      0042CB D0 07            [24] 1003 	pop	ar7
-                                   1004 ;	tcp.c:48: memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
-      0042CD 8D 02            [24] 1005 	mov	ar2,r5
-      0042CF 8E 03            [24] 1006 	mov	ar3,r6
-      0042D1 8F 04            [24] 1007 	mov	ar4,r7
-      0042D3 90 09 B5         [24] 1008 	mov	dptr,#___memcpy_PARM_2
-      0042D6 EA               [12] 1009 	mov	a,r2
-      0042D7 F0               [24] 1010 	movx	@dptr,a
-      0042D8 EB               [12] 1011 	mov	a,r3
-      0042D9 A3               [24] 1012 	inc	dptr
-      0042DA F0               [24] 1013 	movx	@dptr,a
-      0042DB EC               [12] 1014 	mov	a,r4
-      0042DC A3               [24] 1015 	inc	dptr
-      0042DD F0               [24] 1016 	movx	@dptr,a
-      0042DE 90 09 B8         [24] 1017 	mov	dptr,#___memcpy_PARM_3
-      0042E1 74 06            [12] 1018 	mov	a,#0x06
-      0042E3 F0               [24] 1019 	movx	@dptr,a
-      0042E4 E4               [12] 1020 	clr	a
-      0042E5 A3               [24] 1021 	inc	dptr
-      0042E6 F0               [24] 1022 	movx	@dptr,a
-      0042E7 90 03 C1         [24] 1023 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0007)
-      0042EA F5 F0            [12] 1024 	mov	b,a
-      0042EC C0 07            [24] 1025 	push	ar7
-      0042EE C0 06            [24] 1026 	push	ar6
-      0042F0 C0 05            [24] 1027 	push	ar5
-      0042F2 12 4C 57         [24] 1028 	lcall	___memcpy
-      0042F5 D0 05            [24] 1029 	pop	ar5
-      0042F7 D0 06            [24] 1030 	pop	ar6
-      0042F9 D0 07            [24] 1031 	pop	ar7
-                                   1032 ;	tcp.c:51: uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
-      0042FB 74 0E            [12] 1033 	mov	a,#0x0e
-      0042FD 2D               [12] 1034 	add	a, r5
-      0042FE FA               [12] 1035 	mov	r2,a
-      0042FF E4               [12] 1036 	clr	a
-      004300 3E               [12] 1037 	addc	a, r6
-      004301 FB               [12] 1038 	mov	r3,a
-      004302 8F 04            [24] 1039 	mov	ar4,r7
-                                   1040 ;	tcp.c:52: uint8_t *response_ip_header = data_start + ETHERNET_HEADER_SIZE;
-                                   1041 ;	tcp.c:55: memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
-      004304 90 09 B5         [24] 1042 	mov	dptr,#___memcpy_PARM_2
-      004307 EA               [12] 1043 	mov	a,r2
-      004308 F0               [24] 1044 	movx	@dptr,a
-      004309 EB               [12] 1045 	mov	a,r3
-      00430A A3               [24] 1046 	inc	dptr
-      00430B F0               [24] 1047 	movx	@dptr,a
-      00430C EC               [12] 1048 	mov	a,r4
-      00430D A3               [24] 1049 	inc	dptr
-      00430E F0               [24] 1050 	movx	@dptr,a
-      00430F 90 09 B8         [24] 1051 	mov	dptr,#___memcpy_PARM_3
-      004312 74 14            [12] 1052 	mov	a,#0x14
-      004314 F0               [24] 1053 	movx	@dptr,a
-      004315 E4               [12] 1054 	clr	a
-      004316 A3               [24] 1055 	inc	dptr
-      004317 F0               [24] 1056 	movx	@dptr,a
-      004318 90 03 C9         [24] 1057 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
-      00431B F5 F0            [12] 1058 	mov	b,a
-      00431D C0 07            [24] 1059 	push	ar7
-      00431F C0 06            [24] 1060 	push	ar6
-      004321 C0 05            [24] 1061 	push	ar5
-      004323 12 4C 57         [24] 1062 	lcall	___memcpy
-      004326 D0 05            [24] 1063 	pop	ar5
-      004328 D0 06            [24] 1064 	pop	ar6
-      00432A D0 07            [24] 1065 	pop	ar7
-                                   1066 ;	tcp.c:56: response_ip_header[12] = ip_header[16];  // Swap Source IP
-      00432C 74 1E            [12] 1067 	mov	a,#0x1e
-      00432E 2D               [12] 1068 	add	a, r5
-      00432F FA               [12] 1069 	mov	r2,a
-      004330 E4               [12] 1070 	clr	a
-      004331 3E               [12] 1071 	addc	a, r6
-      004332 FB               [12] 1072 	mov	r3,a
-      004333 8F 04            [24] 1073 	mov	ar4,r7
-      004335 8A 82            [24] 1074 	mov	dpl,r2
-      004337 8B 83            [24] 1075 	mov	dph,r3
-      004339 8C F0            [24] 1076 	mov	b,r4
-      00433B 12 5B 2B         [24] 1077 	lcall	__gptrget
-      00433E FA               [12] 1078 	mov	r2,a
-      00433F 90 03 D5         [24] 1079 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001b)
-      004342 75 F0 00         [24] 1080 	mov	b,#0x00
-      004345 EA               [12] 1081 	mov	a,r2
-      004346 12 4C F3         [24] 1082 	lcall	__gptrput
-                                   1083 ;	tcp.c:57: response_ip_header[13] = ip_header[17];
-      004349 74 1F            [12] 1084 	mov	a,#0x1f
-      00434B 2D               [12] 1085 	add	a, r5
-      00434C FA               [12] 1086 	mov	r2,a
-      00434D E4               [12] 1087 	clr	a
-      00434E 3E               [12] 1088 	addc	a, r6
-      00434F FB               [12] 1089 	mov	r3,a
-      004350 8F 04            [24] 1090 	mov	ar4,r7
-      004352 8A 82            [24] 1091 	mov	dpl,r2
-      004354 8B 83            [24] 1092 	mov	dph,r3
-      004356 8C F0            [24] 1093 	mov	b,r4
-      004358 12 5B 2B         [24] 1094 	lcall	__gptrget
-      00435B FA               [12] 1095 	mov	r2,a
-      00435C 90 03 D6         [24] 1096 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001c)
-      00435F 75 F0 00         [24] 1097 	mov	b,#0x00
-      004362 EA               [12] 1098 	mov	a,r2
-      004363 12 4C F3         [24] 1099 	lcall	__gptrput
-                                   1100 ;	tcp.c:58: response_ip_header[14] = ip_header[18];
-      004366 74 20            [12] 1101 	mov	a,#0x20
-      004368 2D               [12] 1102 	add	a, r5
-      004369 FA               [12] 1103 	mov	r2,a
-      00436A E4               [12] 1104 	clr	a
-      00436B 3E               [12] 1105 	addc	a, r6
-      00436C FB               [12] 1106 	mov	r3,a
-      00436D 8F 04            [24] 1107 	mov	ar4,r7
-      00436F 8A 82            [24] 1108 	mov	dpl,r2
-      004371 8B 83            [24] 1109 	mov	dph,r3
-      004373 8C F0            [24] 1110 	mov	b,r4
-      004375 12 5B 2B         [24] 1111 	lcall	__gptrget
-      004378 FA               [12] 1112 	mov	r2,a
-      004379 90 03 D7         [24] 1113 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001d)
-      00437C 75 F0 00         [24] 1114 	mov	b,#0x00
-      00437F EA               [12] 1115 	mov	a,r2
-      004380 12 4C F3         [24] 1116 	lcall	__gptrput
-                                   1117 ;	tcp.c:59: response_ip_header[15] = ip_header[19];
-      004383 74 21            [12] 1118 	mov	a,#0x21
-      004385 2D               [12] 1119 	add	a, r5
-      004386 FA               [12] 1120 	mov	r2,a
-      004387 E4               [12] 1121 	clr	a
-      004388 3E               [12] 1122 	addc	a, r6
-      004389 FB               [12] 1123 	mov	r3,a
-      00438A 8F 04            [24] 1124 	mov	ar4,r7
-      00438C 8A 82            [24] 1125 	mov	dpl,r2
-      00438E 8B 83            [24] 1126 	mov	dph,r3
-      004390 8C F0            [24] 1127 	mov	b,r4
-      004392 12 5B 2B         [24] 1128 	lcall	__gptrget
-      004395 FA               [12] 1129 	mov	r2,a
-      004396 90 03 D8         [24] 1130 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001e)
-      004399 75 F0 00         [24] 1131 	mov	b,#0x00
-      00439C EA               [12] 1132 	mov	a,r2
-      00439D 12 4C F3         [24] 1133 	lcall	__gptrput
-                                   1134 ;	tcp.c:60: response_ip_header[16] = ip_header[12];  // Swap Destination IP
-      0043A0 74 1A            [12] 1135 	mov	a,#0x1a
-      0043A2 2D               [12] 1136 	add	a, r5
-      0043A3 FA               [12] 1137 	mov	r2,a
-      0043A4 E4               [12] 1138 	clr	a
-      0043A5 3E               [12] 1139 	addc	a, r6
-      0043A6 FB               [12] 1140 	mov	r3,a
-      0043A7 8F 04            [24] 1141 	mov	ar4,r7
-      0043A9 8A 82            [24] 1142 	mov	dpl,r2
-      0043AB 8B 83            [24] 1143 	mov	dph,r3
-      0043AD 8C F0            [24] 1144 	mov	b,r4
-      0043AF 12 5B 2B         [24] 1145 	lcall	__gptrget
-      0043B2 FA               [12] 1146 	mov	r2,a
-      0043B3 90 03 D9         [24] 1147 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001f)
-      0043B6 75 F0 00         [24] 1148 	mov	b,#0x00
-      0043B9 EA               [12] 1149 	mov	a,r2
-      0043BA 12 4C F3         [24] 1150 	lcall	__gptrput
-                                   1151 ;	tcp.c:61: response_ip_header[17] = ip_header[13];
-      0043BD 74 1B            [12] 1152 	mov	a,#0x1b
-      0043BF 2D               [12] 1153 	add	a, r5
-      0043C0 FA               [12] 1154 	mov	r2,a
-      0043C1 E4               [12] 1155 	clr	a
-      0043C2 3E               [12] 1156 	addc	a, r6
-      0043C3 FB               [12] 1157 	mov	r3,a
-      0043C4 8F 04            [24] 1158 	mov	ar4,r7
-      0043C6 8A 82            [24] 1159 	mov	dpl,r2
-      0043C8 8B 83            [24] 1160 	mov	dph,r3
-      0043CA 8C F0            [24] 1161 	mov	b,r4
-      0043CC 12 5B 2B         [24] 1162 	lcall	__gptrget
-      0043CF FA               [12] 1163 	mov	r2,a
-      0043D0 90 03 DA         [24] 1164 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0020)
-      0043D3 75 F0 00         [24] 1165 	mov	b,#0x00
-      0043D6 EA               [12] 1166 	mov	a,r2
-      0043D7 12 4C F3         [24] 1167 	lcall	__gptrput
-                                   1168 ;	tcp.c:62: response_ip_header[18] = ip_header[14];
-      0043DA 74 1C            [12] 1169 	mov	a,#0x1c
-      0043DC 2D               [12] 1170 	add	a, r5
-      0043DD FA               [12] 1171 	mov	r2,a
-      0043DE E4               [12] 1172 	clr	a
-      0043DF 3E               [12] 1173 	addc	a, r6
-      0043E0 FB               [12] 1174 	mov	r3,a
-      0043E1 8F 04            [24] 1175 	mov	ar4,r7
-      0043E3 8A 82            [24] 1176 	mov	dpl,r2
-      0043E5 8B 83            [24] 1177 	mov	dph,r3
-      0043E7 8C F0            [24] 1178 	mov	b,r4
-      0043E9 12 5B 2B         [24] 1179 	lcall	__gptrget
-      0043EC FA               [12] 1180 	mov	r2,a
-      0043ED 90 03 DB         [24] 1181 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0021)
-      0043F0 75 F0 00         [24] 1182 	mov	b,#0x00
-      0043F3 EA               [12] 1183 	mov	a,r2
-      0043F4 12 4C F3         [24] 1184 	lcall	__gptrput
-                                   1185 ;	tcp.c:63: response_ip_header[19] = ip_header[15];
-      0043F7 74 1D            [12] 1186 	mov	a,#0x1d
-      0043F9 2D               [12] 1187 	add	a, r5
-      0043FA FA               [12] 1188 	mov	r2,a
-      0043FB E4               [12] 1189 	clr	a
-      0043FC 3E               [12] 1190 	addc	a, r6
-      0043FD FB               [12] 1191 	mov	r3,a
-      0043FE 8F 04            [24] 1192 	mov	ar4,r7
-      004400 8A 82            [24] 1193 	mov	dpl,r2
-      004402 8B 83            [24] 1194 	mov	dph,r3
-      004404 8C F0            [24] 1195 	mov	b,r4
-      004406 12 5B 2B         [24] 1196 	lcall	__gptrget
-      004409 FA               [12] 1197 	mov	r2,a
-      00440A 90 03 DC         [24] 1198 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0022)
-      00440D 75 F0 00         [24] 1199 	mov	b,#0x00
-      004410 EA               [12] 1200 	mov	a,r2
-      004411 12 4C F3         [24] 1201 	lcall	__gptrput
-                                   1202 ;	tcp.c:64: response_ip_header[10] = 0;              // Clear checksum
-      004414 90 03 D3         [24] 1203 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0019)
-      004417 E4               [12] 1204 	clr	a
-      004418 12 4C F3         [24] 1205 	lcall	__gptrput
-                                   1206 ;	tcp.c:65: response_ip_header[11] = 0;
-      00441B 90 03 D4         [24] 1207 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001a)
-      00441E F5 F0            [12] 1208 	mov	b,a
-      004420 12 4C F3         [24] 1209 	lcall	__gptrput
-                                   1210 ;	tcp.c:68: uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-      004423 74 22            [12] 1211 	mov	a,#0x22
-      004425 2D               [12] 1212 	add	a, r5
-      004426 F5 14            [12] 1213 	mov	_process_tcp_packet_sloc0_1_0,a
-      004428 E4               [12] 1214 	clr	a
-      004429 3E               [12] 1215 	addc	a, r6
-      00442A F5 15            [12] 1216 	mov	(_process_tcp_packet_sloc0_1_0 + 1),a
-      00442C 8F 16            [24] 1217 	mov	(_process_tcp_packet_sloc0_1_0 + 2),r7
-                                   1218 ;	tcp.c:69: uint8_t *response_tcp_header = data_start + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-                                   1219 ;	tcp.c:72: memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
-      00442E A8 14            [24] 1220 	mov	r0,_process_tcp_packet_sloc0_1_0
-      004430 A9 15            [24] 1221 	mov	r1,(_process_tcp_packet_sloc0_1_0 + 1)
-      004432 AC 16            [24] 1222 	mov	r4,(_process_tcp_packet_sloc0_1_0 + 2)
-      004434 90 09 B5         [24] 1223 	mov	dptr,#___memcpy_PARM_2
-      004437 E8               [12] 1224 	mov	a,r0
-      004438 F0               [24] 1225 	movx	@dptr,a
-      004439 E9               [12] 1226 	mov	a,r1
-      00443A A3               [24] 1227 	inc	dptr
-      00443B F0               [24] 1228 	movx	@dptr,a
-      00443C EC               [12] 1229 	mov	a,r4
-      00443D A3               [24] 1230 	inc	dptr
-      00443E F0               [24] 1231 	movx	@dptr,a
-      00443F 90 09 B8         [24] 1232 	mov	dptr,#___memcpy_PARM_3
-      004442 74 14            [12] 1233 	mov	a,#0x14
-      004444 F0               [24] 1234 	movx	@dptr,a
-      004445 E4               [12] 1235 	clr	a
-      004446 A3               [24] 1236 	inc	dptr
-      004447 F0               [24] 1237 	movx	@dptr,a
-      004448 90 03 DD         [24] 1238 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0023)
-      00444B F5 F0            [12] 1239 	mov	b,a
-      00444D C0 07            [24] 1240 	push	ar7
-      00444F C0 06            [24] 1241 	push	ar6
-      004451 C0 05            [24] 1242 	push	ar5
-      004453 12 4C 57         [24] 1243 	lcall	___memcpy
-      004456 D0 05            [24] 1244 	pop	ar5
-      004458 D0 06            [24] 1245 	pop	ar6
-      00445A D0 07            [24] 1246 	pop	ar7
-                                   1247 ;	tcp.c:73: response_tcp_header[0] = tcp_header[2];  // Swap Source Port
-      00445C 74 24            [12] 1248 	mov	a,#0x24
-      00445E 2D               [12] 1249 	add	a, r5
-      00445F FA               [12] 1250 	mov	r2,a
-      004460 E4               [12] 1251 	clr	a
-      004461 3E               [12] 1252 	addc	a, r6
-      004462 FB               [12] 1253 	mov	r3,a
-      004463 8F 04            [24] 1254 	mov	ar4,r7
-      004465 8A 82            [24] 1255 	mov	dpl,r2
-      004467 8B 83            [24] 1256 	mov	dph,r3
-      004469 8C F0            [24] 1257 	mov	b,r4
-      00446B 12 5B 2B         [24] 1258 	lcall	__gptrget
-      00446E FA               [12] 1259 	mov	r2,a
-      00446F 90 03 DD         [24] 1260 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0023)
-      004472 75 F0 00         [24] 1261 	mov	b,#0x00
-      004475 EA               [12] 1262 	mov	a,r2
-      004476 12 4C F3         [24] 1263 	lcall	__gptrput
-                                   1264 ;	tcp.c:74: response_tcp_header[1] = tcp_header[3];
-      004479 74 25            [12] 1265 	mov	a,#0x25
-      00447B 2D               [12] 1266 	add	a, r5
-      00447C FA               [12] 1267 	mov	r2,a
-      00447D E4               [12] 1268 	clr	a
-      00447E 3E               [12] 1269 	addc	a, r6
-      00447F FB               [12] 1270 	mov	r3,a
-      004480 8F 04            [24] 1271 	mov	ar4,r7
-      004482 8A 82            [24] 1272 	mov	dpl,r2
-      004484 8B 83            [24] 1273 	mov	dph,r3
-      004486 8C F0            [24] 1274 	mov	b,r4
-      004488 12 5B 2B         [24] 1275 	lcall	__gptrget
-      00448B FA               [12] 1276 	mov	r2,a
-      00448C 90 03 DE         [24] 1277 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0024)
-      00448F 75 F0 00         [24] 1278 	mov	b,#0x00
-      004492 EA               [12] 1279 	mov	a,r2
-      004493 12 4C F3         [24] 1280 	lcall	__gptrput
-                                   1281 ;	tcp.c:75: response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
-      004496 85 14 82         [24] 1282 	mov	dpl,_process_tcp_packet_sloc0_1_0
-      004499 85 15 83         [24] 1283 	mov	dph,(_process_tcp_packet_sloc0_1_0 + 1)
-      00449C 85 16 F0         [24] 1284 	mov	b,(_process_tcp_packet_sloc0_1_0 + 2)
-      00449F 12 5B 2B         [24] 1285 	lcall	__gptrget
-      0044A2 FC               [12] 1286 	mov	r4,a
-      0044A3 90 03 DF         [24] 1287 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0025)
-      0044A6 75 F0 00         [24] 1288 	mov	b,#0x00
-      0044A9 EC               [12] 1289 	mov	a,r4
-      0044AA 12 4C F3         [24] 1290 	lcall	__gptrput
-                                   1291 ;	tcp.c:76: response_tcp_header[3] = tcp_header[1];
-      0044AD 74 23            [12] 1292 	mov	a,#0x23
-      0044AF 2D               [12] 1293 	add	a, r5
-      0044B0 FD               [12] 1294 	mov	r5,a
-      0044B1 E4               [12] 1295 	clr	a
-      0044B2 3E               [12] 1296 	addc	a, r6
-      0044B3 FE               [12] 1297 	mov	r6,a
-      0044B4 8D 82            [24] 1298 	mov	dpl,r5
-      0044B6 8E 83            [24] 1299 	mov	dph,r6
-      0044B8 8F F0            [24] 1300 	mov	b,r7
-      0044BA 12 5B 2B         [24] 1301 	lcall	__gptrget
-      0044BD FD               [12] 1302 	mov	r5,a
-      0044BE 90 03 E0         [24] 1303 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0026)
-      0044C1 75 F0 00         [24] 1304 	mov	b,#0x00
-      0044C4 ED               [12] 1305 	mov	a,r5
-      0044C5 12 4C F3         [24] 1306 	lcall	__gptrput
-                                   1307 ;	tcp.c:81: response_tcp_header[4] = (ack_num >> 24) & 0xFF;
-      0044C8 90 03 E1         [24] 1308 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0027)
-      0044CB E4               [12] 1309 	clr	a
-      0044CC 12 4C F3         [24] 1310 	lcall	__gptrput
-                                   1311 ;	tcp.c:82: response_tcp_header[5] = (ack_num >> 16) & 0xFF;
-      0044CF 90 03 E2         [24] 1312 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0028)
-      0044D2 F5 F0            [12] 1313 	mov	b,a
-      0044D4 12 4C F3         [24] 1314 	lcall	__gptrput
-                                   1315 ;	tcp.c:83: response_tcp_header[6] = (ack_num >> 8) & 0xFF;
-      0044D7 90 03 E3         [24] 1316 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0029)
-      0044DA F5 F0            [12] 1317 	mov	b,a
-      0044DC 12 4C F3         [24] 1318 	lcall	__gptrput
-                                   1319 ;	tcp.c:84: response_tcp_header[7] = ack_num & 0xFF;
-      0044DF 90 03 E4         [24] 1320 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002a)
-      0044E2 F5 F0            [12] 1321 	mov	b,a
-      0044E4 04               [12] 1322 	inc	a
-      0044E5 12 4C F3         [24] 1323 	lcall	__gptrput
-                                   1324 ;	tcp.c:86: response_tcp_header[12] = 0x50;  // SYN (0x02) + ACK (0x10)
-      0044E8 90 03 E9         [24] 1325 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002f)
-      0044EB 74 50            [12] 1326 	mov	a,#0x50
-      0044ED 12 4C F3         [24] 1327 	lcall	__gptrput
-                                   1328 ;	tcp.c:88: response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
-      0044F0 90 03 EA         [24] 1329 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0030)
-      0044F3 74 12            [12] 1330 	mov	a,#0x12
-      0044F5 12 4C F3         [24] 1331 	lcall	__gptrput
-                                   1332 ;	tcp.c:91: response_tcp_header[18] = 0;
-      0044F8 90 03 EF         [24] 1333 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0035)
-      0044FB E4               [12] 1334 	clr	a
-      0044FC 12 4C F3         [24] 1335 	lcall	__gptrput
-                                   1336 ;	tcp.c:92: response_tcp_header[19] = 0;
-      0044FF 90 03 F0         [24] 1337 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0036)
-      004502 F5 F0            [12] 1338 	mov	b,a
-      004504 12 4C F3         [24] 1339 	lcall	__gptrput
-                                   1340 ;	tcp.c:98: response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
-      004507 90 03 CB         [24] 1341 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0011)
-      00450A F5 F0            [12] 1342 	mov	b,a
-      00450C 12 4C F3         [24] 1343 	lcall	__gptrput
-                                   1344 ;	tcp.c:99: response_ip_header[3] = ip_total_length & 0xFF;
-      00450F 90 03 CC         [24] 1345 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0012)
-      004512 F5 F0            [12] 1346 	mov	b,a
-      004514 74 28            [12] 1347 	mov	a,#0x28
-      004516 12 4C F3         [24] 1348 	lcall	__gptrput
-                                   1349 ;	tcp.c:100: uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
-      004519 90 03 A7         [24] 1350 	mov	dptr,#_calculate_checksum_PARM_2
-      00451C 03               [12] 1351 	rr	a
-      00451D F0               [24] 1352 	movx	@dptr,a
-      00451E E4               [12] 1353 	clr	a
-      00451F A3               [24] 1354 	inc	dptr
-      004520 F0               [24] 1355 	movx	@dptr,a
-      004521 90 03 C9         [24] 1356 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
-      004524 F5 F0            [12] 1357 	mov	b,a
-      004526 12 40 B2         [24] 1358 	lcall	_calculate_checksum
-      004529 AE 82            [24] 1359 	mov	r6, dpl
-      00452B AF 83            [24] 1360 	mov	r7, dph
-                                   1361 ;	tcp.c:101: response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
-      00452D 8F 05            [24] 1362 	mov	ar5,r7
-      00452F 90 03 D3         [24] 1363 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0019)
-      004532 75 F0 00         [24] 1364 	mov	b,#0x00
-      004535 ED               [12] 1365 	mov	a,r5
-      004536 12 4C F3         [24] 1366 	lcall	__gptrput
-                                   1367 ;	tcp.c:102: response_ip_header[11] = ip_checksum & 0xFF;
-      004539 90 03 D4         [24] 1368 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001a)
-      00453C EE               [12] 1369 	mov	a,r6
-      00453D 12 4C F3         [24] 1370 	lcall	__gptrput
-                                   1371 ;	tcp.c:104: uint16_t tcp_checksum = calculate_checksum(data_start + ETHERNET_HEADER_SIZE, ip_total_length);
-      004540 90 03 A7         [24] 1372 	mov	dptr,#_calculate_checksum_PARM_2
-      004543 74 28            [12] 1373 	mov	a,#0x28
-      004545 F0               [24] 1374 	movx	@dptr,a
-      004546 E4               [12] 1375 	clr	a
-      004547 A3               [24] 1376 	inc	dptr
-      004548 F0               [24] 1377 	movx	@dptr,a
-      004549 90 03 C9         [24] 1378 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
-      00454C F5 F0            [12] 1379 	mov	b,a
-      00454E 12 40 B2         [24] 1380 	lcall	_calculate_checksum
-      004551 AE 82            [24] 1381 	mov	r6, dpl
-      004553 AF 83            [24] 1382 	mov	r7, dph
-                                   1383 ;	tcp.c:105: response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
-      004555 8F 05            [24] 1384 	mov	ar5,r7
-      004557 90 03 ED         [24] 1385 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0033)
-      00455A 75 F0 00         [24] 1386 	mov	b,#0x00
-      00455D ED               [12] 1387 	mov	a,r5
-      00455E 12 4C F3         [24] 1388 	lcall	__gptrput
-                                   1389 ;	tcp.c:106: response_tcp_header[17] = tcp_checksum & 0xFF;
-      004561 90 03 EE         [24] 1390 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0034)
-      004564 EE               [12] 1391 	mov	a,r6
-      004565 12 4C F3         [24] 1392 	lcall	__gptrput
-                                   1393 ;	tcp.c:109: *response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length;
-      004568 90 03 B4         [24] 1394 	mov	dptr,#_process_tcp_packet_PARM_3
-      00456B E0               [24] 1395 	movx	a,@dptr
-      00456C FD               [12] 1396 	mov	r5,a
-      00456D A3               [24] 1397 	inc	dptr
-      00456E E0               [24] 1398 	movx	a,@dptr
-      00456F FE               [12] 1399 	mov	r6,a
-      004570 A3               [24] 1400 	inc	dptr
-      004571 E0               [24] 1401 	movx	a,@dptr
-      004572 FF               [12] 1402 	mov	r7,a
-      004573 8D 82            [24] 1403 	mov	dpl,r5
-      004575 8E 83            [24] 1404 	mov	dph,r6
-      004577 8F F0            [24] 1405 	mov	b,r7
-      004579 74 37            [12] 1406 	mov	a,#0x37
-      00457B 12 4C F3         [24] 1407 	lcall	__gptrput
-      00457E A3               [24] 1408 	inc	dptr
-      00457F E4               [12] 1409 	clr	a
-      004580 12 4C F3         [24] 1410 	lcall	__gptrput
-                                   1411 ;	tcp.c:111: return response;
-      004583 90 03 BA         [24] 1412 	mov	dptr,#_process_tcp_packet_response_10000_122
-      004586 F5 F0            [12] 1413 	mov	b,a
-                                   1414 ;	tcp.c:112: }
-      004588 22               [24] 1415 	ret
-                                   1416 ;------------------------------------------------------------
-                                   1417 ;Allocation info for local variables in function 'print_hexdump'
-                                   1418 ;------------------------------------------------------------
-                                   1419 ;size                      Allocated with name '_print_hexdump_PARM_2'
-                                   1420 ;data                      Allocated with name '_print_hexdump_data_10000_130'
-                                   1421 ;i                         Allocated with name '_print_hexdump_i_20000_132'
-                                   1422 ;------------------------------------------------------------
-                                   1423 ;	tcp.c:116: void print_hexdump(const uint8_t *data, uint16_t size) {
-                                   1424 ;	-----------------------------------------
-                                   1425 ;	 function print_hexdump
-                                   1426 ;	-----------------------------------------
-      004589                       1427 _print_hexdump:
-      004589 AF F0            [24] 1428 	mov	r7,b
-      00458B AE 83            [24] 1429 	mov	r6,dph
-      00458D E5 82            [12] 1430 	mov	a,dpl
-      00458F 90 09 99         [24] 1431 	mov	dptr,#_print_hexdump_data_10000_130
-      004592 F0               [24] 1432 	movx	@dptr,a
-      004593 EE               [12] 1433 	mov	a,r6
-      004594 A3               [24] 1434 	inc	dptr
-      004595 F0               [24] 1435 	movx	@dptr,a
-      004596 EF               [12] 1436 	mov	a,r7
-      004597 A3               [24] 1437 	inc	dptr
-      004598 F0               [24] 1438 	movx	@dptr,a
-                                   1439 ;	tcp.c:117: printf("\nHexdump (Size: %d):\n", size);
-      004599 90 09 97         [24] 1440 	mov	dptr,#_print_hexdump_PARM_2
-      00459C E0               [24] 1441 	movx	a,@dptr
-      00459D FE               [12] 1442 	mov	r6,a
-      00459E A3               [24] 1443 	inc	dptr
-      00459F E0               [24] 1444 	movx	a,@dptr
-      0045A0 FF               [12] 1445 	mov	r7,a
-      0045A1 C0 07            [24] 1446 	push	ar7
-      0045A3 C0 06            [24] 1447 	push	ar6
-      0045A5 C0 06            [24] 1448 	push	ar6
-      0045A7 C0 07            [24] 1449 	push	ar7
-      0045A9 74 CE            [12] 1450 	mov	a,#___str_0
-      0045AB C0 E0            [24] 1451 	push	acc
-      0045AD 74 64            [12] 1452 	mov	a,#(___str_0 >> 8)
-      0045AF C0 E0            [24] 1453 	push	acc
-      0045B1 74 80            [12] 1454 	mov	a,#0x80
-      0045B3 C0 E0            [24] 1455 	push	acc
-      0045B5 12 51 09         [24] 1456 	lcall	_printf
-      0045B8 E5 81            [12] 1457 	mov	a,sp
-      0045BA 24 FB            [12] 1458 	add	a,#0xfb
-      0045BC F5 81            [12] 1459 	mov	sp,a
-      0045BE D0 06            [24] 1460 	pop	ar6
-      0045C0 D0 07            [24] 1461 	pop	ar7
-                                   1462 ;	tcp.c:118: for (uint16_t i = 0; i < size; i++) {
-      0045C2 90 09 99         [24] 1463 	mov	dptr,#_print_hexdump_data_10000_130
-      0045C5 E0               [24] 1464 	movx	a,@dptr
-      0045C6 FB               [12] 1465 	mov	r3,a
-      0045C7 A3               [24] 1466 	inc	dptr
-      0045C8 E0               [24] 1467 	movx	a,@dptr
-      0045C9 FC               [12] 1468 	mov	r4,a
-      0045CA A3               [24] 1469 	inc	dptr
-      0045CB E0               [24] 1470 	movx	a,@dptr
-      0045CC FD               [12] 1471 	mov	r5,a
-      0045CD 79 00            [12] 1472 	mov	r1,#0x00
-      0045CF 7A 00            [12] 1473 	mov	r2,#0x00
-      0045D1                       1474 00107$:
-      0045D1 C3               [12] 1475 	clr	c
-      0045D2 E9               [12] 1476 	mov	a,r1
-      0045D3 9E               [12] 1477 	subb	a,r6
-      0045D4 EA               [12] 1478 	mov	a,r2
-      0045D5 9F               [12] 1479 	subb	a,r7
-      0045D6 40 03            [24] 1480 	jc	00136$
-      0045D8 02 46 79         [24] 1481 	ljmp	00103$
-      0045DB                       1482 00136$:
-                                   1483 ;	tcp.c:119: printf("%02X ", data[i]); // Print each byte in hexadecimal format
-      0045DB C0 06            [24] 1484 	push	ar6
-      0045DD C0 07            [24] 1485 	push	ar7
-      0045DF E9               [12] 1486 	mov	a,r1
-      0045E0 2B               [12] 1487 	add	a, r3
-      0045E1 F8               [12] 1488 	mov	r0,a
-      0045E2 EA               [12] 1489 	mov	a,r2
-      0045E3 3C               [12] 1490 	addc	a, r4
-      0045E4 FE               [12] 1491 	mov	r6,a
-      0045E5 8D 07            [24] 1492 	mov	ar7,r5
-      0045E7 88 82            [24] 1493 	mov	dpl,r0
-      0045E9 8E 83            [24] 1494 	mov	dph,r6
-      0045EB 8F F0            [24] 1495 	mov	b,r7
-      0045ED 12 5B 2B         [24] 1496 	lcall	__gptrget
-      0045F0 F8               [12] 1497 	mov	r0,a
-      0045F1 7F 00            [12] 1498 	mov	r7,#0x00
-      0045F3 C0 07            [24] 1499 	push	ar7
-      0045F5 C0 06            [24] 1500 	push	ar6
-      0045F7 C0 05            [24] 1501 	push	ar5
-      0045F9 C0 04            [24] 1502 	push	ar4
-      0045FB C0 03            [24] 1503 	push	ar3
-      0045FD C0 02            [24] 1504 	push	ar2
-      0045FF C0 01            [24] 1505 	push	ar1
-      004601 C0 00            [24] 1506 	push	ar0
-      004603 C0 07            [24] 1507 	push	ar7
-      004605 74 E4            [12] 1508 	mov	a,#___str_1
-      004607 C0 E0            [24] 1509 	push	acc
-      004609 74 64            [12] 1510 	mov	a,#(___str_1 >> 8)
-      00460B C0 E0            [24] 1511 	push	acc
-      00460D 74 80            [12] 1512 	mov	a,#0x80
-      00460F C0 E0            [24] 1513 	push	acc
-      004611 12 51 09         [24] 1514 	lcall	_printf
-      004614 E5 81            [12] 1515 	mov	a,sp
-      004616 24 FB            [12] 1516 	add	a,#0xfb
-      004618 F5 81            [12] 1517 	mov	sp,a
-      00461A D0 01            [24] 1518 	pop	ar1
-      00461C D0 02            [24] 1519 	pop	ar2
-      00461E D0 03            [24] 1520 	pop	ar3
-      004620 D0 04            [24] 1521 	pop	ar4
-      004622 D0 05            [24] 1522 	pop	ar5
-      004624 D0 06            [24] 1523 	pop	ar6
-      004626 D0 07            [24] 1524 	pop	ar7
-                                   1525 ;	tcp.c:120: if ((i + 1) % 16 == 0) {
-      004628 89 06            [24] 1526 	mov	ar6,r1
-      00462A 8A 07            [24] 1527 	mov	ar7,r2
-      00462C 0E               [12] 1528 	inc	r6
-      00462D BE 00 01         [24] 1529 	cjne	r6,#0x00,00137$
-      004630 0F               [12] 1530 	inc	r7
-      004631                       1531 00137$:
-      004631 EE               [12] 1532 	mov	a,r6
-      004632 54 0F            [12] 1533 	anl	a,#0x0f
-      004634 60 06            [24] 1534 	jz	00139$
-      004636 D0 07            [24] 1535 	pop	ar7
-      004638 D0 06            [24] 1536 	pop	ar6
-      00463A 80 35            [24] 1537 	sjmp	00108$
-      00463C                       1538 00139$:
-      00463C D0 07            [24] 1539 	pop	ar7
-      00463E D0 06            [24] 1540 	pop	ar6
-                                   1541 ;	tcp.c:121: printf("\n"); // Newline after every 16 bytes for readability
-      004640 C0 07            [24] 1542 	push	ar7
-      004642 C0 06            [24] 1543 	push	ar6
-      004644 C0 05            [24] 1544 	push	ar5
-      004646 C0 04            [24] 1545 	push	ar4
-      004648 C0 03            [24] 1546 	push	ar3
-      00464A C0 02            [24] 1547 	push	ar2
-      00464C C0 01            [24] 1548 	push	ar1
-      00464E 74 EA            [12] 1549 	mov	a,#___str_2
-      004650 C0 E0            [24] 1550 	push	acc
-      004652 74 64            [12] 1551 	mov	a,#(___str_2 >> 8)
-      004654 C0 E0            [24] 1552 	push	acc
-      004656 74 80            [12] 1553 	mov	a,#0x80
-      004658 C0 E0            [24] 1554 	push	acc
-      00465A 12 51 09         [24] 1555 	lcall	_printf
-      00465D 15 81            [12] 1556 	dec	sp
-      00465F 15 81            [12] 1557 	dec	sp
-      004661 15 81            [12] 1558 	dec	sp
-      004663 D0 01            [24] 1559 	pop	ar1
-      004665 D0 02            [24] 1560 	pop	ar2
-      004667 D0 03            [24] 1561 	pop	ar3
-      004669 D0 04            [24] 1562 	pop	ar4
-      00466B D0 05            [24] 1563 	pop	ar5
-      00466D D0 06            [24] 1564 	pop	ar6
-      00466F D0 07            [24] 1565 	pop	ar7
-      004671                       1566 00108$:
-                                   1567 ;	tcp.c:118: for (uint16_t i = 0; i < size; i++) {
-      004671 09               [12] 1568 	inc	r1
-      004672 B9 00 01         [24] 1569 	cjne	r1,#0x00,00140$
-      004675 0A               [12] 1570 	inc	r2
-      004676                       1571 00140$:
-      004676 02 45 D1         [24] 1572 	ljmp	00107$
-      004679                       1573 00103$:
-                                   1574 ;	tcp.c:124: if (size % 16 != 0) {
-      004679 EE               [12] 1575 	mov	a,r6
-      00467A 54 0F            [12] 1576 	anl	a,#0x0f
-      00467C 60 15            [24] 1577 	jz	00109$
-                                   1578 ;	tcp.c:125: printf("\n"); // Final newline if not already printed
-      00467E 74 EA            [12] 1579 	mov	a,#___str_2
-      004680 C0 E0            [24] 1580 	push	acc
-      004682 74 64            [12] 1581 	mov	a,#(___str_2 >> 8)
-      004684 C0 E0            [24] 1582 	push	acc
-      004686 74 80            [12] 1583 	mov	a,#0x80
-      004688 C0 E0            [24] 1584 	push	acc
-      00468A 12 51 09         [24] 1585 	lcall	_printf
-      00468D 15 81            [12] 1586 	dec	sp
-      00468F 15 81            [12] 1587 	dec	sp
-      004691 15 81            [12] 1588 	dec	sp
-      004693                       1589 00109$:
-                                   1590 ;	tcp.c:127: }
-      004693 22               [24] 1591 	ret
-                                   1592 ;------------------------------------------------------------
-                                   1593 ;Allocation info for local variables in function 'process_packet_from_buffer'
-                                   1594 ;------------------------------------------------------------
-                                   1595 ;sloc0                     Allocated with name '_process_packet_from_buffer_sloc0_1_0'
-                                   1596 ;start_address             Allocated with name '_process_packet_from_buffer_start_address_10000_136'
-                                   1597 ;next_packet_start         Allocated with name '_process_packet_from_buffer_next_packet_start_10001_139'
-                                   1598 ;next_start_address        Allocated with name '_process_packet_from_buffer_next_start_address_10001_139'
-                                   1599 ;packet_size               Allocated with name '_process_packet_from_buffer_packet_size_10001_139'
-                                   1600 ;response_size             Allocated with name '_process_packet_from_buffer_response_size_10001_139'
-                                   1601 ;packet_data               Allocated with name '_process_packet_from_buffer_packet_data_10002_142'
-                                   1602 ;response                  Allocated with name '_process_packet_from_buffer_response_10003_145'
-                                   1603 ;------------------------------------------------------------
-                                   1604 ;	tcp.c:130: void process_packet_from_buffer(uint16_t start_address) {
-                                   1605 ;	-----------------------------------------
-                                   1606 ;	 function process_packet_from_buffer
-                                   1607 ;	-----------------------------------------
-      004694                       1608 _process_packet_from_buffer:
-      004694 AF 83            [24] 1609 	mov	r7,dph
-      004696 E5 82            [12] 1610 	mov	a,dpl
-      004698 90 09 9C         [24] 1611 	mov	dptr,#_process_packet_from_buffer_start_address_10000_136
-      00469B F0               [24] 1612 	movx	@dptr,a
-      00469C EF               [12] 1613 	mov	a,r7
-      00469D A3               [24] 1614 	inc	dptr
-      00469E F0               [24] 1615 	movx	@dptr,a
-                                   1616 ;	tcp.c:132: if (start_address > 0x1FFF) {
-      00469F 90 09 9C         [24] 1617 	mov	dptr,#_process_packet_from_buffer_start_address_10000_136
-      0046A2 E0               [24] 1618 	movx	a,@dptr
-      0046A3 FE               [12] 1619 	mov	r6,a
-      0046A4 A3               [24] 1620 	inc	dptr
-      0046A5 E0               [24] 1621 	movx	a,@dptr
-      0046A6 FF               [12] 1622 	mov	r7,a
-      0046A7 8E 04            [24] 1623 	mov	ar4,r6
-      0046A9 8F 05            [24] 1624 	mov	ar5,r7
-      0046AB C3               [12] 1625 	clr	c
-      0046AC 74 FF            [12] 1626 	mov	a,#0xff
-      0046AE 9C               [12] 1627 	subb	a,r4
-      0046AF 74 1F            [12] 1628 	mov	a,#0x1f
-      0046B1 9D               [12] 1629 	subb	a,r5
-      0046B2 50 1A            [24] 1630 	jnc	00102$
-                                   1631 ;	tcp.c:133: printf("\n\rInvalid start address: %04X\n\r", start_address);
-      0046B4 C0 06            [24] 1632 	push	ar6
-      0046B6 C0 07            [24] 1633 	push	ar7
-      0046B8 74 EC            [12] 1634 	mov	a,#___str_3
-      0046BA C0 E0            [24] 1635 	push	acc
-      0046BC 74 64            [12] 1636 	mov	a,#(___str_3 >> 8)
-      0046BE C0 E0            [24] 1637 	push	acc
-      0046C0 74 80            [12] 1638 	mov	a,#0x80
-      0046C2 C0 E0            [24] 1639 	push	acc
-      0046C4 12 51 09         [24] 1640 	lcall	_printf
-      0046C7 E5 81            [12] 1641 	mov	a,sp
-      0046C9 24 FB            [12] 1642 	add	a,#0xfb
-      0046CB F5 81            [12] 1643 	mov	sp,a
-                                   1644 ;	tcp.c:134: return;
-      0046CD 22               [24] 1645 	ret
-      0046CE                       1646 00102$:
-                                   1647 ;	tcp.c:143: if (spi_buffer_read(2, start_address, next_packet_start) != 2) {
-      0046CE 90 03 95         [24] 1648 	mov	dptr,#_spi_buffer_read_PARM_2
-      0046D1 EE               [12] 1649 	mov	a,r6
-      0046D2 F0               [24] 1650 	movx	@dptr,a
-      0046D3 EF               [12] 1651 	mov	a,r7
-      0046D4 A3               [24] 1652 	inc	dptr
-      0046D5 F0               [24] 1653 	movx	@dptr,a
-      0046D6 90 03 97         [24] 1654 	mov	dptr,#_spi_buffer_read_PARM_3
-      0046D9 74 9E            [12] 1655 	mov	a,#_process_packet_from_buffer_next_packet_start_10001_139
-      0046DB F0               [24] 1656 	movx	@dptr,a
-      0046DC 74 09            [12] 1657 	mov	a,#(_process_packet_from_buffer_next_packet_start_10001_139 >> 8)
-      0046DE A3               [24] 1658 	inc	dptr
-      0046DF F0               [24] 1659 	movx	@dptr,a
-      0046E0 E4               [12] 1660 	clr	a
-      0046E1 A3               [24] 1661 	inc	dptr
-      0046E2 F0               [24] 1662 	movx	@dptr,a
-      0046E3 90 00 02         [24] 1663 	mov	dptr,#0x0002
-      0046E6 C0 07            [24] 1664 	push	ar7
-      0046E8 C0 06            [24] 1665 	push	ar6
-      0046EA C0 05            [24] 1666 	push	ar5
-      0046EC C0 04            [24] 1667 	push	ar4
-      0046EE 12 3D 2D         [24] 1668 	lcall	_spi_buffer_read
-      0046F1 AA 82            [24] 1669 	mov	r2, dpl
-      0046F3 AB 83            [24] 1670 	mov	r3, dph
-      0046F5 D0 04            [24] 1671 	pop	ar4
-      0046F7 D0 05            [24] 1672 	pop	ar5
-      0046F9 D0 06            [24] 1673 	pop	ar6
-      0046FB D0 07            [24] 1674 	pop	ar7
-      0046FD BA 02 05         [24] 1675 	cjne	r2,#0x02,00153$
-      004700 BB 00 02         [24] 1676 	cjne	r3,#0x00,00153$
-      004703 80 16            [24] 1677 	sjmp	00104$
-      004705                       1678 00153$:
-                                   1679 ;	tcp.c:144: printf("\n\rFailed to read packet start address bytes\n\r");
-      004705 74 0C            [12] 1680 	mov	a,#___str_4
-      004707 C0 E0            [24] 1681 	push	acc
-      004709 74 65            [12] 1682 	mov	a,#(___str_4 >> 8)
-      00470B C0 E0            [24] 1683 	push	acc
-      00470D 74 80            [12] 1684 	mov	a,#0x80
-      00470F C0 E0            [24] 1685 	push	acc
-      004711 12 51 09         [24] 1686 	lcall	_printf
-      004714 15 81            [12] 1687 	dec	sp
-      004716 15 81            [12] 1688 	dec	sp
-      004718 15 81            [12] 1689 	dec	sp
-                                   1690 ;	tcp.c:145: return;
-      00471A 22               [24] 1691 	ret
-      00471B                       1692 00104$:
-                                   1693 ;	tcp.c:149: next_start_address = ((uint16_t)next_packet_start[1] << 8) | next_packet_start[0];
-      00471B 90 09 9F         [24] 1694 	mov	dptr,#(_process_packet_from_buffer_next_packet_start_10001_139 + 0x0001)
-      00471E E0               [24] 1695 	movx	a,@dptr
-      00471F FA               [12] 1696 	mov	r2,a
-      004720 7B 00            [12] 1697 	mov	r3,#0x00
-      004722 90 09 9E         [24] 1698 	mov	dptr,#_process_packet_from_buffer_next_packet_start_10001_139
-      004725 E0               [24] 1699 	movx	a,@dptr
-      004726 79 00            [12] 1700 	mov	r1,#0x00
-      004728 42 03            [12] 1701 	orl	ar3,a
-      00472A E9               [12] 1702 	mov	a,r1
-      00472B 42 02            [12] 1703 	orl	ar2,a
-                                   1704 ;	tcp.c:152: if (next_start_address < start_address) {
-      00472D C3               [12] 1705 	clr	c
-      00472E EB               [12] 1706 	mov	a,r3
-      00472F 9E               [12] 1707 	subb	a,r6
-      004730 EA               [12] 1708 	mov	a,r2
-      004731 9F               [12] 1709 	subb	a,r7
-      004732 50 1A            [24] 1710 	jnc	00106$
-                                   1711 ;	tcp.c:153: printf("\n\rInvalid next start address: 0x%04X\n\r", next_start_address);
-      004734 C0 03            [24] 1712 	push	ar3
-      004736 C0 02            [24] 1713 	push	ar2
-      004738 74 3A            [12] 1714 	mov	a,#___str_5
-      00473A C0 E0            [24] 1715 	push	acc
-      00473C 74 65            [12] 1716 	mov	a,#(___str_5 >> 8)
-      00473E C0 E0            [24] 1717 	push	acc
-      004740 74 80            [12] 1718 	mov	a,#0x80
-      004742 C0 E0            [24] 1719 	push	acc
-      004744 12 51 09         [24] 1720 	lcall	_printf
-      004747 E5 81            [12] 1721 	mov	a,sp
-      004749 24 FB            [12] 1722 	add	a,#0xfb
-      00474B F5 81            [12] 1723 	mov	sp,a
-                                   1724 ;	tcp.c:154: return;
-      00474D 22               [24] 1725 	ret
-      00474E                       1726 00106$:
-                                   1727 ;	tcp.c:156: packet_size = next_start_address - (start_address+6);
-      00474E 74 06            [12] 1728 	mov	a,#0x06
-      004750 2C               [12] 1729 	add	a, r4
-      004751 FE               [12] 1730 	mov	r6,a
-      004752 E4               [12] 1731 	clr	a
-      004753 3D               [12] 1732 	addc	a, r5
-      004754 FF               [12] 1733 	mov	r7,a
-      004755 EB               [12] 1734 	mov	a,r3
-      004756 C3               [12] 1735 	clr	c
-      004757 9E               [12] 1736 	subb	a,r6
-      004758 FE               [12] 1737 	mov	r6,a
-      004759 EA               [12] 1738 	mov	a,r2
-      00475A 9F               [12] 1739 	subb	a,r7
-      00475B FF               [12] 1740 	mov	r7,a
-                                   1741 ;	tcp.c:159: uint8_t *packet_data = (uint8_t *)malloc(packet_size);
-      00475C 8E 00            [24] 1742 	mov	ar0,r6
-      00475E 8F 01            [24] 1743 	mov	ar1,r7
-      004760 88 82            [24] 1744 	mov	dpl, r0
-      004762 89 83            [24] 1745 	mov	dph, r1
-      004764 C0 07            [24] 1746 	push	ar7
-      004766 C0 06            [24] 1747 	push	ar6
-      004768 C0 05            [24] 1748 	push	ar5
-      00476A C0 04            [24] 1749 	push	ar4
-      00476C C0 03            [24] 1750 	push	ar3
-      00476E C0 02            [24] 1751 	push	ar2
-      004770 12 4E 53         [24] 1752 	lcall	_malloc
-      004773 A8 82            [24] 1753 	mov	r0, dpl
-      004775 A9 83            [24] 1754 	mov	r1, dph
-      004777 D0 02            [24] 1755 	pop	ar2
-      004779 D0 03            [24] 1756 	pop	ar3
-      00477B D0 04            [24] 1757 	pop	ar4
-      00477D D0 05            [24] 1758 	pop	ar5
-      00477F D0 06            [24] 1759 	pop	ar6
-      004781 D0 07            [24] 1760 	pop	ar7
-      004783 88 17            [24] 1761 	mov	_process_packet_from_buffer_sloc0_1_0,r0
-      004785 89 18            [24] 1762 	mov	(_process_packet_from_buffer_sloc0_1_0 + 1),r1
-      004787 75 19 00         [24] 1763 	mov	(_process_packet_from_buffer_sloc0_1_0 + 2),#0x00
-                                   1764 ;	tcp.c:160: if (packet_data == NULL) {
-      00478A E5 17            [12] 1765 	mov	a,_process_packet_from_buffer_sloc0_1_0
-      00478C 45 18            [12] 1766 	orl	a,(_process_packet_from_buffer_sloc0_1_0 + 1)
-      00478E 70 1A            [24] 1767 	jnz	00108$
-                                   1768 ;	tcp.c:161: printf("\n\rMemory allocation failed for packet size: %d\n\r", packet_size);
-      004790 C0 06            [24] 1769 	push	ar6
-      004792 C0 07            [24] 1770 	push	ar7
-      004794 74 61            [12] 1771 	mov	a,#___str_6
-      004796 C0 E0            [24] 1772 	push	acc
-      004798 74 65            [12] 1773 	mov	a,#(___str_6 >> 8)
-      00479A C0 E0            [24] 1774 	push	acc
-      00479C 74 80            [12] 1775 	mov	a,#0x80
-      00479E C0 E0            [24] 1776 	push	acc
-      0047A0 12 51 09         [24] 1777 	lcall	_printf
-      0047A3 E5 81            [12] 1778 	mov	a,sp
-      0047A5 24 FB            [12] 1779 	add	a,#0xfb
-      0047A7 F5 81            [12] 1780 	mov	sp,a
-                                   1781 ;	tcp.c:162: return;
-      0047A9 22               [24] 1782 	ret
-      0047AA                       1783 00108$:
-                                   1784 ;	tcp.c:166: if (spi_buffer_read(packet_size, start_address+6, packet_data) != packet_size) {
-      0047AA 8E 00            [24] 1785 	mov	ar0,r6
-      0047AC 8F 01            [24] 1786 	mov	ar1,r7
-      0047AE 74 06            [12] 1787 	mov	a,#0x06
-      0047B0 2C               [12] 1788 	add	a, r4
-      0047B1 FC               [12] 1789 	mov	r4,a
-      0047B2 E4               [12] 1790 	clr	a
-      0047B3 3D               [12] 1791 	addc	a, r5
-      0047B4 FD               [12] 1792 	mov	r5,a
-      0047B5 90 03 95         [24] 1793 	mov	dptr,#_spi_buffer_read_PARM_2
-      0047B8 EC               [12] 1794 	mov	a,r4
-      0047B9 F0               [24] 1795 	movx	@dptr,a
-      0047BA ED               [12] 1796 	mov	a,r5
-      0047BB A3               [24] 1797 	inc	dptr
-      0047BC F0               [24] 1798 	movx	@dptr,a
-      0047BD 90 03 97         [24] 1799 	mov	dptr,#_spi_buffer_read_PARM_3
-      0047C0 E5 17            [12] 1800 	mov	a,_process_packet_from_buffer_sloc0_1_0
-      0047C2 F0               [24] 1801 	movx	@dptr,a
-      0047C3 E5 18            [12] 1802 	mov	a,(_process_packet_from_buffer_sloc0_1_0 + 1)
-      0047C5 A3               [24] 1803 	inc	dptr
-      0047C6 F0               [24] 1804 	movx	@dptr,a
-      0047C7 E5 19            [12] 1805 	mov	a,(_process_packet_from_buffer_sloc0_1_0 + 2)
-      0047C9 A3               [24] 1806 	inc	dptr
-      0047CA F0               [24] 1807 	movx	@dptr,a
-      0047CB 88 82            [24] 1808 	mov	dpl, r0
-      0047CD 89 83            [24] 1809 	mov	dph, r1
-      0047CF C0 07            [24] 1810 	push	ar7
-      0047D1 C0 06            [24] 1811 	push	ar6
-      0047D3 C0 03            [24] 1812 	push	ar3
-      0047D5 C0 02            [24] 1813 	push	ar2
-      0047D7 12 3D 2D         [24] 1814 	lcall	_spi_buffer_read
-      0047DA AC 82            [24] 1815 	mov	r4, dpl
-      0047DC AD 83            [24] 1816 	mov	r5, dph
-      0047DE D0 02            [24] 1817 	pop	ar2
-      0047E0 D0 03            [24] 1818 	pop	ar3
-      0047E2 D0 06            [24] 1819 	pop	ar6
-      0047E4 D0 07            [24] 1820 	pop	ar7
-      0047E6 EC               [12] 1821 	mov	a,r4
-      0047E7 B5 06 06         [24] 1822 	cjne	a,ar6,00156$
-      0047EA ED               [12] 1823 	mov	a,r5
-      0047EB B5 07 02         [24] 1824 	cjne	a,ar7,00156$
-      0047EE 80 24            [24] 1825 	sjmp	00110$
-      0047F0                       1826 00156$:
-                                   1827 ;	tcp.c:167: printf("\n\rFailed to read packet data\n\r");
-      0047F0 74 92            [12] 1828 	mov	a,#___str_7
-      0047F2 C0 E0            [24] 1829 	push	acc
-      0047F4 74 65            [12] 1830 	mov	a,#(___str_7 >> 8)
-      0047F6 C0 E0            [24] 1831 	push	acc
-      0047F8 74 80            [12] 1832 	mov	a,#0x80
-      0047FA C0 E0            [24] 1833 	push	acc
-      0047FC 12 51 09         [24] 1834 	lcall	_printf
-      0047FF 15 81            [12] 1835 	dec	sp
-      004801 15 81            [12] 1836 	dec	sp
-      004803 15 81            [12] 1837 	dec	sp
-                                   1838 ;	tcp.c:168: free(packet_data);
-      004805 AC 17            [24] 1839 	mov	r4,_process_packet_from_buffer_sloc0_1_0
-      004807 A9 18            [24] 1840 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
-      004809 7D 00            [12] 1841 	mov	r5,#0x00
-      00480B 8C 82            [24] 1842 	mov	dpl, r4
-      00480D 89 83            [24] 1843 	mov	dph, r1
-      00480F 8D F0            [24] 1844 	mov	b, r5
-                                   1845 ;	tcp.c:169: return;
-      004811 02 4B 00         [24] 1846 	ljmp	_free
-      004814                       1847 00110$:
-                                   1848 ;	tcp.c:173: uint8_t *response = process_tcp_packet(packet_data, packet_size, &response_size);
-      004814 90 03 B2         [24] 1849 	mov	dptr,#_process_tcp_packet_PARM_2
-      004817 EE               [12] 1850 	mov	a,r6
-      004818 F0               [24] 1851 	movx	@dptr,a
-      004819 EF               [12] 1852 	mov	a,r7
-      00481A A3               [24] 1853 	inc	dptr
-      00481B F0               [24] 1854 	movx	@dptr,a
-      00481C 90 03 B4         [24] 1855 	mov	dptr,#_process_tcp_packet_PARM_3
-      00481F 74 A0            [12] 1856 	mov	a,#_process_packet_from_buffer_response_size_10001_139
-      004821 F0               [24] 1857 	movx	@dptr,a
-      004822 74 09            [12] 1858 	mov	a,#(_process_packet_from_buffer_response_size_10001_139 >> 8)
-      004824 A3               [24] 1859 	inc	dptr
-      004825 F0               [24] 1860 	movx	@dptr,a
-      004826 E4               [12] 1861 	clr	a
-      004827 A3               [24] 1862 	inc	dptr
-      004828 F0               [24] 1863 	movx	@dptr,a
-      004829 85 17 82         [24] 1864 	mov	dpl, _process_packet_from_buffer_sloc0_1_0
-      00482C 85 18 83         [24] 1865 	mov	dph, (_process_packet_from_buffer_sloc0_1_0 + 1)
-      00482F 85 19 F0         [24] 1866 	mov	b, (_process_packet_from_buffer_sloc0_1_0 + 2)
-      004832 C0 07            [24] 1867 	push	ar7
-      004834 C0 06            [24] 1868 	push	ar6
-      004836 C0 03            [24] 1869 	push	ar3
-      004838 C0 02            [24] 1870 	push	ar2
-      00483A 12 42 35         [24] 1871 	lcall	_process_tcp_packet
-      00483D A9 82            [24] 1872 	mov	r1, dpl
-      00483F AC 83            [24] 1873 	mov	r4, dph
-      004841 AD F0            [24] 1874 	mov	r5, b
-      004843 D0 02            [24] 1875 	pop	ar2
-      004845 D0 03            [24] 1876 	pop	ar3
-      004847 D0 06            [24] 1877 	pop	ar6
-      004849 D0 07            [24] 1878 	pop	ar7
-                                   1879 ;	tcp.c:176: if (response != NULL) {
-      00484B E9               [12] 1880 	mov	a,r1
-      00484C 4C               [12] 1881 	orl	a,r4
-      00484D 70 03            [24] 1882 	jnz	00157$
-      00484F 02 49 08         [24] 1883 	ljmp	00112$
-      004852                       1884 00157$:
-                                   1885 ;	tcp.c:177: printf("\nProcessed response data:\n");
-      004852 C0 03            [24] 1886 	push	ar3
-      004854 C0 02            [24] 1887 	push	ar2
-      004856 C0 07            [24] 1888 	push	ar7
-      004858 C0 06            [24] 1889 	push	ar6
-      00485A C0 05            [24] 1890 	push	ar5
-      00485C C0 04            [24] 1891 	push	ar4
-      00485E C0 03            [24] 1892 	push	ar3
-      004860 C0 02            [24] 1893 	push	ar2
-      004862 C0 01            [24] 1894 	push	ar1
-      004864 74 B1            [12] 1895 	mov	a,#___str_8
-      004866 C0 E0            [24] 1896 	push	acc
-      004868 74 65            [12] 1897 	mov	a,#(___str_8 >> 8)
-      00486A C0 E0            [24] 1898 	push	acc
-      00486C 74 80            [12] 1899 	mov	a,#0x80
-      00486E C0 E0            [24] 1900 	push	acc
-      004870 12 51 09         [24] 1901 	lcall	_printf
-      004873 15 81            [12] 1902 	dec	sp
-      004875 15 81            [12] 1903 	dec	sp
-      004877 15 81            [12] 1904 	dec	sp
-      004879 D0 01            [24] 1905 	pop	ar1
-      00487B D0 02            [24] 1906 	pop	ar2
-      00487D D0 03            [24] 1907 	pop	ar3
-      00487F D0 04            [24] 1908 	pop	ar4
-      004881 D0 05            [24] 1909 	pop	ar5
-      004883 D0 06            [24] 1910 	pop	ar6
-      004885 D0 07            [24] 1911 	pop	ar7
-                                   1912 ;	tcp.c:178: print_hexdump(response, response_size);
-      004887 90 09 A0         [24] 1913 	mov	dptr,#_process_packet_from_buffer_response_size_10001_139
-      00488A E0               [24] 1914 	movx	a,@dptr
-      00488B F8               [12] 1915 	mov	r0,a
-      00488C A3               [24] 1916 	inc	dptr
-      00488D E0               [24] 1917 	movx	a,@dptr
-      00488E FB               [12] 1918 	mov	r3,a
-      00488F 90 09 97         [24] 1919 	mov	dptr,#_print_hexdump_PARM_2
-      004892 E8               [12] 1920 	mov	a,r0
-      004893 F0               [24] 1921 	movx	@dptr,a
-      004894 EB               [12] 1922 	mov	a,r3
-      004895 A3               [24] 1923 	inc	dptr
-      004896 F0               [24] 1924 	movx	@dptr,a
-      004897 89 82            [24] 1925 	mov	dpl, r1
-      004899 8C 83            [24] 1926 	mov	dph, r4
-      00489B 8D F0            [24] 1927 	mov	b, r5
-      00489D C0 07            [24] 1928 	push	ar7
-      00489F C0 06            [24] 1929 	push	ar6
-      0048A1 C0 05            [24] 1930 	push	ar5
-      0048A3 C0 04            [24] 1931 	push	ar4
-      0048A5 C0 03            [24] 1932 	push	ar3
-      0048A7 C0 02            [24] 1933 	push	ar2
-      0048A9 C0 01            [24] 1934 	push	ar1
-      0048AB 12 45 89         [24] 1935 	lcall	_print_hexdump
-      0048AE D0 01            [24] 1936 	pop	ar1
-      0048B0 D0 02            [24] 1937 	pop	ar2
-      0048B2 D0 03            [24] 1938 	pop	ar3
-      0048B4 D0 04            [24] 1939 	pop	ar4
-      0048B6 D0 05            [24] 1940 	pop	ar5
-      0048B8 D0 06            [24] 1941 	pop	ar6
-      0048BA D0 07            [24] 1942 	pop	ar7
-                                   1943 ;	tcp.c:179: transmit_tcp_packet(response, response_size);
-      0048BC 90 09 A0         [24] 1944 	mov	dptr,#_process_packet_from_buffer_response_size_10001_139
-      0048BF E0               [24] 1945 	movx	a,@dptr
-      0048C0 FA               [12] 1946 	mov	r2,a
-      0048C1 A3               [24] 1947 	inc	dptr
-      0048C2 E0               [24] 1948 	movx	a,@dptr
-      0048C3 FB               [12] 1949 	mov	r3,a
-      0048C4 90 09 A2         [24] 1950 	mov	dptr,#_transmit_tcp_packet_PARM_2
-      0048C7 EA               [12] 1951 	mov	a,r2
-      0048C8 F0               [24] 1952 	movx	@dptr,a
-      0048C9 EB               [12] 1953 	mov	a,r3
-      0048CA A3               [24] 1954 	inc	dptr
-      0048CB F0               [24] 1955 	movx	@dptr,a
-      0048CC 89 82            [24] 1956 	mov	dpl, r1
-      0048CE 8C 83            [24] 1957 	mov	dph, r4
-      0048D0 8D F0            [24] 1958 	mov	b, r5
-      0048D2 C0 07            [24] 1959 	push	ar7
-      0048D4 C0 06            [24] 1960 	push	ar6
-      0048D6 C0 05            [24] 1961 	push	ar5
-      0048D8 C0 04            [24] 1962 	push	ar4
-      0048DA C0 03            [24] 1963 	push	ar3
-      0048DC C0 02            [24] 1964 	push	ar2
-      0048DE C0 01            [24] 1965 	push	ar1
-      0048E0 12 49 79         [24] 1966 	lcall	_transmit_tcp_packet
-      0048E3 D0 01            [24] 1967 	pop	ar1
-      0048E5 D0 02            [24] 1968 	pop	ar2
-      0048E7 D0 03            [24] 1969 	pop	ar3
-      0048E9 D0 04            [24] 1970 	pop	ar4
-      0048EB D0 05            [24] 1971 	pop	ar5
-                                   1972 ;	tcp.c:180: free(response); // Free response memory if allocated dynamically
-      0048ED 89 82            [24] 1973 	mov	dpl, r1
-      0048EF 8C 83            [24] 1974 	mov	dph, r4
-      0048F1 8D F0            [24] 1975 	mov	b, r5
-      0048F3 C0 03            [24] 1976 	push	ar3
-      0048F5 C0 02            [24] 1977 	push	ar2
-      0048F7 12 4B 00         [24] 1978 	lcall	_free
-      0048FA D0 02            [24] 1979 	pop	ar2
-      0048FC D0 03            [24] 1980 	pop	ar3
-      0048FE D0 06            [24] 1981 	pop	ar6
-      004900 D0 07            [24] 1982 	pop	ar7
-      004902 D0 02            [24] 1983 	pop	ar2
-      004904 D0 03            [24] 1984 	pop	ar3
-      004906 80 25            [24] 1985 	sjmp	00113$
-      004908                       1986 00112$:
-                                   1987 ;	tcp.c:182: printf("\nNo response generated by TCP packet processing.\n");
-      004908 C0 07            [24] 1988 	push	ar7
-      00490A C0 06            [24] 1989 	push	ar6
-      00490C C0 03            [24] 1990 	push	ar3
-      00490E C0 02            [24] 1991 	push	ar2
-      004910 74 CC            [12] 1992 	mov	a,#___str_9
-      004912 C0 E0            [24] 1993 	push	acc
-      004914 74 65            [12] 1994 	mov	a,#(___str_9 >> 8)
-      004916 C0 E0            [24] 1995 	push	acc
-      004918 74 80            [12] 1996 	mov	a,#0x80
-      00491A C0 E0            [24] 1997 	push	acc
-      00491C 12 51 09         [24] 1998 	lcall	_printf
-      00491F 15 81            [12] 1999 	dec	sp
-      004921 15 81            [12] 2000 	dec	sp
-      004923 15 81            [12] 2001 	dec	sp
-      004925 D0 02            [24] 2002 	pop	ar2
-      004927 D0 03            [24] 2003 	pop	ar3
-      004929 D0 06            [24] 2004 	pop	ar6
-      00492B D0 07            [24] 2005 	pop	ar7
-      00492D                       2006 00113$:
-                                   2007 ;	tcp.c:186: free(packet_data);
-      00492D AC 17            [24] 2008 	mov	r4,_process_packet_from_buffer_sloc0_1_0
-      00492F A9 18            [24] 2009 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
-      004931 7D 00            [12] 2010 	mov	r5,#0x00
-      004933 8C 82            [24] 2011 	mov	dpl, r4
-      004935 89 83            [24] 2012 	mov	dph, r1
-      004937 8D F0            [24] 2013 	mov	b, r5
-      004939 C0 07            [24] 2014 	push	ar7
-      00493B C0 06            [24] 2015 	push	ar6
-      00493D C0 03            [24] 2016 	push	ar3
-      00493F C0 02            [24] 2017 	push	ar2
-      004941 12 4B 00         [24] 2018 	lcall	_free
-      004944 D0 02            [24] 2019 	pop	ar2
-      004946 D0 03            [24] 2020 	pop	ar3
-      004948 D0 06            [24] 2021 	pop	ar6
-      00494A D0 07            [24] 2022 	pop	ar7
-                                   2023 ;	tcp.c:189: packet_size, start_address, next_start_address - 1);
-      00494C 1B               [12] 2024 	dec	r3
-      00494D BB FF 01         [24] 2025 	cjne	r3,#0xff,00158$
-      004950 1A               [12] 2026 	dec	r2
-      004951                       2027 00158$:
-                                   2028 ;	tcp.c:188: printf("\n\rSuccessfully processed packet of size %d from 0x%04X to 0x%04X\n\r",
-      004951 C0 03            [24] 2029 	push	ar3
-      004953 C0 02            [24] 2030 	push	ar2
-      004955 90 09 9C         [24] 2031 	mov	dptr,#_process_packet_from_buffer_start_address_10000_136
-      004958 E0               [24] 2032 	movx	a,@dptr
-      004959 C0 E0            [24] 2033 	push	acc
-      00495B A3               [24] 2034 	inc	dptr
-      00495C E0               [24] 2035 	movx	a,@dptr
-      00495D C0 E0            [24] 2036 	push	acc
-      00495F C0 06            [24] 2037 	push	ar6
-      004961 C0 07            [24] 2038 	push	ar7
-      004963 74 FE            [12] 2039 	mov	a,#___str_10
-      004965 C0 E0            [24] 2040 	push	acc
-      004967 74 65            [12] 2041 	mov	a,#(___str_10 >> 8)
-      004969 C0 E0            [24] 2042 	push	acc
-      00496B 74 80            [12] 2043 	mov	a,#0x80
-      00496D C0 E0            [24] 2044 	push	acc
-      00496F 12 51 09         [24] 2045 	lcall	_printf
-      004972 E5 81            [12] 2046 	mov	a,sp
-      004974 24 F7            [12] 2047 	add	a,#0xf7
-      004976 F5 81            [12] 2048 	mov	sp,a
-                                   2049 ;	tcp.c:190: }
-      004978 22               [24] 2050 	ret
-                                   2051 ;------------------------------------------------------------
-                                   2052 ;Allocation info for local variables in function 'transmit_tcp_packet'
-                                   2053 ;------------------------------------------------------------
-                                   2054 ;packet_size               Allocated with name '_transmit_tcp_packet_PARM_2'
-                                   2055 ;packet                    Allocated with name '_transmit_tcp_packet_packet_10000_148'
-                                   2056 ;start_address             Allocated with name '_transmit_tcp_packet_start_address_10000_149'
-                                   2057 ;end_address               Allocated with name '_transmit_tcp_packet_end_address_10001_151'
-                                   2058 ;------------------------------------------------------------
-                                   2059 ;	tcp.c:193: void transmit_tcp_packet(uint8_t *packet, uint16_t packet_size)
-                                   2060 ;	-----------------------------------------
-                                   2061 ;	 function transmit_tcp_packet
-                                   2062 ;	-----------------------------------------
-      004979                       2063 _transmit_tcp_packet:
-      004979 AF F0            [24] 2064 	mov	r7,b
-      00497B AE 83            [24] 2065 	mov	r6,dph
-      00497D E5 82            [12] 2066 	mov	a,dpl
-      00497F 90 09 A4         [24] 2067 	mov	dptr,#_transmit_tcp_packet_packet_10000_148
-      004982 F0               [24] 2068 	movx	@dptr,a
-      004983 EE               [12] 2069 	mov	a,r6
-      004984 A3               [24] 2070 	inc	dptr
-      004985 F0               [24] 2071 	movx	@dptr,a
-      004986 EF               [12] 2072 	mov	a,r7
-      004987 A3               [24] 2073 	inc	dptr
-      004988 F0               [24] 2074 	movx	@dptr,a
-                                   2075 ;	tcp.c:198: if ((start_address + packet_size - 1) > 0x1FFF) {
-      004989 90 09 A2         [24] 2076 	mov	dptr,#_transmit_tcp_packet_PARM_2
-      00498C E0               [24] 2077 	movx	a,@dptr
-      00498D FE               [12] 2078 	mov	r6,a
-      00498E A3               [24] 2079 	inc	dptr
-      00498F E0               [24] 2080 	movx	a,@dptr
-      004990 FF               [12] 2081 	mov	r7,a
-      004991 8E 04            [24] 2082 	mov	ar4,r6
-      004993 74 0C            [12] 2083 	mov	a,#0x0c
-      004995 2F               [12] 2084 	add	a, r7
-      004996 FD               [12] 2085 	mov	r5,a
-      004997 1C               [12] 2086 	dec	r4
-      004998 BC FF 01         [24] 2087 	cjne	r4,#0xff,00129$
-      00499B 1D               [12] 2088 	dec	r5
-      00499C                       2089 00129$:
-      00499C C3               [12] 2090 	clr	c
-      00499D 74 FF            [12] 2091 	mov	a,#0xff
-      00499F 9C               [12] 2092 	subb	a,r4
-      0049A0 74 1F            [12] 2093 	mov	a,#0x1f
-      0049A2 9D               [12] 2094 	subb	a,r5
-      0049A3 50 16            [24] 2095 	jnc	00102$
-                                   2096 ;	tcp.c:199: printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
-      0049A5 74 41            [12] 2097 	mov	a,#___str_11
-      0049A7 C0 E0            [24] 2098 	push	acc
-      0049A9 74 66            [12] 2099 	mov	a,#(___str_11 >> 8)
-      0049AB C0 E0            [24] 2100 	push	acc
-      0049AD 74 80            [12] 2101 	mov	a,#0x80
-      0049AF C0 E0            [24] 2102 	push	acc
-      0049B1 12 51 09         [24] 2103 	lcall	_printf
-      0049B4 15 81            [12] 2104 	dec	sp
-      0049B6 15 81            [12] 2105 	dec	sp
-      0049B8 15 81            [12] 2106 	dec	sp
-                                   2107 ;	tcp.c:200: return;
-      0049BA 22               [24] 2108 	ret
-      0049BB                       2109 00102$:
-                                   2110 ;	tcp.c:202: uint16_t end_address = start_address + packet_size - 1;
-      0049BB 8E 04            [24] 2111 	mov	ar4,r6
-      0049BD 74 0C            [12] 2112 	mov	a,#0x0c
-      0049BF 2F               [12] 2113 	add	a, r7
-      0049C0 FD               [12] 2114 	mov	r5,a
-      0049C1 1C               [12] 2115 	dec	r4
-      0049C2 BC FF 01         [24] 2116 	cjne	r4,#0xff,00131$
-      0049C5 1D               [12] 2117 	dec	r5
-      0049C6                       2118 00131$:
-                                   2119 ;	tcp.c:203: spi_buffer_write(packet_size, start_address, packet);
-      0049C6 90 09 A4         [24] 2120 	mov	dptr,#_transmit_tcp_packet_packet_10000_148
-      0049C9 E0               [24] 2121 	movx	a,@dptr
-      0049CA F9               [12] 2122 	mov	r1,a
-      0049CB A3               [24] 2123 	inc	dptr
-      0049CC E0               [24] 2124 	movx	a,@dptr
-      0049CD FA               [12] 2125 	mov	r2,a
-      0049CE A3               [24] 2126 	inc	dptr
-      0049CF E0               [24] 2127 	movx	a,@dptr
-      0049D0 FB               [12] 2128 	mov	r3,a
-      0049D1 90 03 9E         [24] 2129 	mov	dptr,#_spi_buffer_write_PARM_2
-      0049D4 E4               [12] 2130 	clr	a
-      0049D5 F0               [24] 2131 	movx	@dptr,a
-      0049D6 74 0C            [12] 2132 	mov	a,#0x0c
-      0049D8 A3               [24] 2133 	inc	dptr
-      0049D9 F0               [24] 2134 	movx	@dptr,a
-      0049DA 90 03 A0         [24] 2135 	mov	dptr,#_spi_buffer_write_PARM_3
-      0049DD E9               [12] 2136 	mov	a,r1
-      0049DE F0               [24] 2137 	movx	@dptr,a
-      0049DF EA               [12] 2138 	mov	a,r2
-      0049E0 A3               [24] 2139 	inc	dptr
-      0049E1 F0               [24] 2140 	movx	@dptr,a
-      0049E2 EB               [12] 2141 	mov	a,r3
-      0049E3 A3               [24] 2142 	inc	dptr
-      0049E4 F0               [24] 2143 	movx	@dptr,a
-      0049E5 8E 82            [24] 2144 	mov	dpl, r6
-      0049E7 8F 83            [24] 2145 	mov	dph, r7
-      0049E9 C0 05            [24] 2146 	push	ar5
-      0049EB C0 04            [24] 2147 	push	ar4
-      0049ED 12 3F 06         [24] 2148 	lcall	_spi_buffer_write
-      0049F0 D0 04            [24] 2149 	pop	ar4
-      0049F2 D0 05            [24] 2150 	pop	ar5
-                                   2151 ;	tcp.c:206: enc28j60_set_transmit_pointers(start_address, end_address);
-      0049F4 90 01 06         [24] 2152 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
-      0049F7 EC               [12] 2153 	mov	a,r4
-      0049F8 F0               [24] 2154 	movx	@dptr,a
-      0049F9 ED               [12] 2155 	mov	a,r5
-      0049FA A3               [24] 2156 	inc	dptr
-      0049FB F0               [24] 2157 	movx	@dptr,a
-      0049FC 90 0C 00         [24] 2158 	mov	dptr,#0x0c00
-      0049FF 12 21 15         [24] 2159 	lcall	_enc28j60_set_transmit_pointers
-                                   2160 ;	tcp.c:209: enc28j60_start_transmission();
-      004A02 12 20 F4         [24] 2161 	lcall	_enc28j60_start_transmission
-                                   2162 ;	tcp.c:212: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
-      004A05 90 01 F4         [24] 2163 	mov	dptr,#0x01f4
-      004A08 12 21 8C         [24] 2164 	lcall	_wait_for_transmission_complete
-      004A0B E5 82            [12] 2165 	mov	a, dpl
-      004A0D 60 38            [24] 2166 	jz	00107$
-                                   2167 ;	tcp.c:214: if (enc28j60_transmission_successful()) {
-      004A0F 12 21 EF         [24] 2168 	lcall	_enc28j60_transmission_successful
-      004A12 E5 82            [12] 2169 	mov	a, dpl
-      004A14 85 83 F0         [24] 2170 	mov	b, dph
-      004A17 45 F0            [12] 2171 	orl	a,b
-      004A19 60 16            [24] 2172 	jz	00104$
-                                   2173 ;	tcp.c:215: printf("TCP request sent successfully.\n\r");
-      004A1B 74 7C            [12] 2174 	mov	a,#___str_12
-      004A1D C0 E0            [24] 2175 	push	acc
-      004A1F 74 66            [12] 2176 	mov	a,#(___str_12 >> 8)
-      004A21 C0 E0            [24] 2177 	push	acc
-      004A23 74 80            [12] 2178 	mov	a,#0x80
-      004A25 C0 E0            [24] 2179 	push	acc
-      004A27 12 51 09         [24] 2180 	lcall	_printf
-      004A2A 15 81            [12] 2181 	dec	sp
-      004A2C 15 81            [12] 2182 	dec	sp
-      004A2E 15 81            [12] 2183 	dec	sp
-      004A30 22               [24] 2184 	ret
-      004A31                       2185 00104$:
-                                   2186 ;	tcp.c:217: printf("TCP transmission failed. Check error flags.\n\r");
-      004A31 74 9D            [12] 2187 	mov	a,#___str_13
-      004A33 C0 E0            [24] 2188 	push	acc
-      004A35 74 66            [12] 2189 	mov	a,#(___str_13 >> 8)
-      004A37 C0 E0            [24] 2190 	push	acc
-      004A39 74 80            [12] 2191 	mov	a,#0x80
-      004A3B C0 E0            [24] 2192 	push	acc
-      004A3D 12 51 09         [24] 2193 	lcall	_printf
-      004A40 15 81            [12] 2194 	dec	sp
-      004A42 15 81            [12] 2195 	dec	sp
-      004A44 15 81            [12] 2196 	dec	sp
-      004A46 22               [24] 2197 	ret
-      004A47                       2198 00107$:
-                                   2199 ;	tcp.c:221: "Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
-      004A47 74 CB            [12] 2200 	mov	a,#___str_14
-      004A49 C0 E0            [24] 2201 	push	acc
-      004A4B 74 66            [12] 2202 	mov	a,#(___str_14 >> 8)
-      004A4D C0 E0            [24] 2203 	push	acc
-      004A4F 74 80            [12] 2204 	mov	a,#0x80
-      004A51 C0 E0            [24] 2205 	push	acc
-      004A53 12 51 09         [24] 2206 	lcall	_printf
-      004A56 15 81            [12] 2207 	dec	sp
-      004A58 15 81            [12] 2208 	dec	sp
-      004A5A 15 81            [12] 2209 	dec	sp
-                                   2210 ;	tcp.c:223: }
-      004A5C 22               [24] 2211 	ret
-                                   2212 	.area CSEG    (CODE)
-                                   2213 	.area CONST   (CODE)
-                                   2214 	.area CONST   (CODE)
-      0064CE                       2215 ___str_0:
-      0064CE 0A                    2216 	.db 0x0a
-      0064CF 48 65 78 64 75 6D 70  2217 	.ascii "Hexdump (Size: %d):"
+                                    893 ;SYN_SEQ3                  Allocated with name '_process_tcp_packet_SYN_SEQ3_10004_126'
+                                    894 ;SYN_SEQ2                  Allocated with name '_process_tcp_packet_SYN_SEQ2_10004_126'
+                                    895 ;SYN_SEQ1                  Allocated with name '_process_tcp_packet_SYN_SEQ1_10004_126'
+                                    896 ;SYN_SEQ0                  Allocated with name '_process_tcp_packet_SYN_SEQ0_10004_126'
+                                    897 ;tcp_length                Allocated with name '_process_tcp_packet_tcp_length_10005_127'
+                                    898 ;ip_total_length           Allocated with name '_process_tcp_packet_ip_total_length_10005_127'
+                                    899 ;ip_checksum               Allocated with name '_process_tcp_packet_ip_checksum_10006_128'
+                                    900 ;tcp_checksum              Allocated with name '_process_tcp_packet_tcp_checksum_10007_129'
+                                    901 ;tcp_options               Allocated with name '_process_tcp_packet_tcp_options_10008_130'
+                                    902 ;------------------------------------------------------------
+                                    903 ;	tcp.c:32: uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
+                                    904 ;	-----------------------------------------
+                                    905 ;	 function process_tcp_packet
+                                    906 ;	-----------------------------------------
+      00423C                        907 _process_tcp_packet:
+      00423C AF F0            [24]  908 	mov	r7,b
+      00423E AE 83            [24]  909 	mov	r6,dph
+      004240 E5 82            [12]  910 	mov	a,dpl
+      004242 90 03 B7         [24]  911 	mov	dptr,#_process_tcp_packet_packet_10000_121
+      004245 F0               [24]  912 	movx	@dptr,a
+      004246 EE               [12]  913 	mov	a,r6
+      004247 A3               [24]  914 	inc	dptr
+      004248 F0               [24]  915 	movx	@dptr,a
+      004249 EF               [12]  916 	mov	a,r7
+      00424A A3               [24]  917 	inc	dptr
+      00424B F0               [24]  918 	movx	@dptr,a
+                                    919 ;	tcp.c:34: memset(response, 0, MAX_PACKET_SIZE + 1);      // Clear the response buffer
+      00424C 90 09 BD         [24]  920 	mov	dptr,#_memset_PARM_2
+      00424F E4               [12]  921 	clr	a
+      004250 F0               [24]  922 	movx	@dptr,a
+      004251 90 09 BE         [24]  923 	mov	dptr,#_memset_PARM_3
+      004254 74 DD            [12]  924 	mov	a,#0xdd
+      004256 F0               [24]  925 	movx	@dptr,a
+      004257 74 05            [12]  926 	mov	a,#0x05
+      004259 A3               [24]  927 	inc	dptr
+      00425A F0               [24]  928 	movx	@dptr,a
+      00425B 90 03 BA         [24]  929 	mov	dptr,#_process_tcp_packet_response_10000_122
+      00425E 75 F0 00         [24]  930 	mov	b, #0x00
+      004261 12 4D 5A         [24]  931 	lcall	_memset
+                                    932 ;	tcp.c:36: response[0] = 0x0E;  // Ensure the first byte of the response is always 0x0E
+      004264 90 03 BA         [24]  933 	mov	dptr,#_process_tcp_packet_response_10000_122
+      004267 74 0E            [12]  934 	mov	a,#0x0e
+      004269 F0               [24]  935 	movx	@dptr,a
+                                    936 ;	tcp.c:39: uint8_t *data_start = response + 1;
+                                    937 ;	tcp.c:42: uint8_t *ethernet_header = packet;
+      00426A 90 03 B7         [24]  938 	mov	dptr,#_process_tcp_packet_packet_10000_121
+      00426D E0               [24]  939 	movx	a,@dptr
+      00426E FD               [12]  940 	mov	r5,a
+      00426F A3               [24]  941 	inc	dptr
+      004270 E0               [24]  942 	movx	a,@dptr
+      004271 FE               [12]  943 	mov	r6,a
+      004272 A3               [24]  944 	inc	dptr
+      004273 E0               [24]  945 	movx	a,@dptr
+      004274 FF               [12]  946 	mov	r7,a
+                                    947 ;	tcp.c:44: memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
+      004275 8D 02            [24]  948 	mov	ar2,r5
+      004277 8E 03            [24]  949 	mov	ar3,r6
+      004279 8F 04            [24]  950 	mov	ar4,r7
+      00427B 90 09 B5         [24]  951 	mov	dptr,#___memcpy_PARM_2
+      00427E EA               [12]  952 	mov	a,r2
+      00427F F0               [24]  953 	movx	@dptr,a
+      004280 EB               [12]  954 	mov	a,r3
+      004281 A3               [24]  955 	inc	dptr
+      004282 F0               [24]  956 	movx	@dptr,a
+      004283 EC               [12]  957 	mov	a,r4
+      004284 A3               [24]  958 	inc	dptr
+      004285 F0               [24]  959 	movx	@dptr,a
+      004286 90 09 B8         [24]  960 	mov	dptr,#___memcpy_PARM_3
+      004289 74 0E            [12]  961 	mov	a,#0x0e
+      00428B F0               [24]  962 	movx	@dptr,a
+      00428C E4               [12]  963 	clr	a
+      00428D A3               [24]  964 	inc	dptr
+      00428E F0               [24]  965 	movx	@dptr,a
+      00428F 90 03 BB         [24]  966 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0001)
+      004292 F5 F0            [12]  967 	mov	b,a
+      004294 C0 07            [24]  968 	push	ar7
+      004296 C0 06            [24]  969 	push	ar6
+      004298 C0 05            [24]  970 	push	ar5
+      00429A 12 4C E6         [24]  971 	lcall	___memcpy
+      00429D D0 05            [24]  972 	pop	ar5
+      00429F D0 06            [24]  973 	pop	ar6
+      0042A1 D0 07            [24]  974 	pop	ar7
+                                    975 ;	tcp.c:47: memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
+      0042A3 74 06            [12]  976 	mov	a,#0x06
+      0042A5 2D               [12]  977 	add	a, r5
+      0042A6 FA               [12]  978 	mov	r2,a
+      0042A7 E4               [12]  979 	clr	a
+      0042A8 3E               [12]  980 	addc	a, r6
+      0042A9 FB               [12]  981 	mov	r3,a
+      0042AA 8F 04            [24]  982 	mov	ar4,r7
+      0042AC 90 09 B5         [24]  983 	mov	dptr,#___memcpy_PARM_2
+      0042AF EA               [12]  984 	mov	a,r2
+      0042B0 F0               [24]  985 	movx	@dptr,a
+      0042B1 EB               [12]  986 	mov	a,r3
+      0042B2 A3               [24]  987 	inc	dptr
+      0042B3 F0               [24]  988 	movx	@dptr,a
+      0042B4 EC               [12]  989 	mov	a,r4
+      0042B5 A3               [24]  990 	inc	dptr
+      0042B6 F0               [24]  991 	movx	@dptr,a
+      0042B7 90 09 B8         [24]  992 	mov	dptr,#___memcpy_PARM_3
+      0042BA 74 06            [12]  993 	mov	a,#0x06
+      0042BC F0               [24]  994 	movx	@dptr,a
+      0042BD E4               [12]  995 	clr	a
+      0042BE A3               [24]  996 	inc	dptr
+      0042BF F0               [24]  997 	movx	@dptr,a
+      0042C0 90 03 BB         [24]  998 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0001)
+      0042C3 F5 F0            [12]  999 	mov	b,a
+      0042C5 C0 07            [24] 1000 	push	ar7
+      0042C7 C0 06            [24] 1001 	push	ar6
+      0042C9 C0 05            [24] 1002 	push	ar5
+      0042CB 12 4C E6         [24] 1003 	lcall	___memcpy
+      0042CE D0 05            [24] 1004 	pop	ar5
+      0042D0 D0 06            [24] 1005 	pop	ar6
+      0042D2 D0 07            [24] 1006 	pop	ar7
+                                   1007 ;	tcp.c:48: memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
+      0042D4 8D 02            [24] 1008 	mov	ar2,r5
+      0042D6 8E 03            [24] 1009 	mov	ar3,r6
+      0042D8 8F 04            [24] 1010 	mov	ar4,r7
+      0042DA 90 09 B5         [24] 1011 	mov	dptr,#___memcpy_PARM_2
+      0042DD EA               [12] 1012 	mov	a,r2
+      0042DE F0               [24] 1013 	movx	@dptr,a
+      0042DF EB               [12] 1014 	mov	a,r3
+      0042E0 A3               [24] 1015 	inc	dptr
+      0042E1 F0               [24] 1016 	movx	@dptr,a
+      0042E2 EC               [12] 1017 	mov	a,r4
+      0042E3 A3               [24] 1018 	inc	dptr
+      0042E4 F0               [24] 1019 	movx	@dptr,a
+      0042E5 90 09 B8         [24] 1020 	mov	dptr,#___memcpy_PARM_3
+      0042E8 74 06            [12] 1021 	mov	a,#0x06
+      0042EA F0               [24] 1022 	movx	@dptr,a
+      0042EB E4               [12] 1023 	clr	a
+      0042EC A3               [24] 1024 	inc	dptr
+      0042ED F0               [24] 1025 	movx	@dptr,a
+      0042EE 90 03 C1         [24] 1026 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0007)
+      0042F1 F5 F0            [12] 1027 	mov	b,a
+      0042F3 C0 07            [24] 1028 	push	ar7
+      0042F5 C0 06            [24] 1029 	push	ar6
+      0042F7 C0 05            [24] 1030 	push	ar5
+      0042F9 12 4C E6         [24] 1031 	lcall	___memcpy
+      0042FC D0 05            [24] 1032 	pop	ar5
+      0042FE D0 06            [24] 1033 	pop	ar6
+      004300 D0 07            [24] 1034 	pop	ar7
+                                   1035 ;	tcp.c:51: uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
+      004302 74 0E            [12] 1036 	mov	a,#0x0e
+      004304 2D               [12] 1037 	add	a, r5
+      004305 FA               [12] 1038 	mov	r2,a
+      004306 E4               [12] 1039 	clr	a
+      004307 3E               [12] 1040 	addc	a, r6
+      004308 FB               [12] 1041 	mov	r3,a
+      004309 8F 04            [24] 1042 	mov	ar4,r7
+                                   1043 ;	tcp.c:52: uint8_t *response_ip_header = data_start + ETHERNET_HEADER_SIZE;
+                                   1044 ;	tcp.c:55: memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
+      00430B 90 09 B5         [24] 1045 	mov	dptr,#___memcpy_PARM_2
+      00430E EA               [12] 1046 	mov	a,r2
+      00430F F0               [24] 1047 	movx	@dptr,a
+      004310 EB               [12] 1048 	mov	a,r3
+      004311 A3               [24] 1049 	inc	dptr
+      004312 F0               [24] 1050 	movx	@dptr,a
+      004313 EC               [12] 1051 	mov	a,r4
+      004314 A3               [24] 1052 	inc	dptr
+      004315 F0               [24] 1053 	movx	@dptr,a
+      004316 90 09 B8         [24] 1054 	mov	dptr,#___memcpy_PARM_3
+      004319 74 14            [12] 1055 	mov	a,#0x14
+      00431B F0               [24] 1056 	movx	@dptr,a
+      00431C E4               [12] 1057 	clr	a
+      00431D A3               [24] 1058 	inc	dptr
+      00431E F0               [24] 1059 	movx	@dptr,a
+      00431F 90 03 C9         [24] 1060 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
+      004322 F5 F0            [12] 1061 	mov	b,a
+      004324 C0 07            [24] 1062 	push	ar7
+      004326 C0 06            [24] 1063 	push	ar6
+      004328 C0 05            [24] 1064 	push	ar5
+      00432A 12 4C E6         [24] 1065 	lcall	___memcpy
+      00432D D0 05            [24] 1066 	pop	ar5
+      00432F D0 06            [24] 1067 	pop	ar6
+      004331 D0 07            [24] 1068 	pop	ar7
+                                   1069 ;	tcp.c:56: response_ip_header[12] = ip_header[16];  // Swap Source IP
+      004333 74 1E            [12] 1070 	mov	a,#0x1e
+      004335 2D               [12] 1071 	add	a, r5
+      004336 FA               [12] 1072 	mov	r2,a
+      004337 E4               [12] 1073 	clr	a
+      004338 3E               [12] 1074 	addc	a, r6
+      004339 FB               [12] 1075 	mov	r3,a
+      00433A 8F 04            [24] 1076 	mov	ar4,r7
+      00433C 8A 82            [24] 1077 	mov	dpl,r2
+      00433E 8B 83            [24] 1078 	mov	dph,r3
+      004340 8C F0            [24] 1079 	mov	b,r4
+      004342 12 5B BA         [24] 1080 	lcall	__gptrget
+      004345 FA               [12] 1081 	mov	r2,a
+      004346 90 03 D5         [24] 1082 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001b)
+      004349 75 F0 00         [24] 1083 	mov	b,#0x00
+      00434C EA               [12] 1084 	mov	a,r2
+      00434D 12 4D 82         [24] 1085 	lcall	__gptrput
+                                   1086 ;	tcp.c:57: response_ip_header[13] = ip_header[17];
+      004350 74 1F            [12] 1087 	mov	a,#0x1f
+      004352 2D               [12] 1088 	add	a, r5
+      004353 FA               [12] 1089 	mov	r2,a
+      004354 E4               [12] 1090 	clr	a
+      004355 3E               [12] 1091 	addc	a, r6
+      004356 FB               [12] 1092 	mov	r3,a
+      004357 8F 04            [24] 1093 	mov	ar4,r7
+      004359 8A 82            [24] 1094 	mov	dpl,r2
+      00435B 8B 83            [24] 1095 	mov	dph,r3
+      00435D 8C F0            [24] 1096 	mov	b,r4
+      00435F 12 5B BA         [24] 1097 	lcall	__gptrget
+      004362 FA               [12] 1098 	mov	r2,a
+      004363 90 03 D6         [24] 1099 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001c)
+      004366 75 F0 00         [24] 1100 	mov	b,#0x00
+      004369 EA               [12] 1101 	mov	a,r2
+      00436A 12 4D 82         [24] 1102 	lcall	__gptrput
+                                   1103 ;	tcp.c:58: response_ip_header[14] = ip_header[18];
+      00436D 74 20            [12] 1104 	mov	a,#0x20
+      00436F 2D               [12] 1105 	add	a, r5
+      004370 FA               [12] 1106 	mov	r2,a
+      004371 E4               [12] 1107 	clr	a
+      004372 3E               [12] 1108 	addc	a, r6
+      004373 FB               [12] 1109 	mov	r3,a
+      004374 8F 04            [24] 1110 	mov	ar4,r7
+      004376 8A 82            [24] 1111 	mov	dpl,r2
+      004378 8B 83            [24] 1112 	mov	dph,r3
+      00437A 8C F0            [24] 1113 	mov	b,r4
+      00437C 12 5B BA         [24] 1114 	lcall	__gptrget
+      00437F FA               [12] 1115 	mov	r2,a
+      004380 90 03 D7         [24] 1116 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001d)
+      004383 75 F0 00         [24] 1117 	mov	b,#0x00
+      004386 EA               [12] 1118 	mov	a,r2
+      004387 12 4D 82         [24] 1119 	lcall	__gptrput
+                                   1120 ;	tcp.c:59: response_ip_header[15] = ip_header[19];
+      00438A 74 21            [12] 1121 	mov	a,#0x21
+      00438C 2D               [12] 1122 	add	a, r5
+      00438D FA               [12] 1123 	mov	r2,a
+      00438E E4               [12] 1124 	clr	a
+      00438F 3E               [12] 1125 	addc	a, r6
+      004390 FB               [12] 1126 	mov	r3,a
+      004391 8F 04            [24] 1127 	mov	ar4,r7
+      004393 8A 82            [24] 1128 	mov	dpl,r2
+      004395 8B 83            [24] 1129 	mov	dph,r3
+      004397 8C F0            [24] 1130 	mov	b,r4
+      004399 12 5B BA         [24] 1131 	lcall	__gptrget
+      00439C FA               [12] 1132 	mov	r2,a
+      00439D 90 03 D8         [24] 1133 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001e)
+      0043A0 75 F0 00         [24] 1134 	mov	b,#0x00
+      0043A3 EA               [12] 1135 	mov	a,r2
+      0043A4 12 4D 82         [24] 1136 	lcall	__gptrput
+                                   1137 ;	tcp.c:60: response_ip_header[16] = ip_header[12];  // Swap Destination IP
+      0043A7 74 1A            [12] 1138 	mov	a,#0x1a
+      0043A9 2D               [12] 1139 	add	a, r5
+      0043AA FA               [12] 1140 	mov	r2,a
+      0043AB E4               [12] 1141 	clr	a
+      0043AC 3E               [12] 1142 	addc	a, r6
+      0043AD FB               [12] 1143 	mov	r3,a
+      0043AE 8F 04            [24] 1144 	mov	ar4,r7
+      0043B0 8A 82            [24] 1145 	mov	dpl,r2
+      0043B2 8B 83            [24] 1146 	mov	dph,r3
+      0043B4 8C F0            [24] 1147 	mov	b,r4
+      0043B6 12 5B BA         [24] 1148 	lcall	__gptrget
+      0043B9 FA               [12] 1149 	mov	r2,a
+      0043BA 90 03 D9         [24] 1150 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001f)
+      0043BD 75 F0 00         [24] 1151 	mov	b,#0x00
+      0043C0 EA               [12] 1152 	mov	a,r2
+      0043C1 12 4D 82         [24] 1153 	lcall	__gptrput
+                                   1154 ;	tcp.c:61: response_ip_header[17] = ip_header[13];
+      0043C4 74 1B            [12] 1155 	mov	a,#0x1b
+      0043C6 2D               [12] 1156 	add	a, r5
+      0043C7 FA               [12] 1157 	mov	r2,a
+      0043C8 E4               [12] 1158 	clr	a
+      0043C9 3E               [12] 1159 	addc	a, r6
+      0043CA FB               [12] 1160 	mov	r3,a
+      0043CB 8F 04            [24] 1161 	mov	ar4,r7
+      0043CD 8A 82            [24] 1162 	mov	dpl,r2
+      0043CF 8B 83            [24] 1163 	mov	dph,r3
+      0043D1 8C F0            [24] 1164 	mov	b,r4
+      0043D3 12 5B BA         [24] 1165 	lcall	__gptrget
+      0043D6 FA               [12] 1166 	mov	r2,a
+      0043D7 90 03 DA         [24] 1167 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0020)
+      0043DA 75 F0 00         [24] 1168 	mov	b,#0x00
+      0043DD EA               [12] 1169 	mov	a,r2
+      0043DE 12 4D 82         [24] 1170 	lcall	__gptrput
+                                   1171 ;	tcp.c:62: response_ip_header[18] = ip_header[14];
+      0043E1 74 1C            [12] 1172 	mov	a,#0x1c
+      0043E3 2D               [12] 1173 	add	a, r5
+      0043E4 FA               [12] 1174 	mov	r2,a
+      0043E5 E4               [12] 1175 	clr	a
+      0043E6 3E               [12] 1176 	addc	a, r6
+      0043E7 FB               [12] 1177 	mov	r3,a
+      0043E8 8F 04            [24] 1178 	mov	ar4,r7
+      0043EA 8A 82            [24] 1179 	mov	dpl,r2
+      0043EC 8B 83            [24] 1180 	mov	dph,r3
+      0043EE 8C F0            [24] 1181 	mov	b,r4
+      0043F0 12 5B BA         [24] 1182 	lcall	__gptrget
+      0043F3 FA               [12] 1183 	mov	r2,a
+      0043F4 90 03 DB         [24] 1184 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0021)
+      0043F7 75 F0 00         [24] 1185 	mov	b,#0x00
+      0043FA EA               [12] 1186 	mov	a,r2
+      0043FB 12 4D 82         [24] 1187 	lcall	__gptrput
+                                   1188 ;	tcp.c:63: response_ip_header[19] = ip_header[15];
+      0043FE 74 1D            [12] 1189 	mov	a,#0x1d
+      004400 2D               [12] 1190 	add	a, r5
+      004401 FA               [12] 1191 	mov	r2,a
+      004402 E4               [12] 1192 	clr	a
+      004403 3E               [12] 1193 	addc	a, r6
+      004404 FB               [12] 1194 	mov	r3,a
+      004405 8F 04            [24] 1195 	mov	ar4,r7
+      004407 8A 82            [24] 1196 	mov	dpl,r2
+      004409 8B 83            [24] 1197 	mov	dph,r3
+      00440B 8C F0            [24] 1198 	mov	b,r4
+      00440D 12 5B BA         [24] 1199 	lcall	__gptrget
+      004410 FA               [12] 1200 	mov	r2,a
+      004411 90 03 DC         [24] 1201 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0022)
+      004414 75 F0 00         [24] 1202 	mov	b,#0x00
+      004417 EA               [12] 1203 	mov	a,r2
+      004418 12 4D 82         [24] 1204 	lcall	__gptrput
+                                   1205 ;	tcp.c:64: response_ip_header[10] = 0;              // Clear checksum
+      00441B 90 03 D3         [24] 1206 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0019)
+      00441E E4               [12] 1207 	clr	a
+      00441F 12 4D 82         [24] 1208 	lcall	__gptrput
+                                   1209 ;	tcp.c:65: response_ip_header[11] = 0;
+      004422 90 03 D4         [24] 1210 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001a)
+      004425 F5 F0            [12] 1211 	mov	b,a
+      004427 12 4D 82         [24] 1212 	lcall	__gptrput
+                                   1213 ;	tcp.c:68: uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
+      00442A 74 22            [12] 1214 	mov	a,#0x22
+      00442C 2D               [12] 1215 	add	a, r5
+      00442D F5 14            [12] 1216 	mov	_process_tcp_packet_sloc0_1_0,a
+      00442F E4               [12] 1217 	clr	a
+      004430 3E               [12] 1218 	addc	a, r6
+      004431 F5 15            [12] 1219 	mov	(_process_tcp_packet_sloc0_1_0 + 1),a
+      004433 8F 16            [24] 1220 	mov	(_process_tcp_packet_sloc0_1_0 + 2),r7
+                                   1221 ;	tcp.c:69: uint8_t *response_tcp_header = data_start + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
+                                   1222 ;	tcp.c:72: memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
+      004435 A8 14            [24] 1223 	mov	r0,_process_tcp_packet_sloc0_1_0
+      004437 A9 15            [24] 1224 	mov	r1,(_process_tcp_packet_sloc0_1_0 + 1)
+      004439 AC 16            [24] 1225 	mov	r4,(_process_tcp_packet_sloc0_1_0 + 2)
+      00443B 90 09 B5         [24] 1226 	mov	dptr,#___memcpy_PARM_2
+      00443E E8               [12] 1227 	mov	a,r0
+      00443F F0               [24] 1228 	movx	@dptr,a
+      004440 E9               [12] 1229 	mov	a,r1
+      004441 A3               [24] 1230 	inc	dptr
+      004442 F0               [24] 1231 	movx	@dptr,a
+      004443 EC               [12] 1232 	mov	a,r4
+      004444 A3               [24] 1233 	inc	dptr
+      004445 F0               [24] 1234 	movx	@dptr,a
+      004446 90 09 B8         [24] 1235 	mov	dptr,#___memcpy_PARM_3
+      004449 74 14            [12] 1236 	mov	a,#0x14
+      00444B F0               [24] 1237 	movx	@dptr,a
+      00444C E4               [12] 1238 	clr	a
+      00444D A3               [24] 1239 	inc	dptr
+      00444E F0               [24] 1240 	movx	@dptr,a
+      00444F 90 03 DD         [24] 1241 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0023)
+      004452 F5 F0            [12] 1242 	mov	b,a
+      004454 C0 07            [24] 1243 	push	ar7
+      004456 C0 06            [24] 1244 	push	ar6
+      004458 C0 05            [24] 1245 	push	ar5
+      00445A 12 4C E6         [24] 1246 	lcall	___memcpy
+      00445D D0 05            [24] 1247 	pop	ar5
+      00445F D0 06            [24] 1248 	pop	ar6
+      004461 D0 07            [24] 1249 	pop	ar7
+                                   1250 ;	tcp.c:73: response_tcp_header[0] = tcp_header[2];  // Swap Source Port
+      004463 74 24            [12] 1251 	mov	a,#0x24
+      004465 2D               [12] 1252 	add	a, r5
+      004466 FA               [12] 1253 	mov	r2,a
+      004467 E4               [12] 1254 	clr	a
+      004468 3E               [12] 1255 	addc	a, r6
+      004469 FB               [12] 1256 	mov	r3,a
+      00446A 8F 04            [24] 1257 	mov	ar4,r7
+      00446C 8A 82            [24] 1258 	mov	dpl,r2
+      00446E 8B 83            [24] 1259 	mov	dph,r3
+      004470 8C F0            [24] 1260 	mov	b,r4
+      004472 12 5B BA         [24] 1261 	lcall	__gptrget
+      004475 FA               [12] 1262 	mov	r2,a
+      004476 90 03 DD         [24] 1263 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0023)
+      004479 75 F0 00         [24] 1264 	mov	b,#0x00
+      00447C EA               [12] 1265 	mov	a,r2
+      00447D 12 4D 82         [24] 1266 	lcall	__gptrput
+                                   1267 ;	tcp.c:74: response_tcp_header[1] = tcp_header[3];
+      004480 74 25            [12] 1268 	mov	a,#0x25
+      004482 2D               [12] 1269 	add	a, r5
+      004483 FA               [12] 1270 	mov	r2,a
+      004484 E4               [12] 1271 	clr	a
+      004485 3E               [12] 1272 	addc	a, r6
+      004486 FB               [12] 1273 	mov	r3,a
+      004487 8F 04            [24] 1274 	mov	ar4,r7
+      004489 8A 82            [24] 1275 	mov	dpl,r2
+      00448B 8B 83            [24] 1276 	mov	dph,r3
+      00448D 8C F0            [24] 1277 	mov	b,r4
+      00448F 12 5B BA         [24] 1278 	lcall	__gptrget
+      004492 FA               [12] 1279 	mov	r2,a
+      004493 90 03 DE         [24] 1280 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0024)
+      004496 75 F0 00         [24] 1281 	mov	b,#0x00
+      004499 EA               [12] 1282 	mov	a,r2
+      00449A 12 4D 82         [24] 1283 	lcall	__gptrput
+                                   1284 ;	tcp.c:75: response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
+      00449D 85 14 82         [24] 1285 	mov	dpl,_process_tcp_packet_sloc0_1_0
+      0044A0 85 15 83         [24] 1286 	mov	dph,(_process_tcp_packet_sloc0_1_0 + 1)
+      0044A3 85 16 F0         [24] 1287 	mov	b,(_process_tcp_packet_sloc0_1_0 + 2)
+      0044A6 12 5B BA         [24] 1288 	lcall	__gptrget
+      0044A9 FC               [12] 1289 	mov	r4,a
+      0044AA 90 03 DF         [24] 1290 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0025)
+      0044AD 75 F0 00         [24] 1291 	mov	b,#0x00
+      0044B0 EC               [12] 1292 	mov	a,r4
+      0044B1 12 4D 82         [24] 1293 	lcall	__gptrput
+                                   1294 ;	tcp.c:76: response_tcp_header[3] = tcp_header[1];
+      0044B4 74 23            [12] 1295 	mov	a,#0x23
+      0044B6 2D               [12] 1296 	add	a, r5
+      0044B7 FA               [12] 1297 	mov	r2,a
+      0044B8 E4               [12] 1298 	clr	a
+      0044B9 3E               [12] 1299 	addc	a, r6
+      0044BA FB               [12] 1300 	mov	r3,a
+      0044BB 8F 04            [24] 1301 	mov	ar4,r7
+      0044BD 8A 82            [24] 1302 	mov	dpl,r2
+      0044BF 8B 83            [24] 1303 	mov	dph,r3
+      0044C1 8C F0            [24] 1304 	mov	b,r4
+      0044C3 12 5B BA         [24] 1305 	lcall	__gptrget
+      0044C6 FA               [12] 1306 	mov	r2,a
+      0044C7 90 03 E0         [24] 1307 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0026)
+      0044CA 75 F0 00         [24] 1308 	mov	b,#0x00
+      0044CD EA               [12] 1309 	mov	a,r2
+      0044CE 12 4D 82         [24] 1310 	lcall	__gptrput
+                                   1311 ;	tcp.c:78: response_tcp_header[4] = 0;
+      0044D1 90 03 E1         [24] 1312 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0027)
+      0044D4 E4               [12] 1313 	clr	a
+      0044D5 12 4D 82         [24] 1314 	lcall	__gptrput
+                                   1315 ;	tcp.c:79: response_tcp_header[5] = 0;
+      0044D8 90 03 E2         [24] 1316 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0028)
+      0044DB F5 F0            [12] 1317 	mov	b,a
+      0044DD 12 4D 82         [24] 1318 	lcall	__gptrput
+                                   1319 ;	tcp.c:80: response_tcp_header[6] = 0;
+      0044E0 90 03 E3         [24] 1320 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0029)
+      0044E3 F5 F0            [12] 1321 	mov	b,a
+      0044E5 12 4D 82         [24] 1322 	lcall	__gptrput
+                                   1323 ;	tcp.c:81: response_tcp_header[7] = 0;
+      0044E8 90 03 E4         [24] 1324 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002a)
+      0044EB F5 F0            [12] 1325 	mov	b,a
+      0044ED 12 4D 82         [24] 1326 	lcall	__gptrput
+                                   1327 ;	tcp.c:83: uint8_t SYN_SEQ3 = tcp_header[4];
+      0044F0 74 26            [12] 1328 	mov	a,#0x26
+      0044F2 2D               [12] 1329 	add	a, r5
+      0044F3 FA               [12] 1330 	mov	r2,a
+      0044F4 E4               [12] 1331 	clr	a
+      0044F5 3E               [12] 1332 	addc	a, r6
+      0044F6 FB               [12] 1333 	mov	r3,a
+      0044F7 8F 04            [24] 1334 	mov	ar4,r7
+      0044F9 8A 82            [24] 1335 	mov	dpl,r2
+      0044FB 8B 83            [24] 1336 	mov	dph,r3
+      0044FD 8C F0            [24] 1337 	mov	b,r4
+      0044FF 12 5B BA         [24] 1338 	lcall	__gptrget
+      004502 FA               [12] 1339 	mov	r2,a
+                                   1340 ;	tcp.c:84: uint8_t SYN_SEQ2 = tcp_header[5];
+      004503 74 27            [12] 1341 	mov	a,#0x27
+      004505 2D               [12] 1342 	add	a, r5
+      004506 F9               [12] 1343 	mov	r1,a
+      004507 E4               [12] 1344 	clr	a
+      004508 3E               [12] 1345 	addc	a, r6
+      004509 FB               [12] 1346 	mov	r3,a
+      00450A 8F 04            [24] 1347 	mov	ar4,r7
+      00450C 89 82            [24] 1348 	mov	dpl,r1
+      00450E 8B 83            [24] 1349 	mov	dph,r3
+      004510 8C F0            [24] 1350 	mov	b,r4
+      004512 12 5B BA         [24] 1351 	lcall	__gptrget
+      004515 F9               [12] 1352 	mov	r1,a
+                                   1353 ;	tcp.c:85: uint8_t SYN_SEQ1 = tcp_header[6];
+      004516 74 28            [12] 1354 	mov	a,#0x28
+      004518 2D               [12] 1355 	add	a, r5
+      004519 F8               [12] 1356 	mov	r0,a
+      00451A E4               [12] 1357 	clr	a
+      00451B 3E               [12] 1358 	addc	a, r6
+      00451C FB               [12] 1359 	mov	r3,a
+      00451D 8F 04            [24] 1360 	mov	ar4,r7
+      00451F 88 82            [24] 1361 	mov	dpl,r0
+      004521 8B 83            [24] 1362 	mov	dph,r3
+      004523 8C F0            [24] 1363 	mov	b,r4
+      004525 12 5B BA         [24] 1364 	lcall	__gptrget
+      004528 F8               [12] 1365 	mov	r0,a
+                                   1366 ;	tcp.c:86: uint8_t SYN_SEQ0 = tcp_header[7];
+      004529 74 29            [12] 1367 	mov	a,#0x29
+      00452B 2D               [12] 1368 	add	a, r5
+      00452C FD               [12] 1369 	mov	r5,a
+      00452D E4               [12] 1370 	clr	a
+      00452E 3E               [12] 1371 	addc	a, r6
+      00452F FE               [12] 1372 	mov	r6,a
+      004530 8D 82            [24] 1373 	mov	dpl,r5
+      004532 8E 83            [24] 1374 	mov	dph,r6
+      004534 8F F0            [24] 1375 	mov	b,r7
+      004536 12 5B BA         [24] 1376 	lcall	__gptrget
+      004539 FD               [12] 1377 	mov	r5,a
+                                   1378 ;	tcp.c:88: response_tcp_header[8] = SYN_SEQ3;
+      00453A 90 03 E5         [24] 1379 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002b)
+      00453D 75 F0 00         [24] 1380 	mov	b,#0x00
+      004540 EA               [12] 1381 	mov	a,r2
+      004541 12 4D 82         [24] 1382 	lcall	__gptrput
+                                   1383 ;	tcp.c:89: response_tcp_header[9] = SYN_SEQ2;
+      004544 90 03 E6         [24] 1384 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002c)
+      004547 E9               [12] 1385 	mov	a,r1
+      004548 12 4D 82         [24] 1386 	lcall	__gptrput
+                                   1387 ;	tcp.c:90: response_tcp_header[10] = SYN_SEQ1;
+      00454B 90 03 E7         [24] 1388 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002d)
+      00454E E8               [12] 1389 	mov	a,r0
+      00454F 12 4D 82         [24] 1390 	lcall	__gptrput
+                                   1391 ;	tcp.c:91: response_tcp_header[11] = SYN_SEQ0 + 1;
+      004552 0D               [12] 1392 	inc	r5
+      004553 90 03 E8         [24] 1393 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002e)
+      004556 ED               [12] 1394 	mov	a,r5
+      004557 12 4D 82         [24] 1395 	lcall	__gptrput
+                                   1396 ;	tcp.c:97: response_tcp_header[12] = 0x50;  // SYN (0x02) + ACK (0x10)
+      00455A 90 03 E9         [24] 1397 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x002f)
+      00455D 74 50            [12] 1398 	mov	a,#0x50
+      00455F 12 4D 82         [24] 1399 	lcall	__gptrput
+                                   1400 ;	tcp.c:99: response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
+      004562 90 03 EA         [24] 1401 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0030)
+      004565 74 12            [12] 1402 	mov	a,#0x12
+      004567 12 4D 82         [24] 1403 	lcall	__gptrput
+                                   1404 ;	tcp.c:102: response_tcp_header[18] = 0;
+      00456A 90 03 EF         [24] 1405 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0035)
+      00456D E4               [12] 1406 	clr	a
+      00456E 12 4D 82         [24] 1407 	lcall	__gptrput
+                                   1408 ;	tcp.c:103: response_tcp_header[19] = 0;
+      004571 90 03 F0         [24] 1409 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0036)
+      004574 F5 F0            [12] 1410 	mov	b,a
+      004576 12 4D 82         [24] 1411 	lcall	__gptrput
+                                   1412 ;	tcp.c:109: response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
+      004579 90 03 CB         [24] 1413 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0011)
+      00457C F5 F0            [12] 1414 	mov	b,a
+      00457E 12 4D 82         [24] 1415 	lcall	__gptrput
+                                   1416 ;	tcp.c:110: response_ip_header[3] = ip_total_length & 0xFF;
+      004581 90 03 CC         [24] 1417 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0012)
+      004584 F5 F0            [12] 1418 	mov	b,a
+      004586 74 28            [12] 1419 	mov	a,#0x28
+      004588 12 4D 82         [24] 1420 	lcall	__gptrput
+                                   1421 ;	tcp.c:111: uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
+      00458B 90 03 A7         [24] 1422 	mov	dptr,#_calculate_checksum_PARM_2
+      00458E 03               [12] 1423 	rr	a
+      00458F F0               [24] 1424 	movx	@dptr,a
+      004590 E4               [12] 1425 	clr	a
+      004591 A3               [24] 1426 	inc	dptr
+      004592 F0               [24] 1427 	movx	@dptr,a
+      004593 90 03 C9         [24] 1428 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
+      004596 F5 F0            [12] 1429 	mov	b,a
+      004598 12 40 B9         [24] 1430 	lcall	_calculate_checksum
+      00459B AE 82            [24] 1431 	mov	r6, dpl
+      00459D AF 83            [24] 1432 	mov	r7, dph
+                                   1433 ;	tcp.c:112: response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
+      00459F 8F 05            [24] 1434 	mov	ar5,r7
+      0045A1 90 03 D3         [24] 1435 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0019)
+      0045A4 75 F0 00         [24] 1436 	mov	b,#0x00
+      0045A7 ED               [12] 1437 	mov	a,r5
+      0045A8 12 4D 82         [24] 1438 	lcall	__gptrput
+                                   1439 ;	tcp.c:113: response_ip_header[11] = ip_checksum & 0xFF;
+      0045AB 90 03 D4         [24] 1440 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x001a)
+      0045AE EE               [12] 1441 	mov	a,r6
+      0045AF 12 4D 82         [24] 1442 	lcall	__gptrput
+                                   1443 ;	tcp.c:115: uint16_t tcp_checksum = calculate_checksum(data_start + ETHERNET_HEADER_SIZE, ip_total_length);
+      0045B2 90 03 A7         [24] 1444 	mov	dptr,#_calculate_checksum_PARM_2
+      0045B5 74 28            [12] 1445 	mov	a,#0x28
+      0045B7 F0               [24] 1446 	movx	@dptr,a
+      0045B8 E4               [12] 1447 	clr	a
+      0045B9 A3               [24] 1448 	inc	dptr
+      0045BA F0               [24] 1449 	movx	@dptr,a
+      0045BB 90 03 C9         [24] 1450 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x000f)
+      0045BE F5 F0            [12] 1451 	mov	b,a
+      0045C0 12 40 B9         [24] 1452 	lcall	_calculate_checksum
+      0045C3 AE 82            [24] 1453 	mov	r6, dpl
+      0045C5 AF 83            [24] 1454 	mov	r7, dph
+                                   1455 ;	tcp.c:116: response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
+      0045C7 8F 05            [24] 1456 	mov	ar5,r7
+      0045C9 90 03 ED         [24] 1457 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0033)
+      0045CC 75 F0 00         [24] 1458 	mov	b,#0x00
+      0045CF ED               [12] 1459 	mov	a,r5
+      0045D0 12 4D 82         [24] 1460 	lcall	__gptrput
+                                   1461 ;	tcp.c:117: response_tcp_header[17] = tcp_checksum & 0xFF;
+      0045D3 90 03 EE         [24] 1462 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0034)
+      0045D6 EE               [12] 1463 	mov	a,r6
+      0045D7 12 4D 82         [24] 1464 	lcall	__gptrput
+                                   1465 ;	tcp.c:120: uint8_t *tcp_options = response_tcp_header + 20; // After the TCP header (flags, sequence, etc.)
+                                   1466 ;	tcp.c:126: tcp_options[0] = 0x02;  // Option Type for MSS (0x02)
+      0045DA 90 03 F1         [24] 1467 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0037)
+      0045DD 74 02            [12] 1468 	mov	a,#0x02
+      0045DF 12 4D 82         [24] 1469 	lcall	__gptrput
+                                   1470 ;	tcp.c:127: tcp_options[1] = 0x04;  // Length of the MSS option (4 bytes)
+      0045E2 90 03 F2         [24] 1471 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0038)
+      0045E5 23               [12] 1472 	rl	a
+      0045E6 12 4D 82         [24] 1473 	lcall	__gptrput
+                                   1474 ;	tcp.c:128: tcp_options[2] = 0x05;  // MSS value (0x0500 = 1280 in decimal)
+      0045E9 90 03 F3         [24] 1475 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x0039)
+      0045EC 04               [12] 1476 	inc	a
+      0045ED 12 4D 82         [24] 1477 	lcall	__gptrput
+                                   1478 ;	tcp.c:129: tcp_options[3] = 0x00;
+      0045F0 90 03 F4         [24] 1479 	mov	dptr,#(_process_tcp_packet_response_10000_122 + 0x003a)
+      0045F3 E4               [12] 1480 	clr	a
+      0045F4 12 4D 82         [24] 1481 	lcall	__gptrput
+                                   1482 ;	tcp.c:132: *response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length + 4; // Adding 4 for the MSS option size
+      0045F7 90 03 B4         [24] 1483 	mov	dptr,#_process_tcp_packet_PARM_3
+      0045FA E0               [24] 1484 	movx	a,@dptr
+      0045FB FD               [12] 1485 	mov	r5,a
+      0045FC A3               [24] 1486 	inc	dptr
+      0045FD E0               [24] 1487 	movx	a,@dptr
+      0045FE FE               [12] 1488 	mov	r6,a
+      0045FF A3               [24] 1489 	inc	dptr
+      004600 E0               [24] 1490 	movx	a,@dptr
+      004601 FF               [12] 1491 	mov	r7,a
+      004602 8D 82            [24] 1492 	mov	dpl,r5
+      004604 8E 83            [24] 1493 	mov	dph,r6
+      004606 8F F0            [24] 1494 	mov	b,r7
+      004608 74 3B            [12] 1495 	mov	a,#0x3b
+      00460A 12 4D 82         [24] 1496 	lcall	__gptrput
+      00460D A3               [24] 1497 	inc	dptr
+      00460E E4               [12] 1498 	clr	a
+      00460F 12 4D 82         [24] 1499 	lcall	__gptrput
+                                   1500 ;	tcp.c:135: return response;
+      004612 90 03 BA         [24] 1501 	mov	dptr,#_process_tcp_packet_response_10000_122
+      004615 F5 F0            [12] 1502 	mov	b,a
+                                   1503 ;	tcp.c:136: }
+      004617 22               [24] 1504 	ret
+                                   1505 ;------------------------------------------------------------
+                                   1506 ;Allocation info for local variables in function 'print_hexdump'
+                                   1507 ;------------------------------------------------------------
+                                   1508 ;size                      Allocated with name '_print_hexdump_PARM_2'
+                                   1509 ;data                      Allocated with name '_print_hexdump_data_10000_131'
+                                   1510 ;i                         Allocated with name '_print_hexdump_i_20000_133'
+                                   1511 ;------------------------------------------------------------
+                                   1512 ;	tcp.c:140: void print_hexdump(const uint8_t *data, uint16_t size) {
+                                   1513 ;	-----------------------------------------
+                                   1514 ;	 function print_hexdump
+                                   1515 ;	-----------------------------------------
+      004618                       1516 _print_hexdump:
+      004618 AF F0            [24] 1517 	mov	r7,b
+      00461A AE 83            [24] 1518 	mov	r6,dph
+      00461C E5 82            [12] 1519 	mov	a,dpl
+      00461E 90 09 99         [24] 1520 	mov	dptr,#_print_hexdump_data_10000_131
+      004621 F0               [24] 1521 	movx	@dptr,a
+      004622 EE               [12] 1522 	mov	a,r6
+      004623 A3               [24] 1523 	inc	dptr
+      004624 F0               [24] 1524 	movx	@dptr,a
+      004625 EF               [12] 1525 	mov	a,r7
+      004626 A3               [24] 1526 	inc	dptr
+      004627 F0               [24] 1527 	movx	@dptr,a
+                                   1528 ;	tcp.c:141: printf("\nHexdump (Size: %d):\n", size);
+      004628 90 09 97         [24] 1529 	mov	dptr,#_print_hexdump_PARM_2
+      00462B E0               [24] 1530 	movx	a,@dptr
+      00462C FE               [12] 1531 	mov	r6,a
+      00462D A3               [24] 1532 	inc	dptr
+      00462E E0               [24] 1533 	movx	a,@dptr
+      00462F FF               [12] 1534 	mov	r7,a
+      004630 C0 07            [24] 1535 	push	ar7
+      004632 C0 06            [24] 1536 	push	ar6
+      004634 C0 06            [24] 1537 	push	ar6
+      004636 C0 07            [24] 1538 	push	ar7
+      004638 74 5D            [12] 1539 	mov	a,#___str_0
+      00463A C0 E0            [24] 1540 	push	acc
+      00463C 74 65            [12] 1541 	mov	a,#(___str_0 >> 8)
+      00463E C0 E0            [24] 1542 	push	acc
+      004640 74 80            [12] 1543 	mov	a,#0x80
+      004642 C0 E0            [24] 1544 	push	acc
+      004644 12 51 98         [24] 1545 	lcall	_printf
+      004647 E5 81            [12] 1546 	mov	a,sp
+      004649 24 FB            [12] 1547 	add	a,#0xfb
+      00464B F5 81            [12] 1548 	mov	sp,a
+      00464D D0 06            [24] 1549 	pop	ar6
+      00464F D0 07            [24] 1550 	pop	ar7
+                                   1551 ;	tcp.c:142: for (uint16_t i = 0; i < size; i++) {
+      004651 90 09 99         [24] 1552 	mov	dptr,#_print_hexdump_data_10000_131
+      004654 E0               [24] 1553 	movx	a,@dptr
+      004655 FB               [12] 1554 	mov	r3,a
+      004656 A3               [24] 1555 	inc	dptr
+      004657 E0               [24] 1556 	movx	a,@dptr
+      004658 FC               [12] 1557 	mov	r4,a
+      004659 A3               [24] 1558 	inc	dptr
+      00465A E0               [24] 1559 	movx	a,@dptr
+      00465B FD               [12] 1560 	mov	r5,a
+      00465C 79 00            [12] 1561 	mov	r1,#0x00
+      00465E 7A 00            [12] 1562 	mov	r2,#0x00
+      004660                       1563 00107$:
+      004660 C3               [12] 1564 	clr	c
+      004661 E9               [12] 1565 	mov	a,r1
+      004662 9E               [12] 1566 	subb	a,r6
+      004663 EA               [12] 1567 	mov	a,r2
+      004664 9F               [12] 1568 	subb	a,r7
+      004665 40 03            [24] 1569 	jc	00136$
+      004667 02 47 08         [24] 1570 	ljmp	00103$
+      00466A                       1571 00136$:
+                                   1572 ;	tcp.c:143: printf("%02X ", data[i]); // Print each byte in hexadecimal format
+      00466A C0 06            [24] 1573 	push	ar6
+      00466C C0 07            [24] 1574 	push	ar7
+      00466E E9               [12] 1575 	mov	a,r1
+      00466F 2B               [12] 1576 	add	a, r3
+      004670 F8               [12] 1577 	mov	r0,a
+      004671 EA               [12] 1578 	mov	a,r2
+      004672 3C               [12] 1579 	addc	a, r4
+      004673 FE               [12] 1580 	mov	r6,a
+      004674 8D 07            [24] 1581 	mov	ar7,r5
+      004676 88 82            [24] 1582 	mov	dpl,r0
+      004678 8E 83            [24] 1583 	mov	dph,r6
+      00467A 8F F0            [24] 1584 	mov	b,r7
+      00467C 12 5B BA         [24] 1585 	lcall	__gptrget
+      00467F F8               [12] 1586 	mov	r0,a
+      004680 7F 00            [12] 1587 	mov	r7,#0x00
+      004682 C0 07            [24] 1588 	push	ar7
+      004684 C0 06            [24] 1589 	push	ar6
+      004686 C0 05            [24] 1590 	push	ar5
+      004688 C0 04            [24] 1591 	push	ar4
+      00468A C0 03            [24] 1592 	push	ar3
+      00468C C0 02            [24] 1593 	push	ar2
+      00468E C0 01            [24] 1594 	push	ar1
+      004690 C0 00            [24] 1595 	push	ar0
+      004692 C0 07            [24] 1596 	push	ar7
+      004694 74 73            [12] 1597 	mov	a,#___str_1
+      004696 C0 E0            [24] 1598 	push	acc
+      004698 74 65            [12] 1599 	mov	a,#(___str_1 >> 8)
+      00469A C0 E0            [24] 1600 	push	acc
+      00469C 74 80            [12] 1601 	mov	a,#0x80
+      00469E C0 E0            [24] 1602 	push	acc
+      0046A0 12 51 98         [24] 1603 	lcall	_printf
+      0046A3 E5 81            [12] 1604 	mov	a,sp
+      0046A5 24 FB            [12] 1605 	add	a,#0xfb
+      0046A7 F5 81            [12] 1606 	mov	sp,a
+      0046A9 D0 01            [24] 1607 	pop	ar1
+      0046AB D0 02            [24] 1608 	pop	ar2
+      0046AD D0 03            [24] 1609 	pop	ar3
+      0046AF D0 04            [24] 1610 	pop	ar4
+      0046B1 D0 05            [24] 1611 	pop	ar5
+      0046B3 D0 06            [24] 1612 	pop	ar6
+      0046B5 D0 07            [24] 1613 	pop	ar7
+                                   1614 ;	tcp.c:144: if ((i + 1) % 16 == 0) {
+      0046B7 89 06            [24] 1615 	mov	ar6,r1
+      0046B9 8A 07            [24] 1616 	mov	ar7,r2
+      0046BB 0E               [12] 1617 	inc	r6
+      0046BC BE 00 01         [24] 1618 	cjne	r6,#0x00,00137$
+      0046BF 0F               [12] 1619 	inc	r7
+      0046C0                       1620 00137$:
+      0046C0 EE               [12] 1621 	mov	a,r6
+      0046C1 54 0F            [12] 1622 	anl	a,#0x0f
+      0046C3 60 06            [24] 1623 	jz	00139$
+      0046C5 D0 07            [24] 1624 	pop	ar7
+      0046C7 D0 06            [24] 1625 	pop	ar6
+      0046C9 80 35            [24] 1626 	sjmp	00108$
+      0046CB                       1627 00139$:
+      0046CB D0 07            [24] 1628 	pop	ar7
+      0046CD D0 06            [24] 1629 	pop	ar6
+                                   1630 ;	tcp.c:145: printf("\n"); // Newline after every 16 bytes for readability
+      0046CF C0 07            [24] 1631 	push	ar7
+      0046D1 C0 06            [24] 1632 	push	ar6
+      0046D3 C0 05            [24] 1633 	push	ar5
+      0046D5 C0 04            [24] 1634 	push	ar4
+      0046D7 C0 03            [24] 1635 	push	ar3
+      0046D9 C0 02            [24] 1636 	push	ar2
+      0046DB C0 01            [24] 1637 	push	ar1
+      0046DD 74 79            [12] 1638 	mov	a,#___str_2
+      0046DF C0 E0            [24] 1639 	push	acc
+      0046E1 74 65            [12] 1640 	mov	a,#(___str_2 >> 8)
+      0046E3 C0 E0            [24] 1641 	push	acc
+      0046E5 74 80            [12] 1642 	mov	a,#0x80
+      0046E7 C0 E0            [24] 1643 	push	acc
+      0046E9 12 51 98         [24] 1644 	lcall	_printf
+      0046EC 15 81            [12] 1645 	dec	sp
+      0046EE 15 81            [12] 1646 	dec	sp
+      0046F0 15 81            [12] 1647 	dec	sp
+      0046F2 D0 01            [24] 1648 	pop	ar1
+      0046F4 D0 02            [24] 1649 	pop	ar2
+      0046F6 D0 03            [24] 1650 	pop	ar3
+      0046F8 D0 04            [24] 1651 	pop	ar4
+      0046FA D0 05            [24] 1652 	pop	ar5
+      0046FC D0 06            [24] 1653 	pop	ar6
+      0046FE D0 07            [24] 1654 	pop	ar7
+      004700                       1655 00108$:
+                                   1656 ;	tcp.c:142: for (uint16_t i = 0; i < size; i++) {
+      004700 09               [12] 1657 	inc	r1
+      004701 B9 00 01         [24] 1658 	cjne	r1,#0x00,00140$
+      004704 0A               [12] 1659 	inc	r2
+      004705                       1660 00140$:
+      004705 02 46 60         [24] 1661 	ljmp	00107$
+      004708                       1662 00103$:
+                                   1663 ;	tcp.c:148: if (size % 16 != 0) {
+      004708 EE               [12] 1664 	mov	a,r6
+      004709 54 0F            [12] 1665 	anl	a,#0x0f
+      00470B 60 15            [24] 1666 	jz	00109$
+                                   1667 ;	tcp.c:149: printf("\n"); // Final newline if not already printed
+      00470D 74 79            [12] 1668 	mov	a,#___str_2
+      00470F C0 E0            [24] 1669 	push	acc
+      004711 74 65            [12] 1670 	mov	a,#(___str_2 >> 8)
+      004713 C0 E0            [24] 1671 	push	acc
+      004715 74 80            [12] 1672 	mov	a,#0x80
+      004717 C0 E0            [24] 1673 	push	acc
+      004719 12 51 98         [24] 1674 	lcall	_printf
+      00471C 15 81            [12] 1675 	dec	sp
+      00471E 15 81            [12] 1676 	dec	sp
+      004720 15 81            [12] 1677 	dec	sp
+      004722                       1678 00109$:
+                                   1679 ;	tcp.c:151: }
+      004722 22               [24] 1680 	ret
+                                   1681 ;------------------------------------------------------------
+                                   1682 ;Allocation info for local variables in function 'process_packet_from_buffer'
+                                   1683 ;------------------------------------------------------------
+                                   1684 ;sloc0                     Allocated with name '_process_packet_from_buffer_sloc0_1_0'
+                                   1685 ;start_address             Allocated with name '_process_packet_from_buffer_start_address_10000_137'
+                                   1686 ;next_packet_start         Allocated with name '_process_packet_from_buffer_next_packet_start_10001_140'
+                                   1687 ;next_start_address        Allocated with name '_process_packet_from_buffer_next_start_address_10001_140'
+                                   1688 ;packet_size               Allocated with name '_process_packet_from_buffer_packet_size_10001_140'
+                                   1689 ;response_size             Allocated with name '_process_packet_from_buffer_response_size_10001_140'
+                                   1690 ;packet_data               Allocated with name '_process_packet_from_buffer_packet_data_10002_143'
+                                   1691 ;response                  Allocated with name '_process_packet_from_buffer_response_10003_146'
+                                   1692 ;------------------------------------------------------------
+                                   1693 ;	tcp.c:154: void process_packet_from_buffer(uint16_t start_address) {
+                                   1694 ;	-----------------------------------------
+                                   1695 ;	 function process_packet_from_buffer
+                                   1696 ;	-----------------------------------------
+      004723                       1697 _process_packet_from_buffer:
+      004723 AF 83            [24] 1698 	mov	r7,dph
+      004725 E5 82            [12] 1699 	mov	a,dpl
+      004727 90 09 9C         [24] 1700 	mov	dptr,#_process_packet_from_buffer_start_address_10000_137
+      00472A F0               [24] 1701 	movx	@dptr,a
+      00472B EF               [12] 1702 	mov	a,r7
+      00472C A3               [24] 1703 	inc	dptr
+      00472D F0               [24] 1704 	movx	@dptr,a
+                                   1705 ;	tcp.c:156: if (start_address > 0x1FFF) {
+      00472E 90 09 9C         [24] 1706 	mov	dptr,#_process_packet_from_buffer_start_address_10000_137
+      004731 E0               [24] 1707 	movx	a,@dptr
+      004732 FE               [12] 1708 	mov	r6,a
+      004733 A3               [24] 1709 	inc	dptr
+      004734 E0               [24] 1710 	movx	a,@dptr
+      004735 FF               [12] 1711 	mov	r7,a
+      004736 8E 04            [24] 1712 	mov	ar4,r6
+      004738 8F 05            [24] 1713 	mov	ar5,r7
+      00473A C3               [12] 1714 	clr	c
+      00473B 74 FF            [12] 1715 	mov	a,#0xff
+      00473D 9C               [12] 1716 	subb	a,r4
+      00473E 74 1F            [12] 1717 	mov	a,#0x1f
+      004740 9D               [12] 1718 	subb	a,r5
+      004741 50 1A            [24] 1719 	jnc	00102$
+                                   1720 ;	tcp.c:157: printf("\n\rInvalid start address: %04X\n\r", start_address);
+      004743 C0 06            [24] 1721 	push	ar6
+      004745 C0 07            [24] 1722 	push	ar7
+      004747 74 7B            [12] 1723 	mov	a,#___str_3
+      004749 C0 E0            [24] 1724 	push	acc
+      00474B 74 65            [12] 1725 	mov	a,#(___str_3 >> 8)
+      00474D C0 E0            [24] 1726 	push	acc
+      00474F 74 80            [12] 1727 	mov	a,#0x80
+      004751 C0 E0            [24] 1728 	push	acc
+      004753 12 51 98         [24] 1729 	lcall	_printf
+      004756 E5 81            [12] 1730 	mov	a,sp
+      004758 24 FB            [12] 1731 	add	a,#0xfb
+      00475A F5 81            [12] 1732 	mov	sp,a
+                                   1733 ;	tcp.c:158: return;
+      00475C 22               [24] 1734 	ret
+      00475D                       1735 00102$:
+                                   1736 ;	tcp.c:167: if (spi_buffer_read(2, start_address, next_packet_start) != 2) {
+      00475D 90 03 95         [24] 1737 	mov	dptr,#_spi_buffer_read_PARM_2
+      004760 EE               [12] 1738 	mov	a,r6
+      004761 F0               [24] 1739 	movx	@dptr,a
+      004762 EF               [12] 1740 	mov	a,r7
+      004763 A3               [24] 1741 	inc	dptr
+      004764 F0               [24] 1742 	movx	@dptr,a
+      004765 90 03 97         [24] 1743 	mov	dptr,#_spi_buffer_read_PARM_3
+      004768 74 9E            [12] 1744 	mov	a,#_process_packet_from_buffer_next_packet_start_10001_140
+      00476A F0               [24] 1745 	movx	@dptr,a
+      00476B 74 09            [12] 1746 	mov	a,#(_process_packet_from_buffer_next_packet_start_10001_140 >> 8)
+      00476D A3               [24] 1747 	inc	dptr
+      00476E F0               [24] 1748 	movx	@dptr,a
+      00476F E4               [12] 1749 	clr	a
+      004770 A3               [24] 1750 	inc	dptr
+      004771 F0               [24] 1751 	movx	@dptr,a
+      004772 90 00 02         [24] 1752 	mov	dptr,#0x0002
+      004775 C0 07            [24] 1753 	push	ar7
+      004777 C0 06            [24] 1754 	push	ar6
+      004779 C0 05            [24] 1755 	push	ar5
+      00477B C0 04            [24] 1756 	push	ar4
+      00477D 12 3D 34         [24] 1757 	lcall	_spi_buffer_read
+      004780 AA 82            [24] 1758 	mov	r2, dpl
+      004782 AB 83            [24] 1759 	mov	r3, dph
+      004784 D0 04            [24] 1760 	pop	ar4
+      004786 D0 05            [24] 1761 	pop	ar5
+      004788 D0 06            [24] 1762 	pop	ar6
+      00478A D0 07            [24] 1763 	pop	ar7
+      00478C BA 02 05         [24] 1764 	cjne	r2,#0x02,00153$
+      00478F BB 00 02         [24] 1765 	cjne	r3,#0x00,00153$
+      004792 80 16            [24] 1766 	sjmp	00104$
+      004794                       1767 00153$:
+                                   1768 ;	tcp.c:168: printf("\n\rFailed to read packet start address bytes\n\r");
+      004794 74 9B            [12] 1769 	mov	a,#___str_4
+      004796 C0 E0            [24] 1770 	push	acc
+      004798 74 65            [12] 1771 	mov	a,#(___str_4 >> 8)
+      00479A C0 E0            [24] 1772 	push	acc
+      00479C 74 80            [12] 1773 	mov	a,#0x80
+      00479E C0 E0            [24] 1774 	push	acc
+      0047A0 12 51 98         [24] 1775 	lcall	_printf
+      0047A3 15 81            [12] 1776 	dec	sp
+      0047A5 15 81            [12] 1777 	dec	sp
+      0047A7 15 81            [12] 1778 	dec	sp
+                                   1779 ;	tcp.c:169: return;
+      0047A9 22               [24] 1780 	ret
+      0047AA                       1781 00104$:
+                                   1782 ;	tcp.c:173: next_start_address = ((uint16_t)next_packet_start[1] << 8) | next_packet_start[0];
+      0047AA 90 09 9F         [24] 1783 	mov	dptr,#(_process_packet_from_buffer_next_packet_start_10001_140 + 0x0001)
+      0047AD E0               [24] 1784 	movx	a,@dptr
+      0047AE FA               [12] 1785 	mov	r2,a
+      0047AF 7B 00            [12] 1786 	mov	r3,#0x00
+      0047B1 90 09 9E         [24] 1787 	mov	dptr,#_process_packet_from_buffer_next_packet_start_10001_140
+      0047B4 E0               [24] 1788 	movx	a,@dptr
+      0047B5 79 00            [12] 1789 	mov	r1,#0x00
+      0047B7 42 03            [12] 1790 	orl	ar3,a
+      0047B9 E9               [12] 1791 	mov	a,r1
+      0047BA 42 02            [12] 1792 	orl	ar2,a
+                                   1793 ;	tcp.c:176: if (next_start_address < start_address) {
+      0047BC C3               [12] 1794 	clr	c
+      0047BD EB               [12] 1795 	mov	a,r3
+      0047BE 9E               [12] 1796 	subb	a,r6
+      0047BF EA               [12] 1797 	mov	a,r2
+      0047C0 9F               [12] 1798 	subb	a,r7
+      0047C1 50 1A            [24] 1799 	jnc	00106$
+                                   1800 ;	tcp.c:177: printf("\n\rInvalid next start address: 0x%04X\n\r", next_start_address);
+      0047C3 C0 03            [24] 1801 	push	ar3
+      0047C5 C0 02            [24] 1802 	push	ar2
+      0047C7 74 C9            [12] 1803 	mov	a,#___str_5
+      0047C9 C0 E0            [24] 1804 	push	acc
+      0047CB 74 65            [12] 1805 	mov	a,#(___str_5 >> 8)
+      0047CD C0 E0            [24] 1806 	push	acc
+      0047CF 74 80            [12] 1807 	mov	a,#0x80
+      0047D1 C0 E0            [24] 1808 	push	acc
+      0047D3 12 51 98         [24] 1809 	lcall	_printf
+      0047D6 E5 81            [12] 1810 	mov	a,sp
+      0047D8 24 FB            [12] 1811 	add	a,#0xfb
+      0047DA F5 81            [12] 1812 	mov	sp,a
+                                   1813 ;	tcp.c:178: return;
+      0047DC 22               [24] 1814 	ret
+      0047DD                       1815 00106$:
+                                   1816 ;	tcp.c:180: packet_size = next_start_address - (start_address+6);
+      0047DD 74 06            [12] 1817 	mov	a,#0x06
+      0047DF 2C               [12] 1818 	add	a, r4
+      0047E0 FE               [12] 1819 	mov	r6,a
+      0047E1 E4               [12] 1820 	clr	a
+      0047E2 3D               [12] 1821 	addc	a, r5
+      0047E3 FF               [12] 1822 	mov	r7,a
+      0047E4 EB               [12] 1823 	mov	a,r3
+      0047E5 C3               [12] 1824 	clr	c
+      0047E6 9E               [12] 1825 	subb	a,r6
+      0047E7 FE               [12] 1826 	mov	r6,a
+      0047E8 EA               [12] 1827 	mov	a,r2
+      0047E9 9F               [12] 1828 	subb	a,r7
+      0047EA FF               [12] 1829 	mov	r7,a
+                                   1830 ;	tcp.c:183: uint8_t *packet_data = (uint8_t *)malloc(packet_size);
+      0047EB 8E 00            [24] 1831 	mov	ar0,r6
+      0047ED 8F 01            [24] 1832 	mov	ar1,r7
+      0047EF 88 82            [24] 1833 	mov	dpl, r0
+      0047F1 89 83            [24] 1834 	mov	dph, r1
+      0047F3 C0 07            [24] 1835 	push	ar7
+      0047F5 C0 06            [24] 1836 	push	ar6
+      0047F7 C0 05            [24] 1837 	push	ar5
+      0047F9 C0 04            [24] 1838 	push	ar4
+      0047FB C0 03            [24] 1839 	push	ar3
+      0047FD C0 02            [24] 1840 	push	ar2
+      0047FF 12 4E E2         [24] 1841 	lcall	_malloc
+      004802 A8 82            [24] 1842 	mov	r0, dpl
+      004804 A9 83            [24] 1843 	mov	r1, dph
+      004806 D0 02            [24] 1844 	pop	ar2
+      004808 D0 03            [24] 1845 	pop	ar3
+      00480A D0 04            [24] 1846 	pop	ar4
+      00480C D0 05            [24] 1847 	pop	ar5
+      00480E D0 06            [24] 1848 	pop	ar6
+      004810 D0 07            [24] 1849 	pop	ar7
+      004812 88 17            [24] 1850 	mov	_process_packet_from_buffer_sloc0_1_0,r0
+      004814 89 18            [24] 1851 	mov	(_process_packet_from_buffer_sloc0_1_0 + 1),r1
+      004816 75 19 00         [24] 1852 	mov	(_process_packet_from_buffer_sloc0_1_0 + 2),#0x00
+                                   1853 ;	tcp.c:184: if (packet_data == NULL) {
+      004819 E5 17            [12] 1854 	mov	a,_process_packet_from_buffer_sloc0_1_0
+      00481B 45 18            [12] 1855 	orl	a,(_process_packet_from_buffer_sloc0_1_0 + 1)
+      00481D 70 1A            [24] 1856 	jnz	00108$
+                                   1857 ;	tcp.c:185: printf("\n\rMemory allocation failed for packet size: %d\n\r", packet_size);
+      00481F C0 06            [24] 1858 	push	ar6
+      004821 C0 07            [24] 1859 	push	ar7
+      004823 74 F0            [12] 1860 	mov	a,#___str_6
+      004825 C0 E0            [24] 1861 	push	acc
+      004827 74 65            [12] 1862 	mov	a,#(___str_6 >> 8)
+      004829 C0 E0            [24] 1863 	push	acc
+      00482B 74 80            [12] 1864 	mov	a,#0x80
+      00482D C0 E0            [24] 1865 	push	acc
+      00482F 12 51 98         [24] 1866 	lcall	_printf
+      004832 E5 81            [12] 1867 	mov	a,sp
+      004834 24 FB            [12] 1868 	add	a,#0xfb
+      004836 F5 81            [12] 1869 	mov	sp,a
+                                   1870 ;	tcp.c:186: return;
+      004838 22               [24] 1871 	ret
+      004839                       1872 00108$:
+                                   1873 ;	tcp.c:190: if (spi_buffer_read(packet_size, start_address+6, packet_data) != packet_size) {
+      004839 8E 00            [24] 1874 	mov	ar0,r6
+      00483B 8F 01            [24] 1875 	mov	ar1,r7
+      00483D 74 06            [12] 1876 	mov	a,#0x06
+      00483F 2C               [12] 1877 	add	a, r4
+      004840 FC               [12] 1878 	mov	r4,a
+      004841 E4               [12] 1879 	clr	a
+      004842 3D               [12] 1880 	addc	a, r5
+      004843 FD               [12] 1881 	mov	r5,a
+      004844 90 03 95         [24] 1882 	mov	dptr,#_spi_buffer_read_PARM_2
+      004847 EC               [12] 1883 	mov	a,r4
+      004848 F0               [24] 1884 	movx	@dptr,a
+      004849 ED               [12] 1885 	mov	a,r5
+      00484A A3               [24] 1886 	inc	dptr
+      00484B F0               [24] 1887 	movx	@dptr,a
+      00484C 90 03 97         [24] 1888 	mov	dptr,#_spi_buffer_read_PARM_3
+      00484F E5 17            [12] 1889 	mov	a,_process_packet_from_buffer_sloc0_1_0
+      004851 F0               [24] 1890 	movx	@dptr,a
+      004852 E5 18            [12] 1891 	mov	a,(_process_packet_from_buffer_sloc0_1_0 + 1)
+      004854 A3               [24] 1892 	inc	dptr
+      004855 F0               [24] 1893 	movx	@dptr,a
+      004856 E5 19            [12] 1894 	mov	a,(_process_packet_from_buffer_sloc0_1_0 + 2)
+      004858 A3               [24] 1895 	inc	dptr
+      004859 F0               [24] 1896 	movx	@dptr,a
+      00485A 88 82            [24] 1897 	mov	dpl, r0
+      00485C 89 83            [24] 1898 	mov	dph, r1
+      00485E C0 07            [24] 1899 	push	ar7
+      004860 C0 06            [24] 1900 	push	ar6
+      004862 C0 03            [24] 1901 	push	ar3
+      004864 C0 02            [24] 1902 	push	ar2
+      004866 12 3D 34         [24] 1903 	lcall	_spi_buffer_read
+      004869 AC 82            [24] 1904 	mov	r4, dpl
+      00486B AD 83            [24] 1905 	mov	r5, dph
+      00486D D0 02            [24] 1906 	pop	ar2
+      00486F D0 03            [24] 1907 	pop	ar3
+      004871 D0 06            [24] 1908 	pop	ar6
+      004873 D0 07            [24] 1909 	pop	ar7
+      004875 EC               [12] 1910 	mov	a,r4
+      004876 B5 06 06         [24] 1911 	cjne	a,ar6,00156$
+      004879 ED               [12] 1912 	mov	a,r5
+      00487A B5 07 02         [24] 1913 	cjne	a,ar7,00156$
+      00487D 80 24            [24] 1914 	sjmp	00110$
+      00487F                       1915 00156$:
+                                   1916 ;	tcp.c:191: printf("\n\rFailed to read packet data\n\r");
+      00487F 74 21            [12] 1917 	mov	a,#___str_7
+      004881 C0 E0            [24] 1918 	push	acc
+      004883 74 66            [12] 1919 	mov	a,#(___str_7 >> 8)
+      004885 C0 E0            [24] 1920 	push	acc
+      004887 74 80            [12] 1921 	mov	a,#0x80
+      004889 C0 E0            [24] 1922 	push	acc
+      00488B 12 51 98         [24] 1923 	lcall	_printf
+      00488E 15 81            [12] 1924 	dec	sp
+      004890 15 81            [12] 1925 	dec	sp
+      004892 15 81            [12] 1926 	dec	sp
+                                   1927 ;	tcp.c:192: free(packet_data);
+      004894 AC 17            [24] 1928 	mov	r4,_process_packet_from_buffer_sloc0_1_0
+      004896 A9 18            [24] 1929 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
+      004898 7D 00            [12] 1930 	mov	r5,#0x00
+      00489A 8C 82            [24] 1931 	mov	dpl, r4
+      00489C 89 83            [24] 1932 	mov	dph, r1
+      00489E 8D F0            [24] 1933 	mov	b, r5
+                                   1934 ;	tcp.c:193: return;
+      0048A0 02 4B 8F         [24] 1935 	ljmp	_free
+      0048A3                       1936 00110$:
+                                   1937 ;	tcp.c:197: uint8_t *response = process_tcp_packet(packet_data, packet_size, &response_size);
+      0048A3 90 03 B2         [24] 1938 	mov	dptr,#_process_tcp_packet_PARM_2
+      0048A6 EE               [12] 1939 	mov	a,r6
+      0048A7 F0               [24] 1940 	movx	@dptr,a
+      0048A8 EF               [12] 1941 	mov	a,r7
+      0048A9 A3               [24] 1942 	inc	dptr
+      0048AA F0               [24] 1943 	movx	@dptr,a
+      0048AB 90 03 B4         [24] 1944 	mov	dptr,#_process_tcp_packet_PARM_3
+      0048AE 74 A0            [12] 1945 	mov	a,#_process_packet_from_buffer_response_size_10001_140
+      0048B0 F0               [24] 1946 	movx	@dptr,a
+      0048B1 74 09            [12] 1947 	mov	a,#(_process_packet_from_buffer_response_size_10001_140 >> 8)
+      0048B3 A3               [24] 1948 	inc	dptr
+      0048B4 F0               [24] 1949 	movx	@dptr,a
+      0048B5 E4               [12] 1950 	clr	a
+      0048B6 A3               [24] 1951 	inc	dptr
+      0048B7 F0               [24] 1952 	movx	@dptr,a
+      0048B8 85 17 82         [24] 1953 	mov	dpl, _process_packet_from_buffer_sloc0_1_0
+      0048BB 85 18 83         [24] 1954 	mov	dph, (_process_packet_from_buffer_sloc0_1_0 + 1)
+      0048BE 85 19 F0         [24] 1955 	mov	b, (_process_packet_from_buffer_sloc0_1_0 + 2)
+      0048C1 C0 07            [24] 1956 	push	ar7
+      0048C3 C0 06            [24] 1957 	push	ar6
+      0048C5 C0 03            [24] 1958 	push	ar3
+      0048C7 C0 02            [24] 1959 	push	ar2
+      0048C9 12 42 3C         [24] 1960 	lcall	_process_tcp_packet
+      0048CC A9 82            [24] 1961 	mov	r1, dpl
+      0048CE AC 83            [24] 1962 	mov	r4, dph
+      0048D0 AD F0            [24] 1963 	mov	r5, b
+      0048D2 D0 02            [24] 1964 	pop	ar2
+      0048D4 D0 03            [24] 1965 	pop	ar3
+      0048D6 D0 06            [24] 1966 	pop	ar6
+      0048D8 D0 07            [24] 1967 	pop	ar7
+                                   1968 ;	tcp.c:200: if (response != NULL) {
+      0048DA E9               [12] 1969 	mov	a,r1
+      0048DB 4C               [12] 1970 	orl	a,r4
+      0048DC 70 03            [24] 1971 	jnz	00157$
+      0048DE 02 49 97         [24] 1972 	ljmp	00112$
+      0048E1                       1973 00157$:
+                                   1974 ;	tcp.c:201: printf("\nProcessed response data:\n");
+      0048E1 C0 03            [24] 1975 	push	ar3
+      0048E3 C0 02            [24] 1976 	push	ar2
+      0048E5 C0 07            [24] 1977 	push	ar7
+      0048E7 C0 06            [24] 1978 	push	ar6
+      0048E9 C0 05            [24] 1979 	push	ar5
+      0048EB C0 04            [24] 1980 	push	ar4
+      0048ED C0 03            [24] 1981 	push	ar3
+      0048EF C0 02            [24] 1982 	push	ar2
+      0048F1 C0 01            [24] 1983 	push	ar1
+      0048F3 74 40            [12] 1984 	mov	a,#___str_8
+      0048F5 C0 E0            [24] 1985 	push	acc
+      0048F7 74 66            [12] 1986 	mov	a,#(___str_8 >> 8)
+      0048F9 C0 E0            [24] 1987 	push	acc
+      0048FB 74 80            [12] 1988 	mov	a,#0x80
+      0048FD C0 E0            [24] 1989 	push	acc
+      0048FF 12 51 98         [24] 1990 	lcall	_printf
+      004902 15 81            [12] 1991 	dec	sp
+      004904 15 81            [12] 1992 	dec	sp
+      004906 15 81            [12] 1993 	dec	sp
+      004908 D0 01            [24] 1994 	pop	ar1
+      00490A D0 02            [24] 1995 	pop	ar2
+      00490C D0 03            [24] 1996 	pop	ar3
+      00490E D0 04            [24] 1997 	pop	ar4
+      004910 D0 05            [24] 1998 	pop	ar5
+      004912 D0 06            [24] 1999 	pop	ar6
+      004914 D0 07            [24] 2000 	pop	ar7
+                                   2001 ;	tcp.c:202: print_hexdump(response, response_size);
+      004916 90 09 A0         [24] 2002 	mov	dptr,#_process_packet_from_buffer_response_size_10001_140
+      004919 E0               [24] 2003 	movx	a,@dptr
+      00491A F8               [12] 2004 	mov	r0,a
+      00491B A3               [24] 2005 	inc	dptr
+      00491C E0               [24] 2006 	movx	a,@dptr
+      00491D FB               [12] 2007 	mov	r3,a
+      00491E 90 09 97         [24] 2008 	mov	dptr,#_print_hexdump_PARM_2
+      004921 E8               [12] 2009 	mov	a,r0
+      004922 F0               [24] 2010 	movx	@dptr,a
+      004923 EB               [12] 2011 	mov	a,r3
+      004924 A3               [24] 2012 	inc	dptr
+      004925 F0               [24] 2013 	movx	@dptr,a
+      004926 89 82            [24] 2014 	mov	dpl, r1
+      004928 8C 83            [24] 2015 	mov	dph, r4
+      00492A 8D F0            [24] 2016 	mov	b, r5
+      00492C C0 07            [24] 2017 	push	ar7
+      00492E C0 06            [24] 2018 	push	ar6
+      004930 C0 05            [24] 2019 	push	ar5
+      004932 C0 04            [24] 2020 	push	ar4
+      004934 C0 03            [24] 2021 	push	ar3
+      004936 C0 02            [24] 2022 	push	ar2
+      004938 C0 01            [24] 2023 	push	ar1
+      00493A 12 46 18         [24] 2024 	lcall	_print_hexdump
+      00493D D0 01            [24] 2025 	pop	ar1
+      00493F D0 02            [24] 2026 	pop	ar2
+      004941 D0 03            [24] 2027 	pop	ar3
+      004943 D0 04            [24] 2028 	pop	ar4
+      004945 D0 05            [24] 2029 	pop	ar5
+      004947 D0 06            [24] 2030 	pop	ar6
+      004949 D0 07            [24] 2031 	pop	ar7
+                                   2032 ;	tcp.c:203: transmit_tcp_packet(response, response_size);
+      00494B 90 09 A0         [24] 2033 	mov	dptr,#_process_packet_from_buffer_response_size_10001_140
+      00494E E0               [24] 2034 	movx	a,@dptr
+      00494F FA               [12] 2035 	mov	r2,a
+      004950 A3               [24] 2036 	inc	dptr
+      004951 E0               [24] 2037 	movx	a,@dptr
+      004952 FB               [12] 2038 	mov	r3,a
+      004953 90 09 A2         [24] 2039 	mov	dptr,#_transmit_tcp_packet_PARM_2
+      004956 EA               [12] 2040 	mov	a,r2
+      004957 F0               [24] 2041 	movx	@dptr,a
+      004958 EB               [12] 2042 	mov	a,r3
+      004959 A3               [24] 2043 	inc	dptr
+      00495A F0               [24] 2044 	movx	@dptr,a
+      00495B 89 82            [24] 2045 	mov	dpl, r1
+      00495D 8C 83            [24] 2046 	mov	dph, r4
+      00495F 8D F0            [24] 2047 	mov	b, r5
+      004961 C0 07            [24] 2048 	push	ar7
+      004963 C0 06            [24] 2049 	push	ar6
+      004965 C0 05            [24] 2050 	push	ar5
+      004967 C0 04            [24] 2051 	push	ar4
+      004969 C0 03            [24] 2052 	push	ar3
+      00496B C0 02            [24] 2053 	push	ar2
+      00496D C0 01            [24] 2054 	push	ar1
+      00496F 12 4A 08         [24] 2055 	lcall	_transmit_tcp_packet
+      004972 D0 01            [24] 2056 	pop	ar1
+      004974 D0 02            [24] 2057 	pop	ar2
+      004976 D0 03            [24] 2058 	pop	ar3
+      004978 D0 04            [24] 2059 	pop	ar4
+      00497A D0 05            [24] 2060 	pop	ar5
+                                   2061 ;	tcp.c:204: free(response); // Free response memory if allocated dynamically
+      00497C 89 82            [24] 2062 	mov	dpl, r1
+      00497E 8C 83            [24] 2063 	mov	dph, r4
+      004980 8D F0            [24] 2064 	mov	b, r5
+      004982 C0 03            [24] 2065 	push	ar3
+      004984 C0 02            [24] 2066 	push	ar2
+      004986 12 4B 8F         [24] 2067 	lcall	_free
+      004989 D0 02            [24] 2068 	pop	ar2
+      00498B D0 03            [24] 2069 	pop	ar3
+      00498D D0 06            [24] 2070 	pop	ar6
+      00498F D0 07            [24] 2071 	pop	ar7
+      004991 D0 02            [24] 2072 	pop	ar2
+      004993 D0 03            [24] 2073 	pop	ar3
+      004995 80 25            [24] 2074 	sjmp	00113$
+      004997                       2075 00112$:
+                                   2076 ;	tcp.c:206: printf("\nNo response generated by TCP packet processing.\n");
+      004997 C0 07            [24] 2077 	push	ar7
+      004999 C0 06            [24] 2078 	push	ar6
+      00499B C0 03            [24] 2079 	push	ar3
+      00499D C0 02            [24] 2080 	push	ar2
+      00499F 74 5B            [12] 2081 	mov	a,#___str_9
+      0049A1 C0 E0            [24] 2082 	push	acc
+      0049A3 74 66            [12] 2083 	mov	a,#(___str_9 >> 8)
+      0049A5 C0 E0            [24] 2084 	push	acc
+      0049A7 74 80            [12] 2085 	mov	a,#0x80
+      0049A9 C0 E0            [24] 2086 	push	acc
+      0049AB 12 51 98         [24] 2087 	lcall	_printf
+      0049AE 15 81            [12] 2088 	dec	sp
+      0049B0 15 81            [12] 2089 	dec	sp
+      0049B2 15 81            [12] 2090 	dec	sp
+      0049B4 D0 02            [24] 2091 	pop	ar2
+      0049B6 D0 03            [24] 2092 	pop	ar3
+      0049B8 D0 06            [24] 2093 	pop	ar6
+      0049BA D0 07            [24] 2094 	pop	ar7
+      0049BC                       2095 00113$:
+                                   2096 ;	tcp.c:210: free(packet_data);
+      0049BC AC 17            [24] 2097 	mov	r4,_process_packet_from_buffer_sloc0_1_0
+      0049BE A9 18            [24] 2098 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
+      0049C0 7D 00            [12] 2099 	mov	r5,#0x00
+      0049C2 8C 82            [24] 2100 	mov	dpl, r4
+      0049C4 89 83            [24] 2101 	mov	dph, r1
+      0049C6 8D F0            [24] 2102 	mov	b, r5
+      0049C8 C0 07            [24] 2103 	push	ar7
+      0049CA C0 06            [24] 2104 	push	ar6
+      0049CC C0 03            [24] 2105 	push	ar3
+      0049CE C0 02            [24] 2106 	push	ar2
+      0049D0 12 4B 8F         [24] 2107 	lcall	_free
+      0049D3 D0 02            [24] 2108 	pop	ar2
+      0049D5 D0 03            [24] 2109 	pop	ar3
+      0049D7 D0 06            [24] 2110 	pop	ar6
+      0049D9 D0 07            [24] 2111 	pop	ar7
+                                   2112 ;	tcp.c:213: packet_size, start_address, next_start_address - 1);
+      0049DB 1B               [12] 2113 	dec	r3
+      0049DC BB FF 01         [24] 2114 	cjne	r3,#0xff,00158$
+      0049DF 1A               [12] 2115 	dec	r2
+      0049E0                       2116 00158$:
+                                   2117 ;	tcp.c:212: printf("\n\rSuccessfully processed packet of size %d from 0x%04X to 0x%04X\n\r",
+      0049E0 C0 03            [24] 2118 	push	ar3
+      0049E2 C0 02            [24] 2119 	push	ar2
+      0049E4 90 09 9C         [24] 2120 	mov	dptr,#_process_packet_from_buffer_start_address_10000_137
+      0049E7 E0               [24] 2121 	movx	a,@dptr
+      0049E8 C0 E0            [24] 2122 	push	acc
+      0049EA A3               [24] 2123 	inc	dptr
+      0049EB E0               [24] 2124 	movx	a,@dptr
+      0049EC C0 E0            [24] 2125 	push	acc
+      0049EE C0 06            [24] 2126 	push	ar6
+      0049F0 C0 07            [24] 2127 	push	ar7
+      0049F2 74 8D            [12] 2128 	mov	a,#___str_10
+      0049F4 C0 E0            [24] 2129 	push	acc
+      0049F6 74 66            [12] 2130 	mov	a,#(___str_10 >> 8)
+      0049F8 C0 E0            [24] 2131 	push	acc
+      0049FA 74 80            [12] 2132 	mov	a,#0x80
+      0049FC C0 E0            [24] 2133 	push	acc
+      0049FE 12 51 98         [24] 2134 	lcall	_printf
+      004A01 E5 81            [12] 2135 	mov	a,sp
+      004A03 24 F7            [12] 2136 	add	a,#0xf7
+      004A05 F5 81            [12] 2137 	mov	sp,a
+                                   2138 ;	tcp.c:214: }
+      004A07 22               [24] 2139 	ret
+                                   2140 ;------------------------------------------------------------
+                                   2141 ;Allocation info for local variables in function 'transmit_tcp_packet'
+                                   2142 ;------------------------------------------------------------
+                                   2143 ;packet_size               Allocated with name '_transmit_tcp_packet_PARM_2'
+                                   2144 ;packet                    Allocated with name '_transmit_tcp_packet_packet_10000_149'
+                                   2145 ;start_address             Allocated with name '_transmit_tcp_packet_start_address_10000_150'
+                                   2146 ;end_address               Allocated with name '_transmit_tcp_packet_end_address_10001_152'
+                                   2147 ;------------------------------------------------------------
+                                   2148 ;	tcp.c:217: void transmit_tcp_packet(uint8_t *packet, uint16_t packet_size)
+                                   2149 ;	-----------------------------------------
+                                   2150 ;	 function transmit_tcp_packet
+                                   2151 ;	-----------------------------------------
+      004A08                       2152 _transmit_tcp_packet:
+      004A08 AF F0            [24] 2153 	mov	r7,b
+      004A0A AE 83            [24] 2154 	mov	r6,dph
+      004A0C E5 82            [12] 2155 	mov	a,dpl
+      004A0E 90 09 A4         [24] 2156 	mov	dptr,#_transmit_tcp_packet_packet_10000_149
+      004A11 F0               [24] 2157 	movx	@dptr,a
+      004A12 EE               [12] 2158 	mov	a,r6
+      004A13 A3               [24] 2159 	inc	dptr
+      004A14 F0               [24] 2160 	movx	@dptr,a
+      004A15 EF               [12] 2161 	mov	a,r7
+      004A16 A3               [24] 2162 	inc	dptr
+      004A17 F0               [24] 2163 	movx	@dptr,a
+                                   2164 ;	tcp.c:222: if ((start_address + packet_size - 1) > 0x1FFF) {
+      004A18 90 09 A2         [24] 2165 	mov	dptr,#_transmit_tcp_packet_PARM_2
+      004A1B E0               [24] 2166 	movx	a,@dptr
+      004A1C FE               [12] 2167 	mov	r6,a
+      004A1D A3               [24] 2168 	inc	dptr
+      004A1E E0               [24] 2169 	movx	a,@dptr
+      004A1F FF               [12] 2170 	mov	r7,a
+      004A20 8E 04            [24] 2171 	mov	ar4,r6
+      004A22 74 0C            [12] 2172 	mov	a,#0x0c
+      004A24 2F               [12] 2173 	add	a, r7
+      004A25 FD               [12] 2174 	mov	r5,a
+      004A26 1C               [12] 2175 	dec	r4
+      004A27 BC FF 01         [24] 2176 	cjne	r4,#0xff,00129$
+      004A2A 1D               [12] 2177 	dec	r5
+      004A2B                       2178 00129$:
+      004A2B C3               [12] 2179 	clr	c
+      004A2C 74 FF            [12] 2180 	mov	a,#0xff
+      004A2E 9C               [12] 2181 	subb	a,r4
+      004A2F 74 1F            [12] 2182 	mov	a,#0x1f
+      004A31 9D               [12] 2183 	subb	a,r5
+      004A32 50 16            [24] 2184 	jnc	00102$
+                                   2185 ;	tcp.c:223: printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
+      004A34 74 D0            [12] 2186 	mov	a,#___str_11
+      004A36 C0 E0            [24] 2187 	push	acc
+      004A38 74 66            [12] 2188 	mov	a,#(___str_11 >> 8)
+      004A3A C0 E0            [24] 2189 	push	acc
+      004A3C 74 80            [12] 2190 	mov	a,#0x80
+      004A3E C0 E0            [24] 2191 	push	acc
+      004A40 12 51 98         [24] 2192 	lcall	_printf
+      004A43 15 81            [12] 2193 	dec	sp
+      004A45 15 81            [12] 2194 	dec	sp
+      004A47 15 81            [12] 2195 	dec	sp
+                                   2196 ;	tcp.c:224: return;
+      004A49 22               [24] 2197 	ret
+      004A4A                       2198 00102$:
+                                   2199 ;	tcp.c:226: uint16_t end_address = start_address + packet_size - 1;
+      004A4A 8E 04            [24] 2200 	mov	ar4,r6
+      004A4C 74 0C            [12] 2201 	mov	a,#0x0c
+      004A4E 2F               [12] 2202 	add	a, r7
+      004A4F FD               [12] 2203 	mov	r5,a
+      004A50 1C               [12] 2204 	dec	r4
+      004A51 BC FF 01         [24] 2205 	cjne	r4,#0xff,00131$
+      004A54 1D               [12] 2206 	dec	r5
+      004A55                       2207 00131$:
+                                   2208 ;	tcp.c:227: spi_buffer_write(packet_size, start_address, packet);
+      004A55 90 09 A4         [24] 2209 	mov	dptr,#_transmit_tcp_packet_packet_10000_149
+      004A58 E0               [24] 2210 	movx	a,@dptr
+      004A59 F9               [12] 2211 	mov	r1,a
+      004A5A A3               [24] 2212 	inc	dptr
+      004A5B E0               [24] 2213 	movx	a,@dptr
+      004A5C FA               [12] 2214 	mov	r2,a
+      004A5D A3               [24] 2215 	inc	dptr
+      004A5E E0               [24] 2216 	movx	a,@dptr
+      004A5F FB               [12] 2217 	mov	r3,a
+      004A60 90 03 9E         [24] 2218 	mov	dptr,#_spi_buffer_write_PARM_2
+      004A63 E4               [12] 2219 	clr	a
+      004A64 F0               [24] 2220 	movx	@dptr,a
+      004A65 74 0C            [12] 2221 	mov	a,#0x0c
+      004A67 A3               [24] 2222 	inc	dptr
+      004A68 F0               [24] 2223 	movx	@dptr,a
+      004A69 90 03 A0         [24] 2224 	mov	dptr,#_spi_buffer_write_PARM_3
+      004A6C E9               [12] 2225 	mov	a,r1
+      004A6D F0               [24] 2226 	movx	@dptr,a
+      004A6E EA               [12] 2227 	mov	a,r2
+      004A6F A3               [24] 2228 	inc	dptr
+      004A70 F0               [24] 2229 	movx	@dptr,a
+      004A71 EB               [12] 2230 	mov	a,r3
+      004A72 A3               [24] 2231 	inc	dptr
+      004A73 F0               [24] 2232 	movx	@dptr,a
+      004A74 8E 82            [24] 2233 	mov	dpl, r6
+      004A76 8F 83            [24] 2234 	mov	dph, r7
+      004A78 C0 05            [24] 2235 	push	ar5
+      004A7A C0 04            [24] 2236 	push	ar4
+      004A7C 12 3F 0D         [24] 2237 	lcall	_spi_buffer_write
+      004A7F D0 04            [24] 2238 	pop	ar4
+      004A81 D0 05            [24] 2239 	pop	ar5
+                                   2240 ;	tcp.c:230: enc28j60_set_transmit_pointers(start_address, end_address);
+      004A83 90 01 06         [24] 2241 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
+      004A86 EC               [12] 2242 	mov	a,r4
+      004A87 F0               [24] 2243 	movx	@dptr,a
+      004A88 ED               [12] 2244 	mov	a,r5
+      004A89 A3               [24] 2245 	inc	dptr
+      004A8A F0               [24] 2246 	movx	@dptr,a
+      004A8B 90 0C 00         [24] 2247 	mov	dptr,#0x0c00
+      004A8E 12 21 15         [24] 2248 	lcall	_enc28j60_set_transmit_pointers
+                                   2249 ;	tcp.c:233: enc28j60_start_transmission();
+      004A91 12 20 F4         [24] 2250 	lcall	_enc28j60_start_transmission
+                                   2251 ;	tcp.c:236: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
+      004A94 90 01 F4         [24] 2252 	mov	dptr,#0x01f4
+      004A97 12 21 8C         [24] 2253 	lcall	_wait_for_transmission_complete
+      004A9A E5 82            [12] 2254 	mov	a, dpl
+      004A9C 60 38            [24] 2255 	jz	00107$
+                                   2256 ;	tcp.c:238: if (enc28j60_transmission_successful()) {
+      004A9E 12 21 EF         [24] 2257 	lcall	_enc28j60_transmission_successful
+      004AA1 E5 82            [12] 2258 	mov	a, dpl
+      004AA3 85 83 F0         [24] 2259 	mov	b, dph
+      004AA6 45 F0            [12] 2260 	orl	a,b
+      004AA8 60 16            [24] 2261 	jz	00104$
+                                   2262 ;	tcp.c:239: printf("TCP request sent successfully.\n\r");
+      004AAA 74 0B            [12] 2263 	mov	a,#___str_12
+      004AAC C0 E0            [24] 2264 	push	acc
+      004AAE 74 67            [12] 2265 	mov	a,#(___str_12 >> 8)
+      004AB0 C0 E0            [24] 2266 	push	acc
+      004AB2 74 80            [12] 2267 	mov	a,#0x80
+      004AB4 C0 E0            [24] 2268 	push	acc
+      004AB6 12 51 98         [24] 2269 	lcall	_printf
+      004AB9 15 81            [12] 2270 	dec	sp
+      004ABB 15 81            [12] 2271 	dec	sp
+      004ABD 15 81            [12] 2272 	dec	sp
+      004ABF 22               [24] 2273 	ret
+      004AC0                       2274 00104$:
+                                   2275 ;	tcp.c:241: printf("TCP transmission failed. Check error flags.\n\r");
+      004AC0 74 2C            [12] 2276 	mov	a,#___str_13
+      004AC2 C0 E0            [24] 2277 	push	acc
+      004AC4 74 67            [12] 2278 	mov	a,#(___str_13 >> 8)
+      004AC6 C0 E0            [24] 2279 	push	acc
+      004AC8 74 80            [12] 2280 	mov	a,#0x80
+      004ACA C0 E0            [24] 2281 	push	acc
+      004ACC 12 51 98         [24] 2282 	lcall	_printf
+      004ACF 15 81            [12] 2283 	dec	sp
+      004AD1 15 81            [12] 2284 	dec	sp
+      004AD3 15 81            [12] 2285 	dec	sp
+      004AD5 22               [24] 2286 	ret
+      004AD6                       2287 00107$:
+                                   2288 ;	tcp.c:245: "Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
+      004AD6 74 5A            [12] 2289 	mov	a,#___str_14
+      004AD8 C0 E0            [24] 2290 	push	acc
+      004ADA 74 67            [12] 2291 	mov	a,#(___str_14 >> 8)
+      004ADC C0 E0            [24] 2292 	push	acc
+      004ADE 74 80            [12] 2293 	mov	a,#0x80
+      004AE0 C0 E0            [24] 2294 	push	acc
+      004AE2 12 51 98         [24] 2295 	lcall	_printf
+      004AE5 15 81            [12] 2296 	dec	sp
+      004AE7 15 81            [12] 2297 	dec	sp
+      004AE9 15 81            [12] 2298 	dec	sp
+                                   2299 ;	tcp.c:247: }
+      004AEB 22               [24] 2300 	ret
+                                   2301 	.area CSEG    (CODE)
+                                   2302 	.area CONST   (CODE)
+                                   2303 	.area CONST   (CODE)
+      00655D                       2304 ___str_0:
+      00655D 0A                    2305 	.db 0x0a
+      00655E 48 65 78 64 75 6D 70  2306 	.ascii "Hexdump (Size: %d):"
              20 28 53 69 7A 65 3A
              20 25 64 29 3A
-      0064E2 0A                    2218 	.db 0x0a
-      0064E3 00                    2219 	.db 0x00
-                                   2220 	.area CSEG    (CODE)
-                                   2221 	.area CONST   (CODE)
-      0064E4                       2222 ___str_1:
-      0064E4 25 30 32 58 20        2223 	.ascii "%02X "
-      0064E9 00                    2224 	.db 0x00
-                                   2225 	.area CSEG    (CODE)
-                                   2226 	.area CONST   (CODE)
-      0064EA                       2227 ___str_2:
-      0064EA 0A                    2228 	.db 0x0a
-      0064EB 00                    2229 	.db 0x00
-                                   2230 	.area CSEG    (CODE)
-                                   2231 	.area CONST   (CODE)
-      0064EC                       2232 ___str_3:
-      0064EC 0A                    2233 	.db 0x0a
-      0064ED 0D                    2234 	.db 0x0d
-      0064EE 49 6E 76 61 6C 69 64  2235 	.ascii "Invalid start address: %04X"
+      006571 0A                    2307 	.db 0x0a
+      006572 00                    2308 	.db 0x00
+                                   2309 	.area CSEG    (CODE)
+                                   2310 	.area CONST   (CODE)
+      006573                       2311 ___str_1:
+      006573 25 30 32 58 20        2312 	.ascii "%02X "
+      006578 00                    2313 	.db 0x00
+                                   2314 	.area CSEG    (CODE)
+                                   2315 	.area CONST   (CODE)
+      006579                       2316 ___str_2:
+      006579 0A                    2317 	.db 0x0a
+      00657A 00                    2318 	.db 0x00
+                                   2319 	.area CSEG    (CODE)
+                                   2320 	.area CONST   (CODE)
+      00657B                       2321 ___str_3:
+      00657B 0A                    2322 	.db 0x0a
+      00657C 0D                    2323 	.db 0x0d
+      00657D 49 6E 76 61 6C 69 64  2324 	.ascii "Invalid start address: %04X"
              20 73 74 61 72 74 20
              61 64 64 72 65 73 73
              3A 20 25 30 34 58
-      006509 0A                    2236 	.db 0x0a
-      00650A 0D                    2237 	.db 0x0d
-      00650B 00                    2238 	.db 0x00
-                                   2239 	.area CSEG    (CODE)
-                                   2240 	.area CONST   (CODE)
-      00650C                       2241 ___str_4:
-      00650C 0A                    2242 	.db 0x0a
-      00650D 0D                    2243 	.db 0x0d
-      00650E 46 61 69 6C 65 64 20  2244 	.ascii "Failed to read packet start address bytes"
+      006598 0A                    2325 	.db 0x0a
+      006599 0D                    2326 	.db 0x0d
+      00659A 00                    2327 	.db 0x00
+                                   2328 	.area CSEG    (CODE)
+                                   2329 	.area CONST   (CODE)
+      00659B                       2330 ___str_4:
+      00659B 0A                    2331 	.db 0x0a
+      00659C 0D                    2332 	.db 0x0d
+      00659D 46 61 69 6C 65 64 20  2333 	.ascii "Failed to read packet start address bytes"
              74 6F 20 72 65 61 64
              20 70 61 63 6B 65 74
              20 73 74 61 72 74 20
              61 64 64 72 65 73 73
              20 62 79 74 65 73
-      006537 0A                    2245 	.db 0x0a
-      006538 0D                    2246 	.db 0x0d
-      006539 00                    2247 	.db 0x00
-                                   2248 	.area CSEG    (CODE)
-                                   2249 	.area CONST   (CODE)
-      00653A                       2250 ___str_5:
-      00653A 0A                    2251 	.db 0x0a
-      00653B 0D                    2252 	.db 0x0d
-      00653C 49 6E 76 61 6C 69 64  2253 	.ascii "Invalid next start address: 0x%04X"
+      0065C6 0A                    2334 	.db 0x0a
+      0065C7 0D                    2335 	.db 0x0d
+      0065C8 00                    2336 	.db 0x00
+                                   2337 	.area CSEG    (CODE)
+                                   2338 	.area CONST   (CODE)
+      0065C9                       2339 ___str_5:
+      0065C9 0A                    2340 	.db 0x0a
+      0065CA 0D                    2341 	.db 0x0d
+      0065CB 49 6E 76 61 6C 69 64  2342 	.ascii "Invalid next start address: 0x%04X"
              20 6E 65 78 74 20 73
              74 61 72 74 20 61 64
              64 72 65 73 73 3A 20
              30 78 25 30 34 58
-      00655E 0A                    2254 	.db 0x0a
-      00655F 0D                    2255 	.db 0x0d
-      006560 00                    2256 	.db 0x00
-                                   2257 	.area CSEG    (CODE)
-                                   2258 	.area CONST   (CODE)
-      006561                       2259 ___str_6:
-      006561 0A                    2260 	.db 0x0a
-      006562 0D                    2261 	.db 0x0d
-      006563 4D 65 6D 6F 72 79 20  2262 	.ascii "Memory allocation failed for packet size: %d"
+      0065ED 0A                    2343 	.db 0x0a
+      0065EE 0D                    2344 	.db 0x0d
+      0065EF 00                    2345 	.db 0x00
+                                   2346 	.area CSEG    (CODE)
+                                   2347 	.area CONST   (CODE)
+      0065F0                       2348 ___str_6:
+      0065F0 0A                    2349 	.db 0x0a
+      0065F1 0D                    2350 	.db 0x0d
+      0065F2 4D 65 6D 6F 72 79 20  2351 	.ascii "Memory allocation failed for packet size: %d"
              61 6C 6C 6F 63 61 74
              69 6F 6E 20 66 61 69
              6C 65 64 20 66 6F 72
              20 70 61 63 6B 65 74
              20 73 69 7A 65 3A 20
              25 64
-      00658F 0A                    2263 	.db 0x0a
-      006590 0D                    2264 	.db 0x0d
-      006591 00                    2265 	.db 0x00
-                                   2266 	.area CSEG    (CODE)
-                                   2267 	.area CONST   (CODE)
-      006592                       2268 ___str_7:
-      006592 0A                    2269 	.db 0x0a
-      006593 0D                    2270 	.db 0x0d
-      006594 46 61 69 6C 65 64 20  2271 	.ascii "Failed to read packet data"
+      00661E 0A                    2352 	.db 0x0a
+      00661F 0D                    2353 	.db 0x0d
+      006620 00                    2354 	.db 0x00
+                                   2355 	.area CSEG    (CODE)
+                                   2356 	.area CONST   (CODE)
+      006621                       2357 ___str_7:
+      006621 0A                    2358 	.db 0x0a
+      006622 0D                    2359 	.db 0x0d
+      006623 46 61 69 6C 65 64 20  2360 	.ascii "Failed to read packet data"
              74 6F 20 72 65 61 64
              20 70 61 63 6B 65 74
              20 64 61 74 61
-      0065AE 0A                    2272 	.db 0x0a
-      0065AF 0D                    2273 	.db 0x0d
-      0065B0 00                    2274 	.db 0x00
-                                   2275 	.area CSEG    (CODE)
-                                   2276 	.area CONST   (CODE)
-      0065B1                       2277 ___str_8:
-      0065B1 0A                    2278 	.db 0x0a
-      0065B2 50 72 6F 63 65 73 73  2279 	.ascii "Processed response data:"
+      00663D 0A                    2361 	.db 0x0a
+      00663E 0D                    2362 	.db 0x0d
+      00663F 00                    2363 	.db 0x00
+                                   2364 	.area CSEG    (CODE)
+                                   2365 	.area CONST   (CODE)
+      006640                       2366 ___str_8:
+      006640 0A                    2367 	.db 0x0a
+      006641 50 72 6F 63 65 73 73  2368 	.ascii "Processed response data:"
              65 64 20 72 65 73 70
              6F 6E 73 65 20 64 61
              74 61 3A
-      0065CA 0A                    2280 	.db 0x0a
-      0065CB 00                    2281 	.db 0x00
-                                   2282 	.area CSEG    (CODE)
-                                   2283 	.area CONST   (CODE)
-      0065CC                       2284 ___str_9:
-      0065CC 0A                    2285 	.db 0x0a
-      0065CD 4E 6F 20 72 65 73 70  2286 	.ascii "No response generated by TCP packet processing."
+      006659 0A                    2369 	.db 0x0a
+      00665A 00                    2370 	.db 0x00
+                                   2371 	.area CSEG    (CODE)
+                                   2372 	.area CONST   (CODE)
+      00665B                       2373 ___str_9:
+      00665B 0A                    2374 	.db 0x0a
+      00665C 4E 6F 20 72 65 73 70  2375 	.ascii "No response generated by TCP packet processing."
              6F 6E 73 65 20 67 65
              6E 65 72 61 74 65 64
              20 62 79 20 54 43 50
              20 70 61 63 6B 65 74
              20 70 72 6F 63 65 73
              73 69 6E 67 2E
-      0065FC 0A                    2287 	.db 0x0a
-      0065FD 00                    2288 	.db 0x00
-                                   2289 	.area CSEG    (CODE)
-                                   2290 	.area CONST   (CODE)
-      0065FE                       2291 ___str_10:
-      0065FE 0A                    2292 	.db 0x0a
-      0065FF 0D                    2293 	.db 0x0d
-      006600 53 75 63 63 65 73 73  2294 	.ascii "Successfully processed packet of size %d from 0x%04X to 0x%0"
+      00668B 0A                    2376 	.db 0x0a
+      00668C 00                    2377 	.db 0x00
+                                   2378 	.area CSEG    (CODE)
+                                   2379 	.area CONST   (CODE)
+      00668D                       2380 ___str_10:
+      00668D 0A                    2381 	.db 0x0a
+      00668E 0D                    2382 	.db 0x0d
+      00668F 53 75 63 63 65 73 73  2383 	.ascii "Successfully processed packet of size %d from 0x%04X to 0x%0"
              66 75 6C 6C 79 20 70
              72 6F 63 65 73 73 65
              64 20 70 61 63 6B 65
@@ -2332,15 +2421,15 @@
              72 6F 6D 20 30 78 25
              30 34 58 20 74 6F 20
              30 78 25 30
-      00663C 34 58                 2295 	.ascii "4X"
-      00663E 0A                    2296 	.db 0x0a
-      00663F 0D                    2297 	.db 0x0d
-      006640 00                    2298 	.db 0x00
-                                   2299 	.area CSEG    (CODE)
-                                   2300 	.area CONST   (CODE)
-      006641                       2301 ___str_11:
-      006641 0A                    2302 	.db 0x0a
-      006642 49 6E 76 61 6C 69 64  2303 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
+      0066CB 34 58                 2384 	.ascii "4X"
+      0066CD 0A                    2385 	.db 0x0a
+      0066CE 0D                    2386 	.db 0x0d
+      0066CF 00                    2387 	.db 0x00
+                                   2388 	.area CSEG    (CODE)
+                                   2389 	.area CONST   (CODE)
+      0066D0                       2390 ___str_11:
+      0066D0 0A                    2391 	.db 0x0a
+      0066D1 49 6E 76 61 6C 69 64  2392 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
              20 42 75 66 66 65 72
              20 53 69 7A 65 2E 20
              42 75 66 66 65 72 20
@@ -2348,36 +2437,36 @@
              20 76 61 6C 69 64 20
              61 64 64 72 65 73 73
              20 72 61 6E 67 65 2E
-      00667A 0A                    2304 	.db 0x0a
-      00667B 00                    2305 	.db 0x00
-                                   2306 	.area CSEG    (CODE)
-                                   2307 	.area CONST   (CODE)
-      00667C                       2308 ___str_12:
-      00667C 54 43 50 20 72 65 71  2309 	.ascii "TCP request sent successfully."
+      006709 0A                    2393 	.db 0x0a
+      00670A 00                    2394 	.db 0x00
+                                   2395 	.area CSEG    (CODE)
+                                   2396 	.area CONST   (CODE)
+      00670B                       2397 ___str_12:
+      00670B 54 43 50 20 72 65 71  2398 	.ascii "TCP request sent successfully."
              75 65 73 74 20 73 65
              6E 74 20 73 75 63 63
              65 73 73 66 75 6C 6C
              79 2E
-      00669A 0A                    2310 	.db 0x0a
-      00669B 0D                    2311 	.db 0x0d
-      00669C 00                    2312 	.db 0x00
-                                   2313 	.area CSEG    (CODE)
-                                   2314 	.area CONST   (CODE)
-      00669D                       2315 ___str_13:
-      00669D 54 43 50 20 74 72 61  2316 	.ascii "TCP transmission failed. Check error flags."
+      006729 0A                    2399 	.db 0x0a
+      00672A 0D                    2400 	.db 0x0d
+      00672B 00                    2401 	.db 0x00
+                                   2402 	.area CSEG    (CODE)
+                                   2403 	.area CONST   (CODE)
+      00672C                       2404 ___str_13:
+      00672C 54 43 50 20 74 72 61  2405 	.ascii "TCP transmission failed. Check error flags."
              6E 73 6D 69 73 73 69
              6F 6E 20 66 61 69 6C
              65 64 2E 20 43 68 65
              63 6B 20 65 72 72 6F
              72 20 66 6C 61 67 73
              2E
-      0066C8 0A                    2317 	.db 0x0a
-      0066C9 0D                    2318 	.db 0x0d
-      0066CA 00                    2319 	.db 0x00
-                                   2320 	.area CSEG    (CODE)
-                                   2321 	.area CONST   (CODE)
-      0066CB                       2322 ___str_14:
-      0066CB 54 72 61 6E 73 6D 69  2323 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
+      006757 0A                    2406 	.db 0x0a
+      006758 0D                    2407 	.db 0x0d
+      006759 00                    2408 	.db 0x00
+                                   2409 	.area CSEG    (CODE)
+                                   2410 	.area CONST   (CODE)
+      00675A                       2411 ___str_14:
+      00675A 54 72 61 6E 73 6D 69  2412 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
              73 73 69 6F 6E 20 74
              69 6D 65 6F 75 74 2E
              20 45 4E 43 32 38 4A
@@ -2386,10 +2475,10 @@
              66 75 6E 63 74 69 6F
              6E 69 6E 67 20 63 6F
              72 72 65 63
-      006707 74 6C 79 2E           2324 	.ascii "tly."
-      00670B 0A                    2325 	.db 0x0a
-      00670C 0D                    2326 	.db 0x0d
-      00670D 00                    2327 	.db 0x00
-                                   2328 	.area CSEG    (CODE)
-                                   2329 	.area XINIT   (CODE)
-                                   2330 	.area CABS    (ABS,CODE)
+      006796 74 6C 79 2E           2413 	.ascii "tly."
+      00679A 0A                    2414 	.db 0x0a
+      00679B 0D                    2415 	.db 0x0d
+      00679C 00                    2416 	.db 0x00
+                                   2417 	.area CSEG    (CODE)
+                                   2418 	.area XINIT   (CODE)
+                                   2419 	.area CABS    (ABS,CODE)

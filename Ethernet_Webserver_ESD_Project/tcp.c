@@ -75,13 +75,24 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
     response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
     response_tcp_header[3] = tcp_header[1];
 
-    // Process sequence and acknowledgment numbers
-    uint32_t seq_num = 0;
-    uint32_t ack_num = seq_num + 1;  // ACK for SYN
-    response_tcp_header[4] = (ack_num >> 24) & 0xFF;
-    response_tcp_header[5] = (ack_num >> 16) & 0xFF;
-    response_tcp_header[6] = (ack_num >> 8) & 0xFF;
-    response_tcp_header[7] = ack_num & 0xFF;
+    response_tcp_header[4] = 0;
+    response_tcp_header[5] = 0;
+    response_tcp_header[6] = 0;
+    response_tcp_header[7] = 0;
+
+    uint8_t SYN_SEQ3 = tcp_header[4];
+    uint8_t SYN_SEQ2 = tcp_header[5];
+    uint8_t SYN_SEQ1 = tcp_header[6];
+    uint8_t SYN_SEQ0 = tcp_header[7];
+
+    response_tcp_header[8] = SYN_SEQ3;
+    response_tcp_header[9] = SYN_SEQ2;
+    response_tcp_header[10] = SYN_SEQ1;
+    response_tcp_header[11] = SYN_SEQ0 + 1;
+
+
+
+
 
     response_tcp_header[12] = 0x50;  // SYN (0x02) + ACK (0x10)
     // Set flags: SYN-ACK
@@ -105,8 +116,21 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
     response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
     response_tcp_header[17] = tcp_checksum & 0xFF;
 
-    // Set response size (including the shifted start with 0x0E)
-    *response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length;
+    // Add the len field (typically after the checksum, depending on your structure)
+uint8_t *tcp_options = response_tcp_header + 20; // After the TCP header (flags, sequence, etc.)
+
+// Set the 'len' field (assuming it’s part of the TCP options area or payload)
+//tcp_options[0] = 0;  // Set len to 0 (if applicable)
+
+// Add MSS (Maximum Segment Size) as a TCP option
+tcp_options[0] = 0x02;  // Option Type for MSS (0x02)
+tcp_options[1] = 0x04;  // Length of the MSS option (4 bytes)
+tcp_options[2] = 0x05;  // MSS value (0x0500 = 1280 in decimal)
+tcp_options[3] = 0x00;
+
+// Update the response size (including the shifted start with 0x0E)
+*response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length + 4; // Adding 4 for the MSS option size
+
 
     return response;
 }

@@ -2412,8 +2412,8 @@ _main:
 	jnz	00266$
 	ljmp	00126$
 00266$:
-;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4, &response_size);
-	mov	a,#0x04
+;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4+4, &response_size);
+	mov	a,#0x08
 	add	a, _main_sloc2_1_0
 	mov	r3,a
 	clr	a
@@ -2505,12 +2505,18 @@ _main:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	main.c:249: transmit_tcp_packet(response, response_size);
+;	main.c:249: transmit_tcp_packet(response, response_size+4);
 	mov	dptr,#_main_response_size_70004_177
 	movx	a,@dptr
 	mov	r0,a
 	inc	dptr
 	movx	a,@dptr
+	mov	r1,a
+	mov	a,#0x04
+	add	a, r0
+	mov	r0,a
+	clr	a
+	addc	a, r1
 	mov	r1,a
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,r0
