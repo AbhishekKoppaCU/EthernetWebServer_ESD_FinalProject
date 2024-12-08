@@ -13,6 +13,9 @@
 #define BUFFER_SIZE 1500
 uint8_t buffer[BUFFER_SIZE];
 
+uint32_t prevSeq;
+uint32_t prevAck;
+
 // Definitions and constants
 #define IP_PROTO_TCP 0x06
 #define ETH_TYPE_ARP 0x0806
@@ -79,7 +82,7 @@ uint8_t buffer[BUFFER_SIZE];
 
 // TCP state definitions
 typedef enum {
-	LISTEN, SYN_RECEIVED, ESTABLISHED, FIN_WAIT, CLOSED
+	LISTEN, SYN_RECEIVED, ESTABLISHED, FIN_WAIT, CLOSED, ACK_SENT
 } TcpState;
 
 TcpState connectionState = LISTEN;
@@ -307,6 +310,238 @@ void calculateTcpChecksum(uint8_t *buffer) {
 	uint16_t checksum = ~((uint16_t) sum);
 	buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
 	buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
+}
+
+
+
+void makeTcpFinPshAck() {
+    printf("makeTcpFinPshAck\n\r");
+
+    // Shift buffer for alignment
+    memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+    buffer[0] = 0x0E;
+
+    // Ethernet MAC addresses
+    memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+    memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+
+    // IP source and destination addresses
+    memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+    memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+
+    // TCP source and destination ports
+    uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+            | buffer[1 + TCP_SRC_PORT_L_P];
+    uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+            | buffer[1 + TCP_DST_PORT_L_P];
+    buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+    buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+    buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+    buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+
+    // Sequence and acknowledgment numbers
+    uint32_t serverSeqNum = prevSeq;
+    uint32_t ackNum = prevAck;
+
+    buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 4] = (ackNum >> 24) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 5] = (ackNum >> 16) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
+
+    // HTML payload (use payload from `makeHttpResponse`)
+    const char *html_payload =
+        "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/html\r\n"
+        "Content-Length: 530\r\n" // Length should match actual content
+        "\r\n"
+        "<!DOCTYPE html>"
+        "<html lang='en'>"
+        "<head>"
+        "<meta charset='UTF-8'>"
+        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+        "<title>Electronics Tree</title>"
+        "<style>"
+        "body {font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px;}"
+        "h1 {color: #333333;}"
+        "p {color: #666666;}"
+        "</style>"
+        "</head>"
+        "<body>"
+        "<h1>ESD FALL 2024</h1>"
+        "<p>Welcome to Electronics Tree, wher our name isn't just a title—it's a commitment to practical growth in your knowledge and skills. Think of it like planting a seed</p>"
+        "</body>"
+        "</html>";
+
+    uint16_t dataLength = strlen(html_payload);
+
+    // IP total length
+    uint16_t totalLength = IP_HEADER_LEN + TCP_HEADER_LEN + dataLength;
+    buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+    buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+
+    // TCP flags, window size, and header length
+    buffer[1 + TCP_FLAGS_P] = TCP_FLAG_FIN | TCP_FLAG_PUSH | TCP_FLAG_ACK;
+    buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF;
+    buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+    buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+
+    // Copy the HTML payload into the buffer
+    memcpy(&buffer[1 + TCP_DATA_START_P], html_payload, dataLength);
+
+    // IP and TCP checksums
+    calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+    calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+
+    // Transmit the packet
+    transmit_tcp_packet(buffer, 1 + TCP_DATA_START_P + dataLength);
+
+    // Update connection state
+    connectionState = FIN_WAIT;
+}
+
+
+void makeTcpAck3() {
+    printf("makeTcpAck\n\r");
+
+    // Shift buffer for alignment
+    memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+    buffer[0] = 0x0E;
+
+    // Ethernet MAC addresses
+    memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+    memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+
+    // IP source and destination addresses
+    memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+    memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+
+    // TCP source and destination ports
+    uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+            | buffer[1 + TCP_SRC_PORT_L_P];
+    uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+            | buffer[1 + TCP_DST_PORT_L_P];
+    buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+    buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+    buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+    buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+
+    // TCP sequence and acknowledgment numbers
+    uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+            | (buffer[1 + TCP_SEQ_H_P + 1] << 16)
+            | (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
+    uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
+                | (buffer[1 + TCP_ACK_H_P + 1] << 16)
+                | (buffer[1 + TCP_ACK_H_P + 2] << 8) | buffer[1 + TCP_ACK_H_P + 3];
+    uint32_t serverSeqNum = clientAckNum;
+    uint32_t ackNum = clientSeqNum + 1;
+    prevSeq = serverSeqNum;
+    prevAck = ackNum;
+
+    // Set sequence and acknowledgment numbers
+    buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+    buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
+
+    // IP total length
+    uint16_t totalLength = IP_HEADER_LEN + TCP_HEADER_LEN;
+    buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+    buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+
+    // TCP flags, window size, and header length
+    buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
+    buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
+    buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+    buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+
+    // IP and TCP checksums
+    calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+    calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+
+    // Padding to meet minimum Ethernet size
+    // Transmit the packet
+    transmit_tcp_packet(buffer, 1 + 54);
+
+    // Update connection state
+    connectionState = ACK_SENT;
+}
+
+void makeTcpAck2() {
+    printf("makeTcpAck\n\r");
+
+    // Shift buffer for alignment
+    memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+    buffer[0] = 0x0E;
+
+    // Ethernet MAC addresses
+    memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+    memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+
+    // IP source and destination addresses
+    memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+    memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+
+    // TCP source and destination ports
+    uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+            | buffer[1 + TCP_SRC_PORT_L_P];
+    uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+            | buffer[1 + TCP_DST_PORT_L_P];
+    buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+    buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+    buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+    buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+
+    // TCP sequence and acknowledgment numbers
+    uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+            | (buffer[1 + TCP_SEQ_H_P + 1] << 16)
+            | (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
+    uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
+                | (buffer[1 + TCP_ACK_H_P + 1] << 16)
+                | (buffer[1 + TCP_ACK_H_P + 2] << 8) | buffer[1 + TCP_ACK_H_P + 3];
+    uint32_t serverSeqNum = clientAckNum;
+    uint32_t ackNum = clientSeqNum + 454;
+    prevSeq = serverSeqNum;
+    prevAck = ackNum;
+
+    // Set sequence and acknowledgment numbers
+    buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+    buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+    buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
+    buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
+
+    // IP total length
+    uint16_t totalLength = IP_HEADER_LEN + TCP_HEADER_LEN;
+    buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+    buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+
+    // TCP flags, window size, and header length
+    buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
+    buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
+    buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+    buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+
+    // IP and TCP checksums
+    calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+    calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+
+    // Padding to meet minimum Ethernet size
+    // Transmit the packet
+    transmit_tcp_packet(buffer, 1 + 54);
+
+    // Update connection state
+    connectionState = ACK_SENT;
 }
 
 void makeTcpSynAck() {
@@ -549,6 +784,13 @@ void packetLoop() {
 
 		if (ethType == ETH_TYPE_IP && buffer[IP_PROTO_P] == IP_PROTO_TCP) {
 			uint8_t tcpFlags = buffer[TCP_FLAGS_P];
+
+			// Check for TCP(ACK_FIN)
+						if ((tcpFlags & TCP_FLAG_ACK) && (tcpFlags & TCP_FLAG_FIN)) {
+							printf("TCP(ACK_FIN) packet detected\n\r");
+							makeTcpAck3(); // Send an acknowledgment
+							return;        // Exit after handling the specific packet
+						}
 			switch (connectionState) {
 			case LISTEN:
 				printf("listen\n\r");
@@ -566,13 +808,18 @@ void packetLoop() {
 					makeTcpAck();
 					connectionState = FIN_WAIT;
 				} else if (plen > TCP_DATA_START_P) {
-					makeHttpResponse();
+					makeTcpAck2();
+
 				}
 				break;
 			case FIN_WAIT:
 				printf("fin wait\n\r");
 				if (tcpFlags & TCP_FLAG_ACK)
 					connectionState = CLOSED;
+				break;
+			case ACK_SENT:
+				makeTcpFinPshAck();
+				connectionState = CLOSED;
 				break;
 			default:
 				break;
