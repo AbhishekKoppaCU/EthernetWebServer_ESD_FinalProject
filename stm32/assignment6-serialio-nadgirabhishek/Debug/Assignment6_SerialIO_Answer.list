@@ -7,23 +7,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         00003674  080000c0  080000c0  000010c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000a7c  08003734  08003734  00004734  2**2
+  2 .rodata       00000ba4  08003734  08003734  00004734  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  080041b0  080041b0  0000606c  2**0
+  3 .ARM.extab    00000000  080042d8  080042d8  0000606c  2**0
                   CONTENTS
-  4 .ARM          00000000  080041b0  080041b0  0000606c  2**0
+  4 .ARM          00000000  080042d8  080042d8  0000606c  2**0
                   CONTENTS
-  5 .preinit_array 00000000  080041b0  080041b0  0000606c  2**0
+  5 .preinit_array 00000000  080042d8  080042d8  0000606c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  080041b0  080041b0  000051b0  2**2
+  6 .init_array   00000004  080042d8  080042d8  000052d8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  080041b4  080041b4  000051b4  2**2
+  7 .fini_array   00000004  080042dc  080042dc  000052dc  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000006c  20000000  080041b8  00006000  2**2
+  8 .data         0000006c  20000000  080042e0  00006000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000870  2000006c  08004224  0000606c  2**2
+  9 .bss          00000870  2000006c  0800434c  0000606c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  200008dc  08004224  000068dc  2**0
+ 10 ._user_heap_stack 00000604  200008dc  0800434c  000068dc  2**0
                   ALLOC
  11 .ARM.attributes 00000028  00000000  00000000  0000606c  2**0
                   CONTENTS, READONLY
@@ -4160,10 +4160,10 @@ void makeTcpFinPshAck() {
     const char *html_payload =
  8001a5c:	4b2e      	ldr	r3, [pc, #184]	@ (8001b18 <makeTcpFinPshAck+0x1ec>)
  8001a5e:	60bb      	str	r3, [r7, #8]
-        "<h1>ESD FALL 2024</h1>"
-        "<p>Welcome to Electronics Tree, wher our name isn't just a title—it's a commitment to practical growth in your knowledge and skills. Think of it like planting a</p>"
-        "</body>"
-        "</html>";
+    		    "<h1>ESD FALL 2024</h1>"
+    		    "<p>Ethernet based Web Server for Embedded Systems - NADGIR and KOPPA made itttt, lessgoooo!!! This web server showcases the power of microcontrollers and Ethernet communication. By leveraging the AT89C51RC2 microcontroller and the ENC28J60 Ethernet controller, we can serve dynamic web pages and control embedded devices remotely. The server allows seamless communication between hardware and software, enabling real-time data exchange across the network.</p>"
+    		    "</body>"
+    		    "</html>";
 
     uint16_t dataLength = strlen(html_payload);
  8001a60:	68bb      	ldr	r3, [r7, #8]
@@ -4585,7 +4585,7 @@ void makeTcpAck3() {
  8001d0a:	46bd      	mov	sp, r7
  8001d0c:	b007      	add	sp, #28
  8001d0e:	bd90      	pop	{r4, r7, pc}
- 8001d10:	08003e38 	.word	0x08003e38
+ 8001d10:	08003f60 	.word	0x08003f60
  8001d14:	200001a8 	.word	0x200001a8
  8001d18:	200001a9 	.word	0x200001a9
  8001d1c:	200001af 	.word	0x200001af
@@ -4911,7 +4911,7 @@ void makeTcpAck2() {
  8001f26:	b007      	add	sp, #28
  8001f28:	bd90      	pop	{r4, r7, pc}
  8001f2a:	46c0      	nop			@ (mov r8, r8)
- 8001f2c:	08003e38 	.word	0x08003e38
+ 8001f2c:	08003f60 	.word	0x08003f60
  8001f30:	200001a8 	.word	0x200001a8
  8001f34:	200001a9 	.word	0x200001a9
  8001f38:	200001af 	.word	0x200001af
@@ -5203,7 +5203,7 @@ void makeTcpSynAck() {
  800210e:	46bd      	mov	sp, r7
  8002110:	b007      	add	sp, #28
  8002112:	bd90      	pop	{r4, r7, pc}
- 8002114:	08003e48 	.word	0x08003e48
+ 8002114:	08003f70 	.word	0x08003f70
  8002118:	200001a8 	.word	0x200001a8
  800211c:	200001a9 	.word	0x200001a9
  8002120:	200001af 	.word	0x200001af
@@ -5253,7 +5253,7 @@ void makeTcpAck() {
  800216a:	46bd      	mov	sp, r7
  800216c:	bd80      	pop	{r7, pc}
  800216e:	46c0      	nop			@ (mov r8, r8)
- 8002170:	080040c4 	.word	0x080040c4
+ 8002170:	080041ec 	.word	0x080041ec
  8002174:	200001a8 	.word	0x200001a8
  8002178:	200001a9 	.word	0x200001a9
 
@@ -5481,13 +5481,13 @@ void packetLoop() {
  80022ba:	bd90      	pop	{r4, r7, pc}
  80022bc:	200001a8 	.word	0x200001a8
  80022c0:	00000806 	.word	0x00000806
- 80022c4:	080040fc 	.word	0x080040fc
+ 80022c4:	08004224 	.word	0x08004224
  80022c8:	2000078c 	.word	0x2000078c
- 80022cc:	08004154 	.word	0x08004154
- 80022d0:	0800411c 	.word	0x0800411c
- 80022d4:	08004128 	.word	0x08004128
- 80022d8:	08004138 	.word	0x08004138
- 80022dc:	08004148 	.word	0x08004148
+ 80022cc:	0800427c 	.word	0x0800427c
+ 80022d0:	08004244 	.word	0x08004244
+ 80022d4:	08004250 	.word	0x08004250
+ 80022d8:	08004260 	.word	0x08004260
+ 80022dc:	08004270 	.word	0x08004270
 
 080022e0 <__io_getchar>:
  *
@@ -5677,7 +5677,7 @@ LoopForever:
   ldr r1, =_edata
  80023a4:	2000006c 	.word	0x2000006c
   ldr r2, =_sidata
- 80023a8:	080041b8 	.word	0x080041b8
+ 80023a8:	080042e0 	.word	0x080042e0
   ldr r2, =_sbss
  80023ac:	2000006c 	.word	0x2000006c
   ldr r4, =_ebss
@@ -5955,7 +5955,7 @@ Infinite_Loop:
  80025d0:	2000000c 	.word	0x2000000c
  80025d4:	02dc6c00 	.word	0x02dc6c00
  80025d8:	007a1200 	.word	0x007a1200
- 80025dc:	0800416c 	.word	0x0800416c
+ 80025dc:	08004294 	.word	0x08004294
 
 080025e0 <malloc>:
  80025e0:	b510      	push	{r4, lr}
@@ -6988,10 +6988,10 @@ Infinite_Loop:
  8002e3a:	4798      	blx	r3
  8002e3c:	3601      	adds	r6, #1
  8002e3e:	e7f2      	b.n	8002e26 <__libc_init_array+0x1e>
- 8002e40:	080041b0 	.word	0x080041b0
- 8002e44:	080041b0 	.word	0x080041b0
- 8002e48:	080041b4 	.word	0x080041b4
- 8002e4c:	080041b0 	.word	0x080041b0
+ 8002e40:	080042d8 	.word	0x080042d8
+ 8002e44:	080042d8 	.word	0x080042d8
+ 8002e48:	080042dc 	.word	0x080042dc
+ 8002e4c:	080042d8 	.word	0x080042d8
 
 08002e50 <__retarget_lock_init_recursive>:
  8002e50:	4770      	bx	lr
@@ -7393,9 +7393,9 @@ Infinite_Loop:
  8003168:	f000 f87c 	bl	8003264 <_printf_i>
  800316c:	e7e3      	b.n	8003136 <_vfiprintf_r+0x1ea>
  800316e:	46c0      	nop			@ (mov r8, r8)
- 8003170:	0800417c 	.word	0x0800417c
- 8003174:	08004182 	.word	0x08004182
- 8003178:	08004186 	.word	0x08004186
+ 8003170:	080042a4 	.word	0x080042a4
+ 8003174:	080042aa 	.word	0x080042aa
+ 8003178:	080042ae 	.word	0x080042ae
  800317c:	00000000 	.word	0x00000000
  8003180:	08002f27 	.word	0x08002f27
 
@@ -7766,8 +7766,8 @@ Infinite_Loop:
  8003472:	2500      	movs	r5, #0
  8003474:	e7f7      	b.n	8003466 <_printf_i+0x202>
  8003476:	46c0      	nop			@ (mov r8, r8)
- 8003478:	0800418d 	.word	0x0800418d
- 800347c:	0800419e 	.word	0x0800419e
+ 8003478:	080042b5 	.word	0x080042b5
+ 800347c:	080042c6 	.word	0x080042c6
 
 08003480 <__sflush_r>:
  8003480:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}

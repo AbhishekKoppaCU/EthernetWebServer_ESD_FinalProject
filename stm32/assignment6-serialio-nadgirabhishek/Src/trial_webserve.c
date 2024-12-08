@@ -354,27 +354,27 @@ void makeTcpFinPshAck() {
 
     // HTML payload (use payload from `makeHttpResponse`)
     const char *html_payload =
-        "HTTP/1.1 200 OK\r\n"
-        "Content-Type: text/html\r\n"
-        "Content-Length: 530\r\n" // Length should match actual content
-        "\r\n"
-        "<!DOCTYPE html>"
-        "<html lang='en'>"
-        "<head>"
-        "<meta charset='UTF-8'>"
-        "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
-        "<title>Electronics Tree</title>"
-        "<style>"
-        "body {font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px;}"
-        "h1 {color: #333333;}"
-        "p {color: #666666;}"
-        "</style>"
-        "</head>"
-        "<body>"
-        "<h1>ESD FALL 2024</h1>"
-        "<p>Welcome to Electronics Tree, wher our name isn't just a title—it's a commitment to practical growth in your knowledge and skills. Think of it like planting a seed</p>"
-        "</body>"
-        "</html>";
+    		"HTTP/1.1 200 OK\r\n"
+    		    "Content-Type: text/html\r\n"
+    		    "Content-Length: 530\r\n" // Length matches the content
+    		    "\r\n"
+    		    "<!DOCTYPE html>"
+    		    "<html lang='en'>"
+    		    "<head>"
+    		    "<meta charset='UTF-8'>"
+    		    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+    		    "<title>Ethernet Web Server</title>"
+    		    "<style>"
+    		    "body {font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px;}"
+    		    "h1 {color: #333333;}"
+    		    "p {color: #666666;}"
+    		    "</style>"
+    		    "</head>"
+    		    "<body>"
+    		    "<h1>ESD FALL 2024</h1>"
+    		    "<p>Ethernet based Web Server for Embedded Systems - NADGIR and KOPPA made itttt, lessgoooo!!! This web server showcases the power of microcontrollers and Ethernet communication. By leveraging the AT89C51RC2 microcontroller and the ENC28J60 Ethernet controller, we can serve dynamic web pages and control embedded devices remotely. The server allows seamless communication between hardware and software, enabling real-time data exchange across the network.</p>"
+    		    "</body>"
+    		    "</html>";
 
     uint16_t dataLength = strlen(html_payload);
 
