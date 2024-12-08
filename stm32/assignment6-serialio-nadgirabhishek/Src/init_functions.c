@@ -6,6 +6,10 @@
  */
 
 #include "init_functions.h"
+#define F_TIM_CLOCK (48UL*1000UL*1000UL)	// 48 MHz
+#define PWM_FREQUENCY (500)
+#define PWM_MAX_DUTY_VALUE ( (F_TIM_CLOCK / (PWM_FREQUENCY * PWM_PRESCALER)) - 1)
+#define PWM_PRESCALER (2)
 
 void uart_init(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -29,3 +33,18 @@ void init_uled(void) {
 	MODIFY_FIELD(GPIOA->MODER, GPIO_MODER_MODER5, ESF_GPIO_MODER_OUTPUT);
 
 }
+/*
+void SysTick_Init(void) {
+	SysTick->LOAD = ((F_TIM_CLOCK / 800) - 1); // Initializing Systick to get one tick for 10ms.
+	NVIC_SetPriority(SysTick_IRQn, 3);
+	SysTick->VAL = 0;
+	SysTick->CTRL = SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;
+}
+*/
+void SysTick_Init(void) {
+    SysTick->LOAD = (F_TIM_CLOCK - 1); // Configure SysTick to generate 1 interrupt every 1 second
+    NVIC_SetPriority(SysTick_IRQn, 3); // Set priority level (optional)
+    SysTick->VAL = 0; // Clear the current value register
+    SysTick->CTRL = SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk; // Enable SysTick with interrupt
+}
+

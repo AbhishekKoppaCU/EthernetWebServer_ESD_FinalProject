@@ -5,13 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Inc/Eth.c 
+../Inc/webserver.c 
 
 OBJS += \
-./Inc/Eth.o 
+./Inc/webserver.o 
 
 C_DEPS += \
-./Inc/Eth.d 
+./Inc/webserver.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +21,7 @@ Inc/%.o Inc/%.su Inc/%.cyclo: ../Inc/%.c Inc/subdir.mk
 clean: clean-Inc
 
 clean-Inc:
-	-$(RM) ./Inc/Eth.cyclo ./Inc/Eth.d ./Inc/Eth.o ./Inc/Eth.su
+	-$(RM) ./Inc/webserver.cyclo ./Inc/webserver.d ./Inc/webserver.o ./Inc/webserver.su
 
 .PHONY: clean-Inc
 

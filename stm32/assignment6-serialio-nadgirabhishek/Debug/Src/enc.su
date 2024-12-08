@@ -10,6 +10,6 @@
 ../Src/enc.c:210:6:enc_phy_write	16	static
 ../Src/enc.c:217:9:enc_eth_read	32	static
 ../Src/enc.c:237:6:enc_reset	8	static
-../Src/enc.c:248:6:enc_init	56	static
-../Src/enc.c:306:6:enc_bit_set	24	static
-../Src/enc.c:314:6:enc_bit_clear	24	static
+../Src/enc.c:248:6:enc_init	64	static
+../Src/enc.c:326:6:enc_bit_set	24	static
+../Src/enc.c:334:6:enc_bit_clear	24	static

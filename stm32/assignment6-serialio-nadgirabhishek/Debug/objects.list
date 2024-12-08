@@ -1,3 +1,4 @@
+"./Inc/webserver.o"
 "./Src/Eth.o"
 "./Src/arp.o"
 "./Src/cbfifo.o"
@@ -12,6 +13,7 @@
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Src/tcp.o"
+"./Src/trial_webserve.o"
 "./Src/uart_functions.o"
 "./Src/udp.o"
 "./Startup/startup_stm32f091rctx.o"

@@ -19,6 +19,7 @@ C_SRCS += \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
 ../Src/tcp.c \
+../Src/trial_webserve.c \
 ../Src/uart_functions.c \
 ../Src/udp.c 
 
@@ -37,6 +38,7 @@ OBJS += \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
 ./Src/tcp.o \
+./Src/trial_webserve.o \
 ./Src/uart_functions.o \
 ./Src/udp.o 
 
@@ -55,6 +57,7 @@ C_DEPS += \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
 ./Src/tcp.d \
+./Src/trial_webserve.d \
 ./Src/uart_functions.d \
 ./Src/udp.d 
 
@@ -66,7 +69,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/Eth.cyclo ./Src/Eth.d ./Src/Eth.o ./Src/Eth.su ./Src/arp.cyclo ./Src/arp.d ./Src/arp.o ./Src/arp.su ./Src/cbfifo.cyclo ./Src/cbfifo.d ./Src/cbfifo.o ./Src/cbfifo.su ./Src/commands.cyclo ./Src/commands.d ./Src/commands.o ./Src/commands.su ./Src/enc.cyclo ./Src/enc.d ./Src/enc.o ./Src/enc.su ./Src/functions.cyclo ./Src/functions.d ./Src/functions.o ./Src/functions.su ./Src/global.cyclo ./Src/global.d ./Src/global.o ./Src/global.su ./Src/icmp.cyclo ./Src/icmp.d ./Src/icmp.o ./Src/icmp.su ./Src/init_functions.cyclo ./Src/init_functions.d ./Src/init_functions.o ./Src/init_functions.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/spi.cyclo ./Src/spi.d ./Src/spi.o ./Src/spi.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/tcp.cyclo ./Src/tcp.d ./Src/tcp.o ./Src/tcp.su ./Src/uart_functions.cyclo ./Src/uart_functions.d ./Src/uart_functions.o ./Src/uart_functions.su ./Src/udp.cyclo ./Src/udp.d ./Src/udp.o ./Src/udp.su
+	-$(RM) ./Src/Eth.cyclo ./Src/Eth.d ./Src/Eth.o ./Src/Eth.su ./Src/arp.cyclo ./Src/arp.d ./Src/arp.o ./Src/arp.su ./Src/cbfifo.cyclo ./Src/cbfifo.d ./Src/cbfifo.o ./Src/cbfifo.su ./Src/commands.cyclo ./Src/commands.d ./Src/commands.o ./Src/commands.su ./Src/enc.cyclo ./Src/enc.d ./Src/enc.o ./Src/enc.su ./Src/functions.cyclo ./Src/functions.d ./Src/functions.o ./Src/functions.su ./Src/global.cyclo ./Src/global.d ./Src/global.o ./Src/global.su ./Src/icmp.cyclo ./Src/icmp.d ./Src/icmp.o ./Src/icmp.su ./Src/init_functions.cyclo ./Src/init_functions.d ./Src/init_functions.o ./Src/init_functions.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/spi.cyclo ./Src/spi.d ./Src/spi.o ./Src/spi.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/tcp.cyclo ./Src/tcp.d ./Src/tcp.o ./Src/tcp.su ./Src/trial_webserve.cyclo ./Src/trial_webserve.d ./Src/trial_webserve.o ./Src/trial_webserve.su ./Src/uart_functions.cyclo ./Src/uart_functions.d ./Src/uart_functions.o ./Src/uart_functions.su ./Src/udp.cyclo ./Src/udp.d ./Src/udp.o ./Src/udp.su
 
 .PHONY: clean-Src
 

@@ -112,10 +112,10 @@ void enc_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr) 
 	uint8_t opcode = 0x7A; // Write buffer memory command
 	GPIOB->ODR &= ~SPI2_CS_PIN; // Pull CS Low
 	SPI_WriteByte(opcode);
-	printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r",
-			num_bytes, start_address);
+	//printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r",
+	//		num_bytes, start_address);
 	for (int i = 0; i < num_bytes; i++) {
-		printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+		//printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
 		SPI_WriteByte(*data_ptr); // Send data
 		data_ptr++;
 	}
@@ -149,14 +149,14 @@ uint16_t enc_buffer_read(int num_bytes, uint16_t start_address,
 	uint8_t lower_byte = (uint8_t) (start_address & 0xFF);
 	enc_control_write(0, 0x01, higher_byte); // ERDPTH
 	enc_control_write(0, 0x00, lower_byte); // ERDPTL
-	printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r",
-			num_bytes, start_address);
+	//printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r",
+	//		num_bytes, start_address);
 	uint8_t opcode = 0x3A; // Read buffer memory command
 	GPIOB->ODR &= ~SPI2_CS_PIN; // Pull CS Low
 	SPI_WriteByte(opcode);
 	for (int i = 0; i < num_bytes; i++) {
 		*data_ptr = SPI_ReadByte(); // Read data
-		printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+		//printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
 		data_ptr++;
 	}
 	GPIOB->ODR |= SPI2_CS_PIN; // Pull CS High
@@ -256,35 +256,47 @@ void enc_init(const uint8_t *mac) {
 	// Split Memory: Reserve RX and TX buffers
 	uint16_t rx_start = RX_BUFFER_START;
 	uint16_t rx_end = RX_BUFFER_END;
-	uint16_t rx_start = TX_BUFFER_START;
-	uint16_t rx_end  = TX_BUFFER_END;
+	uint16_t tx_start = TX_BUFFER_START;
+	uint16_t tx_end  = TX_BUFFER_END;
 	// Initialize RX Buffer
 	enc_buffer_init(rx_start, rx_end);
-	enc_control_write(0, 0x04, (uint8_t) (rx_start & 0xFF)); // Low byte
-	enc_control_write(0, 0x05, (uint8_t) ((rx_start >> 8) & 0xFF)); // High byte
+	enc_control_write(0, 0x04, (uint8_t) (tx_start & 0xFF)); // Low byte
+	enc_control_write(0, 0x05, (uint8_t) ((tx_start >> 8) & 0xFF)); // High byte
 
 	// Write to ETXND (Transmit End Pointer)
-	enc_control_write(0, 0x06, (uint8_t) (rx_endrx_end & 0xFF)); // Low byte
-	enc_control_write(0, 0x07, (uint8_t) ((rx_end >> 8) & 0xFF)); // High byte
+	enc_control_write(0, 0x06, (uint8_t) (tx_end & 0xFF)); // Low byte
+	enc_control_write(0, 0x07, (uint8_t) ((tx_end >> 8) & 0xFF)); // High byte
 	// Set RX Read Pointer to Start Address
 	//spi_control_write(0, 0x0C, (uint8_t) (rx_start & 0xFF)); // ERXRDPTL
 	//spi_control_write(0, 0x0D, (uint8_t) ((rx_start >> 8) & 0xFF)); // ERXRDPTH
 
 	// Enable MAC Receive
 	//spi_control_write(2, 0x00, 0x0D); // MACON1: Enable RX (MARXEN), TXPAUS, RXPAUS
-	enc_phy_write(0x14, 0x0476); // PHLCON: LEDA=Link/Activity, LEDB=RX/TX Activity
+
+	enc_control_write(1, 0x18, 0xB1);// crcen,ucen,pcen,bcen
+	enc_control_write(1, 0x08, 0x3F); //pattern match
+	enc_control_write(1, 0x09, 0x30); //pattern match
+	enc_control_write(1, 0x10, 0xF9); //pattern match
+	enc_control_write(1, 0x11, 0xF7); //pattern match
+
+
+	uint8_t read_macon1 = enc_mac_read(0x00, 2); //mac enable for reception
+	enc_control_write(2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
+
+	enc_control_write(2, 0x02, 0x32); //MACON3_PADCFG0|MACON3_TXCRCEN|MACON3_FRMLNEN)
 	// Configure MACON3 for padding, CRC, and frame length
-	enc_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
+	//enc_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
+
+	enc_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
+	enc_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
+
+	enc_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
+
 	enc_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
 
 	// Set maximum frame length (1518 bytes for standard Ethernet)
-	enc_control_write(2, 0x0A, 0xEE); // MAMXFLL
+	enc_control_write(2, 0x0A, 0xDC); // MAMXFLL
 	enc_control_write(2, 0x0B, 0x05); // MAMXFLH
-
-	// Configure Inter-Packet Gap
-	enc_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
-	enc_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
-	enc_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
 
 	// Configure MAC Address (write in reverse order)
 	enc_control_write(3, 0x01, mac[5]); // MAADR6
@@ -293,20 +305,22 @@ void enc_init(const uint8_t *mac) {
 	enc_control_write(3, 0x02, mac[2]); // MAADR3
 	enc_control_write(3, 0x05, mac[1]); // MAADR2
 	enc_control_write(3, 0x04, mac[0]); // MAADR1
-
-	enc_control_write(1, 0x18, 0x80); //unicast filter funcationality register
-	uint8_t read_macon3 = enc_mac_read(0x03, 2);
-	enc_control_write(2, 0x03, (read_macon3 | (1 << 0)));
-	uint8_t read_macon1 = enc_mac_read(0x00, 2); //mac enable for reception
-	enc_control_write(2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
-	enc_phy_write(0x00, 0x0100);
+	enc_phy_write(0x10, 0x0100);
 
 	// Configure PHY LEDs for activity indication
-
+	enc_control_write(0, 0X1B, 0XC0); // reception enable bit
 	enc_control_write(0, 0X1F, 0X04); // reception enable bit
+
 	printf("\nENC28J60 Initialization Complete.\n");
 	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
 			mac[2], mac[3], mac[4], mac[5]);
+	uint8_t rev = enc_eth_read(0x12,3);
+	    // microchip forgot to step the number on the silicon when they
+	    // released the revision B7. 6 is now rev B7. We still have
+	    // to see what they do when they release B8. At the moment
+	    // there is no B8 out yet
+	    if (rev > 5) ++rev;
+	    //return rev;
 }
 
 void enc_bit_set(uint8_t addr, uint8_t mask) {

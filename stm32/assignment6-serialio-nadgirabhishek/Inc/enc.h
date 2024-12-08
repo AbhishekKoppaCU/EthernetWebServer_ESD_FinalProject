@@ -16,10 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define RX_BUFFER_START 0x0800
-#define RX_BUFFER_END   0x1FFF
-#define TX_BUFFER_START 0x0000
-#define TX_BUFFER_END   0x07FF
+
 
 
 /*

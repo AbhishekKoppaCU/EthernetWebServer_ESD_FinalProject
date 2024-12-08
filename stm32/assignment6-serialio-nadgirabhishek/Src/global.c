@@ -9,7 +9,7 @@
 
 #include "global.h"
 #include <stdbool.h>
-
+volatile uint32_t tick_counter = 0;
 void USART2_IRQHandler(void) {
 	// Check if RXNE flag is set (data received)
 	if (USART2->ISR & USART_ISR_RXNE) {
@@ -33,3 +33,14 @@ void USART2_IRQHandler(void) {
 	}
 }
 
+
+
+/*
+ * This function increments tick counter and global tick counter every 10ms.
+ * Tick counter is used to run the functions whereas global tick counter is used for
+ * keeping a time record since startup.
+ */
+void SysTick_Handler(void) {
+	tick_counter++;
+	//global_tick_counter++;
+}

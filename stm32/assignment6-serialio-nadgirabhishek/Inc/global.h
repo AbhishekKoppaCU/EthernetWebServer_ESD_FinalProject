@@ -26,8 +26,11 @@
 
 #define htons(x) __builtin_bswap16(x)
 #define ntohs(x) __builtin_bswap16(x)
-
-
+#define RX_BUFFER_START 0x0000
+#define RX_BUFFER_END   0x1BFF
+#define TX_BUFFER_START 0x1C00
+#define TX_BUFFER_END   0x1FFF
+extern volatile uint32_t tick_counter;
 extern uint8_t target_mac[6];
 
 extern uint8_t device_mac[6]; // Default MAC

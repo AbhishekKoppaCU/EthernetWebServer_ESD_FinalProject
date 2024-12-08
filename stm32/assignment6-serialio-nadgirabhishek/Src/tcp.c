@@ -9,7 +9,7 @@
 #define ETHERNET_HEADER_SIZE 14
 #define IP_HEADER_SIZE 20
 #define TCP_HEADER_SIZE 20
-#define TX_BUFFER_START 0x0000
+//#define TX_BUFFER_START 0x0000
 
 // Function to calculate the checksum
 uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
@@ -208,7 +208,7 @@ void process_packet_from_buffer(uint16_t start_address) {
     // Print the response in hexdump format before freeing
     if (response != NULL) {
         printf("\nProcessed response data:\n");
-        print_hexdump(response, response_size);
+        //print_hexdump(response, response_size);
         transmit_tcp_packet(response, response_size);
         free(response); // Free response memory if allocated dynamically
     } else {

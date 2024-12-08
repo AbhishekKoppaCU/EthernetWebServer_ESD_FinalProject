@@ -67,5 +67,5 @@
 
 void uart_init(void) ;
 void init_uled(void);
-
+void SysTick_Init(void);
 #endif /* INIT_FUNCTIONS_H_ */

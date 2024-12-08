@@ -1,0 +1,11 @@
+../Src/trial_webserve.c:99:10:packetReceive	32	static
+../Src/trial_webserve.c:180:6:makeArpReply	8	static
+../Src/trial_webserve.c:238:6:calculateIPChecksum	32	static
+../Src/trial_webserve.c:264:6:calculateTcpChecksum	32	static
+../Src/trial_webserve.c:306:6:makeTcpSynAck	40	static
+../Src/trial_webserve.c:442:6:makeHttpResponse	16	static
+../Src/trial_webserve.c:454:6:makeTcpAck	8	static
+../Src/trial_webserve.c:464:6:trial_arp_request	56	static
+../Src/trial_webserve.c:483:6:refreshArp	16	static
+../Src/trial_webserve.c:500:6:packetLoop	24	static
+../Src/trial_webserve.c:548:10:getSystemTick	8	static
