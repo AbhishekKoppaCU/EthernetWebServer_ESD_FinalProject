@@ -8,6 +8,74 @@
 #include "tcp.h"
 
 
+void calculateIPChecksum(uint8_t *buffer) {
+    // Reset the checksum field
+    buffer[IP_CHECKSUM_P] = 0;
+    buffer[IP_CHECKSUM_P + 1] = 0;
+
+    // Calculate checksum for a fixed IP header length (20 bytes)
+    uint16_t length = IP_HEADER_LEN;
+    uint32_t sum = 0;
+
+    // Sum the 16-bit words in the header
+    for (uint16_t i = IP_P; i < IP_P + length; i += 2) {
+        uint16_t word = (buffer[i] << 8) | buffer[i + 1];
+        sum += word;
+    }
+
+    // Add carry bits until the sum fits in 16 bits
+    while (sum >> 16) {
+        sum = (sum & 0xFFFF) + (sum >> 16);
+    }
+
+    // Compute one's complement and store it in the checksum field
+    uint16_t checksum = ~((uint16_t)sum);
+    buffer[IP_CHECKSUM_P] = (checksum >> 8) & 0xFF;
+    buffer[IP_CHECKSUM_P + 1] = checksum & 0xFF;
+}
+
+void calculateTcpChecksum(uint8_t *buffer) {
+    // Reset the checksum field
+    buffer[TCP_CHECKSUM_H_P] = 0;
+    buffer[TCP_CHECKSUM_L_P] = 0;
+
+    // Extract TCP length (Total Length - IP Header Length)
+    uint16_t tcpLength = (((buffer[IP_TOTLEN_H_P] << 8) | buffer[IP_TOTLEN_L_P]) - IP_HEADER_LEN);
+    uint32_t sum = 0;
+
+    // Pseudo-header: Source IP
+    for (uint8_t i = 0; i < 4; i++) {
+        sum += (buffer[IP_SRC_P + i] << 8) | buffer[IP_SRC_P + i + 1];
+        i++;
+    }
+
+    // Pseudo-header: Destination IP
+    for (uint8_t i = 0; i < 4; i++) {
+        sum += (buffer[IP_DST_P + i] << 8) | buffer[IP_DST_P + i + 1];
+        i++;
+    }
+
+    // Pseudo-header: Protocol and TCP length
+    sum += (uint16_t)IP_PROTO_TCP;
+    sum += tcpLength;
+
+    // TCP Header and Payload
+    for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i += 2) {
+        uint16_t word = (buffer[i] << 8) | buffer[i + 1];
+        sum += word;
+    }
+
+    // Add carry bits
+    while (sum >> 16) {
+        sum = (sum & 0xFFFF) + (sum >> 16);
+    }
+
+    // Compute one's complement and store in the checksum field
+    uint16_t checksum = ~((uint16_t)sum);
+    buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
+    buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
+}
+
 // Function to calculate the checksum
 uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
     uint32_t sum = 0;
@@ -98,6 +166,12 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
     // Set flags: SYN-ACK
     response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
 
+    //response_tcp_header[14] = 0xFF;
+    // Set flags: SYN-ACK
+    //response_tcp_header[15] = 0xFF;
+
+
+
     // Clear urgent pointer
     response_tcp_header[18] = 0;
     response_tcp_header[19] = 0;
@@ -108,28 +182,35 @@ uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *res
 
     response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
     response_ip_header[3] = ip_total_length & 0xFF;
-    uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
-    response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
-    response_ip_header[11] = ip_checksum & 0xFF;
 
-    uint16_t tcp_checksum = calculate_checksum(data_start + ETHERNET_HEADER_SIZE, ip_total_length);
-    response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
-    response_tcp_header[17] = tcp_checksum & 0xFF;
+    // Calculate IP checksum
+    calculateIPChecksum(data_start);
+
+    // Set TCP pseudo-header and checksum
+    calculateTcpChecksum(data_start);
+
+    //uint16_t ip_checksum = calculate_checksum(response_ip_header, IP_HEADER_SIZE);
+    //response_ip_header[10] = (ip_checksum >> 8) & 0xFF;
+    //response_ip_header[11] = ip_checksum & 0xFF;
+
+    //uint16_t tcp_checksum = calculate_checksum(data_start + ETHERNET_HEADER_SIZE, ip_total_length);
+    //response_tcp_header[16] = (tcp_checksum >> 8) & 0xFF;
+    //response_tcp_header[17] = tcp_checksum & 0xFF;
 
     // Add the len field (typically after the checksum, depending on your structure)
-uint8_t *tcp_options = response_tcp_header + 20; // After the TCP header (flags, sequence, etc.)
+//uint8_t *tcp_options = response_tcp_header + 20; // After the TCP header (flags, sequence, etc.)
 
 // Set the 'len' field (assuming it’s part of the TCP options area or payload)
 //tcp_options[0] = 0;  // Set len to 0 (if applicable)
 
 // Add MSS (Maximum Segment Size) as a TCP option
-tcp_options[0] = 0x02;  // Option Type for MSS (0x02)
-tcp_options[1] = 0x04;  // Length of the MSS option (4 bytes)
-tcp_options[2] = 0x05;  // MSS value (0x0500 = 1280 in decimal)
-tcp_options[3] = 0x00;
+//tcp_options[0] = 0x02;  // Option Type for MSS (0x02)
+//tcp_options[1] = 0x04;  // Length of the MSS option (4 bytes)
+//tcp_options[2] = 0x05;  // MSS value (0x0500 = 1280 in decimal)
+//tcp_options[3] = 0x00;
 
 // Update the response size (including the shifted start with 0x0E)
-*response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length + 4; // Adding 4 for the MSS option size
+*response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length; // Adding 4 for the MSS option size
 
 
     return response;
@@ -199,7 +280,7 @@ void process_packet_from_buffer(uint16_t start_address) {
     // Print the response in hexdump format before freeing
     if (response != NULL) {
         printf("\nProcessed response data:\n");
-        print_hexdump(response, response_size);
+        //print_hexdump(response, response_size);
         transmit_tcp_packet(response, response_size);
         free(response); // Free response memory if allocated dynamically
     } else {

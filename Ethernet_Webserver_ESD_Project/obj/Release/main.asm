@@ -26,7 +26,6 @@
 	.globl _configure_SPI
 	.globl _process_packet_from_buffer
 	.globl _transmit_tcp_packet
-	.globl _print_hexdump
 	.globl _process_tcp_packet
 	.globl _memcmp
 	.globl _free
@@ -2317,26 +2316,7 @@ _main:
 	pop	ar6
 	pop	ar7
 	orl	a,b
-	jz	00260$
-	ljmp	00121$
-00260$:
-;	main.c:228: printf("MAC matched\n................\r");
-	push	ar7
-	push	ar6
-	push	ar5
-	mov	a,#___str_38
-	push	acc
-	mov	a,#(___str_38 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	pop	ar5
-	pop	ar6
-	pop	ar7
+	jnz	00121$
 ;	main.c:230: if (packet_data_actual[12] == 0x08 && packet_data_actual[13] == 0x00) {
 	mov	a,#0x0c
 	add	a, _main_sloc5_1_0
@@ -2367,9 +2347,9 @@ _main:
 	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,#___str_39
+	mov	a,#___str_38
 	push	acc
-	mov	a,#(___str_39 >> 8)
+	mov	a,#(___str_38 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2412,8 +2392,8 @@ _main:
 	jnz	00266$
 	ljmp	00126$
 00266$:
-;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4+4, &response_size);
-	mov	a,#0x08
+;	main.c:243: uint8_t *response = process_tcp_packet(packet_data_actual, len+4, &response_size);
+	mov	a,#0x04
 	add	a, _main_sloc2_1_0
 	mov	r3,a
 	clr	a
@@ -2450,9 +2430,7 @@ _main:
 ;	main.c:246: if (response != NULL) {
 	mov	a,r2
 	orl	a,r3
-	jnz	00267$
-	ljmp	00123$
-00267$:
+	jz	00123$
 ;	main.c:247: printf("\nProcessed response data:\n");
 	push	ar7
 	push	ar6
@@ -2460,9 +2438,9 @@ _main:
 	push	ar4
 	push	ar3
 	push	ar2
-	mov	a,#___str_40
+	mov	a,#___str_39
 	push	acc
-	mov	a,#(___str_40 >> 8)
+	mov	a,#(___str_39 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2476,47 +2454,12 @@ _main:
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	main.c:248: print_hexdump(response, response_size);
+;	main.c:249: transmit_tcp_packet(response, response_size);
 	mov	dptr,#_main_response_size_70004_177
 	movx	a,@dptr
 	mov	r0,a
 	inc	dptr
 	movx	a,@dptr
-	mov	r1,a
-	mov	dptr,#_print_hexdump_PARM_2
-	mov	a,r0
-	movx	@dptr,a
-	mov	a,r1
-	inc	dptr
-	movx	@dptr,a
-	mov	dpl, r2
-	mov	dph, r3
-	mov	b, r4
-	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	push	ar3
-	push	ar2
-	lcall	_print_hexdump
-	pop	ar2
-	pop	ar3
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
-;	main.c:249: transmit_tcp_packet(response, response_size+4);
-	mov	dptr,#_main_response_size_70004_177
-	movx	a,@dptr
-	mov	r0,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r1,a
-	mov	a,#0x04
-	add	a, r0
-	mov	r0,a
-	clr	a
-	addc	a, r1
 	mov	r1,a
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,r0
@@ -2551,9 +2494,9 @@ _main:
 	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,#___str_41
+	mov	a,#___str_40
 	push	acc
-	mov	a,#(___str_41 >> 8)
+	mov	a,#(___str_40 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2569,9 +2512,9 @@ _main:
 	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,#___str_42
+	mov	a,#___str_41
 	push	acc
-	mov	a,#(___str_42 >> 8)
+	mov	a,#(___str_41 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2588,9 +2531,9 @@ _main:
 	push	ar7
 	push	ar6
 	push	ar5
-	mov	a,#___str_43
+	mov	a,#___str_42
 	push	acc
-	mov	a,#(___str_43 >> 8)
+	mov	a,#(___str_42 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2615,9 +2558,9 @@ _main:
 	push	ar5
 	push	_main_sloc4_1_0
 	push	(_main_sloc4_1_0 + 1)
-	mov	a,#___str_44
+	mov	a,#___str_43
 	push	acc
-	mov	a,#(___str_44 >> 8)
+	mov	a,#(___str_43 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2628,9 +2571,9 @@ _main:
 ;	main.c:269: printf("byteCount: %d\n", byteCount);
 	push	_main_sloc0_1_0
 	push	(_main_sloc0_1_0 + 1)
-	mov	a,#___str_45
+	mov	a,#___str_44
 	push	acc
-	mov	a,#(___str_45 >> 8)
+	mov	a,#(___str_44 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2641,9 +2584,9 @@ _main:
 ;	main.c:270: printf("status: 0x%02X\n", status);
 	push	_main_sloc1_1_0
 	push	(_main_sloc1_1_0 + 1)
-	mov	a,#___str_46
+	mov	a,#___str_45
 	push	acc
-	mov	a,#(___str_46 >> 8)
+	mov	a,#(___str_45 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2694,9 +2637,9 @@ _main:
 ;	main.c:286: case 'C':{
 00134$:
 ;	main.c:287: printf(" Resetting ENC using RESET pin in Hardware(P1_0)\n\r");
-	mov	a,#___str_47
+	mov	a,#___str_46
 	push	acc
-	mov	a,#(___str_47 >> 8)
+	mov	a,#(___str_46 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2753,9 +2696,9 @@ _main:
 	mov	dpl, #0x1e
 	lcall	_mac_spi_read
 ;	main.c:306: printf("Enabling TXPKTIE\n\r");
-	mov	a,#___str_48
+	mov	a,#___str_47
 	push	acc
-	mov	a,#(___str_48 >> 8)
+	mov	a,#(___str_47 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2777,9 +2720,9 @@ _main:
 ;	main.c:310: case 'F':{
 00138$:
 ;	main.c:311: printf("Disabling TXPKTIE\n\r");
-	mov	a,#___str_49
+	mov	a,#___str_48
 	push	acc
-	mov	a,#(___str_49 >> 8)
+	mov	a,#(___str_48 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2799,9 +2742,9 @@ _main:
 ;	main.c:314: default: {
 00139$:
 ;	main.c:315: printf("Invalid option. Please select a valid action.\n\r");
-	mov	a,#___str_50
+	mov	a,#___str_49
 	push	acc
-	mov	a,#(___str_50 >> 8)
+	mov	a,#(___str_49 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -3081,86 +3024,78 @@ ___str_37:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_38:
-	.ascii "MAC matched"
-	.db 0x0a
-	.ascii "................"
-	.db 0x0d
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_39:
 	.ascii "Valid ETHER packet....................."
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_40:
+___str_39:
 	.db 0x0a
 	.ascii "Processed response data:"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_41:
+___str_40:
 	.db 0x0a
 	.ascii "No response generated by TCP packet processing."
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_42:
+___str_41:
 	.ascii "YESSSS"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_43:
+___str_42:
 	.ascii "NOOOO"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_44:
+___str_43:
 	.ascii "nextPacket: 0x%04X"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_45:
+___str_44:
 	.ascii "byteCount: %d"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_46:
+___str_45:
 	.ascii "status: 0x%02X"
 	.db 0x0a
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_47:
+___str_46:
 	.ascii " Resetting ENC using RESET pin in Hardware(P1_0)"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_48:
+___str_47:
 	.ascii "Enabling TXPKTIE"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_49:
+___str_48:
 	.ascii "Disabling TXPKTIE"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_50:
+___str_49:
 	.ascii "Invalid option. Please select a valid action."
 	.db 0x0a
 	.db 0x0d

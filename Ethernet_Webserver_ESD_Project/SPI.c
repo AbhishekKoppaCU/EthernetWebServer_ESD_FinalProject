@@ -265,7 +265,7 @@ uint16_t spi_buffer_read(int num_bytes, uint16_t start_address, uint8_t *data_pt
     printf("Reading %d bytes from buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
     for (int i = 0; i < num_bytes; i++) {
         *data_ptr = SPI_ReadByte(); // Read data
-        printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+        //printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
         data_ptr++;
     }
     CS_HIGH; // Pull CS High
@@ -303,7 +303,7 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
     // Print the address and bytes being written
     printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
     for (int i = 0; i < num_bytes; i++) {
-        printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
+        //printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
         SPI_send(*data_ptr); // Send data
         data_ptr++;
     }

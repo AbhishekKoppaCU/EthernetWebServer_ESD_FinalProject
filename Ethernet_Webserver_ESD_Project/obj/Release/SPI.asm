@@ -535,15 +535,11 @@ _spi_buffer_read_PARM_3:
 	.ds 3
 _spi_buffer_read_num_bytes_10000_151:
 	.ds 2
-_spi_buffer_read_i_20002_159:
-	.ds 2
 _spi_buffer_write_PARM_2:
 	.ds 2
 _spi_buffer_write_PARM_3:
 	.ds 3
 _spi_buffer_write_num_bytes_10000_161:
-	.ds 2
-_spi_buffer_write_i_20002_168:
 	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -1631,11 +1627,6 @@ _spi_buffer_read:
 	pop	ar6
 	pop	ar7
 ;	SPI.c:266: for (int i = 0; i < num_bytes; i++) {
-	mov	dptr,#_spi_buffer_read_i_20002_159
-	clr	a
-	movx	@dptr,a
-	inc	dptr
-	movx	@dptr,a
 	mov	dptr,#_spi_buffer_read_PARM_3
 	movx	a,@dptr
 	mov	r3,a
@@ -1645,13 +1636,9 @@ _spi_buffer_read:
 	inc	dptr
 	movx	a,@dptr
 	mov	r5,a
+	mov	r1,#0x00
+	mov	r2,#0x00
 00112$:
-	mov	dptr,#_spi_buffer_read_i_20002_159
-	movx	a,@dptr
-	mov	r1,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r2,a
 	clr	c
 	mov	a,r1
 	subb	a,r6
@@ -1660,12 +1647,8 @@ _spi_buffer_read:
 	mov	b,r7
 	xrl	b,#0x80
 	subb	a,b
-	jc	00157$
-	ljmp	00110$
-00157$:
+	jnc	00110$
 ;	SPI.c:267: *data_ptr = SPI_ReadByte(); // Read data
-	push	ar6
-	push	ar7
 	push	ar7
 	push	ar6
 	push	ar5
@@ -1690,51 +1673,12 @@ _spi_buffer_read:
 	inc	dptr
 	mov	r3,dpl
 	mov	r4,dph
-;	SPI.c:268: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
-	mov	r7,#0x00
-	inc	r1
-	cjne	r1,#0x00,00158$
-	inc	r2
-00158$:
-	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	push	ar3
-	push	ar2
-	push	ar1
-	push	ar0
-	push	ar7
-	push	ar1
-	push	ar2
-	mov	a,#___str_12
-	push	acc
-	mov	a,#(___str_12 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar1
-	pop	ar2
-	pop	ar3
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
 ;	SPI.c:269: data_ptr++;
 ;	SPI.c:266: for (int i = 0; i < num_bytes; i++) {
-	mov	dptr,#_spi_buffer_read_i_20002_159
-	mov	a,r1
-	movx	@dptr,a
-	mov	a,r2
-	inc	dptr
-	movx	@dptr,a
-	pop	ar7
-	pop	ar6
-	ljmp	00112$
+	inc	r1
+	cjne	r1,#0x00,00112$
+	inc	r2
+	sjmp	00112$
 00110$:
 ;	SPI.c:271: CS_HIGH; // Pull CS High
 ;	assignBit
@@ -1895,75 +1839,6 @@ _spi_buffer_write:
 	push	ar5
 	push	ar6
 	push	ar7
-	mov	a,#___str_13
-	push	acc
-	mov	a,#(___str_13 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	mov	a,sp
-	add	a,#0xf9
-	mov	sp,a
-	pop	ar6
-	pop	ar7
-;	SPI.c:305: for (int i = 0; i < num_bytes; i++) {
-	mov	dptr,#_spi_buffer_write_i_20002_168
-	clr	a
-	movx	@dptr,a
-	inc	dptr
-	movx	@dptr,a
-	mov	dptr,#_spi_buffer_write_PARM_3
-	movx	a,@dptr
-	mov	r3,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r4,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r5,a
-00109$:
-	mov	dptr,#_spi_buffer_write_i_20002_168
-	movx	a,@dptr
-	mov	r1,a
-	inc	dptr
-	movx	a,@dptr
-	mov	r2,a
-	clr	c
-	mov	a,r1
-	subb	a,r6
-	mov	a,r2
-	xrl	a,#0x80
-	mov	b,r7
-	xrl	b,#0x80
-	subb	a,b
-	jc	00147$
-	ljmp	00107$
-00147$:
-;	SPI.c:306: printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
-	push	ar6
-	push	ar7
-	mov	dpl,r3
-	mov	dph,r4
-	mov	b,r5
-	lcall	__gptrget
-	mov	r0,a
-	mov	r7,#0x00
-	inc	r1
-	cjne	r1,#0x00,00148$
-	inc	r2
-00148$:
-	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	push	ar3
-	push	ar2
-	push	ar1
-	push	ar0
-	push	ar7
-	push	ar1
-	push	ar2
 	mov	a,#___str_12
 	push	acc
 	mov	a,#(___str_12 >> 8)
@@ -1974,23 +1849,40 @@ _spi_buffer_write:
 	mov	a,sp
 	add	a,#0xf9
 	mov	sp,a
-	pop	ar1
-	pop	ar2
-	pop	ar3
-	pop	ar4
-	pop	ar5
 	pop	ar6
 	pop	ar7
+;	SPI.c:305: for (int i = 0; i < num_bytes; i++) {
+	mov	dptr,#_spi_buffer_write_PARM_3
+	movx	a,@dptr
+	mov	r3,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r4,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r5,a
+	mov	r1,#0x00
+	mov	r2,#0x00
+00109$:
+	clr	c
+	mov	a,r1
+	subb	a,r6
+	mov	a,r2
+	xrl	a,#0x80
+	mov	b,r7
+	xrl	b,#0x80
+	subb	a,b
+	jnc	00107$
 ;	SPI.c:307: SPI_send(*data_ptr); // Send data
 	mov	dpl,r3
 	mov	dph,r4
 	mov	b,r5
 	lcall	__gptrget
-	mov	r7,a
+	mov	r0,a
 	inc	dptr
 	mov	r3,dpl
 	mov	r4,dph
-	mov	dpl, r7
+	mov	dpl, r0
 	push	ar7
 	push	ar6
 	push	ar5
@@ -2008,15 +1900,10 @@ _spi_buffer_write:
 	pop	ar7
 ;	SPI.c:308: data_ptr++;
 ;	SPI.c:305: for (int i = 0; i < num_bytes; i++) {
-	mov	dptr,#_spi_buffer_write_i_20002_168
-	mov	a,r1
-	movx	@dptr,a
-	mov	a,r2
-	inc	dptr
-	movx	@dptr,a
-	pop	ar7
-	pop	ar6
-	ljmp	00109$
+	inc	r1
+	cjne	r1,#0x00,00109$
+	inc	r2
+	sjmp	00109$
 00107$:
 ;	SPI.c:310: CS_HIGH; // Pull CS High
 ;	assignBit
@@ -2119,13 +2006,6 @@ ___str_11:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_12:
-	.ascii "Byte %d: 0x%02X"
-	.db 0x0a
-	.db 0x0d
-	.db 0x00
-	.area CSEG    (CODE)
-	.area CONST   (CODE)
-___str_13:
 	.ascii "Writing %d bytes to buffer starting at address 0x%04X:"
 	.db 0x0a
 	.db 0x0d
