@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "webserver.h"
+//#include "enc.h"
 
 // Packet buffer and size
 #define BUFFER_SIZE 1500
@@ -789,8 +790,16 @@ void packetLoop() {
 						if ((tcpFlags & TCP_FLAG_ACK) && (tcpFlags & TCP_FLAG_FIN)) {
 							printf("TCP(ACK_FIN) packet detected\n\r");
 							makeTcpAck3(); // Send an acknowledgment
-							return;        // Exit after handling the specific packet
+							connectionState = CLOSED;
+							enc_init(device_mac);
+							return;
 						}
+						if ((tcpFlags & TCP_FLAG_SYN)) {
+													printf("TCP(SYN) packet detected\n\r");
+													//makeTcpAck3(); // Send an acknowledgment
+													connectionState = LISTEN;
+													//enc_init(device_mac);
+												}
 			switch (connectionState) {
 			case LISTEN:
 				printf("listen\n\r");
