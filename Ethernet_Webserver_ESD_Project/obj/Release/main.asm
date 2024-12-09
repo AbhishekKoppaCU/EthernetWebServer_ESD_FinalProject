@@ -2050,7 +2050,7 @@ _main:
 	orl	a,b
 	jnz	00113$
 ;	main.c:201: update_ERXRDPT(RX_BUFFER_END);
-	mov	dptr,#0x0bff
+	mov	dptr,#0x1bff
 	lcall	_update_ERXRDPT
 	sjmp	00114$
 00113$:

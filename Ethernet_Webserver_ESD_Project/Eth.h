@@ -12,10 +12,10 @@
 #define ETH_TYPE_IP 0x0800
 
 #define RX_BUFFER_START 0x0000
-#define RX_BUFFER_END   0x0BFF
+#define RX_BUFFER_END   0x1BFF
+#define TX_BUFFER_START 0x1C00
+#define TX_BUFFER_END   0x1FFF
 
-#define TX_BUFFER_START 0x0C00
-#define TX_BUFFER_END   0x11FF
 
 
 

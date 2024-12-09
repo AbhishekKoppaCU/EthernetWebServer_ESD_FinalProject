@@ -26,13 +26,13 @@
 1733718933 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\operations.h
 	"SPI.h"
 
-1733718933 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\spi.c
+1733724819 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\spi.c
 	"SPI.h"
 
 1733718933 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\operations.c
 	"Operations.h"
 
-1733718933 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\eth.h
+1733725479 d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\eth.h
 	"SPI.h"
 	"tcp.h"
 	<stdint.h>
@@ -58,6 +58,6 @@
 	"SPI.h"
 	"tcp.h"
 
-1733724608 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\trial_webserver.c
+1733727257 source:d:\universityofcoloradoboulder\sem1\esd\final project\github\ethernetwebserver_esd_finalproject\ethernet_webserver_esd_project\trial_webserver.c
 	"trial_webserver.h"
 

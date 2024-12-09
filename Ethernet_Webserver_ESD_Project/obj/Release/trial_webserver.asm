@@ -473,7 +473,7 @@ _makeTcpAck3_sloc0_1_0:
 _makeTcpAck2_sloc0_1_0:
 	.ds 2
 _makeTcpAck2_sloc1_1_0:
-	.ds 2
+	.ds 4
 _makeTcpAck2_sloc2_1_0:
 	.ds 4
 ;--------------------------------------------------------
@@ -538,35 +538,35 @@ _makeTcpSynAck_device_ip_10000_129:
 	.ds 4
 _makeTcpSynAck_target_ip_10000_129:
 	.ds 4
-_makeTcpAck_device_mac_10000_133:
+_makeTcpAck_device_mac_10000_134:
 	.ds 6
-_makeTcpAck_target_mac_10000_133:
+_makeTcpAck_target_mac_10000_134:
 	.ds 6
-_makeTcpAck_device_ip_10000_133:
+_makeTcpAck_device_ip_10000_134:
 	.ds 4
-_makeTcpAck_target_ip_10000_133:
+_makeTcpAck_target_ip_10000_134:
 	.ds 4
-_makeTcpFinPshAck_device_mac_10000_134:
+_makeTcpFinPshAck_device_mac_10000_135:
 	.ds 6
-_makeTcpFinPshAck_target_mac_10000_134:
+_makeTcpFinPshAck_target_mac_10000_135:
 	.ds 6
-_makeTcpFinPshAck_device_ip_10000_134:
+_makeTcpFinPshAck_device_ip_10000_135:
 	.ds 4
-_makeTcpFinPshAck_target_ip_10000_134:
+_makeTcpFinPshAck_target_ip_10000_135:
 	.ds 4
-_makeTcpFinPshAck_serverSeqNum_10002_136:
+_makeTcpFinPshAck_serverSeqNum_10002_137:
 	.ds 4
-_makeTcpFinPshAck_ackNum_10002_136:
+_makeTcpFinPshAck_ackNum_10002_137:
 	.ds 4
-_packetReceive_gNextPacketPtr_10000_138:
+_packetReceive_gNextPacketPtr_10000_139:
 	.ds 2
-_packetReceive_unreleasedPacket_10000_138:
+_packetReceive_unreleasedPacket_10000_139:
 	.ds 1
-_packetReceive_len_10000_138:
+_packetReceive_len_10000_139:
 	.ds 2
-_packetReceive_header_20002_144:
+_packetReceive_header_20002_145:
 	.ds 6
-_packetReceive_start_20003_145:
+_packetReceive_start_20003_146:
 	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
@@ -598,23 +598,23 @@ _connectionState::
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'packetReceive'
 ;------------------------------------------------------------
-;gNextPacketPtr            Allocated with name '_packetReceive_gNextPacketPtr_10000_138'
-;unreleasedPacket          Allocated with name '_packetReceive_unreleasedPacket_10000_138'
-;len                       Allocated with name '_packetReceive_len_10000_138'
-;RX_END                    Allocated with name '_packetReceive_RX_END_30000_140'
-;EPKTCNT                   Allocated with name '_packetReceive_EPKTCNT_10001_142'
-;header                    Allocated with name '_packetReceive_header_20002_144'
-;start                     Allocated with name '_packetReceive_start_20003_145'
-;ECON2                     Allocated with name '_packetReceive_ECON2_20004_146'
+;gNextPacketPtr            Allocated with name '_packetReceive_gNextPacketPtr_10000_139'
+;unreleasedPacket          Allocated with name '_packetReceive_unreleasedPacket_10000_139'
+;len                       Allocated with name '_packetReceive_len_10000_139'
+;RX_END                    Allocated with name '_packetReceive_RX_END_30000_141'
+;EPKTCNT                   Allocated with name '_packetReceive_EPKTCNT_10001_143'
+;header                    Allocated with name '_packetReceive_header_20002_145'
+;start                     Allocated with name '_packetReceive_start_20003_146'
+;ECON2                     Allocated with name '_packetReceive_ECON2_20004_147'
 ;------------------------------------------------------------
-;	trial_webserver.c:388: static uint16_t gNextPacketPtr = RX_BUFFER_START;
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:417: static uint16_t gNextPacketPtr = RX_BUFFER_START;
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	clr	a
 	movx	@dptr,a
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:389: static bool unreleasedPacket = false;
-	mov	dptr,#_packetReceive_unreleasedPacket_10000_138
+;	trial_webserver.c:418: static bool unreleasedPacket = false;
+	mov	dptr,#_packetReceive_unreleasedPacket_10000_139
 	movx	@dptr,a
 ;--------------------------------------------------------
 ; Home
@@ -1106,7 +1106,7 @@ _makeTcpAck3:
 	mov	dptr,#(_buffer + 0x0026)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:88: uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+;	trial_webserver.c:97: uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
 	mov	dptr,#(_buffer + 0x0029)
 	movx	a,@dptr
 	mov	r6,a
@@ -1122,7 +1122,7 @@ _makeTcpAck3:
 	subb	a,acc
 	mov	r5,a
 	mov	r4,a
-;	trial_webserver.c:91: uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
+;	trial_webserver.c:100: uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
 	mov	dptr,#(_buffer + 0x002d)
 	movx	a,@dptr
 	mov	r2,a
@@ -1140,7 +1140,7 @@ _makeTcpAck3:
 	subb	a,acc
 	mov	r2,a
 	mov	r3,a
-;	trial_webserver.c:95: uint32_t ackNum = clientSeqNum + 1;
+;	trial_webserver.c:104: uint32_t ackNum = clientSeqNum + 1;
 	mov	a,#0x01
 	add	a, r7
 	mov	_makeTcpAck3_sloc0_1_0,a
@@ -1153,7 +1153,7 @@ _makeTcpAck3:
 	clr	a
 	addc	a, r4
 	mov	(_makeTcpAck3_sloc0_1_0 + 3),a
-;	trial_webserver.c:96: prevSeq = serverSeqNum;
+;	trial_webserver.c:105: prevSeq = serverSeqNum;
 	mov	dptr,#_prevSeq
 	mov	a,r0
 	movx	@dptr,a
@@ -1166,7 +1166,7 @@ _makeTcpAck3:
 	mov	a,r3
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:97: prevAck = ackNum;
+;	trial_webserver.c:106: prevAck = ackNum;
 	mov	dptr,#_prevAck
 	mov	a,_makeTcpAck3_sloc0_1_0
 	movx	@dptr,a
@@ -1179,77 +1179,77 @@ _makeTcpAck3:
 	mov	a,(_makeTcpAck3_sloc0_1_0 + 3)
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:100: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+;	trial_webserver.c:109: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
 	mov	ar7,r3
 	mov	dptr,#(_buffer + 0x0027)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:101: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+;	trial_webserver.c:110: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
 	mov	ar7,r2
 	mov	dptr,#(_buffer + 0x0028)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:102: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+;	trial_webserver.c:111: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
 	mov	ar7,r1
 	mov	dptr,#(_buffer + 0x0029)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:103: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+;	trial_webserver.c:112: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002a)
 	mov	a,r0
 	movx	@dptr,a
-;	trial_webserver.c:104: buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
+;	trial_webserver.c:113: buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
 	mov	r7,(_makeTcpAck3_sloc0_1_0 + 3)
 	mov	dptr,#(_buffer + 0x002b)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:105: buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
+;	trial_webserver.c:114: buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
 	mov	r7,(_makeTcpAck3_sloc0_1_0 + 2)
 	mov	dptr,#(_buffer + 0x002c)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:106: buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
+;	trial_webserver.c:115: buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
 	mov	r7,(_makeTcpAck3_sloc0_1_0 + 1)
 	mov	dptr,#(_buffer + 0x002d)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:107: buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
+;	trial_webserver.c:116: buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
 	mov	r7,_makeTcpAck3_sloc0_1_0
 	mov	dptr,#(_buffer + 0x002e)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:111: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+;	trial_webserver.c:120: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
 	mov	dptr,#(_buffer + 0x0011)
 	clr	a
 	movx	@dptr,a
-;	trial_webserver.c:112: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+;	trial_webserver.c:121: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
 	mov	dptr,#(_buffer + 0x0012)
 	mov	a,#0x28
 	movx	@dptr,a
-;	trial_webserver.c:115: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
+;	trial_webserver.c:124: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
 	mov	dptr,#(_buffer + 0x0030)
 	mov	a,#0x10
 	movx	@dptr,a
-;	trial_webserver.c:116: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
+;	trial_webserver.c:125: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
 	mov	dptr,#(_buffer + 0x0031)
 	mov	a,#0xff
 	movx	@dptr,a
-;	trial_webserver.c:117: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+;	trial_webserver.c:126: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
 	mov	dptr,#(_buffer + 0x0032)
 	movx	@dptr,a
-;	trial_webserver.c:118: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+;	trial_webserver.c:127: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
 	mov	dptr,#(_buffer + 0x002f)
 	mov	a,#0x50
 	movx	@dptr,a
-;	trial_webserver.c:121: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+;	trial_webserver.c:130: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateIPChecksum
-;	trial_webserver.c:122: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+;	trial_webserver.c:131: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateTcpChecksum
-;	trial_webserver.c:126: transmit_tcp_packet(buffer, 1 + 54);
+;	trial_webserver.c:135: transmit_tcp_packet(buffer, 1 + 54);
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,#0x37
 	movx	@dptr,a
@@ -1259,11 +1259,11 @@ _makeTcpAck3:
 	mov	dptr,#_buffer
 	mov	b,a
 	lcall	_transmit_tcp_packet
-;	trial_webserver.c:129: connectionState = ACK_SENT;
+;	trial_webserver.c:138: connectionState = ACK_SENT;
 	mov	dptr,#_connectionState
 	mov	a,#0x05
 	movx	@dptr,a
-;	trial_webserver.c:130: }
+;	trial_webserver.c:139: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'makeTcpAck2'
@@ -1285,12 +1285,12 @@ _makeTcpAck3:
 ;ackNum                    Allocated with name '_makeTcpAck2_ackNum_10002_127'
 ;totalLength               Allocated with name '_makeTcpAck2_totalLength_10003_128'
 ;------------------------------------------------------------
-;	trial_webserver.c:132: void makeTcpAck2() {
+;	trial_webserver.c:141: void makeTcpAck2() {
 ;	-----------------------------------------
 ;	 function makeTcpAck2
 ;	-----------------------------------------
 _makeTcpAck2:
-;	trial_webserver.c:133: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+;	trial_webserver.c:142: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
 	mov	dptr,#_makeTcpAck2_device_mac_10000_125
 	mov	a,#0x02
 	movx	@dptr,a
@@ -1309,7 +1309,7 @@ _makeTcpAck2:
 	mov	dptr,#(_makeTcpAck2_device_mac_10000_125 + 0x0005)
 	mov	a,#0x55
 	movx	@dptr,a
-;	trial_webserver.c:134: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+;	trial_webserver.c:143: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
 	mov	dptr,#_makeTcpAck2_target_mac_10000_125
 	mov	a,#0xf8
 	movx	@dptr,a
@@ -1328,7 +1328,7 @@ _makeTcpAck2:
 	mov	dptr,#(_makeTcpAck2_target_mac_10000_125 + 0x0005)
 	mov	a,#0x31
 	movx	@dptr,a
-;	trial_webserver.c:135: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+;	trial_webserver.c:144: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
 	mov	dptr,#_makeTcpAck2_device_ip_10000_125
 	mov	a,#0xc0
 	movx	@dptr,a
@@ -1341,7 +1341,7 @@ _makeTcpAck2:
 	mov	dptr,#(_makeTcpAck2_device_ip_10000_125 + 0x0003)
 	mov	a,#0x64
 	movx	@dptr,a
-;	trial_webserver.c:136: uint8_t target_ip[4] = { 192, 168, 1, 1 };
+;	trial_webserver.c:145: uint8_t target_ip[4] = { 192, 168, 1, 1 };
 	mov	dptr,#_makeTcpAck2_target_ip_10000_125
 	mov	a,#0xc0
 	movx	@dptr,a
@@ -1353,7 +1353,7 @@ _makeTcpAck2:
 	movx	@dptr,a
 	mov	dptr,#(_makeTcpAck2_target_ip_10000_125 + 0x0003)
 	movx	@dptr,a
-;	trial_webserver.c:137: uint16_t totalLength1 = (buffer[16] << 8) | buffer[17]; // Total IP length
+;	trial_webserver.c:146: uint16_t totalLength1 = (buffer[16] << 8) | buffer[17]; // Total IP length
 	mov	dptr,#(_buffer + 0x0010)
 	movx	a,@dptr
 	mov	r6,a
@@ -1364,16 +1364,16 @@ _makeTcpAck2:
 	orl	ar7,a
 	mov	a,r4
 	orl	ar6,a
-;	trial_webserver.c:138: uint16_t receivedPayloadLength = totalLength1 - 40;
+;	trial_webserver.c:147: uint16_t receivedPayloadLength = totalLength1 - 40;
 	mov	a,r7
 	add	a,#0xd8
 	mov	r7,a
 	mov	a,r6
 	addc	a,#0xff
 	mov	r6,a
-	mov	_makeTcpAck2_sloc1_1_0,r7
-	mov	(_makeTcpAck2_sloc1_1_0 + 1),r6
-;	trial_webserver.c:139: printf("makeTcpAck\n\r");
+	mov	_makeTcpAck2_sloc0_1_0,r7
+	mov	(_makeTcpAck2_sloc0_1_0 + 1),r6
+;	trial_webserver.c:148: printf("makeTcpAck\n\r");
 	mov	a,#___str_1
 	push	acc
 	mov	a,#(___str_1 >> 8)
@@ -1384,7 +1384,7 @@ _makeTcpAck2:
 	dec	sp
 	dec	sp
 	dec	sp
-;	trial_webserver.c:142: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+;	trial_webserver.c:151: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
 	mov	dptr,#_memmove_PARM_2
 	mov	a,#_buffer
 	movx	@dptr,a
@@ -1403,11 +1403,11 @@ _makeTcpAck2:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	_memmove
-;	trial_webserver.c:143: buffer[0] = 0x0E;
+;	trial_webserver.c:152: buffer[0] = 0x0E;
 	mov	dptr,#_buffer
 	mov	a,#0x0e
 	movx	@dptr,a
-;	trial_webserver.c:146: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+;	trial_webserver.c:155: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x0007)
 	movx	@dptr,a
@@ -1426,7 +1426,7 @@ _makeTcpAck2:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:147: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+;	trial_webserver.c:156: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#_makeTcpAck2_device_mac_10000_125
 	movx	@dptr,a
@@ -1445,7 +1445,7 @@ _makeTcpAck2:
 	mov	dptr,#(_buffer + 0x0007)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:150: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+;	trial_webserver.c:159: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x001b)
 	movx	@dptr,a
@@ -1464,7 +1464,7 @@ _makeTcpAck2:
 	mov	dptr,#(_buffer + 0x001f)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:151: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+;	trial_webserver.c:160: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#_makeTcpAck2_device_ip_10000_125
 	movx	@dptr,a
@@ -1483,7 +1483,7 @@ _makeTcpAck2:
 	mov	dptr,#(_buffer + 0x001b)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:154: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+;	trial_webserver.c:163: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0023)
 	movx	a,@dptr
 	mov	r4,a
@@ -1494,7 +1494,7 @@ _makeTcpAck2:
 	orl	ar5,a
 	mov	a,r2
 	orl	ar4,a
-;	trial_webserver.c:156: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+;	trial_webserver.c:165: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0025)
 	movx	a,@dptr
 	mov	r2,a
@@ -1505,63 +1505,135 @@ _makeTcpAck2:
 	orl	ar3,a
 	mov	a,r1
 	orl	ar2,a
-;	trial_webserver.c:158: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+;	trial_webserver.c:167: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
 	mov	ar1,r2
 	mov	dptr,#(_buffer + 0x0023)
 	mov	a,r1
 	movx	@dptr,a
-;	trial_webserver.c:159: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+;	trial_webserver.c:168: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0024)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:160: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+;	trial_webserver.c:169: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
 	mov	ar3,r4
 	mov	dptr,#(_buffer + 0x0025)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:161: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+;	trial_webserver.c:170: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0026)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:164: uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+;	trial_webserver.c:181: uint32_t clientSeqNum = ((uint32_t)buffer[1 + TCP_SEQ_H_P] << 24)
+	mov	dptr,#(_buffer + 0x0027)
+	movx	a,@dptr
+	mov	r5,a
+	mov	r4,#0x00
+	mov	r3,#0x00
+	mov	ar2,r5
+	mov	r5,#0x00
+	mov	dptr,#(_buffer + 0x0028)
+	movx	a,@dptr
+	mov	r0,a
+	mov	r1,#0x00
+	mov	ar7,r1
+	mov	ar6,r0
+	clr	a
+	orl	ar5,a
+	mov	a,r1
+	orl	ar4,a
+	mov	a,r6
+	orl	ar3,a
+	mov	a,r7
+	orl	ar2,a
 	mov	dptr,#(_buffer + 0x0029)
 	movx	a,@dptr
-	mov	r4,a
-	mov	r5,#0x00
+	mov	r0,a
+	mov	r1,#0x00
+	mov	r6,#0x00
+	mov	ar7,r6
+	mov	ar6,r1
+	mov	ar1,r0
+	clr	a
+	orl	ar5,a
+	mov	a,r1
+	orl	ar4,a
+	mov	a,r6
+	orl	ar3,a
+	mov	a,r7
+	orl	ar2,a
 	mov	dptr,#(_buffer + 0x002a)
 	movx	a,@dptr
-	mov	r2,#0x00
-	orl	ar5,a
-	mov	a,r2
-	orl	ar4,a
-	mov	_makeTcpAck2_sloc2_1_0,r5
-	mov	a,r4
+	mov	r0,a
+	clr	a
+	mov	r1,a
+	mov	r6,a
+	mov	r7,a
+	mov	a,r0
+	orl	a,r5
+	mov	_makeTcpAck2_sloc2_1_0,a
+	mov	a,r1
+	orl	a,r4
 	mov	(_makeTcpAck2_sloc2_1_0 + 1),a
-	rlc	a
-	subb	a,acc
+	mov	a,r6
+	orl	a,r3
 	mov	(_makeTcpAck2_sloc2_1_0 + 2),a
+	mov	a,r7
+	orl	a,r2
 	mov	(_makeTcpAck2_sloc2_1_0 + 3),a
-;	trial_webserver.c:167: uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
+;	trial_webserver.c:186: uint32_t clientAckNum = ((uint32_t)buffer[1 + TCP_ACK_H_P] << 24)
+	mov	dptr,#(_buffer + 0x002b)
+	movx	a,@dptr
+	mov	r0,a
+	mov	r7,#0x00
+	mov	(_makeTcpAck2_sloc1_1_0 + 3),r0
+	mov	_makeTcpAck2_sloc1_1_0,r7
+	mov	(_makeTcpAck2_sloc1_1_0 + 1),r7
+	mov	(_makeTcpAck2_sloc1_1_0 + 2),r7
+	mov	dptr,#(_buffer + 0x002c)
+	movx	a,@dptr
+	mov	r0,a
+	mov	ar7,r1
+	mov	ar6,r0
+	clr	a
+	orl	_makeTcpAck2_sloc1_1_0,a
+	mov	a,r1
+	orl	(_makeTcpAck2_sloc1_1_0 + 1),a
+	mov	a,r6
+	orl	(_makeTcpAck2_sloc1_1_0 + 2),a
+	mov	a,r7
+	orl	(_makeTcpAck2_sloc1_1_0 + 3),a
 	mov	dptr,#(_buffer + 0x002d)
 	movx	a,@dptr
 	mov	r0,a
 	mov	r1,#0x00
-	mov	(_makeTcpAck2_sloc0_1_0 + 1),r0
-	mov	_makeTcpAck2_sloc0_1_0,r1
+	mov	r6,#0x00
+	mov	ar7,r6
+	mov	ar6,r1
+	mov	ar1,r0
+	clr	a
+	orl	_makeTcpAck2_sloc1_1_0,a
+	mov	a,r1
+	orl	(_makeTcpAck2_sloc1_1_0 + 1),a
+	mov	a,r6
+	orl	(_makeTcpAck2_sloc1_1_0 + 2),a
+	mov	a,r7
+	orl	(_makeTcpAck2_sloc1_1_0 + 3),a
 	mov	dptr,#(_buffer + 0x002e)
 	movx	a,@dptr
 	mov	r0,a
-	mov	r1,#0x00
-	mov	a,(_makeTcpAck2_sloc0_1_0 + 1)
-	orl	ar1,a
-	mov	a,r1
-	rlc	a
-	subb	a,acc
+	clr	a
+	mov	r1,a
 	mov	r6,a
 	mov	r7,a
-;	trial_webserver.c:171: uint32_t ackNum = clientSeqNum + receivedPayloadLength - 1;
-	mov	r2,_makeTcpAck2_sloc1_1_0
-	mov	r3,(_makeTcpAck2_sloc1_1_0 + 1)
+	mov	a,(_makeTcpAck2_sloc1_1_0 + 1)
+	orl	ar1,a
+	mov	a,(_makeTcpAck2_sloc1_1_0 + 2)
+	orl	ar6,a
+	mov	a,(_makeTcpAck2_sloc1_1_0 + 3)
+	orl	ar7,a
+;	trial_webserver.c:192: uint32_t ackNum = clientSeqNum + receivedPayloadLength - 1;
+	mov	r2,_makeTcpAck2_sloc0_1_0
+	mov	r3,(_makeTcpAck2_sloc0_1_0 + 1)
 	clr	a
 	mov	r4,a
 	mov	r5,a
@@ -1589,7 +1661,7 @@ _makeTcpAck2:
 	mov	a,r5
 	addc	a,#0xff
 	mov	(_makeTcpAck2_sloc2_1_0 + 3),a
-;	trial_webserver.c:172: prevSeq = serverSeqNum;
+;	trial_webserver.c:193: prevSeq = serverSeqNum;
 	mov	dptr,#_prevSeq
 	mov	a,r0
 	movx	@dptr,a
@@ -1602,7 +1674,7 @@ _makeTcpAck2:
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:173: prevAck = ackNum;
+;	trial_webserver.c:194: prevAck = ackNum;
 	mov	dptr,#_prevAck
 	mov	a,_makeTcpAck2_sloc2_1_0
 	movx	@dptr,a
@@ -1615,77 +1687,77 @@ _makeTcpAck2:
 	mov	a,(_makeTcpAck2_sloc2_1_0 + 3)
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:176: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+;	trial_webserver.c:197: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
 	mov	ar5,r7
 	mov	dptr,#(_buffer + 0x0027)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:177: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+;	trial_webserver.c:198: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
 	mov	ar5,r6
 	mov	dptr,#(_buffer + 0x0028)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:178: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+;	trial_webserver.c:199: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
 	mov	ar5,r1
 	mov	dptr,#(_buffer + 0x0029)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:179: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+;	trial_webserver.c:200: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002a)
 	mov	a,r0
 	movx	@dptr,a
-;	trial_webserver.c:180: buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
+;	trial_webserver.c:201: buffer[1 + TCP_ACK_H_P] = (ackNum >> 24) & 0xFF;
 	mov	r7,(_makeTcpAck2_sloc2_1_0 + 3)
 	mov	dptr,#(_buffer + 0x002b)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:181: buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
+;	trial_webserver.c:202: buffer[1 + TCP_ACK_H_P + 1] = (ackNum >> 16) & 0xFF;
 	mov	r7,(_makeTcpAck2_sloc2_1_0 + 2)
 	mov	dptr,#(_buffer + 0x002c)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:182: buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
+;	trial_webserver.c:203: buffer[1 + TCP_ACK_H_P + 2] = (ackNum >> 8) & 0xFF;
 	mov	r7,(_makeTcpAck2_sloc2_1_0 + 1)
 	mov	dptr,#(_buffer + 0x002d)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:183: buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
+;	trial_webserver.c:204: buffer[1 + TCP_ACK_H_P + 3] = ackNum & 0xFF;
 	mov	r2,_makeTcpAck2_sloc2_1_0
 	mov	dptr,#(_buffer + 0x002e)
 	mov	a,r2
 	movx	@dptr,a
-;	trial_webserver.c:187: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+;	trial_webserver.c:208: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
 	mov	dptr,#(_buffer + 0x0011)
 	clr	a
 	movx	@dptr,a
-;	trial_webserver.c:188: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+;	trial_webserver.c:209: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
 	mov	dptr,#(_buffer + 0x0012)
 	mov	a,#0x28
 	movx	@dptr,a
-;	trial_webserver.c:191: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
+;	trial_webserver.c:212: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;  // Only the ACK flag is set
 	mov	dptr,#(_buffer + 0x0030)
 	mov	a,#0x10
 	movx	@dptr,a
-;	trial_webserver.c:192: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
+;	trial_webserver.c:213: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
 	mov	dptr,#(_buffer + 0x0031)
 	mov	a,#0xff
 	movx	@dptr,a
-;	trial_webserver.c:193: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+;	trial_webserver.c:214: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
 	mov	dptr,#(_buffer + 0x0032)
 	movx	@dptr,a
-;	trial_webserver.c:194: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+;	trial_webserver.c:215: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
 	mov	dptr,#(_buffer + 0x002f)
 	mov	a,#0x50
 	movx	@dptr,a
-;	trial_webserver.c:197: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+;	trial_webserver.c:218: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateIPChecksum
-;	trial_webserver.c:198: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+;	trial_webserver.c:219: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateTcpChecksum
-;	trial_webserver.c:202: transmit_tcp_packet(buffer, 1 + 54);
+;	trial_webserver.c:223: transmit_tcp_packet(buffer, 1 + 54);
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,#0x37
 	movx	@dptr,a
@@ -1695,11 +1767,11 @@ _makeTcpAck2:
 	mov	dptr,#_buffer
 	mov	b,a
 	lcall	_transmit_tcp_packet
-;	trial_webserver.c:205: connectionState = ACK_SENT;
+;	trial_webserver.c:226: connectionState = ACK_SENT;
 	mov	dptr,#_connectionState
 	mov	a,#0x05
 	movx	@dptr,a
-;	trial_webserver.c:206: }
+;	trial_webserver.c:227: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'makeTcpSynAck'
@@ -1711,16 +1783,16 @@ _makeTcpAck2:
 ;srcPort                   Allocated with name '_makeTcpSynAck_srcPort_10001_130'
 ;dstPort                   Allocated with name '_makeTcpSynAck_dstPort_10001_130'
 ;clientSeqNum              Allocated with name '_makeTcpSynAck_clientSeqNum_10002_131'
-;serverSeqNum              Allocated with name '_makeTcpSynAck_serverSeqNum_10002_131'
-;ackNum                    Allocated with name '_makeTcpSynAck_ackNum_10002_131'
-;totalLength               Allocated with name '_makeTcpSynAck_totalLength_10003_132'
+;serverSeqNum              Allocated with name '_makeTcpSynAck_serverSeqNum_10003_132'
+;ackNum                    Allocated with name '_makeTcpSynAck_ackNum_10003_132'
+;totalLength               Allocated with name '_makeTcpSynAck_totalLength_10004_133'
 ;------------------------------------------------------------
-;	trial_webserver.c:208: void makeTcpSynAck() {
+;	trial_webserver.c:229: void makeTcpSynAck() {
 ;	-----------------------------------------
 ;	 function makeTcpSynAck
 ;	-----------------------------------------
 _makeTcpSynAck:
-;	trial_webserver.c:209: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+;	trial_webserver.c:230: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
 	mov	dptr,#_makeTcpSynAck_device_mac_10000_129
 	mov	a,#0x02
 	movx	@dptr,a
@@ -1739,7 +1811,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_makeTcpSynAck_device_mac_10000_129 + 0x0005)
 	mov	a,#0x55
 	movx	@dptr,a
-;	trial_webserver.c:210: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+;	trial_webserver.c:231: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
 	mov	dptr,#_makeTcpSynAck_target_mac_10000_129
 	mov	a,#0xf8
 	movx	@dptr,a
@@ -1758,7 +1830,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_makeTcpSynAck_target_mac_10000_129 + 0x0005)
 	mov	a,#0x31
 	movx	@dptr,a
-;	trial_webserver.c:211: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+;	trial_webserver.c:232: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
 	mov	dptr,#_makeTcpSynAck_device_ip_10000_129
 	mov	a,#0xc0
 	movx	@dptr,a
@@ -1771,7 +1843,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_makeTcpSynAck_device_ip_10000_129 + 0x0003)
 	mov	a,#0x64
 	movx	@dptr,a
-;	trial_webserver.c:212: uint8_t target_ip[4] = { 192, 168, 1, 1 };
+;	trial_webserver.c:233: uint8_t target_ip[4] = { 192, 168, 1, 1 };
 	mov	dptr,#_makeTcpSynAck_target_ip_10000_129
 	mov	a,#0xc0
 	movx	@dptr,a
@@ -1783,7 +1855,7 @@ _makeTcpSynAck:
 	movx	@dptr,a
 	mov	dptr,#(_makeTcpSynAck_target_ip_10000_129 + 0x0003)
 	movx	@dptr,a
-;	trial_webserver.c:213: printf("makeTcpSynAck\n\r");
+;	trial_webserver.c:234: printf("makeTcpSynAck\n\r");
 	mov	a,#___str_2
 	push	acc
 	mov	a,#(___str_2 >> 8)
@@ -1794,7 +1866,7 @@ _makeTcpSynAck:
 	dec	sp
 	dec	sp
 	dec	sp
-;	trial_webserver.c:216: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+;	trial_webserver.c:237: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
 	mov	dptr,#_memmove_PARM_2
 	mov	a,#_buffer
 	movx	@dptr,a
@@ -1813,11 +1885,11 @@ _makeTcpSynAck:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	_memmove
-;	trial_webserver.c:217: buffer[0] = 0x0E;
+;	trial_webserver.c:238: buffer[0] = 0x0E;
 	mov	dptr,#_buffer
 	mov	a,#0x0e
 	movx	@dptr,a
-;	trial_webserver.c:219: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+;	trial_webserver.c:240: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x0007)
 	movx	@dptr,a
@@ -1836,7 +1908,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:220: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+;	trial_webserver.c:241: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#_makeTcpSynAck_device_mac_10000_129
 	movx	@dptr,a
@@ -1855,7 +1927,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_buffer + 0x0007)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:223: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+;	trial_webserver.c:244: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x001b)
 	movx	@dptr,a
@@ -1874,7 +1946,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_buffer + 0x001f)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:224: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+;	trial_webserver.c:245: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#_makeTcpSynAck_device_ip_10000_129
 	movx	@dptr,a
@@ -1893,7 +1965,7 @@ _makeTcpSynAck:
 	mov	dptr,#(_buffer + 0x001b)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:227: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+;	trial_webserver.c:248: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0023)
 	movx	a,@dptr
 	mov	r6,a
@@ -1904,7 +1976,7 @@ _makeTcpSynAck:
 	orl	ar7,a
 	mov	a,r4
 	orl	ar6,a
-;	trial_webserver.c:229: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+;	trial_webserver.c:250: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0025)
 	movx	a,@dptr
 	mov	r4,a
@@ -1915,41 +1987,101 @@ _makeTcpSynAck:
 	orl	ar5,a
 	mov	a,r2
 	orl	ar4,a
-;	trial_webserver.c:231: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+;	trial_webserver.c:252: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
 	mov	ar3,r4
 	mov	dptr,#(_buffer + 0x0023)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:232: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+;	trial_webserver.c:253: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0024)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:233: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+;	trial_webserver.c:254: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
 	mov	ar5,r6
 	mov	dptr,#(_buffer + 0x0025)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:234: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+;	trial_webserver.c:255: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0026)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:237: uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+;	trial_webserver.c:264: uint32_t clientSeqNum = ((uint32_t)buffer[1 + TCP_SEQ_H_P] << 24)
+	mov	dptr,#(_buffer + 0x0027)
+	movx	a,@dptr
+	mov	r7,a
+	mov	r6,#0x00
+	mov	r5,#0x00
+	mov	ar4,r7
+	mov	r7,#0x00
+	mov	dptr,#(_buffer + 0x0028)
+	movx	a,@dptr
+	mov	r0,a
+	mov	r1,#0x00
+	mov	ar3,r1
+	mov	ar2,r0
+	clr	a
+	orl	ar7,a
+	mov	a,r1
+	orl	ar6,a
+	mov	a,r2
+	orl	ar5,a
+	mov	a,r3
+	orl	ar4,a
 	mov	dptr,#(_buffer + 0x0029)
 	movx	a,@dptr
-	mov	r6,a
-	mov	r7,#0x00
+	mov	r0,a
+	mov	r1,#0x00
+	mov	r2,#0x00
+	mov	ar3,r2
+	mov	ar2,r1
+	mov	ar1,r0
+	clr	a
+	orl	ar7,a
+	mov	a,r1
+	orl	ar6,a
+	mov	a,r2
+	orl	ar5,a
+	mov	a,r3
+	orl	ar4,a
 	mov	dptr,#(_buffer + 0x002a)
 	movx	a,@dptr
-	mov	r4,#0x00
+	mov	r0,a
+	clr	a
+	mov	r1,a
+	mov	r2,a
+	mov	r3,a
+	mov	a,r0
 	orl	ar7,a
-	mov	a,r4
+	mov	a,r1
 	orl	ar6,a
-	mov	a,r6
-	rlc	a
-	subb	a,acc
-	mov	r5,a
-	mov	r4,a
-;	trial_webserver.c:241: uint32_t ackNum = clientSeqNum + 1;
+	mov	a,r2
+	orl	ar5,a
+	mov	a,r3
+	orl	ar4,a
+;	trial_webserver.c:268: printf("clientSeqNum = %ld\n\r", clientSeqNum);
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	push	ar7
+	push	ar6
+	push	ar5
+	push	ar4
+	mov	a,#___str_3
+	push	acc
+	mov	a,#(___str_3 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	mov	a,sp
+	add	a,#0xf9
+	mov	sp,a
+	pop	ar4
+	pop	ar5
+	pop	ar6
+	pop	ar7
+;	trial_webserver.c:270: uint32_t ackNum = clientSeqNum + 1;
 	inc	r7
 	cjne	r7,#0x00,00103$
 	inc	r6
@@ -1958,72 +2090,72 @@ _makeTcpSynAck:
 	cjne	r5,#0x00,00103$
 	inc	r4
 00103$:
-;	trial_webserver.c:243: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+;	trial_webserver.c:272: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
 	mov	dptr,#(_buffer + 0x0027)
 	clr	a
 	movx	@dptr,a
-;	trial_webserver.c:244: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+;	trial_webserver.c:273: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
 	mov	dptr,#(_buffer + 0x0028)
 	movx	@dptr,a
-;	trial_webserver.c:245: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+;	trial_webserver.c:274: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
 	mov	dptr,#(_buffer + 0x0029)
 	mov	a,#0x03
 	movx	@dptr,a
-;	trial_webserver.c:246: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+;	trial_webserver.c:275: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002a)
 	mov	a,#0xe8
 	movx	@dptr,a
-;	trial_webserver.c:247: buffer[1 + TCP_SEQ_H_P + 4] = (ackNum >> 24) & 0xFF;
+;	trial_webserver.c:276: buffer[1 + TCP_SEQ_H_P + 4] = (ackNum >> 24) & 0xFF;
 	mov	ar3,r4
 	mov	dptr,#(_buffer + 0x002b)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:248: buffer[1 + TCP_SEQ_H_P + 5] = (ackNum >> 16) & 0xFF;
+;	trial_webserver.c:277: buffer[1 + TCP_SEQ_H_P + 5] = (ackNum >> 16) & 0xFF;
 	mov	ar3,r5
 	mov	dptr,#(_buffer + 0x002c)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:249: buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
+;	trial_webserver.c:278: buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
 	mov	ar3,r6
 	mov	dptr,#(_buffer + 0x002d)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:250: buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
+;	trial_webserver.c:279: buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002e)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:254: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+;	trial_webserver.c:283: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
 	mov	dptr,#(_buffer + 0x0011)
 	clr	a
 	movx	@dptr,a
-;	trial_webserver.c:255: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+;	trial_webserver.c:284: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
 	mov	dptr,#(_buffer + 0x0012)
 	mov	a,#0x28
 	movx	@dptr,a
-;	trial_webserver.c:258: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_SYN | TCP_FLAG_ACK;
+;	trial_webserver.c:287: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_SYN | TCP_FLAG_ACK;
 	mov	dptr,#(_buffer + 0x0030)
 	mov	a,#0x12
 	movx	@dptr,a
-;	trial_webserver.c:259: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
+;	trial_webserver.c:288: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF; // Maximum window size
 	mov	dptr,#(_buffer + 0x0031)
 	mov	a,#0xff
 	movx	@dptr,a
-;	trial_webserver.c:260: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+;	trial_webserver.c:289: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
 	mov	dptr,#(_buffer + 0x0032)
 	movx	@dptr,a
-;	trial_webserver.c:261: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+;	trial_webserver.c:290: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
 	mov	dptr,#(_buffer + 0x002f)
 	mov	a,#0x50
 	movx	@dptr,a
-;	trial_webserver.c:264: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+;	trial_webserver.c:293: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateIPChecksum
-;	trial_webserver.c:265: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+;	trial_webserver.c:294: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateTcpChecksum
-;	trial_webserver.c:269: transmit_tcp_packet(buffer, 1 + 54);
+;	trial_webserver.c:298: transmit_tcp_packet(buffer, 1 + 54);
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,#0x37
 	movx	@dptr,a
@@ -2033,92 +2165,92 @@ _makeTcpSynAck:
 	mov	dptr,#_buffer
 	mov	b,a
 	lcall	_transmit_tcp_packet
-;	trial_webserver.c:272: connectionState = SYN_RECEIVED;
+;	trial_webserver.c:301: connectionState = SYN_RECEIVED;
 	mov	dptr,#_connectionState
 	mov	a,#0x01
 	movx	@dptr,a
-;	trial_webserver.c:273: }
+;	trial_webserver.c:302: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'makeTcpAck'
 ;------------------------------------------------------------
-;device_mac                Allocated with name '_makeTcpAck_device_mac_10000_133'
-;target_mac                Allocated with name '_makeTcpAck_target_mac_10000_133'
-;device_ip                 Allocated with name '_makeTcpAck_device_ip_10000_133'
-;target_ip                 Allocated with name '_makeTcpAck_target_ip_10000_133'
+;device_mac                Allocated with name '_makeTcpAck_device_mac_10000_134'
+;target_mac                Allocated with name '_makeTcpAck_target_mac_10000_134'
+;device_ip                 Allocated with name '_makeTcpAck_device_ip_10000_134'
+;target_ip                 Allocated with name '_makeTcpAck_target_ip_10000_134'
 ;------------------------------------------------------------
-;	trial_webserver.c:276: void makeTcpAck() {
+;	trial_webserver.c:305: void makeTcpAck() {
 ;	-----------------------------------------
 ;	 function makeTcpAck
 ;	-----------------------------------------
 _makeTcpAck:
-;	trial_webserver.c:277: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
-	mov	dptr,#_makeTcpAck_device_mac_10000_133
+;	trial_webserver.c:306: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+	mov	dptr,#_makeTcpAck_device_mac_10000_134
 	mov	a,#0x02
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_mac_10000_133 + 0x0001)
+	mov	dptr,#(_makeTcpAck_device_mac_10000_134 + 0x0001)
 	mov	a,#0x11
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_mac_10000_133 + 0x0002)
+	mov	dptr,#(_makeTcpAck_device_mac_10000_134 + 0x0002)
 	rl	a
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_mac_10000_133 + 0x0003)
+	mov	dptr,#(_makeTcpAck_device_mac_10000_134 + 0x0003)
 	mov	a,#0x33
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_mac_10000_133 + 0x0004)
+	mov	dptr,#(_makeTcpAck_device_mac_10000_134 + 0x0004)
 	mov	a,#0x44
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_mac_10000_133 + 0x0005)
+	mov	dptr,#(_makeTcpAck_device_mac_10000_134 + 0x0005)
 	mov	a,#0x55
 	movx	@dptr,a
-;	trial_webserver.c:278: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
-	mov	dptr,#_makeTcpAck_target_mac_10000_133
+;	trial_webserver.c:307: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+	mov	dptr,#_makeTcpAck_target_mac_10000_134
 	mov	a,#0xf8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_mac_10000_133 + 0x0001)
+	mov	dptr,#(_makeTcpAck_target_mac_10000_134 + 0x0001)
 	mov	a,#0x75
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_mac_10000_133 + 0x0002)
+	mov	dptr,#(_makeTcpAck_target_mac_10000_134 + 0x0002)
 	mov	a,#0xa4
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_mac_10000_133 + 0x0003)
+	mov	dptr,#(_makeTcpAck_target_mac_10000_134 + 0x0003)
 	mov	a,#0x8c
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_mac_10000_133 + 0x0004)
+	mov	dptr,#(_makeTcpAck_target_mac_10000_134 + 0x0004)
 	mov	a,#0x41
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_mac_10000_133 + 0x0005)
+	mov	dptr,#(_makeTcpAck_target_mac_10000_134 + 0x0005)
 	mov	a,#0x31
 	movx	@dptr,a
-;	trial_webserver.c:279: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
-	mov	dptr,#_makeTcpAck_device_ip_10000_133
+;	trial_webserver.c:308: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+	mov	dptr,#_makeTcpAck_device_ip_10000_134
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_ip_10000_133 + 0x0001)
+	mov	dptr,#(_makeTcpAck_device_ip_10000_134 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_ip_10000_133 + 0x0002)
+	mov	dptr,#(_makeTcpAck_device_ip_10000_134 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_device_ip_10000_133 + 0x0003)
+	mov	dptr,#(_makeTcpAck_device_ip_10000_134 + 0x0003)
 	mov	a,#0x64
 	movx	@dptr,a
-;	trial_webserver.c:280: uint8_t target_ip[4] = { 192, 168, 1, 1 };
-	mov	dptr,#_makeTcpAck_target_ip_10000_133
+;	trial_webserver.c:309: uint8_t target_ip[4] = { 192, 168, 1, 1 };
+	mov	dptr,#_makeTcpAck_target_ip_10000_134
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_ip_10000_133 + 0x0001)
+	mov	dptr,#(_makeTcpAck_target_ip_10000_134 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_ip_10000_133 + 0x0002)
+	mov	dptr,#(_makeTcpAck_target_ip_10000_134 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpAck_target_ip_10000_133 + 0x0003)
+	mov	dptr,#(_makeTcpAck_target_ip_10000_134 + 0x0003)
 	movx	@dptr,a
-;	trial_webserver.c:281: printf("tcpack\n\r");
-	mov	a,#___str_3
+;	trial_webserver.c:310: printf("tcpack\n\r");
+	mov	a,#___str_4
 	push	acc
-	mov	a,#(___str_3 >> 8)
+	mov	a,#(___str_4 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2126,7 +2258,7 @@ _makeTcpAck:
 	dec	sp
 	dec	sp
 	dec	sp
-;	trial_webserver.c:282: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+;	trial_webserver.c:311: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
 	mov	dptr,#_memmove_PARM_2
 	mov	a,#_buffer
 	movx	@dptr,a
@@ -2145,15 +2277,15 @@ _makeTcpAck:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	_memmove
-;	trial_webserver.c:285: buffer[0] = 0x0E;
+;	trial_webserver.c:314: buffer[0] = 0x0E;
 	mov	dptr,#_buffer
 	mov	a,#0x0e
 	movx	@dptr,a
-;	trial_webserver.c:286: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;
+;	trial_webserver.c:315: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_ACK;
 	mov	dptr,#(_buffer + 0x0030)
 	mov	a,#0x10
 	movx	@dptr,a
-;	trial_webserver.c:287: transmit_tcp_packet(buffer, 1 + TCP_DATA_START_P);
+;	trial_webserver.c:316: transmit_tcp_packet(buffer, 1 + TCP_DATA_START_P);
 	mov	dptr,#_transmit_tcp_packet_PARM_2
 	mov	a,#0x37
 	movx	@dptr,a
@@ -2162,95 +2294,95 @@ _makeTcpAck:
 	movx	@dptr,a
 	mov	dptr,#_buffer
 	mov	b,a
-;	trial_webserver.c:288: }
+;	trial_webserver.c:317: }
 	ljmp	_transmit_tcp_packet
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'makeTcpFinPshAck'
 ;------------------------------------------------------------
-;device_mac                Allocated with name '_makeTcpFinPshAck_device_mac_10000_134'
-;target_mac                Allocated with name '_makeTcpFinPshAck_target_mac_10000_134'
-;device_ip                 Allocated with name '_makeTcpFinPshAck_device_ip_10000_134'
-;target_ip                 Allocated with name '_makeTcpFinPshAck_target_ip_10000_134'
-;srcPort                   Allocated with name '_makeTcpFinPshAck_srcPort_10001_135'
-;dstPort                   Allocated with name '_makeTcpFinPshAck_dstPort_10001_135'
-;serverSeqNum              Allocated with name '_makeTcpFinPshAck_serverSeqNum_10002_136'
-;ackNum                    Allocated with name '_makeTcpFinPshAck_ackNum_10002_136'
-;html_payload              Allocated with name '_makeTcpFinPshAck_html_payload_10003_137'
-;dataLength                Allocated with name '_makeTcpFinPshAck_dataLength_10003_137'
-;totalLength               Allocated with name '_makeTcpFinPshAck_totalLength_10003_137'
+;device_mac                Allocated with name '_makeTcpFinPshAck_device_mac_10000_135'
+;target_mac                Allocated with name '_makeTcpFinPshAck_target_mac_10000_135'
+;device_ip                 Allocated with name '_makeTcpFinPshAck_device_ip_10000_135'
+;target_ip                 Allocated with name '_makeTcpFinPshAck_target_ip_10000_135'
+;srcPort                   Allocated with name '_makeTcpFinPshAck_srcPort_10001_136'
+;dstPort                   Allocated with name '_makeTcpFinPshAck_dstPort_10001_136'
+;serverSeqNum              Allocated with name '_makeTcpFinPshAck_serverSeqNum_10002_137'
+;ackNum                    Allocated with name '_makeTcpFinPshAck_ackNum_10002_137'
+;html_payload              Allocated with name '_makeTcpFinPshAck_html_payload_10003_138'
+;dataLength                Allocated with name '_makeTcpFinPshAck_dataLength_10003_138'
+;totalLength               Allocated with name '_makeTcpFinPshAck_totalLength_10003_138'
 ;------------------------------------------------------------
-;	trial_webserver.c:290: void makeTcpFinPshAck() {
+;	trial_webserver.c:319: void makeTcpFinPshAck() {
 ;	-----------------------------------------
 ;	 function makeTcpFinPshAck
 ;	-----------------------------------------
 _makeTcpFinPshAck:
-;	trial_webserver.c:291: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
-	mov	dptr,#_makeTcpFinPshAck_device_mac_10000_134
+;	trial_webserver.c:320: uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+	mov	dptr,#_makeTcpFinPshAck_device_mac_10000_135
 	mov	a,#0x02
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_134 + 0x0001)
+	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_135 + 0x0001)
 	mov	a,#0x11
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_134 + 0x0002)
+	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_135 + 0x0002)
 	rl	a
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_134 + 0x0003)
+	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_135 + 0x0003)
 	mov	a,#0x33
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_134 + 0x0004)
+	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_135 + 0x0004)
 	mov	a,#0x44
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_134 + 0x0005)
+	mov	dptr,#(_makeTcpFinPshAck_device_mac_10000_135 + 0x0005)
 	mov	a,#0x55
 	movx	@dptr,a
-;	trial_webserver.c:292: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
-	mov	dptr,#_makeTcpFinPshAck_target_mac_10000_134
+;	trial_webserver.c:321: uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+	mov	dptr,#_makeTcpFinPshAck_target_mac_10000_135
 	mov	a,#0xf8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_134 + 0x0001)
+	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_135 + 0x0001)
 	mov	a,#0x75
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_134 + 0x0002)
+	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_135 + 0x0002)
 	mov	a,#0xa4
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_134 + 0x0003)
+	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_135 + 0x0003)
 	mov	a,#0x8c
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_134 + 0x0004)
+	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_135 + 0x0004)
 	mov	a,#0x41
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_134 + 0x0005)
+	mov	dptr,#(_makeTcpFinPshAck_target_mac_10000_135 + 0x0005)
 	mov	a,#0x31
 	movx	@dptr,a
-;	trial_webserver.c:293: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
-	mov	dptr,#_makeTcpFinPshAck_device_ip_10000_134
+;	trial_webserver.c:322: uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+	mov	dptr,#_makeTcpFinPshAck_device_ip_10000_135
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_134 + 0x0001)
+	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_135 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_134 + 0x0002)
+	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_135 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_134 + 0x0003)
+	mov	dptr,#(_makeTcpFinPshAck_device_ip_10000_135 + 0x0003)
 	mov	a,#0x64
 	movx	@dptr,a
-;	trial_webserver.c:294: uint8_t target_ip[4] = { 192, 168, 1, 1 };
-	mov	dptr,#_makeTcpFinPshAck_target_ip_10000_134
+;	trial_webserver.c:323: uint8_t target_ip[4] = { 192, 168, 1, 1 };
+	mov	dptr,#_makeTcpFinPshAck_target_ip_10000_135
 	mov	a,#0xc0
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_134 + 0x0001)
+	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_135 + 0x0001)
 	mov	a,#0xa8
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_134 + 0x0002)
+	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_135 + 0x0002)
 	mov	a,#0x01
 	movx	@dptr,a
-	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_134 + 0x0003)
+	mov	dptr,#(_makeTcpFinPshAck_target_ip_10000_135 + 0x0003)
 	movx	@dptr,a
-;	trial_webserver.c:295: printf("makeTcpFinPshAck\n\r");
-	mov	a,#___str_5
+;	trial_webserver.c:324: printf("makeTcpFinPshAck\n\r");
+	mov	a,#___str_6
 	push	acc
-	mov	a,#(___str_5 >> 8)
+	mov	a,#(___str_6 >> 8)
 	push	acc
 	mov	a,#0x80
 	push	acc
@@ -2258,7 +2390,7 @@ _makeTcpFinPshAck:
 	dec	sp
 	dec	sp
 	dec	sp
-;	trial_webserver.c:298: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
+;	trial_webserver.c:327: memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
 	mov	dptr,#_memmove_PARM_2
 	mov	a,#_buffer
 	movx	@dptr,a
@@ -2277,11 +2409,11 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	_memmove
-;	trial_webserver.c:299: buffer[0] = 0x0E;
+;	trial_webserver.c:328: buffer[0] = 0x0E;
 	mov	dptr,#_buffer
 	mov	a,#0x0e
 	movx	@dptr,a
-;	trial_webserver.c:302: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
+;	trial_webserver.c:331: memcpy(&buffer[1 + ETH_DST_MAC], &buffer[1 + ETH_SRC_MAC], 6);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x0007)
 	movx	@dptr,a
@@ -2300,11 +2432,11 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:303: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
+;	trial_webserver.c:332: memcpy(&buffer[1 + ETH_SRC_MAC], device_mac, 6);
 	mov	dptr,#___memcpy_PARM_2
-	mov	a,#_makeTcpFinPshAck_device_mac_10000_134
+	mov	a,#_makeTcpFinPshAck_device_mac_10000_135
 	movx	@dptr,a
-	mov	a,#(_makeTcpFinPshAck_device_mac_10000_134 >> 8)
+	mov	a,#(_makeTcpFinPshAck_device_mac_10000_135 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -2319,7 +2451,7 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x0007)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:306: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
+;	trial_webserver.c:335: memcpy(&buffer[1 + IP_DST_P], &buffer[1 + IP_SRC_P], 4);
 	mov	dptr,#___memcpy_PARM_2
 	mov	a,#(_buffer + 0x001b)
 	movx	@dptr,a
@@ -2338,11 +2470,11 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x001f)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:307: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
+;	trial_webserver.c:336: memcpy(&buffer[1 + IP_SRC_P], device_ip, 4);
 	mov	dptr,#___memcpy_PARM_2
-	mov	a,#_makeTcpFinPshAck_device_ip_10000_134
+	mov	a,#_makeTcpFinPshAck_device_ip_10000_135
 	movx	@dptr,a
-	mov	a,#(_makeTcpFinPshAck_device_ip_10000_134 >> 8)
+	mov	a,#(_makeTcpFinPshAck_device_ip_10000_135 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -2357,7 +2489,7 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x001b)
 	mov	b,a
 	lcall	___memcpy
-;	trial_webserver.c:310: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
+;	trial_webserver.c:339: uint16_t srcPort = (buffer[1 + TCP_SRC_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0023)
 	movx	a,@dptr
 	mov	r6,a
@@ -2368,7 +2500,7 @@ _makeTcpFinPshAck:
 	orl	ar7,a
 	mov	a,r4
 	orl	ar6,a
-;	trial_webserver.c:312: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
+;	trial_webserver.c:341: uint16_t dstPort = (buffer[1 + TCP_DST_PORT_H_P] << 8)
 	mov	dptr,#(_buffer + 0x0025)
 	movx	a,@dptr
 	mov	r4,a
@@ -2379,25 +2511,25 @@ _makeTcpFinPshAck:
 	orl	ar5,a
 	mov	a,r2
 	orl	ar4,a
-;	trial_webserver.c:314: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
+;	trial_webserver.c:343: buffer[1 + TCP_SRC_PORT_H_P] = dstPort >> 8;
 	mov	ar3,r4
 	mov	dptr,#(_buffer + 0x0023)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:315: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
+;	trial_webserver.c:344: buffer[1 + TCP_SRC_PORT_L_P] = dstPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0024)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:316: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
+;	trial_webserver.c:345: buffer[1 + TCP_DST_PORT_H_P] = srcPort >> 8;
 	mov	ar5,r6
 	mov	dptr,#(_buffer + 0x0025)
 	mov	a,r5
 	movx	@dptr,a
-;	trial_webserver.c:317: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
+;	trial_webserver.c:346: buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 	mov	dptr,#(_buffer + 0x0026)
 	mov	a,r7
 	movx	@dptr,a
-;	trial_webserver.c:320: uint32_t serverSeqNum = prevSeq;
+;	trial_webserver.c:349: uint32_t serverSeqNum = prevSeq;
 	mov	dptr,#_prevSeq
 	movx	a,@dptr
 	mov	r4,a
@@ -2410,7 +2542,7 @@ _makeTcpFinPshAck:
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-	mov	dptr,#_makeTcpFinPshAck_serverSeqNum_10002_136
+	mov	dptr,#_makeTcpFinPshAck_serverSeqNum_10002_137
 	mov	a,r4
 	movx	@dptr,a
 	mov	a,r5
@@ -2422,7 +2554,7 @@ _makeTcpFinPshAck:
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:321: uint32_t ackNum = prevAck;
+;	trial_webserver.c:350: uint32_t ackNum = prevAck;
 	mov	dptr,#_prevAck
 	movx	a,@dptr
 	mov	r0,a
@@ -2435,7 +2567,7 @@ _makeTcpFinPshAck:
 	inc	dptr
 	movx	a,@dptr
 	mov	r3,a
-	mov	dptr,#_makeTcpFinPshAck_ackNum_10002_136
+	mov	dptr,#_makeTcpFinPshAck_ackNum_10002_137
 	mov	a,r0
 	movx	@dptr,a
 	mov	a,r1
@@ -2447,13 +2579,13 @@ _makeTcpFinPshAck:
 	mov	a,r3
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:323: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
+;	trial_webserver.c:352: buffer[1 + TCP_SEQ_H_P] = (serverSeqNum >> 24) & 0xFF;
 	mov	ar4,r7
 	mov	dptr,#(_buffer + 0x0027)
 	mov	a,r4
 	movx	@dptr,a
-;	trial_webserver.c:324: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
-	mov	dptr,#_makeTcpFinPshAck_serverSeqNum_10002_136
+;	trial_webserver.c:353: buffer[1 + TCP_SEQ_H_P + 1] = (serverSeqNum >> 16) & 0xFF;
+	mov	dptr,#_makeTcpFinPshAck_serverSeqNum_10002_137
 	movx	a,@dptr
 	mov	r4,a
 	inc	dptr
@@ -2468,17 +2600,17 @@ _makeTcpFinPshAck:
 	mov	dptr,#(_buffer + 0x0028)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:325: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
+;	trial_webserver.c:354: buffer[1 + TCP_SEQ_H_P + 2] = (serverSeqNum >> 8) & 0xFF;
 	mov	ar3,r5
 	mov	dptr,#(_buffer + 0x0029)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:326: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
+;	trial_webserver.c:355: buffer[1 + TCP_SEQ_H_P + 3] = serverSeqNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002a)
 	mov	a,r4
 	movx	@dptr,a
-;	trial_webserver.c:327: buffer[1 + TCP_SEQ_H_P + 4] = (ackNum >> 24) & 0xFF;
-	mov	dptr,#_makeTcpFinPshAck_ackNum_10002_136
+;	trial_webserver.c:356: buffer[1 + TCP_SEQ_H_P + 4] = (ackNum >> 24) & 0xFF;
+	mov	dptr,#_makeTcpFinPshAck_ackNum_10002_137
 	movx	a,@dptr
 	mov	r4,a
 	inc	dptr
@@ -2491,60 +2623,60 @@ _makeTcpFinPshAck:
 	movx	a,@dptr
 	mov	dptr,#(_buffer + 0x002b)
 	movx	@dptr,a
-;	trial_webserver.c:328: buffer[1 + TCP_SEQ_H_P + 5] = (ackNum >> 16) & 0xFF;
+;	trial_webserver.c:357: buffer[1 + TCP_SEQ_H_P + 5] = (ackNum >> 16) & 0xFF;
 	mov	ar3,r6
 	mov	dptr,#(_buffer + 0x002c)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:329: buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
+;	trial_webserver.c:358: buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
 	mov	ar3,r5
 	mov	dptr,#(_buffer + 0x002d)
 	mov	a,r3
 	movx	@dptr,a
-;	trial_webserver.c:330: buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
+;	trial_webserver.c:359: buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
 	mov	dptr,#(_buffer + 0x002e)
 	mov	a,r4
 	movx	@dptr,a
-;	trial_webserver.c:333: const char *html_payload =
-;	trial_webserver.c:356: uint16_t dataLength = strlen(html_payload);
-	mov	dptr,#___str_4
+;	trial_webserver.c:362: const char *html_payload =
+;	trial_webserver.c:385: uint16_t dataLength = strlen(html_payload);
+	mov	dptr,#___str_5
 	mov	b, #0x80
 	lcall	_strlen
 	mov	r6, dpl
 	mov	r7, dph
-;	trial_webserver.c:359: uint16_t totalLength = IP_HEADER_LEN + TCP_HEADER_LEN + dataLength;
+;	trial_webserver.c:388: uint16_t totalLength = IP_HEADER_LEN + TCP_HEADER_LEN + dataLength;
 	mov	a,#0x28
 	add	a, r6
 	mov	r4,a
 	clr	a
 	addc	a, r7
-;	trial_webserver.c:360: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
+;	trial_webserver.c:389: buffer[1 + IP_TOTLEN_H_P] = (totalLength >> 8) & 0xFF;
 	mov	dptr,#(_buffer + 0x0011)
 	movx	@dptr,a
-;	trial_webserver.c:361: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
+;	trial_webserver.c:390: buffer[1 + IP_TOTLEN_L_P] = totalLength & 0xFF;
 	mov	dptr,#(_buffer + 0x0012)
 	mov	a,r4
 	movx	@dptr,a
-;	trial_webserver.c:364: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_FIN | TCP_FLAG_PUSH | TCP_FLAG_ACK;
+;	trial_webserver.c:393: buffer[1 + TCP_FLAGS_P] = TCP_FLAG_FIN | TCP_FLAG_PUSH | TCP_FLAG_ACK;
 	mov	dptr,#(_buffer + 0x0030)
 	mov	a,#0x19
 	movx	@dptr,a
-;	trial_webserver.c:365: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF;
+;	trial_webserver.c:394: buffer[1 + TCP_WIN_SIZE_H_P] = 0xFF;
 	mov	dptr,#(_buffer + 0x0031)
 	mov	a,#0xff
 	movx	@dptr,a
-;	trial_webserver.c:366: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
+;	trial_webserver.c:395: buffer[1 + TCP_WIN_SIZE_L_P] = 0xFF;
 	mov	dptr,#(_buffer + 0x0032)
 	movx	@dptr,a
-;	trial_webserver.c:367: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
+;	trial_webserver.c:396: buffer[1 + TCP_HEADER_LEN_P] = 0x50; // 20 bytes (5 words)
 	mov	dptr,#(_buffer + 0x002f)
 	mov	a,#0x50
 	movx	@dptr,a
-;	trial_webserver.c:370: memcpy(&buffer[1 + TCP_DATA_START_P], html_payload, dataLength);
+;	trial_webserver.c:399: memcpy(&buffer[1 + TCP_DATA_START_P], html_payload, dataLength);
 	mov	dptr,#___memcpy_PARM_2
-	mov	a,#___str_4
+	mov	a,#___str_5
 	movx	@dptr,a
-	mov	a,#(___str_4 >> 8)
+	mov	a,#(___str_5 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	mov	a,#0x80
@@ -2561,17 +2693,17 @@ _makeTcpFinPshAck:
 	push	ar7
 	push	ar6
 	lcall	___memcpy
-;	trial_webserver.c:373: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
+;	trial_webserver.c:402: calculateIPChecksum(&buffer[1]); // Pass the buffer to calculate the IP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateIPChecksum
-;	trial_webserver.c:374: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
+;	trial_webserver.c:403: calculateTcpChecksum(&buffer[1]); // Pass the buffer to calculate the TCP checksum
 	mov	dptr,#(_buffer + 0x0001)
 	mov	b, #0x00
 	lcall	_calculateTcpChecksum
 	pop	ar6
 	pop	ar7
-;	trial_webserver.c:377: transmit_tcp_packet(buffer, 1 + TCP_DATA_START_P + dataLength);
+;	trial_webserver.c:406: transmit_tcp_packet(buffer, 1 + TCP_DATA_START_P + dataLength);
 	mov	a,#0x37
 	add	a, r6
 	mov	r6,a
@@ -2587,53 +2719,53 @@ _makeTcpFinPshAck:
 	mov	dptr,#_buffer
 	mov	b, #0x00
 	lcall	_transmit_tcp_packet
-;	trial_webserver.c:380: connectionState = FIN_WAIT;
+;	trial_webserver.c:409: connectionState = FIN_WAIT;
 	mov	dptr,#_connectionState
 	mov	a,#0x03
 	movx	@dptr,a
-;	trial_webserver.c:381: }
+;	trial_webserver.c:410: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'packetReceive'
 ;------------------------------------------------------------
-;gNextPacketPtr            Allocated with name '_packetReceive_gNextPacketPtr_10000_138'
-;unreleasedPacket          Allocated with name '_packetReceive_unreleasedPacket_10000_138'
-;len                       Allocated with name '_packetReceive_len_10000_138'
-;RX_END                    Allocated with name '_packetReceive_RX_END_30000_140'
-;EPKTCNT                   Allocated with name '_packetReceive_EPKTCNT_10001_142'
-;header                    Allocated with name '_packetReceive_header_20002_144'
-;start                     Allocated with name '_packetReceive_start_20003_145'
-;ECON2                     Allocated with name '_packetReceive_ECON2_20004_146'
+;gNextPacketPtr            Allocated with name '_packetReceive_gNextPacketPtr_10000_139'
+;unreleasedPacket          Allocated with name '_packetReceive_unreleasedPacket_10000_139'
+;len                       Allocated with name '_packetReceive_len_10000_139'
+;RX_END                    Allocated with name '_packetReceive_RX_END_30000_141'
+;EPKTCNT                   Allocated with name '_packetReceive_EPKTCNT_10001_143'
+;header                    Allocated with name '_packetReceive_header_20002_145'
+;start                     Allocated with name '_packetReceive_start_20003_146'
+;ECON2                     Allocated with name '_packetReceive_ECON2_20004_147'
 ;------------------------------------------------------------
-;	trial_webserver.c:386: uint16_t packetReceive()
+;	trial_webserver.c:415: uint16_t packetReceive()
 ;	-----------------------------------------
 ;	 function packetReceive
 ;	-----------------------------------------
 _packetReceive:
-;	trial_webserver.c:390: uint16_t len = 0;
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:419: uint16_t len = 0;
+	mov	dptr,#_packetReceive_len_10000_139
 	clr	a
 	movx	@dptr,a
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:393: if (unreleasedPacket) {
-	mov	dptr,#_packetReceive_unreleasedPacket_10000_138
+;	trial_webserver.c:422: if (unreleasedPacket) {
+	mov	dptr,#_packetReceive_unreleasedPacket_10000_139
 	movx	a,@dptr
 	jz	00105$
-;	trial_webserver.c:394: if (gNextPacketPtr == 0) {
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:423: if (gNextPacketPtr == 0) {
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	b,a
 	inc	dptr
 	movx	a,@dptr
 	orl	a,b
 	jnz	00102$
-;	trial_webserver.c:396: spi_control_write(0, 0x0C, (uint8_t) (RX_END & 0xFF)); // Low byte
+;	trial_webserver.c:425: spi_control_write(0, 0x0C, (uint8_t) (RX_END & 0xFF)); // Low byte
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0c
 	movx	@dptr,a
@@ -2642,18 +2774,18 @@ _packetReceive:
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
-;	trial_webserver.c:397: spi_control_write(0, 0x0D, (uint8_t) ((RX_END >> 8) & 0xFF)); // High byte
+;	trial_webserver.c:426: spi_control_write(0, 0x0D, (uint8_t) ((RX_END >> 8) & 0xFF)); // High byte
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0d
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,#0x0b
+	mov	a,#0x1b
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
 	sjmp	00103$
 00102$:
-;	trial_webserver.c:399: spi_control_write(0, 0x0C, (uint8_t) ((gNextPacketPtr - 1) & 0xFF)); // Low byte
+;	trial_webserver.c:428: spi_control_write(0, 0x0C, (uint8_t) ((gNextPacketPtr - 1) & 0xFF)); // Low byte
 	dec	r6
 	mov	dptr,#_spi_control_write_PARM_2
 	mov	a,#0x0c
@@ -2663,8 +2795,8 @@ _packetReceive:
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
-;	trial_webserver.c:401: (uint8_t) (((gNextPacketPtr - 1) >> 8) & 0xFF)); // High byte
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:430: (uint8_t) (((gNextPacketPtr - 1) >> 8) & 0xFF)); // High byte
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -2684,24 +2816,24 @@ _packetReceive:
 	mov	dpl, #0x00
 	lcall	_spi_control_write
 00103$:
-;	trial_webserver.c:403: unreleasedPacket = false;
-	mov	dptr,#_packetReceive_unreleasedPacket_10000_138
+;	trial_webserver.c:432: unreleasedPacket = false;
+	mov	dptr,#_packetReceive_unreleasedPacket_10000_139
 	clr	a
 	movx	@dptr,a
 00105$:
-;	trial_webserver.c:406: uint8_t EPKTCNT = eth_spi_read(0x19, 1);
+;	trial_webserver.c:435: uint8_t EPKTCNT = eth_spi_read(0x19, 1);
 	mov	dptr,#_eth_spi_read_PARM_2
 	mov	a,#0x01
 	movx	@dptr,a
 	mov	dpl, #0x19
 	lcall	_eth_spi_read
 	mov	a, dpl
-;	trial_webserver.c:407: if (EPKTCNT > 0) {
+;	trial_webserver.c:436: if (EPKTCNT > 0) {
 	jnz	00148$
 	ljmp	00112$
 00148$:
-;	trial_webserver.c:408: spi_control_write(0, 0x00, (uint8_t) (gNextPacketPtr & 0xFF)); // Low byte
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:437: spi_control_write(0, 0x00, (uint8_t) (gNextPacketPtr & 0xFF)); // Low byte
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -2714,8 +2846,8 @@ _packetReceive:
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
-;	trial_webserver.c:409: spi_control_write(0, 0x01, (uint8_t) ((gNextPacketPtr >> 8) & 0xFF)); // High byte
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:438: spi_control_write(0, 0x01, (uint8_t) ((gNextPacketPtr >> 8) & 0xFF)); // High byte
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	inc	dptr
 	movx	a,@dptr
@@ -2728,14 +2860,14 @@ _packetReceive:
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
-;	trial_webserver.c:418: spi_buffer_read(sizeof(PacketHeader), gNextPacketPtr,
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:447: spi_buffer_read(sizeof(PacketHeader), gNextPacketPtr,
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-;	trial_webserver.c:419: (uint8_t*) &header);
+;	trial_webserver.c:448: (uint8_t*) &header);
 	mov	dptr,#_spi_buffer_read_PARM_2
 	mov	a,r6
 	movx	@dptr,a
@@ -2743,9 +2875,9 @@ _packetReceive:
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_read_PARM_3
-	mov	a,#_packetReceive_header_20002_144
+	mov	a,#_packetReceive_header_20002_145
 	movx	@dptr,a
-	mov	a,#(_packetReceive_header_20002_144 >> 8)
+	mov	a,#(_packetReceive_header_20002_145 >> 8)
 	inc	dptr
 	movx	@dptr,a
 	clr	a
@@ -2753,8 +2885,8 @@ _packetReceive:
 	movx	@dptr,a
 	mov	dptr,#0x0006
 	lcall	_spi_buffer_read
-;	trial_webserver.c:421: uint16_t start = gNextPacketPtr + sizeof(PacketHeader);
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+;	trial_webserver.c:450: uint16_t start = gNextPacketPtr + sizeof(PacketHeader);
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -2766,27 +2898,27 @@ _packetReceive:
 	clr	a
 	addc	a, r7
 	mov	r7,a
-	mov	dptr,#_packetReceive_start_20003_145
+	mov	dptr,#_packetReceive_start_20003_146
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:422: gNextPacketPtr = header.nextPacket;
-	mov	dptr,#_packetReceive_header_20002_144
+;	trial_webserver.c:451: gNextPacketPtr = header.nextPacket;
+	mov	dptr,#_packetReceive_header_20002_145
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-	mov	dptr,#_packetReceive_gNextPacketPtr_10000_138
+	mov	dptr,#_packetReceive_gNextPacketPtr_10000_139
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:424: len = header.byteCount - 4; // Exclude CRC
-	mov	dptr,#(_packetReceive_header_20002_144 + 0x0002)
+;	trial_webserver.c:453: len = header.byteCount - 4; // Exclude CRC
+	mov	dptr,#(_packetReceive_header_20002_145 + 0x0002)
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -2798,51 +2930,51 @@ _packetReceive:
 	mov	a,r7
 	addc	a,#0xff
 	mov	r7,a
-	mov	dptr,#_packetReceive_len_10000_138
+	mov	dptr,#_packetReceive_len_10000_139
 	mov	a,r6
 	movx	@dptr,a
 	mov	a,r7
 	inc	dptr
 	movx	@dptr,a
-;	trial_webserver.c:425: if (len > BUFFER_SIZE - 1)
+;	trial_webserver.c:454: if (len > BUFFER_SIZE - 1)
 	clr	c
 	mov	a,#0xdb
 	subb	a,r6
 	mov	a,#0x05
 	subb	a,r7
 	jnc	00107$
-;	trial_webserver.c:426: len = BUFFER_SIZE - 1;
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:455: len = BUFFER_SIZE - 1;
+	mov	dptr,#_packetReceive_len_10000_139
 	mov	a,#0xdb
 	movx	@dptr,a
 	mov	a,#0x05
 	inc	dptr
 	movx	@dptr,a
 00107$:
-;	trial_webserver.c:428: if ((header.status & 0x80) == 0)
-	mov	dptr,#(_packetReceive_header_20002_144 + 0x0004)
+;	trial_webserver.c:457: if ((header.status & 0x80) == 0)
+	mov	dptr,#(_packetReceive_header_20002_145 + 0x0004)
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	a,r6
 	jb	acc.7,00109$
-;	trial_webserver.c:429: len = 0; // Invalid packet
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:458: len = 0; // Invalid packet
+	mov	dptr,#_packetReceive_len_10000_139
 	clr	a
 	movx	@dptr,a
 	inc	dptr
 	movx	@dptr,a
 	sjmp	00110$
 00109$:
-;	trial_webserver.c:431: spi_buffer_read(len, start, buffer);
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:460: spi_buffer_read(len, start, buffer);
+	mov	dptr,#_packetReceive_len_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
 	mov	r7,a
-	mov	dptr,#_packetReceive_start_20003_145
+	mov	dptr,#_packetReceive_start_20003_146
 	movx	a,@dptr
 	mov	r4,a
 	inc	dptr
@@ -2867,8 +2999,8 @@ _packetReceive:
 	mov	dph, r7
 	lcall	_spi_buffer_read
 00110$:
-;	trial_webserver.c:433: buffer[len] = 0; // Null-terminate
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:462: buffer[len] = 0; // Null-terminate
+	mov	dptr,#_packetReceive_len_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
@@ -2882,18 +3014,18 @@ _packetReceive:
 	mov	dph,a
 	clr	a
 	movx	@dptr,a
-;	trial_webserver.c:434: unreleasedPacket = true;
-	mov	dptr,#_packetReceive_unreleasedPacket_10000_138
+;	trial_webserver.c:463: unreleasedPacket = true;
+	mov	dptr,#_packetReceive_unreleasedPacket_10000_139
 	inc	a
 	movx	@dptr,a
-;	trial_webserver.c:436: uint8_t ECON2 = mac_spi_read(0x1E, 0);
+;	trial_webserver.c:465: uint8_t ECON2 = mac_spi_read(0x1E, 0);
 	mov	dptr,#_mac_spi_read_PARM_2
 	clr	a
 	movx	@dptr,a
 	mov	dpl, #0x1e
 	lcall	_mac_spi_read
 	mov	a, dpl
-;	trial_webserver.c:437: spi_control_write(0, 0x1E, (ECON2 | (1 << 6))); // Enable MAC reception
+;	trial_webserver.c:466: spi_control_write(0, 0x1E, (ECON2 | (1 << 6))); // Enable MAC reception
 	orl	a,#0x40
 	mov	r7,a
 	mov	dptr,#_spi_control_write_PARM_2
@@ -2905,39 +3037,39 @@ _packetReceive:
 	mov	dpl, #0x00
 	lcall	_spi_control_write
 00112$:
-;	trial_webserver.c:440: return len;
-	mov	dptr,#_packetReceive_len_10000_138
+;	trial_webserver.c:469: return len;
+	mov	dptr,#_packetReceive_len_10000_139
 	movx	a,@dptr
 	mov	r6,a
 	inc	dptr
 	movx	a,@dptr
-;	trial_webserver.c:441: }
+;	trial_webserver.c:470: }
 	mov	dpl,r6
 	mov	dph,a
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'packetLoop'
 ;------------------------------------------------------------
-;plen                      Allocated with name '_packetLoop_plen_10000_148'
-;ethType                   Allocated with name '_packetLoop_ethType_20000_149'
-;tcpFlags                  Allocated with name '_packetLoop_tcpFlags_30000_152'
+;plen                      Allocated with name '_packetLoop_plen_10000_149'
+;ethType                   Allocated with name '_packetLoop_ethType_20000_150'
+;tcpFlags                  Allocated with name '_packetLoop_tcpFlags_30000_153'
 ;------------------------------------------------------------
-;	trial_webserver.c:443: void packetLoop(void)
+;	trial_webserver.c:472: void packetLoop(void)
 ;	-----------------------------------------
 ;	 function packetLoop
 ;	-----------------------------------------
 _packetLoop:
-;	trial_webserver.c:445: uint16_t plen = packetReceive();
+;	trial_webserver.c:474: uint16_t plen = packetReceive();
 	lcall	_packetReceive
 	mov	r6, dpl
 	mov	r7, dph
-;	trial_webserver.c:448: if (plen > 0) {
+;	trial_webserver.c:477: if (plen > 0) {
 	mov	a,r6
 	orl	a,r7
 	jnz	00219$
 	ret
 00219$:
-;	trial_webserver.c:449: uint16_t ethType = (buffer[ETH_TYPE_H_P] << 8) | buffer[ETH_TYPE_L_P];
+;	trial_webserver.c:478: uint16_t ethType = (buffer[ETH_TYPE_H_P] << 8) | buffer[ETH_TYPE_L_P];
 	mov	dptr,#(_buffer + 0x000c)
 	movx	a,@dptr
 	mov	r4,a
@@ -2949,21 +3081,21 @@ _packetLoop:
 	orl	ar5,a
 	mov	a,r2
 	orl	ar4,a
-;	trial_webserver.c:450: if (ethType == ETH_TYPE_ARP) {
+;	trial_webserver.c:479: if (ethType == ETH_TYPE_ARP) {
 	cjne	r5,#0x06,00104$
 	cjne	r4,#0x08,00104$
-;	trial_webserver.c:451: if (buffer[21] == 0x01) {
+;	trial_webserver.c:480: if (buffer[21] == 0x01) {
 	mov	dptr,#(_buffer + 0x0015)
 	movx	a,@dptr
 	mov	r3,a
 	cjne	r3,#0x01,00102$
-;	trial_webserver.c:452: makeArpReply();
-;	trial_webserver.c:454: return;
+;	trial_webserver.c:481: makeArpReply();
+;	trial_webserver.c:483: return;
 	ljmp	_makeArpReply
 00102$:
 	ret
 00104$:
-;	trial_webserver.c:457: if (ethType == ETH_TYPE_IP && buffer[IP_PROTO_P] == IP_PROTO_TCP)
+;	trial_webserver.c:486: if (ethType == ETH_TYPE_IP && buffer[IP_PROTO_P] == IP_PROTO_TCP)
 	cjne	r5,#0x00,00224$
 	cjne	r4,#0x08,00224$
 	sjmp	00225$
@@ -2978,41 +3110,15 @@ _packetLoop:
 00226$:
 	ret
 00227$:
-;	trial_webserver.c:459: uint8_t tcpFlags = buffer[TCP_FLAGS_P];
+;	trial_webserver.c:488: uint8_t tcpFlags = buffer[TCP_FLAGS_P];
 	mov	dptr,#(_buffer + 0x002f)
 	movx	a,@dptr
-;	trial_webserver.c:462: if ((tcpFlags & TCP_FLAG_ACK) && (tcpFlags & TCP_FLAG_FIN)) {
+;	trial_webserver.c:491: if ((tcpFlags & TCP_FLAG_ACK) && (tcpFlags & TCP_FLAG_FIN)) {
 	mov	r5,a
 	jnb	acc.4,00106$
 	mov	a,r5
 	jnb	acc.0,00106$
-;	trial_webserver.c:463: printf("TCP(ACK_FIN) packet detected\n\r");
-	mov	a,#___str_6
-	push	acc
-	mov	a,#(___str_6 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-;	trial_webserver.c:464: makeTcpAck3(); // Send an acknowledgment
-	lcall	_makeTcpAck3
-;	trial_webserver.c:465: connectionState = CLOSED;
-	mov	dptr,#_connectionState
-	mov	a,#0x04
-	movx	@dptr,a
-;	trial_webserver.c:467: return;
-	ret
-00106$:
-;	trial_webserver.c:469: if ((tcpFlags & TCP_FLAG_SYN)) {
-	mov	a,r5
-	jnb	acc.1,00109$
-;	trial_webserver.c:470: printf("TCP(SYN) packet detected\n\r");
-	push	ar7
-	push	ar6
-	push	ar5
+;	trial_webserver.c:492: printf("TCP(ACK_FIN) packet detected\n\r");
 	mov	a,#___str_7
 	push	acc
 	mov	a,#(___str_7 >> 8)
@@ -3023,15 +3129,41 @@ _packetLoop:
 	dec	sp
 	dec	sp
 	dec	sp
+;	trial_webserver.c:493: makeTcpAck3(); // Send an acknowledgment
+	lcall	_makeTcpAck3
+;	trial_webserver.c:494: connectionState = CLOSED;
+	mov	dptr,#_connectionState
+	mov	a,#0x04
+	movx	@dptr,a
+;	trial_webserver.c:496: return;
+	ret
+00106$:
+;	trial_webserver.c:498: if ((tcpFlags & TCP_FLAG_SYN)) {
+	mov	a,r5
+	jnb	acc.1,00109$
+;	trial_webserver.c:499: printf("TCP(SYN) packet detected\n\r");
+	push	ar7
+	push	ar6
+	push	ar5
+	mov	a,#___str_8
+	push	acc
+	mov	a,#(___str_8 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
 	pop	ar5
 	pop	ar6
 	pop	ar7
-;	trial_webserver.c:472: connectionState = LISTEN;
+;	trial_webserver.c:501: connectionState = LISTEN;
 	mov	dptr,#_connectionState
 	clr	a
 	movx	@dptr,a
 00109$:
-;	trial_webserver.c:475: switch (connectionState) {
+;	trial_webserver.c:504: switch (connectionState) {
 	mov	dptr,#_connectionState
 	movx	a,@dptr
 	mov  r4,a
@@ -3051,32 +3183,9 @@ _packetLoop:
 	ljmp	00122$
 	ljmp	00133$
 	ljmp	00125$
-;	trial_webserver.c:476: case LISTEN:
+;	trial_webserver.c:505: case LISTEN:
 00110$:
-;	trial_webserver.c:477: printf("listen\n\r");
-	push	ar5
-	mov	a,#___str_8
-	push	acc
-	mov	a,#(___str_8 >> 8)
-	push	acc
-	mov	a,#0x80
-	push	acc
-	lcall	_printf
-	dec	sp
-	dec	sp
-	dec	sp
-	pop	ar5
-;	trial_webserver.c:478: if (tcpFlags & TCP_FLAG_SYN)
-	mov	a,r5
-	jb	acc.1,00233$
-	ret
-00233$:
-;	trial_webserver.c:479: makeTcpSynAck();
-;	trial_webserver.c:480: break;
-	ljmp	_makeTcpSynAck
-;	trial_webserver.c:481: case SYN_RECEIVED:
-00113$:
-;	trial_webserver.c:482: printf("syn received\n\r");
+;	trial_webserver.c:506: printf("listen\n\r");
 	push	ar5
 	mov	a,#___str_9
 	push	acc
@@ -3089,20 +3198,17 @@ _packetLoop:
 	dec	sp
 	dec	sp
 	pop	ar5
-;	trial_webserver.c:483: if (tcpFlags & TCP_FLAG_ACK)
+;	trial_webserver.c:507: if (tcpFlags & TCP_FLAG_SYN)
 	mov	a,r5
-	jnb	acc.4,00133$
-;	trial_webserver.c:484: connectionState = ESTABLISHED;
-	mov	dptr,#_connectionState
-	mov	a,#0x02
-	movx	@dptr,a
-;	trial_webserver.c:485: break;
-;	trial_webserver.c:486: case ESTABLISHED:
+	jb	acc.1,00233$
 	ret
-00116$:
-;	trial_webserver.c:487: printf("established\n\r");
-	push	ar7
-	push	ar6
+00233$:
+;	trial_webserver.c:508: makeTcpSynAck();
+;	trial_webserver.c:509: break;
+	ljmp	_makeTcpSynAck
+;	trial_webserver.c:510: case SYN_RECEIVED:
+00113$:
+;	trial_webserver.c:511: printf("syn received\n\r");
 	push	ar5
 	mov	a,#___str_10
 	push	acc
@@ -3115,32 +3221,20 @@ _packetLoop:
 	dec	sp
 	dec	sp
 	pop	ar5
-	pop	ar6
-	pop	ar7
-;	trial_webserver.c:488: if (tcpFlags & TCP_FLAG_FIN) {
+;	trial_webserver.c:512: if (tcpFlags & TCP_FLAG_ACK)
 	mov	a,r5
-	jnb	acc.0,00120$
-;	trial_webserver.c:489: makeTcpAck();
-	lcall	_makeTcpAck
-;	trial_webserver.c:490: connectionState = FIN_WAIT;
+	jnb	acc.4,00133$
+;	trial_webserver.c:513: connectionState = ESTABLISHED;
 	mov	dptr,#_connectionState
-	mov	a,#0x03
+	mov	a,#0x02
 	movx	@dptr,a
+;	trial_webserver.c:514: break;
+;	trial_webserver.c:515: case ESTABLISHED:
 	ret
-00120$:
-;	trial_webserver.c:491: } else if (plen > TCP_DATA_START_P) {
-	clr	c
-	mov	a,#0x36
-	subb	a,r6
-	clr	a
-	subb	a,r7
-	jnc	00133$
-;	trial_webserver.c:492: makeTcpAck2();
-;	trial_webserver.c:495: break;
-;	trial_webserver.c:496: case FIN_WAIT:
-	ljmp	_makeTcpAck2
-00122$:
-;	trial_webserver.c:497: printf("fin wait\n\r");
+00116$:
+;	trial_webserver.c:516: printf("established\n\r");
+	push	ar7
+	push	ar6
 	push	ar5
 	mov	a,#___str_11
 	push	acc
@@ -3153,26 +3247,64 @@ _packetLoop:
 	dec	sp
 	dec	sp
 	pop	ar5
-;	trial_webserver.c:498: if (tcpFlags & TCP_FLAG_ACK)
+	pop	ar6
+	pop	ar7
+;	trial_webserver.c:517: if (tcpFlags & TCP_FLAG_FIN) {
+	mov	a,r5
+	jnb	acc.0,00120$
+;	trial_webserver.c:518: makeTcpAck();
+	lcall	_makeTcpAck
+;	trial_webserver.c:519: connectionState = FIN_WAIT;
+	mov	dptr,#_connectionState
+	mov	a,#0x03
+	movx	@dptr,a
+	ret
+00120$:
+;	trial_webserver.c:520: } else if (plen > TCP_DATA_START_P) {
+	clr	c
+	mov	a,#0x36
+	subb	a,r6
+	clr	a
+	subb	a,r7
+	jnc	00133$
+;	trial_webserver.c:521: makeTcpAck2();
+;	trial_webserver.c:524: break;
+;	trial_webserver.c:525: case FIN_WAIT:
+	ljmp	_makeTcpAck2
+00122$:
+;	trial_webserver.c:526: printf("fin wait\n\r");
+	push	ar5
+	mov	a,#___str_12
+	push	acc
+	mov	a,#(___str_12 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	lcall	_printf
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar5
+;	trial_webserver.c:527: if (tcpFlags & TCP_FLAG_ACK)
 	mov	a,r5
 	jnb	acc.4,00133$
-;	trial_webserver.c:499: connectionState = CLOSED;
+;	trial_webserver.c:528: connectionState = CLOSED;
 	mov	dptr,#_connectionState
 	mov	a,#0x04
 	movx	@dptr,a
-;	trial_webserver.c:500: break;
-;	trial_webserver.c:501: case ACK_SENT:
+;	trial_webserver.c:529: break;
+;	trial_webserver.c:530: case ACK_SENT:
 	ret
 00125$:
-;	trial_webserver.c:502: makeTcpFinPshAck();
+;	trial_webserver.c:531: makeTcpFinPshAck();
 	lcall	_makeTcpFinPshAck
-;	trial_webserver.c:503: connectionState = CLOSED;
+;	trial_webserver.c:532: connectionState = CLOSED;
 	mov	dptr,#_connectionState
 	mov	a,#0x04
 	movx	@dptr,a
-;	trial_webserver.c:507: }
+;	trial_webserver.c:536: }
 00133$:
-;	trial_webserver.c:513: }
+;	trial_webserver.c:542: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
@@ -3199,13 +3331,20 @@ ___str_2:
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_3:
-	.ascii "tcpack"
+	.ascii "clientSeqNum = %ld"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 ___str_4:
+	.ascii "tcpack"
+	.db 0x0a
+	.db 0x0d
+	.db 0x00
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+___str_5:
 	.ascii "HTTP/1.1 200 OK"
 	.db 0x0d
 	.db 0x0a
@@ -3234,49 +3373,49 @@ ___str_4:
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_5:
+___str_6:
 	.ascii "makeTcpFinPshAck"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_6:
+___str_7:
 	.ascii "TCP(ACK_FIN) packet detected"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_7:
+___str_8:
 	.ascii "TCP(SYN) packet detected"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_8:
+___str_9:
 	.ascii "listen"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_9:
+___str_10:
 	.ascii "syn received"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_10:
+___str_11:
 	.ascii "established"
 	.db 0x0a
 	.db 0x0d
 	.db 0x00
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
-___str_11:
+___str_12:
 	.ascii "fin wait"
 	.db 0x0a
 	.db 0x0d

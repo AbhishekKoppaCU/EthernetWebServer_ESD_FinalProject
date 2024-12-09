@@ -1265,7 +1265,7 @@
       000367 90r00r00         [24] 1265 	mov	dptr,#_spi_buffer_write_PARM_2
       00036A E4               [12] 1266 	clr	a
       00036B F0               [24] 1267 	movx	@dptr,a
-      00036C 74 0C            [12] 1268 	mov	a,#0x0c
+      00036C 74 1C            [12] 1268 	mov	a,#0x1c
       00036E A3               [24] 1269 	inc	dptr
       00036F F0               [24] 1270 	movx	@dptr,a
       000370 90r00r00         [24] 1271 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -1283,10 +1283,10 @@
       000383 90r00r06         [24] 1283 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
       000386 74 2B            [12] 1284 	mov	a,#0x2b
       000388 F0               [24] 1285 	movx	@dptr,a
-      000389 74 0C            [12] 1286 	mov	a,#0x0c
+      000389 74 1C            [12] 1286 	mov	a,#0x1c
       00038B A3               [24] 1287 	inc	dptr
       00038C F0               [24] 1288 	movx	@dptr,a
-      00038D 90 0C 00         [24] 1289 	mov	dptr,#0x0c00
+      00038D 90 1C 00         [24] 1289 	mov	dptr,#0x1c00
       000390 12r00rA2         [24] 1290 	lcall	_enc28j60_set_transmit_pointers
                                    1291 ;	Eth.c:183: enc28j60_start_transmission();
       000393 12r00r81         [24] 1292 	lcall	_enc28j60_start_transmission
@@ -1712,7 +1712,7 @@
       000634 90r00r4D         [24] 1712 	mov	dptr,#_enc_buffer_init_PARM_2
       000637 74 FF            [12] 1713 	mov	a,#0xff
       000639 F0               [24] 1714 	movx	@dptr,a
-      00063A 74 0B            [12] 1715 	mov	a,#0x0b
+      00063A 74 1B            [12] 1715 	mov	a,#0x1b
       00063C A3               [24] 1716 	inc	dptr
       00063D F0               [24] 1717 	movx	@dptr,a
       00063E 90 00 00         [24] 1718 	mov	dptr,#0x0000
@@ -1731,7 +1731,7 @@
       000658 74 05            [12] 1731 	mov	a,#0x05
       00065A F0               [24] 1732 	movx	@dptr,a
       00065B 90r00r00         [24] 1733 	mov	dptr,#_spi_control_write_PARM_3
-      00065E 74 0C            [12] 1734 	mov	a,#0x0c
+      00065E 74 1C            [12] 1734 	mov	a,#0x1c
       000660 F0               [24] 1735 	movx	@dptr,a
       000661 75 82 00         [24] 1736 	mov	dpl, #0x00
       000664 12r00r00         [24] 1737 	lcall	_spi_control_write
@@ -1749,7 +1749,7 @@
       00067C 74 07            [12] 1749 	mov	a,#0x07
       00067E F0               [24] 1750 	movx	@dptr,a
       00067F 90r00r00         [24] 1751 	mov	dptr,#_spi_control_write_PARM_3
-      000682 74 11            [12] 1752 	mov	a,#0x11
+      000682 74 1F            [12] 1752 	mov	a,#0x1f
       000684 F0               [24] 1753 	movx	@dptr,a
       000685 75 82 00         [24] 1754 	mov	dpl, #0x00
       000688 12r00r00         [24] 1755 	lcall	_spi_control_write

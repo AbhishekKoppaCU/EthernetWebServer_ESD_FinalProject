@@ -85,6 +85,15 @@ void makeTcpAck3() {
     buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 
     // TCP sequence and acknowledgment numbers
+    /*
+    uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
+            | (buffer[1 + TCP_SEQ_H_P + 1] << 16)
+            | (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
+    uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
+                | (buffer[1 + TCP_ACK_H_P + 1] << 16)
+                | (buffer[1 + TCP_ACK_H_P + 2] << 8) | buffer[1 + TCP_ACK_H_P + 3];
+                */
+    // TCP sequence and acknowledgment numbers
     uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
             | (buffer[1 + TCP_SEQ_H_P + 1] << 16)
             | (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
@@ -161,12 +170,24 @@ void makeTcpAck2() {
     buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 
     // TCP sequence and acknowledgment numbers
+    /*
     uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
             | (buffer[1 + TCP_SEQ_H_P + 1] << 16)
             | (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
     uint32_t clientAckNum = (buffer[1 + TCP_ACK_H_P] << 24)
                 | (buffer[1 + TCP_ACK_H_P + 1] << 16)
                 | (buffer[1 + TCP_ACK_H_P + 2] << 8) | buffer[1 + TCP_ACK_H_P + 3];
+                */
+    uint32_t clientSeqNum = ((uint32_t)buffer[1 + TCP_SEQ_H_P] << 24)
+                      | ((uint32_t)buffer[1 + TCP_SEQ_H_P + 1] << 16)
+                      | ((uint32_t)buffer[1 + TCP_SEQ_H_P + 2] << 8)
+                      | (uint32_t)buffer[1 + TCP_SEQ_H_P + 3];
+
+uint32_t clientAckNum = ((uint32_t)buffer[1 + TCP_ACK_H_P] << 24)
+                      | ((uint32_t)buffer[1 + TCP_ACK_H_P + 1] << 16)
+                      | ((uint32_t)buffer[1 + TCP_ACK_H_P + 2] << 8)
+                      | (uint32_t)buffer[1 + TCP_ACK_H_P + 3];
+
     uint32_t serverSeqNum = clientAckNum;
     uint32_t ackNum = clientSeqNum + receivedPayloadLength - 1;
     prevSeq = serverSeqNum;
@@ -234,9 +255,17 @@ void makeTcpSynAck() {
 	buffer[1 + TCP_DST_PORT_L_P] = srcPort & 0xFF;
 
 	// TCP sequence and acknowledgment numbers
+	/*
 	uint32_t clientSeqNum = (buffer[1 + TCP_SEQ_H_P] << 24)
 			| (buffer[1 + TCP_SEQ_H_P + 1] << 16)
 			| (buffer[1 + TCP_SEQ_H_P + 2] << 8) | buffer[1 + TCP_SEQ_H_P + 3];
+			*/
+
+			uint32_t clientSeqNum = ((uint32_t)buffer[1 + TCP_SEQ_H_P] << 24)
+                      | ((uint32_t)buffer[1 + TCP_SEQ_H_P + 1] << 16)
+                      | ((uint32_t)buffer[1 + TCP_SEQ_H_P + 2] << 8)
+                      | (uint32_t)buffer[1 + TCP_SEQ_H_P + 3];
+                      printf("clientSeqNum = %ld\n\r", clientSeqNum);
 	uint32_t serverSeqNum = 1000;
 	uint32_t ackNum = clientSeqNum + 1;
 

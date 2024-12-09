@@ -51,10 +51,10 @@ C:   00000021  s_BIT_BANK
 C:   00000022  l_GSINIT3                       
 C:   0000002A  l_GSINIT4                       
 C:   00000037  l_HOME                          
-C:   00000045  s_OSEG                          
-C:   00000055  s_SSEG                          
+C:   00000047  s_OSEG                          
+C:   00000057  s_SSEG                          
 C:   0000007D  l_DSEG                          
-C:   000000AB  l_SSEG                          
+C:   000000A9  l_SSEG                          
 C:   00000100  l_IRAM                          
 C:   00000100  s_PSEG                          
 ASxxxx Linker V03.00/V05.40 + sdld,  page 2.
@@ -67,7 +67,7 @@ CABS                                00000000    00000000 =           0. bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   00000100  s_XSEG                          
-C:   00000F25  l_CONST                         
+C:   00000F3A  l_CONST                         
 C:   00001393  l_XSEG                          
 C:   00001493  s_XISEG                         
 C:   00002000  s_HOME                          
@@ -80,9 +80,9 @@ C:   00002090  s_GSINIT
 C:   00002090  s_GSINIT5                       
 C:   000020A9  s_GSFINAL                       
 C:   000020AC  s_CSEG                          
-C:   00004DAC  l_CSEG                          
-C:   00006E58  s_CONST                         
-C:   00007D7D  s_XINIT                         
+C:   00004E87  l_CSEG                          
+C:   00006F33  s_CONST                         
+C:   00007E6D  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -387,7 +387,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-OSEG                                00000045    00000010 =          16. bytes (REL,OVR)
+OSEG                                00000047    00000010 =          16. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -396,11 +396,11 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-SSEG                                00000055    000000AB =         171. bytes (REL,OVR)
+SSEG                                00000057    000000A9 =         169. bytes (REL,OVR)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000055  __start__stack                     main
+     00000057  __start__stack                     main
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 14.
 Hexadecimal  [32-Bits]
@@ -536,7 +536,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000020AC    00004DAC =       19884. bytes (REL,CON,CODE)
+CSEG                                000020AC    00004E87 =       20103. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -583,57 +583,57 @@ C:   00004CAC  _transmit_tcp_packet               tcp
 C:   00004D90  _makeArpReply                      trial_webserver
 C:   00004F09  _makeTcpAck3                       trial_webserver
 C:   00005150  _makeTcpAck2                       trial_webserver
-C:   000053D6  _makeTcpSynAck                     trial_webserver
-C:   000055D7  _makeTcpAck                        trial_webserver
-C:   0000569C  _makeTcpFinPshAck                  trial_webserver
-C:   0000590B  _packetReceive                     trial_webserver
-C:   00005AC5  _packetLoop                        trial_webserver
-C:   00005C2F  _putchar                           Utilities
-C:   00005C4E  _getchar                           Utilities
+C:   00005448  _makeTcpSynAck                     trial_webserver
+C:   000056B2  _makeTcpAck                        trial_webserver
+C:   00005777  _makeTcpFinPshAck                  trial_webserver
+C:   000059E6  _packetReceive                     trial_webserver
+C:   00005BA0  _packetLoop                        trial_webserver
+C:   00005D0A  _putchar                           Utilities
+C:   00005D29  _getchar                           Utilities
 ASxxxx Linker V03.00/V05.40 + sdld,  page 24.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000020AC    00004DAC =       19884. bytes (REL,CON,CODE)
+CSEG                                000020AC    00004E87 =       20103. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00005C5C  _putstr                            Utilities
-C:   00005CD2  _free                              free
-C:   00005E29  ___memcpy                          __memcpy
-C:   00005E9D  _memset                            _memset
-C:   00005EC5  __gptrput                          _gptrput
-C:   00005EE0  _memmove                           _memmove
-C:   0000601B  _printf_tiny                       printf_tiny
-C:   00006124  ___sdcc_heap_init                  malloc
-C:   00006160  _malloc                            malloc
-C:   000062C9  __mulint                           _mulint
-C:   000062E9  _memcmp                            _memcmp
-C:   000063D7  _vprintf                           vprintf
-C:   00006416  _printf                            vprintf
-C:   0000651C  __print_format                     printf_large
-C:   00006E20  _strlen                            _strlen
-C:   00006E38  __gptrget                          _gptrget
-C:   00006E54  ___sdcc_external_startup           _startup
+C:   00005D37  _putstr                            Utilities
+C:   00005DAD  _free                              free
+C:   00005F04  ___memcpy                          __memcpy
+C:   00005F78  _memset                            _memset
+C:   00005FA0  __gptrput                          _gptrput
+C:   00005FBB  _memmove                           _memmove
+C:   000060F6  _printf_tiny                       printf_tiny
+C:   000061FF  ___sdcc_heap_init                  malloc
+C:   0000623B  _malloc                            malloc
+C:   000063A4  __mulint                           _mulint
+C:   000063C4  _memcmp                            _memcmp
+C:   000064B2  _vprintf                           vprintf
+C:   000064F1  _printf                            vprintf
+C:   000065F7  __print_format                     printf_large
+C:   00006EFB  _strlen                            _strlen
+C:   00006F13  __gptrget                          _gptrget
+C:   00006F2F  ___sdcc_external_startup           _startup
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 25.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               00006E58    00000F25 =        3877. bytes (REL,CON,CODE)
+CONST                               00006F33    00000F3A =        3898. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00007D7B  ___sdcc_heap_size                  _heap
+C:   00007E6B  ___sdcc_heap_size                  _heap
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XINIT                               00007D7D    00000001 =           1. bytes (REL,CON,CODE)
+XINIT                               00007E6D    00000001 =           1. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

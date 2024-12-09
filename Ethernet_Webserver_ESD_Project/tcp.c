@@ -9,71 +9,73 @@
 
 
 void calculateIPChecksum(uint8_t *buffer) {
-    // Reset the checksum field
-    buffer[IP_CHECKSUM_P] = 0;
-    buffer[IP_CHECKSUM_P + 1] = 0;
+	// Reset the checksum field
+	buffer[IP_CHECKSUM_P] = 0;
+	buffer[IP_CHECKSUM_P + 1] = 0;
 
-    // Calculate checksum for a fixed IP header length (20 bytes)
-    uint16_t length = IP_HEADER_LEN;
-    uint32_t sum = 0;
+	// Calculate checksum for a fixed IP header length (20 bytes)
+	uint16_t length = IP_HEADER_LEN;
+	uint32_t sum = 0;
 
-    // Sum the 16-bit words in the header
-    for (uint16_t i = IP_P; i < IP_P + length; i += 2) {
-        uint16_t word = (buffer[i] << 8) | buffer[i + 1];
-        sum += word;
-    }
+	// Sum the 16-bit words in the header
+	for (uint16_t i = IP_P; i < IP_P + length; i += 2) {
+		uint16_t word = (buffer[i] << 8) | buffer[i + 1];
+		sum += word;
+	}
 
-    // Add carry bits until the sum fits in 16 bits
-    while (sum >> 16) {
-        sum = (sum & 0xFFFF) + (sum >> 16);
-    }
+	// Add carry bits until the sum fits in 16 bits
+	while (sum >> 16) {
+		sum = (sum & 0xFFFF) + (sum >> 16);
+	}
 
-    // Compute one's complement and store it in the checksum field
-    uint16_t checksum = ~((uint16_t)sum);
-    buffer[IP_CHECKSUM_P] = (checksum >> 8) & 0xFF;
-    buffer[IP_CHECKSUM_P + 1] = checksum & 0xFF;
+	// Compute one's complement and store it in the checksum field
+	uint16_t checksum = ~((uint16_t) sum);
+	buffer[IP_CHECKSUM_P] = (checksum >> 8) & 0xFF;
+	buffer[IP_CHECKSUM_P + 1] = checksum & 0xFF;
 }
 
 void calculateTcpChecksum(uint8_t *buffer) {
-    // Reset the checksum field
-    buffer[TCP_CHECKSUM_H_P] = 0;
-    buffer[TCP_CHECKSUM_L_P] = 0;
+	// Reset the checksum field
+	buffer[TCP_CHECKSUM_H_P] = 0;
+	buffer[TCP_CHECKSUM_L_P] = 0;
 
-    // Extract TCP length (Total Length - IP Header Length)
-    uint16_t tcpLength = (((buffer[IP_TOTLEN_H_P] << 8) | buffer[IP_TOTLEN_L_P]) - IP_HEADER_LEN);
-    uint32_t sum = 0;
+	// Extract TCP length (Total Length - IP Header Length)
+	uint16_t tcpLength = (((buffer[IP_TOTLEN_H_P] << 8) | buffer[IP_TOTLEN_L_P])
+			- IP_HEADER_LEN);
+	uint32_t sum = 0;
 
-    // Pseudo-header: Source IP
-    for (uint8_t i = 0; i < 4; i++) {
-        sum += (buffer[IP_SRC_P + i] << 8) | buffer[IP_SRC_P + i + 1];
-        i++;
-    }
+	// Pseudo-header: Source IP
+	for (uint8_t i = 0; i < 4; i++) {
+		sum += (buffer[IP_SRC_P + i] << 8) | buffer[IP_SRC_P + i + 1];
+		i++;
+	}
 
-    // Pseudo-header: Destination IP
-    for (uint8_t i = 0; i < 4; i++) {
-        sum += (buffer[IP_DST_P + i] << 8) | buffer[IP_DST_P + i + 1];
-        i++;
-    }
+	// Pseudo-header: Destination IP
+	for (uint8_t i = 0; i < 4; i++) {
+		sum += (buffer[IP_DST_P + i] << 8) | buffer[IP_DST_P + i + 1];
+		i++;
+	}
 
-    // Pseudo-header: Protocol and TCP length
-    sum += (uint16_t)IP_PROTO_TCP;
-    sum += tcpLength;
+	// Pseudo-header: Protocol and TCP length
+	sum += (uint16_t) IP_PROTO_TCP;
+	sum += tcpLength;
 
-    // TCP Header and Payload
-    for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i += 2) {
-        uint16_t word = (buffer[i] << 8) | buffer[i + 1];
-        sum += word;
-    }
+	// TCP Header and Payload
+	for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i +=
+			2) {
+		uint16_t word = (buffer[i] << 8) | buffer[i + 1];
+		sum += word;
+	}
 
-    // Add carry bits
-    while (sum >> 16) {
-        sum = (sum & 0xFFFF) + (sum >> 16);
-    }
+	// Add carry bits
+	while (sum >> 16) {
+		sum = (sum & 0xFFFF) + (sum >> 16);
+	}
 
-    // Compute one's complement and store in the checksum field
-    uint16_t checksum = ~((uint16_t)sum);
-    buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
-    buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
+	// Compute one's complement and store in the checksum field
+	uint16_t checksum = ~((uint16_t) sum);
+	buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
+	buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
 }
 
 // Function to calculate the checksum

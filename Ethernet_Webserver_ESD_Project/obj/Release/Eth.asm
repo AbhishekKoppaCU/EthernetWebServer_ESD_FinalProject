@@ -1265,7 +1265,7 @@ _send_arp_request:
 	mov	dptr,#_spi_buffer_write_PARM_2
 	clr	a
 	movx	@dptr,a
-	mov	a,#0x0c
+	mov	a,#0x1c
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -1283,10 +1283,10 @@ _send_arp_request:
 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
 	mov	a,#0x2b
 	movx	@dptr,a
-	mov	a,#0x0c
+	mov	a,#0x1c
 	inc	dptr
 	movx	@dptr,a
-	mov	dptr,#0x0c00
+	mov	dptr,#0x1c00
 	lcall	_enc28j60_set_transmit_pointers
 ;	Eth.c:183: enc28j60_start_transmission();
 	lcall	_enc28j60_start_transmission
@@ -1712,7 +1712,7 @@ _enc_init:
 	mov	dptr,#_enc_buffer_init_PARM_2
 	mov	a,#0xff
 	movx	@dptr,a
-	mov	a,#0x0b
+	mov	a,#0x1b
 	inc	dptr
 	movx	@dptr,a
 	mov	dptr,#0x0000
@@ -1731,7 +1731,7 @@ _enc_init:
 	mov	a,#0x05
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,#0x0c
+	mov	a,#0x1c
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write
@@ -1749,7 +1749,7 @@ _enc_init:
 	mov	a,#0x07
 	movx	@dptr,a
 	mov	dptr,#_spi_control_write_PARM_3
-	mov	a,#0x11
+	mov	a,#0x1f
 	movx	@dptr,a
 	mov	dpl, #0x00
 	lcall	_spi_control_write

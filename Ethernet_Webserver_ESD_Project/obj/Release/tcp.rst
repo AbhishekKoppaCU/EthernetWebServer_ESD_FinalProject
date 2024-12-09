@@ -474,28 +474,28 @@
                                     474 ; overlayable items in internal ram
                                     475 ;--------------------------------------------------------
                                     476 	.area	OSEG    (OVR,DATA)
-      000045                        477 _calculateIPChecksum_sloc0_1_0:
-      000045                        478 	.ds 2
-      000047                        479 _calculateIPChecksum_sloc1_1_0:
-      000047                        480 	.ds 4
+      000047                        477 _calculateIPChecksum_sloc0_1_0:
+      000047                        478 	.ds 2
+      000049                        479 _calculateIPChecksum_sloc1_1_0:
+      000049                        480 	.ds 4
                                     481 	.area	OSEG    (OVR,DATA)
-      000045                        482 _calculateTcpChecksum_sloc0_1_0:
-      000045                        483 	.ds 2
-      000047                        484 _calculateTcpChecksum_sloc1_1_0:
-      000047                        485 	.ds 2
-      000049                        486 _calculateTcpChecksum_sloc2_1_0:
-      000049                        487 	.ds 4
-      00004D                        488 _calculateTcpChecksum_sloc3_1_0:
-      00004D                        489 	.ds 4
-      000051                        490 _calculateTcpChecksum_sloc4_1_0:
-      000051                        491 	.ds 4
+      000047                        482 _calculateTcpChecksum_sloc0_1_0:
+      000047                        483 	.ds 2
+      000049                        484 _calculateTcpChecksum_sloc1_1_0:
+      000049                        485 	.ds 2
+      00004B                        486 _calculateTcpChecksum_sloc2_1_0:
+      00004B                        487 	.ds 4
+      00004F                        488 _calculateTcpChecksum_sloc3_1_0:
+      00004F                        489 	.ds 4
+      000053                        490 _calculateTcpChecksum_sloc4_1_0:
+      000053                        491 	.ds 4
                                     492 	.area	OSEG    (OVR,DATA)
-      000045                        493 _calculate_checksum_sloc0_1_0:
-      000045                        494 	.ds 2
-      000047                        495 _calculate_checksum_sloc1_1_0:
-      000047                        496 	.ds 4
-      00004B                        497 _calculate_checksum_sloc2_1_0:
-      00004B                        498 	.ds 4
+      000047                        493 _calculate_checksum_sloc0_1_0:
+      000047                        494 	.ds 2
+      000049                        495 _calculate_checksum_sloc1_1_0:
+      000049                        496 	.ds 4
+      00004D                        497 _calculate_checksum_sloc2_1_0:
+      00004D                        498 	.ds 4
                                     499 ;--------------------------------------------------------
                                     500 ; indirectly addressable internal ram data
                                     501 ;--------------------------------------------------------
@@ -654,7 +654,7 @@
       003F4B 8B 83            [24]  654 	mov	dph,r3
       003F4D 8C F0            [24]  655 	mov	b,r4
       003F4F E4               [12]  656 	clr	a
-      003F50 12 5E C5         [24]  657 	lcall	__gptrput
+      003F50 12 5F A0         [24]  657 	lcall	__gptrput
                                     658 ;	tcp.c:14: buffer[IP_CHECKSUM_P + 1] = 0;
       003F53 74 19            [12]  659 	mov	a,#0x19
       003F55 2D               [12]  660 	add	a, r5
@@ -667,7 +667,7 @@
       003F5E 8B 83            [24]  667 	mov	dph,r3
       003F60 8C F0            [24]  668 	mov	b,r4
       003F62 E4               [12]  669 	clr	a
-      003F63 12 5E C5         [24]  670 	lcall	__gptrput
+      003F63 12 5F A0         [24]  670 	lcall	__gptrput
                                     671 ;	tcp.c:18: uint32_t sum = 0;
       003F66 90 03 A6         [24]  672 	mov	dptr,#_calculateIPChecksum_sum_10001_120
       003F69 F0               [24]  673 	movx	@dptr,a
@@ -712,11 +712,11 @@
       003F99 8B 82            [24]  712 	mov	dpl,r3
       003F9B 88 83            [24]  713 	mov	dph,r0
       003F9D 8C F0            [24]  714 	mov	b,r4
-      003F9F 12 6E 38         [24]  715 	lcall	__gptrget
+      003F9F 12 6F 13         [24]  715 	lcall	__gptrget
       003FA2 FB               [12]  716 	mov	r3,a
       003FA3 7C 00            [12]  717 	mov	r4,#0x00
-      003FA5 8B 46            [24]  718 	mov	(_calculateIPChecksum_sloc0_1_0 + 1),r3
-      003FA7 8C 45            [24]  719 	mov	_calculateIPChecksum_sloc0_1_0,r4
+      003FA5 8B 48            [24]  718 	mov	(_calculateIPChecksum_sloc0_1_0 + 1),r3
+      003FA7 8C 47            [24]  719 	mov	_calculateIPChecksum_sloc0_1_0,r4
       003FA9 74 01            [12]  720 	mov	a,#0x01
       003FAB 29               [12]  721 	add	a, r1
       003FAC F8               [12]  722 	mov	r0,a
@@ -733,10 +733,10 @@
       003FB8 88 82            [24]  733 	mov	dpl,r0
       003FBA 8C 83            [24]  734 	mov	dph,r4
       003FBC 8B F0            [24]  735 	mov	b,r3
-      003FBE 12 6E 38         [24]  736 	lcall	__gptrget
+      003FBE 12 6F 13         [24]  736 	lcall	__gptrget
       003FC1 F8               [12]  737 	mov	r0,a
       003FC2 7C 00            [12]  738 	mov	r4,#0x00
-      003FC4 E5 46            [12]  739 	mov	a,(_calculateIPChecksum_sloc0_1_0 + 1)
+      003FC4 E5 48            [12]  739 	mov	a,(_calculateIPChecksum_sloc0_1_0 + 1)
       003FC6 42 04            [12]  740 	orl	ar4,a
                                     741 ;	tcp.c:23: sum += word;
       003FC8 C0 05            [24]  742 	push	ar5
@@ -744,32 +744,32 @@
       003FCC C0 07            [24]  744 	push	ar7
       003FCE 90 03 A6         [24]  745 	mov	dptr,#_calculateIPChecksum_sum_10001_120
       003FD1 E0               [24]  746 	movx	a,@dptr
-      003FD2 F5 47            [12]  747 	mov	_calculateIPChecksum_sloc1_1_0,a
+      003FD2 F5 49            [12]  747 	mov	_calculateIPChecksum_sloc1_1_0,a
       003FD4 A3               [24]  748 	inc	dptr
       003FD5 E0               [24]  749 	movx	a,@dptr
-      003FD6 F5 48            [12]  750 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),a
+      003FD6 F5 4A            [12]  750 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),a
       003FD8 A3               [24]  751 	inc	dptr
       003FD9 E0               [24]  752 	movx	a,@dptr
-      003FDA F5 49            [12]  753 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),a
+      003FDA F5 4B            [12]  753 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),a
       003FDC A3               [24]  754 	inc	dptr
       003FDD E0               [24]  755 	movx	a,@dptr
-      003FDE F5 4A            [12]  756 	mov	(_calculateIPChecksum_sloc1_1_0 + 3),a
+      003FDE F5 4C            [12]  756 	mov	(_calculateIPChecksum_sloc1_1_0 + 3),a
       003FE0 7E 00            [12]  757 	mov	r6,#0x00
       003FE2 7F 00            [12]  758 	mov	r7,#0x00
       003FE4 90 03 A6         [24]  759 	mov	dptr,#_calculateIPChecksum_sum_10001_120
       003FE7 E8               [12]  760 	mov	a,r0
-      003FE8 25 47            [12]  761 	add	a, _calculateIPChecksum_sloc1_1_0
+      003FE8 25 49            [12]  761 	add	a, _calculateIPChecksum_sloc1_1_0
       003FEA F0               [24]  762 	movx	@dptr,a
       003FEB EC               [12]  763 	mov	a,r4
-      003FEC 35 48            [12]  764 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 1)
+      003FEC 35 4A            [12]  764 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 1)
       003FEE A3               [24]  765 	inc	dptr
       003FEF F0               [24]  766 	movx	@dptr,a
       003FF0 EE               [12]  767 	mov	a,r6
-      003FF1 35 49            [12]  768 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 2)
+      003FF1 35 4B            [12]  768 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 2)
       003FF3 A3               [24]  769 	inc	dptr
       003FF4 F0               [24]  770 	movx	@dptr,a
       003FF5 EF               [12]  771 	mov	a,r7
-      003FF6 35 4A            [12]  772 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 3)
+      003FF6 35 4C            [12]  772 	addc	a, (_calculateIPChecksum_sloc1_1_0 + 3)
       003FF8 A3               [24]  773 	inc	dptr
       003FF9 F0               [24]  774 	movx	@dptr,a
                                     775 ;	tcp.c:21: for (uint16_t i = IP_P; i < IP_P + length; i += 2) {
@@ -803,15 +803,15 @@
       00401D A3               [24]  803 	inc	dptr
       00401E E0               [24]  804 	movx	a,@dptr
       00401F FF               [12]  805 	mov	r7,a
-      004020 8E 47            [24]  806 	mov	_calculateIPChecksum_sloc1_1_0,r6
-      004022 8F 48            [24]  807 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),r7
+      004020 8E 49            [24]  806 	mov	_calculateIPChecksum_sloc1_1_0,r6
+      004022 8F 4A            [24]  807 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),r7
       004024 E4               [12]  808 	clr	a
-      004025 F5 49            [12]  809 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),a
-      004027 F5 4A            [12]  810 	mov	(_calculateIPChecksum_sloc1_1_0 + 3),a
-      004029 E5 47            [12]  811 	mov	a,_calculateIPChecksum_sloc1_1_0
-      00402B 45 48            [12]  812 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 1)
-      00402D 45 49            [12]  813 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 2)
-      00402F 45 4A            [12]  814 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 3)
+      004025 F5 4B            [12]  809 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),a
+      004027 F5 4C            [12]  810 	mov	(_calculateIPChecksum_sloc1_1_0 + 3),a
+      004029 E5 49            [12]  811 	mov	a,_calculateIPChecksum_sloc1_1_0
+      00402B 45 4A            [12]  812 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 1)
+      00402D 45 4B            [12]  813 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 2)
+      00402F 45 4C            [12]  814 	orl	a,(_calculateIPChecksum_sloc1_1_0 + 3)
       004031 60 20            [24]  815 	jz	00104$
                                     816 ;	tcp.c:28: sum = (sum & 0xFFFF) + (sum >> 16);
       004033 8C 00            [24]  817 	mov	ar0,r4
@@ -819,24 +819,24 @@
       004037 7A 00            [12]  819 	mov	r2,#0x00
       004039 7B 00            [12]  820 	mov	r3,#0x00
       00403B 90 03 A6         [24]  821 	mov	dptr,#_calculateIPChecksum_sum_10001_120
-      00403E E5 47            [12]  822 	mov	a,_calculateIPChecksum_sloc1_1_0
+      00403E E5 49            [12]  822 	mov	a,_calculateIPChecksum_sloc1_1_0
       004040 28               [12]  823 	add	a, r0
       004041 F0               [24]  824 	movx	@dptr,a
-      004042 E5 48            [12]  825 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 1)
+      004042 E5 4A            [12]  825 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 1)
       004044 39               [12]  826 	addc	a, r1
       004045 A3               [24]  827 	inc	dptr
       004046 F0               [24]  828 	movx	@dptr,a
-      004047 E5 49            [12]  829 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 2)
+      004047 E5 4B            [12]  829 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 2)
       004049 3A               [12]  830 	addc	a, r2
       00404A A3               [24]  831 	inc	dptr
       00404B F0               [24]  832 	movx	@dptr,a
-      00404C E5 4A            [12]  833 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 3)
+      00404C E5 4C            [12]  833 	mov	a,(_calculateIPChecksum_sloc1_1_0 + 3)
       00404E 3B               [12]  834 	addc	a, r3
       00404F A3               [24]  835 	inc	dptr
       004050 F0               [24]  836 	movx	@dptr,a
       004051 80 BF            [24]  837 	sjmp	00102$
       004053                        838 00104$:
-                                    839 ;	tcp.c:32: uint16_t checksum = ~((uint16_t)sum);
+                                    839 ;	tcp.c:32: uint16_t checksum = ~((uint16_t) sum);
       004053 EC               [12]  840 	mov	a,r4
       004054 F4               [12]  841 	cpl	a
       004055 FC               [12]  842 	mov	r4,a
@@ -855,17 +855,17 @@
       004063 FF               [12]  855 	mov	r7,a
       004064 74 18            [12]  856 	mov	a,#0x18
       004066 2B               [12]  857 	add	a, r3
-      004067 F5 47            [12]  858 	mov	_calculateIPChecksum_sloc1_1_0,a
+      004067 F5 49            [12]  858 	mov	_calculateIPChecksum_sloc1_1_0,a
       004069 E4               [12]  859 	clr	a
       00406A 3E               [12]  860 	addc	a, r6
-      00406B F5 48            [12]  861 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),a
-      00406D 8F 49            [24]  862 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),r7
+      00406B F5 4A            [12]  861 	mov	(_calculateIPChecksum_sloc1_1_0 + 1),a
+      00406D 8F 4B            [24]  862 	mov	(_calculateIPChecksum_sloc1_1_0 + 2),r7
       00406F 8D 02            [24]  863 	mov	ar2,r5
-      004071 85 47 82         [24]  864 	mov	dpl,_calculateIPChecksum_sloc1_1_0
-      004074 85 48 83         [24]  865 	mov	dph,(_calculateIPChecksum_sloc1_1_0 + 1)
-      004077 85 49 F0         [24]  866 	mov	b,(_calculateIPChecksum_sloc1_1_0 + 2)
+      004071 85 49 82         [24]  864 	mov	dpl,_calculateIPChecksum_sloc1_1_0
+      004074 85 4A 83         [24]  865 	mov	dph,(_calculateIPChecksum_sloc1_1_0 + 1)
+      004077 85 4B F0         [24]  866 	mov	b,(_calculateIPChecksum_sloc1_1_0 + 2)
       00407A EA               [12]  867 	mov	a,r2
-      00407B 12 5E C5         [24]  868 	lcall	__gptrput
+      00407B 12 5F A0         [24]  868 	lcall	__gptrput
                                     869 ;	tcp.c:34: buffer[IP_CHECKSUM_P + 1] = checksum & 0xFF;
       00407E 74 19            [12]  870 	mov	a,#0x19
       004080 2B               [12]  871 	add	a, r3
@@ -878,7 +878,7 @@
       004089 8F F0            [24]  878 	mov	b,r7
       00408B EC               [12]  879 	mov	a,r4
                                     880 ;	tcp.c:35: }
-      00408C 02 5E C5         [24]  881 	ljmp	__gptrput
+      00408C 02 5F A0         [24]  881 	ljmp	__gptrput
                                     882 ;------------------------------------------------------------
                                     883 ;Allocation info for local variables in function 'calculateTcpChecksum'
                                     884 ;------------------------------------------------------------
@@ -933,7 +933,7 @@
       0040B5 8B 83            [24]  933 	mov	dph,r3
       0040B7 8C F0            [24]  934 	mov	b,r4
       0040B9 E4               [12]  935 	clr	a
-      0040BA 12 5E C5         [24]  936 	lcall	__gptrput
+      0040BA 12 5F A0         [24]  936 	lcall	__gptrput
                                     937 ;	tcp.c:40: buffer[TCP_CHECKSUM_L_P] = 0;
       0040BD 74 33            [12]  938 	mov	a,#0x33
       0040BF 2D               [12]  939 	add	a, r5
@@ -946,8 +946,8 @@
       0040C8 8B 83            [24]  946 	mov	dph,r3
       0040CA 8C F0            [24]  947 	mov	b,r4
       0040CC E4               [12]  948 	clr	a
-      0040CD 12 5E C5         [24]  949 	lcall	__gptrput
-                                    950 ;	tcp.c:43: uint16_t tcpLength = (((buffer[IP_TOTLEN_H_P] << 8) | buffer[IP_TOTLEN_L_P]) - IP_HEADER_LEN);
+      0040CD 12 5F A0         [24]  949 	lcall	__gptrput
+                                    950 ;	tcp.c:43: uint16_t tcpLength = (((buffer[IP_TOTLEN_H_P] << 8) | buffer[IP_TOTLEN_L_P])
       0040D0 74 10            [12]  951 	mov	a,#0x10
       0040D2 2D               [12]  952 	add	a, r5
       0040D3 FA               [12]  953 	mov	r2,a
@@ -958,7 +958,7 @@
       0040D9 8A 82            [24]  958 	mov	dpl,r2
       0040DB 8B 83            [24]  959 	mov	dph,r3
       0040DD 8C F0            [24]  960 	mov	b,r4
-      0040DF 12 6E 38         [24]  961 	lcall	__gptrget
+      0040DF 12 6F 13         [24]  961 	lcall	__gptrget
       0040E2 FC               [12]  962 	mov	r4,a
       0040E3 7A 00            [12]  963 	mov	r2,#0x00
       0040E5 74 11            [12]  964 	mov	a,#0x11
@@ -971,7 +971,7 @@
       0040EE 88 82            [24]  971 	mov	dpl,r0
       0040F0 89 83            [24]  972 	mov	dph,r1
       0040F2 8B F0            [24]  973 	mov	b,r3
-      0040F4 12 6E 38         [24]  974 	lcall	__gptrget
+      0040F4 12 6F 13         [24]  974 	lcall	__gptrget
       0040F7 7B 00            [12]  975 	mov	r3,#0x00
       0040F9 42 02            [12]  976 	orl	ar2,a
       0040FB EB               [12]  977 	mov	a,r3
@@ -982,7 +982,7 @@
       004102 EC               [12]  982 	mov	a,r4
       004103 34 FF            [12]  983 	addc	a,#0xff
       004105 FC               [12]  984 	mov	r4,a
-                                    985 ;	tcp.c:44: uint32_t sum = 0;
+                                    985 ;	tcp.c:45: uint32_t sum = 0;
       004106 90 03 AF         [24]  986 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004109 E4               [12]  987 	clr	a
       00410A F0               [24]  988 	movx	@dptr,a
@@ -992,7 +992,7 @@
       00410E F0               [24]  992 	movx	@dptr,a
       00410F A3               [24]  993 	inc	dptr
       004110 F0               [24]  994 	movx	@dptr,a
-                                    995 ;	tcp.c:47: for (uint8_t i = 0; i < 4; i++) {
+                                    995 ;	tcp.c:48: for (uint8_t i = 0; i < 4; i++) {
       004111 90 03 B3         [24]  996 	mov	dptr,#_calculateTcpChecksum_i_20001_128
       004114 F0               [24]  997 	movx	@dptr,a
       004115                        998 00108$:
@@ -1004,16 +1004,16 @@
       00411D 40 03            [24] 1004 	jc	00167$
       00411F 02 41 B0         [24] 1005 	ljmp	00101$
       004122                       1006 00167$:
-                                   1007 ;	tcp.c:48: sum += (buffer[IP_SRC_P + i] << 8) | buffer[IP_SRC_P + i + 1];
+                                   1007 ;	tcp.c:49: sum += (buffer[IP_SRC_P + i] << 8) | buffer[IP_SRC_P + i + 1];
       004122 C0 02            [24] 1008 	push	ar2
       004124 C0 04            [24] 1009 	push	ar4
-      004126 8B 45            [24] 1010 	mov	_calculateTcpChecksum_sloc0_1_0,r3
-      004128 75 46 00         [24] 1011 	mov	(_calculateTcpChecksum_sloc0_1_0 + 1),#0x00
+      004126 8B 47            [24] 1010 	mov	_calculateTcpChecksum_sloc0_1_0,r3
+      004128 75 48 00         [24] 1011 	mov	(_calculateTcpChecksum_sloc0_1_0 + 1),#0x00
       00412B 74 1A            [12] 1012 	mov	a,#0x1a
-      00412D 25 45            [12] 1013 	add	a, _calculateTcpChecksum_sloc0_1_0
+      00412D 25 47            [12] 1013 	add	a, _calculateTcpChecksum_sloc0_1_0
       00412F FA               [12] 1014 	mov	r2,a
       004130 E4               [12] 1015 	clr	a
-      004131 35 46            [12] 1016 	addc	a, (_calculateTcpChecksum_sloc0_1_0 + 1)
+      004131 35 48            [12] 1016 	addc	a, (_calculateTcpChecksum_sloc0_1_0 + 1)
       004133 FC               [12] 1017 	mov	r4,a
       004134 EA               [12] 1018 	mov	a,r2
       004135 2D               [12] 1019 	add	a, r5
@@ -1025,16 +1025,16 @@
       00413C 8A 82            [24] 1025 	mov	dpl,r2
       00413E 89 83            [24] 1026 	mov	dph,r1
       004140 8C F0            [24] 1027 	mov	b,r4
-      004142 12 6E 38         [24] 1028 	lcall	__gptrget
+      004142 12 6F 13         [24] 1028 	lcall	__gptrget
       004145 FA               [12] 1029 	mov	r2,a
       004146 7C 00            [12] 1030 	mov	r4,#0x00
-      004148 8A 48            [24] 1031 	mov	(_calculateTcpChecksum_sloc1_1_0 + 1),r2
-      00414A 8C 47            [24] 1032 	mov	_calculateTcpChecksum_sloc1_1_0,r4
+      004148 8A 4A            [24] 1031 	mov	(_calculateTcpChecksum_sloc1_1_0 + 1),r2
+      00414A 8C 49            [24] 1032 	mov	_calculateTcpChecksum_sloc1_1_0,r4
       00414C 74 1B            [12] 1033 	mov	a,#0x1b
-      00414E 25 45            [12] 1034 	add	a, _calculateTcpChecksum_sloc0_1_0
+      00414E 25 47            [12] 1034 	add	a, _calculateTcpChecksum_sloc0_1_0
       004150 F8               [12] 1035 	mov	r0,a
       004151 E4               [12] 1036 	clr	a
-      004152 35 46            [12] 1037 	addc	a, (_calculateTcpChecksum_sloc0_1_0 + 1)
+      004152 35 48            [12] 1037 	addc	a, (_calculateTcpChecksum_sloc0_1_0 + 1)
       004154 F9               [12] 1038 	mov	r1,a
       004155 E8               [12] 1039 	mov	a,r0
       004156 2D               [12] 1040 	add	a, r5
@@ -1046,25 +1046,25 @@
       00415D 88 82            [24] 1046 	mov	dpl,r0
       00415F 89 83            [24] 1047 	mov	dph,r1
       004161 8C F0            [24] 1048 	mov	b,r4
-      004163 12 6E 38         [24] 1049 	lcall	__gptrget
+      004163 12 6F 13         [24] 1049 	lcall	__gptrget
       004166 7C 00            [12] 1050 	mov	r4,#0x00
-      004168 42 47            [12] 1051 	orl	_calculateTcpChecksum_sloc1_1_0,a
+      004168 42 49            [12] 1051 	orl	_calculateTcpChecksum_sloc1_1_0,a
       00416A EC               [12] 1052 	mov	a,r4
-      00416B 42 48            [12] 1053 	orl	(_calculateTcpChecksum_sloc1_1_0 + 1),a
+      00416B 42 4A            [12] 1053 	orl	(_calculateTcpChecksum_sloc1_1_0 + 1),a
       00416D 90 03 AF         [24] 1054 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004170 E0               [24] 1055 	movx	a,@dptr
-      004171 F5 49            [12] 1056 	mov	_calculateTcpChecksum_sloc2_1_0,a
+      004171 F5 4B            [12] 1056 	mov	_calculateTcpChecksum_sloc2_1_0,a
       004173 A3               [24] 1057 	inc	dptr
       004174 E0               [24] 1058 	movx	a,@dptr
-      004175 F5 4A            [12] 1059 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),a
+      004175 F5 4C            [12] 1059 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),a
       004177 A3               [24] 1060 	inc	dptr
       004178 E0               [24] 1061 	movx	a,@dptr
-      004179 F5 4B            [12] 1062 	mov	(_calculateTcpChecksum_sloc2_1_0 + 2),a
+      004179 F5 4D            [12] 1062 	mov	(_calculateTcpChecksum_sloc2_1_0 + 2),a
       00417B A3               [24] 1063 	inc	dptr
       00417C E0               [24] 1064 	movx	a,@dptr
-      00417D F5 4C            [12] 1065 	mov	(_calculateTcpChecksum_sloc2_1_0 + 3),a
-      00417F A8 47            [24] 1066 	mov	r0,_calculateTcpChecksum_sloc1_1_0
-      004181 E5 48            [12] 1067 	mov	a,(_calculateTcpChecksum_sloc1_1_0 + 1)
+      00417D F5 4E            [12] 1065 	mov	(_calculateTcpChecksum_sloc2_1_0 + 3),a
+      00417F A8 49            [24] 1066 	mov	r0,_calculateTcpChecksum_sloc1_1_0
+      004181 E5 4A            [12] 1067 	mov	a,(_calculateTcpChecksum_sloc1_1_0 + 1)
       004183 F9               [12] 1068 	mov	r1,a
       004184 33               [12] 1069 	rlc	a
       004185 95 E0            [12] 1070 	subb	a,acc
@@ -1072,26 +1072,26 @@
       004188 FC               [12] 1072 	mov	r4,a
       004189 90 03 AF         [24] 1073 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       00418C E8               [12] 1074 	mov	a,r0
-      00418D 25 49            [12] 1075 	add	a, _calculateTcpChecksum_sloc2_1_0
+      00418D 25 4B            [12] 1075 	add	a, _calculateTcpChecksum_sloc2_1_0
       00418F F0               [24] 1076 	movx	@dptr,a
       004190 E9               [12] 1077 	mov	a,r1
-      004191 35 4A            [12] 1078 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
+      004191 35 4C            [12] 1078 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
       004193 A3               [24] 1079 	inc	dptr
       004194 F0               [24] 1080 	movx	@dptr,a
       004195 EA               [12] 1081 	mov	a,r2
-      004196 35 4B            [12] 1082 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 2)
+      004196 35 4D            [12] 1082 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 2)
       004198 A3               [24] 1083 	inc	dptr
       004199 F0               [24] 1084 	movx	@dptr,a
       00419A EC               [12] 1085 	mov	a,r4
-      00419B 35 4C            [12] 1086 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 3)
+      00419B 35 4E            [12] 1086 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 3)
       00419D A3               [24] 1087 	inc	dptr
       00419E F0               [24] 1088 	movx	@dptr,a
-                                   1089 ;	tcp.c:49: i++;
+                                   1089 ;	tcp.c:50: i++;
       00419F 90 03 B3         [24] 1090 	mov	dptr,#_calculateTcpChecksum_i_20001_128
       0041A2 EB               [12] 1091 	mov	a,r3
       0041A3 04               [12] 1092 	inc	a
       0041A4 F0               [24] 1093 	movx	@dptr,a
-                                   1094 ;	tcp.c:47: for (uint8_t i = 0; i < 4; i++) {
+                                   1094 ;	tcp.c:48: for (uint8_t i = 0; i < 4; i++) {
       0041A5 E0               [24] 1095 	movx	a,@dptr
       0041A6 24 01            [12] 1096 	add	a, #0x01
       0041A8 F0               [24] 1097 	movx	@dptr,a
@@ -1099,7 +1099,7 @@
       0041AB D0 02            [24] 1099 	pop	ar2
       0041AD 02 41 15         [24] 1100 	ljmp	00108$
       0041B0                       1101 00101$:
-                                   1102 ;	tcp.c:53: for (uint8_t i = 0; i < 4; i++) {
+                                   1102 ;	tcp.c:54: for (uint8_t i = 0; i < 4; i++) {
       0041B0 90 03 B4         [24] 1103 	mov	dptr,#_calculateTcpChecksum_i_20001_130
       0041B3 E4               [12] 1104 	clr	a
       0041B4 F0               [24] 1105 	movx	@dptr,a
@@ -1121,16 +1121,16 @@
       0041C8 40 03            [24] 1121 	jc	00169$
       0041CA 02 42 5F         [24] 1122 	ljmp	00102$
       0041CD                       1123 00169$:
-                                   1124 ;	tcp.c:54: sum += (buffer[IP_DST_P + i] << 8) | buffer[IP_DST_P + i + 1];
+                                   1124 ;	tcp.c:55: sum += (buffer[IP_DST_P + i] << 8) | buffer[IP_DST_P + i + 1];
       0041CD C0 02            [24] 1125 	push	ar2
       0041CF C0 04            [24] 1126 	push	ar4
-      0041D1 8B 49            [24] 1127 	mov	_calculateTcpChecksum_sloc2_1_0,r3
-      0041D3 75 4A 00         [24] 1128 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),#0x00
+      0041D1 8B 4B            [24] 1127 	mov	_calculateTcpChecksum_sloc2_1_0,r3
+      0041D3 75 4C 00         [24] 1128 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),#0x00
       0041D6 74 1E            [12] 1129 	mov	a,#0x1e
-      0041D8 25 49            [12] 1130 	add	a, _calculateTcpChecksum_sloc2_1_0
+      0041D8 25 4B            [12] 1130 	add	a, _calculateTcpChecksum_sloc2_1_0
       0041DA FA               [12] 1131 	mov	r2,a
       0041DB E4               [12] 1132 	clr	a
-      0041DC 35 4A            [12] 1133 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
+      0041DC 35 4C            [12] 1133 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
       0041DE FC               [12] 1134 	mov	r4,a
       0041DF EA               [12] 1135 	mov	a,r2
       0041E0 2D               [12] 1136 	add	a, r5
@@ -1142,16 +1142,16 @@
       0041E7 8A 82            [24] 1142 	mov	dpl,r2
       0041E9 89 83            [24] 1143 	mov	dph,r1
       0041EB 8C F0            [24] 1144 	mov	b,r4
-      0041ED 12 6E 38         [24] 1145 	lcall	__gptrget
+      0041ED 12 6F 13         [24] 1145 	lcall	__gptrget
       0041F0 FA               [12] 1146 	mov	r2,a
       0041F1 7C 00            [12] 1147 	mov	r4,#0x00
-      0041F3 8A 48            [24] 1148 	mov	(_calculateTcpChecksum_sloc1_1_0 + 1),r2
-      0041F5 8C 47            [24] 1149 	mov	_calculateTcpChecksum_sloc1_1_0,r4
+      0041F3 8A 4A            [24] 1148 	mov	(_calculateTcpChecksum_sloc1_1_0 + 1),r2
+      0041F5 8C 49            [24] 1149 	mov	_calculateTcpChecksum_sloc1_1_0,r4
       0041F7 74 1F            [12] 1150 	mov	a,#0x1f
-      0041F9 25 49            [12] 1151 	add	a, _calculateTcpChecksum_sloc2_1_0
+      0041F9 25 4B            [12] 1151 	add	a, _calculateTcpChecksum_sloc2_1_0
       0041FB F8               [12] 1152 	mov	r0,a
       0041FC E4               [12] 1153 	clr	a
-      0041FD 35 4A            [12] 1154 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
+      0041FD 35 4C            [12] 1154 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
       0041FF F9               [12] 1155 	mov	r1,a
       004200 E8               [12] 1156 	mov	a,r0
       004201 2D               [12] 1157 	add	a, r5
@@ -1163,27 +1163,27 @@
       004208 88 82            [24] 1163 	mov	dpl,r0
       00420A 89 83            [24] 1164 	mov	dph,r1
       00420C 8C F0            [24] 1165 	mov	b,r4
-      00420E 12 6E 38         [24] 1166 	lcall	__gptrget
+      00420E 12 6F 13         [24] 1166 	lcall	__gptrget
       004211 7C 00            [12] 1167 	mov	r4,#0x00
-      004213 45 47            [12] 1168 	orl	a,_calculateTcpChecksum_sloc1_1_0
-      004215 F5 49            [12] 1169 	mov	_calculateTcpChecksum_sloc2_1_0,a
+      004213 45 49            [12] 1168 	orl	a,_calculateTcpChecksum_sloc1_1_0
+      004215 F5 4B            [12] 1169 	mov	_calculateTcpChecksum_sloc2_1_0,a
       004217 EC               [12] 1170 	mov	a,r4
-      004218 45 48            [12] 1171 	orl	a,(_calculateTcpChecksum_sloc1_1_0 + 1)
-      00421A F5 4A            [12] 1172 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),a
+      004218 45 4A            [12] 1171 	orl	a,(_calculateTcpChecksum_sloc1_1_0 + 1)
+      00421A F5 4C            [12] 1172 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),a
       00421C 90 03 AF         [24] 1173 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       00421F E0               [24] 1174 	movx	a,@dptr
-      004220 F5 4D            [12] 1175 	mov	_calculateTcpChecksum_sloc3_1_0,a
+      004220 F5 4F            [12] 1175 	mov	_calculateTcpChecksum_sloc3_1_0,a
       004222 A3               [24] 1176 	inc	dptr
       004223 E0               [24] 1177 	movx	a,@dptr
-      004224 F5 4E            [12] 1178 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
+      004224 F5 50            [12] 1178 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
       004226 A3               [24] 1179 	inc	dptr
       004227 E0               [24] 1180 	movx	a,@dptr
-      004228 F5 4F            [12] 1181 	mov	(_calculateTcpChecksum_sloc3_1_0 + 2),a
+      004228 F5 51            [12] 1181 	mov	(_calculateTcpChecksum_sloc3_1_0 + 2),a
       00422A A3               [24] 1182 	inc	dptr
       00422B E0               [24] 1183 	movx	a,@dptr
-      00422C F5 50            [12] 1184 	mov	(_calculateTcpChecksum_sloc3_1_0 + 3),a
-      00422E A8 49            [24] 1185 	mov	r0,_calculateTcpChecksum_sloc2_1_0
-      004230 E5 4A            [12] 1186 	mov	a,(_calculateTcpChecksum_sloc2_1_0 + 1)
+      00422C F5 52            [12] 1184 	mov	(_calculateTcpChecksum_sloc3_1_0 + 3),a
+      00422E A8 4B            [24] 1185 	mov	r0,_calculateTcpChecksum_sloc2_1_0
+      004230 E5 4C            [12] 1186 	mov	a,(_calculateTcpChecksum_sloc2_1_0 + 1)
       004232 F9               [12] 1187 	mov	r1,a
       004233 33               [12] 1188 	rlc	a
       004234 95 E0            [12] 1189 	subb	a,acc
@@ -1191,26 +1191,26 @@
       004237 FC               [12] 1191 	mov	r4,a
       004238 90 03 AF         [24] 1192 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       00423B E8               [12] 1193 	mov	a,r0
-      00423C 25 4D            [12] 1194 	add	a, _calculateTcpChecksum_sloc3_1_0
+      00423C 25 4F            [12] 1194 	add	a, _calculateTcpChecksum_sloc3_1_0
       00423E F0               [24] 1195 	movx	@dptr,a
       00423F E9               [12] 1196 	mov	a,r1
-      004240 35 4E            [12] 1197 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 1)
+      004240 35 50            [12] 1197 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 1)
       004242 A3               [24] 1198 	inc	dptr
       004243 F0               [24] 1199 	movx	@dptr,a
       004244 EA               [12] 1200 	mov	a,r2
-      004245 35 4F            [12] 1201 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 2)
+      004245 35 51            [12] 1201 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 2)
       004247 A3               [24] 1202 	inc	dptr
       004248 F0               [24] 1203 	movx	@dptr,a
       004249 EC               [12] 1204 	mov	a,r4
-      00424A 35 50            [12] 1205 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 3)
+      00424A 35 52            [12] 1205 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 3)
       00424C A3               [24] 1206 	inc	dptr
       00424D F0               [24] 1207 	movx	@dptr,a
-                                   1208 ;	tcp.c:55: i++;
+                                   1208 ;	tcp.c:56: i++;
       00424E 90 03 B4         [24] 1209 	mov	dptr,#_calculateTcpChecksum_i_20001_130
       004251 EB               [12] 1210 	mov	a,r3
       004252 04               [12] 1211 	inc	a
       004253 F0               [24] 1212 	movx	@dptr,a
-                                   1213 ;	tcp.c:53: for (uint8_t i = 0; i < 4; i++) {
+                                   1213 ;	tcp.c:54: for (uint8_t i = 0; i < 4; i++) {
       004254 E0               [24] 1214 	movx	a,@dptr
       004255 24 01            [12] 1215 	add	a, #0x01
       004257 F0               [24] 1216 	movx	@dptr,a
@@ -1218,7 +1218,7 @@
       00425A D0 02            [24] 1218 	pop	ar2
       00425C 02 41 C0         [24] 1219 	ljmp	00111$
       00425F                       1220 00102$:
-                                   1221 ;	tcp.c:59: sum += (uint16_t)IP_PROTO_TCP;
+                                   1221 ;	tcp.c:60: sum += (uint16_t) IP_PROTO_TCP;
       00425F 90 03 AF         [24] 1222 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004262 E0               [24] 1223 	movx	a,@dptr
       004263 FB               [12] 1224 	mov	r3,a
@@ -1247,40 +1247,40 @@
       00427D 3F               [12] 1247 	addc	a, r7
       00427E A3               [24] 1248 	inc	dptr
       00427F F0               [24] 1249 	movx	@dptr,a
-                                   1250 ;	tcp.c:60: sum += tcpLength;
+                                   1250 ;	tcp.c:61: sum += tcpLength;
       004280 90 03 AF         [24] 1251 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004283 E0               [24] 1252 	movx	a,@dptr
-      004284 F5 4D            [12] 1253 	mov	_calculateTcpChecksum_sloc3_1_0,a
+      004284 F5 4F            [12] 1253 	mov	_calculateTcpChecksum_sloc3_1_0,a
       004286 A3               [24] 1254 	inc	dptr
       004287 E0               [24] 1255 	movx	a,@dptr
-      004288 F5 4E            [12] 1256 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
+      004288 F5 50            [12] 1256 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
       00428A A3               [24] 1257 	inc	dptr
       00428B E0               [24] 1258 	movx	a,@dptr
-      00428C F5 4F            [12] 1259 	mov	(_calculateTcpChecksum_sloc3_1_0 + 2),a
+      00428C F5 51            [12] 1259 	mov	(_calculateTcpChecksum_sloc3_1_0 + 2),a
       00428E A3               [24] 1260 	inc	dptr
       00428F E0               [24] 1261 	movx	a,@dptr
-      004290 F5 50            [12] 1262 	mov	(_calculateTcpChecksum_sloc3_1_0 + 3),a
+      004290 F5 52            [12] 1262 	mov	(_calculateTcpChecksum_sloc3_1_0 + 3),a
       004292 8A 00            [24] 1263 	mov	ar0,r2
       004294 8C 01            [24] 1264 	mov	ar1,r4
       004296 7E 00            [12] 1265 	mov	r6,#0x00
       004298 7F 00            [12] 1266 	mov	r7,#0x00
       00429A 90 03 AF         [24] 1267 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       00429D E8               [12] 1268 	mov	a,r0
-      00429E 25 4D            [12] 1269 	add	a, _calculateTcpChecksum_sloc3_1_0
+      00429E 25 4F            [12] 1269 	add	a, _calculateTcpChecksum_sloc3_1_0
       0042A0 F0               [24] 1270 	movx	@dptr,a
       0042A1 E9               [12] 1271 	mov	a,r1
-      0042A2 35 4E            [12] 1272 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 1)
+      0042A2 35 50            [12] 1272 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 1)
       0042A4 A3               [24] 1273 	inc	dptr
       0042A5 F0               [24] 1274 	movx	@dptr,a
       0042A6 EE               [12] 1275 	mov	a,r6
-      0042A7 35 4F            [12] 1276 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 2)
+      0042A7 35 51            [12] 1276 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 2)
       0042A9 A3               [24] 1277 	inc	dptr
       0042AA F0               [24] 1278 	movx	@dptr,a
       0042AB EF               [12] 1279 	mov	a,r7
-      0042AC 35 50            [12] 1280 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 3)
+      0042AC 35 52            [12] 1280 	addc	a, (_calculateTcpChecksum_sloc3_1_0 + 3)
       0042AE A3               [24] 1281 	inc	dptr
       0042AF F0               [24] 1282 	movx	@dptr,a
-                                   1283 ;	tcp.c:63: for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i += 2) {
+                                   1283 ;	tcp.c:64: for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i +=
       0042B0 90 03 B5         [24] 1284 	mov	dptr,#_calculateTcpChecksum_i_20001_132
       0042B3 74 22            [12] 1285 	mov	a,#0x22
       0042B5 F0               [24] 1286 	movx	@dptr,a
@@ -1307,41 +1307,41 @@
       0042CE FB               [12] 1307 	mov	r3,a
       0042CF 90 03 B5         [24] 1308 	mov	dptr,#_calculateTcpChecksum_i_20001_132
       0042D2 E0               [24] 1309 	movx	a,@dptr
-      0042D3 F5 4D            [12] 1310 	mov	_calculateTcpChecksum_sloc3_1_0,a
+      0042D3 F5 4F            [12] 1310 	mov	_calculateTcpChecksum_sloc3_1_0,a
       0042D5 A3               [24] 1311 	inc	dptr
       0042D6 E0               [24] 1312 	movx	a,@dptr
-      0042D7 F5 4E            [12] 1313 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
-      0042D9 85 4D 49         [24] 1314 	mov	_calculateTcpChecksum_sloc2_1_0,_calculateTcpChecksum_sloc3_1_0
-      0042DC 85 4E 4A         [24] 1315 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),(_calculateTcpChecksum_sloc3_1_0 + 1)
+      0042D7 F5 50            [12] 1313 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),a
+      0042D9 85 4F 4B         [24] 1314 	mov	_calculateTcpChecksum_sloc2_1_0,_calculateTcpChecksum_sloc3_1_0
+      0042DC 85 50 4C         [24] 1315 	mov	(_calculateTcpChecksum_sloc2_1_0 + 1),(_calculateTcpChecksum_sloc3_1_0 + 1)
       0042DF C3               [12] 1316 	clr	c
-      0042E0 E5 49            [12] 1317 	mov	a,_calculateTcpChecksum_sloc2_1_0
+      0042E0 E5 4B            [12] 1317 	mov	a,_calculateTcpChecksum_sloc2_1_0
       0042E2 99               [12] 1318 	subb	a,r1
-      0042E3 E5 4A            [12] 1319 	mov	a,(_calculateTcpChecksum_sloc2_1_0 + 1)
+      0042E3 E5 4C            [12] 1319 	mov	a,(_calculateTcpChecksum_sloc2_1_0 + 1)
       0042E5 9B               [12] 1320 	subb	a,r3
       0042E6 40 03            [24] 1321 	jc	00170$
       0042E8 02 43 72         [24] 1322 	ljmp	00104$
       0042EB                       1323 00170$:
-                                   1324 ;	tcp.c:64: uint16_t word = (buffer[i] << 8) | buffer[i + 1];
+                                   1324 ;	tcp.c:66: uint16_t word = (buffer[i] << 8) | buffer[i + 1];
       0042EB C0 02            [24] 1325 	push	ar2
       0042ED C0 04            [24] 1326 	push	ar4
-      0042EF E5 4D            [12] 1327 	mov	a,_calculateTcpChecksum_sloc3_1_0
+      0042EF E5 4F            [12] 1327 	mov	a,_calculateTcpChecksum_sloc3_1_0
       0042F1 2D               [12] 1328 	add	a, r5
       0042F2 F8               [12] 1329 	mov	r0,a
-      0042F3 E5 4E            [12] 1330 	mov	a,(_calculateTcpChecksum_sloc3_1_0 + 1)
+      0042F3 E5 50            [12] 1330 	mov	a,(_calculateTcpChecksum_sloc3_1_0 + 1)
       0042F5 3E               [12] 1331 	addc	a, r6
       0042F6 F9               [12] 1332 	mov	r1,a
       0042F7 8F 03            [24] 1333 	mov	ar3,r7
       0042F9 88 82            [24] 1334 	mov	dpl,r0
       0042FB 89 83            [24] 1335 	mov	dph,r1
       0042FD 8B F0            [24] 1336 	mov	b,r3
-      0042FF 12 6E 38         [24] 1337 	lcall	__gptrget
+      0042FF 12 6F 13         [24] 1337 	lcall	__gptrget
       004302 FB               [12] 1338 	mov	r3,a
       004303 78 00            [12] 1339 	mov	r0,#0x00
       004305 74 01            [12] 1340 	mov	a,#0x01
-      004307 25 49            [12] 1341 	add	a, _calculateTcpChecksum_sloc2_1_0
+      004307 25 4B            [12] 1341 	add	a, _calculateTcpChecksum_sloc2_1_0
       004309 F9               [12] 1342 	mov	r1,a
       00430A E4               [12] 1343 	clr	a
-      00430B 35 4A            [12] 1344 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
+      00430B 35 4C            [12] 1344 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
       00430D FC               [12] 1345 	mov	r4,a
       00430E E9               [12] 1346 	mov	a,r1
       00430F 2D               [12] 1347 	add	a, r5
@@ -1353,52 +1353,52 @@
       004316 89 82            [24] 1353 	mov	dpl,r1
       004318 8C 83            [24] 1354 	mov	dph,r4
       00431A 8A F0            [24] 1355 	mov	b,r2
-      00431C 12 6E 38         [24] 1356 	lcall	__gptrget
+      00431C 12 6F 13         [24] 1356 	lcall	__gptrget
       00431F 7C 00            [12] 1357 	mov	r4,#0x00
       004321 42 00            [12] 1358 	orl	ar0,a
       004323 EC               [12] 1359 	mov	a,r4
       004324 42 03            [12] 1360 	orl	ar3,a
-      004326 88 4D            [24] 1361 	mov	_calculateTcpChecksum_sloc3_1_0,r0
-      004328 8B 4E            [24] 1362 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),r3
-                                   1363 ;	tcp.c:65: sum += word;
+      004326 88 4F            [24] 1361 	mov	_calculateTcpChecksum_sloc3_1_0,r0
+      004328 8B 50            [24] 1362 	mov	(_calculateTcpChecksum_sloc3_1_0 + 1),r3
+                                   1363 ;	tcp.c:67: sum += word;
       00432A 90 03 AF         [24] 1364 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       00432D E0               [24] 1365 	movx	a,@dptr
-      00432E F5 51            [12] 1366 	mov	_calculateTcpChecksum_sloc4_1_0,a
+      00432E F5 53            [12] 1366 	mov	_calculateTcpChecksum_sloc4_1_0,a
       004330 A3               [24] 1367 	inc	dptr
       004331 E0               [24] 1368 	movx	a,@dptr
-      004332 F5 52            [12] 1369 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),a
+      004332 F5 54            [12] 1369 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),a
       004334 A3               [24] 1370 	inc	dptr
       004335 E0               [24] 1371 	movx	a,@dptr
-      004336 F5 53            [12] 1372 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),a
+      004336 F5 55            [12] 1372 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),a
       004338 A3               [24] 1373 	inc	dptr
       004339 E0               [24] 1374 	movx	a,@dptr
-      00433A F5 54            [12] 1375 	mov	(_calculateTcpChecksum_sloc4_1_0 + 3),a
-      00433C A8 4D            [24] 1376 	mov	r0,_calculateTcpChecksum_sloc3_1_0
-      00433E AA 4E            [24] 1377 	mov	r2,(_calculateTcpChecksum_sloc3_1_0 + 1)
+      00433A F5 56            [12] 1375 	mov	(_calculateTcpChecksum_sloc4_1_0 + 3),a
+      00433C A8 4F            [24] 1376 	mov	r0,_calculateTcpChecksum_sloc3_1_0
+      00433E AA 50            [24] 1377 	mov	r2,(_calculateTcpChecksum_sloc3_1_0 + 1)
       004340 7B 00            [12] 1378 	mov	r3,#0x00
       004342 7C 00            [12] 1379 	mov	r4,#0x00
       004344 90 03 AF         [24] 1380 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004347 E8               [12] 1381 	mov	a,r0
-      004348 25 51            [12] 1382 	add	a, _calculateTcpChecksum_sloc4_1_0
+      004348 25 53            [12] 1382 	add	a, _calculateTcpChecksum_sloc4_1_0
       00434A F0               [24] 1383 	movx	@dptr,a
       00434B EA               [12] 1384 	mov	a,r2
-      00434C 35 52            [12] 1385 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 1)
+      00434C 35 54            [12] 1385 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 1)
       00434E A3               [24] 1386 	inc	dptr
       00434F F0               [24] 1387 	movx	@dptr,a
       004350 EB               [12] 1388 	mov	a,r3
-      004351 35 53            [12] 1389 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 2)
+      004351 35 55            [12] 1389 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 2)
       004353 A3               [24] 1390 	inc	dptr
       004354 F0               [24] 1391 	movx	@dptr,a
       004355 EC               [12] 1392 	mov	a,r4
-      004356 35 54            [12] 1393 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 3)
+      004356 35 56            [12] 1393 	addc	a, (_calculateTcpChecksum_sloc4_1_0 + 3)
       004358 A3               [24] 1394 	inc	dptr
       004359 F0               [24] 1395 	movx	@dptr,a
-                                   1396 ;	tcp.c:63: for (uint16_t i = TCP_SRC_PORT_H_P; i < TCP_SRC_PORT_H_P + tcpLength; i += 2) {
+                                   1396 ;	tcp.c:65: 2) {
       00435A 74 02            [12] 1397 	mov	a,#0x02
-      00435C 25 49            [12] 1398 	add	a, _calculateTcpChecksum_sloc2_1_0
+      00435C 25 4B            [12] 1398 	add	a, _calculateTcpChecksum_sloc2_1_0
       00435E FB               [12] 1399 	mov	r3,a
       00435F E4               [12] 1400 	clr	a
-      004360 35 4A            [12] 1401 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
+      004360 35 4C            [12] 1401 	addc	a, (_calculateTcpChecksum_sloc2_1_0 + 1)
       004362 FC               [12] 1402 	mov	r4,a
       004363 90 03 B5         [24] 1403 	mov	dptr,#_calculateTcpChecksum_i_20001_132
       004366 EB               [12] 1404 	mov	a,r3
@@ -1409,7 +1409,7 @@
       00436B D0 04            [24] 1409 	pop	ar4
       00436D D0 02            [24] 1410 	pop	ar2
       00436F 02 42 C4         [24] 1411 	ljmp	00114$
-                                   1412 ;	tcp.c:69: while (sum >> 16) {
+                                   1412 ;	tcp.c:71: while (sum >> 16) {
       004372                       1413 00104$:
       004372 90 03 AF         [24] 1414 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
       004375 E0               [24] 1415 	movx	a,@dptr
@@ -1423,47 +1423,47 @@
       00437D A3               [24] 1423 	inc	dptr
       00437E E0               [24] 1424 	movx	a,@dptr
       00437F FF               [12] 1425 	mov	r7,a
-      004380 8E 51            [24] 1426 	mov	_calculateTcpChecksum_sloc4_1_0,r6
-      004382 8F 52            [24] 1427 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),r7
+      004380 8E 53            [24] 1426 	mov	_calculateTcpChecksum_sloc4_1_0,r6
+      004382 8F 54            [24] 1427 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),r7
       004384 E4               [12] 1428 	clr	a
-      004385 F5 53            [12] 1429 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),a
-      004387 F5 54            [12] 1430 	mov	(_calculateTcpChecksum_sloc4_1_0 + 3),a
-      004389 E5 51            [12] 1431 	mov	a,_calculateTcpChecksum_sloc4_1_0
-      00438B 45 52            [12] 1432 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 1)
-      00438D 45 53            [12] 1433 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 2)
-      00438F 45 54            [12] 1434 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 3)
+      004385 F5 55            [12] 1429 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),a
+      004387 F5 56            [12] 1430 	mov	(_calculateTcpChecksum_sloc4_1_0 + 3),a
+      004389 E5 53            [12] 1431 	mov	a,_calculateTcpChecksum_sloc4_1_0
+      00438B 45 54            [12] 1432 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 1)
+      00438D 45 55            [12] 1433 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 2)
+      00438F 45 56            [12] 1434 	orl	a,(_calculateTcpChecksum_sloc4_1_0 + 3)
       004391 60 20            [24] 1435 	jz	00106$
-                                   1436 ;	tcp.c:70: sum = (sum & 0xFFFF) + (sum >> 16);
+                                   1436 ;	tcp.c:72: sum = (sum & 0xFFFF) + (sum >> 16);
       004393 8C 00            [24] 1437 	mov	ar0,r4
       004395 8D 01            [24] 1438 	mov	ar1,r5
       004397 7A 00            [12] 1439 	mov	r2,#0x00
       004399 7B 00            [12] 1440 	mov	r3,#0x00
       00439B 90 03 AF         [24] 1441 	mov	dptr,#_calculateTcpChecksum_sum_10001_127
-      00439E E5 51            [12] 1442 	mov	a,_calculateTcpChecksum_sloc4_1_0
+      00439E E5 53            [12] 1442 	mov	a,_calculateTcpChecksum_sloc4_1_0
       0043A0 28               [12] 1443 	add	a, r0
       0043A1 F0               [24] 1444 	movx	@dptr,a
-      0043A2 E5 52            [12] 1445 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 1)
+      0043A2 E5 54            [12] 1445 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 1)
       0043A4 39               [12] 1446 	addc	a, r1
       0043A5 A3               [24] 1447 	inc	dptr
       0043A6 F0               [24] 1448 	movx	@dptr,a
-      0043A7 E5 53            [12] 1449 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 2)
+      0043A7 E5 55            [12] 1449 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 2)
       0043A9 3A               [12] 1450 	addc	a, r2
       0043AA A3               [24] 1451 	inc	dptr
       0043AB F0               [24] 1452 	movx	@dptr,a
-      0043AC E5 54            [12] 1453 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 3)
+      0043AC E5 56            [12] 1453 	mov	a,(_calculateTcpChecksum_sloc4_1_0 + 3)
       0043AE 3B               [12] 1454 	addc	a, r3
       0043AF A3               [24] 1455 	inc	dptr
       0043B0 F0               [24] 1456 	movx	@dptr,a
       0043B1 80 BF            [24] 1457 	sjmp	00104$
       0043B3                       1458 00106$:
-                                   1459 ;	tcp.c:74: uint16_t checksum = ~((uint16_t)sum);
+                                   1459 ;	tcp.c:76: uint16_t checksum = ~((uint16_t) sum);
       0043B3 EC               [12] 1460 	mov	a,r4
       0043B4 F4               [12] 1461 	cpl	a
       0043B5 FC               [12] 1462 	mov	r4,a
       0043B6 ED               [12] 1463 	mov	a,r5
       0043B7 F4               [12] 1464 	cpl	a
       0043B8 FD               [12] 1465 	mov	r5,a
-                                   1466 ;	tcp.c:75: buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
+                                   1466 ;	tcp.c:77: buffer[TCP_CHECKSUM_H_P] = (checksum >> 8) & 0xFF;
       0043B9 90 03 AC         [24] 1467 	mov	dptr,#_calculateTcpChecksum_buffer_10000_125
       0043BC E0               [24] 1468 	movx	a,@dptr
       0043BD FB               [12] 1469 	mov	r3,a
@@ -1475,18 +1475,18 @@
       0043C3 FF               [12] 1475 	mov	r7,a
       0043C4 74 32            [12] 1476 	mov	a,#0x32
       0043C6 2B               [12] 1477 	add	a, r3
-      0043C7 F5 51            [12] 1478 	mov	_calculateTcpChecksum_sloc4_1_0,a
+      0043C7 F5 53            [12] 1478 	mov	_calculateTcpChecksum_sloc4_1_0,a
       0043C9 E4               [12] 1479 	clr	a
       0043CA 3E               [12] 1480 	addc	a, r6
-      0043CB F5 52            [12] 1481 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),a
-      0043CD 8F 53            [24] 1482 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),r7
+      0043CB F5 54            [12] 1481 	mov	(_calculateTcpChecksum_sloc4_1_0 + 1),a
+      0043CD 8F 55            [24] 1482 	mov	(_calculateTcpChecksum_sloc4_1_0 + 2),r7
       0043CF 8D 02            [24] 1483 	mov	ar2,r5
-      0043D1 85 51 82         [24] 1484 	mov	dpl,_calculateTcpChecksum_sloc4_1_0
-      0043D4 85 52 83         [24] 1485 	mov	dph,(_calculateTcpChecksum_sloc4_1_0 + 1)
-      0043D7 85 53 F0         [24] 1486 	mov	b,(_calculateTcpChecksum_sloc4_1_0 + 2)
+      0043D1 85 53 82         [24] 1484 	mov	dpl,_calculateTcpChecksum_sloc4_1_0
+      0043D4 85 54 83         [24] 1485 	mov	dph,(_calculateTcpChecksum_sloc4_1_0 + 1)
+      0043D7 85 55 F0         [24] 1486 	mov	b,(_calculateTcpChecksum_sloc4_1_0 + 2)
       0043DA EA               [12] 1487 	mov	a,r2
-      0043DB 12 5E C5         [24] 1488 	lcall	__gptrput
-                                   1489 ;	tcp.c:76: buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
+      0043DB 12 5F A0         [24] 1488 	lcall	__gptrput
+                                   1489 ;	tcp.c:78: buffer[TCP_CHECKSUM_L_P] = checksum & 0xFF;
       0043DE 74 33            [12] 1490 	mov	a,#0x33
       0043E0 2B               [12] 1491 	add	a, r3
       0043E1 FB               [12] 1492 	mov	r3,a
@@ -1497,8 +1497,8 @@
       0043E7 8E 83            [24] 1497 	mov	dph,r6
       0043E9 8F F0            [24] 1498 	mov	b,r7
       0043EB EC               [12] 1499 	mov	a,r4
-                                   1500 ;	tcp.c:77: }
-      0043EC 02 5E C5         [24] 1501 	ljmp	__gptrput
+                                   1500 ;	tcp.c:79: }
+      0043EC 02 5F A0         [24] 1501 	ljmp	__gptrput
                                    1502 ;------------------------------------------------------------
                                    1503 ;Allocation info for local variables in function 'calculate_checksum'
                                    1504 ;------------------------------------------------------------
@@ -1511,7 +1511,7 @@
                                    1511 ;sloc1                     Allocated with name '_calculate_checksum_sloc1_1_0'
                                    1512 ;sloc2                     Allocated with name '_calculate_checksum_sloc2_1_0'
                                    1513 ;------------------------------------------------------------
-                                   1514 ;	tcp.c:80: uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
+                                   1514 ;	tcp.c:82: uint16_t calculate_checksum(uint8_t *data, uint16_t length) {
                                    1515 ;	-----------------------------------------
                                    1516 ;	 function calculate_checksum
                                    1517 ;	-----------------------------------------
@@ -1527,7 +1527,7 @@
       0043FC EF               [12] 1527 	mov	a,r7
       0043FD A3               [24] 1528 	inc	dptr
       0043FE F0               [24] 1529 	movx	@dptr,a
-                                   1530 ;	tcp.c:81: uint32_t sum = 0;
+                                   1530 ;	tcp.c:83: uint32_t sum = 0;
       0043FF 90 03 BC         [24] 1531 	mov	dptr,#_calculate_checksum_sum_10000_137
       004402 E4               [12] 1532 	clr	a
       004403 F0               [24] 1533 	movx	@dptr,a
@@ -1537,7 +1537,7 @@
       004407 F0               [24] 1537 	movx	@dptr,a
       004408 A3               [24] 1538 	inc	dptr
       004409 F0               [24] 1539 	movx	@dptr,a
-                                   1540 ;	tcp.c:84: for (uint16_t i = 0; i < length; i += 2) {
+                                   1540 ;	tcp.c:86: for (uint16_t i = 0; i < length; i += 2) {
       00440A 90 03 C0         [24] 1541 	mov	dptr,#_calculate_checksum_i_20000_138
       00440D F0               [24] 1542 	movx	@dptr,a
       00440E A3               [24] 1543 	inc	dptr
@@ -1553,10 +1553,10 @@
       00441A FF               [12] 1553 	mov	r7,a
       00441B 90 03 B7         [24] 1554 	mov	dptr,#_calculate_checksum_PARM_2
       00441E E0               [24] 1555 	movx	a,@dptr
-      00441F F5 45            [12] 1556 	mov	_calculate_checksum_sloc0_1_0,a
+      00441F F5 47            [12] 1556 	mov	_calculate_checksum_sloc0_1_0,a
       004421 A3               [24] 1557 	inc	dptr
       004422 E0               [24] 1558 	movx	a,@dptr
-      004423 F5 46            [12] 1559 	mov	(_calculate_checksum_sloc0_1_0 + 1),a
+      004423 F5 48            [12] 1559 	mov	(_calculate_checksum_sloc0_1_0 + 1),a
       004425                       1560 00105$:
       004425 90 03 C0         [24] 1561 	mov	dptr,#_calculate_checksum_i_20000_138
       004428 E0               [24] 1562 	movx	a,@dptr
@@ -1566,13 +1566,13 @@
       00442C FA               [12] 1566 	mov	r2,a
       00442D C3               [12] 1567 	clr	c
       00442E E9               [12] 1568 	mov	a,r1
-      00442F 95 45            [12] 1569 	subb	a,_calculate_checksum_sloc0_1_0
+      00442F 95 47            [12] 1569 	subb	a,_calculate_checksum_sloc0_1_0
       004431 EA               [12] 1570 	mov	a,r2
-      004432 95 46            [12] 1571 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
+      004432 95 48            [12] 1571 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
       004434 40 03            [24] 1572 	jc	00135$
       004436 02 45 25         [24] 1573 	ljmp	00103$
       004439                       1574 00135$:
-                                   1575 ;	tcp.c:85: uint16_t word = (data[i] << 8) + (i + 1 < length ? data[i + 1] : 0);
+                                   1575 ;	tcp.c:87: uint16_t word = (data[i] << 8) + (i + 1 < length ? data[i + 1] : 0);
       004439 E9               [12] 1576 	mov	a,r1
       00443A 2D               [12] 1577 	add	a, r5
       00443B F8               [12] 1578 	mov	r0,a
@@ -1583,7 +1583,7 @@
       004441 88 82            [24] 1583 	mov	dpl,r0
       004443 8B 83            [24] 1584 	mov	dph,r3
       004445 8C F0            [24] 1585 	mov	b,r4
-      004447 12 6E 38         [24] 1586 	lcall	__gptrget
+      004447 12 6F 13         [24] 1586 	lcall	__gptrget
       00444A FC               [12] 1587 	mov	r4,a
       00444B 7B 00            [12] 1588 	mov	r3,#0x00
       00444D C0 05            [24] 1589 	push	ar5
@@ -1597,9 +1597,9 @@
       004459 FF               [12] 1597 	mov	r7,a
       00445A C3               [12] 1598 	clr	c
       00445B E8               [12] 1599 	mov	a,r0
-      00445C 95 45            [12] 1600 	subb	a,_calculate_checksum_sloc0_1_0
+      00445C 95 47            [12] 1600 	subb	a,_calculate_checksum_sloc0_1_0
       00445E EF               [12] 1601 	mov	a,r7
-      00445F 95 46            [12] 1602 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
+      00445F 95 48            [12] 1602 	subb	a,(_calculate_checksum_sloc0_1_0 + 1)
       004461 D0 07            [24] 1603 	pop	ar7
       004463 D0 06            [24] 1604 	pop	ar6
       004465 D0 05            [24] 1605 	pop	ar5
@@ -1618,7 +1618,7 @@
       004476 89 82            [24] 1618 	mov	dpl,r1
       004478 88 83            [24] 1619 	mov	dph,r0
       00447A 8A F0            [24] 1620 	mov	b,r2
-      00447C 12 6E 38         [24] 1621 	lcall	__gptrget
+      00447C 12 6F 13         [24] 1621 	lcall	__gptrget
       00447F F9               [12] 1622 	mov	r1,a
       004480 7A 00            [12] 1623 	mov	r2,#0x00
       004482 80 04            [24] 1624 	sjmp	00110$
@@ -1635,7 +1635,7 @@
       004491 EA               [12] 1635 	mov	a,r2
       004492 3C               [12] 1636 	addc	a, r4
       004493 FC               [12] 1637 	mov	r4,a
-                                   1638 ;	tcp.c:86: sum += word;
+                                   1638 ;	tcp.c:88: sum += word;
       004494 90 03 BC         [24] 1639 	mov	dptr,#_calculate_checksum_sum_10000_137
       004497 E0               [24] 1640 	movx	a,@dptr
       004498 F8               [12] 1641 	mov	r0,a
@@ -1666,59 +1666,59 @@
       0044B5 3F               [12] 1666 	addc	a, r7
       0044B6 A3               [24] 1667 	inc	dptr
       0044B7 F0               [24] 1668 	movx	@dptr,a
-                                   1669 ;	tcp.c:89: if (sum > 0xFFFF) {
+                                   1669 ;	tcp.c:91: if (sum > 0xFFFF) {
       0044B8 90 03 BC         [24] 1670 	mov	dptr,#_calculate_checksum_sum_10000_137
       0044BB E0               [24] 1671 	movx	a,@dptr
-      0044BC F5 47            [12] 1672 	mov	_calculate_checksum_sloc1_1_0,a
+      0044BC F5 49            [12] 1672 	mov	_calculate_checksum_sloc1_1_0,a
       0044BE A3               [24] 1673 	inc	dptr
       0044BF E0               [24] 1674 	movx	a,@dptr
-      0044C0 F5 48            [12] 1675 	mov	(_calculate_checksum_sloc1_1_0 + 1),a
+      0044C0 F5 4A            [12] 1675 	mov	(_calculate_checksum_sloc1_1_0 + 1),a
       0044C2 A3               [24] 1676 	inc	dptr
       0044C3 E0               [24] 1677 	movx	a,@dptr
-      0044C4 F5 49            [12] 1678 	mov	(_calculate_checksum_sloc1_1_0 + 2),a
+      0044C4 F5 4B            [12] 1678 	mov	(_calculate_checksum_sloc1_1_0 + 2),a
       0044C6 A3               [24] 1679 	inc	dptr
       0044C7 E0               [24] 1680 	movx	a,@dptr
-      0044C8 F5 4A            [12] 1681 	mov	(_calculate_checksum_sloc1_1_0 + 3),a
+      0044C8 F5 4C            [12] 1681 	mov	(_calculate_checksum_sloc1_1_0 + 3),a
       0044CA C3               [12] 1682 	clr	c
       0044CB 74 FF            [12] 1683 	mov	a,#0xff
-      0044CD 95 47            [12] 1684 	subb	a,_calculate_checksum_sloc1_1_0
+      0044CD 95 49            [12] 1684 	subb	a,_calculate_checksum_sloc1_1_0
       0044CF 74 FF            [12] 1685 	mov	a,#0xff
-      0044D1 95 48            [12] 1686 	subb	a,(_calculate_checksum_sloc1_1_0 + 1)
+      0044D1 95 4A            [12] 1686 	subb	a,(_calculate_checksum_sloc1_1_0 + 1)
       0044D3 E4               [12] 1687 	clr	a
-      0044D4 95 49            [12] 1688 	subb	a,(_calculate_checksum_sloc1_1_0 + 2)
+      0044D4 95 4B            [12] 1688 	subb	a,(_calculate_checksum_sloc1_1_0 + 2)
       0044D6 E4               [12] 1689 	clr	a
-      0044D7 95 4A            [12] 1690 	subb	a,(_calculate_checksum_sloc1_1_0 + 3)
+      0044D7 95 4C            [12] 1690 	subb	a,(_calculate_checksum_sloc1_1_0 + 3)
       0044D9 D0 07            [24] 1691 	pop	ar7
       0044DB D0 06            [24] 1692 	pop	ar6
       0044DD D0 05            [24] 1693 	pop	ar5
       0044DF 50 2A            [24] 1694 	jnc	00106$
-                                   1695 ;	tcp.c:90: sum = (sum & 0xFFFF) + (sum >> 16);
-      0044E1 85 47 4B         [24] 1696 	mov	_calculate_checksum_sloc2_1_0,_calculate_checksum_sloc1_1_0
-      0044E4 85 48 4C         [24] 1697 	mov	(_calculate_checksum_sloc2_1_0 + 1),(_calculate_checksum_sloc1_1_0 + 1)
-      0044E7 75 4D 00         [24] 1698 	mov	(_calculate_checksum_sloc2_1_0 + 2),#0x00
-      0044EA 75 4E 00         [24] 1699 	mov	(_calculate_checksum_sloc2_1_0 + 3),#0x00
-      0044ED A8 49            [24] 1700 	mov	r0,(_calculate_checksum_sloc1_1_0 + 2)
-      0044EF AA 4A            [24] 1701 	mov	r2,(_calculate_checksum_sloc1_1_0 + 3)
+                                   1695 ;	tcp.c:92: sum = (sum & 0xFFFF) + (sum >> 16);
+      0044E1 85 49 4D         [24] 1696 	mov	_calculate_checksum_sloc2_1_0,_calculate_checksum_sloc1_1_0
+      0044E4 85 4A 4E         [24] 1697 	mov	(_calculate_checksum_sloc2_1_0 + 1),(_calculate_checksum_sloc1_1_0 + 1)
+      0044E7 75 4F 00         [24] 1698 	mov	(_calculate_checksum_sloc2_1_0 + 2),#0x00
+      0044EA 75 50 00         [24] 1699 	mov	(_calculate_checksum_sloc2_1_0 + 3),#0x00
+      0044ED A8 4B            [24] 1700 	mov	r0,(_calculate_checksum_sloc1_1_0 + 2)
+      0044EF AA 4C            [24] 1701 	mov	r2,(_calculate_checksum_sloc1_1_0 + 3)
       0044F1 7B 00            [12] 1702 	mov	r3,#0x00
       0044F3 7C 00            [12] 1703 	mov	r4,#0x00
       0044F5 90 03 BC         [24] 1704 	mov	dptr,#_calculate_checksum_sum_10000_137
       0044F8 E8               [12] 1705 	mov	a,r0
-      0044F9 25 4B            [12] 1706 	add	a, _calculate_checksum_sloc2_1_0
+      0044F9 25 4D            [12] 1706 	add	a, _calculate_checksum_sloc2_1_0
       0044FB F0               [24] 1707 	movx	@dptr,a
       0044FC EA               [12] 1708 	mov	a,r2
-      0044FD 35 4C            [12] 1709 	addc	a, (_calculate_checksum_sloc2_1_0 + 1)
+      0044FD 35 4E            [12] 1709 	addc	a, (_calculate_checksum_sloc2_1_0 + 1)
       0044FF A3               [24] 1710 	inc	dptr
       004500 F0               [24] 1711 	movx	@dptr,a
       004501 EB               [12] 1712 	mov	a,r3
-      004502 35 4D            [12] 1713 	addc	a, (_calculate_checksum_sloc2_1_0 + 2)
+      004502 35 4F            [12] 1713 	addc	a, (_calculate_checksum_sloc2_1_0 + 2)
       004504 A3               [24] 1714 	inc	dptr
       004505 F0               [24] 1715 	movx	@dptr,a
       004506 EC               [12] 1716 	mov	a,r4
-      004507 35 4E            [12] 1717 	addc	a, (_calculate_checksum_sloc2_1_0 + 3)
+      004507 35 50            [12] 1717 	addc	a, (_calculate_checksum_sloc2_1_0 + 3)
       004509 A3               [24] 1718 	inc	dptr
       00450A F0               [24] 1719 	movx	@dptr,a
       00450B                       1720 00106$:
-                                   1721 ;	tcp.c:84: for (uint16_t i = 0; i < length; i += 2) {
+                                   1721 ;	tcp.c:86: for (uint16_t i = 0; i < length; i += 2) {
       00450B 90 03 C0         [24] 1722 	mov	dptr,#_calculate_checksum_i_20000_138
       00450E E0               [24] 1723 	movx	a,@dptr
       00450F FB               [12] 1724 	mov	r3,a
@@ -1739,7 +1739,7 @@
       004521 F0               [24] 1739 	movx	@dptr,a
       004522 02 44 25         [24] 1740 	ljmp	00105$
       004525                       1741 00103$:
-                                   1742 ;	tcp.c:95: sum = (sum & 0xFFFF) + (sum >> 16);
+                                   1742 ;	tcp.c:97: sum = (sum & 0xFFFF) + (sum >> 16);
       004525 90 03 BC         [24] 1743 	mov	dptr,#_calculate_checksum_sum_10000_137
       004528 E0               [24] 1744 	movx	a,@dptr
       004529 FC               [12] 1745 	mov	r4,a
@@ -1776,7 +1776,7 @@
       004552 3B               [12] 1776 	addc	a, r3
       004553 A3               [24] 1777 	inc	dptr
       004554 F0               [24] 1778 	movx	@dptr,a
-                                   1779 ;	tcp.c:98: return ~sum;
+                                   1779 ;	tcp.c:100: return ~sum;
       004555 90 03 BC         [24] 1780 	mov	dptr,#_calculate_checksum_sum_10000_137
       004558 E0               [24] 1781 	movx	a,@dptr
       004559 FC               [12] 1782 	mov	r4,a
@@ -1801,7 +1801,7 @@
       00456C F4               [12] 1801 	cpl	a
       00456D 8C 82            [24] 1802 	mov	dpl, r4
       00456F 8D 83            [24] 1803 	mov	dph, r5
-                                   1804 ;	tcp.c:99: }
+                                   1804 ;	tcp.c:101: }
       004571 22               [24] 1805 	ret
                                    1806 ;------------------------------------------------------------
                                    1807 ;Allocation info for local variables in function 'process_tcp_packet'
@@ -1825,7 +1825,7 @@
                                    1825 ;tcp_length                Allocated with name '_process_tcp_packet_tcp_length_10005_147'
                                    1826 ;ip_total_length           Allocated with name '_process_tcp_packet_ip_total_length_10005_147'
                                    1827 ;------------------------------------------------------------
-                                   1828 ;	tcp.c:100: uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
+                                   1828 ;	tcp.c:102: uint8_t* process_tcp_packet(uint8_t *packet, uint16_t packet_size, uint16_t *response_size) {
                                    1829 ;	-----------------------------------------
                                    1830 ;	 function process_tcp_packet
                                    1831 ;	-----------------------------------------
@@ -1841,7 +1841,7 @@
       00457F EF               [12] 1841 	mov	a,r7
       004580 A3               [24] 1842 	inc	dptr
       004581 F0               [24] 1843 	movx	@dptr,a
-                                   1844 ;	tcp.c:102: memset(response, 0, MAX_PACKET_SIZE + 1);      // Clear the response buffer
+                                   1844 ;	tcp.c:104: memset(response, 0, MAX_PACKET_SIZE + 1);      // Clear the response buffer
       004582 90 10 3E         [24] 1845 	mov	dptr,#_memset_PARM_2
       004585 E4               [12] 1846 	clr	a
       004586 F0               [24] 1847 	movx	@dptr,a
@@ -1853,13 +1853,13 @@
       004590 F0               [24] 1853 	movx	@dptr,a
       004591 90 03 CA         [24] 1854 	mov	dptr,#_process_tcp_packet_response_10000_142
       004594 75 F0 00         [24] 1855 	mov	b, #0x00
-      004597 12 5E 9D         [24] 1856 	lcall	_memset
-                                   1857 ;	tcp.c:104: response[0] = 0x0E;  // Ensure the first byte of the response is always 0x0E
+      004597 12 5F 78         [24] 1856 	lcall	_memset
+                                   1857 ;	tcp.c:106: response[0] = 0x0E;  // Ensure the first byte of the response is always 0x0E
       00459A 90 03 CA         [24] 1858 	mov	dptr,#_process_tcp_packet_response_10000_142
       00459D 74 0E            [12] 1859 	mov	a,#0x0e
       00459F F0               [24] 1860 	movx	@dptr,a
-                                   1861 ;	tcp.c:107: uint8_t *data_start = response + 1;
-                                   1862 ;	tcp.c:110: uint8_t *ethernet_header = packet;
+                                   1861 ;	tcp.c:109: uint8_t *data_start = response + 1;
+                                   1862 ;	tcp.c:112: uint8_t *ethernet_header = packet;
       0045A0 90 03 C7         [24] 1863 	mov	dptr,#_process_tcp_packet_packet_10000_141
       0045A3 E0               [24] 1864 	movx	a,@dptr
       0045A4 FD               [12] 1865 	mov	r5,a
@@ -1869,7 +1869,7 @@
       0045A8 A3               [24] 1869 	inc	dptr
       0045A9 E0               [24] 1870 	movx	a,@dptr
       0045AA FF               [12] 1871 	mov	r7,a
-                                   1872 ;	tcp.c:112: memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
+                                   1872 ;	tcp.c:114: memcpy(response_ethernet_header, ethernet_header, ETHERNET_HEADER_SIZE);
       0045AB 8D 02            [24] 1873 	mov	ar2,r5
       0045AD 8E 03            [24] 1874 	mov	ar3,r6
       0045AF 8F 04            [24] 1875 	mov	ar4,r7
@@ -1893,11 +1893,11 @@
       0045CA C0 07            [24] 1893 	push	ar7
       0045CC C0 06            [24] 1894 	push	ar6
       0045CE C0 05            [24] 1895 	push	ar5
-      0045D0 12 5E 29         [24] 1896 	lcall	___memcpy
+      0045D0 12 5F 04         [24] 1896 	lcall	___memcpy
       0045D3 D0 05            [24] 1897 	pop	ar5
       0045D5 D0 06            [24] 1898 	pop	ar6
       0045D7 D0 07            [24] 1899 	pop	ar7
-                                   1900 ;	tcp.c:115: memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
+                                   1900 ;	tcp.c:117: memcpy(response_ethernet_header, ethernet_header + 6, 6);  // Destination MAC
       0045D9 74 06            [12] 1901 	mov	a,#0x06
       0045DB 2D               [12] 1902 	add	a, r5
       0045DC FA               [12] 1903 	mov	r2,a
@@ -1925,11 +1925,11 @@
       0045FB C0 07            [24] 1925 	push	ar7
       0045FD C0 06            [24] 1926 	push	ar6
       0045FF C0 05            [24] 1927 	push	ar5
-      004601 12 5E 29         [24] 1928 	lcall	___memcpy
+      004601 12 5F 04         [24] 1928 	lcall	___memcpy
       004604 D0 05            [24] 1929 	pop	ar5
       004606 D0 06            [24] 1930 	pop	ar6
       004608 D0 07            [24] 1931 	pop	ar7
-                                   1932 ;	tcp.c:116: memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
+                                   1932 ;	tcp.c:118: memcpy(response_ethernet_header + 6, ethernet_header, 6);  // Source MAC
       00460A 8D 02            [24] 1933 	mov	ar2,r5
       00460C 8E 03            [24] 1934 	mov	ar3,r6
       00460E 8F 04            [24] 1935 	mov	ar4,r7
@@ -1953,11 +1953,11 @@
       004629 C0 07            [24] 1953 	push	ar7
       00462B C0 06            [24] 1954 	push	ar6
       00462D C0 05            [24] 1955 	push	ar5
-      00462F 12 5E 29         [24] 1956 	lcall	___memcpy
+      00462F 12 5F 04         [24] 1956 	lcall	___memcpy
       004632 D0 05            [24] 1957 	pop	ar5
       004634 D0 06            [24] 1958 	pop	ar6
       004636 D0 07            [24] 1959 	pop	ar7
-                                   1960 ;	tcp.c:119: uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
+                                   1960 ;	tcp.c:121: uint8_t *ip_header = packet + ETHERNET_HEADER_SIZE;
       004638 74 0E            [12] 1961 	mov	a,#0x0e
       00463A 2D               [12] 1962 	add	a, r5
       00463B FA               [12] 1963 	mov	r2,a
@@ -1965,8 +1965,8 @@
       00463D 3E               [12] 1965 	addc	a, r6
       00463E FB               [12] 1966 	mov	r3,a
       00463F 8F 04            [24] 1967 	mov	ar4,r7
-                                   1968 ;	tcp.c:120: uint8_t *response_ip_header = data_start + ETHERNET_HEADER_SIZE;
-                                   1969 ;	tcp.c:123: memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
+                                   1968 ;	tcp.c:122: uint8_t *response_ip_header = data_start + ETHERNET_HEADER_SIZE;
+                                   1969 ;	tcp.c:125: memcpy(response_ip_header, ip_header, IP_HEADER_SIZE);
       004641 90 10 36         [24] 1970 	mov	dptr,#___memcpy_PARM_2
       004644 EA               [12] 1971 	mov	a,r2
       004645 F0               [24] 1972 	movx	@dptr,a
@@ -1987,11 +1987,11 @@
       00465A C0 07            [24] 1987 	push	ar7
       00465C C0 06            [24] 1988 	push	ar6
       00465E C0 05            [24] 1989 	push	ar5
-      004660 12 5E 29         [24] 1990 	lcall	___memcpy
+      004660 12 5F 04         [24] 1990 	lcall	___memcpy
       004663 D0 05            [24] 1991 	pop	ar5
       004665 D0 06            [24] 1992 	pop	ar6
       004667 D0 07            [24] 1993 	pop	ar7
-                                   1994 ;	tcp.c:124: response_ip_header[12] = ip_header[16];  // Swap Source IP
+                                   1994 ;	tcp.c:126: response_ip_header[12] = ip_header[16];  // Swap Source IP
       004669 74 1E            [12] 1995 	mov	a,#0x1e
       00466B 2D               [12] 1996 	add	a, r5
       00466C FA               [12] 1997 	mov	r2,a
@@ -2002,13 +2002,13 @@
       004672 8A 82            [24] 2002 	mov	dpl,r2
       004674 8B 83            [24] 2003 	mov	dph,r3
       004676 8C F0            [24] 2004 	mov	b,r4
-      004678 12 6E 38         [24] 2005 	lcall	__gptrget
+      004678 12 6F 13         [24] 2005 	lcall	__gptrget
       00467B FA               [12] 2006 	mov	r2,a
       00467C 90 03 E5         [24] 2007 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001b)
       00467F 75 F0 00         [24] 2008 	mov	b,#0x00
       004682 EA               [12] 2009 	mov	a,r2
-      004683 12 5E C5         [24] 2010 	lcall	__gptrput
-                                   2011 ;	tcp.c:125: response_ip_header[13] = ip_header[17];
+      004683 12 5F A0         [24] 2010 	lcall	__gptrput
+                                   2011 ;	tcp.c:127: response_ip_header[13] = ip_header[17];
       004686 74 1F            [12] 2012 	mov	a,#0x1f
       004688 2D               [12] 2013 	add	a, r5
       004689 FA               [12] 2014 	mov	r2,a
@@ -2019,13 +2019,13 @@
       00468F 8A 82            [24] 2019 	mov	dpl,r2
       004691 8B 83            [24] 2020 	mov	dph,r3
       004693 8C F0            [24] 2021 	mov	b,r4
-      004695 12 6E 38         [24] 2022 	lcall	__gptrget
+      004695 12 6F 13         [24] 2022 	lcall	__gptrget
       004698 FA               [12] 2023 	mov	r2,a
       004699 90 03 E6         [24] 2024 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001c)
       00469C 75 F0 00         [24] 2025 	mov	b,#0x00
       00469F EA               [12] 2026 	mov	a,r2
-      0046A0 12 5E C5         [24] 2027 	lcall	__gptrput
-                                   2028 ;	tcp.c:126: response_ip_header[14] = ip_header[18];
+      0046A0 12 5F A0         [24] 2027 	lcall	__gptrput
+                                   2028 ;	tcp.c:128: response_ip_header[14] = ip_header[18];
       0046A3 74 20            [12] 2029 	mov	a,#0x20
       0046A5 2D               [12] 2030 	add	a, r5
       0046A6 FA               [12] 2031 	mov	r2,a
@@ -2036,13 +2036,13 @@
       0046AC 8A 82            [24] 2036 	mov	dpl,r2
       0046AE 8B 83            [24] 2037 	mov	dph,r3
       0046B0 8C F0            [24] 2038 	mov	b,r4
-      0046B2 12 6E 38         [24] 2039 	lcall	__gptrget
+      0046B2 12 6F 13         [24] 2039 	lcall	__gptrget
       0046B5 FA               [12] 2040 	mov	r2,a
       0046B6 90 03 E7         [24] 2041 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001d)
       0046B9 75 F0 00         [24] 2042 	mov	b,#0x00
       0046BC EA               [12] 2043 	mov	a,r2
-      0046BD 12 5E C5         [24] 2044 	lcall	__gptrput
-                                   2045 ;	tcp.c:127: response_ip_header[15] = ip_header[19];
+      0046BD 12 5F A0         [24] 2044 	lcall	__gptrput
+                                   2045 ;	tcp.c:129: response_ip_header[15] = ip_header[19];
       0046C0 74 21            [12] 2046 	mov	a,#0x21
       0046C2 2D               [12] 2047 	add	a, r5
       0046C3 FA               [12] 2048 	mov	r2,a
@@ -2053,13 +2053,13 @@
       0046C9 8A 82            [24] 2053 	mov	dpl,r2
       0046CB 8B 83            [24] 2054 	mov	dph,r3
       0046CD 8C F0            [24] 2055 	mov	b,r4
-      0046CF 12 6E 38         [24] 2056 	lcall	__gptrget
+      0046CF 12 6F 13         [24] 2056 	lcall	__gptrget
       0046D2 FA               [12] 2057 	mov	r2,a
       0046D3 90 03 E8         [24] 2058 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001e)
       0046D6 75 F0 00         [24] 2059 	mov	b,#0x00
       0046D9 EA               [12] 2060 	mov	a,r2
-      0046DA 12 5E C5         [24] 2061 	lcall	__gptrput
-                                   2062 ;	tcp.c:128: response_ip_header[16] = ip_header[12];  // Swap Destination IP
+      0046DA 12 5F A0         [24] 2061 	lcall	__gptrput
+                                   2062 ;	tcp.c:130: response_ip_header[16] = ip_header[12];  // Swap Destination IP
       0046DD 74 1A            [12] 2063 	mov	a,#0x1a
       0046DF 2D               [12] 2064 	add	a, r5
       0046E0 FA               [12] 2065 	mov	r2,a
@@ -2070,13 +2070,13 @@
       0046E6 8A 82            [24] 2070 	mov	dpl,r2
       0046E8 8B 83            [24] 2071 	mov	dph,r3
       0046EA 8C F0            [24] 2072 	mov	b,r4
-      0046EC 12 6E 38         [24] 2073 	lcall	__gptrget
+      0046EC 12 6F 13         [24] 2073 	lcall	__gptrget
       0046EF FA               [12] 2074 	mov	r2,a
       0046F0 90 03 E9         [24] 2075 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001f)
       0046F3 75 F0 00         [24] 2076 	mov	b,#0x00
       0046F6 EA               [12] 2077 	mov	a,r2
-      0046F7 12 5E C5         [24] 2078 	lcall	__gptrput
-                                   2079 ;	tcp.c:129: response_ip_header[17] = ip_header[13];
+      0046F7 12 5F A0         [24] 2078 	lcall	__gptrput
+                                   2079 ;	tcp.c:131: response_ip_header[17] = ip_header[13];
       0046FA 74 1B            [12] 2080 	mov	a,#0x1b
       0046FC 2D               [12] 2081 	add	a, r5
       0046FD FA               [12] 2082 	mov	r2,a
@@ -2087,13 +2087,13 @@
       004703 8A 82            [24] 2087 	mov	dpl,r2
       004705 8B 83            [24] 2088 	mov	dph,r3
       004707 8C F0            [24] 2089 	mov	b,r4
-      004709 12 6E 38         [24] 2090 	lcall	__gptrget
+      004709 12 6F 13         [24] 2090 	lcall	__gptrget
       00470C FA               [12] 2091 	mov	r2,a
       00470D 90 03 EA         [24] 2092 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0020)
       004710 75 F0 00         [24] 2093 	mov	b,#0x00
       004713 EA               [12] 2094 	mov	a,r2
-      004714 12 5E C5         [24] 2095 	lcall	__gptrput
-                                   2096 ;	tcp.c:130: response_ip_header[18] = ip_header[14];
+      004714 12 5F A0         [24] 2095 	lcall	__gptrput
+                                   2096 ;	tcp.c:132: response_ip_header[18] = ip_header[14];
       004717 74 1C            [12] 2097 	mov	a,#0x1c
       004719 2D               [12] 2098 	add	a, r5
       00471A FA               [12] 2099 	mov	r2,a
@@ -2104,13 +2104,13 @@
       004720 8A 82            [24] 2104 	mov	dpl,r2
       004722 8B 83            [24] 2105 	mov	dph,r3
       004724 8C F0            [24] 2106 	mov	b,r4
-      004726 12 6E 38         [24] 2107 	lcall	__gptrget
+      004726 12 6F 13         [24] 2107 	lcall	__gptrget
       004729 FA               [12] 2108 	mov	r2,a
       00472A 90 03 EB         [24] 2109 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0021)
       00472D 75 F0 00         [24] 2110 	mov	b,#0x00
       004730 EA               [12] 2111 	mov	a,r2
-      004731 12 5E C5         [24] 2112 	lcall	__gptrput
-                                   2113 ;	tcp.c:131: response_ip_header[19] = ip_header[15];
+      004731 12 5F A0         [24] 2112 	lcall	__gptrput
+                                   2113 ;	tcp.c:133: response_ip_header[19] = ip_header[15];
       004734 74 1D            [12] 2114 	mov	a,#0x1d
       004736 2D               [12] 2115 	add	a, r5
       004737 FA               [12] 2116 	mov	r2,a
@@ -2121,21 +2121,21 @@
       00473D 8A 82            [24] 2121 	mov	dpl,r2
       00473F 8B 83            [24] 2122 	mov	dph,r3
       004741 8C F0            [24] 2123 	mov	b,r4
-      004743 12 6E 38         [24] 2124 	lcall	__gptrget
+      004743 12 6F 13         [24] 2124 	lcall	__gptrget
       004746 FA               [12] 2125 	mov	r2,a
       004747 90 03 EC         [24] 2126 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0022)
       00474A 75 F0 00         [24] 2127 	mov	b,#0x00
       00474D EA               [12] 2128 	mov	a,r2
-      00474E 12 5E C5         [24] 2129 	lcall	__gptrput
-                                   2130 ;	tcp.c:132: response_ip_header[10] = 0;              // Clear checksum
+      00474E 12 5F A0         [24] 2129 	lcall	__gptrput
+                                   2130 ;	tcp.c:134: response_ip_header[10] = 0;              // Clear checksum
       004751 90 03 E3         [24] 2131 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0019)
       004754 E4               [12] 2132 	clr	a
-      004755 12 5E C5         [24] 2133 	lcall	__gptrput
-                                   2134 ;	tcp.c:133: response_ip_header[11] = 0;
+      004755 12 5F A0         [24] 2133 	lcall	__gptrput
+                                   2134 ;	tcp.c:135: response_ip_header[11] = 0;
       004758 90 03 E4         [24] 2135 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x001a)
       00475B F5 F0            [12] 2136 	mov	b,a
-      00475D 12 5E C5         [24] 2137 	lcall	__gptrput
-                                   2138 ;	tcp.c:136: uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
+      00475D 12 5F A0         [24] 2137 	lcall	__gptrput
+                                   2138 ;	tcp.c:138: uint8_t *tcp_header = packet + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
       004760 74 22            [12] 2139 	mov	a,#0x22
       004762 2D               [12] 2140 	add	a, r5
       004763 F5 14            [12] 2141 	mov	_process_tcp_packet_sloc0_1_0,a
@@ -2143,8 +2143,8 @@
       004766 3E               [12] 2143 	addc	a, r6
       004767 F5 15            [12] 2144 	mov	(_process_tcp_packet_sloc0_1_0 + 1),a
       004769 8F 16            [24] 2145 	mov	(_process_tcp_packet_sloc0_1_0 + 2),r7
-                                   2146 ;	tcp.c:137: uint8_t *response_tcp_header = data_start + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
-                                   2147 ;	tcp.c:140: memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
+                                   2146 ;	tcp.c:139: uint8_t *response_tcp_header = data_start + ETHERNET_HEADER_SIZE + IP_HEADER_SIZE;
+                                   2147 ;	tcp.c:142: memcpy(response_tcp_header, tcp_header, TCP_HEADER_SIZE);
       00476B A8 14            [24] 2148 	mov	r0,_process_tcp_packet_sloc0_1_0
       00476D A9 15            [24] 2149 	mov	r1,(_process_tcp_packet_sloc0_1_0 + 1)
       00476F AC 16            [24] 2150 	mov	r4,(_process_tcp_packet_sloc0_1_0 + 2)
@@ -2168,11 +2168,11 @@
       00478A C0 07            [24] 2168 	push	ar7
       00478C C0 06            [24] 2169 	push	ar6
       00478E C0 05            [24] 2170 	push	ar5
-      004790 12 5E 29         [24] 2171 	lcall	___memcpy
+      004790 12 5F 04         [24] 2171 	lcall	___memcpy
       004793 D0 05            [24] 2172 	pop	ar5
       004795 D0 06            [24] 2173 	pop	ar6
       004797 D0 07            [24] 2174 	pop	ar7
-                                   2175 ;	tcp.c:141: response_tcp_header[0] = tcp_header[2];  // Swap Source Port
+                                   2175 ;	tcp.c:143: response_tcp_header[0] = tcp_header[2];  // Swap Source Port
       004799 74 24            [12] 2176 	mov	a,#0x24
       00479B 2D               [12] 2177 	add	a, r5
       00479C FA               [12] 2178 	mov	r2,a
@@ -2183,13 +2183,13 @@
       0047A2 8A 82            [24] 2183 	mov	dpl,r2
       0047A4 8B 83            [24] 2184 	mov	dph,r3
       0047A6 8C F0            [24] 2185 	mov	b,r4
-      0047A8 12 6E 38         [24] 2186 	lcall	__gptrget
+      0047A8 12 6F 13         [24] 2186 	lcall	__gptrget
       0047AB FA               [12] 2187 	mov	r2,a
       0047AC 90 03 ED         [24] 2188 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0023)
       0047AF 75 F0 00         [24] 2189 	mov	b,#0x00
       0047B2 EA               [12] 2190 	mov	a,r2
-      0047B3 12 5E C5         [24] 2191 	lcall	__gptrput
-                                   2192 ;	tcp.c:142: response_tcp_header[1] = tcp_header[3];
+      0047B3 12 5F A0         [24] 2191 	lcall	__gptrput
+                                   2192 ;	tcp.c:144: response_tcp_header[1] = tcp_header[3];
       0047B6 74 25            [12] 2193 	mov	a,#0x25
       0047B8 2D               [12] 2194 	add	a, r5
       0047B9 FA               [12] 2195 	mov	r2,a
@@ -2200,23 +2200,23 @@
       0047BF 8A 82            [24] 2200 	mov	dpl,r2
       0047C1 8B 83            [24] 2201 	mov	dph,r3
       0047C3 8C F0            [24] 2202 	mov	b,r4
-      0047C5 12 6E 38         [24] 2203 	lcall	__gptrget
+      0047C5 12 6F 13         [24] 2203 	lcall	__gptrget
       0047C8 FA               [12] 2204 	mov	r2,a
       0047C9 90 03 EE         [24] 2205 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0024)
       0047CC 75 F0 00         [24] 2206 	mov	b,#0x00
       0047CF EA               [12] 2207 	mov	a,r2
-      0047D0 12 5E C5         [24] 2208 	lcall	__gptrput
-                                   2209 ;	tcp.c:143: response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
+      0047D0 12 5F A0         [24] 2208 	lcall	__gptrput
+                                   2209 ;	tcp.c:145: response_tcp_header[2] = tcp_header[0];  // Swap Destination Port
       0047D3 85 14 82         [24] 2210 	mov	dpl,_process_tcp_packet_sloc0_1_0
       0047D6 85 15 83         [24] 2211 	mov	dph,(_process_tcp_packet_sloc0_1_0 + 1)
       0047D9 85 16 F0         [24] 2212 	mov	b,(_process_tcp_packet_sloc0_1_0 + 2)
-      0047DC 12 6E 38         [24] 2213 	lcall	__gptrget
+      0047DC 12 6F 13         [24] 2213 	lcall	__gptrget
       0047DF FC               [12] 2214 	mov	r4,a
       0047E0 90 03 EF         [24] 2215 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0025)
       0047E3 75 F0 00         [24] 2216 	mov	b,#0x00
       0047E6 EC               [12] 2217 	mov	a,r4
-      0047E7 12 5E C5         [24] 2218 	lcall	__gptrput
-                                   2219 ;	tcp.c:144: response_tcp_header[3] = tcp_header[1];
+      0047E7 12 5F A0         [24] 2218 	lcall	__gptrput
+                                   2219 ;	tcp.c:146: response_tcp_header[3] = tcp_header[1];
       0047EA 74 23            [12] 2220 	mov	a,#0x23
       0047EC 2D               [12] 2221 	add	a, r5
       0047ED FA               [12] 2222 	mov	r2,a
@@ -2227,29 +2227,29 @@
       0047F3 8A 82            [24] 2227 	mov	dpl,r2
       0047F5 8B 83            [24] 2228 	mov	dph,r3
       0047F7 8C F0            [24] 2229 	mov	b,r4
-      0047F9 12 6E 38         [24] 2230 	lcall	__gptrget
+      0047F9 12 6F 13         [24] 2230 	lcall	__gptrget
       0047FC FA               [12] 2231 	mov	r2,a
       0047FD 90 03 F0         [24] 2232 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0026)
       004800 75 F0 00         [24] 2233 	mov	b,#0x00
       004803 EA               [12] 2234 	mov	a,r2
-      004804 12 5E C5         [24] 2235 	lcall	__gptrput
-                                   2236 ;	tcp.c:146: response_tcp_header[4] = 0;
+      004804 12 5F A0         [24] 2235 	lcall	__gptrput
+                                   2236 ;	tcp.c:148: response_tcp_header[4] = 0;
       004807 90 03 F1         [24] 2237 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0027)
       00480A E4               [12] 2238 	clr	a
-      00480B 12 5E C5         [24] 2239 	lcall	__gptrput
-                                   2240 ;	tcp.c:147: response_tcp_header[5] = 0;
+      00480B 12 5F A0         [24] 2239 	lcall	__gptrput
+                                   2240 ;	tcp.c:149: response_tcp_header[5] = 0;
       00480E 90 03 F2         [24] 2241 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0028)
       004811 F5 F0            [12] 2242 	mov	b,a
-      004813 12 5E C5         [24] 2243 	lcall	__gptrput
-                                   2244 ;	tcp.c:148: response_tcp_header[6] = 0;
+      004813 12 5F A0         [24] 2243 	lcall	__gptrput
+                                   2244 ;	tcp.c:150: response_tcp_header[6] = 0;
       004816 90 03 F3         [24] 2245 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0029)
       004819 F5 F0            [12] 2246 	mov	b,a
-      00481B 12 5E C5         [24] 2247 	lcall	__gptrput
-                                   2248 ;	tcp.c:149: response_tcp_header[7] = 0;
+      00481B 12 5F A0         [24] 2247 	lcall	__gptrput
+                                   2248 ;	tcp.c:151: response_tcp_header[7] = 0;
       00481E 90 03 F4         [24] 2249 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002a)
       004821 F5 F0            [12] 2250 	mov	b,a
-      004823 12 5E C5         [24] 2251 	lcall	__gptrput
-                                   2252 ;	tcp.c:151: uint8_t SYN_SEQ3 = tcp_header[4];
+      004823 12 5F A0         [24] 2251 	lcall	__gptrput
+                                   2252 ;	tcp.c:153: uint8_t SYN_SEQ3 = tcp_header[4];
       004826 74 26            [12] 2253 	mov	a,#0x26
       004828 2D               [12] 2254 	add	a, r5
       004829 FA               [12] 2255 	mov	r2,a
@@ -2260,9 +2260,9 @@
       00482F 8A 82            [24] 2260 	mov	dpl,r2
       004831 8B 83            [24] 2261 	mov	dph,r3
       004833 8C F0            [24] 2262 	mov	b,r4
-      004835 12 6E 38         [24] 2263 	lcall	__gptrget
+      004835 12 6F 13         [24] 2263 	lcall	__gptrget
       004838 FA               [12] 2264 	mov	r2,a
-                                   2265 ;	tcp.c:152: uint8_t SYN_SEQ2 = tcp_header[5];
+                                   2265 ;	tcp.c:154: uint8_t SYN_SEQ2 = tcp_header[5];
       004839 74 27            [12] 2266 	mov	a,#0x27
       00483B 2D               [12] 2267 	add	a, r5
       00483C F9               [12] 2268 	mov	r1,a
@@ -2273,9 +2273,9 @@
       004842 89 82            [24] 2273 	mov	dpl,r1
       004844 8B 83            [24] 2274 	mov	dph,r3
       004846 8C F0            [24] 2275 	mov	b,r4
-      004848 12 6E 38         [24] 2276 	lcall	__gptrget
+      004848 12 6F 13         [24] 2276 	lcall	__gptrget
       00484B F9               [12] 2277 	mov	r1,a
-                                   2278 ;	tcp.c:153: uint8_t SYN_SEQ1 = tcp_header[6];
+                                   2278 ;	tcp.c:155: uint8_t SYN_SEQ1 = tcp_header[6];
       00484C 74 28            [12] 2279 	mov	a,#0x28
       00484E 2D               [12] 2280 	add	a, r5
       00484F F8               [12] 2281 	mov	r0,a
@@ -2286,9 +2286,9 @@
       004855 88 82            [24] 2286 	mov	dpl,r0
       004857 8B 83            [24] 2287 	mov	dph,r3
       004859 8C F0            [24] 2288 	mov	b,r4
-      00485B 12 6E 38         [24] 2289 	lcall	__gptrget
+      00485B 12 6F 13         [24] 2289 	lcall	__gptrget
       00485E F8               [12] 2290 	mov	r0,a
-                                   2291 ;	tcp.c:154: uint8_t SYN_SEQ0 = tcp_header[7];
+                                   2291 ;	tcp.c:156: uint8_t SYN_SEQ0 = tcp_header[7];
       00485F 74 29            [12] 2292 	mov	a,#0x29
       004861 2D               [12] 2293 	add	a, r5
       004862 FD               [12] 2294 	mov	r5,a
@@ -2298,59 +2298,59 @@
       004866 8D 82            [24] 2298 	mov	dpl,r5
       004868 8E 83            [24] 2299 	mov	dph,r6
       00486A 8F F0            [24] 2300 	mov	b,r7
-      00486C 12 6E 38         [24] 2301 	lcall	__gptrget
+      00486C 12 6F 13         [24] 2301 	lcall	__gptrget
       00486F FD               [12] 2302 	mov	r5,a
-                                   2303 ;	tcp.c:156: response_tcp_header[8] = SYN_SEQ3;
+                                   2303 ;	tcp.c:158: response_tcp_header[8] = SYN_SEQ3;
       004870 90 03 F5         [24] 2304 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002b)
       004873 75 F0 00         [24] 2305 	mov	b,#0x00
       004876 EA               [12] 2306 	mov	a,r2
-      004877 12 5E C5         [24] 2307 	lcall	__gptrput
-                                   2308 ;	tcp.c:157: response_tcp_header[9] = SYN_SEQ2;
+      004877 12 5F A0         [24] 2307 	lcall	__gptrput
+                                   2308 ;	tcp.c:159: response_tcp_header[9] = SYN_SEQ2;
       00487A 90 03 F6         [24] 2309 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002c)
       00487D E9               [12] 2310 	mov	a,r1
-      00487E 12 5E C5         [24] 2311 	lcall	__gptrput
-                                   2312 ;	tcp.c:158: response_tcp_header[10] = SYN_SEQ1;
+      00487E 12 5F A0         [24] 2311 	lcall	__gptrput
+                                   2312 ;	tcp.c:160: response_tcp_header[10] = SYN_SEQ1;
       004881 90 03 F7         [24] 2313 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002d)
       004884 E8               [12] 2314 	mov	a,r0
-      004885 12 5E C5         [24] 2315 	lcall	__gptrput
-                                   2316 ;	tcp.c:159: response_tcp_header[11] = SYN_SEQ0 + 1;
+      004885 12 5F A0         [24] 2315 	lcall	__gptrput
+                                   2316 ;	tcp.c:161: response_tcp_header[11] = SYN_SEQ0 + 1;
       004888 0D               [12] 2317 	inc	r5
       004889 90 03 F8         [24] 2318 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002e)
       00488C ED               [12] 2319 	mov	a,r5
-      00488D 12 5E C5         [24] 2320 	lcall	__gptrput
-                                   2321 ;	tcp.c:165: response_tcp_header[12] = 0x50;  // SYN (0x02) + ACK (0x10)
+      00488D 12 5F A0         [24] 2320 	lcall	__gptrput
+                                   2321 ;	tcp.c:167: response_tcp_header[12] = 0x50;  // SYN (0x02) + ACK (0x10)
       004890 90 03 F9         [24] 2322 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x002f)
       004893 74 50            [12] 2323 	mov	a,#0x50
-      004895 12 5E C5         [24] 2324 	lcall	__gptrput
-                                   2325 ;	tcp.c:167: response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
+      004895 12 5F A0         [24] 2324 	lcall	__gptrput
+                                   2325 ;	tcp.c:169: response_tcp_header[13] = 0x12;  // SYN (0x02) + ACK (0x10)
       004898 90 03 FA         [24] 2326 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0030)
       00489B 74 12            [12] 2327 	mov	a,#0x12
-      00489D 12 5E C5         [24] 2328 	lcall	__gptrput
-                                   2329 ;	tcp.c:176: response_tcp_header[18] = 0;
+      00489D 12 5F A0         [24] 2328 	lcall	__gptrput
+                                   2329 ;	tcp.c:178: response_tcp_header[18] = 0;
       0048A0 90 03 FF         [24] 2330 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0035)
       0048A3 E4               [12] 2331 	clr	a
-      0048A4 12 5E C5         [24] 2332 	lcall	__gptrput
-                                   2333 ;	tcp.c:177: response_tcp_header[19] = 0;
+      0048A4 12 5F A0         [24] 2332 	lcall	__gptrput
+                                   2333 ;	tcp.c:179: response_tcp_header[19] = 0;
       0048A7 90 04 00         [24] 2334 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0036)
       0048AA F5 F0            [12] 2335 	mov	b,a
-      0048AC 12 5E C5         [24] 2336 	lcall	__gptrput
-                                   2337 ;	tcp.c:183: response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
+      0048AC 12 5F A0         [24] 2336 	lcall	__gptrput
+                                   2337 ;	tcp.c:185: response_ip_header[2] = (ip_total_length >> 8) & 0xFF;
       0048AF 90 03 DB         [24] 2338 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0011)
       0048B2 F5 F0            [12] 2339 	mov	b,a
-      0048B4 12 5E C5         [24] 2340 	lcall	__gptrput
-                                   2341 ;	tcp.c:184: response_ip_header[3] = ip_total_length & 0xFF;
+      0048B4 12 5F A0         [24] 2340 	lcall	__gptrput
+                                   2341 ;	tcp.c:186: response_ip_header[3] = ip_total_length & 0xFF;
       0048B7 90 03 DC         [24] 2342 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0012)
       0048BA F5 F0            [12] 2343 	mov	b,a
       0048BC 74 28            [12] 2344 	mov	a,#0x28
-      0048BE 12 5E C5         [24] 2345 	lcall	__gptrput
-                                   2346 ;	tcp.c:187: calculateIPChecksum(data_start);
+      0048BE 12 5F A0         [24] 2345 	lcall	__gptrput
+                                   2346 ;	tcp.c:189: calculateIPChecksum(data_start);
       0048C1 90 03 CB         [24] 2347 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0001)
       0048C4 12 3F 25         [24] 2348 	lcall	_calculateIPChecksum
-                                   2349 ;	tcp.c:190: calculateTcpChecksum(data_start);
+                                   2349 ;	tcp.c:192: calculateTcpChecksum(data_start);
       0048C7 90 03 CB         [24] 2350 	mov	dptr,#(_process_tcp_packet_response_10000_142 + 0x0001)
       0048CA 75 F0 00         [24] 2351 	mov	b, #0x00
       0048CD 12 40 8F         [24] 2352 	lcall	_calculateTcpChecksum
-                                   2353 ;	tcp.c:213: *response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length; // Adding 4 for the MSS option size
+                                   2353 ;	tcp.c:215: *response_size = 1 + ETHERNET_HEADER_SIZE + ip_total_length; // Adding 4 for the MSS option size
       0048D0 90 03 C4         [24] 2354 	mov	dptr,#_process_tcp_packet_PARM_3
       0048D3 E0               [24] 2355 	movx	a,@dptr
       0048D4 FD               [12] 2356 	mov	r5,a
@@ -2364,14 +2364,14 @@
       0048DD 8E 83            [24] 2364 	mov	dph,r6
       0048DF 8F F0            [24] 2365 	mov	b,r7
       0048E1 74 37            [12] 2366 	mov	a,#0x37
-      0048E3 12 5E C5         [24] 2367 	lcall	__gptrput
+      0048E3 12 5F A0         [24] 2367 	lcall	__gptrput
       0048E6 A3               [24] 2368 	inc	dptr
       0048E7 E4               [12] 2369 	clr	a
-      0048E8 12 5E C5         [24] 2370 	lcall	__gptrput
-                                   2371 ;	tcp.c:216: return response;
+      0048E8 12 5F A0         [24] 2370 	lcall	__gptrput
+                                   2371 ;	tcp.c:218: return response;
       0048EB 90 03 CA         [24] 2372 	mov	dptr,#_process_tcp_packet_response_10000_142
       0048EE F5 F0            [12] 2373 	mov	b,a
-                                   2374 ;	tcp.c:217: }
+                                   2374 ;	tcp.c:219: }
       0048F0 22               [24] 2375 	ret
                                    2376 ;------------------------------------------------------------
                                    2377 ;Allocation info for local variables in function 'print_hexdump'
@@ -2380,7 +2380,7 @@
                                    2380 ;data                      Allocated with name '_print_hexdump_data_10000_148'
                                    2381 ;i                         Allocated with name '_print_hexdump_i_20000_150'
                                    2382 ;------------------------------------------------------------
-                                   2383 ;	tcp.c:221: void print_hexdump(const uint8_t *data, uint16_t size) {
+                                   2383 ;	tcp.c:223: void print_hexdump(const uint8_t *data, uint16_t size) {
                                    2384 ;	-----------------------------------------
                                    2385 ;	 function print_hexdump
                                    2386 ;	-----------------------------------------
@@ -2396,7 +2396,7 @@
       0048FE EF               [12] 2396 	mov	a,r7
       0048FF A3               [24] 2397 	inc	dptr
       004900 F0               [24] 2398 	movx	@dptr,a
-                                   2399 ;	tcp.c:222: printf("\nHexdump (Size: %d):\n", size);
+                                   2399 ;	tcp.c:224: printf("\nHexdump (Size: %d):\n", size);
       004901 90 09 A7         [24] 2400 	mov	dptr,#_print_hexdump_PARM_2
       004904 E0               [24] 2401 	movx	a,@dptr
       004905 FE               [12] 2402 	mov	r6,a
@@ -2407,19 +2407,19 @@
       00490B C0 06            [24] 2407 	push	ar6
       00490D C0 06            [24] 2408 	push	ar6
       00490F C0 07            [24] 2409 	push	ar7
-      004911 74 01            [12] 2410 	mov	a,#___str_0
+      004911 74 DC            [12] 2410 	mov	a,#___str_0
       004913 C0 E0            [24] 2411 	push	acc
       004915 74 77            [12] 2412 	mov	a,#(___str_0 >> 8)
       004917 C0 E0            [24] 2413 	push	acc
       004919 74 80            [12] 2414 	mov	a,#0x80
       00491B C0 E0            [24] 2415 	push	acc
-      00491D 12 64 16         [24] 2416 	lcall	_printf
+      00491D 12 64 F1         [24] 2416 	lcall	_printf
       004920 E5 81            [12] 2417 	mov	a,sp
       004922 24 FB            [12] 2418 	add	a,#0xfb
       004924 F5 81            [12] 2419 	mov	sp,a
       004926 D0 06            [24] 2420 	pop	ar6
       004928 D0 07            [24] 2421 	pop	ar7
-                                   2422 ;	tcp.c:223: for (uint16_t i = 0; i < size; i++) {
+                                   2422 ;	tcp.c:225: for (uint16_t i = 0; i < size; i++) {
       00492A 90 09 A9         [24] 2423 	mov	dptr,#_print_hexdump_data_10000_148
       00492D E0               [24] 2424 	movx	a,@dptr
       00492E FB               [12] 2425 	mov	r3,a
@@ -2440,7 +2440,7 @@
       00493E 40 03            [24] 2440 	jc	00136$
       004940 02 49 E1         [24] 2441 	ljmp	00103$
       004943                       2442 00136$:
-                                   2443 ;	tcp.c:224: printf("%02X ", data[i]); // Print each byte in hexadecimal format
+                                   2443 ;	tcp.c:226: printf("%02X ", data[i]); // Print each byte in hexadecimal format
       004943 C0 06            [24] 2444 	push	ar6
       004945 C0 07            [24] 2445 	push	ar7
       004947 E9               [12] 2446 	mov	a,r1
@@ -2453,7 +2453,7 @@
       00494F 88 82            [24] 2453 	mov	dpl,r0
       004951 8E 83            [24] 2454 	mov	dph,r6
       004953 8F F0            [24] 2455 	mov	b,r7
-      004955 12 6E 38         [24] 2456 	lcall	__gptrget
+      004955 12 6F 13         [24] 2456 	lcall	__gptrget
       004958 F8               [12] 2457 	mov	r0,a
       004959 7F 00            [12] 2458 	mov	r7,#0x00
       00495B C0 07            [24] 2459 	push	ar7
@@ -2465,13 +2465,13 @@
       004967 C0 01            [24] 2465 	push	ar1
       004969 C0 00            [24] 2466 	push	ar0
       00496B C0 07            [24] 2467 	push	ar7
-      00496D 74 17            [12] 2468 	mov	a,#___str_1
+      00496D 74 F2            [12] 2468 	mov	a,#___str_1
       00496F C0 E0            [24] 2469 	push	acc
       004971 74 77            [12] 2470 	mov	a,#(___str_1 >> 8)
       004973 C0 E0            [24] 2471 	push	acc
       004975 74 80            [12] 2472 	mov	a,#0x80
       004977 C0 E0            [24] 2473 	push	acc
-      004979 12 64 16         [24] 2474 	lcall	_printf
+      004979 12 64 F1         [24] 2474 	lcall	_printf
       00497C E5 81            [12] 2475 	mov	a,sp
       00497E 24 FB            [12] 2476 	add	a,#0xfb
       004980 F5 81            [12] 2477 	mov	sp,a
@@ -2482,7 +2482,7 @@
       00498A D0 05            [24] 2482 	pop	ar5
       00498C D0 06            [24] 2483 	pop	ar6
       00498E D0 07            [24] 2484 	pop	ar7
-                                   2485 ;	tcp.c:225: if ((i + 1) % 16 == 0) {
+                                   2485 ;	tcp.c:227: if ((i + 1) % 16 == 0) {
       004990 89 06            [24] 2486 	mov	ar6,r1
       004992 8A 07            [24] 2487 	mov	ar7,r2
       004994 0E               [12] 2488 	inc	r6
@@ -2498,7 +2498,7 @@
       0049A4                       2498 00139$:
       0049A4 D0 07            [24] 2499 	pop	ar7
       0049A6 D0 06            [24] 2500 	pop	ar6
-                                   2501 ;	tcp.c:226: printf("\n"); // Newline after every 16 bytes for readability
+                                   2501 ;	tcp.c:228: printf("\n"); // Newline after every 16 bytes for readability
       0049A8 C0 07            [24] 2502 	push	ar7
       0049AA C0 06            [24] 2503 	push	ar6
       0049AC C0 05            [24] 2504 	push	ar5
@@ -2506,13 +2506,13 @@
       0049B0 C0 03            [24] 2506 	push	ar3
       0049B2 C0 02            [24] 2507 	push	ar2
       0049B4 C0 01            [24] 2508 	push	ar1
-      0049B6 74 1D            [12] 2509 	mov	a,#___str_2
+      0049B6 74 F8            [12] 2509 	mov	a,#___str_2
       0049B8 C0 E0            [24] 2510 	push	acc
       0049BA 74 77            [12] 2511 	mov	a,#(___str_2 >> 8)
       0049BC C0 E0            [24] 2512 	push	acc
       0049BE 74 80            [12] 2513 	mov	a,#0x80
       0049C0 C0 E0            [24] 2514 	push	acc
-      0049C2 12 64 16         [24] 2515 	lcall	_printf
+      0049C2 12 64 F1         [24] 2515 	lcall	_printf
       0049C5 15 81            [12] 2516 	dec	sp
       0049C7 15 81            [12] 2517 	dec	sp
       0049C9 15 81            [12] 2518 	dec	sp
@@ -2524,30 +2524,30 @@
       0049D5 D0 06            [24] 2524 	pop	ar6
       0049D7 D0 07            [24] 2525 	pop	ar7
       0049D9                       2526 00108$:
-                                   2527 ;	tcp.c:223: for (uint16_t i = 0; i < size; i++) {
+                                   2527 ;	tcp.c:225: for (uint16_t i = 0; i < size; i++) {
       0049D9 09               [12] 2528 	inc	r1
       0049DA B9 00 01         [24] 2529 	cjne	r1,#0x00,00140$
       0049DD 0A               [12] 2530 	inc	r2
       0049DE                       2531 00140$:
       0049DE 02 49 39         [24] 2532 	ljmp	00107$
       0049E1                       2533 00103$:
-                                   2534 ;	tcp.c:229: if (size % 16 != 0) {
+                                   2534 ;	tcp.c:231: if (size % 16 != 0) {
       0049E1 EE               [12] 2535 	mov	a,r6
       0049E2 54 0F            [12] 2536 	anl	a,#0x0f
       0049E4 60 15            [24] 2537 	jz	00109$
-                                   2538 ;	tcp.c:230: printf("\n"); // Final newline if not already printed
-      0049E6 74 1D            [12] 2539 	mov	a,#___str_2
+                                   2538 ;	tcp.c:232: printf("\n"); // Final newline if not already printed
+      0049E6 74 F8            [12] 2539 	mov	a,#___str_2
       0049E8 C0 E0            [24] 2540 	push	acc
       0049EA 74 77            [12] 2541 	mov	a,#(___str_2 >> 8)
       0049EC C0 E0            [24] 2542 	push	acc
       0049EE 74 80            [12] 2543 	mov	a,#0x80
       0049F0 C0 E0            [24] 2544 	push	acc
-      0049F2 12 64 16         [24] 2545 	lcall	_printf
+      0049F2 12 64 F1         [24] 2545 	lcall	_printf
       0049F5 15 81            [12] 2546 	dec	sp
       0049F7 15 81            [12] 2547 	dec	sp
       0049F9 15 81            [12] 2548 	dec	sp
       0049FB                       2549 00109$:
-                                   2550 ;	tcp.c:232: }
+                                   2550 ;	tcp.c:234: }
       0049FB 22               [24] 2551 	ret
                                    2552 ;------------------------------------------------------------
                                    2553 ;Allocation info for local variables in function 'process_packet_from_buffer'
@@ -2561,7 +2561,7 @@
                                    2561 ;packet_data               Allocated with name '_process_packet_from_buffer_packet_data_10002_160'
                                    2562 ;response                  Allocated with name '_process_packet_from_buffer_response_10003_163'
                                    2563 ;------------------------------------------------------------
-                                   2564 ;	tcp.c:235: void process_packet_from_buffer(uint16_t start_address) {
+                                   2564 ;	tcp.c:237: void process_packet_from_buffer(uint16_t start_address) {
                                    2565 ;	-----------------------------------------
                                    2566 ;	 function process_packet_from_buffer
                                    2567 ;	-----------------------------------------
@@ -2573,7 +2573,7 @@
       004A04 EF               [12] 2573 	mov	a,r7
       004A05 A3               [24] 2574 	inc	dptr
       004A06 F0               [24] 2575 	movx	@dptr,a
-                                   2576 ;	tcp.c:237: if (start_address > 0x1FFF) {
+                                   2576 ;	tcp.c:239: if (start_address > 0x1FFF) {
       004A07 90 09 AC         [24] 2577 	mov	dptr,#_process_packet_from_buffer_start_address_10000_154
       004A0A E0               [24] 2578 	movx	a,@dptr
       004A0B FE               [12] 2579 	mov	r6,a
@@ -2588,23 +2588,23 @@
       004A17 74 1F            [12] 2588 	mov	a,#0x1f
       004A19 9D               [12] 2589 	subb	a,r5
       004A1A 50 1A            [24] 2590 	jnc	00102$
-                                   2591 ;	tcp.c:238: printf("\n\rInvalid start address: %04X\n\r", start_address);
+                                   2591 ;	tcp.c:240: printf("\n\rInvalid start address: %04X\n\r", start_address);
       004A1C C0 06            [24] 2592 	push	ar6
       004A1E C0 07            [24] 2593 	push	ar7
-      004A20 74 1F            [12] 2594 	mov	a,#___str_3
+      004A20 74 FA            [12] 2594 	mov	a,#___str_3
       004A22 C0 E0            [24] 2595 	push	acc
       004A24 74 77            [12] 2596 	mov	a,#(___str_3 >> 8)
       004A26 C0 E0            [24] 2597 	push	acc
       004A28 74 80            [12] 2598 	mov	a,#0x80
       004A2A C0 E0            [24] 2599 	push	acc
-      004A2C 12 64 16         [24] 2600 	lcall	_printf
+      004A2C 12 64 F1         [24] 2600 	lcall	_printf
       004A2F E5 81            [12] 2601 	mov	a,sp
       004A31 24 FB            [12] 2602 	add	a,#0xfb
       004A33 F5 81            [12] 2603 	mov	sp,a
-                                   2604 ;	tcp.c:239: return;
+                                   2604 ;	tcp.c:241: return;
       004A35 22               [24] 2605 	ret
       004A36                       2606 00102$:
-                                   2607 ;	tcp.c:248: if (spi_buffer_read(2, start_address, next_packet_start) != 2) {
+                                   2607 ;	tcp.c:250: if (spi_buffer_read(2, start_address, next_packet_start) != 2) {
       004A36 90 03 95         [24] 2608 	mov	dptr,#_spi_buffer_read_PARM_2
       004A39 EE               [12] 2609 	mov	a,r6
       004A3A F0               [24] 2610 	movx	@dptr,a
@@ -2636,21 +2636,21 @@
       004A68 BB 00 02         [24] 2636 	cjne	r3,#0x00,00153$
       004A6B 80 16            [24] 2637 	sjmp	00104$
       004A6D                       2638 00153$:
-                                   2639 ;	tcp.c:249: printf("\n\rFailed to read packet start address bytes\n\r");
-      004A6D 74 3F            [12] 2640 	mov	a,#___str_4
+                                   2639 ;	tcp.c:251: printf("\n\rFailed to read packet start address bytes\n\r");
+      004A6D 74 1A            [12] 2640 	mov	a,#___str_4
       004A6F C0 E0            [24] 2641 	push	acc
-      004A71 74 77            [12] 2642 	mov	a,#(___str_4 >> 8)
+      004A71 74 78            [12] 2642 	mov	a,#(___str_4 >> 8)
       004A73 C0 E0            [24] 2643 	push	acc
       004A75 74 80            [12] 2644 	mov	a,#0x80
       004A77 C0 E0            [24] 2645 	push	acc
-      004A79 12 64 16         [24] 2646 	lcall	_printf
+      004A79 12 64 F1         [24] 2646 	lcall	_printf
       004A7C 15 81            [12] 2647 	dec	sp
       004A7E 15 81            [12] 2648 	dec	sp
       004A80 15 81            [12] 2649 	dec	sp
-                                   2650 ;	tcp.c:250: return;
+                                   2650 ;	tcp.c:252: return;
       004A82 22               [24] 2651 	ret
       004A83                       2652 00104$:
-                                   2653 ;	tcp.c:254: next_start_address = ((uint16_t)next_packet_start[1] << 8) | next_packet_start[0];
+                                   2653 ;	tcp.c:256: next_start_address = ((uint16_t)next_packet_start[1] << 8) | next_packet_start[0];
       004A83 90 09 AF         [24] 2654 	mov	dptr,#(_process_packet_from_buffer_next_packet_start_10001_157 + 0x0001)
       004A86 E0               [24] 2655 	movx	a,@dptr
       004A87 FA               [12] 2656 	mov	r2,a
@@ -2661,30 +2661,30 @@
       004A90 42 03            [12] 2661 	orl	ar3,a
       004A92 E9               [12] 2662 	mov	a,r1
       004A93 42 02            [12] 2663 	orl	ar2,a
-                                   2664 ;	tcp.c:257: if (next_start_address < start_address) {
+                                   2664 ;	tcp.c:259: if (next_start_address < start_address) {
       004A95 C3               [12] 2665 	clr	c
       004A96 EB               [12] 2666 	mov	a,r3
       004A97 9E               [12] 2667 	subb	a,r6
       004A98 EA               [12] 2668 	mov	a,r2
       004A99 9F               [12] 2669 	subb	a,r7
       004A9A 50 1A            [24] 2670 	jnc	00106$
-                                   2671 ;	tcp.c:258: printf("\n\rInvalid next start address: 0x%04X\n\r", next_start_address);
+                                   2671 ;	tcp.c:260: printf("\n\rInvalid next start address: 0x%04X\n\r", next_start_address);
       004A9C C0 03            [24] 2672 	push	ar3
       004A9E C0 02            [24] 2673 	push	ar2
-      004AA0 74 6D            [12] 2674 	mov	a,#___str_5
+      004AA0 74 48            [12] 2674 	mov	a,#___str_5
       004AA2 C0 E0            [24] 2675 	push	acc
-      004AA4 74 77            [12] 2676 	mov	a,#(___str_5 >> 8)
+      004AA4 74 78            [12] 2676 	mov	a,#(___str_5 >> 8)
       004AA6 C0 E0            [24] 2677 	push	acc
       004AA8 74 80            [12] 2678 	mov	a,#0x80
       004AAA C0 E0            [24] 2679 	push	acc
-      004AAC 12 64 16         [24] 2680 	lcall	_printf
+      004AAC 12 64 F1         [24] 2680 	lcall	_printf
       004AAF E5 81            [12] 2681 	mov	a,sp
       004AB1 24 FB            [12] 2682 	add	a,#0xfb
       004AB3 F5 81            [12] 2683 	mov	sp,a
-                                   2684 ;	tcp.c:259: return;
+                                   2684 ;	tcp.c:261: return;
       004AB5 22               [24] 2685 	ret
       004AB6                       2686 00106$:
-                                   2687 ;	tcp.c:261: packet_size = next_start_address - (start_address+6);
+                                   2687 ;	tcp.c:263: packet_size = next_start_address - (start_address+6);
       004AB6 74 06            [12] 2688 	mov	a,#0x06
       004AB8 2C               [12] 2689 	add	a, r4
       004AB9 FE               [12] 2690 	mov	r6,a
@@ -2698,7 +2698,7 @@
       004AC1 EA               [12] 2698 	mov	a,r2
       004AC2 9F               [12] 2699 	subb	a,r7
       004AC3 FF               [12] 2700 	mov	r7,a
-                                   2701 ;	tcp.c:264: uint8_t *packet_data = (uint8_t *)malloc(packet_size);
+                                   2701 ;	tcp.c:266: uint8_t *packet_data = (uint8_t *)malloc(packet_size);
       004AC4 8E 00            [24] 2702 	mov	ar0,r6
       004AC6 8F 01            [24] 2703 	mov	ar1,r7
       004AC8 88 82            [24] 2704 	mov	dpl, r0
@@ -2709,7 +2709,7 @@
       004AD2 C0 04            [24] 2709 	push	ar4
       004AD4 C0 03            [24] 2710 	push	ar3
       004AD6 C0 02            [24] 2711 	push	ar2
-      004AD8 12 61 60         [24] 2712 	lcall	_malloc
+      004AD8 12 62 3B         [24] 2712 	lcall	_malloc
       004ADB A8 82            [24] 2713 	mov	r0, dpl
       004ADD A9 83            [24] 2714 	mov	r1, dph
       004ADF D0 02            [24] 2715 	pop	ar2
@@ -2721,27 +2721,27 @@
       004AEB 88 17            [24] 2721 	mov	_process_packet_from_buffer_sloc0_1_0,r0
       004AED 89 18            [24] 2722 	mov	(_process_packet_from_buffer_sloc0_1_0 + 1),r1
       004AEF 75 19 00         [24] 2723 	mov	(_process_packet_from_buffer_sloc0_1_0 + 2),#0x00
-                                   2724 ;	tcp.c:265: if (packet_data == NULL) {
+                                   2724 ;	tcp.c:267: if (packet_data == NULL) {
       004AF2 E5 17            [12] 2725 	mov	a,_process_packet_from_buffer_sloc0_1_0
       004AF4 45 18            [12] 2726 	orl	a,(_process_packet_from_buffer_sloc0_1_0 + 1)
       004AF6 70 1A            [24] 2727 	jnz	00108$
-                                   2728 ;	tcp.c:266: printf("\n\rMemory allocation failed for packet size: %d\n\r", packet_size);
+                                   2728 ;	tcp.c:268: printf("\n\rMemory allocation failed for packet size: %d\n\r", packet_size);
       004AF8 C0 06            [24] 2729 	push	ar6
       004AFA C0 07            [24] 2730 	push	ar7
-      004AFC 74 94            [12] 2731 	mov	a,#___str_6
+      004AFC 74 6F            [12] 2731 	mov	a,#___str_6
       004AFE C0 E0            [24] 2732 	push	acc
-      004B00 74 77            [12] 2733 	mov	a,#(___str_6 >> 8)
+      004B00 74 78            [12] 2733 	mov	a,#(___str_6 >> 8)
       004B02 C0 E0            [24] 2734 	push	acc
       004B04 74 80            [12] 2735 	mov	a,#0x80
       004B06 C0 E0            [24] 2736 	push	acc
-      004B08 12 64 16         [24] 2737 	lcall	_printf
+      004B08 12 64 F1         [24] 2737 	lcall	_printf
       004B0B E5 81            [12] 2738 	mov	a,sp
       004B0D 24 FB            [12] 2739 	add	a,#0xfb
       004B0F F5 81            [12] 2740 	mov	sp,a
-                                   2741 ;	tcp.c:267: return;
+                                   2741 ;	tcp.c:269: return;
       004B11 22               [24] 2742 	ret
       004B12                       2743 00108$:
-                                   2744 ;	tcp.c:271: if (spi_buffer_read(packet_size, start_address+6, packet_data) != packet_size) {
+                                   2744 ;	tcp.c:273: if (spi_buffer_read(packet_size, start_address+6, packet_data) != packet_size) {
       004B12 8E 00            [24] 2745 	mov	ar0,r6
       004B14 8F 01            [24] 2746 	mov	ar1,r7
       004B16 74 06            [12] 2747 	mov	a,#0x06
@@ -2784,28 +2784,28 @@
       004B53 B5 07 02         [24] 2784 	cjne	a,ar7,00156$
       004B56 80 24            [24] 2785 	sjmp	00110$
       004B58                       2786 00156$:
-                                   2787 ;	tcp.c:272: printf("\n\rFailed to read packet data\n\r");
-      004B58 74 C5            [12] 2788 	mov	a,#___str_7
+                                   2787 ;	tcp.c:274: printf("\n\rFailed to read packet data\n\r");
+      004B58 74 A0            [12] 2788 	mov	a,#___str_7
       004B5A C0 E0            [24] 2789 	push	acc
-      004B5C 74 77            [12] 2790 	mov	a,#(___str_7 >> 8)
+      004B5C 74 78            [12] 2790 	mov	a,#(___str_7 >> 8)
       004B5E C0 E0            [24] 2791 	push	acc
       004B60 74 80            [12] 2792 	mov	a,#0x80
       004B62 C0 E0            [24] 2793 	push	acc
-      004B64 12 64 16         [24] 2794 	lcall	_printf
+      004B64 12 64 F1         [24] 2794 	lcall	_printf
       004B67 15 81            [12] 2795 	dec	sp
       004B69 15 81            [12] 2796 	dec	sp
       004B6B 15 81            [12] 2797 	dec	sp
-                                   2798 ;	tcp.c:273: free(packet_data);
+                                   2798 ;	tcp.c:275: free(packet_data);
       004B6D AC 17            [24] 2799 	mov	r4,_process_packet_from_buffer_sloc0_1_0
       004B6F A9 18            [24] 2800 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
       004B71 7D 00            [12] 2801 	mov	r5,#0x00
       004B73 8C 82            [24] 2802 	mov	dpl, r4
       004B75 89 83            [24] 2803 	mov	dph, r1
       004B77 8D F0            [24] 2804 	mov	b, r5
-                                   2805 ;	tcp.c:274: return;
-      004B79 02 5C D2         [24] 2806 	ljmp	_free
+                                   2805 ;	tcp.c:276: return;
+      004B79 02 5D AD         [24] 2806 	ljmp	_free
       004B7C                       2807 00110$:
-                                   2808 ;	tcp.c:278: uint8_t *response = process_tcp_packet(packet_data, packet_size, &response_size);
+                                   2808 ;	tcp.c:280: uint8_t *response = process_tcp_packet(packet_data, packet_size, &response_size);
       004B7C 90 03 C2         [24] 2809 	mov	dptr,#_process_tcp_packet_PARM_2
       004B7F EE               [12] 2810 	mov	a,r6
       004B80 F0               [24] 2811 	movx	@dptr,a
@@ -2836,13 +2836,13 @@
       004BAD D0 03            [24] 2836 	pop	ar3
       004BAF D0 06            [24] 2837 	pop	ar6
       004BB1 D0 07            [24] 2838 	pop	ar7
-                                   2839 ;	tcp.c:281: if (response != NULL) {
+                                   2839 ;	tcp.c:283: if (response != NULL) {
       004BB3 E9               [12] 2840 	mov	a,r1
       004BB4 4C               [12] 2841 	orl	a,r4
       004BB5 70 03            [24] 2842 	jnz	00157$
       004BB7 02 4C 3B         [24] 2843 	ljmp	00112$
       004BBA                       2844 00157$:
-                                   2845 ;	tcp.c:282: printf("\nProcessed response data:\n");
+                                   2845 ;	tcp.c:284: printf("\nProcessed response data:\n");
       004BBA C0 03            [24] 2846 	push	ar3
       004BBC C0 02            [24] 2847 	push	ar2
       004BBE C0 07            [24] 2848 	push	ar7
@@ -2852,13 +2852,13 @@
       004BC6 C0 03            [24] 2852 	push	ar3
       004BC8 C0 02            [24] 2853 	push	ar2
       004BCA C0 01            [24] 2854 	push	ar1
-      004BCC 74 E4            [12] 2855 	mov	a,#___str_8
+      004BCC 74 BF            [12] 2855 	mov	a,#___str_8
       004BCE C0 E0            [24] 2856 	push	acc
-      004BD0 74 77            [12] 2857 	mov	a,#(___str_8 >> 8)
+      004BD0 74 78            [12] 2857 	mov	a,#(___str_8 >> 8)
       004BD2 C0 E0            [24] 2858 	push	acc
       004BD4 74 80            [12] 2859 	mov	a,#0x80
       004BD6 C0 E0            [24] 2860 	push	acc
-      004BD8 12 64 16         [24] 2861 	lcall	_printf
+      004BD8 12 64 F1         [24] 2861 	lcall	_printf
       004BDB 15 81            [12] 2862 	dec	sp
       004BDD 15 81            [12] 2863 	dec	sp
       004BDF 15 81            [12] 2864 	dec	sp
@@ -2869,7 +2869,7 @@
       004BE9 D0 05            [24] 2869 	pop	ar5
       004BEB D0 06            [24] 2870 	pop	ar6
       004BED D0 07            [24] 2871 	pop	ar7
-                                   2872 ;	tcp.c:284: transmit_tcp_packet(response, response_size);
+                                   2872 ;	tcp.c:286: transmit_tcp_packet(response, response_size);
       004BEF 90 09 B0         [24] 2873 	mov	dptr,#_process_packet_from_buffer_response_size_10001_157
       004BF2 E0               [24] 2874 	movx	a,@dptr
       004BF3 F8               [12] 2875 	mov	r0,a
@@ -2898,13 +2898,13 @@
       004C1A D0 03            [24] 2898 	pop	ar3
       004C1C D0 04            [24] 2899 	pop	ar4
       004C1E D0 05            [24] 2900 	pop	ar5
-                                   2901 ;	tcp.c:285: free(response); // Free response memory if allocated dynamically
+                                   2901 ;	tcp.c:287: free(response); // Free response memory if allocated dynamically
       004C20 89 82            [24] 2902 	mov	dpl, r1
       004C22 8C 83            [24] 2903 	mov	dph, r4
       004C24 8D F0            [24] 2904 	mov	b, r5
       004C26 C0 03            [24] 2905 	push	ar3
       004C28 C0 02            [24] 2906 	push	ar2
-      004C2A 12 5C D2         [24] 2907 	lcall	_free
+      004C2A 12 5D AD         [24] 2907 	lcall	_free
       004C2D D0 02            [24] 2908 	pop	ar2
       004C2F D0 03            [24] 2909 	pop	ar3
       004C31 D0 06            [24] 2910 	pop	ar6
@@ -2913,18 +2913,18 @@
       004C37 D0 03            [24] 2913 	pop	ar3
       004C39 80 25            [24] 2914 	sjmp	00113$
       004C3B                       2915 00112$:
-                                   2916 ;	tcp.c:287: printf("\nNo response generated by TCP packet processing.\n");
+                                   2916 ;	tcp.c:289: printf("\nNo response generated by TCP packet processing.\n");
       004C3B C0 07            [24] 2917 	push	ar7
       004C3D C0 06            [24] 2918 	push	ar6
       004C3F C0 03            [24] 2919 	push	ar3
       004C41 C0 02            [24] 2920 	push	ar2
-      004C43 74 FF            [12] 2921 	mov	a,#___str_9
+      004C43 74 DA            [12] 2921 	mov	a,#___str_9
       004C45 C0 E0            [24] 2922 	push	acc
-      004C47 74 77            [12] 2923 	mov	a,#(___str_9 >> 8)
+      004C47 74 78            [12] 2923 	mov	a,#(___str_9 >> 8)
       004C49 C0 E0            [24] 2924 	push	acc
       004C4B 74 80            [12] 2925 	mov	a,#0x80
       004C4D C0 E0            [24] 2926 	push	acc
-      004C4F 12 64 16         [24] 2927 	lcall	_printf
+      004C4F 12 64 F1         [24] 2927 	lcall	_printf
       004C52 15 81            [12] 2928 	dec	sp
       004C54 15 81            [12] 2929 	dec	sp
       004C56 15 81            [12] 2930 	dec	sp
@@ -2933,7 +2933,7 @@
       004C5C D0 06            [24] 2933 	pop	ar6
       004C5E D0 07            [24] 2934 	pop	ar7
       004C60                       2935 00113$:
-                                   2936 ;	tcp.c:291: free(packet_data);
+                                   2936 ;	tcp.c:293: free(packet_data);
       004C60 AC 17            [24] 2937 	mov	r4,_process_packet_from_buffer_sloc0_1_0
       004C62 A9 18            [24] 2938 	mov	r1,(_process_packet_from_buffer_sloc0_1_0 + 1)
       004C64 7D 00            [12] 2939 	mov	r5,#0x00
@@ -2944,17 +2944,17 @@
       004C6E C0 06            [24] 2944 	push	ar6
       004C70 C0 03            [24] 2945 	push	ar3
       004C72 C0 02            [24] 2946 	push	ar2
-      004C74 12 5C D2         [24] 2947 	lcall	_free
+      004C74 12 5D AD         [24] 2947 	lcall	_free
       004C77 D0 02            [24] 2948 	pop	ar2
       004C79 D0 03            [24] 2949 	pop	ar3
       004C7B D0 06            [24] 2950 	pop	ar6
       004C7D D0 07            [24] 2951 	pop	ar7
-                                   2952 ;	tcp.c:294: packet_size, start_address, next_start_address - 1);
+                                   2952 ;	tcp.c:296: packet_size, start_address, next_start_address - 1);
       004C7F 1B               [12] 2953 	dec	r3
       004C80 BB FF 01         [24] 2954 	cjne	r3,#0xff,00158$
       004C83 1A               [12] 2955 	dec	r2
       004C84                       2956 00158$:
-                                   2957 ;	tcp.c:293: printf("\n\rSuccessfully processed packet of size %d from 0x%04X to 0x%04X\n\r",
+                                   2957 ;	tcp.c:295: printf("\n\rSuccessfully processed packet of size %d from 0x%04X to 0x%04X\n\r",
       004C84 C0 03            [24] 2958 	push	ar3
       004C86 C0 02            [24] 2959 	push	ar2
       004C88 90 09 AC         [24] 2960 	mov	dptr,#_process_packet_from_buffer_start_address_10000_154
@@ -2965,17 +2965,17 @@
       004C90 C0 E0            [24] 2965 	push	acc
       004C92 C0 06            [24] 2966 	push	ar6
       004C94 C0 07            [24] 2967 	push	ar7
-      004C96 74 31            [12] 2968 	mov	a,#___str_10
+      004C96 74 0C            [12] 2968 	mov	a,#___str_10
       004C98 C0 E0            [24] 2969 	push	acc
-      004C9A 74 78            [12] 2970 	mov	a,#(___str_10 >> 8)
+      004C9A 74 79            [12] 2970 	mov	a,#(___str_10 >> 8)
       004C9C C0 E0            [24] 2971 	push	acc
       004C9E 74 80            [12] 2972 	mov	a,#0x80
       004CA0 C0 E0            [24] 2973 	push	acc
-      004CA2 12 64 16         [24] 2974 	lcall	_printf
+      004CA2 12 64 F1         [24] 2974 	lcall	_printf
       004CA5 E5 81            [12] 2975 	mov	a,sp
       004CA7 24 F7            [12] 2976 	add	a,#0xf7
       004CA9 F5 81            [12] 2977 	mov	sp,a
-                                   2978 ;	tcp.c:295: }
+                                   2978 ;	tcp.c:297: }
       004CAB 22               [24] 2979 	ret
                                    2980 ;------------------------------------------------------------
                                    2981 ;Allocation info for local variables in function 'transmit_tcp_packet'
@@ -2985,7 +2985,7 @@
                                    2985 ;start_address             Allocated with name '_transmit_tcp_packet_start_address_10000_167'
                                    2986 ;end_address               Allocated with name '_transmit_tcp_packet_end_address_10001_169'
                                    2987 ;------------------------------------------------------------
-                                   2988 ;	tcp.c:298: void transmit_tcp_packet(uint8_t *packet, uint16_t packet_size)
+                                   2988 ;	tcp.c:300: void transmit_tcp_packet(uint8_t *packet, uint16_t packet_size)
                                    2989 ;	-----------------------------------------
                                    2990 ;	 function transmit_tcp_packet
                                    2991 ;	-----------------------------------------
@@ -3001,7 +3001,7 @@
       004CB9 EF               [12] 3001 	mov	a,r7
       004CBA A3               [24] 3002 	inc	dptr
       004CBB F0               [24] 3003 	movx	@dptr,a
-                                   3004 ;	tcp.c:303: if ((start_address + packet_size - 1) > 0x1FFF) {
+                                   3004 ;	tcp.c:305: if ((start_address + packet_size - 1) > 0x1FFF) {
       004CBC 90 09 B2         [24] 3005 	mov	dptr,#_transmit_tcp_packet_PARM_2
       004CBF E0               [24] 3006 	movx	a,@dptr
       004CC0 FE               [12] 3007 	mov	r6,a
@@ -3009,7 +3009,7 @@
       004CC2 E0               [24] 3009 	movx	a,@dptr
       004CC3 FF               [12] 3010 	mov	r7,a
       004CC4 8E 04            [24] 3011 	mov	ar4,r6
-      004CC6 74 0C            [12] 3012 	mov	a,#0x0c
+      004CC6 74 1C            [12] 3012 	mov	a,#0x1c
       004CC8 2F               [12] 3013 	add	a, r7
       004CC9 FD               [12] 3014 	mov	r5,a
       004CCA 1C               [12] 3015 	dec	r4
@@ -3022,30 +3022,30 @@
       004CD3 74 1F            [12] 3022 	mov	a,#0x1f
       004CD5 9D               [12] 3023 	subb	a,r5
       004CD6 50 16            [24] 3024 	jnc	00102$
-                                   3025 ;	tcp.c:304: printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
-      004CD8 74 74            [12] 3026 	mov	a,#___str_11
+                                   3025 ;	tcp.c:306: printf("\nInvalid Buffer Size. Buffer exceeds valid address range.\n");
+      004CD8 74 4F            [12] 3026 	mov	a,#___str_11
       004CDA C0 E0            [24] 3027 	push	acc
-      004CDC 74 78            [12] 3028 	mov	a,#(___str_11 >> 8)
+      004CDC 74 79            [12] 3028 	mov	a,#(___str_11 >> 8)
       004CDE C0 E0            [24] 3029 	push	acc
       004CE0 74 80            [12] 3030 	mov	a,#0x80
       004CE2 C0 E0            [24] 3031 	push	acc
-      004CE4 12 64 16         [24] 3032 	lcall	_printf
+      004CE4 12 64 F1         [24] 3032 	lcall	_printf
       004CE7 15 81            [12] 3033 	dec	sp
       004CE9 15 81            [12] 3034 	dec	sp
       004CEB 15 81            [12] 3035 	dec	sp
-                                   3036 ;	tcp.c:305: return;
+                                   3036 ;	tcp.c:307: return;
       004CED 22               [24] 3037 	ret
       004CEE                       3038 00102$:
-                                   3039 ;	tcp.c:307: uint16_t end_address = start_address + packet_size - 1;
+                                   3039 ;	tcp.c:309: uint16_t end_address = start_address + packet_size - 1;
       004CEE 8E 04            [24] 3040 	mov	ar4,r6
-      004CF0 74 0C            [12] 3041 	mov	a,#0x0c
+      004CF0 74 1C            [12] 3041 	mov	a,#0x1c
       004CF2 2F               [12] 3042 	add	a, r7
       004CF3 FD               [12] 3043 	mov	r5,a
       004CF4 1C               [12] 3044 	dec	r4
       004CF5 BC FF 01         [24] 3045 	cjne	r4,#0xff,00131$
       004CF8 1D               [12] 3046 	dec	r5
       004CF9                       3047 00131$:
-                                   3048 ;	tcp.c:308: spi_buffer_write(packet_size, start_address, packet);
+                                   3048 ;	tcp.c:310: spi_buffer_write(packet_size, start_address, packet);
       004CF9 90 09 B4         [24] 3049 	mov	dptr,#_transmit_tcp_packet_packet_10000_166
       004CFC E0               [24] 3050 	movx	a,@dptr
       004CFD F9               [12] 3051 	mov	r1,a
@@ -3058,7 +3058,7 @@
       004D04 90 03 9C         [24] 3058 	mov	dptr,#_spi_buffer_write_PARM_2
       004D07 E4               [12] 3059 	clr	a
       004D08 F0               [24] 3060 	movx	@dptr,a
-      004D09 74 0C            [12] 3061 	mov	a,#0x0c
+      004D09 74 1C            [12] 3061 	mov	a,#0x1c
       004D0B A3               [24] 3062 	inc	dptr
       004D0C F0               [24] 3063 	movx	@dptr,a
       004D0D 90 03 9E         [24] 3064 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -3077,182 +3077,182 @@
       004D20 12 3E 14         [24] 3077 	lcall	_spi_buffer_write
       004D23 D0 04            [24] 3078 	pop	ar4
       004D25 D0 05            [24] 3079 	pop	ar5
-                                   3080 ;	tcp.c:311: enc28j60_set_transmit_pointers(start_address, end_address);
+                                   3080 ;	tcp.c:313: enc28j60_set_transmit_pointers(start_address, end_address);
       004D27 90 01 06         [24] 3081 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
       004D2A EC               [12] 3082 	mov	a,r4
       004D2B F0               [24] 3083 	movx	@dptr,a
       004D2C ED               [12] 3084 	mov	a,r5
       004D2D A3               [24] 3085 	inc	dptr
       004D2E F0               [24] 3086 	movx	@dptr,a
-      004D2F 90 0C 00         [24] 3087 	mov	dptr,#0x0c00
+      004D2F 90 1C 00         [24] 3087 	mov	dptr,#0x1c00
       004D32 12 21 4E         [24] 3088 	lcall	_enc28j60_set_transmit_pointers
-                                   3089 ;	tcp.c:314: enc28j60_start_transmission();
+                                   3089 ;	tcp.c:316: enc28j60_start_transmission();
       004D35 12 21 2D         [24] 3090 	lcall	_enc28j60_start_transmission
-                                   3091 ;	tcp.c:317: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
+                                   3091 ;	tcp.c:319: if (wait_for_transmission_complete(500)) {  // Wait up to 500 ms
       004D38 90 01 F4         [24] 3092 	mov	dptr,#0x01f4
       004D3B 12 21 C5         [24] 3093 	lcall	_wait_for_transmission_complete
       004D3E E5 82            [12] 3094 	mov	a, dpl
       004D40 60 38            [24] 3095 	jz	00107$
-                                   3096 ;	tcp.c:319: if (enc28j60_transmission_successful()) {
+                                   3096 ;	tcp.c:321: if (enc28j60_transmission_successful()) {
       004D42 12 22 28         [24] 3097 	lcall	_enc28j60_transmission_successful
       004D45 E5 82            [12] 3098 	mov	a, dpl
       004D47 85 83 F0         [24] 3099 	mov	b, dph
       004D4A 45 F0            [12] 3100 	orl	a,b
       004D4C 60 16            [24] 3101 	jz	00104$
-                                   3102 ;	tcp.c:320: printf("TCP request sent successfully.\n\r");
-      004D4E 74 AF            [12] 3103 	mov	a,#___str_12
+                                   3102 ;	tcp.c:322: printf("TCP request sent successfully.\n\r");
+      004D4E 74 8A            [12] 3103 	mov	a,#___str_12
       004D50 C0 E0            [24] 3104 	push	acc
-      004D52 74 78            [12] 3105 	mov	a,#(___str_12 >> 8)
+      004D52 74 79            [12] 3105 	mov	a,#(___str_12 >> 8)
       004D54 C0 E0            [24] 3106 	push	acc
       004D56 74 80            [12] 3107 	mov	a,#0x80
       004D58 C0 E0            [24] 3108 	push	acc
-      004D5A 12 64 16         [24] 3109 	lcall	_printf
+      004D5A 12 64 F1         [24] 3109 	lcall	_printf
       004D5D 15 81            [12] 3110 	dec	sp
       004D5F 15 81            [12] 3111 	dec	sp
       004D61 15 81            [12] 3112 	dec	sp
       004D63 22               [24] 3113 	ret
       004D64                       3114 00104$:
-                                   3115 ;	tcp.c:322: printf("TCP transmission failed. Check error flags.\n\r");
-      004D64 74 D0            [12] 3116 	mov	a,#___str_13
+                                   3115 ;	tcp.c:324: printf("TCP transmission failed. Check error flags.\n\r");
+      004D64 74 AB            [12] 3116 	mov	a,#___str_13
       004D66 C0 E0            [24] 3117 	push	acc
-      004D68 74 78            [12] 3118 	mov	a,#(___str_13 >> 8)
+      004D68 74 79            [12] 3118 	mov	a,#(___str_13 >> 8)
       004D6A C0 E0            [24] 3119 	push	acc
       004D6C 74 80            [12] 3120 	mov	a,#0x80
       004D6E C0 E0            [24] 3121 	push	acc
-      004D70 12 64 16         [24] 3122 	lcall	_printf
+      004D70 12 64 F1         [24] 3122 	lcall	_printf
       004D73 15 81            [12] 3123 	dec	sp
       004D75 15 81            [12] 3124 	dec	sp
       004D77 15 81            [12] 3125 	dec	sp
       004D79 22               [24] 3126 	ret
       004D7A                       3127 00107$:
-                                   3128 ;	tcp.c:326: "Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
-      004D7A 74 FE            [12] 3129 	mov	a,#___str_14
+                                   3128 ;	tcp.c:328: "Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
+      004D7A 74 D9            [12] 3129 	mov	a,#___str_14
       004D7C C0 E0            [24] 3130 	push	acc
-      004D7E 74 78            [12] 3131 	mov	a,#(___str_14 >> 8)
+      004D7E 74 79            [12] 3131 	mov	a,#(___str_14 >> 8)
       004D80 C0 E0            [24] 3132 	push	acc
       004D82 74 80            [12] 3133 	mov	a,#0x80
       004D84 C0 E0            [24] 3134 	push	acc
-      004D86 12 64 16         [24] 3135 	lcall	_printf
+      004D86 12 64 F1         [24] 3135 	lcall	_printf
       004D89 15 81            [12] 3136 	dec	sp
       004D8B 15 81            [12] 3137 	dec	sp
       004D8D 15 81            [12] 3138 	dec	sp
-                                   3139 ;	tcp.c:328: }
+                                   3139 ;	tcp.c:330: }
       004D8F 22               [24] 3140 	ret
                                    3141 	.area CSEG    (CODE)
                                    3142 	.area CONST   (CODE)
                                    3143 	.area CONST   (CODE)
-      007701                       3144 ___str_0:
-      007701 0A                    3145 	.db 0x0a
-      007702 48 65 78 64 75 6D 70  3146 	.ascii "Hexdump (Size: %d):"
+      0077DC                       3144 ___str_0:
+      0077DC 0A                    3145 	.db 0x0a
+      0077DD 48 65 78 64 75 6D 70  3146 	.ascii "Hexdump (Size: %d):"
              20 28 53 69 7A 65 3A
              20 25 64 29 3A
-      007715 0A                    3147 	.db 0x0a
-      007716 00                    3148 	.db 0x00
+      0077F0 0A                    3147 	.db 0x0a
+      0077F1 00                    3148 	.db 0x00
                                    3149 	.area CSEG    (CODE)
                                    3150 	.area CONST   (CODE)
-      007717                       3151 ___str_1:
-      007717 25 30 32 58 20        3152 	.ascii "%02X "
-      00771C 00                    3153 	.db 0x00
+      0077F2                       3151 ___str_1:
+      0077F2 25 30 32 58 20        3152 	.ascii "%02X "
+      0077F7 00                    3153 	.db 0x00
                                    3154 	.area CSEG    (CODE)
                                    3155 	.area CONST   (CODE)
-      00771D                       3156 ___str_2:
-      00771D 0A                    3157 	.db 0x0a
-      00771E 00                    3158 	.db 0x00
+      0077F8                       3156 ___str_2:
+      0077F8 0A                    3157 	.db 0x0a
+      0077F9 00                    3158 	.db 0x00
                                    3159 	.area CSEG    (CODE)
                                    3160 	.area CONST   (CODE)
-      00771F                       3161 ___str_3:
-      00771F 0A                    3162 	.db 0x0a
-      007720 0D                    3163 	.db 0x0d
-      007721 49 6E 76 61 6C 69 64  3164 	.ascii "Invalid start address: %04X"
+      0077FA                       3161 ___str_3:
+      0077FA 0A                    3162 	.db 0x0a
+      0077FB 0D                    3163 	.db 0x0d
+      0077FC 49 6E 76 61 6C 69 64  3164 	.ascii "Invalid start address: %04X"
              20 73 74 61 72 74 20
              61 64 64 72 65 73 73
              3A 20 25 30 34 58
-      00773C 0A                    3165 	.db 0x0a
-      00773D 0D                    3166 	.db 0x0d
-      00773E 00                    3167 	.db 0x00
+      007817 0A                    3165 	.db 0x0a
+      007818 0D                    3166 	.db 0x0d
+      007819 00                    3167 	.db 0x00
                                    3168 	.area CSEG    (CODE)
                                    3169 	.area CONST   (CODE)
-      00773F                       3170 ___str_4:
-      00773F 0A                    3171 	.db 0x0a
-      007740 0D                    3172 	.db 0x0d
-      007741 46 61 69 6C 65 64 20  3173 	.ascii "Failed to read packet start address bytes"
+      00781A                       3170 ___str_4:
+      00781A 0A                    3171 	.db 0x0a
+      00781B 0D                    3172 	.db 0x0d
+      00781C 46 61 69 6C 65 64 20  3173 	.ascii "Failed to read packet start address bytes"
              74 6F 20 72 65 61 64
              20 70 61 63 6B 65 74
              20 73 74 61 72 74 20
              61 64 64 72 65 73 73
              20 62 79 74 65 73
-      00776A 0A                    3174 	.db 0x0a
-      00776B 0D                    3175 	.db 0x0d
-      00776C 00                    3176 	.db 0x00
+      007845 0A                    3174 	.db 0x0a
+      007846 0D                    3175 	.db 0x0d
+      007847 00                    3176 	.db 0x00
                                    3177 	.area CSEG    (CODE)
                                    3178 	.area CONST   (CODE)
-      00776D                       3179 ___str_5:
-      00776D 0A                    3180 	.db 0x0a
-      00776E 0D                    3181 	.db 0x0d
-      00776F 49 6E 76 61 6C 69 64  3182 	.ascii "Invalid next start address: 0x%04X"
+      007848                       3179 ___str_5:
+      007848 0A                    3180 	.db 0x0a
+      007849 0D                    3181 	.db 0x0d
+      00784A 49 6E 76 61 6C 69 64  3182 	.ascii "Invalid next start address: 0x%04X"
              20 6E 65 78 74 20 73
              74 61 72 74 20 61 64
              64 72 65 73 73 3A 20
              30 78 25 30 34 58
-      007791 0A                    3183 	.db 0x0a
-      007792 0D                    3184 	.db 0x0d
-      007793 00                    3185 	.db 0x00
+      00786C 0A                    3183 	.db 0x0a
+      00786D 0D                    3184 	.db 0x0d
+      00786E 00                    3185 	.db 0x00
                                    3186 	.area CSEG    (CODE)
                                    3187 	.area CONST   (CODE)
-      007794                       3188 ___str_6:
-      007794 0A                    3189 	.db 0x0a
-      007795 0D                    3190 	.db 0x0d
-      007796 4D 65 6D 6F 72 79 20  3191 	.ascii "Memory allocation failed for packet size: %d"
+      00786F                       3188 ___str_6:
+      00786F 0A                    3189 	.db 0x0a
+      007870 0D                    3190 	.db 0x0d
+      007871 4D 65 6D 6F 72 79 20  3191 	.ascii "Memory allocation failed for packet size: %d"
              61 6C 6C 6F 63 61 74
              69 6F 6E 20 66 61 69
              6C 65 64 20 66 6F 72
              20 70 61 63 6B 65 74
              20 73 69 7A 65 3A 20
              25 64
-      0077C2 0A                    3192 	.db 0x0a
-      0077C3 0D                    3193 	.db 0x0d
-      0077C4 00                    3194 	.db 0x00
+      00789D 0A                    3192 	.db 0x0a
+      00789E 0D                    3193 	.db 0x0d
+      00789F 00                    3194 	.db 0x00
                                    3195 	.area CSEG    (CODE)
                                    3196 	.area CONST   (CODE)
-      0077C5                       3197 ___str_7:
-      0077C5 0A                    3198 	.db 0x0a
-      0077C6 0D                    3199 	.db 0x0d
-      0077C7 46 61 69 6C 65 64 20  3200 	.ascii "Failed to read packet data"
+      0078A0                       3197 ___str_7:
+      0078A0 0A                    3198 	.db 0x0a
+      0078A1 0D                    3199 	.db 0x0d
+      0078A2 46 61 69 6C 65 64 20  3200 	.ascii "Failed to read packet data"
              74 6F 20 72 65 61 64
              20 70 61 63 6B 65 74
              20 64 61 74 61
-      0077E1 0A                    3201 	.db 0x0a
-      0077E2 0D                    3202 	.db 0x0d
-      0077E3 00                    3203 	.db 0x00
+      0078BC 0A                    3201 	.db 0x0a
+      0078BD 0D                    3202 	.db 0x0d
+      0078BE 00                    3203 	.db 0x00
                                    3204 	.area CSEG    (CODE)
                                    3205 	.area CONST   (CODE)
-      0077E4                       3206 ___str_8:
-      0077E4 0A                    3207 	.db 0x0a
-      0077E5 50 72 6F 63 65 73 73  3208 	.ascii "Processed response data:"
+      0078BF                       3206 ___str_8:
+      0078BF 0A                    3207 	.db 0x0a
+      0078C0 50 72 6F 63 65 73 73  3208 	.ascii "Processed response data:"
              65 64 20 72 65 73 70
              6F 6E 73 65 20 64 61
              74 61 3A
-      0077FD 0A                    3209 	.db 0x0a
-      0077FE 00                    3210 	.db 0x00
+      0078D8 0A                    3209 	.db 0x0a
+      0078D9 00                    3210 	.db 0x00
                                    3211 	.area CSEG    (CODE)
                                    3212 	.area CONST   (CODE)
-      0077FF                       3213 ___str_9:
-      0077FF 0A                    3214 	.db 0x0a
-      007800 4E 6F 20 72 65 73 70  3215 	.ascii "No response generated by TCP packet processing."
+      0078DA                       3213 ___str_9:
+      0078DA 0A                    3214 	.db 0x0a
+      0078DB 4E 6F 20 72 65 73 70  3215 	.ascii "No response generated by TCP packet processing."
              6F 6E 73 65 20 67 65
              6E 65 72 61 74 65 64
              20 62 79 20 54 43 50
              20 70 61 63 6B 65 74
              20 70 72 6F 63 65 73
              73 69 6E 67 2E
-      00782F 0A                    3216 	.db 0x0a
-      007830 00                    3217 	.db 0x00
+      00790A 0A                    3216 	.db 0x0a
+      00790B 00                    3217 	.db 0x00
                                    3218 	.area CSEG    (CODE)
                                    3219 	.area CONST   (CODE)
-      007831                       3220 ___str_10:
-      007831 0A                    3221 	.db 0x0a
-      007832 0D                    3222 	.db 0x0d
-      007833 53 75 63 63 65 73 73  3223 	.ascii "Successfully processed packet of size %d from 0x%04X to 0x%0"
+      00790C                       3220 ___str_10:
+      00790C 0A                    3221 	.db 0x0a
+      00790D 0D                    3222 	.db 0x0d
+      00790E 53 75 63 63 65 73 73  3223 	.ascii "Successfully processed packet of size %d from 0x%04X to 0x%0"
              66 75 6C 6C 79 20 70
              72 6F 63 65 73 73 65
              64 20 70 61 63 6B 65
@@ -3261,15 +3261,15 @@
              72 6F 6D 20 30 78 25
              30 34 58 20 74 6F 20
              30 78 25 30
-      00786F 34 58                 3224 	.ascii "4X"
-      007871 0A                    3225 	.db 0x0a
-      007872 0D                    3226 	.db 0x0d
-      007873 00                    3227 	.db 0x00
+      00794A 34 58                 3224 	.ascii "4X"
+      00794C 0A                    3225 	.db 0x0a
+      00794D 0D                    3226 	.db 0x0d
+      00794E 00                    3227 	.db 0x00
                                    3228 	.area CSEG    (CODE)
                                    3229 	.area CONST   (CODE)
-      007874                       3230 ___str_11:
-      007874 0A                    3231 	.db 0x0a
-      007875 49 6E 76 61 6C 69 64  3232 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
+      00794F                       3230 ___str_11:
+      00794F 0A                    3231 	.db 0x0a
+      007950 49 6E 76 61 6C 69 64  3232 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
              20 42 75 66 66 65 72
              20 53 69 7A 65 2E 20
              42 75 66 66 65 72 20
@@ -3277,36 +3277,36 @@
              20 76 61 6C 69 64 20
              61 64 64 72 65 73 73
              20 72 61 6E 67 65 2E
-      0078AD 0A                    3233 	.db 0x0a
-      0078AE 00                    3234 	.db 0x00
+      007988 0A                    3233 	.db 0x0a
+      007989 00                    3234 	.db 0x00
                                    3235 	.area CSEG    (CODE)
                                    3236 	.area CONST   (CODE)
-      0078AF                       3237 ___str_12:
-      0078AF 54 43 50 20 72 65 71  3238 	.ascii "TCP request sent successfully."
+      00798A                       3237 ___str_12:
+      00798A 54 43 50 20 72 65 71  3238 	.ascii "TCP request sent successfully."
              75 65 73 74 20 73 65
              6E 74 20 73 75 63 63
              65 73 73 66 75 6C 6C
              79 2E
-      0078CD 0A                    3239 	.db 0x0a
-      0078CE 0D                    3240 	.db 0x0d
-      0078CF 00                    3241 	.db 0x00
+      0079A8 0A                    3239 	.db 0x0a
+      0079A9 0D                    3240 	.db 0x0d
+      0079AA 00                    3241 	.db 0x00
                                    3242 	.area CSEG    (CODE)
                                    3243 	.area CONST   (CODE)
-      0078D0                       3244 ___str_13:
-      0078D0 54 43 50 20 74 72 61  3245 	.ascii "TCP transmission failed. Check error flags."
+      0079AB                       3244 ___str_13:
+      0079AB 54 43 50 20 74 72 61  3245 	.ascii "TCP transmission failed. Check error flags."
              6E 73 6D 69 73 73 69
              6F 6E 20 66 61 69 6C
              65 64 2E 20 43 68 65
              63 6B 20 65 72 72 6F
              72 20 66 6C 61 67 73
              2E
-      0078FB 0A                    3246 	.db 0x0a
-      0078FC 0D                    3247 	.db 0x0d
-      0078FD 00                    3248 	.db 0x00
+      0079D6 0A                    3246 	.db 0x0a
+      0079D7 0D                    3247 	.db 0x0d
+      0079D8 00                    3248 	.db 0x00
                                    3249 	.area CSEG    (CODE)
                                    3250 	.area CONST   (CODE)
-      0078FE                       3251 ___str_14:
-      0078FE 54 72 61 6E 73 6D 69  3252 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
+      0079D9                       3251 ___str_14:
+      0079D9 54 72 61 6E 73 6D 69  3252 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
              73 73 69 6F 6E 20 74
              69 6D 65 6F 75 74 2E
              20 45 4E 43 32 38 4A
@@ -3315,10 +3315,10 @@
              66 75 6E 63 74 69 6F
              6E 69 6E 67 20 63 6F
              72 72 65 63
-      00793A 74 6C 79 2E           3253 	.ascii "tly."
-      00793E 0A                    3254 	.db 0x0a
-      00793F 0D                    3255 	.db 0x0d
-      007940 00                    3256 	.db 0x00
+      007A15 74 6C 79 2E           3253 	.ascii "tly."
+      007A19 0A                    3254 	.db 0x0a
+      007A1A 0D                    3255 	.db 0x0d
+      007A1B 00                    3256 	.db 0x00
                                    3257 	.area CSEG    (CODE)
                                    3258 	.area XINIT   (CODE)
                                    3259 	.area CABS    (ABS,CODE)

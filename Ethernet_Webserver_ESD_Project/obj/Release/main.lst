@@ -2050,7 +2050,7 @@
       0008D3 45 F0            [12] 2050 	orl	a,b
       0008D5 70 08            [24] 2051 	jnz	00113$
                                    2052 ;	main.c:201: update_ERXRDPT(RX_BUFFER_END);
-      0008D7 90 0B FF         [24] 2053 	mov	dptr,#0x0bff
+      0008D7 90 1B FF         [24] 2053 	mov	dptr,#0x1bff
       0008DA 12r00r00         [24] 2054 	lcall	_update_ERXRDPT
       0008DD 80 0C            [24] 2055 	sjmp	00114$
       0008DF                       2056 00113$:

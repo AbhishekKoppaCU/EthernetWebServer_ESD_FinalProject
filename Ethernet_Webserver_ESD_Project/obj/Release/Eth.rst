@@ -640,7 +640,7 @@
       0020D2 90 03 E8         [24]  640 	mov	dptr,#0x03e8
       0020D5 C0 07            [24]  641 	push	ar7
       0020D7 C0 06            [24]  642 	push	ar6
-      0020D9 12 62 C9         [24]  643 	lcall	__mulint
+      0020D9 12 63 A4         [24]  643 	lcall	__mulint
       0020DC AC 82            [24]  644 	mov	r4, dpl
       0020DE AD 83            [24]  645 	mov	r5, dph
       0020E0 D0 06            [24]  646 	pop	ar6
@@ -1265,7 +1265,7 @@
       002413 90 03 9C         [24] 1265 	mov	dptr,#_spi_buffer_write_PARM_2
       002416 E4               [12] 1266 	clr	a
       002417 F0               [24] 1267 	movx	@dptr,a
-      002418 74 0C            [12] 1268 	mov	a,#0x0c
+      002418 74 1C            [12] 1268 	mov	a,#0x1c
       00241A A3               [24] 1269 	inc	dptr
       00241B F0               [24] 1270 	movx	@dptr,a
       00241C 90 03 9E         [24] 1271 	mov	dptr,#_spi_buffer_write_PARM_3
@@ -1283,10 +1283,10 @@
       00242F 90 01 06         [24] 1283 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
       002432 74 2B            [12] 1284 	mov	a,#0x2b
       002434 F0               [24] 1285 	movx	@dptr,a
-      002435 74 0C            [12] 1286 	mov	a,#0x0c
+      002435 74 1C            [12] 1286 	mov	a,#0x1c
       002437 A3               [24] 1287 	inc	dptr
       002438 F0               [24] 1288 	movx	@dptr,a
-      002439 90 0C 00         [24] 1289 	mov	dptr,#0x0c00
+      002439 90 1C 00         [24] 1289 	mov	dptr,#0x1c00
       00243C 12 21 4E         [24] 1290 	lcall	_enc28j60_set_transmit_pointers
                                    1291 ;	Eth.c:183: enc28j60_start_transmission();
       00243F 12 21 2D         [24] 1292 	lcall	_enc28j60_start_transmission
@@ -1300,39 +1300,39 @@
       00244F E5 82            [12] 1300 	mov	a, dpl
       002451 60 16            [24] 1301 	jz	00109$
                                    1302 ;	Eth.c:189: printf("ARP request sent successfully.\n\r");
-      002453 74 93            [12] 1303 	mov	a,#___str_1
+      002453 74 6E            [12] 1303 	mov	a,#___str_1
       002455 C0 E0            [24] 1304 	push	acc
-      002457 74 6E            [12] 1305 	mov	a,#(___str_1 >> 8)
+      002457 74 6F            [12] 1305 	mov	a,#(___str_1 >> 8)
       002459 C0 E0            [24] 1306 	push	acc
       00245B 74 80            [12] 1307 	mov	a,#0x80
       00245D C0 E0            [24] 1308 	push	acc
-      00245F 12 64 16         [24] 1309 	lcall	_printf
+      00245F 12 64 F1         [24] 1309 	lcall	_printf
       002462 15 81            [12] 1310 	dec	sp
       002464 15 81            [12] 1311 	dec	sp
       002466 15 81            [12] 1312 	dec	sp
       002468 22               [24] 1313 	ret
       002469                       1314 00109$:
                                    1315 ;	Eth.c:191: printf("ARP transmission failed. Check error flags.\n\r");
-      002469 74 B4            [12] 1316 	mov	a,#___str_2
+      002469 74 8F            [12] 1316 	mov	a,#___str_2
       00246B C0 E0            [24] 1317 	push	acc
-      00246D 74 6E            [12] 1318 	mov	a,#(___str_2 >> 8)
+      00246D 74 6F            [12] 1318 	mov	a,#(___str_2 >> 8)
       00246F C0 E0            [24] 1319 	push	acc
       002471 74 80            [12] 1320 	mov	a,#0x80
       002473 C0 E0            [24] 1321 	push	acc
-      002475 12 64 16         [24] 1322 	lcall	_printf
+      002475 12 64 F1         [24] 1322 	lcall	_printf
       002478 15 81            [12] 1323 	dec	sp
       00247A 15 81            [12] 1324 	dec	sp
       00247C 15 81            [12] 1325 	dec	sp
       00247E 22               [24] 1326 	ret
       00247F                       1327 00112$:
                                    1328 ;	Eth.c:194: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
-      00247F 74 E2            [12] 1329 	mov	a,#___str_3
+      00247F 74 BD            [12] 1329 	mov	a,#___str_3
       002481 C0 E0            [24] 1330 	push	acc
-      002483 74 6E            [12] 1331 	mov	a,#(___str_3 >> 8)
+      002483 74 6F            [12] 1331 	mov	a,#(___str_3 >> 8)
       002485 C0 E0            [24] 1332 	push	acc
       002487 74 80            [12] 1333 	mov	a,#0x80
       002489 C0 E0            [24] 1334 	push	acc
-      00248B 12 64 16         [24] 1335 	lcall	_printf
+      00248B 12 64 F1         [24] 1335 	lcall	_printf
       00248E 15 81            [12] 1336 	dec	sp
       002490 15 81            [12] 1337 	dec	sp
       002492 15 81            [12] 1338 	dec	sp
@@ -1364,13 +1364,13 @@
       0024AF C0 D0            [24] 1364 	push	psw
       0024B1 75 D0 00         [24] 1365 	mov	psw,#0x00
                                    1366 ;	Eth.c:202: printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
-      0024B4 74 25            [12] 1367 	mov	a,#___str_4
+      0024B4 74 00            [12] 1367 	mov	a,#___str_4
       0024B6 C0 E0            [24] 1368 	push	acc
-      0024B8 74 6F            [12] 1369 	mov	a,#(___str_4 >> 8)
+      0024B8 74 70            [12] 1369 	mov	a,#(___str_4 >> 8)
       0024BA C0 E0            [24] 1370 	push	acc
       0024BC 74 80            [12] 1371 	mov	a,#0x80
       0024BE C0 E0            [24] 1372 	push	acc
-      0024C0 12 64 16         [24] 1373 	lcall	_printf
+      0024C0 12 64 F1         [24] 1373 	lcall	_printf
       0024C3 15 81            [12] 1374 	dec	sp
       0024C5 15 81            [12] 1375 	dec	sp
       0024C7 15 81            [12] 1376 	dec	sp
@@ -1458,13 +1458,13 @@
       002533 A3               [24] 1458 	inc	dptr
       002534 E0               [24] 1459 	movx	a,@dptr
       002535 C0 E0            [24] 1460 	push	acc
-      002537 74 4C            [12] 1461 	mov	a,#___str_5
+      002537 74 27            [12] 1461 	mov	a,#___str_5
       002539 C0 E0            [24] 1462 	push	acc
-      00253B 74 6F            [12] 1463 	mov	a,#(___str_5 >> 8)
+      00253B 74 70            [12] 1463 	mov	a,#(___str_5 >> 8)
       00253D C0 E0            [24] 1464 	push	acc
       00253F 74 80            [12] 1465 	mov	a,#0x80
       002541 C0 E0            [24] 1466 	push	acc
-      002543 12 64 16         [24] 1467 	lcall	_printf
+      002543 12 64 F1         [24] 1467 	lcall	_printf
       002546 E5 81            [12] 1468 	mov	a,sp
       002548 24 F9            [12] 1469 	add	a,#0xf9
       00254A F5 81            [12] 1470 	mov	sp,a
@@ -1654,13 +1654,13 @@
       0026A1 C0 05            [24] 1654 	push	ar5
       0026A3 C0 06            [24] 1655 	push	ar6
       0026A5 C0 07            [24] 1656 	push	ar7
-      0026A7 74 7D            [12] 1657 	mov	a,#___str_6
+      0026A7 74 58            [12] 1657 	mov	a,#___str_6
       0026A9 C0 E0            [24] 1658 	push	acc
-      0026AB 74 6F            [12] 1659 	mov	a,#(___str_6 >> 8)
+      0026AB 74 70            [12] 1659 	mov	a,#(___str_6 >> 8)
       0026AD C0 E0            [24] 1660 	push	acc
       0026AF 74 80            [12] 1661 	mov	a,#0x80
       0026B1 C0 E0            [24] 1662 	push	acc
-      0026B3 12 64 16         [24] 1663 	lcall	_printf
+      0026B3 12 64 F1         [24] 1663 	lcall	_printf
       0026B6 E5 81            [12] 1664 	mov	a,sp
       0026B8 24 F9            [12] 1665 	add	a,#0xf9
       0026BA F5 81            [12] 1666 	mov	sp,a
@@ -1712,7 +1712,7 @@
       0026E0 90 01 4D         [24] 1712 	mov	dptr,#_enc_buffer_init_PARM_2
       0026E3 74 FF            [12] 1713 	mov	a,#0xff
       0026E5 F0               [24] 1714 	movx	@dptr,a
-      0026E6 74 0B            [12] 1715 	mov	a,#0x0b
+      0026E6 74 1B            [12] 1715 	mov	a,#0x1b
       0026E8 A3               [24] 1716 	inc	dptr
       0026E9 F0               [24] 1717 	movx	@dptr,a
       0026EA 90 00 00         [24] 1718 	mov	dptr,#0x0000
@@ -1731,7 +1731,7 @@
       002704 74 05            [12] 1731 	mov	a,#0x05
       002706 F0               [24] 1732 	movx	@dptr,a
       002707 90 03 85         [24] 1733 	mov	dptr,#_spi_control_write_PARM_3
-      00270A 74 0C            [12] 1734 	mov	a,#0x0c
+      00270A 74 1C            [12] 1734 	mov	a,#0x1c
       00270C F0               [24] 1735 	movx	@dptr,a
       00270D 75 82 00         [24] 1736 	mov	dpl, #0x00
       002710 12 39 7A         [24] 1737 	lcall	_spi_control_write
@@ -1749,7 +1749,7 @@
       002728 74 07            [12] 1749 	mov	a,#0x07
       00272A F0               [24] 1750 	movx	@dptr,a
       00272B 90 03 85         [24] 1751 	mov	dptr,#_spi_control_write_PARM_3
-      00272E 74 11            [12] 1752 	mov	a,#0x11
+      00272E 74 1F            [12] 1752 	mov	a,#0x1f
       002730 F0               [24] 1753 	movx	@dptr,a
       002731 75 82 00         [24] 1754 	mov	dpl, #0x00
       002734 12 39 7A         [24] 1755 	lcall	_spi_control_write
@@ -1899,7 +1899,7 @@
       002846 85 08 82         [24] 1899 	mov	dpl,_enc_init_sloc0_1_0
       002849 85 09 83         [24] 1900 	mov	dph,(_enc_init_sloc0_1_0 + 1)
       00284C 85 0A F0         [24] 1901 	mov	b,(_enc_init_sloc0_1_0 + 2)
-      00284F 12 6E 38         [24] 1902 	lcall	__gptrget
+      00284F 12 6F 13         [24] 1902 	lcall	__gptrget
       002852 F9               [12] 1903 	mov	r1,a
       002853 90 03 84         [24] 1904 	mov	dptr,#_spi_control_write_PARM_2
       002856 74 01            [12] 1905 	mov	a,#0x01
@@ -1926,7 +1926,7 @@
       00287B 85 0B 82         [24] 1926 	mov	dpl,_enc_init_sloc1_1_0
       00287E 85 0C 83         [24] 1927 	mov	dph,(_enc_init_sloc1_1_0 + 1)
       002881 85 0D F0         [24] 1928 	mov	b,(_enc_init_sloc1_1_0 + 2)
-      002884 12 6E 38         [24] 1929 	lcall	__gptrget
+      002884 12 6F 13         [24] 1929 	lcall	__gptrget
       002887 FB               [12] 1930 	mov	r3,a
       002888 90 03 84         [24] 1931 	mov	dptr,#_spi_control_write_PARM_2
       00288B E4               [12] 1932 	clr	a
@@ -1953,7 +1953,7 @@
       0028AF 85 0E 82         [24] 1953 	mov	dpl,_enc_init_sloc2_1_0
       0028B2 85 0F 83         [24] 1954 	mov	dph,(_enc_init_sloc2_1_0 + 1)
       0028B5 85 10 F0         [24] 1955 	mov	b,(_enc_init_sloc2_1_0 + 2)
-      0028B8 12 6E 38         [24] 1956 	lcall	__gptrget
+      0028B8 12 6F 13         [24] 1956 	lcall	__gptrget
       0028BB F9               [12] 1957 	mov	r1,a
       0028BC 90 03 84         [24] 1958 	mov	dptr,#_spi_control_write_PARM_2
       0028BF 74 03            [12] 1959 	mov	a,#0x03
@@ -1980,7 +1980,7 @@
       0028E4 85 11 82         [24] 1980 	mov	dpl,_enc_init_sloc3_1_0
       0028E7 85 12 83         [24] 1981 	mov	dph,(_enc_init_sloc3_1_0 + 1)
       0028EA 85 13 F0         [24] 1982 	mov	b,(_enc_init_sloc3_1_0 + 2)
-      0028ED 12 6E 38         [24] 1983 	lcall	__gptrget
+      0028ED 12 6F 13         [24] 1983 	lcall	__gptrget
       0028F0 FB               [12] 1984 	mov	r3,a
       0028F1 90 03 84         [24] 1985 	mov	dptr,#_spi_control_write_PARM_2
       0028F4 74 02            [12] 1986 	mov	a,#0x02
@@ -2007,7 +2007,7 @@
       002917 8A 82            [24] 2007 	mov	dpl,r2
       002919 8B 83            [24] 2008 	mov	dph,r3
       00291B 8C F0            [24] 2009 	mov	b,r4
-      00291D 12 6E 38         [24] 2010 	lcall	__gptrget
+      00291D 12 6F 13         [24] 2010 	lcall	__gptrget
       002920 F9               [12] 2011 	mov	r1,a
       002921 90 03 84         [24] 2012 	mov	dptr,#_spi_control_write_PARM_2
       002924 74 05            [12] 2013 	mov	a,#0x05
@@ -2033,7 +2033,7 @@
       00294A 8D 82            [24] 2033 	mov	dpl,r5
       00294C 8E 83            [24] 2034 	mov	dph,r6
       00294E 8F F0            [24] 2035 	mov	b,r7
-      002950 12 6E 38         [24] 2036 	lcall	__gptrget
+      002950 12 6F 13         [24] 2036 	lcall	__gptrget
       002953 F9               [12] 2037 	mov	r1,a
       002954 90 03 84         [24] 2038 	mov	dptr,#_spi_control_write_PARM_2
       002957 74 04            [12] 2039 	mov	a,#0x04
@@ -2113,13 +2113,13 @@
       0029E6 C0 02            [24] 2113 	push	ar2
       0029E8 12 39 7A         [24] 2114 	lcall	_spi_control_write
                                    2115 ;	Eth.c:305: printf("\nENC28J60 Initialization Complete.\n");
-      0029EB 74 AC            [12] 2116 	mov	a,#___str_7
+      0029EB 74 87            [12] 2116 	mov	a,#___str_7
       0029ED C0 E0            [24] 2117 	push	acc
-      0029EF 74 6F            [12] 2118 	mov	a,#(___str_7 >> 8)
+      0029EF 74 70            [12] 2118 	mov	a,#(___str_7 >> 8)
       0029F1 C0 E0            [24] 2119 	push	acc
       0029F3 74 80            [12] 2120 	mov	a,#0x80
       0029F5 C0 E0            [24] 2121 	push	acc
-      0029F7 12 64 16         [24] 2122 	lcall	_printf
+      0029F7 12 64 F1         [24] 2122 	lcall	_printf
       0029FA 15 81            [12] 2123 	dec	sp
       0029FC 15 81            [12] 2124 	dec	sp
       0029FE 15 81            [12] 2125 	dec	sp
@@ -2133,41 +2133,41 @@
       002A0C 85 08 82         [24] 2133 	mov	dpl,_enc_init_sloc0_1_0
       002A0F 85 09 83         [24] 2134 	mov	dph,(_enc_init_sloc0_1_0 + 1)
       002A12 85 0A F0         [24] 2135 	mov	b,(_enc_init_sloc0_1_0 + 2)
-      002A15 12 6E 38         [24] 2136 	lcall	__gptrget
+      002A15 12 6F 13         [24] 2136 	lcall	__gptrget
       002A18 F9               [12] 2137 	mov	r1,a
       002A19 89 08            [24] 2138 	mov	_enc_init_sloc0_1_0,r1
       002A1B 75 09 00         [24] 2139 	mov	(_enc_init_sloc0_1_0 + 1),#0x00
       002A1E 85 0B 82         [24] 2140 	mov	dpl,_enc_init_sloc1_1_0
       002A21 85 0C 83         [24] 2141 	mov	dph,(_enc_init_sloc1_1_0 + 1)
       002A24 85 0D F0         [24] 2142 	mov	b,(_enc_init_sloc1_1_0 + 2)
-      002A27 12 6E 38         [24] 2143 	lcall	__gptrget
+      002A27 12 6F 13         [24] 2143 	lcall	__gptrget
       002A2A F9               [12] 2144 	mov	r1,a
       002A2B 89 0B            [24] 2145 	mov	_enc_init_sloc1_1_0,r1
       002A2D 75 0C 00         [24] 2146 	mov	(_enc_init_sloc1_1_0 + 1),#0x00
       002A30 85 0E 82         [24] 2147 	mov	dpl,_enc_init_sloc2_1_0
       002A33 85 0F 83         [24] 2148 	mov	dph,(_enc_init_sloc2_1_0 + 1)
       002A36 85 10 F0         [24] 2149 	mov	b,(_enc_init_sloc2_1_0 + 2)
-      002A39 12 6E 38         [24] 2150 	lcall	__gptrget
+      002A39 12 6F 13         [24] 2150 	lcall	__gptrget
       002A3C F9               [12] 2151 	mov	r1,a
       002A3D 89 0E            [24] 2152 	mov	_enc_init_sloc2_1_0,r1
       002A3F 75 0F 00         [24] 2153 	mov	(_enc_init_sloc2_1_0 + 1),#0x00
       002A42 85 11 82         [24] 2154 	mov	dpl,_enc_init_sloc3_1_0
       002A45 85 12 83         [24] 2155 	mov	dph,(_enc_init_sloc3_1_0 + 1)
       002A48 85 13 F0         [24] 2156 	mov	b,(_enc_init_sloc3_1_0 + 2)
-      002A4B 12 6E 38         [24] 2157 	lcall	__gptrget
+      002A4B 12 6F 13         [24] 2157 	lcall	__gptrget
       002A4E F8               [12] 2158 	mov	r0,a
       002A4F 79 00            [12] 2159 	mov	r1,#0x00
                                    2160 ;	Eth.c:306: printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
       002A51 8A 82            [24] 2161 	mov	dpl,r2
       002A53 8B 83            [24] 2162 	mov	dph,r3
       002A55 8C F0            [24] 2163 	mov	b,r4
-      002A57 12 6E 38         [24] 2164 	lcall	__gptrget
+      002A57 12 6F 13         [24] 2164 	lcall	__gptrget
       002A5A FA               [12] 2165 	mov	r2,a
       002A5B 7C 00            [12] 2166 	mov	r4,#0x00
       002A5D 8D 82            [24] 2167 	mov	dpl,r5
       002A5F 8E 83            [24] 2168 	mov	dph,r6
       002A61 8F F0            [24] 2169 	mov	b,r7
-      002A63 12 6E 38         [24] 2170 	lcall	__gptrget
+      002A63 12 6F 13         [24] 2170 	lcall	__gptrget
       002A66 FD               [12] 2171 	mov	r5,a
       002A67 7F 00            [12] 2172 	mov	r7,#0x00
       002A69 C0 08            [24] 2173 	push	_enc_init_sloc0_1_0
@@ -2182,13 +2182,13 @@
       002A7B C0 04            [24] 2182 	push	ar4
       002A7D C0 05            [24] 2183 	push	ar5
       002A7F C0 07            [24] 2184 	push	ar7
-      002A81 74 D0            [12] 2185 	mov	a,#___str_8
+      002A81 74 AB            [12] 2185 	mov	a,#___str_8
       002A83 C0 E0            [24] 2186 	push	acc
-      002A85 74 6F            [12] 2187 	mov	a,#(___str_8 >> 8)
+      002A85 74 70            [12] 2187 	mov	a,#(___str_8 >> 8)
       002A87 C0 E0            [24] 2188 	push	acc
       002A89 74 80            [12] 2189 	mov	a,#0x80
       002A8B C0 E0            [24] 2190 	push	acc
-      002A8D 12 64 16         [24] 2191 	lcall	_printf
+      002A8D 12 64 F1         [24] 2191 	lcall	_printf
       002A90 E5 81            [12] 2192 	mov	a,sp
       002A92 24 F1            [12] 2193 	add	a,#0xf1
       002A94 F5 81            [12] 2194 	mov	sp,a
@@ -2278,13 +2278,13 @@
                                    2278 ;	Eth.c:376: printf("Updated ERXRDPT to 0x%04X\n", new_address);
       002AFA C0 06            [24] 2279 	push	ar6
       002AFC C0 07            [24] 2280 	push	ar7
-      002AFE 74 FC            [12] 2281 	mov	a,#___str_9
+      002AFE 74 D7            [12] 2281 	mov	a,#___str_9
       002B00 C0 E0            [24] 2282 	push	acc
-      002B02 74 6F            [12] 2283 	mov	a,#(___str_9 >> 8)
+      002B02 74 70            [12] 2283 	mov	a,#(___str_9 >> 8)
       002B04 C0 E0            [24] 2284 	push	acc
       002B06 74 80            [12] 2285 	mov	a,#0x80
       002B08 C0 E0            [24] 2286 	push	acc
-      002B0A 12 64 16         [24] 2287 	lcall	_printf
+      002B0A 12 64 F1         [24] 2287 	lcall	_printf
       002B0D E5 81            [12] 2288 	mov	a,sp
       002B0F 24 FB            [12] 2289 	add	a,#0xfb
       002B11 F5 81            [12] 2290 	mov	sp,a
@@ -2293,9 +2293,9 @@
                                    2293 	.area CSEG    (CODE)
                                    2294 	.area CONST   (CODE)
                                    2295 	.area CONST   (CODE)
-      006E58                       2296 ___str_0:
-      006E58 0A                    2297 	.db 0x0a
-      006E59 49 6E 76 61 6C 69 64  2298 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
+      006F33                       2296 ___str_0:
+      006F33 0A                    2297 	.db 0x0a
+      006F34 49 6E 76 61 6C 69 64  2298 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
              20 42 75 66 66 65 72
              20 53 69 7A 65 2E 20
              42 75 66 66 65 72 20
@@ -2303,36 +2303,36 @@
              20 76 61 6C 69 64 20
              61 64 64 72 65 73 73
              20 72 61 6E 67 65 2E
-      006E91 0A                    2299 	.db 0x0a
-      006E92 00                    2300 	.db 0x00
+      006F6C 0A                    2299 	.db 0x0a
+      006F6D 00                    2300 	.db 0x00
                                    2301 	.area CSEG    (CODE)
                                    2302 	.area CONST   (CODE)
-      006E93                       2303 ___str_1:
-      006E93 41 52 50 20 72 65 71  2304 	.ascii "ARP request sent successfully."
+      006F6E                       2303 ___str_1:
+      006F6E 41 52 50 20 72 65 71  2304 	.ascii "ARP request sent successfully."
              75 65 73 74 20 73 65
              6E 74 20 73 75 63 63
              65 73 73 66 75 6C 6C
              79 2E
-      006EB1 0A                    2305 	.db 0x0a
-      006EB2 0D                    2306 	.db 0x0d
-      006EB3 00                    2307 	.db 0x00
+      006F8C 0A                    2305 	.db 0x0a
+      006F8D 0D                    2306 	.db 0x0d
+      006F8E 00                    2307 	.db 0x00
                                    2308 	.area CSEG    (CODE)
                                    2309 	.area CONST   (CODE)
-      006EB4                       2310 ___str_2:
-      006EB4 41 52 50 20 74 72 61  2311 	.ascii "ARP transmission failed. Check error flags."
+      006F8F                       2310 ___str_2:
+      006F8F 41 52 50 20 74 72 61  2311 	.ascii "ARP transmission failed. Check error flags."
              6E 73 6D 69 73 73 69
              6F 6E 20 66 61 69 6C
              65 64 2E 20 43 68 65
              63 6B 20 65 72 72 6F
              72 20 66 6C 61 67 73
              2E
-      006EDF 0A                    2312 	.db 0x0a
-      006EE0 0D                    2313 	.db 0x0d
-      006EE1 00                    2314 	.db 0x00
+      006FBA 0A                    2312 	.db 0x0a
+      006FBB 0D                    2313 	.db 0x0d
+      006FBC 00                    2314 	.db 0x00
                                    2315 	.area CSEG    (CODE)
                                    2316 	.area CONST   (CODE)
-      006EE2                       2317 ___str_3:
-      006EE2 54 72 61 6E 73 6D 69  2318 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
+      006FBD                       2317 ___str_3:
+      006FBD 54 72 61 6E 73 6D 69  2318 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
              73 73 69 6F 6E 20 74
              69 6D 65 6F 75 74 2E
              20 45 4E 43 32 38 4A
@@ -2341,79 +2341,79 @@
              66 75 6E 63 74 69 6F
              6E 69 6E 67 20 63 6F
              72 72 65 63
-      006F1E 74 6C 79 2E           2319 	.ascii "tly."
-      006F22 0A                    2320 	.db 0x0a
-      006F23 0D                    2321 	.db 0x0d
-      006F24 00                    2322 	.db 0x00
+      006FF9 74 6C 79 2E           2319 	.ascii "tly."
+      006FFD 0A                    2320 	.db 0x0a
+      006FFE 0D                    2321 	.db 0x0d
+      006FFF 00                    2322 	.db 0x00
                                    2323 	.area CSEG    (CODE)
                                    2324 	.area CONST   (CODE)
-      006F25                       2325 ___str_4:
-      006F25 49 6E 74 65 72 72 72  2326 	.ascii "Interrrrrrrruuuuuuuuuppppppppttttttt"
+      007000                       2325 ___str_4:
+      007000 49 6E 74 65 72 72 72  2326 	.ascii "Interrrrrrrruuuuuuuuuppppppppttttttt"
              72 72 72 72 72 75 75
              75 75 75 75 75 75 75
              70 70 70 70 70 70 70
              70 74 74 74 74 74 74
              74
-      006F49 0A                    2327 	.db 0x0a
-      006F4A 0D                    2328 	.db 0x0d
-      006F4B 00                    2329 	.db 0x00
+      007024 0A                    2327 	.db 0x0a
+      007025 0D                    2328 	.db 0x0d
+      007026 00                    2329 	.db 0x00
                                    2330 	.area CSEG    (CODE)
                                    2331 	.area CONST   (CODE)
-      006F4C                       2332 ___str_5:
-      006F4C 0A                    2333 	.db 0x0a
-      006F4D 49 6E 76 61 6C 69 64  2334 	.ascii "Invalid Buffer Range: Start 0x%04X, End 0x%04X"
+      007027                       2332 ___str_5:
+      007027 0A                    2333 	.db 0x0a
+      007028 49 6E 76 61 6C 69 64  2334 	.ascii "Invalid Buffer Range: Start 0x%04X, End 0x%04X"
              20 42 75 66 66 65 72
              20 52 61 6E 67 65 3A
              20 53 74 61 72 74 20
              30 78 25 30 34 58 2C
              20 45 6E 64 20 30 78
              25 30 34 58
-      006F7B 0A                    2335 	.db 0x0a
-      006F7C 00                    2336 	.db 0x00
+      007056 0A                    2335 	.db 0x0a
+      007057 00                    2336 	.db 0x00
                                    2337 	.area CSEG    (CODE)
                                    2338 	.area CONST   (CODE)
-      006F7D                       2339 ___str_6:
-      006F7D 0A                    2340 	.db 0x0a
-      006F7E 42 75 66 66 65 72 20  2341 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
+      007058                       2339 ___str_6:
+      007058 0A                    2340 	.db 0x0a
+      007059 42 75 66 66 65 72 20  2341 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
              49 6E 69 74 69 61 6C
              69 7A 65 64 3A 20 53
              74 61 72 74 20 30 78
              25 30 34 58 2C 20 45
              6E 64 20 30 78 25 30
              34 58
-      006FAA 0A                    2342 	.db 0x0a
-      006FAB 00                    2343 	.db 0x00
+      007085 0A                    2342 	.db 0x0a
+      007086 00                    2343 	.db 0x00
                                    2344 	.area CSEG    (CODE)
                                    2345 	.area CONST   (CODE)
-      006FAC                       2346 ___str_7:
-      006FAC 0A                    2347 	.db 0x0a
-      006FAD 45 4E 43 32 38 4A 36  2348 	.ascii "ENC28J60 Initialization Complete."
+      007087                       2346 ___str_7:
+      007087 0A                    2347 	.db 0x0a
+      007088 45 4E 43 32 38 4A 36  2348 	.ascii "ENC28J60 Initialization Complete."
              30 20 49 6E 69 74 69
              61 6C 69 7A 61 74 69
              6F 6E 20 43 6F 6D 70
              6C 65 74 65 2E
-      006FCE 0A                    2349 	.db 0x0a
-      006FCF 00                    2350 	.db 0x00
+      0070A9 0A                    2349 	.db 0x0a
+      0070AA 00                    2350 	.db 0x00
                                    2351 	.area CSEG    (CODE)
                                    2352 	.area CONST   (CODE)
-      006FD0                       2353 ___str_8:
-      006FD0 4D 41 43 20 41 64 64  2354 	.ascii "MAC Address: %02X:%02X:%02X:%02X:%02X:%02X"
+      0070AB                       2353 ___str_8:
+      0070AB 4D 41 43 20 41 64 64  2354 	.ascii "MAC Address: %02X:%02X:%02X:%02X:%02X:%02X"
              72 65 73 73 3A 20 25
              30 32 58 3A 25 30 32
              58 3A 25 30 32 58 3A
              25 30 32 58 3A 25 30
              32 58 3A 25 30 32 58
-      006FFA 0A                    2355 	.db 0x0a
-      006FFB 00                    2356 	.db 0x00
+      0070D5 0A                    2355 	.db 0x0a
+      0070D6 00                    2356 	.db 0x00
                                    2357 	.area CSEG    (CODE)
                                    2358 	.area CONST   (CODE)
-      006FFC                       2359 ___str_9:
-      006FFC 55 70 64 61 74 65 64  2360 	.ascii "Updated ERXRDPT to 0x%04X"
+      0070D7                       2359 ___str_9:
+      0070D7 55 70 64 61 74 65 64  2360 	.ascii "Updated ERXRDPT to 0x%04X"
              20 45 52 58 52 44 50
              54 20 74 6F 20 30 78
              25 30 34 58
-      007015 0A                    2361 	.db 0x0a
-      007016 00                    2362 	.db 0x00
+      0070F0 0A                    2361 	.db 0x0a
+      0070F1 00                    2362 	.db 0x00
                                    2363 	.area CSEG    (CODE)
                                    2364 	.area XINIT   (CODE)
                                    2365 	.area CABS    (ABS,CODE)

@@ -47,6 +47,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Utilities.h" />
+		<Unit filename="global.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -54,6 +55,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tcp.h" />
+		<Unit filename="trial_webserver.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="trial_webserver.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

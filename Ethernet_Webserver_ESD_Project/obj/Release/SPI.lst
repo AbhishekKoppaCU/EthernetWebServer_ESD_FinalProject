@@ -1448,7 +1448,7 @@
       000434 C3               [12] 1448 	clr	c
       000435 74 FF            [12] 1449 	mov	a,#0xff
       000437 9A               [12] 1450 	subb	a,r2
-      000438 74 0B            [12] 1451 	mov	a,#0x0b
+      000438 74 1B            [12] 1451 	mov	a,#0x1b
       00043A 9B               [12] 1452 	subb	a,r3
       00043B 50 21            [24] 1453 	jnc	00106$
                                    1454 ;	SPI.c:244: printf("\nInvalid RX Address: Start 0x%04X, Size %d\n", start_address,

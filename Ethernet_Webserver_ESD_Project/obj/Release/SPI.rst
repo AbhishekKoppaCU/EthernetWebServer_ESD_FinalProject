@@ -712,13 +712,13 @@
       003944 80 16            [24]  712 	sjmp	00115$
       003946                        713 00105$:
                                     714 ;	SPI.c:57: printf("wrong bank");
-      003946 74 83            [12]  715 	mov	a,#___str_0
+      003946 74 5E            [12]  715 	mov	a,#___str_0
       003948 C0 E0            [24]  716 	push	acc
-      00394A 74 75            [12]  717 	mov	a,#(___str_0 >> 8)
+      00394A 74 76            [12]  717 	mov	a,#(___str_0 >> 8)
       00394C C0 E0            [24]  718 	push	acc
       00394E 74 80            [12]  719 	mov	a,#0x80
       003950 C0 E0            [24]  720 	push	acc
-      003952 12 64 16         [24]  721 	lcall	_printf
+      003952 12 64 F1         [24]  721 	lcall	_printf
       003955 15 81            [12]  722 	dec	sp
       003957 15 81            [12]  723 	dec	sp
       003959 15 81            [12]  724 	dec	sp
@@ -877,13 +877,13 @@
       0039D8 24 E0            [12]  877 	add	a,#0xff - 0x1f
       0039DA 50 19            [24]  878 	jnc	00102$
                                     879 ;	SPI.c:125: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
-      0039DC 74 8E            [12]  880 	mov	a,#___str_1
+      0039DC 74 69            [12]  880 	mov	a,#___str_1
       0039DE C0 E0            [24]  881 	push	acc
-      0039E0 74 75            [12]  882 	mov	a,#(___str_1 >> 8)
+      0039E0 74 76            [12]  882 	mov	a,#(___str_1 >> 8)
       0039E2 C0 E0            [24]  883 	push	acc
       0039E4 74 80            [12]  884 	mov	a,#0x80
       0039E6 C0 E0            [24]  885 	push	acc
-      0039E8 12 64 16         [24]  886 	lcall	_printf
+      0039E8 12 64 F1         [24]  886 	lcall	_printf
       0039EB 15 81            [12]  887 	dec	sp
       0039ED 15 81            [12]  888 	dec	sp
       0039EF 15 81            [12]  889 	dec	sp
@@ -985,13 +985,13 @@
       003A7A C0 06            [24]  985 	push	ar6
       003A7C C0 07            [24]  986 	push	ar7
       003A7E C0 04            [24]  987 	push	ar4
-      003A80 74 C8            [12]  988 	mov	a,#___str_2
+      003A80 74 A3            [12]  988 	mov	a,#___str_2
       003A82 C0 E0            [24]  989 	push	acc
-      003A84 74 75            [12]  990 	mov	a,#(___str_2 >> 8)
+      003A84 74 76            [12]  990 	mov	a,#(___str_2 >> 8)
       003A86 C0 E0            [24]  991 	push	acc
       003A88 74 80            [12]  992 	mov	a,#0x80
       003A8A C0 E0            [24]  993 	push	acc
-      003A8C 12 64 16         [24]  994 	lcall	_printf
+      003A8C 12 64 F1         [24]  994 	lcall	_printf
       003A8F E5 81            [12]  995 	mov	a,sp
       003A91 24 F9            [12]  996 	add	a,#0xf9
       003A93 F5 81            [12]  997 	mov	sp,a
@@ -1018,13 +1018,13 @@
       003A9E 24 E0            [12] 1018 	add	a,#0xff - 0x1f
       003AA0 50 19            [24] 1019 	jnc	00102$
                                    1020 ;	SPI.c:155: printf("\n\rInvalid address: MAC register address range [0, 0x1F]\n\r");
-      003AA2 74 8E            [12] 1021 	mov	a,#___str_1
+      003AA2 74 69            [12] 1021 	mov	a,#___str_1
       003AA4 C0 E0            [24] 1022 	push	acc
-      003AA6 74 75            [12] 1023 	mov	a,#(___str_1 >> 8)
+      003AA6 74 76            [12] 1023 	mov	a,#(___str_1 >> 8)
       003AA8 C0 E0            [24] 1024 	push	acc
       003AAA 74 80            [12] 1025 	mov	a,#0x80
       003AAC C0 E0            [24] 1026 	push	acc
-      003AAE 12 64 16         [24] 1027 	lcall	_printf
+      003AAE 12 64 F1         [24] 1027 	lcall	_printf
       003AB1 15 81            [12] 1028 	dec	sp
       003AB3 15 81            [12] 1029 	dec	sp
       003AB5 15 81            [12] 1030 	dec	sp
@@ -1236,13 +1236,13 @@
       003BC0 A3               [24] 1236 	inc	dptr
       003BC1 E0               [24] 1237 	movx	a,@dptr
       003BC2 C0 E0            [24] 1238 	push	acc
-      003BC4 74 F1            [12] 1239 	mov	a,#___str_3
+      003BC4 74 CC            [12] 1239 	mov	a,#___str_3
       003BC6 C0 E0            [24] 1240 	push	acc
-      003BC8 74 75            [12] 1241 	mov	a,#(___str_3 >> 8)
+      003BC8 74 76            [12] 1241 	mov	a,#(___str_3 >> 8)
       003BCA C0 E0            [24] 1242 	push	acc
       003BCC 74 80            [12] 1243 	mov	a,#0x80
       003BCE C0 E0            [24] 1244 	push	acc
-      003BD0 12 64 16         [24] 1245 	lcall	_printf
+      003BD0 12 64 F1         [24] 1245 	lcall	_printf
       003BD3 E5 81            [12] 1246 	mov	a,sp
       003BD5 24 F9            [12] 1247 	add	a,#0xf9
       003BD7 F5 81            [12] 1248 	mov	sp,a
@@ -1340,13 +1340,13 @@
       003C79 C0 07            [24] 1340 	push	ar7
       003C7B C0 04            [24] 1341 	push	ar4
       003C7D C0 05            [24] 1342 	push	ar5
-      003C7F 74 2F            [12] 1343 	mov	a,#___str_4
+      003C7F 74 0A            [12] 1343 	mov	a,#___str_4
       003C81 C0 E0            [24] 1344 	push	acc
-      003C83 74 76            [12] 1345 	mov	a,#(___str_4 >> 8)
+      003C83 74 77            [12] 1345 	mov	a,#(___str_4 >> 8)
       003C85 C0 E0            [24] 1346 	push	acc
       003C87 74 80            [12] 1347 	mov	a,#0x80
       003C89 C0 E0            [24] 1348 	push	acc
-      003C8B 12 64 16         [24] 1349 	lcall	_printf
+      003C8B 12 64 F1         [24] 1349 	lcall	_printf
       003C8E E5 81            [12] 1350 	mov	a,sp
       003C90 24 F9            [12] 1351 	add	a,#0xf9
       003C92 F5 81            [12] 1352 	mov	sp,a
@@ -1392,13 +1392,13 @@
                                    1392 ;	SPI.c:235: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
       003CB3 C0 06            [24] 1393 	push	ar6
       003CB5 C0 07            [24] 1394 	push	ar7
-      003CB7 74 60            [12] 1395 	mov	a,#___str_5
+      003CB7 74 3B            [12] 1395 	mov	a,#___str_5
       003CB9 C0 E0            [24] 1396 	push	acc
-      003CBB 74 76            [12] 1397 	mov	a,#(___str_5 >> 8)
+      003CBB 74 77            [12] 1397 	mov	a,#(___str_5 >> 8)
       003CBD C0 E0            [24] 1398 	push	acc
       003CBF 74 80            [12] 1399 	mov	a,#0x80
       003CC1 C0 E0            [24] 1400 	push	acc
-      003CC3 12 64 16         [24] 1401 	lcall	_printf
+      003CC3 12 64 F1         [24] 1401 	lcall	_printf
       003CC6 E5 81            [12] 1402 	mov	a,sp
       003CC8 24 FB            [12] 1403 	add	a,#0xfb
       003CCA F5 81            [12] 1404 	mov	sp,a
@@ -1423,13 +1423,13 @@
                                    1423 ;	SPI.c:239: printf("\n\rInvalid address: %04X\n\r", start_address);
       003CE2 C0 04            [24] 1424 	push	ar4
       003CE4 C0 05            [24] 1425 	push	ar5
-      003CE6 74 80            [12] 1426 	mov	a,#___str_6
+      003CE6 74 5B            [12] 1426 	mov	a,#___str_6
       003CE8 C0 E0            [24] 1427 	push	acc
-      003CEA 74 76            [12] 1428 	mov	a,#(___str_6 >> 8)
+      003CEA 74 77            [12] 1428 	mov	a,#(___str_6 >> 8)
       003CEC C0 E0            [24] 1429 	push	acc
       003CEE 74 80            [12] 1430 	mov	a,#0x80
       003CF0 C0 E0            [24] 1431 	push	acc
-      003CF2 12 64 16         [24] 1432 	lcall	_printf
+      003CF2 12 64 F1         [24] 1432 	lcall	_printf
       003CF5 E5 81            [12] 1433 	mov	a,sp
       003CF7 24 FB            [12] 1434 	add	a,#0xfb
       003CF9 F5 81            [12] 1435 	mov	sp,a
@@ -1448,7 +1448,7 @@
       003D06 C3               [12] 1448 	clr	c
       003D07 74 FF            [12] 1449 	mov	a,#0xff
       003D09 9A               [12] 1450 	subb	a,r2
-      003D0A 74 0B            [12] 1451 	mov	a,#0x0b
+      003D0A 74 1B            [12] 1451 	mov	a,#0x1b
       003D0C 9B               [12] 1452 	subb	a,r3
       003D0D 50 21            [24] 1453 	jnc	00106$
                                    1454 ;	SPI.c:244: printf("\nInvalid RX Address: Start 0x%04X, Size %d\n", start_address,
@@ -1456,13 +1456,13 @@
       003D11 C0 07            [24] 1456 	push	ar7
       003D13 C0 04            [24] 1457 	push	ar4
       003D15 C0 05            [24] 1458 	push	ar5
-      003D17 74 9A            [12] 1459 	mov	a,#___str_7
+      003D17 74 75            [12] 1459 	mov	a,#___str_7
       003D19 C0 E0            [24] 1460 	push	acc
-      003D1B 74 76            [12] 1461 	mov	a,#(___str_7 >> 8)
+      003D1B 74 77            [12] 1461 	mov	a,#(___str_7 >> 8)
       003D1D C0 E0            [24] 1462 	push	acc
       003D1F 74 80            [12] 1463 	mov	a,#0x80
       003D21 C0 E0            [24] 1464 	push	acc
-      003D23 12 64 16         [24] 1465 	lcall	_printf
+      003D23 12 64 F1         [24] 1465 	lcall	_printf
       003D26 E5 81            [12] 1466 	mov	a,sp
       003D28 24 F9            [12] 1467 	add	a,#0xf9
       003D2A F5 81            [12] 1468 	mov	sp,a
@@ -1537,13 +1537,13 @@
       003D99 C0 05            [24] 1537 	push	ar5
       003D9B C0 06            [24] 1538 	push	ar6
       003D9D C0 07            [24] 1539 	push	ar7
-      003D9F 74 C6            [12] 1540 	mov	a,#___str_8
+      003D9F 74 A1            [12] 1540 	mov	a,#___str_8
       003DA1 C0 E0            [24] 1541 	push	acc
-      003DA3 74 76            [12] 1542 	mov	a,#(___str_8 >> 8)
+      003DA3 74 77            [12] 1542 	mov	a,#(___str_8 >> 8)
       003DA5 C0 E0            [24] 1543 	push	acc
       003DA7 74 80            [12] 1544 	mov	a,#0x80
       003DA9 C0 E0            [24] 1545 	push	acc
-      003DAB 12 64 16         [24] 1546 	lcall	_printf
+      003DAB 12 64 F1         [24] 1546 	lcall	_printf
       003DAE E5 81            [12] 1547 	mov	a,sp
       003DB0 24 F9            [12] 1548 	add	a,#0xf9
       003DB2 F5 81            [12] 1549 	mov	sp,a
@@ -1592,7 +1592,7 @@
       003DF9 8C 83            [24] 1592 	mov	dph,r4
       003DFB 8D F0            [24] 1593 	mov	b,r5
       003DFD E8               [12] 1594 	mov	a,r0
-      003DFE 12 5E C5         [24] 1595 	lcall	__gptrput
+      003DFE 12 5F A0         [24] 1595 	lcall	__gptrput
       003E01 A3               [24] 1596 	inc	dptr
       003E02 AB 82            [24] 1597 	mov	r3,dpl
       003E04 AC 83            [24] 1598 	mov	r4,dph
@@ -1651,13 +1651,13 @@
                                    1651 ;	SPI.c:280: printf("\n\rInvalid number of bytes: %d\n\r", num_bytes);
       003E32 C0 06            [24] 1652 	push	ar6
       003E34 C0 07            [24] 1653 	push	ar7
-      003E36 74 60            [12] 1654 	mov	a,#___str_5
+      003E36 74 3B            [12] 1654 	mov	a,#___str_5
       003E38 C0 E0            [24] 1655 	push	acc
-      003E3A 74 76            [12] 1656 	mov	a,#(___str_5 >> 8)
+      003E3A 74 77            [12] 1656 	mov	a,#(___str_5 >> 8)
       003E3C C0 E0            [24] 1657 	push	acc
       003E3E 74 80            [12] 1658 	mov	a,#0x80
       003E40 C0 E0            [24] 1659 	push	acc
-      003E42 12 64 16         [24] 1660 	lcall	_printf
+      003E42 12 64 F1         [24] 1660 	lcall	_printf
       003E45 E5 81            [12] 1661 	mov	a,sp
       003E47 24 FB            [12] 1662 	add	a,#0xfb
       003E49 F5 81            [12] 1663 	mov	sp,a
@@ -1682,13 +1682,13 @@
                                    1682 ;	SPI.c:284: printf("\n\rInvalid address: %04X\n\r", start_address);
       003E61 C0 04            [24] 1683 	push	ar4
       003E63 C0 05            [24] 1684 	push	ar5
-      003E65 74 80            [12] 1685 	mov	a,#___str_6
+      003E65 74 5B            [12] 1685 	mov	a,#___str_6
       003E67 C0 E0            [24] 1686 	push	acc
-      003E69 74 76            [12] 1687 	mov	a,#(___str_6 >> 8)
+      003E69 74 77            [12] 1687 	mov	a,#(___str_6 >> 8)
       003E6B C0 E0            [24] 1688 	push	acc
       003E6D 74 80            [12] 1689 	mov	a,#0x80
       003E6F C0 E0            [24] 1690 	push	acc
-      003E71 12 64 16         [24] 1691 	lcall	_printf
+      003E71 12 64 F1         [24] 1691 	lcall	_printf
       003E74 E5 81            [12] 1692 	mov	a,sp
       003E76 24 FB            [12] 1693 	add	a,#0xfb
       003E78 F5 81            [12] 1694 	mov	sp,a
@@ -1772,7 +1772,7 @@
       003EEB 8B 82            [24] 1772 	mov	dpl,r3
       003EED 8C 83            [24] 1773 	mov	dph,r4
       003EEF 8D F0            [24] 1774 	mov	b,r5
-      003EF1 12 6E 38         [24] 1775 	lcall	__gptrget
+      003EF1 12 6F 13         [24] 1775 	lcall	__gptrget
       003EF4 F8               [12] 1776 	mov	r0,a
       003EF5 A3               [24] 1777 	inc	dptr
       003EF6 AB 82            [24] 1778 	mov	r3,dpl
@@ -1808,16 +1808,16 @@
                                    1808 	.area CSEG    (CODE)
                                    1809 	.area CONST   (CODE)
                                    1810 	.area CONST   (CODE)
-      007583                       1811 ___str_0:
-      007583 77 72 6F 6E 67 20 62  1812 	.ascii "wrong bank"
+      00765E                       1811 ___str_0:
+      00765E 77 72 6F 6E 67 20 62  1812 	.ascii "wrong bank"
              61 6E 6B
-      00758D 00                    1813 	.db 0x00
+      007668 00                    1813 	.db 0x00
                                    1814 	.area CSEG    (CODE)
                                    1815 	.area CONST   (CODE)
-      00758E                       1816 ___str_1:
-      00758E 0A                    1817 	.db 0x0a
-      00758F 0D                    1818 	.db 0x0d
-      007590 49 6E 76 61 6C 69 64  1819 	.ascii "Invalid address: MAC register address range [0, 0x1F]"
+      007669                       1816 ___str_1:
+      007669 0A                    1817 	.db 0x0a
+      00766A 0D                    1818 	.db 0x0d
+      00766B 49 6E 76 61 6C 69 64  1819 	.ascii "Invalid address: MAC register address range [0, 0x1F]"
              20 61 64 64 72 65 73
              73 3A 20 4D 41 43 20
              72 65 67 69 73 74 65
@@ -1825,27 +1825,27 @@
              73 73 20 72 61 6E 67
              65 20 5B 30 2C 20 30
              78 31 46 5D
-      0075C5 0A                    1820 	.db 0x0a
-      0075C6 0D                    1821 	.db 0x0d
-      0075C7 00                    1822 	.db 0x00
+      0076A0 0A                    1820 	.db 0x0a
+      0076A1 0D                    1821 	.db 0x0d
+      0076A2 00                    1822 	.db 0x00
                                    1823 	.area CSEG    (CODE)
                                    1824 	.area CONST   (CODE)
-      0075C8                       1825 ___str_2:
-      0075C8 50 48 59 20 57 72 69  1826 	.ascii "PHY Write: Address 0x%02X, Data 0x%04X"
+      0076A3                       1825 ___str_2:
+      0076A3 50 48 59 20 57 72 69  1826 	.ascii "PHY Write: Address 0x%02X, Data 0x%04X"
              74 65 3A 20 41 64 64
              72 65 73 73 20 30 78
              25 30 32 58 2C 20 44
              61 74 61 20 30 78 25
              30 34 58
-      0075EE 0A                    1827 	.db 0x0a
-      0075EF 0D                    1828 	.db 0x0d
-      0075F0 00                    1829 	.db 0x00
+      0076C9 0A                    1827 	.db 0x0a
+      0076CA 0D                    1828 	.db 0x0d
+      0076CB 00                    1829 	.db 0x00
                                    1830 	.area CSEG    (CODE)
                                    1831 	.area CONST   (CODE)
-      0075F1                       1832 ___str_3:
-      0075F1 0A                    1833 	.db 0x0a
-      0075F2 0D                    1834 	.db 0x0d
-      0075F3 49 6E 76 61 6C 69 64  1835 	.ascii "Invalid Buffer Address or Size: Start 0x%04X, Size 0x%04X"
+      0076CC                       1832 ___str_3:
+      0076CC 0A                    1833 	.db 0x0a
+      0076CD 0D                    1834 	.db 0x0d
+      0076CE 49 6E 76 61 6C 69 64  1835 	.ascii "Invalid Buffer Address or Size: Start 0x%04X, Size 0x%04X"
              20 42 75 66 66 65 72
              20 41 64 64 72 65 73
              73 20 6F 72 20 53 69
@@ -1854,63 +1854,63 @@
              34 58 2C 20 53 69 7A
              65 20 30 78 25 30 34
              58
-      00762C 0A                    1836 	.db 0x0a
-      00762D 0D                    1837 	.db 0x0d
-      00762E 00                    1838 	.db 0x00
+      007707 0A                    1836 	.db 0x0a
+      007708 0D                    1837 	.db 0x0d
+      007709 00                    1838 	.db 0x00
                                    1839 	.area CSEG    (CODE)
                                    1840 	.area CONST   (CODE)
-      00762F                       1841 ___str_4:
-      00762F 0A                    1842 	.db 0x0a
-      007630 0D                    1843 	.db 0x0d
-      007631 42 75 66 66 65 72 20  1844 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
+      00770A                       1841 ___str_4:
+      00770A 0A                    1842 	.db 0x0a
+      00770B 0D                    1843 	.db 0x0d
+      00770C 42 75 66 66 65 72 20  1844 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
              49 6E 69 74 69 61 6C
              69 7A 65 64 3A 20 53
              74 61 72 74 20 30 78
              25 30 34 58 2C 20 45
              6E 64 20 30 78 25 30
              34 58
-      00765D 0A                    1845 	.db 0x0a
-      00765E 0D                    1846 	.db 0x0d
-      00765F 00                    1847 	.db 0x00
+      007738 0A                    1845 	.db 0x0a
+      007739 0D                    1846 	.db 0x0d
+      00773A 00                    1847 	.db 0x00
                                    1848 	.area CSEG    (CODE)
                                    1849 	.area CONST   (CODE)
-      007660                       1850 ___str_5:
-      007660 0A                    1851 	.db 0x0a
-      007661 0D                    1852 	.db 0x0d
-      007662 49 6E 76 61 6C 69 64  1853 	.ascii "Invalid number of bytes: %d"
+      00773B                       1850 ___str_5:
+      00773B 0A                    1851 	.db 0x0a
+      00773C 0D                    1852 	.db 0x0d
+      00773D 49 6E 76 61 6C 69 64  1853 	.ascii "Invalid number of bytes: %d"
              20 6E 75 6D 62 65 72
              20 6F 66 20 62 79 74
              65 73 3A 20 25 64
-      00767D 0A                    1854 	.db 0x0a
-      00767E 0D                    1855 	.db 0x0d
-      00767F 00                    1856 	.db 0x00
+      007758 0A                    1854 	.db 0x0a
+      007759 0D                    1855 	.db 0x0d
+      00775A 00                    1856 	.db 0x00
                                    1857 	.area CSEG    (CODE)
                                    1858 	.area CONST   (CODE)
-      007680                       1859 ___str_6:
-      007680 0A                    1860 	.db 0x0a
-      007681 0D                    1861 	.db 0x0d
-      007682 49 6E 76 61 6C 69 64  1862 	.ascii "Invalid address: %04X"
+      00775B                       1859 ___str_6:
+      00775B 0A                    1860 	.db 0x0a
+      00775C 0D                    1861 	.db 0x0d
+      00775D 49 6E 76 61 6C 69 64  1862 	.ascii "Invalid address: %04X"
              20 61 64 64 72 65 73
              73 3A 20 25 30 34 58
-      007697 0A                    1863 	.db 0x0a
-      007698 0D                    1864 	.db 0x0d
-      007699 00                    1865 	.db 0x00
+      007772 0A                    1863 	.db 0x0a
+      007773 0D                    1864 	.db 0x0d
+      007774 00                    1865 	.db 0x00
                                    1866 	.area CSEG    (CODE)
                                    1867 	.area CONST   (CODE)
-      00769A                       1868 ___str_7:
-      00769A 0A                    1869 	.db 0x0a
-      00769B 49 6E 76 61 6C 69 64  1870 	.ascii "Invalid RX Address: Start 0x%04X, Size %d"
+      007775                       1868 ___str_7:
+      007775 0A                    1869 	.db 0x0a
+      007776 49 6E 76 61 6C 69 64  1870 	.ascii "Invalid RX Address: Start 0x%04X, Size %d"
              20 52 58 20 41 64 64
              72 65 73 73 3A 20 53
              74 61 72 74 20 30 78
              25 30 34 58 2C 20 53
              69 7A 65 20 25 64
-      0076C4 0A                    1871 	.db 0x0a
-      0076C5 00                    1872 	.db 0x00
+      00779F 0A                    1871 	.db 0x0a
+      0077A0 00                    1872 	.db 0x00
                                    1873 	.area CSEG    (CODE)
                                    1874 	.area CONST   (CODE)
-      0076C6                       1875 ___str_8:
-      0076C6 52 65 61 64 69 6E 67  1876 	.ascii "Reading %d bytes from buffer starting at address 0x%04X:"
+      0077A1                       1875 ___str_8:
+      0077A1 52 65 61 64 69 6E 67  1876 	.ascii "Reading %d bytes from buffer starting at address 0x%04X:"
              20 25 64 20 62 79 74
              65 73 20 66 72 6F 6D
              20 62 75 66 66 65 72
@@ -1918,9 +1918,9 @@
              6E 67 20 61 74 20 61
              64 64 72 65 73 73 20
              30 78 25 30 34 58 3A
-      0076FE 0A                    1877 	.db 0x0a
-      0076FF 0D                    1878 	.db 0x0d
-      007700 00                    1879 	.db 0x00
+      0077D9 0A                    1877 	.db 0x0a
+      0077DA 0D                    1878 	.db 0x0d
+      0077DB 00                    1879 	.db 0x00
                                    1880 	.area CSEG    (CODE)
                                    1881 	.area XINIT   (CODE)
                                    1882 	.area CABS    (ABS,CODE)

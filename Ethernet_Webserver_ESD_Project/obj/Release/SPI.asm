@@ -1448,7 +1448,7 @@ _spi_buffer_read:
 	clr	c
 	mov	a,#0xff
 	subb	a,r2
-	mov	a,#0x0b
+	mov	a,#0x1b
 	subb	a,r3
 	jnc	00106$
 ;	SPI.c:244: printf("\nInvalid RX Address: Start 0x%04X, Size %d\n", start_address,
