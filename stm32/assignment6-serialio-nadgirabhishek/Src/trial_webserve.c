@@ -17,6 +17,9 @@ uint8_t buffer[BUFFER_SIZE];
 uint32_t prevSeq;
 uint32_t prevAck;
 
+bool obstacleDetected;
+
+
 // Definitions and constants
 #define IP_PROTO_TCP 0x06
 #define ETH_TYPE_ARP 0x0806
@@ -353,29 +356,35 @@ void makeTcpFinPshAck() {
     buffer[1 + TCP_SEQ_H_P + 6] = (ackNum >> 8) & 0xFF;
     buffer[1 + TCP_SEQ_H_P + 7] = ackNum & 0xFF;
 
-    // HTML payload (use payload from `makeHttpResponse`)
-    const char *html_payload =
-    		"HTTP/1.1 200 OK\r\n"
-    		    "Content-Type: text/html\r\n"
-    		    "Content-Length: 530\r\n" // Length matches the content
-    		    "\r\n"
-    		    "<!DOCTYPE html>"
-    		    "<html lang='en'>"
-    		    "<head>"
-    		    "<meta charset='UTF-8'>"
-    		    "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
-    		    "<title>Ethernet Web Server</title>"
-    		    "<style>"
-    		    "body {font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px;}"
-    		    "h1 {color: #333333;}"
-    		    "p {color: #666666;}"
-    		    "</style>"
-    		    "</head>"
-    		    "<body>"
-    		    "<h1>ESD FALL 2024</h1>"
-    		    "<p>Ethernet based Web Server for Embedded Systems - NADGIR and KOPPA made itttt, lessgoooo!!! This web server showcases the power of microcontrollers and Ethernet communication. By leveraging the AT89C51RC2 microcontroller and the ENC28J60 Ethernet controller, we can serve dynamic web pages and control embedded devices remotely. The server allows seamless communication between hardware and software, enabling real-time data exchange across the network.</p>"
-    		    "</body>"
-    		    "</html>";
+    // HTML payload with dynamic obstacle status
+    char html_payload[1024]; // Ensure the buffer is large enough
+    snprintf(html_payload, sizeof(html_payload),
+             "HTTP/1.1 200 OK\r\n"
+             "Content-Type: text/html\r\n"
+             "Content-Length: %d\r\n" // Calculate the length dynamically
+             "\r\n"
+             "<!DOCTYPE html>"
+             "<html lang='en'>"
+             "<head>"
+             "<meta charset='UTF-8'>"
+             "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+             "<title>Ethernet Web Server</title>"
+             "<style>"
+             "body {font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px;}"
+             "h1 {color: #333333;}"
+             "p {color: #666666;}"
+             "</style>"
+             "</head>"
+             "<body>"
+             "<h1>ESD FALL 2024</h1>"
+             "<p>Obstacle Detection Status: <strong>%s</strong></p>"
+             "<p>This web server showcases the power of microcontrollers and Ethernet communication. "
+             "By leveraging the AT89C51RC2 microcontroller and the ENC28J60 Ethernet controller, we can serve dynamic web pages and control embedded devices remotely. "
+             "The server allows seamless communication between hardware and software, enabling real-time data exchange across the network.</p>"
+             "</body>"
+             "</html>",
+             530, // Content-Length (adjust based on the actual content)
+             (obstacleDetected == 1) ? "Obstacle Detected" : "No Obstacle");
 
     uint16_t dataLength = strlen(html_payload);
 
@@ -403,6 +412,7 @@ void makeTcpFinPshAck() {
     // Update connection state
     connectionState = FIN_WAIT;
 }
+
 
 
 void makeTcpAck3() {

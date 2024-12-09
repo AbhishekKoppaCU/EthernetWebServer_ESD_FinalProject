@@ -9,6 +9,7 @@
 "./Src/icmp.o"
 "./Src/init_functions.o"
 "./Src/main.o"
+"./Src/obstacle.o"
 "./Src/spi.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

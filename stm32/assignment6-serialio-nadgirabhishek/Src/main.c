@@ -18,6 +18,7 @@
 // Reference USed: Lecture Presentation Slides utilised for Command table and Command processing
 #include "main.h"
 #include "webserver.h"
+#include "obstacle.h"
 //#define UNUSED(x) (void)(x)
 uint8_t device_mac[6] = { 0x02, 0x04, 0xA3, 0x3C, 0x4D, 0x50 }; // Default MAC
 uint8_t target_mac[6] = { 0xFF, 0XFF, 0XFF, 0xFF, 0XFF, 0XFF }; // Default MAC
@@ -40,6 +41,7 @@ int main(void) {
 //	int argc; //TO store Argument COunt
 	printf("\nWelcome to SerialIO!\n");
 	enc_init(device_mac);
+	Init_Interrupt();
 	//runWebServer(device_mac,device_ip);
 	while (1) {
 		packetLoop();

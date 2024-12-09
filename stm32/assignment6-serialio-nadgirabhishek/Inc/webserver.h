@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <tcp.h>
 
+extern bool obstacleDetected;
+
 uint16_t packetReceive();
 void makeArpReply() ;
 void makeTcpSynAck() ;
