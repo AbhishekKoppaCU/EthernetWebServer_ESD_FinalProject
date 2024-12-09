@@ -5,6 +5,7 @@
 #include "Operations.h"
 #include "Eth.h"
 #include "tcp.h"
+#include "trial_webserver.h"
 
 
 //Function to convert hex string to integer
@@ -12,10 +13,7 @@ void external_interrupt0_isr(void) __interrupt (0);
 
 //#define UNUSED(x) (void)(x)
 
-uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
-uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
-uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
-uint8_t target_ip[4] = { 192, 168, 1, 1 };
+
 
 
 
@@ -310,6 +308,13 @@ void main(void)
             case 'F':{
                 printf("Disabling TXPKTIE\n\r");
                 spi_control_write(0, 0x1B, 0);
+            }
+            case 'X':{
+                while(1)
+                {
+                    packetLoop();
+                }
+                break;
             }
             default: {
                 printf("Invalid option. Please select a valid action.\n\r");

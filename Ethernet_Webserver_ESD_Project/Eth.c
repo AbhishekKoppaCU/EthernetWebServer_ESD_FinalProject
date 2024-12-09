@@ -252,9 +252,63 @@ void enc_init(const uint8_t *mac)
 	// Split Memory: Reserve RX and TX buffers
 	uint16_t rx_start = RX_BUFFER_START;
 	uint16_t rx_end = RX_BUFFER_END;
+	uint16_t tx_start = TX_BUFFER_START;
+	uint16_t tx_end  = TX_BUFFER_END;
 
 	// Initialize RX Buffer
 	enc_buffer_init(rx_start, rx_end);
+
+	spi_control_write(0, 0x04, (uint8_t) (tx_start & 0xFF)); // Low byte
+	spi_control_write(0, 0x05, (uint8_t) ((tx_start >> 8) & 0xFF)); // High byte
+
+	// Write to ETXND (Transmit End Pointer)
+	spi_control_write(0, 0x06, (uint8_t) (tx_end & 0xFF)); // Low byte
+	spi_control_write(0, 0x07, (uint8_t) ((tx_end >> 8) & 0xFF)); // High byte
+
+	spi_control_write(1, 0x18, 0xB1);// crcen,ucen,pcen,bcen
+	spi_control_write(1, 0x08, 0x3F); //pattern match
+	spi_control_write(1, 0x09, 0x30); //pattern match
+	spi_control_write(1, 0x10, 0xF9); //pattern match
+	spi_control_write(1, 0x11, 0xF7); //pattern match
+
+	uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
+	spi_control_write   (2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
+
+	spi_control_write(2, 0x02, 0x32); //MACON3_PADCFG0|MACON3_TXCRCEN|MACON3_FRMLNEN)
+	// Configure MACON3 for padding, CRC, and frame length
+	//enc_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
+
+	spi_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
+	spi_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
+
+	spi_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
+
+	spi_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
+
+	// Set maximum frame length (1518 bytes for standard Ethernet)
+	spi_control_write(2, 0x0A, 0xDC); // MAMXFLL
+	spi_control_write(2, 0x0B, 0x05); // MAMXFLH
+
+	// Configure MAC Address (write in reverse order)
+	spi_control_write(3, 0x01, mac[5]); // MAADR6
+	spi_control_write(3, 0x00, mac[4]); // MAADR5
+	spi_control_write(3, 0x03, mac[3]); // MAADR4
+	spi_control_write(3, 0x02, mac[2]); // MAADR3
+	spi_control_write(3, 0x05, mac[1]); // MAADR2
+	spi_control_write(3, 0x04, mac[0]); // MAADR1
+	phy_spi_write(0x10, 0x0100);
+
+	// Configure PHY LEDs for activity indication
+	spi_control_write(0, 0X1B, 0XC0); // reception enable bit
+	spi_control_write(0, 0X1F, 0X04); // reception enable bit
+
+	printf("\nENC28J60 Initialization Complete.\n");
+	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
+			mac[2], mac[3], mac[4], mac[5]);
+	uint8_t rev = eth_spi_read(0x12,3);
+
+	if (rev > 5) ++rev;
+
 
 
 	// Set RX Read Pointer to Start Address
@@ -263,6 +317,7 @@ void enc_init(const uint8_t *mac)
 
 	// Enable MAC Receive
 	//spi_control_write(2, 0x00, 0x0D); // MACON1: Enable RX (MARXEN), TXPAUS, RXPAUS
+	/*
 
 	// Configure MACON3 for padding, CRC, and frame length
 	spi_control_write(2, 0x02, 0x70); // MACON3: Padding, CRC, and frame length checking enabled37
@@ -299,6 +354,7 @@ void enc_init(const uint8_t *mac)
 	printf("\nENC28J60 Initialization Complete.\n");
 	printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
 			mac[2], mac[3], mac[4], mac[5]);
+			*/
 }
 
 uint8_t ENC_pkt_count(void)

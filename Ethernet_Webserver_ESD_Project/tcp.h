@@ -50,5 +50,7 @@ void print_hexdump(const uint8_t *data, uint16_t size);
 void process_packet_from_buffer(uint16_t start_address);
 void transmit_tcp_packet(uint8_t *packet, uint16_t packet_size);
 void process_packet_from_buffer(uint16_t start_address);
+void calculateIPChecksum(uint8_t *buffer);
+void calculateTcpChecksum(uint8_t *buffer);
 
 #endif /* TCP_H_ */

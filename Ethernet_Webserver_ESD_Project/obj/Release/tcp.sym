@@ -448,30 +448,30 @@ Symbol Table
     __gptrget                                                      ****** GX
     __gptrput                                                      ****** GX
  17 _calculateIPChecksum                                           000000 GR
-  B _calculateIPChecksum_buffer_10000_116                          000000 R
-  B _calculateIPChecksum_i_20001_119                               000007 R
+  B _calculateIPChecksum_buffer_10000_118                          000000 R
+  B _calculateIPChecksum_i_20001_121                               000007 R
   6 _calculateIPChecksum_sloc0_1_0                                 000000 R
   6 _calculateIPChecksum_sloc1_1_0                                 000002 R
-  B _calculateIPChecksum_sum_10001_118                             000003 R
+  B _calculateIPChecksum_sum_10001_120                             000003 R
  17 _calculateTcpChecksum                                          00016A GR
-  B _calculateTcpChecksum_buffer_10000_123                         000009 R
-  B _calculateTcpChecksum_i_20001_126                              000010 R
-  B _calculateTcpChecksum_i_20001_128                              000011 R
-  B _calculateTcpChecksum_i_20001_130                              000012 R
+  B _calculateTcpChecksum_buffer_10000_125                         000009 R
+  B _calculateTcpChecksum_i_20001_128                              000010 R
+  B _calculateTcpChecksum_i_20001_130                              000011 R
+  B _calculateTcpChecksum_i_20001_132                              000012 R
   6 _calculateTcpChecksum_sloc0_1_0                                000000 R
   6 _calculateTcpChecksum_sloc1_1_0                                000002 R
   6 _calculateTcpChecksum_sloc2_1_0                                000004 R
   6 _calculateTcpChecksum_sloc3_1_0                                000008 R
   6 _calculateTcpChecksum_sloc4_1_0                                00000C R
-  B _calculateTcpChecksum_sum_10001_125                            00000C R
+  B _calculateTcpChecksum_sum_10001_127                            00000C R
  17 _calculate_checksum                                            0004CA GR
   B _calculate_checksum_PARM_2                                     000014 GR
-  B _calculate_checksum_data_10000_134                             000016 R
-  B _calculate_checksum_i_20000_136                                00001D R
+  B _calculate_checksum_data_10000_136                             000016 R
+  B _calculate_checksum_i_20000_138                                00001D R
   6 _calculate_checksum_sloc0_1_0                                  000000 R
   6 _calculate_checksum_sloc1_1_0                                  000002 R
   6 _calculate_checksum_sloc2_1_0                                  000006 R
-  B _calculate_checksum_sum_10000_135                              000019 R
+  B _calculate_checksum_sum_10000_137                              000019 R
     _enc28j60_set_transmit_pointers                                ****** GX
     _enc28j60_set_transmit_pointers_PARM_2                         ****** GX
     _enc28j60_start_transmission                                   ****** GX
@@ -486,20 +486,20 @@ Symbol Table
     _memset                                                        ****** GX
     _memset_PARM_2                                                 ****** GX
     _memset_PARM_3                                                 ****** GX
- 17 _print_hexdump                                                 0009DA GR
+ 17 _print_hexdump                                                 0009CC GR
   B _print_hexdump_PARM_2                                          000604 GR
-  B _print_hexdump_data_10000_146                                  000606 R
+  B _print_hexdump_data_10000_148                                  000606 R
     _printf                                                        ****** GX
- 17 _process_packet_from_buffer                                    000AE5 GR
-  B _process_packet_from_buffer_next_packet_start_10001_155        00060B R
-  B _process_packet_from_buffer_response_size_10001_155            00060D R
+ 17 _process_packet_from_buffer                                    000AD7 GR
+  B _process_packet_from_buffer_next_packet_start_10001_157        00060B R
+  B _process_packet_from_buffer_response_size_10001_157            00060D R
   5 _process_packet_from_buffer_sloc0_1_0                          000003 R
-  B _process_packet_from_buffer_start_address_10000_152            000609 R
+  B _process_packet_from_buffer_start_address_10000_154            000609 R
  17 _process_tcp_packet                                            00064D GR
   B _process_tcp_packet_PARM_2                                     00001F GR
   B _process_tcp_packet_PARM_3                                     000021 GR
-  B _process_tcp_packet_packet_10000_139                           000024 R
-  B _process_tcp_packet_response_10000_140                         000027 R
+  B _process_tcp_packet_packet_10000_141                           000024 R
+  B _process_tcp_packet_response_10000_142                         000027 R
   5 _process_tcp_packet_sloc0_1_0                                  000000 R
     _spi_buffer_read                                               ****** GX
     _spi_buffer_read_PARM_2                                        ****** GX
@@ -507,9 +507,9 @@ Symbol Table
     _spi_buffer_write                                              ****** GX
     _spi_buffer_write_PARM_2                                       ****** GX
     _spi_buffer_write_PARM_3                                       ****** GX
- 17 _transmit_tcp_packet                                           000D95 GR
+ 17 _transmit_tcp_packet                                           000D87 GR
   B _transmit_tcp_packet_PARM_2                                    00060F GR
-  B _transmit_tcp_packet_packet_10000_164                          000611 R
+  B _transmit_tcp_packet_packet_10000_166                          000611 R
     _wait_for_transmission_complete                                ****** GX
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
@@ -740,7 +740,7 @@ Area Table
   14 GSINIT5                                    size      0   flags   20
   15 GSINIT                                     size      0   flags   20
   16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size    E79   flags   20
+  17 CSEG                                       size    E6B   flags   20
   18 CONST                                      size    240   flags   20
   19 XINIT                                      size      0   flags   20
   1A CABS                                       size      0   flags   28
