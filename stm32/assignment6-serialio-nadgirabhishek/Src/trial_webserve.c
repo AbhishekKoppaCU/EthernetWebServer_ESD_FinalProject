@@ -476,6 +476,8 @@ void makeTcpAck3() {
 }
 
 void makeTcpAck2() {
+			uint16_t totalLength1 = (buffer[16] << 8) | buffer[17]; // Total IP length
+	    uint16_t receivedPayloadLength = totalLength1 - 40;
     printf("makeTcpAck\n\r");
 
     // Shift buffer for alignment
@@ -508,7 +510,7 @@ void makeTcpAck2() {
                 | (buffer[1 + TCP_ACK_H_P + 1] << 16)
                 | (buffer[1 + TCP_ACK_H_P + 2] << 8) | buffer[1 + TCP_ACK_H_P + 3];
     uint32_t serverSeqNum = clientAckNum;
-    uint32_t ackNum = clientSeqNum + 454;
+    uint32_t ackNum = clientSeqNum + receivedPayloadLength - 1;
     prevSeq = serverSeqNum;
     prevAck = ackNum;
 
@@ -791,7 +793,7 @@ void packetLoop() {
 							printf("TCP(ACK_FIN) packet detected\n\r");
 							makeTcpAck3(); // Send an acknowledgment
 							connectionState = CLOSED;
-							enc_init(device_mac);
+							//enc_init(device_mac);
 							return;
 						}
 						if ((tcpFlags & TCP_FLAG_SYN)) {
