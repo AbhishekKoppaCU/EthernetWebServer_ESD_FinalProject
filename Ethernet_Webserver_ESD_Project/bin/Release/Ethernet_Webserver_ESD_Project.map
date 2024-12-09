@@ -34,6 +34,8 @@ C:   00000000  s_XABS
 C:   00000001  l_BIT_BANK                      
 C:   00000001  l_BSEG                          
 C:   00000001  l_BSEG_BYTES                    
+C:   00000001  l_XINIT                         
+C:   00000001  l_XISEG                         
 C:   00000003  l_GSFINAL                       
 C:   00000003  l_GSINIT0                       
 C:   00000008  l_REG_BANK_0                    
@@ -47,8 +49,6 @@ C:   00000020  s_BSEG_BYTES
 C:   00000020  s__CODE                         
 C:   00000021  s_BIT_BANK                      
 C:   00000022  l_GSINIT3                       
-C:   00000029  l_XINIT                         
-C:   00000029  l_XISEG                         
 C:   0000002A  l_GSINIT4                       
 C:   00000037  l_HOME                          
 C:   00000045  s_OSEG                          
@@ -67,9 +67,9 @@ CABS                                00000000    00000000 =           0. bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 C:   00000100  s_XSEG                          
-C:   00000FCF  l_CONST                         
-C:   00001307  l_XSEG                          
-C:   00001407  s_XISEG                         
+C:   00000F25  l_CONST                         
+C:   00001393  l_XSEG                          
+C:   00001493  s_XISEG                         
 C:   00002000  s_HOME                          
 C:   00002037  s_GSINIT0                       
 C:   0000203A  s_GSINIT1                       
@@ -80,9 +80,9 @@ C:   00002090  s_GSINIT
 C:   00002090  s_GSINIT5                       
 C:   000020A9  s_GSFINAL                       
 C:   000020AC  s_CSEG                          
-C:   00004B45  l_CSEG                          
-C:   00006BF1  s_CONST                         
-C:   00007BC0  s_XINIT                         
+C:   00004DAC  l_CSEG                          
+C:   00006E58  s_CONST                         
+C:   00007D7D  s_XINIT                         
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -407,60 +407,56 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XSEG                                00000100    00001307 =        4871. bytes (REL,CON,XDATA)
+XSEG                                00000100    00001393 =        5011. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
 D:   00000106  _enc28j60_set_transmit_pointers_   Eth
 D:   0000014D  _enc_buffer_init_PARM_2            Eth
-D:   00000370  _spi_control_write_PARM_2          SPI
-D:   00000371  _spi_control_write_PARM_3          SPI
-D:   00000374  _eth_spi_read_PARM_2               SPI
-D:   00000376  _phy_spi_write_PARM_2              SPI
-D:   00000379  _mac_spi_read_PARM_2               SPI
-D:   0000037D  _buffer_init_PARM_2                SPI
-D:   00000381  _spi_buffer_read_PARM_2            SPI
-D:   00000383  _spi_buffer_read_PARM_3            SPI
-D:   00000388  _spi_buffer_write_PARM_2           SPI
-D:   0000038A  _spi_buffer_write_PARM_3           SPI
-D:   000003A3  _calculate_checksum_PARM_2         tcp
-D:   000003AE  _process_tcp_packet_PARM_2         tcp
-D:   000003B0  _process_tcp_packet_PARM_3         tcp
-D:   00000993  _print_hexdump_PARM_2              tcp
-D:   0000099E  _transmit_tcp_packet_PARM_2        tcp
-D:   000009A3  _prevSeq                           trial_webserver
-D:   000009A7  _prevAck                           trial_webserver
-D:   000009AB  _buffer                            trial_webserver
-D:   00000FAA  ___memcpy_PARM_2                   __memcpy
-D:   00000FAD  ___memcpy_PARM_3                   __memcpy
-D:   00000FB2  _memset_PARM_2                     _memset
-D:   00000FB3  _memset_PARM_3                     _memset
-D:   00000FB5  __gptrput_PARM_2                   _gptrput
-D:   00000FB6  _memmove_PARM_2                    _memmove
-D:   00000FB9  _memmove_PARM_3                    _memmove
-D:   00000FBE  ___sdcc_heap_free                  malloc
-D:   00000FC6  __mulint_PARM_2                    _mulint
-D:   00000FC8  _memcmp_PARM_2                     _memcmp
-D:   00000FCB  _memcmp_PARM_3                     _memcmp
-D:   00000FD0  _vprintf_PARM_2                    vprintf
-D:   00000FE5  __print_format_PARM_2              printf_large
-D:   00000FE8  __print_format_PARM_3              printf_large
-D:   00000FEB  __print_format_PARM_4              printf_large
-D:   00001007  ___sdcc_heap                       _heap
+D:   00000384  _spi_control_write_PARM_2          SPI
+D:   00000385  _spi_control_write_PARM_3          SPI
+D:   00000388  _eth_spi_read_PARM_2               SPI
+D:   0000038A  _phy_spi_write_PARM_2              SPI
+D:   0000038D  _mac_spi_read_PARM_2               SPI
+D:   00000391  _buffer_init_PARM_2                SPI
+D:   00000395  _spi_buffer_read_PARM_2            SPI
+D:   00000397  _spi_buffer_read_PARM_3            SPI
+D:   0000039C  _spi_buffer_write_PARM_2           SPI
+D:   0000039E  _spi_buffer_write_PARM_3           SPI
+D:   000003B7  _calculate_checksum_PARM_2         tcp
+D:   000003C2  _process_tcp_packet_PARM_2         tcp
+D:   000003C4  _process_tcp_packet_PARM_3         tcp
+D:   000009A7  _print_hexdump_PARM_2              tcp
+D:   000009B2  _transmit_tcp_packet_PARM_2        tcp
+D:   000009B7  _prevSeq                           trial_webserver
+D:   000009BB  _prevAck                           trial_webserver
+D:   000009BF  _buffer                            trial_webserver
+D:   00001036  ___memcpy_PARM_2                   __memcpy
+D:   00001039  ___memcpy_PARM_3                   __memcpy
+D:   0000103E  _memset_PARM_2                     _memset
+D:   0000103F  _memset_PARM_3                     _memset
+D:   00001041  __gptrput_PARM_2                   _gptrput
+D:   00001042  _memmove_PARM_2                    _memmove
+D:   00001045  _memmove_PARM_3                    _memmove
+D:   0000104A  ___sdcc_heap_free                  malloc
+D:   00001052  __mulint_PARM_2                    _mulint
+D:   00001054  _memcmp_PARM_2                     _memcmp
+D:   00001057  _memcmp_PARM_3                     _memcmp
+D:   0000105C  _vprintf_PARM_2                    vprintf
+D:   00001071  __print_format_PARM_2              printf_large
+D:   00001074  __print_format_PARM_3              printf_large
+D:   00001077  __print_format_PARM_4              printf_large
+D:   00001093  ___sdcc_heap                       _heap
 ASxxxx Linker V03.00/V05.40 + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XISEG                               00001407    00000029 =          41. bytes (REL,CON,XDATA)
+XISEG                               00001493    00000001 =           1. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-D:   0000141B  _device_mac                        trial_webserver
-D:   00001421  _target_mac                        trial_webserver
-D:   00001427  _device_ip                         trial_webserver
-D:   0000142B  _target_ip                         trial_webserver
-D:   0000142F  _connectionState                   trial_webserver
+D:   00001493  _connectionState                   trial_webserver
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 16.
 Hexadecimal  [32-Bits]
@@ -540,7 +536,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000020AC    00004B45 =       19269. bytes (REL,CON,CODE)
+CSEG                                000020AC    00004DAC =       19884. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -558,86 +554,86 @@ C:   00002AAE  _update_ERXRDPT                    Eth
 C:   00002B14  _hex_to_int                        main
 C:   00002CCE  _get_user_buffer_size              main
 C:   00002D52  _main                              main
-C:   000037EA  _LED_Fast_Blink                    Operations
-C:   0000381A  _LED_Slow_Blink                    Operations
-C:   0000381B  _LED_On                            Operations
-C:   0000385C  _LED_Off                           Operations
-C:   0000385D  _SPI_ReadByte                      SPI
-C:   0000386F  _spi_set_autoinc                   SPI
-C:   00003880  _select_reg_bank                   SPI
-C:   00003905  _spi_control_write                 SPI
-C:   00003961  _configure_SPI                     SPI
-C:   00003970  _SPI_send                          SPI
-C:   0000397F  _enc_reset                         SPI
-C:   0000398A  _eth_spi_read                      SPI
-C:   000039F8  _phy_spi_write                     SPI
-C:   00003A7B  _mac_spi_read                      SPI
-C:   00003ABE  _phy_spi_read                      SPI
-C:   00003B6B  _busy_wait                         SPI
-C:   00003B99  _buffer_init                       SPI
-C:   00003CB5  _spi_buffer_read                   SPI
-C:   00003E34  _spi_buffer_write                  SPI
-C:   00003F7C  _calculateIPChecksum               tcp
-C:   000040E6  _calculateTcpChecksum              tcp
-C:   00004446  _calculate_checksum                tcp
-C:   000045C9  _process_tcp_packet                tcp
-C:   00004948  _print_hexdump                     tcp
-C:   00004A53  _process_packet_from_buffer        tcp
-C:   00004D03  _transmit_tcp_packet               tcp
-C:   00004DE7  _makeArpReply                      trial_webserver
-C:   00004EEB  _makeTcpAck3                       trial_webserver
-C:   000050BD  _makeTcpAck2                       trial_webserver
-C:   000052CE  _makeTcpSynAck                     trial_webserver
-C:   0000545A  _makeTcpAck                        trial_webserver
-C:   000054AA  _makeTcpFinPshAck                  trial_webserver
-C:   000056A4  _packetReceive                     trial_webserver
-C:   0000585E  _packetLoop                        trial_webserver
-C:   000059C8  _putchar                           Utilities
-C:   000059E7  _getchar                           Utilities
+C:   0000385F  _LED_Fast_Blink                    Operations
+C:   0000388F  _LED_Slow_Blink                    Operations
+C:   00003890  _LED_On                            Operations
+C:   000038D1  _LED_Off                           Operations
+C:   000038D2  _SPI_ReadByte                      SPI
+C:   000038E4  _spi_set_autoinc                   SPI
+C:   000038F5  _select_reg_bank                   SPI
+C:   0000397A  _spi_control_write                 SPI
+C:   000039A7  _configure_SPI                     SPI
+C:   000039B6  _SPI_send                          SPI
+C:   000039C5  _enc_reset                         SPI
+C:   000039D0  _eth_spi_read                      SPI
+C:   00003A13  _phy_spi_write                     SPI
+C:   00003A96  _mac_spi_read                      SPI
+C:   00003AD9  _phy_spi_read                      SPI
+C:   00003B4B  _busy_wait                         SPI
+C:   00003B79  _buffer_init                       SPI
+C:   00003C95  _spi_buffer_read                   SPI
+C:   00003E14  _spi_buffer_write                  SPI
+C:   00003F25  _calculateIPChecksum               tcp
+C:   0000408F  _calculateTcpChecksum              tcp
+C:   000043EF  _calculate_checksum                tcp
+C:   00004572  _process_tcp_packet                tcp
+C:   000048F1  _print_hexdump                     tcp
+C:   000049FC  _process_packet_from_buffer        tcp
+C:   00004CAC  _transmit_tcp_packet               tcp
+C:   00004D90  _makeArpReply                      trial_webserver
+C:   00004F09  _makeTcpAck3                       trial_webserver
+C:   00005150  _makeTcpAck2                       trial_webserver
+C:   000053D6  _makeTcpSynAck                     trial_webserver
+C:   000055D7  _makeTcpAck                        trial_webserver
+C:   0000569C  _makeTcpFinPshAck                  trial_webserver
+C:   0000590B  _packetReceive                     trial_webserver
+C:   00005AC5  _packetLoop                        trial_webserver
+C:   00005C2F  _putchar                           Utilities
+C:   00005C4E  _getchar                           Utilities
 ASxxxx Linker V03.00/V05.40 + sdld,  page 24.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                000020AC    00004B45 =       19269. bytes (REL,CON,CODE)
+CSEG                                000020AC    00004DAC =       19884. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000059F5  _putstr                            Utilities
-C:   00005A6B  _free                              free
-C:   00005BC2  ___memcpy                          __memcpy
-C:   00005C36  _memset                            _memset
-C:   00005C5E  __gptrput                          _gptrput
-C:   00005C79  _memmove                           _memmove
-C:   00005DB4  _printf_tiny                       printf_tiny
-C:   00005EBD  ___sdcc_heap_init                  malloc
-C:   00005EF9  _malloc                            malloc
-C:   00006062  __mulint                           _mulint
-C:   00006082  _memcmp                            _memcmp
-C:   00006170  _vprintf                           vprintf
-C:   000061AF  _printf                            vprintf
-C:   000062B5  __print_format                     printf_large
-C:   00006BB9  _strlen                            _strlen
-C:   00006BD1  __gptrget                          _gptrget
-C:   00006BED  ___sdcc_external_startup           _startup
+C:   00005C5C  _putstr                            Utilities
+C:   00005CD2  _free                              free
+C:   00005E29  ___memcpy                          __memcpy
+C:   00005E9D  _memset                            _memset
+C:   00005EC5  __gptrput                          _gptrput
+C:   00005EE0  _memmove                           _memmove
+C:   0000601B  _printf_tiny                       printf_tiny
+C:   00006124  ___sdcc_heap_init                  malloc
+C:   00006160  _malloc                            malloc
+C:   000062C9  __mulint                           _mulint
+C:   000062E9  _memcmp                            _memcmp
+C:   000063D7  _vprintf                           vprintf
+C:   00006416  _printf                            vprintf
+C:   0000651C  __print_format                     printf_large
+C:   00006E20  _strlen                            _strlen
+C:   00006E38  __gptrget                          _gptrget
+C:   00006E54  ___sdcc_external_startup           _startup
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 25.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CONST                               00006BF1    00000FCF =        4047. bytes (REL,CON,CODE)
+CONST                               00006E58    00000F25 =        3877. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00007BBE  ___sdcc_heap_size                  _heap
+C:   00007D7B  ___sdcc_heap_size                  _heap
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-XINIT                               00007BC0    00000029 =          41. bytes (REL,CON,CODE)
+XINIT                               00007D7D    00000001 =           1. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------

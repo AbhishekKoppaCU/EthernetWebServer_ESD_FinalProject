@@ -86,7 +86,7 @@ void spi_control_write(uint8_t reg_bank, uint8_t addr, uint8_t data)
     CS_HIGH;
 
     // Print the address and data written
-    printf("Write: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+    //printf("Write: Address 0x%02X, Data 0x%02X\n\r", addr, data);
 }
 
 
@@ -134,7 +134,7 @@ uint8_t eth_spi_read(uint8_t addr, uint8_t bank)
     CS_HIGH;                   // Pull CS high to end communication
 
     // Print the address and data read
-    printf("Read: Address 0x%02X, Data 0x%02X\n\r", addr, data);
+    //printf("Read: Address 0x%02X, Data 0x%02X\n\r", addr, data);
 
     return data;
 }
@@ -192,7 +192,7 @@ uint16_t phy_spi_read(uint8_t addr)
     uint16_t data = (data_MSB << 8) | data_LSB;        // Combine MSB and LSB
 
     // Print the PHY address and data read
-    printf("PHY Read: Address 0x%02X, Data 0x%04X\n\r", addr, data);
+    //printf("PHY Read: Address 0x%02X, Data 0x%04X\n\r", addr, data);
 
     return data;        // Combine MSB and LSB
 }
@@ -301,7 +301,7 @@ void spi_buffer_write(int num_bytes, uint16_t start_address, uint8_t *data_ptr)
     SPI_send(opcode); // Send opcode
 
     // Print the address and bytes being written
-    printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
+    //printf("Writing %d bytes to buffer starting at address 0x%04X:\n\r", num_bytes, start_address);
     for (int i = 0; i < num_bytes; i++) {
         //printf("Byte %d: 0x%02X\n\r", i + 1, *data_ptr); // Print each byte
         SPI_send(*data_ptr); // Send data

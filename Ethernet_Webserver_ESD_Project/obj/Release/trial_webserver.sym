@@ -442,48 +442,66 @@ Symbol Table
  17 ___str_7                                                       0003E3 R
  17 ___str_8                                                       0003FE R
  17 ___str_9                                                       000407 R
- 18 __xinit__connectionState                                       000014 R
- 18 __xinit__device_ip                                             00000C R
- 18 __xinit__device_mac                                            000000 R
- 18 __xinit__target_ip                                             000010 R
- 18 __xinit__target_mac                                            000006 R
+ 18 __xinit__connectionState                                       000000 R
   A _buffer                                                        000008 GR
     _calculateIPChecksum                                           ****** GX
     _calculateTcpChecksum                                          ****** GX
-  C _connectionState                                               000014 GR
-  C _device_ip                                                     00000C GR
-  C _device_mac                                                    000000 GR
+  C _connectionState                                               000000 GR
     _eth_spi_read                                                  ****** GX
     _eth_spi_read_PARM_2                                           ****** GX
     _mac_spi_read                                                  ****** GX
     _mac_spi_read_PARM_2                                           ****** GX
  16 _makeArpReply                                                  000000 GR
- 16 _makeTcpAck                                                    000673 GR
- 16 _makeTcpAck2                                                   0002D6 GR
+  A _makeArpReply_device_ip_10000_120                              0005F0 R
+  A _makeArpReply_device_mac_10000_120                             0005E4 R
+  A _makeArpReply_target_ip_10000_120                              0005F4 R
+  A _makeArpReply_target_mac_10000_120                             0005EA R
+ 16 _makeTcpAck                                                    000847 GR
+ 16 _makeTcpAck2                                                   0003C0 GR
+  A _makeTcpAck2_device_ip_10000_125                               000618 R
+  A _makeTcpAck2_device_mac_10000_125                              00060C R
   5 _makeTcpAck2_sloc0_1_0                                         000004 R
   5 _makeTcpAck2_sloc1_1_0                                         000006 R
   5 _makeTcpAck2_sloc2_1_0                                         000008 R
- 16 _makeTcpAck3                                                   000104 GR
+  A _makeTcpAck2_target_ip_10000_125                               00061C R
+  A _makeTcpAck2_target_mac_10000_125                              000612 R
+ 16 _makeTcpAck3                                                   000179 GR
+  A _makeTcpAck3_device_ip_10000_121                               000604 R
+  A _makeTcpAck3_device_mac_10000_121                              0005F8 R
   5 _makeTcpAck3_sloc0_1_0                                         000000 R
- 16 _makeTcpFinPshAck                                              0006C3 GR
-  A _makeTcpFinPshAck_ackNum_10002_136                             0005E8 R
-  A _makeTcpFinPshAck_serverSeqNum_10002_136                       0005E4 R
- 16 _makeTcpSynAck                                                 0004E7 GR
-    _memmove                                                       ****** GX
-    _memmove_PARM_2                                                ****** GX
-    _memmove_PARM_3                                                ****** GX
- 16 _packetLoop                                                    000A77 GR
- 16 _packetReceive                                                 0008BD GR
-  A _packetReceive_gNextPacketPtr_10000_138                        0005EC R
-  A _packetReceive_header_20002_144                                0005F1 R
-  A _packetReceive_len_10000_138                                   0005EF R
-  A _packetReceive_start_20003_145                                 0005F7 R
+  A _makeTcpAck3_target_ip_10000_121                               000608 R
+  A _makeTcpAck3_target_mac_10000_121                              0005FE R
+  A _makeTcpAck_device_ip_10000_133                                000640 R
+  A _makeTcpAck_device_mac_10000_133                               000634 R
+  A _makeTcpAck_target_ip_10000_133                                000644 R
+  A _makeTcpAck_target_mac_10000_133                               00063A R
+ 16 _makeTcpFinPshAck                                              00090C GR
+  A _makeTcpFinPshAck_ackNum_10002_136                             000660 R
+  A _makeTcpFinPshAck_device_ip_10000_134                          000654 R
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)               Page 9
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-  A _packetReceive_unreleasedPacket_10000_138                      0005EE R
+  A _makeTcpFinPshAck_device_mac_10000_134                         000648 R
+  A _makeTcpFinPshAck_serverSeqNum_10002_136                       00065C R
+  A _makeTcpFinPshAck_target_ip_10000_134                          000658 R
+  A _makeTcpFinPshAck_target_mac_10000_134                         00064E R
+ 16 _makeTcpSynAck                                                 000646 GR
+  A _makeTcpSynAck_device_ip_10000_129                             00062C R
+  A _makeTcpSynAck_device_mac_10000_129                            000620 R
+  A _makeTcpSynAck_target_ip_10000_129                             000630 R
+  A _makeTcpSynAck_target_mac_10000_129                            000626 R
+    _memmove                                                       ****** GX
+    _memmove_PARM_2                                                ****** GX
+    _memmove_PARM_3                                                ****** GX
+ 16 _packetLoop                                                    000D35 GR
+ 16 _packetReceive                                                 000B7B GR
+  A _packetReceive_gNextPacketPtr_10000_138                        000664 R
+  A _packetReceive_header_20002_144                                000669 R
+  A _packetReceive_len_10000_138                                   000667 R
+  A _packetReceive_start_20003_145                                 00066F R
+  A _packetReceive_unreleasedPacket_10000_138                      000666 R
   A _prevAck                                                       000004 GR
   A _prevSeq                                                       000000 GR
     _printf                                                        ****** GX
@@ -494,8 +512,6 @@ Symbol Table
     _spi_control_write_PARM_2                                      ****** GX
     _spi_control_write_PARM_3                                      ****** GX
     _strlen                                                        ****** GX
-  C _target_ip                                                     000010 GR
-  C _target_mac                                                    000006 GR
     _transmit_tcp_packet                                           ****** GX
     _transmit_tcp_packet_PARM_2                                    ****** GX
     a                                                           =  0000E0 L
@@ -522,6 +538,11 @@ Symbol Table
     ar2                                                         =  000002 
     ar3                                                         =  000003 
     ar4                                                         =  000004 
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     ar5                                                         =  000005 
     ar6                                                         =  000006 
     ar7                                                         =  000007 
@@ -538,11 +559,6 @@ Symbol Table
     ct2                                                         =  0000C9 L
     cy                                                          =  0000D7 L
     dph                                                         =  000083 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     dpl                                                         =  000082 L
     ea                                                          =  0000AF L
     es                                                          =  0000AC L
@@ -582,6 +598,11 @@ Symbol Table
     p0.1                                                        =  000081 L
     p0.2                                                        =  000082 L
     p0.3                                                        =  000083 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     p0.4                                                        =  000084 L
     p0.5                                                        =  000085 L
     p0.6                                                        =  000086 L
@@ -598,11 +619,6 @@ Symbol Table
     p2                                                          =  0000A0 L
     p2.0                                                        =  0000A0 L
     p2.1                                                        =  0000A1 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     p2.2                                                        =  0000A2 L
     p2.3                                                        =  0000A3 L
     p2.4                                                        =  0000A4 L
@@ -642,6 +658,11 @@ Symbol Table
     ri                                                          =  000098 L
     rs0                                                         =  0000D3 L
     rs1                                                         =  0000D4 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     rxd                                                         =  0000B0 L
     sbuf                                                        =  000099 L
     scon                                                        =  000098 L
@@ -658,11 +679,6 @@ Symbol Table
     sm2                                                         =  00009D L
     sp                                                          =  000081 L
     t2con                                                       =  0000C8 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     t2con.0                                                     =  0000C8 L
     t2con.1                                                     =  0000C9 L
     t2con.2                                                     =  0000CA L
@@ -698,6 +714,7 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 13
 Hexadecimal [24-Bits]
 
@@ -713,9 +730,9 @@ Area Table
    7 IABS                                       size      0   flags    8
    8 BSEG                                       size      0   flags   80
    9 PSEG                                       size      0   flags   50
-   A XSEG                                       size    5F9   flags   40
+   A XSEG                                       size    671   flags   40
    B XABS                                       size      0   flags   48
-   C XISEG                                      size     15   flags   40
+   C XISEG                                      size      1   flags   40
    D HOME                                       size      0   flags   20
    E GSINIT0                                    size      0   flags   20
    F GSINIT1                                    size      0   flags   20
@@ -725,8 +742,8 @@ Area Table
   13 GSINIT5                                    size      0   flags   20
   14 GSINIT                                     size      B   flags   20
   15 GSFINAL                                    size      0   flags   20
-  16 CSEG                                       size    BE1   flags   20
+  16 CSEG                                       size    E9F   flags   20
   17 CONST                                      size    42F   flags   20
-  18 XINIT                                      size     15   flags   20
+  18 XINIT                                      size      1   flags   20
   19 CABS                                       size      0   flags   28
 

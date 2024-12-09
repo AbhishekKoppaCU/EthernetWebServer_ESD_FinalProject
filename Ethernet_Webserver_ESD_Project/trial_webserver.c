@@ -1,8 +1,5 @@
 #include "trial_webserver.h"
-uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
-uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
-uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
-uint8_t target_ip[4] = { 192, 168, 1, 1 };
+
 
 uint32_t prevSeq;
 uint32_t prevAck;
@@ -23,6 +20,10 @@ uint8_t buffer[BUFFER_SIZE];
 
 void makeArpReply()
 {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
 	printf("trialarpreply\n\r");
 	// Adjust buffer starting at index 1 for the correct shift
 	memmove(&buffer[1], &buffer[0], 42);
@@ -55,6 +56,10 @@ void makeArpReply()
 
 
 void makeTcpAck3() {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
     printf("makeTcpAck\n\r");
 
     // Shift buffer for alignment
@@ -125,6 +130,10 @@ void makeTcpAck3() {
 }
 
 void makeTcpAck2() {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
 			uint16_t totalLength1 = (buffer[16] << 8) | buffer[17]; // Total IP length
 	    uint16_t receivedPayloadLength = totalLength1 - 40;
     printf("makeTcpAck\n\r");
@@ -197,6 +206,10 @@ void makeTcpAck2() {
 }
 
 void makeTcpSynAck() {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
 	printf("makeTcpSynAck\n\r");
 
 	// Shift buffer for alignment
@@ -261,6 +274,10 @@ void makeTcpSynAck() {
 
 
 void makeTcpAck() {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
 	printf("tcpack\n\r");
 	memmove(&buffer[1], &buffer[0], TCP_DATA_START_P);
 
@@ -271,6 +288,10 @@ void makeTcpAck() {
 }
 
 void makeTcpFinPshAck() {
+    uint8_t device_mac[6] = { 0x02, 0x11, 0x22, 0x33, 0x44, 0x55 }; // Default MAC
+    uint8_t target_mac[6] = { 0xF8, 0x75, 0xA4, 0x8C, 0x41, 0x31 }; // Default MAC
+    uint8_t device_ip[4] = { 192, 168, 1, 100 }; // Default IP Address
+    uint8_t target_ip[4] = { 192, 168, 1, 1 };
     printf("makeTcpFinPshAck\n\r");
 
     // Shift buffer for alignment

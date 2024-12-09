@@ -631,7 +631,7 @@
       0020C8 E0               [24]  631 	movx	a,@dptr
       0020C9 FF               [12]  632 	mov	r7,a
       0020CA                        633 00103$:
-      0020CA 90 0F C6         [24]  634 	mov	dptr,#__mulint_PARM_2
+      0020CA 90 10 52         [24]  634 	mov	dptr,#__mulint_PARM_2
       0020CD EE               [12]  635 	mov	a,r6
       0020CE F0               [24]  636 	movx	@dptr,a
       0020CF EF               [12]  637 	mov	a,r7
@@ -640,7 +640,7 @@
       0020D2 90 03 E8         [24]  640 	mov	dptr,#0x03e8
       0020D5 C0 07            [24]  641 	push	ar7
       0020D7 C0 06            [24]  642 	push	ar6
-      0020D9 12 60 62         [24]  643 	lcall	__mulint
+      0020D9 12 62 C9         [24]  643 	lcall	__mulint
       0020DC AC 82            [24]  644 	mov	r4, dpl
       0020DE AD 83            [24]  645 	mov	r5, dph
       0020E0 D0 06            [24]  646 	pop	ar6
@@ -716,25 +716,25 @@
                                     716 ;	-----------------------------------------
       00212D                        717 _enc28j60_start_transmission:
                                     718 ;	Eth.c:58: uint8_t econ1 = mac_spi_read(0x1F, 0); // Read ECON1
-      00212D 90 03 79         [24]  719 	mov	dptr,#_mac_spi_read_PARM_2
+      00212D 90 03 8D         [24]  719 	mov	dptr,#_mac_spi_read_PARM_2
       002130 E4               [12]  720 	clr	a
       002131 F0               [24]  721 	movx	@dptr,a
       002132 75 82 1F         [24]  722 	mov	dpl, #0x1f
-      002135 12 3A 7B         [24]  723 	lcall	_mac_spi_read
+      002135 12 3A 96         [24]  723 	lcall	_mac_spi_read
       002138 E5 82            [12]  724 	mov	a, dpl
                                     725 ;	Eth.c:59: econ1 |= 0x08; // Set TXRTS (bit 3)
       00213A 44 08            [12]  726 	orl	a,#0x08
       00213C FF               [12]  727 	mov	r7,a
                                     728 ;	Eth.c:60: spi_control_write(0, 0x1F, econ1); // Write back to ECON1
-      00213D 90 03 70         [24]  729 	mov	dptr,#_spi_control_write_PARM_2
+      00213D 90 03 84         [24]  729 	mov	dptr,#_spi_control_write_PARM_2
       002140 74 1F            [12]  730 	mov	a,#0x1f
       002142 F0               [24]  731 	movx	@dptr,a
-      002143 90 03 71         [24]  732 	mov	dptr,#_spi_control_write_PARM_3
+      002143 90 03 85         [24]  732 	mov	dptr,#_spi_control_write_PARM_3
       002146 EF               [12]  733 	mov	a,r7
       002147 F0               [24]  734 	movx	@dptr,a
       002148 75 82 00         [24]  735 	mov	dpl, #0x00
                                     736 ;	Eth.c:61: }
-      00214B 02 39 05         [24]  737 	ljmp	_spi_control_write
+      00214B 02 39 7A         [24]  737 	ljmp	_spi_control_write
                                     738 ;------------------------------------------------------------
                                     739 ;Allocation info for local variables in function 'enc28j60_set_transmit_pointers'
                                     740 ;------------------------------------------------------------
@@ -761,28 +761,28 @@
       00215F E0               [24]  761 	movx	a,@dptr
       002160 FF               [12]  762 	mov	r7,a
       002161 8E 05            [24]  763 	mov	ar5,r6
-      002163 90 03 70         [24]  764 	mov	dptr,#_spi_control_write_PARM_2
+      002163 90 03 84         [24]  764 	mov	dptr,#_spi_control_write_PARM_2
       002166 74 04            [12]  765 	mov	a,#0x04
       002168 F0               [24]  766 	movx	@dptr,a
-      002169 90 03 71         [24]  767 	mov	dptr,#_spi_control_write_PARM_3
+      002169 90 03 85         [24]  767 	mov	dptr,#_spi_control_write_PARM_3
       00216C ED               [12]  768 	mov	a,r5
       00216D F0               [24]  769 	movx	@dptr,a
       00216E 75 82 00         [24]  770 	mov	dpl, #0x00
       002171 C0 07            [24]  771 	push	ar7
       002173 C0 06            [24]  772 	push	ar6
-      002175 12 39 05         [24]  773 	lcall	_spi_control_write
+      002175 12 39 7A         [24]  773 	lcall	_spi_control_write
       002178 D0 06            [24]  774 	pop	ar6
       00217A D0 07            [24]  775 	pop	ar7
                                     776 ;	Eth.c:68: spi_control_write(0, 0x05, (uint8_t)((start_address >> 8) & 0xFF)); // High byte
       00217C 8F 06            [24]  777 	mov	ar6,r7
-      00217E 90 03 70         [24]  778 	mov	dptr,#_spi_control_write_PARM_2
+      00217E 90 03 84         [24]  778 	mov	dptr,#_spi_control_write_PARM_2
       002181 74 05            [12]  779 	mov	a,#0x05
       002183 F0               [24]  780 	movx	@dptr,a
-      002184 90 03 71         [24]  781 	mov	dptr,#_spi_control_write_PARM_3
+      002184 90 03 85         [24]  781 	mov	dptr,#_spi_control_write_PARM_3
       002187 EE               [12]  782 	mov	a,r6
       002188 F0               [24]  783 	movx	@dptr,a
       002189 75 82 00         [24]  784 	mov	dpl, #0x00
-      00218C 12 39 05         [24]  785 	lcall	_spi_control_write
+      00218C 12 39 7A         [24]  785 	lcall	_spi_control_write
                                     786 ;	Eth.c:71: spi_control_write(0, 0x06, (uint8_t)(end_address & 0xFF)); // Low byte
       00218F 90 01 06         [24]  787 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
       002192 E0               [24]  788 	movx	a,@dptr
@@ -791,29 +791,29 @@
       002195 E0               [24]  791 	movx	a,@dptr
       002196 FF               [12]  792 	mov	r7,a
       002197 8E 05            [24]  793 	mov	ar5,r6
-      002199 90 03 70         [24]  794 	mov	dptr,#_spi_control_write_PARM_2
+      002199 90 03 84         [24]  794 	mov	dptr,#_spi_control_write_PARM_2
       00219C 74 06            [12]  795 	mov	a,#0x06
       00219E F0               [24]  796 	movx	@dptr,a
-      00219F 90 03 71         [24]  797 	mov	dptr,#_spi_control_write_PARM_3
+      00219F 90 03 85         [24]  797 	mov	dptr,#_spi_control_write_PARM_3
       0021A2 ED               [12]  798 	mov	a,r5
       0021A3 F0               [24]  799 	movx	@dptr,a
       0021A4 75 82 00         [24]  800 	mov	dpl, #0x00
       0021A7 C0 07            [24]  801 	push	ar7
       0021A9 C0 06            [24]  802 	push	ar6
-      0021AB 12 39 05         [24]  803 	lcall	_spi_control_write
+      0021AB 12 39 7A         [24]  803 	lcall	_spi_control_write
       0021AE D0 06            [24]  804 	pop	ar6
       0021B0 D0 07            [24]  805 	pop	ar7
                                     806 ;	Eth.c:72: spi_control_write(0, 0x07, (uint8_t)((end_address >> 8) & 0xFF)); // High byte
       0021B2 8F 06            [24]  807 	mov	ar6,r7
-      0021B4 90 03 70         [24]  808 	mov	dptr,#_spi_control_write_PARM_2
+      0021B4 90 03 84         [24]  808 	mov	dptr,#_spi_control_write_PARM_2
       0021B7 74 07            [12]  809 	mov	a,#0x07
       0021B9 F0               [24]  810 	movx	@dptr,a
-      0021BA 90 03 71         [24]  811 	mov	dptr,#_spi_control_write_PARM_3
+      0021BA 90 03 85         [24]  811 	mov	dptr,#_spi_control_write_PARM_3
       0021BD EE               [12]  812 	mov	a,r6
       0021BE F0               [24]  813 	movx	@dptr,a
       0021BF 75 82 00         [24]  814 	mov	dpl, #0x00
                                     815 ;	Eth.c:73: }
-      0021C2 02 39 05         [24]  816 	ljmp	_spi_control_write
+      0021C2 02 39 7A         [24]  816 	ljmp	_spi_control_write
                                     817 ;------------------------------------------------------------
                                     818 ;Allocation info for local variables in function 'wait_for_transmission_complete'
                                     819 ;------------------------------------------------------------
@@ -850,7 +850,7 @@
       0021E0 9F               [12]  850 	subb	a,r7
       0021E1 50 41            [24]  851 	jnc	00105$
                                     852 ;	Eth.c:80: uint8_t econ1 = mac_spi_read(0x1F, 0); // Read ECON1
-      0021E3 90 03 79         [24]  853 	mov	dptr,#_mac_spi_read_PARM_2
+      0021E3 90 03 8D         [24]  853 	mov	dptr,#_mac_spi_read_PARM_2
       0021E6 E4               [12]  854 	clr	a
       0021E7 F0               [24]  855 	movx	@dptr,a
       0021E8 75 82 1F         [24]  856 	mov	dpl, #0x1f
@@ -858,7 +858,7 @@
       0021ED C0 06            [24]  858 	push	ar6
       0021EF C0 05            [24]  859 	push	ar5
       0021F1 C0 04            [24]  860 	push	ar4
-      0021F3 12 3A 7B         [24]  861 	lcall	_mac_spi_read
+      0021F3 12 3A 96         [24]  861 	lcall	_mac_spi_read
       0021F6 E5 82            [12]  862 	mov	a, dpl
       0021F8 D0 04            [24]  863 	pop	ar4
       0021FA D0 05            [24]  864 	pop	ar5
@@ -902,11 +902,11 @@
                                     902 ;	-----------------------------------------
       002228                        903 _enc28j60_transmission_successful:
                                     904 ;	Eth.c:94: uint8_t estat = mac_spi_read(0x1D, 0); // Read ESTAT
-      002228 90 03 79         [24]  905 	mov	dptr,#_mac_spi_read_PARM_2
+      002228 90 03 8D         [24]  905 	mov	dptr,#_mac_spi_read_PARM_2
       00222B E4               [12]  906 	clr	a
       00222C F0               [24]  907 	movx	@dptr,a
       00222D 75 82 1D         [24]  908 	mov	dpl, #0x1d
-      002230 12 3A 7B         [24]  909 	lcall	_mac_spi_read
+      002230 12 3A 96         [24]  909 	lcall	_mac_spi_read
                                     910 ;	Eth.c:95: return !(estat & 0x02); // Check if TXABRT (bit 1) is not set
       002233 E5 82            [12]  911 	mov	a,dpl
       002235 03               [12]  912 	rr	a
@@ -1262,13 +1262,13 @@
       002411 80 CC            [24] 1262 	sjmp	00127$
       002413                       1263 00105$:
                                    1264 ;	Eth.c:176: spi_buffer_write(frame_size, start_address, arp_packet);
-      002413 90 03 88         [24] 1265 	mov	dptr,#_spi_buffer_write_PARM_2
+      002413 90 03 9C         [24] 1265 	mov	dptr,#_spi_buffer_write_PARM_2
       002416 E4               [12] 1266 	clr	a
       002417 F0               [24] 1267 	movx	@dptr,a
       002418 74 0C            [12] 1268 	mov	a,#0x0c
       00241A A3               [24] 1269 	inc	dptr
       00241B F0               [24] 1270 	movx	@dptr,a
-      00241C 90 03 8A         [24] 1271 	mov	dptr,#_spi_buffer_write_PARM_3
+      00241C 90 03 9E         [24] 1271 	mov	dptr,#_spi_buffer_write_PARM_3
       00241F 74 20            [12] 1272 	mov	a,#_send_arp_request_arp_packet_10000_138
       002421 F0               [24] 1273 	movx	@dptr,a
       002422 74 01            [12] 1274 	mov	a,#(_send_arp_request_arp_packet_10000_138 >> 8)
@@ -1278,7 +1278,7 @@
       002427 A3               [24] 1278 	inc	dptr
       002428 F0               [24] 1279 	movx	@dptr,a
       002429 90 00 2C         [24] 1280 	mov	dptr,#0x002c
-      00242C 12 3E 34         [24] 1281 	lcall	_spi_buffer_write
+      00242C 12 3E 14         [24] 1281 	lcall	_spi_buffer_write
                                    1282 ;	Eth.c:179: enc28j60_set_transmit_pointers(start_address, end_address);
       00242F 90 01 06         [24] 1283 	mov	dptr,#_enc28j60_set_transmit_pointers_PARM_2
       002432 74 2B            [12] 1284 	mov	a,#0x2b
@@ -1300,39 +1300,39 @@
       00244F E5 82            [12] 1300 	mov	a, dpl
       002451 60 16            [24] 1301 	jz	00109$
                                    1302 ;	Eth.c:189: printf("ARP request sent successfully.\n\r");
-      002453 74 2C            [12] 1303 	mov	a,#___str_1
+      002453 74 93            [12] 1303 	mov	a,#___str_1
       002455 C0 E0            [24] 1304 	push	acc
-      002457 74 6C            [12] 1305 	mov	a,#(___str_1 >> 8)
+      002457 74 6E            [12] 1305 	mov	a,#(___str_1 >> 8)
       002459 C0 E0            [24] 1306 	push	acc
       00245B 74 80            [12] 1307 	mov	a,#0x80
       00245D C0 E0            [24] 1308 	push	acc
-      00245F 12 61 AF         [24] 1309 	lcall	_printf
+      00245F 12 64 16         [24] 1309 	lcall	_printf
       002462 15 81            [12] 1310 	dec	sp
       002464 15 81            [12] 1311 	dec	sp
       002466 15 81            [12] 1312 	dec	sp
       002468 22               [24] 1313 	ret
       002469                       1314 00109$:
                                    1315 ;	Eth.c:191: printf("ARP transmission failed. Check error flags.\n\r");
-      002469 74 4D            [12] 1316 	mov	a,#___str_2
+      002469 74 B4            [12] 1316 	mov	a,#___str_2
       00246B C0 E0            [24] 1317 	push	acc
-      00246D 74 6C            [12] 1318 	mov	a,#(___str_2 >> 8)
+      00246D 74 6E            [12] 1318 	mov	a,#(___str_2 >> 8)
       00246F C0 E0            [24] 1319 	push	acc
       002471 74 80            [12] 1320 	mov	a,#0x80
       002473 C0 E0            [24] 1321 	push	acc
-      002475 12 61 AF         [24] 1322 	lcall	_printf
+      002475 12 64 16         [24] 1322 	lcall	_printf
       002478 15 81            [12] 1323 	dec	sp
       00247A 15 81            [12] 1324 	dec	sp
       00247C 15 81            [12] 1325 	dec	sp
       00247E 22               [24] 1326 	ret
       00247F                       1327 00112$:
                                    1328 ;	Eth.c:194: printf("Transmission timeout. ENC28J60 may not be functioning correctly.\n\r");
-      00247F 74 7B            [12] 1329 	mov	a,#___str_3
+      00247F 74 E2            [12] 1329 	mov	a,#___str_3
       002481 C0 E0            [24] 1330 	push	acc
-      002483 74 6C            [12] 1331 	mov	a,#(___str_3 >> 8)
+      002483 74 6E            [12] 1331 	mov	a,#(___str_3 >> 8)
       002485 C0 E0            [24] 1332 	push	acc
       002487 74 80            [12] 1333 	mov	a,#0x80
       002489 C0 E0            [24] 1334 	push	acc
-      00248B 12 61 AF         [24] 1335 	lcall	_printf
+      00248B 12 64 16         [24] 1335 	lcall	_printf
       00248E 15 81            [12] 1336 	dec	sp
       002490 15 81            [12] 1337 	dec	sp
       002492 15 81            [12] 1338 	dec	sp
@@ -1364,13 +1364,13 @@
       0024AF C0 D0            [24] 1364 	push	psw
       0024B1 75 D0 00         [24] 1365 	mov	psw,#0x00
                                    1366 ;	Eth.c:202: printf("Interrrrrrrruuuuuuuuuppppppppttttttt\n\r");
-      0024B4 74 BE            [12] 1367 	mov	a,#___str_4
+      0024B4 74 25            [12] 1367 	mov	a,#___str_4
       0024B6 C0 E0            [24] 1368 	push	acc
-      0024B8 74 6C            [12] 1369 	mov	a,#(___str_4 >> 8)
+      0024B8 74 6F            [12] 1369 	mov	a,#(___str_4 >> 8)
       0024BA C0 E0            [24] 1370 	push	acc
       0024BC 74 80            [12] 1371 	mov	a,#0x80
       0024BE C0 E0            [24] 1372 	push	acc
-      0024C0 12 61 AF         [24] 1373 	lcall	_printf
+      0024C0 12 64 16         [24] 1373 	lcall	_printf
       0024C3 15 81            [12] 1374 	dec	sp
       0024C5 15 81            [12] 1375 	dec	sp
       0024C7 15 81            [12] 1376 	dec	sp
@@ -1458,13 +1458,13 @@
       002533 A3               [24] 1458 	inc	dptr
       002534 E0               [24] 1459 	movx	a,@dptr
       002535 C0 E0            [24] 1460 	push	acc
-      002537 74 E5            [12] 1461 	mov	a,#___str_5
+      002537 74 4C            [12] 1461 	mov	a,#___str_5
       002539 C0 E0            [24] 1462 	push	acc
-      00253B 74 6C            [12] 1463 	mov	a,#(___str_5 >> 8)
+      00253B 74 6F            [12] 1463 	mov	a,#(___str_5 >> 8)
       00253D C0 E0            [24] 1464 	push	acc
       00253F 74 80            [12] 1465 	mov	a,#0x80
       002541 C0 E0            [24] 1466 	push	acc
-      002543 12 61 AF         [24] 1467 	lcall	_printf
+      002543 12 64 16         [24] 1467 	lcall	_printf
       002546 E5 81            [12] 1468 	mov	a,sp
       002548 24 F9            [12] 1469 	add	a,#0xf9
       00254A F5 81            [12] 1470 	mov	sp,a
@@ -1487,10 +1487,10 @@
       00255E E0               [24] 1487 	movx	a,@dptr
       00255F FF               [12] 1488 	mov	r7,a
       002560 8E 03            [24] 1489 	mov	ar3,r6
-      002562 90 03 70         [24] 1490 	mov	dptr,#_spi_control_write_PARM_2
+      002562 90 03 84         [24] 1490 	mov	dptr,#_spi_control_write_PARM_2
       002565 E4               [12] 1491 	clr	a
       002566 F0               [24] 1492 	movx	@dptr,a
-      002567 90 03 71         [24] 1493 	mov	dptr,#_spi_control_write_PARM_3
+      002567 90 03 85         [24] 1493 	mov	dptr,#_spi_control_write_PARM_3
       00256A EB               [12] 1494 	mov	a,r3
       00256B F0               [24] 1495 	movx	@dptr,a
       00256C 75 82 00         [24] 1496 	mov	dpl, #0x00
@@ -1499,7 +1499,7 @@
       002573 C0 05            [24] 1499 	push	ar5
       002575 C0 04            [24] 1500 	push	ar4
       002577 C0 03            [24] 1501 	push	ar3
-      002579 12 39 05         [24] 1502 	lcall	_spi_control_write
+      002579 12 39 7A         [24] 1502 	lcall	_spi_control_write
       00257C D0 03            [24] 1503 	pop	ar3
       00257E D0 04            [24] 1504 	pop	ar4
       002580 D0 05            [24] 1505 	pop	ar5
@@ -1507,10 +1507,10 @@
       002584 D0 07            [24] 1507 	pop	ar7
                                    1508 ;	Eth.c:232: spi_control_write(0, 0x01, (uint8_t) (start_address >> 8)); // ERDPTH
       002586 8F 02            [24] 1509 	mov	ar2,r7
-      002588 90 03 70         [24] 1510 	mov	dptr,#_spi_control_write_PARM_2
+      002588 90 03 84         [24] 1510 	mov	dptr,#_spi_control_write_PARM_2
       00258B 74 01            [12] 1511 	mov	a,#0x01
       00258D F0               [24] 1512 	movx	@dptr,a
-      00258E 90 03 71         [24] 1513 	mov	dptr,#_spi_control_write_PARM_3
+      00258E 90 03 85         [24] 1513 	mov	dptr,#_spi_control_write_PARM_3
       002591 EA               [12] 1514 	mov	a,r2
       002592 F0               [24] 1515 	movx	@dptr,a
       002593 75 82 00         [24] 1516 	mov	dpl, #0x00
@@ -1520,7 +1520,7 @@
       00259C C0 04            [24] 1520 	push	ar4
       00259E C0 03            [24] 1521 	push	ar3
       0025A0 C0 02            [24] 1522 	push	ar2
-      0025A2 12 39 05         [24] 1523 	lcall	_spi_control_write
+      0025A2 12 39 7A         [24] 1523 	lcall	_spi_control_write
       0025A5 D0 02            [24] 1524 	pop	ar2
       0025A7 D0 03            [24] 1525 	pop	ar3
       0025A9 D0 04            [24] 1526 	pop	ar4
@@ -1528,10 +1528,10 @@
       0025AD D0 06            [24] 1528 	pop	ar6
       0025AF D0 07            [24] 1529 	pop	ar7
                                    1530 ;	Eth.c:233: spi_control_write(0, 0x08, (uint8_t) (start_address & 0xFF)); // ERXSTL
-      0025B1 90 03 70         [24] 1531 	mov	dptr,#_spi_control_write_PARM_2
+      0025B1 90 03 84         [24] 1531 	mov	dptr,#_spi_control_write_PARM_2
       0025B4 74 08            [12] 1532 	mov	a,#0x08
       0025B6 F0               [24] 1533 	movx	@dptr,a
-      0025B7 90 03 71         [24] 1534 	mov	dptr,#_spi_control_write_PARM_3
+      0025B7 90 03 85         [24] 1534 	mov	dptr,#_spi_control_write_PARM_3
       0025BA EB               [12] 1535 	mov	a,r3
       0025BB F0               [24] 1536 	movx	@dptr,a
       0025BC 75 82 00         [24] 1537 	mov	dpl, #0x00
@@ -1541,7 +1541,7 @@
       0025C5 C0 04            [24] 1541 	push	ar4
       0025C7 C0 03            [24] 1542 	push	ar3
       0025C9 C0 02            [24] 1543 	push	ar2
-      0025CB 12 39 05         [24] 1544 	lcall	_spi_control_write
+      0025CB 12 39 7A         [24] 1544 	lcall	_spi_control_write
       0025CE D0 02            [24] 1545 	pop	ar2
       0025D0 D0 03            [24] 1546 	pop	ar3
       0025D2 D0 04            [24] 1547 	pop	ar4
@@ -1549,10 +1549,10 @@
       0025D6 D0 06            [24] 1549 	pop	ar6
       0025D8 D0 07            [24] 1550 	pop	ar7
                                    1551 ;	Eth.c:234: spi_control_write(0, 0x09, (uint8_t) (start_address >> 8)); // ERXSTH
-      0025DA 90 03 70         [24] 1552 	mov	dptr,#_spi_control_write_PARM_2
+      0025DA 90 03 84         [24] 1552 	mov	dptr,#_spi_control_write_PARM_2
       0025DD 74 09            [12] 1553 	mov	a,#0x09
       0025DF F0               [24] 1554 	movx	@dptr,a
-      0025E0 90 03 71         [24] 1555 	mov	dptr,#_spi_control_write_PARM_3
+      0025E0 90 03 85         [24] 1555 	mov	dptr,#_spi_control_write_PARM_3
       0025E3 EA               [12] 1556 	mov	a,r2
       0025E4 F0               [24] 1557 	movx	@dptr,a
       0025E5 75 82 00         [24] 1558 	mov	dpl, #0x00
@@ -1562,7 +1562,7 @@
       0025EE C0 04            [24] 1562 	push	ar4
       0025F0 C0 03            [24] 1563 	push	ar3
       0025F2 C0 02            [24] 1564 	push	ar2
-      0025F4 12 39 05         [24] 1565 	lcall	_spi_control_write
+      0025F4 12 39 7A         [24] 1565 	lcall	_spi_control_write
       0025F7 D0 02            [24] 1566 	pop	ar2
       0025F9 D0 03            [24] 1567 	pop	ar3
       0025FB D0 04            [24] 1568 	pop	ar4
@@ -1571,10 +1571,10 @@
       002601 D0 07            [24] 1571 	pop	ar7
                                    1572 ;	Eth.c:235: spi_control_write(0, 0x0A, (uint8_t) (end_address & 0xFF)); // ERXNDL
       002603 8C 01            [24] 1573 	mov	ar1,r4
-      002605 90 03 70         [24] 1574 	mov	dptr,#_spi_control_write_PARM_2
+      002605 90 03 84         [24] 1574 	mov	dptr,#_spi_control_write_PARM_2
       002608 74 0A            [12] 1575 	mov	a,#0x0a
       00260A F0               [24] 1576 	movx	@dptr,a
-      00260B 90 03 71         [24] 1577 	mov	dptr,#_spi_control_write_PARM_3
+      00260B 90 03 85         [24] 1577 	mov	dptr,#_spi_control_write_PARM_3
       00260E E9               [12] 1578 	mov	a,r1
       00260F F0               [24] 1579 	movx	@dptr,a
       002610 75 82 00         [24] 1580 	mov	dpl, #0x00
@@ -1584,7 +1584,7 @@
       002619 C0 04            [24] 1584 	push	ar4
       00261B C0 03            [24] 1585 	push	ar3
       00261D C0 02            [24] 1586 	push	ar2
-      00261F 12 39 05         [24] 1587 	lcall	_spi_control_write
+      00261F 12 39 7A         [24] 1587 	lcall	_spi_control_write
       002622 D0 02            [24] 1588 	pop	ar2
       002624 D0 03            [24] 1589 	pop	ar3
       002626 D0 04            [24] 1590 	pop	ar4
@@ -1593,10 +1593,10 @@
       00262C D0 07            [24] 1593 	pop	ar7
                                    1594 ;	Eth.c:236: spi_control_write(0, 0x0B, (uint8_t) (end_address >> 8)); // ERXNDH
       00262E 8D 01            [24] 1595 	mov	ar1,r5
-      002630 90 03 70         [24] 1596 	mov	dptr,#_spi_control_write_PARM_2
+      002630 90 03 84         [24] 1596 	mov	dptr,#_spi_control_write_PARM_2
       002633 74 0B            [12] 1597 	mov	a,#0x0b
       002635 F0               [24] 1598 	movx	@dptr,a
-      002636 90 03 71         [24] 1599 	mov	dptr,#_spi_control_write_PARM_3
+      002636 90 03 85         [24] 1599 	mov	dptr,#_spi_control_write_PARM_3
       002639 E9               [12] 1600 	mov	a,r1
       00263A F0               [24] 1601 	movx	@dptr,a
       00263B 75 82 00         [24] 1602 	mov	dpl, #0x00
@@ -1606,7 +1606,7 @@
       002644 C0 04            [24] 1606 	push	ar4
       002646 C0 03            [24] 1607 	push	ar3
       002648 C0 02            [24] 1608 	push	ar2
-      00264A 12 39 05         [24] 1609 	lcall	_spi_control_write
+      00264A 12 39 7A         [24] 1609 	lcall	_spi_control_write
       00264D D0 02            [24] 1610 	pop	ar2
       00264F D0 03            [24] 1611 	pop	ar3
       002651 D0 04            [24] 1612 	pop	ar4
@@ -1614,10 +1614,10 @@
       002655 D0 06            [24] 1614 	pop	ar6
       002657 D0 07            [24] 1615 	pop	ar7
                                    1616 ;	Eth.c:237: spi_control_write(0, 0x0C, (uint8_t) (start_address & 0xFF)); // ERXRDPTL
-      002659 90 03 70         [24] 1617 	mov	dptr,#_spi_control_write_PARM_2
+      002659 90 03 84         [24] 1617 	mov	dptr,#_spi_control_write_PARM_2
       00265C 74 0C            [12] 1618 	mov	a,#0x0c
       00265E F0               [24] 1619 	movx	@dptr,a
-      00265F 90 03 71         [24] 1620 	mov	dptr,#_spi_control_write_PARM_3
+      00265F 90 03 85         [24] 1620 	mov	dptr,#_spi_control_write_PARM_3
       002662 EB               [12] 1621 	mov	a,r3
       002663 F0               [24] 1622 	movx	@dptr,a
       002664 75 82 00         [24] 1623 	mov	dpl, #0x00
@@ -1626,17 +1626,17 @@
       00266B C0 05            [24] 1626 	push	ar5
       00266D C0 04            [24] 1627 	push	ar4
       00266F C0 02            [24] 1628 	push	ar2
-      002671 12 39 05         [24] 1629 	lcall	_spi_control_write
+      002671 12 39 7A         [24] 1629 	lcall	_spi_control_write
       002674 D0 02            [24] 1630 	pop	ar2
       002676 D0 04            [24] 1631 	pop	ar4
       002678 D0 05            [24] 1632 	pop	ar5
       00267A D0 06            [24] 1633 	pop	ar6
       00267C D0 07            [24] 1634 	pop	ar7
                                    1635 ;	Eth.c:238: spi_control_write(0, 0x0D, (uint8_t) (start_address >> 8)); // ERXRDPTH
-      00267E 90 03 70         [24] 1636 	mov	dptr,#_spi_control_write_PARM_2
+      00267E 90 03 84         [24] 1636 	mov	dptr,#_spi_control_write_PARM_2
       002681 74 0D            [12] 1637 	mov	a,#0x0d
       002683 F0               [24] 1638 	movx	@dptr,a
-      002684 90 03 71         [24] 1639 	mov	dptr,#_spi_control_write_PARM_3
+      002684 90 03 85         [24] 1639 	mov	dptr,#_spi_control_write_PARM_3
       002687 EA               [12] 1640 	mov	a,r2
       002688 F0               [24] 1641 	movx	@dptr,a
       002689 75 82 00         [24] 1642 	mov	dpl, #0x00
@@ -1644,7 +1644,7 @@
       00268E C0 06            [24] 1644 	push	ar6
       002690 C0 05            [24] 1645 	push	ar5
       002692 C0 04            [24] 1646 	push	ar4
-      002694 12 39 05         [24] 1647 	lcall	_spi_control_write
+      002694 12 39 7A         [24] 1647 	lcall	_spi_control_write
       002697 D0 04            [24] 1648 	pop	ar4
       002699 D0 05            [24] 1649 	pop	ar5
       00269B D0 06            [24] 1650 	pop	ar6
@@ -1654,13 +1654,13 @@
       0026A1 C0 05            [24] 1654 	push	ar5
       0026A3 C0 06            [24] 1655 	push	ar6
       0026A5 C0 07            [24] 1656 	push	ar7
-      0026A7 74 16            [12] 1657 	mov	a,#___str_6
+      0026A7 74 7D            [12] 1657 	mov	a,#___str_6
       0026A9 C0 E0            [24] 1658 	push	acc
-      0026AB 74 6D            [12] 1659 	mov	a,#(___str_6 >> 8)
+      0026AB 74 6F            [12] 1659 	mov	a,#(___str_6 >> 8)
       0026AD C0 E0            [24] 1660 	push	acc
       0026AF 74 80            [12] 1661 	mov	a,#0x80
       0026B1 C0 E0            [24] 1662 	push	acc
-      0026B3 12 61 AF         [24] 1663 	lcall	_printf
+      0026B3 12 64 16         [24] 1663 	lcall	_printf
       0026B6 E5 81            [12] 1664 	mov	a,sp
       0026B8 24 F9            [12] 1665 	add	a,#0xf9
       0026BA F5 81            [12] 1666 	mov	sp,a
@@ -1698,14 +1698,14 @@
       0026CB A3               [24] 1698 	inc	dptr
       0026CC F0               [24] 1699 	movx	@dptr,a
                                    1700 ;	Eth.c:246: enc_reset();
-      0026CD 12 39 7F         [24] 1701 	lcall	_enc_reset
+      0026CD 12 39 C5         [24] 1701 	lcall	_enc_reset
                                    1702 ;	Eth.c:249: while (!(mac_spi_read(0x1D, 0) & 0x01))
       0026D0                       1703 00101$:
-      0026D0 90 03 79         [24] 1704 	mov	dptr,#_mac_spi_read_PARM_2
+      0026D0 90 03 8D         [24] 1704 	mov	dptr,#_mac_spi_read_PARM_2
       0026D3 E4               [12] 1705 	clr	a
       0026D4 F0               [24] 1706 	movx	@dptr,a
       0026D5 75 82 1D         [24] 1707 	mov	dpl, #0x1d
-      0026D8 12 3A 7B         [24] 1708 	lcall	_mac_spi_read
+      0026D8 12 3A 96         [24] 1708 	lcall	_mac_spi_read
       0026DB E5 82            [12] 1709 	mov	a, dpl
       0026DD 30 E0 F0         [24] 1710 	jnb	acc.0,00101$
                                    1711 ;	Eth.c:259: enc_buffer_init(rx_start, rx_end);
@@ -1718,167 +1718,167 @@
       0026EA 90 00 00         [24] 1718 	mov	dptr,#0x0000
       0026ED 12 24 F2         [24] 1719 	lcall	_enc_buffer_init
                                    1720 ;	Eth.c:261: spi_control_write(0, 0x04, (uint8_t) (tx_start & 0xFF)); // Low byte
-      0026F0 90 03 70         [24] 1721 	mov	dptr,#_spi_control_write_PARM_2
+      0026F0 90 03 84         [24] 1721 	mov	dptr,#_spi_control_write_PARM_2
       0026F3 74 04            [12] 1722 	mov	a,#0x04
       0026F5 F0               [24] 1723 	movx	@dptr,a
-      0026F6 90 03 71         [24] 1724 	mov	dptr,#_spi_control_write_PARM_3
+      0026F6 90 03 85         [24] 1724 	mov	dptr,#_spi_control_write_PARM_3
       0026F9 E4               [12] 1725 	clr	a
       0026FA F0               [24] 1726 	movx	@dptr,a
       0026FB 75 82 00         [24] 1727 	mov	dpl, #0x00
-      0026FE 12 39 05         [24] 1728 	lcall	_spi_control_write
+      0026FE 12 39 7A         [24] 1728 	lcall	_spi_control_write
                                    1729 ;	Eth.c:262: spi_control_write(0, 0x05, (uint8_t) ((tx_start >> 8) & 0xFF)); // High byte
-      002701 90 03 70         [24] 1730 	mov	dptr,#_spi_control_write_PARM_2
+      002701 90 03 84         [24] 1730 	mov	dptr,#_spi_control_write_PARM_2
       002704 74 05            [12] 1731 	mov	a,#0x05
       002706 F0               [24] 1732 	movx	@dptr,a
-      002707 90 03 71         [24] 1733 	mov	dptr,#_spi_control_write_PARM_3
+      002707 90 03 85         [24] 1733 	mov	dptr,#_spi_control_write_PARM_3
       00270A 74 0C            [12] 1734 	mov	a,#0x0c
       00270C F0               [24] 1735 	movx	@dptr,a
       00270D 75 82 00         [24] 1736 	mov	dpl, #0x00
-      002710 12 39 05         [24] 1737 	lcall	_spi_control_write
+      002710 12 39 7A         [24] 1737 	lcall	_spi_control_write
                                    1738 ;	Eth.c:265: spi_control_write(0, 0x06, (uint8_t) (tx_end & 0xFF)); // Low byte
-      002713 90 03 70         [24] 1739 	mov	dptr,#_spi_control_write_PARM_2
+      002713 90 03 84         [24] 1739 	mov	dptr,#_spi_control_write_PARM_2
       002716 74 06            [12] 1740 	mov	a,#0x06
       002718 F0               [24] 1741 	movx	@dptr,a
-      002719 90 03 71         [24] 1742 	mov	dptr,#_spi_control_write_PARM_3
+      002719 90 03 85         [24] 1742 	mov	dptr,#_spi_control_write_PARM_3
       00271C 74 FF            [12] 1743 	mov	a,#0xff
       00271E F0               [24] 1744 	movx	@dptr,a
       00271F 75 82 00         [24] 1745 	mov	dpl, #0x00
-      002722 12 39 05         [24] 1746 	lcall	_spi_control_write
+      002722 12 39 7A         [24] 1746 	lcall	_spi_control_write
                                    1747 ;	Eth.c:266: spi_control_write(0, 0x07, (uint8_t) ((tx_end >> 8) & 0xFF)); // High byte
-      002725 90 03 70         [24] 1748 	mov	dptr,#_spi_control_write_PARM_2
+      002725 90 03 84         [24] 1748 	mov	dptr,#_spi_control_write_PARM_2
       002728 74 07            [12] 1749 	mov	a,#0x07
       00272A F0               [24] 1750 	movx	@dptr,a
-      00272B 90 03 71         [24] 1751 	mov	dptr,#_spi_control_write_PARM_3
+      00272B 90 03 85         [24] 1751 	mov	dptr,#_spi_control_write_PARM_3
       00272E 74 11            [12] 1752 	mov	a,#0x11
       002730 F0               [24] 1753 	movx	@dptr,a
       002731 75 82 00         [24] 1754 	mov	dpl, #0x00
-      002734 12 39 05         [24] 1755 	lcall	_spi_control_write
+      002734 12 39 7A         [24] 1755 	lcall	_spi_control_write
                                    1756 ;	Eth.c:268: spi_control_write(1, 0x18, 0xB1);// crcen,ucen,pcen,bcen
-      002737 90 03 70         [24] 1757 	mov	dptr,#_spi_control_write_PARM_2
+      002737 90 03 84         [24] 1757 	mov	dptr,#_spi_control_write_PARM_2
       00273A 74 18            [12] 1758 	mov	a,#0x18
       00273C F0               [24] 1759 	movx	@dptr,a
-      00273D 90 03 71         [24] 1760 	mov	dptr,#_spi_control_write_PARM_3
+      00273D 90 03 85         [24] 1760 	mov	dptr,#_spi_control_write_PARM_3
       002740 74 B1            [12] 1761 	mov	a,#0xb1
       002742 F0               [24] 1762 	movx	@dptr,a
       002743 75 82 01         [24] 1763 	mov	dpl, #0x01
-      002746 12 39 05         [24] 1764 	lcall	_spi_control_write
+      002746 12 39 7A         [24] 1764 	lcall	_spi_control_write
                                    1765 ;	Eth.c:269: spi_control_write(1, 0x08, 0x3F); //pattern match
-      002749 90 03 70         [24] 1766 	mov	dptr,#_spi_control_write_PARM_2
+      002749 90 03 84         [24] 1766 	mov	dptr,#_spi_control_write_PARM_2
       00274C 74 08            [12] 1767 	mov	a,#0x08
       00274E F0               [24] 1768 	movx	@dptr,a
-      00274F 90 03 71         [24] 1769 	mov	dptr,#_spi_control_write_PARM_3
+      00274F 90 03 85         [24] 1769 	mov	dptr,#_spi_control_write_PARM_3
       002752 74 3F            [12] 1770 	mov	a,#0x3f
       002754 F0               [24] 1771 	movx	@dptr,a
       002755 75 82 01         [24] 1772 	mov	dpl, #0x01
-      002758 12 39 05         [24] 1773 	lcall	_spi_control_write
+      002758 12 39 7A         [24] 1773 	lcall	_spi_control_write
                                    1774 ;	Eth.c:270: spi_control_write(1, 0x09, 0x30); //pattern match
-      00275B 90 03 70         [24] 1775 	mov	dptr,#_spi_control_write_PARM_2
+      00275B 90 03 84         [24] 1775 	mov	dptr,#_spi_control_write_PARM_2
       00275E 74 09            [12] 1776 	mov	a,#0x09
       002760 F0               [24] 1777 	movx	@dptr,a
-      002761 90 03 71         [24] 1778 	mov	dptr,#_spi_control_write_PARM_3
+      002761 90 03 85         [24] 1778 	mov	dptr,#_spi_control_write_PARM_3
       002764 74 30            [12] 1779 	mov	a,#0x30
       002766 F0               [24] 1780 	movx	@dptr,a
       002767 75 82 01         [24] 1781 	mov	dpl, #0x01
-      00276A 12 39 05         [24] 1782 	lcall	_spi_control_write
+      00276A 12 39 7A         [24] 1782 	lcall	_spi_control_write
                                    1783 ;	Eth.c:271: spi_control_write(1, 0x10, 0xF9); //pattern match
-      00276D 90 03 70         [24] 1784 	mov	dptr,#_spi_control_write_PARM_2
+      00276D 90 03 84         [24] 1784 	mov	dptr,#_spi_control_write_PARM_2
       002770 74 10            [12] 1785 	mov	a,#0x10
       002772 F0               [24] 1786 	movx	@dptr,a
-      002773 90 03 71         [24] 1787 	mov	dptr,#_spi_control_write_PARM_3
+      002773 90 03 85         [24] 1787 	mov	dptr,#_spi_control_write_PARM_3
       002776 74 F9            [12] 1788 	mov	a,#0xf9
       002778 F0               [24] 1789 	movx	@dptr,a
       002779 75 82 01         [24] 1790 	mov	dpl, #0x01
-      00277C 12 39 05         [24] 1791 	lcall	_spi_control_write
+      00277C 12 39 7A         [24] 1791 	lcall	_spi_control_write
                                    1792 ;	Eth.c:272: spi_control_write(1, 0x11, 0xF7); //pattern match
-      00277F 90 03 70         [24] 1793 	mov	dptr,#_spi_control_write_PARM_2
+      00277F 90 03 84         [24] 1793 	mov	dptr,#_spi_control_write_PARM_2
       002782 74 11            [12] 1794 	mov	a,#0x11
       002784 F0               [24] 1795 	movx	@dptr,a
-      002785 90 03 71         [24] 1796 	mov	dptr,#_spi_control_write_PARM_3
+      002785 90 03 85         [24] 1796 	mov	dptr,#_spi_control_write_PARM_3
       002788 74 F7            [12] 1797 	mov	a,#0xf7
       00278A F0               [24] 1798 	movx	@dptr,a
       00278B 75 82 01         [24] 1799 	mov	dpl, #0x01
-      00278E 12 39 05         [24] 1800 	lcall	_spi_control_write
+      00278E 12 39 7A         [24] 1800 	lcall	_spi_control_write
                                    1801 ;	Eth.c:274: uint8_t read_macon1 = mac_spi_read(0x00, 2); //mac enable for reception
-      002791 90 03 79         [24] 1802 	mov	dptr,#_mac_spi_read_PARM_2
+      002791 90 03 8D         [24] 1802 	mov	dptr,#_mac_spi_read_PARM_2
       002794 74 02            [12] 1803 	mov	a,#0x02
       002796 F0               [24] 1804 	movx	@dptr,a
       002797 75 82 00         [24] 1805 	mov	dpl, #0x00
-      00279A 12 3A 7B         [24] 1806 	lcall	_mac_spi_read
+      00279A 12 3A 96         [24] 1806 	lcall	_mac_spi_read
       00279D E5 82            [12] 1807 	mov	a, dpl
                                    1808 ;	Eth.c:275: spi_control_write   (2, 0x00, (read_macon1 | (1 << 0))); //mac enable for reception
       00279F 44 01            [12] 1809 	orl	a,#0x01
       0027A1 FF               [12] 1810 	mov	r7,a
-      0027A2 90 03 70         [24] 1811 	mov	dptr,#_spi_control_write_PARM_2
+      0027A2 90 03 84         [24] 1811 	mov	dptr,#_spi_control_write_PARM_2
       0027A5 E4               [12] 1812 	clr	a
       0027A6 F0               [24] 1813 	movx	@dptr,a
-      0027A7 90 03 71         [24] 1814 	mov	dptr,#_spi_control_write_PARM_3
+      0027A7 90 03 85         [24] 1814 	mov	dptr,#_spi_control_write_PARM_3
       0027AA EF               [12] 1815 	mov	a,r7
       0027AB F0               [24] 1816 	movx	@dptr,a
       0027AC 75 82 02         [24] 1817 	mov	dpl, #0x02
-      0027AF 12 39 05         [24] 1818 	lcall	_spi_control_write
+      0027AF 12 39 7A         [24] 1818 	lcall	_spi_control_write
                                    1819 ;	Eth.c:277: spi_control_write(2, 0x02, 0x32); //MACON3_PADCFG0|MACON3_TXCRCEN|MACON3_FRMLNEN)
-      0027B2 90 03 70         [24] 1820 	mov	dptr,#_spi_control_write_PARM_2
+      0027B2 90 03 84         [24] 1820 	mov	dptr,#_spi_control_write_PARM_2
       0027B5 74 02            [12] 1821 	mov	a,#0x02
       0027B7 F0               [24] 1822 	movx	@dptr,a
-      0027B8 90 03 71         [24] 1823 	mov	dptr,#_spi_control_write_PARM_3
+      0027B8 90 03 85         [24] 1823 	mov	dptr,#_spi_control_write_PARM_3
       0027BB 74 32            [12] 1824 	mov	a,#0x32
       0027BD F0               [24] 1825 	movx	@dptr,a
       0027BE 75 82 02         [24] 1826 	mov	dpl, #0x02
-      0027C1 12 39 05         [24] 1827 	lcall	_spi_control_write
+      0027C1 12 39 7A         [24] 1827 	lcall	_spi_control_write
                                    1828 ;	Eth.c:281: spi_control_write(2, 0x06, 0x12); // MAIPGL: Non-back-to-back gap
-      0027C4 90 03 70         [24] 1829 	mov	dptr,#_spi_control_write_PARM_2
+      0027C4 90 03 84         [24] 1829 	mov	dptr,#_spi_control_write_PARM_2
       0027C7 74 06            [12] 1830 	mov	a,#0x06
       0027C9 F0               [24] 1831 	movx	@dptr,a
-      0027CA 90 03 71         [24] 1832 	mov	dptr,#_spi_control_write_PARM_3
+      0027CA 90 03 85         [24] 1832 	mov	dptr,#_spi_control_write_PARM_3
       0027CD 74 12            [12] 1833 	mov	a,#0x12
       0027CF F0               [24] 1834 	movx	@dptr,a
       0027D0 75 82 02         [24] 1835 	mov	dpl, #0x02
-      0027D3 12 39 05         [24] 1836 	lcall	_spi_control_write
+      0027D3 12 39 7A         [24] 1836 	lcall	_spi_control_write
                                    1837 ;	Eth.c:282: spi_control_write(2, 0x07, 0x0C); // MAIPGH: Non-back-to-back gap (Half Duplex)
-      0027D6 90 03 70         [24] 1838 	mov	dptr,#_spi_control_write_PARM_2
+      0027D6 90 03 84         [24] 1838 	mov	dptr,#_spi_control_write_PARM_2
       0027D9 74 07            [12] 1839 	mov	a,#0x07
       0027DB F0               [24] 1840 	movx	@dptr,a
-      0027DC 90 03 71         [24] 1841 	mov	dptr,#_spi_control_write_PARM_3
+      0027DC 90 03 85         [24] 1841 	mov	dptr,#_spi_control_write_PARM_3
       0027DF 74 0C            [12] 1842 	mov	a,#0x0c
       0027E1 F0               [24] 1843 	movx	@dptr,a
       0027E2 75 82 02         [24] 1844 	mov	dpl, #0x02
-      0027E5 12 39 05         [24] 1845 	lcall	_spi_control_write
+      0027E5 12 39 7A         [24] 1845 	lcall	_spi_control_write
                                    1846 ;	Eth.c:284: spi_control_write(2, 0x04, 0x12); // MABBIPG: Back-to-back gap (Full Duplex)
-      0027E8 90 03 70         [24] 1847 	mov	dptr,#_spi_control_write_PARM_2
+      0027E8 90 03 84         [24] 1847 	mov	dptr,#_spi_control_write_PARM_2
       0027EB 74 04            [12] 1848 	mov	a,#0x04
       0027ED F0               [24] 1849 	movx	@dptr,a
-      0027EE 90 03 71         [24] 1850 	mov	dptr,#_spi_control_write_PARM_3
+      0027EE 90 03 85         [24] 1850 	mov	dptr,#_spi_control_write_PARM_3
       0027F1 74 12            [12] 1851 	mov	a,#0x12
       0027F3 F0               [24] 1852 	movx	@dptr,a
       0027F4 75 82 02         [24] 1853 	mov	dpl, #0x02
-      0027F7 12 39 05         [24] 1854 	lcall	_spi_control_write
+      0027F7 12 39 7A         [24] 1854 	lcall	_spi_control_write
                                    1855 ;	Eth.c:286: spi_control_write(2, 0x03, 0x40); // MACON4: IEEE compliance00
-      0027FA 90 03 70         [24] 1856 	mov	dptr,#_spi_control_write_PARM_2
+      0027FA 90 03 84         [24] 1856 	mov	dptr,#_spi_control_write_PARM_2
       0027FD 74 03            [12] 1857 	mov	a,#0x03
       0027FF F0               [24] 1858 	movx	@dptr,a
-      002800 90 03 71         [24] 1859 	mov	dptr,#_spi_control_write_PARM_3
+      002800 90 03 85         [24] 1859 	mov	dptr,#_spi_control_write_PARM_3
       002803 74 40            [12] 1860 	mov	a,#0x40
       002805 F0               [24] 1861 	movx	@dptr,a
       002806 75 82 02         [24] 1862 	mov	dpl, #0x02
-      002809 12 39 05         [24] 1863 	lcall	_spi_control_write
+      002809 12 39 7A         [24] 1863 	lcall	_spi_control_write
                                    1864 ;	Eth.c:289: spi_control_write(2, 0x0A, 0xDC); // MAMXFLL
-      00280C 90 03 70         [24] 1865 	mov	dptr,#_spi_control_write_PARM_2
+      00280C 90 03 84         [24] 1865 	mov	dptr,#_spi_control_write_PARM_2
       00280F 74 0A            [12] 1866 	mov	a,#0x0a
       002811 F0               [24] 1867 	movx	@dptr,a
-      002812 90 03 71         [24] 1868 	mov	dptr,#_spi_control_write_PARM_3
+      002812 90 03 85         [24] 1868 	mov	dptr,#_spi_control_write_PARM_3
       002815 74 DC            [12] 1869 	mov	a,#0xdc
       002817 F0               [24] 1870 	movx	@dptr,a
       002818 75 82 02         [24] 1871 	mov	dpl, #0x02
-      00281B 12 39 05         [24] 1872 	lcall	_spi_control_write
+      00281B 12 39 7A         [24] 1872 	lcall	_spi_control_write
                                    1873 ;	Eth.c:290: spi_control_write(2, 0x0B, 0x05); // MAMXFLH
-      00281E 90 03 70         [24] 1874 	mov	dptr,#_spi_control_write_PARM_2
+      00281E 90 03 84         [24] 1874 	mov	dptr,#_spi_control_write_PARM_2
       002821 74 0B            [12] 1875 	mov	a,#0x0b
       002823 F0               [24] 1876 	movx	@dptr,a
-      002824 90 03 71         [24] 1877 	mov	dptr,#_spi_control_write_PARM_3
+      002824 90 03 85         [24] 1877 	mov	dptr,#_spi_control_write_PARM_3
       002827 74 05            [12] 1878 	mov	a,#0x05
       002829 F0               [24] 1879 	movx	@dptr,a
       00282A 75 82 02         [24] 1880 	mov	dpl, #0x02
-      00282D 12 39 05         [24] 1881 	lcall	_spi_control_write
+      00282D 12 39 7A         [24] 1881 	lcall	_spi_control_write
                                    1882 ;	Eth.c:293: spi_control_write(3, 0x01, mac[5]); // MAADR6
       002830 90 01 51         [24] 1883 	mov	dptr,#_enc_init_mac_10000_162
       002833 E0               [24] 1884 	movx	a,@dptr
@@ -1899,19 +1899,19 @@
       002846 85 08 82         [24] 1899 	mov	dpl,_enc_init_sloc0_1_0
       002849 85 09 83         [24] 1900 	mov	dph,(_enc_init_sloc0_1_0 + 1)
       00284C 85 0A F0         [24] 1901 	mov	b,(_enc_init_sloc0_1_0 + 2)
-      00284F 12 6B D1         [24] 1902 	lcall	__gptrget
+      00284F 12 6E 38         [24] 1902 	lcall	__gptrget
       002852 F9               [12] 1903 	mov	r1,a
-      002853 90 03 70         [24] 1904 	mov	dptr,#_spi_control_write_PARM_2
+      002853 90 03 84         [24] 1904 	mov	dptr,#_spi_control_write_PARM_2
       002856 74 01            [12] 1905 	mov	a,#0x01
       002858 F0               [24] 1906 	movx	@dptr,a
-      002859 90 03 71         [24] 1907 	mov	dptr,#_spi_control_write_PARM_3
+      002859 90 03 85         [24] 1907 	mov	dptr,#_spi_control_write_PARM_3
       00285C E9               [12] 1908 	mov	a,r1
       00285D F0               [24] 1909 	movx	@dptr,a
       00285E 75 82 03         [24] 1910 	mov	dpl, #0x03
       002861 C0 07            [24] 1911 	push	ar7
       002863 C0 06            [24] 1912 	push	ar6
       002865 C0 05            [24] 1913 	push	ar5
-      002867 12 39 05         [24] 1914 	lcall	_spi_control_write
+      002867 12 39 7A         [24] 1914 	lcall	_spi_control_write
       00286A D0 05            [24] 1915 	pop	ar5
       00286C D0 06            [24] 1916 	pop	ar6
       00286E D0 07            [24] 1917 	pop	ar7
@@ -1926,19 +1926,19 @@
       00287B 85 0B 82         [24] 1926 	mov	dpl,_enc_init_sloc1_1_0
       00287E 85 0C 83         [24] 1927 	mov	dph,(_enc_init_sloc1_1_0 + 1)
       002881 85 0D F0         [24] 1928 	mov	b,(_enc_init_sloc1_1_0 + 2)
-      002884 12 6B D1         [24] 1929 	lcall	__gptrget
+      002884 12 6E 38         [24] 1929 	lcall	__gptrget
       002887 FB               [12] 1930 	mov	r3,a
-      002888 90 03 70         [24] 1931 	mov	dptr,#_spi_control_write_PARM_2
+      002888 90 03 84         [24] 1931 	mov	dptr,#_spi_control_write_PARM_2
       00288B E4               [12] 1932 	clr	a
       00288C F0               [24] 1933 	movx	@dptr,a
-      00288D 90 03 71         [24] 1934 	mov	dptr,#_spi_control_write_PARM_3
+      00288D 90 03 85         [24] 1934 	mov	dptr,#_spi_control_write_PARM_3
       002890 EB               [12] 1935 	mov	a,r3
       002891 F0               [24] 1936 	movx	@dptr,a
       002892 75 82 03         [24] 1937 	mov	dpl, #0x03
       002895 C0 07            [24] 1938 	push	ar7
       002897 C0 06            [24] 1939 	push	ar6
       002899 C0 05            [24] 1940 	push	ar5
-      00289B 12 39 05         [24] 1941 	lcall	_spi_control_write
+      00289B 12 39 7A         [24] 1941 	lcall	_spi_control_write
       00289E D0 05            [24] 1942 	pop	ar5
       0028A0 D0 06            [24] 1943 	pop	ar6
       0028A2 D0 07            [24] 1944 	pop	ar7
@@ -1953,19 +1953,19 @@
       0028AF 85 0E 82         [24] 1953 	mov	dpl,_enc_init_sloc2_1_0
       0028B2 85 0F 83         [24] 1954 	mov	dph,(_enc_init_sloc2_1_0 + 1)
       0028B5 85 10 F0         [24] 1955 	mov	b,(_enc_init_sloc2_1_0 + 2)
-      0028B8 12 6B D1         [24] 1956 	lcall	__gptrget
+      0028B8 12 6E 38         [24] 1956 	lcall	__gptrget
       0028BB F9               [12] 1957 	mov	r1,a
-      0028BC 90 03 70         [24] 1958 	mov	dptr,#_spi_control_write_PARM_2
+      0028BC 90 03 84         [24] 1958 	mov	dptr,#_spi_control_write_PARM_2
       0028BF 74 03            [12] 1959 	mov	a,#0x03
       0028C1 F0               [24] 1960 	movx	@dptr,a
-      0028C2 90 03 71         [24] 1961 	mov	dptr,#_spi_control_write_PARM_3
+      0028C2 90 03 85         [24] 1961 	mov	dptr,#_spi_control_write_PARM_3
       0028C5 E9               [12] 1962 	mov	a,r1
       0028C6 F0               [24] 1963 	movx	@dptr,a
       0028C7 75 82 03         [24] 1964 	mov	dpl, #0x03
       0028CA C0 07            [24] 1965 	push	ar7
       0028CC C0 06            [24] 1966 	push	ar6
       0028CE C0 05            [24] 1967 	push	ar5
-      0028D0 12 39 05         [24] 1968 	lcall	_spi_control_write
+      0028D0 12 39 7A         [24] 1968 	lcall	_spi_control_write
       0028D3 D0 05            [24] 1969 	pop	ar5
       0028D5 D0 06            [24] 1970 	pop	ar6
       0028D7 D0 07            [24] 1971 	pop	ar7
@@ -1980,19 +1980,19 @@
       0028E4 85 11 82         [24] 1980 	mov	dpl,_enc_init_sloc3_1_0
       0028E7 85 12 83         [24] 1981 	mov	dph,(_enc_init_sloc3_1_0 + 1)
       0028EA 85 13 F0         [24] 1982 	mov	b,(_enc_init_sloc3_1_0 + 2)
-      0028ED 12 6B D1         [24] 1983 	lcall	__gptrget
+      0028ED 12 6E 38         [24] 1983 	lcall	__gptrget
       0028F0 FB               [12] 1984 	mov	r3,a
-      0028F1 90 03 70         [24] 1985 	mov	dptr,#_spi_control_write_PARM_2
+      0028F1 90 03 84         [24] 1985 	mov	dptr,#_spi_control_write_PARM_2
       0028F4 74 02            [12] 1986 	mov	a,#0x02
       0028F6 F0               [24] 1987 	movx	@dptr,a
-      0028F7 90 03 71         [24] 1988 	mov	dptr,#_spi_control_write_PARM_3
+      0028F7 90 03 85         [24] 1988 	mov	dptr,#_spi_control_write_PARM_3
       0028FA EB               [12] 1989 	mov	a,r3
       0028FB F0               [24] 1990 	movx	@dptr,a
       0028FC 75 82 03         [24] 1991 	mov	dpl, #0x03
       0028FF C0 07            [24] 1992 	push	ar7
       002901 C0 06            [24] 1993 	push	ar6
       002903 C0 05            [24] 1994 	push	ar5
-      002905 12 39 05         [24] 1995 	lcall	_spi_control_write
+      002905 12 39 7A         [24] 1995 	lcall	_spi_control_write
       002908 D0 05            [24] 1996 	pop	ar5
       00290A D0 06            [24] 1997 	pop	ar6
       00290C D0 07            [24] 1998 	pop	ar7
@@ -2007,12 +2007,12 @@
       002917 8A 82            [24] 2007 	mov	dpl,r2
       002919 8B 83            [24] 2008 	mov	dph,r3
       00291B 8C F0            [24] 2009 	mov	b,r4
-      00291D 12 6B D1         [24] 2010 	lcall	__gptrget
+      00291D 12 6E 38         [24] 2010 	lcall	__gptrget
       002920 F9               [12] 2011 	mov	r1,a
-      002921 90 03 70         [24] 2012 	mov	dptr,#_spi_control_write_PARM_2
+      002921 90 03 84         [24] 2012 	mov	dptr,#_spi_control_write_PARM_2
       002924 74 05            [12] 2013 	mov	a,#0x05
       002926 F0               [24] 2014 	movx	@dptr,a
-      002927 90 03 71         [24] 2015 	mov	dptr,#_spi_control_write_PARM_3
+      002927 90 03 85         [24] 2015 	mov	dptr,#_spi_control_write_PARM_3
       00292A E9               [12] 2016 	mov	a,r1
       00292B F0               [24] 2017 	movx	@dptr,a
       00292C 75 82 03         [24] 2018 	mov	dpl, #0x03
@@ -2022,7 +2022,7 @@
       002935 C0 04            [24] 2022 	push	ar4
       002937 C0 03            [24] 2023 	push	ar3
       002939 C0 02            [24] 2024 	push	ar2
-      00293B 12 39 05         [24] 2025 	lcall	_spi_control_write
+      00293B 12 39 7A         [24] 2025 	lcall	_spi_control_write
       00293E D0 02            [24] 2026 	pop	ar2
       002940 D0 03            [24] 2027 	pop	ar3
       002942 D0 04            [24] 2028 	pop	ar4
@@ -2033,12 +2033,12 @@
       00294A 8D 82            [24] 2033 	mov	dpl,r5
       00294C 8E 83            [24] 2034 	mov	dph,r6
       00294E 8F F0            [24] 2035 	mov	b,r7
-      002950 12 6B D1         [24] 2036 	lcall	__gptrget
+      002950 12 6E 38         [24] 2036 	lcall	__gptrget
       002953 F9               [12] 2037 	mov	r1,a
-      002954 90 03 70         [24] 2038 	mov	dptr,#_spi_control_write_PARM_2
+      002954 90 03 84         [24] 2038 	mov	dptr,#_spi_control_write_PARM_2
       002957 74 04            [12] 2039 	mov	a,#0x04
       002959 F0               [24] 2040 	movx	@dptr,a
-      00295A 90 03 71         [24] 2041 	mov	dptr,#_spi_control_write_PARM_3
+      00295A 90 03 85         [24] 2041 	mov	dptr,#_spi_control_write_PARM_3
       00295D E9               [12] 2042 	mov	a,r1
       00295E F0               [24] 2043 	movx	@dptr,a
       00295F 75 82 03         [24] 2044 	mov	dpl, #0x03
@@ -2048,7 +2048,7 @@
       002968 C0 04            [24] 2048 	push	ar4
       00296A C0 03            [24] 2049 	push	ar3
       00296C C0 02            [24] 2050 	push	ar2
-      00296E 12 39 05         [24] 2051 	lcall	_spi_control_write
+      00296E 12 39 7A         [24] 2051 	lcall	_spi_control_write
       002971 D0 02            [24] 2052 	pop	ar2
       002973 D0 03            [24] 2053 	pop	ar3
       002975 D0 04            [24] 2054 	pop	ar4
@@ -2056,7 +2056,7 @@
       002979 D0 06            [24] 2056 	pop	ar6
       00297B D0 07            [24] 2057 	pop	ar7
                                    2058 ;	Eth.c:299: phy_spi_write(0x10, 0x0100);
-      00297D 90 03 76         [24] 2059 	mov	dptr,#_phy_spi_write_PARM_2
+      00297D 90 03 8A         [24] 2059 	mov	dptr,#_phy_spi_write_PARM_2
       002980 E4               [12] 2060 	clr	a
       002981 F0               [24] 2061 	movx	@dptr,a
       002982 04               [12] 2062 	inc	a
@@ -2069,7 +2069,7 @@
       00298E C0 04            [24] 2069 	push	ar4
       002990 C0 03            [24] 2070 	push	ar3
       002992 C0 02            [24] 2071 	push	ar2
-      002994 12 39 F8         [24] 2072 	lcall	_phy_spi_write
+      002994 12 3A 13         [24] 2072 	lcall	_phy_spi_write
       002997 D0 02            [24] 2073 	pop	ar2
       002999 D0 03            [24] 2074 	pop	ar3
       00299B D0 04            [24] 2075 	pop	ar4
@@ -2077,10 +2077,10 @@
       00299F D0 06            [24] 2077 	pop	ar6
       0029A1 D0 07            [24] 2078 	pop	ar7
                                    2079 ;	Eth.c:302: spi_control_write(0, 0X1B, 0XC0); // reception enable bit
-      0029A3 90 03 70         [24] 2080 	mov	dptr,#_spi_control_write_PARM_2
+      0029A3 90 03 84         [24] 2080 	mov	dptr,#_spi_control_write_PARM_2
       0029A6 74 1B            [12] 2081 	mov	a,#0x1b
       0029A8 F0               [24] 2082 	movx	@dptr,a
-      0029A9 90 03 71         [24] 2083 	mov	dptr,#_spi_control_write_PARM_3
+      0029A9 90 03 85         [24] 2083 	mov	dptr,#_spi_control_write_PARM_3
       0029AC 74 C0            [12] 2084 	mov	a,#0xc0
       0029AE F0               [24] 2085 	movx	@dptr,a
       0029AF 75 82 00         [24] 2086 	mov	dpl, #0x00
@@ -2090,7 +2090,7 @@
       0029B8 C0 04            [24] 2090 	push	ar4
       0029BA C0 03            [24] 2091 	push	ar3
       0029BC C0 02            [24] 2092 	push	ar2
-      0029BE 12 39 05         [24] 2093 	lcall	_spi_control_write
+      0029BE 12 39 7A         [24] 2093 	lcall	_spi_control_write
       0029C1 D0 02            [24] 2094 	pop	ar2
       0029C3 D0 03            [24] 2095 	pop	ar3
       0029C5 D0 04            [24] 2096 	pop	ar4
@@ -2098,10 +2098,10 @@
       0029C9 D0 06            [24] 2098 	pop	ar6
       0029CB D0 07            [24] 2099 	pop	ar7
                                    2100 ;	Eth.c:303: spi_control_write(0, 0X1F, 0X04); // reception enable bit
-      0029CD 90 03 70         [24] 2101 	mov	dptr,#_spi_control_write_PARM_2
+      0029CD 90 03 84         [24] 2101 	mov	dptr,#_spi_control_write_PARM_2
       0029D0 74 1F            [12] 2102 	mov	a,#0x1f
       0029D2 F0               [24] 2103 	movx	@dptr,a
-      0029D3 90 03 71         [24] 2104 	mov	dptr,#_spi_control_write_PARM_3
+      0029D3 90 03 85         [24] 2104 	mov	dptr,#_spi_control_write_PARM_3
       0029D6 74 04            [12] 2105 	mov	a,#0x04
       0029D8 F0               [24] 2106 	movx	@dptr,a
       0029D9 75 82 00         [24] 2107 	mov	dpl, #0x00
@@ -2111,15 +2111,15 @@
       0029E2 C0 04            [24] 2111 	push	ar4
       0029E4 C0 03            [24] 2112 	push	ar3
       0029E6 C0 02            [24] 2113 	push	ar2
-      0029E8 12 39 05         [24] 2114 	lcall	_spi_control_write
+      0029E8 12 39 7A         [24] 2114 	lcall	_spi_control_write
                                    2115 ;	Eth.c:305: printf("\nENC28J60 Initialization Complete.\n");
-      0029EB 74 45            [12] 2116 	mov	a,#___str_7
+      0029EB 74 AC            [12] 2116 	mov	a,#___str_7
       0029ED C0 E0            [24] 2117 	push	acc
-      0029EF 74 6D            [12] 2118 	mov	a,#(___str_7 >> 8)
+      0029EF 74 6F            [12] 2118 	mov	a,#(___str_7 >> 8)
       0029F1 C0 E0            [24] 2119 	push	acc
       0029F3 74 80            [12] 2120 	mov	a,#0x80
       0029F5 C0 E0            [24] 2121 	push	acc
-      0029F7 12 61 AF         [24] 2122 	lcall	_printf
+      0029F7 12 64 16         [24] 2122 	lcall	_printf
       0029FA 15 81            [12] 2123 	dec	sp
       0029FC 15 81            [12] 2124 	dec	sp
       0029FE 15 81            [12] 2125 	dec	sp
@@ -2133,41 +2133,41 @@
       002A0C 85 08 82         [24] 2133 	mov	dpl,_enc_init_sloc0_1_0
       002A0F 85 09 83         [24] 2134 	mov	dph,(_enc_init_sloc0_1_0 + 1)
       002A12 85 0A F0         [24] 2135 	mov	b,(_enc_init_sloc0_1_0 + 2)
-      002A15 12 6B D1         [24] 2136 	lcall	__gptrget
+      002A15 12 6E 38         [24] 2136 	lcall	__gptrget
       002A18 F9               [12] 2137 	mov	r1,a
       002A19 89 08            [24] 2138 	mov	_enc_init_sloc0_1_0,r1
       002A1B 75 09 00         [24] 2139 	mov	(_enc_init_sloc0_1_0 + 1),#0x00
       002A1E 85 0B 82         [24] 2140 	mov	dpl,_enc_init_sloc1_1_0
       002A21 85 0C 83         [24] 2141 	mov	dph,(_enc_init_sloc1_1_0 + 1)
       002A24 85 0D F0         [24] 2142 	mov	b,(_enc_init_sloc1_1_0 + 2)
-      002A27 12 6B D1         [24] 2143 	lcall	__gptrget
+      002A27 12 6E 38         [24] 2143 	lcall	__gptrget
       002A2A F9               [12] 2144 	mov	r1,a
       002A2B 89 0B            [24] 2145 	mov	_enc_init_sloc1_1_0,r1
       002A2D 75 0C 00         [24] 2146 	mov	(_enc_init_sloc1_1_0 + 1),#0x00
       002A30 85 0E 82         [24] 2147 	mov	dpl,_enc_init_sloc2_1_0
       002A33 85 0F 83         [24] 2148 	mov	dph,(_enc_init_sloc2_1_0 + 1)
       002A36 85 10 F0         [24] 2149 	mov	b,(_enc_init_sloc2_1_0 + 2)
-      002A39 12 6B D1         [24] 2150 	lcall	__gptrget
+      002A39 12 6E 38         [24] 2150 	lcall	__gptrget
       002A3C F9               [12] 2151 	mov	r1,a
       002A3D 89 0E            [24] 2152 	mov	_enc_init_sloc2_1_0,r1
       002A3F 75 0F 00         [24] 2153 	mov	(_enc_init_sloc2_1_0 + 1),#0x00
       002A42 85 11 82         [24] 2154 	mov	dpl,_enc_init_sloc3_1_0
       002A45 85 12 83         [24] 2155 	mov	dph,(_enc_init_sloc3_1_0 + 1)
       002A48 85 13 F0         [24] 2156 	mov	b,(_enc_init_sloc3_1_0 + 2)
-      002A4B 12 6B D1         [24] 2157 	lcall	__gptrget
+      002A4B 12 6E 38         [24] 2157 	lcall	__gptrget
       002A4E F8               [12] 2158 	mov	r0,a
       002A4F 79 00            [12] 2159 	mov	r1,#0x00
                                    2160 ;	Eth.c:306: printf("MAC Address: %02X:%02X:%02X:%02X:%02X:%02X\n", mac[0], mac[1],
       002A51 8A 82            [24] 2161 	mov	dpl,r2
       002A53 8B 83            [24] 2162 	mov	dph,r3
       002A55 8C F0            [24] 2163 	mov	b,r4
-      002A57 12 6B D1         [24] 2164 	lcall	__gptrget
+      002A57 12 6E 38         [24] 2164 	lcall	__gptrget
       002A5A FA               [12] 2165 	mov	r2,a
       002A5B 7C 00            [12] 2166 	mov	r4,#0x00
       002A5D 8D 82            [24] 2167 	mov	dpl,r5
       002A5F 8E 83            [24] 2168 	mov	dph,r6
       002A61 8F F0            [24] 2169 	mov	b,r7
-      002A63 12 6B D1         [24] 2170 	lcall	__gptrget
+      002A63 12 6E 38         [24] 2170 	lcall	__gptrget
       002A66 FD               [12] 2171 	mov	r5,a
       002A67 7F 00            [12] 2172 	mov	r7,#0x00
       002A69 C0 08            [24] 2173 	push	_enc_init_sloc0_1_0
@@ -2182,24 +2182,24 @@
       002A7B C0 04            [24] 2182 	push	ar4
       002A7D C0 05            [24] 2183 	push	ar5
       002A7F C0 07            [24] 2184 	push	ar7
-      002A81 74 69            [12] 2185 	mov	a,#___str_8
+      002A81 74 D0            [12] 2185 	mov	a,#___str_8
       002A83 C0 E0            [24] 2186 	push	acc
-      002A85 74 6D            [12] 2187 	mov	a,#(___str_8 >> 8)
+      002A85 74 6F            [12] 2187 	mov	a,#(___str_8 >> 8)
       002A87 C0 E0            [24] 2188 	push	acc
       002A89 74 80            [12] 2189 	mov	a,#0x80
       002A8B C0 E0            [24] 2190 	push	acc
-      002A8D 12 61 AF         [24] 2191 	lcall	_printf
+      002A8D 12 64 16         [24] 2191 	lcall	_printf
       002A90 E5 81            [12] 2192 	mov	a,sp
       002A92 24 F1            [12] 2193 	add	a,#0xf1
       002A94 F5 81            [12] 2194 	mov	sp,a
                                    2195 ;	Eth.c:308: uint8_t rev = eth_spi_read(0x12,3);
-      002A96 90 03 74         [24] 2196 	mov	dptr,#_eth_spi_read_PARM_2
+      002A96 90 03 88         [24] 2196 	mov	dptr,#_eth_spi_read_PARM_2
       002A99 74 03            [12] 2197 	mov	a,#0x03
       002A9B F0               [24] 2198 	movx	@dptr,a
       002A9C 75 82 12         [24] 2199 	mov	dpl, #0x12
                                    2200 ;	Eth.c:310: if (rev > 5) ++rev;
                                    2201 ;	Eth.c:358: }
-      002A9F 02 39 8A         [24] 2202 	ljmp	_eth_spi_read
+      002A9F 02 39 D0         [24] 2202 	ljmp	_eth_spi_read
                                    2203 ;------------------------------------------------------------
                                    2204 ;Allocation info for local variables in function 'ENC_pkt_count'
                                    2205 ;------------------------------------------------------------
@@ -2211,13 +2211,13 @@
                                    2211 ;	-----------------------------------------
       002AA2                       2212 _ENC_pkt_count:
                                    2213 ;	Eth.c:362: uint8_t count = mac_spi_read(0x19, 1);
-      002AA2 90 03 79         [24] 2214 	mov	dptr,#_mac_spi_read_PARM_2
+      002AA2 90 03 8D         [24] 2214 	mov	dptr,#_mac_spi_read_PARM_2
       002AA5 74 01            [12] 2215 	mov	a,#0x01
       002AA7 F0               [24] 2216 	movx	@dptr,a
       002AA8 75 82 19         [24] 2217 	mov	dpl, #0x19
                                    2218 ;	Eth.c:363: return count;
                                    2219 ;	Eth.c:364: }
-      002AAB 02 3A 7B         [24] 2220 	ljmp	_mac_spi_read
+      002AAB 02 3A 96         [24] 2220 	ljmp	_mac_spi_read
                                    2221 ;------------------------------------------------------------
                                    2222 ;Allocation info for local variables in function 'update_ERXRDPT'
                                    2223 ;------------------------------------------------------------
@@ -2248,43 +2248,43 @@
                                    2248 ;	Eth.c:369: uint8_t low_byte = (uint8_t)(new_address & 0xFF);
       002AC2 8E 04            [24] 2249 	mov	ar4,r6
                                    2250 ;	Eth.c:372: spi_control_write(0, 0x0C, low_byte);  // Write to low-byte register
-      002AC4 90 03 70         [24] 2251 	mov	dptr,#_spi_control_write_PARM_2
+      002AC4 90 03 84         [24] 2251 	mov	dptr,#_spi_control_write_PARM_2
       002AC7 74 0C            [12] 2252 	mov	a,#0x0c
       002AC9 F0               [24] 2253 	movx	@dptr,a
-      002ACA 90 03 71         [24] 2254 	mov	dptr,#_spi_control_write_PARM_3
+      002ACA 90 03 85         [24] 2254 	mov	dptr,#_spi_control_write_PARM_3
       002ACD EC               [12] 2255 	mov	a,r4
       002ACE F0               [24] 2256 	movx	@dptr,a
       002ACF 75 82 00         [24] 2257 	mov	dpl, #0x00
       002AD2 C0 07            [24] 2258 	push	ar7
       002AD4 C0 06            [24] 2259 	push	ar6
       002AD6 C0 05            [24] 2260 	push	ar5
-      002AD8 12 39 05         [24] 2261 	lcall	_spi_control_write
+      002AD8 12 39 7A         [24] 2261 	lcall	_spi_control_write
       002ADB D0 05            [24] 2262 	pop	ar5
       002ADD D0 06            [24] 2263 	pop	ar6
       002ADF D0 07            [24] 2264 	pop	ar7
                                    2265 ;	Eth.c:373: spi_control_write(0, 0x0D, high_byte); // Write to high-byte register
-      002AE1 90 03 70         [24] 2266 	mov	dptr,#_spi_control_write_PARM_2
+      002AE1 90 03 84         [24] 2266 	mov	dptr,#_spi_control_write_PARM_2
       002AE4 74 0D            [12] 2267 	mov	a,#0x0d
       002AE6 F0               [24] 2268 	movx	@dptr,a
-      002AE7 90 03 71         [24] 2269 	mov	dptr,#_spi_control_write_PARM_3
+      002AE7 90 03 85         [24] 2269 	mov	dptr,#_spi_control_write_PARM_3
       002AEA ED               [12] 2270 	mov	a,r5
       002AEB F0               [24] 2271 	movx	@dptr,a
       002AEC 75 82 00         [24] 2272 	mov	dpl, #0x00
       002AEF C0 07            [24] 2273 	push	ar7
       002AF1 C0 06            [24] 2274 	push	ar6
-      002AF3 12 39 05         [24] 2275 	lcall	_spi_control_write
+      002AF3 12 39 7A         [24] 2275 	lcall	_spi_control_write
       002AF6 D0 06            [24] 2276 	pop	ar6
       002AF8 D0 07            [24] 2277 	pop	ar7
                                    2278 ;	Eth.c:376: printf("Updated ERXRDPT to 0x%04X\n", new_address);
       002AFA C0 06            [24] 2279 	push	ar6
       002AFC C0 07            [24] 2280 	push	ar7
-      002AFE 74 95            [12] 2281 	mov	a,#___str_9
+      002AFE 74 FC            [12] 2281 	mov	a,#___str_9
       002B00 C0 E0            [24] 2282 	push	acc
-      002B02 74 6D            [12] 2283 	mov	a,#(___str_9 >> 8)
+      002B02 74 6F            [12] 2283 	mov	a,#(___str_9 >> 8)
       002B04 C0 E0            [24] 2284 	push	acc
       002B06 74 80            [12] 2285 	mov	a,#0x80
       002B08 C0 E0            [24] 2286 	push	acc
-      002B0A 12 61 AF         [24] 2287 	lcall	_printf
+      002B0A 12 64 16         [24] 2287 	lcall	_printf
       002B0D E5 81            [12] 2288 	mov	a,sp
       002B0F 24 FB            [12] 2289 	add	a,#0xfb
       002B11 F5 81            [12] 2290 	mov	sp,a
@@ -2293,9 +2293,9 @@
                                    2293 	.area CSEG    (CODE)
                                    2294 	.area CONST   (CODE)
                                    2295 	.area CONST   (CODE)
-      006BF1                       2296 ___str_0:
-      006BF1 0A                    2297 	.db 0x0a
-      006BF2 49 6E 76 61 6C 69 64  2298 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
+      006E58                       2296 ___str_0:
+      006E58 0A                    2297 	.db 0x0a
+      006E59 49 6E 76 61 6C 69 64  2298 	.ascii "Invalid Buffer Size. Buffer exceeds valid address range."
              20 42 75 66 66 65 72
              20 53 69 7A 65 2E 20
              42 75 66 66 65 72 20
@@ -2303,36 +2303,36 @@
              20 76 61 6C 69 64 20
              61 64 64 72 65 73 73
              20 72 61 6E 67 65 2E
-      006C2A 0A                    2299 	.db 0x0a
-      006C2B 00                    2300 	.db 0x00
+      006E91 0A                    2299 	.db 0x0a
+      006E92 00                    2300 	.db 0x00
                                    2301 	.area CSEG    (CODE)
                                    2302 	.area CONST   (CODE)
-      006C2C                       2303 ___str_1:
-      006C2C 41 52 50 20 72 65 71  2304 	.ascii "ARP request sent successfully."
+      006E93                       2303 ___str_1:
+      006E93 41 52 50 20 72 65 71  2304 	.ascii "ARP request sent successfully."
              75 65 73 74 20 73 65
              6E 74 20 73 75 63 63
              65 73 73 66 75 6C 6C
              79 2E
-      006C4A 0A                    2305 	.db 0x0a
-      006C4B 0D                    2306 	.db 0x0d
-      006C4C 00                    2307 	.db 0x00
+      006EB1 0A                    2305 	.db 0x0a
+      006EB2 0D                    2306 	.db 0x0d
+      006EB3 00                    2307 	.db 0x00
                                    2308 	.area CSEG    (CODE)
                                    2309 	.area CONST   (CODE)
-      006C4D                       2310 ___str_2:
-      006C4D 41 52 50 20 74 72 61  2311 	.ascii "ARP transmission failed. Check error flags."
+      006EB4                       2310 ___str_2:
+      006EB4 41 52 50 20 74 72 61  2311 	.ascii "ARP transmission failed. Check error flags."
              6E 73 6D 69 73 73 69
              6F 6E 20 66 61 69 6C
              65 64 2E 20 43 68 65
              63 6B 20 65 72 72 6F
              72 20 66 6C 61 67 73
              2E
-      006C78 0A                    2312 	.db 0x0a
-      006C79 0D                    2313 	.db 0x0d
-      006C7A 00                    2314 	.db 0x00
+      006EDF 0A                    2312 	.db 0x0a
+      006EE0 0D                    2313 	.db 0x0d
+      006EE1 00                    2314 	.db 0x00
                                    2315 	.area CSEG    (CODE)
                                    2316 	.area CONST   (CODE)
-      006C7B                       2317 ___str_3:
-      006C7B 54 72 61 6E 73 6D 69  2318 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
+      006EE2                       2317 ___str_3:
+      006EE2 54 72 61 6E 73 6D 69  2318 	.ascii "Transmission timeout. ENC28J60 may not be functioning correc"
              73 73 69 6F 6E 20 74
              69 6D 65 6F 75 74 2E
              20 45 4E 43 32 38 4A
@@ -2341,79 +2341,79 @@
              66 75 6E 63 74 69 6F
              6E 69 6E 67 20 63 6F
              72 72 65 63
-      006CB7 74 6C 79 2E           2319 	.ascii "tly."
-      006CBB 0A                    2320 	.db 0x0a
-      006CBC 0D                    2321 	.db 0x0d
-      006CBD 00                    2322 	.db 0x00
+      006F1E 74 6C 79 2E           2319 	.ascii "tly."
+      006F22 0A                    2320 	.db 0x0a
+      006F23 0D                    2321 	.db 0x0d
+      006F24 00                    2322 	.db 0x00
                                    2323 	.area CSEG    (CODE)
                                    2324 	.area CONST   (CODE)
-      006CBE                       2325 ___str_4:
-      006CBE 49 6E 74 65 72 72 72  2326 	.ascii "Interrrrrrrruuuuuuuuuppppppppttttttt"
+      006F25                       2325 ___str_4:
+      006F25 49 6E 74 65 72 72 72  2326 	.ascii "Interrrrrrrruuuuuuuuuppppppppttttttt"
              72 72 72 72 72 75 75
              75 75 75 75 75 75 75
              70 70 70 70 70 70 70
              70 74 74 74 74 74 74
              74
-      006CE2 0A                    2327 	.db 0x0a
-      006CE3 0D                    2328 	.db 0x0d
-      006CE4 00                    2329 	.db 0x00
+      006F49 0A                    2327 	.db 0x0a
+      006F4A 0D                    2328 	.db 0x0d
+      006F4B 00                    2329 	.db 0x00
                                    2330 	.area CSEG    (CODE)
                                    2331 	.area CONST   (CODE)
-      006CE5                       2332 ___str_5:
-      006CE5 0A                    2333 	.db 0x0a
-      006CE6 49 6E 76 61 6C 69 64  2334 	.ascii "Invalid Buffer Range: Start 0x%04X, End 0x%04X"
+      006F4C                       2332 ___str_5:
+      006F4C 0A                    2333 	.db 0x0a
+      006F4D 49 6E 76 61 6C 69 64  2334 	.ascii "Invalid Buffer Range: Start 0x%04X, End 0x%04X"
              20 42 75 66 66 65 72
              20 52 61 6E 67 65 3A
              20 53 74 61 72 74 20
              30 78 25 30 34 58 2C
              20 45 6E 64 20 30 78
              25 30 34 58
-      006D14 0A                    2335 	.db 0x0a
-      006D15 00                    2336 	.db 0x00
+      006F7B 0A                    2335 	.db 0x0a
+      006F7C 00                    2336 	.db 0x00
                                    2337 	.area CSEG    (CODE)
                                    2338 	.area CONST   (CODE)
-      006D16                       2339 ___str_6:
-      006D16 0A                    2340 	.db 0x0a
-      006D17 42 75 66 66 65 72 20  2341 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
+      006F7D                       2339 ___str_6:
+      006F7D 0A                    2340 	.db 0x0a
+      006F7E 42 75 66 66 65 72 20  2341 	.ascii "Buffer Initialized: Start 0x%04X, End 0x%04X"
              49 6E 69 74 69 61 6C
              69 7A 65 64 3A 20 53
              74 61 72 74 20 30 78
              25 30 34 58 2C 20 45
              6E 64 20 30 78 25 30
              34 58
-      006D43 0A                    2342 	.db 0x0a
-      006D44 00                    2343 	.db 0x00
+      006FAA 0A                    2342 	.db 0x0a
+      006FAB 00                    2343 	.db 0x00
                                    2344 	.area CSEG    (CODE)
                                    2345 	.area CONST   (CODE)
-      006D45                       2346 ___str_7:
-      006D45 0A                    2347 	.db 0x0a
-      006D46 45 4E 43 32 38 4A 36  2348 	.ascii "ENC28J60 Initialization Complete."
+      006FAC                       2346 ___str_7:
+      006FAC 0A                    2347 	.db 0x0a
+      006FAD 45 4E 43 32 38 4A 36  2348 	.ascii "ENC28J60 Initialization Complete."
              30 20 49 6E 69 74 69
              61 6C 69 7A 61 74 69
              6F 6E 20 43 6F 6D 70
              6C 65 74 65 2E
-      006D67 0A                    2349 	.db 0x0a
-      006D68 00                    2350 	.db 0x00
+      006FCE 0A                    2349 	.db 0x0a
+      006FCF 00                    2350 	.db 0x00
                                    2351 	.area CSEG    (CODE)
                                    2352 	.area CONST   (CODE)
-      006D69                       2353 ___str_8:
-      006D69 4D 41 43 20 41 64 64  2354 	.ascii "MAC Address: %02X:%02X:%02X:%02X:%02X:%02X"
+      006FD0                       2353 ___str_8:
+      006FD0 4D 41 43 20 41 64 64  2354 	.ascii "MAC Address: %02X:%02X:%02X:%02X:%02X:%02X"
              72 65 73 73 3A 20 25
              30 32 58 3A 25 30 32
              58 3A 25 30 32 58 3A
              25 30 32 58 3A 25 30
              32 58 3A 25 30 32 58
-      006D93 0A                    2355 	.db 0x0a
-      006D94 00                    2356 	.db 0x00
+      006FFA 0A                    2355 	.db 0x0a
+      006FFB 00                    2356 	.db 0x00
                                    2357 	.area CSEG    (CODE)
                                    2358 	.area CONST   (CODE)
-      006D95                       2359 ___str_9:
-      006D95 55 70 64 61 74 65 64  2360 	.ascii "Updated ERXRDPT to 0x%04X"
+      006FFC                       2359 ___str_9:
+      006FFC 55 70 64 61 74 65 64  2360 	.ascii "Updated ERXRDPT to 0x%04X"
              20 45 52 58 52 44 50
              54 20 74 6F 20 30 78
              25 30 34 58
-      006DAE 0A                    2361 	.db 0x0a
-      006DAF 00                    2362 	.db 0x00
+      007015 0A                    2361 	.db 0x0a
+      007016 00                    2362 	.db 0x00
                                    2363 	.area CSEG    (CODE)
                                    2364 	.area XINIT   (CODE)
                                    2365 	.area CABS    (ABS,CODE)

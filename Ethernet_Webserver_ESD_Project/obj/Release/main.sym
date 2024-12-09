@@ -491,13 +491,7 @@ Symbol Table
     __sdcc_gsinit_startup                                          ****** GX
   F __sdcc_program_startup                                         000006 GR
   7 __start__stack                                                 000000 GR
- 1A __xinit__device_ip                                             00000C R
- 1A __xinit__device_mac                                            000000 R
- 1A __xinit__target_ip                                             000010 R
- 1A __xinit__target_mac                                            000006 R
     _configure_SPI                                                 ****** GX
-  E _device_ip                                                     00000C GR
-  E _device_mac                                                    000000 GR
     _enc_init                                                      ****** GX
     _enc_reset                                                     ****** GX
     _eth_spi_read                                                  ****** GX
@@ -517,17 +511,21 @@ Symbol Table
     _mac_spi_read                                                  ****** GX
     _mac_spi_read_PARM_2                                           ****** GX
  18 _main                                                          00023E GR
-  C _main_buffer_40003_151                                         000011 R
-  C _main_buffer_40003_156                                         000111 R
-  C _main_gNextPacketPtr_60001_172                                 000211 R
-  C _main_is_tcp_for_target_60004_177                              000213 R
-  C _main_response_size_70004_181                                  000215 R
+  C _main_buffer_40003_151                                         000025 R
+  C _main_buffer_40003_156                                         000125 R
+  C _main_device_ip_10000_141                                      00001D R
+  C _main_device_mac_10000_141                                     000011 R
+  C _main_gNextPacketPtr_60001_172                                 000225 R
+  C _main_is_tcp_for_target_60004_177                              000227 R
+  C _main_response_size_70004_181                                  000229 R
   5 _main_sloc0_1_0                                                000000 R
   5 _main_sloc1_1_0                                                000002 R
   5 _main_sloc2_1_0                                                000004 R
   5 _main_sloc3_1_0                                                000006 R
   5 _main_sloc4_1_0                                                000008 R
   5 _main_sloc5_1_0                                                00000A R
+  C _main_target_ip_10000_141                                      000021 R
+  C _main_target_mac_10000_141                                     000017 R
     _malloc                                                        ****** GX
     _memcmp                                                        ****** GX
     _memcmp_PARM_2                                                 ****** GX
@@ -538,13 +536,13 @@ Symbol Table
     _phy_spi_write_PARM_2                                          ****** GX
     _printf                                                        ****** GX
     _printf_tiny                                                   ****** GX
+    _process_packet_from_buffer                                    ****** GX
+    _process_tcp_packet                                            ****** GX
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 10
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    _process_packet_from_buffer                                    ****** GX
-    _process_tcp_packet                                            ****** GX
     _process_tcp_packet_PARM_2                                     ****** GX
     _process_tcp_packet_PARM_3                                     ****** GX
     _putchar                                                       ****** GX
@@ -558,8 +556,6 @@ Symbol Table
     _spi_control_write                                             ****** GX
     _spi_control_write_PARM_2                                      ****** GX
     _spi_control_write_PARM_3                                      ****** GX
-  E _target_ip                                                     000010 GR
-  E _target_mac                                                    000006 GR
     _transmit_tcp_packet                                           ****** GX
     _transmit_tcp_packet_PARM_2                                    ****** GX
     _update_ERXRDPT                                                ****** GX
@@ -598,15 +594,15 @@ Symbol Table
     b.4                                                         =  0000F4 L
     b.5                                                         =  0000F5 L
     b.6                                                         =  0000F6 L
+    b.7                                                         =  0000F7 L
+    cprl2                                                       =  0000C8 L
+    ct2                                                         =  0000C9 L
+    cy                                                          =  0000D7 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 11
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    b.7                                                         =  0000F7 L
-    cprl2                                                       =  0000C8 L
-    ct2                                                         =  0000C9 L
-    cy                                                          =  0000D7 L
     dph                                                         =  000083 L
     dpl                                                         =  000082 L
     ea                                                          =  0000AF L
@@ -658,15 +654,15 @@ Symbol Table
     p1.3                                                        =  000093 L
     p1.4                                                        =  000094 L
     p1.5                                                        =  000095 L
+    p1.6                                                        =  000096 L
+    p1.7                                                        =  000097 L
+    p2                                                          =  0000A0 L
+    p2.0                                                        =  0000A0 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 12
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    p1.6                                                        =  000096 L
-    p1.7                                                        =  000097 L
-    p2                                                          =  0000A0 L
-    p2.0                                                        =  0000A0 L
     p2.1                                                        =  0000A1 L
     p2.2                                                        =  0000A2 L
     p2.3                                                        =  0000A3 L
@@ -718,15 +714,15 @@ Symbol Table
     scon.5                                                      =  00009D L
     scon.6                                                      =  00009E L
     scon.7                                                      =  00009F L
+    sm0                                                         =  00009F L
+    sm1                                                         =  00009E L
+    sm2                                                         =  00009D L
+    sp                                                          =  000081 L
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 13
 Hexadecimal [24-Bits]
 
 Symbol Table
 
-    sm0                                                         =  00009F L
-    sm1                                                         =  00009E L
-    sm2                                                         =  00009D L
-    sp                                                          =  000081 L
     t2con                                                       =  0000C8 L
     t2con.0                                                     =  0000C8 L
     t2con.1                                                     =  0000C9 L
@@ -763,6 +759,7 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051)              Page 14
 Hexadecimal [24-Bits]
 
@@ -780,9 +777,9 @@ Area Table
    9 IABS                                       size      0   flags    8
    A BSEG                                       size      0   flags   80
    B PSEG                                       size      0   flags   50
-   C XSEG                                       size    217   flags   40
+   C XSEG                                       size    22B   flags   40
    D XABS                                       size      0   flags   48
-   E XISEG                                      size     14   flags   40
+   E XISEG                                      size      0   flags   40
    F HOME                                       size      9   flags   20
   10 GSINIT0                                    size      0   flags   20
   11 GSINIT1                                    size      0   flags   20
@@ -792,8 +789,8 @@ Area Table
   15 GSINIT5                                    size      0   flags   20
   16 GSINIT                                     size      7   flags   20
   17 GSFINAL                                    size      3   flags   20
-  18 CSEG                                       size    CD6   flags   20
+  18 CSEG                                       size    D4B   flags   20
   19 CONST                                      size    56C   flags   20
-  1A XINIT                                      size     14   flags   20
+  1A XINIT                                      size      0   flags   20
   1B CABS                                       size      0   flags   28
 
